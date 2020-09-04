@@ -1,33 +1,39 @@
-# IF-Script Runner and Parser
+# IF-Script Renderer and Parser (Core)
 
 ## HTML Setup
 
 In the head tag:
 ```html
-<link rel="stylesheet" href="downloadable/if_r.css">
+<link rel="stylesheet" href="src/if_r.css">
 ```
 
 At the bottom of the body tag:
 ```html
 <!-- Handles interpretation of the story. A kind of run time for IF-Script. -->
-<script src="if_r-terp.js"></script>
+<script src="src/if_r-terp.js"></script>
 
 <!-- Is the parsing library -->
-<script src="lib/nearley.js"></script>
+<script src="src/lib/nearley.js"></script>
 
 <!-- The section grammar and class -->
-<script src="parser/section.grammar.js"></script>
+<script src="src/parser/section.grammar.js"></script>
 
 <!-- The Scene grammar and class -->
-<script src="parser/scene.grammar.js"></script>
+<script src="src/parser/scene.grammar.js"></script>
 
 <!-- For markdown rendering -->
-<script src="lib/showdown.min.js"></script>
+<script src="src/lib/showdown.min.js"></script>
 
 <!-- We never import the parser file (if-parser.js) itself. Only interfaces to it. -->
 ```
 The order of loading files is important.
 
+## CDNs
+You can use CDNs to access these file instead of self-hosting them.
+For example,
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PlytonRexus/if-script-core@0.1.3/src/if_r.css">
+```
 ---
 ## Eruda Integration
 
