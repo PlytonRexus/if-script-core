@@ -1,6 +1,6 @@
 {
-  "name": "if-script",
-  "version": "0.2.4",
+  "name": "if-script-core",
+  "version": "0.2.6",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   "author": "Mihir Jichkar (PlytonRexus)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PlytonRexus/if-script/issues"
+    "url": "https://github.com/PlytonRexus/if-script-core/issues"
   },
   "homepage": "https://github.com/PlytonRexus/if-script-core#readme",
   "dependencies": {

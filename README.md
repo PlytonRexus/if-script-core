@@ -15,20 +15,20 @@ _[Markdown cheat-sheet](https://www.markdownguide.org/cheat-sheet/) for referenc
 A Regular Expression based parser is on the [if-script-regex](https://github.com/PlytonRexus/if-script/tree/if-script-regex) branch.
 
 ### [Embedding](#embedding)
-Sure, you can use the parser on nodejs, but the interpreter looks for the DOM to work
+Sure, you can use the parser on node, but the interpreter will need the DOM to work
 
 1. Import the library
 ```js
-import * as IF from 'if-script'
+import { parser, interpreter } from 'if-script-core'
 ```
 2. Parse text into a story instance
 ```js
 const myStoryText = '/* my story */'
-const story = IF.parser.parseText(myStory)
+const story = parser.parseText(myStory)
 ```
 3. Load the story instance into the DOM
 ```js
-IF.interpreter.loadStory(story)
+interpreter.loadStory(story)
 ```
 
 *The indentation does not matter.*
