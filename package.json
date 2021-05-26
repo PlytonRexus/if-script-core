@@ -1,6 +1,6 @@
 {
   "name": "if-script",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
   "main": "index.js",
   "scripts": {
