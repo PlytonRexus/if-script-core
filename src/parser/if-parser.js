@@ -322,4 +322,5 @@ function parseGlobals (string) {
   return varObject
 }
 
+export default { Story, parseText, variableRegex }
 export { Story, parseText, variableRegex }
