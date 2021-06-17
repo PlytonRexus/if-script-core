@@ -1,6 +1,6 @@
 // Generated automatically by nearley, version 2.19.4
 
-import { Grammar } from "nearley"
+import { Grammar } from 'nearley'
 
 // http://github.com/Hardmath123/nearley
 function id (x) { return x[0] }
@@ -8,7 +8,7 @@ function id (x) { return x[0] }
 class Scene {
   constructor (sections, { first, name, music, serial }) {
     if (!(sections instanceof Array)) {
-      throw new IFError('Unexpected argument supplied.' + sections + 'is not an array.')
+      throw new ParsingException('Unexpected argument supplied.' + sections + 'is not an array.')
     }
 
     this.sections = sections
@@ -95,4 +95,4 @@ const grammar = {
   ParserStart: 'scene'
 }
 
-export {grammar}
+export { grammar }

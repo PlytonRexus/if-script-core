@@ -1,6 +1,5 @@
-import nearley from 'nearley'
-import { grammar as sectionGrammar } from './section.grammar'
-import { grammar as sceneGrammar } from './scene.grammar'
+// import { passage } from './passage.grammar.mjs';
+// import { section } from './section.grammar.mjs';
 
 /**
  * @author Mihir Jichkar
@@ -16,22 +15,20 @@ class Story {
      * @param {object} settings Settings object
      * @memberof Story
      */
-  constructor (name, { sections, passages, scenes }, { referrable, startAt, fullTimer }, { globals, stats }) {
+  constructor (name, { sections, passages }, { referrable, startAt, fullTimer }, { globals, stats }) {
     this.name = name.trim()
     this.sections = sections
     this.passages = passages
-    this.scenes = scenes || []
     this.settings = {}
     this.settings.referrable = referrable
     this.settings.startAt = startAt
     this.settings.fullTimer = fullTimer
     this.variables = {}
     if (globals) {
-      Object.keys(globals).forEach(globalV => {
-        this.variables[globalV] = globals[globalV]
+      Object.keys(globals).forEach(global => {
+        this.variables[global] = globals[global]
       })
     }
-    this.persistent = this.variables
     this.stats = stats
   }
 
@@ -65,20 +62,6 @@ class Story {
   }
 }
 
-class Scene {
-  constructor (sections, { first, last, name }) {
-    if (!(sections instanceof Array)) {
-      throw new IFError('Unexpected argument supplied.' + sections + 'is not an array.')
-    }
-
-    this.sections = sections
-    this.first = first || sections[0]
-    this.last = last || sections[sections.length - 1]
-
-    this.name = name || 'Untitled'
-  }
-}
-
 /**
  * @author Mihir Jichkar
  * @description Each section has choices and text.
@@ -101,18 +84,6 @@ class Section {
     this.settings.timer = timer
   }
 
-  findChoice (serial) {
-    let index = this.choices.findIndex(choice => {
-      return choice.choiceI == serial
-    })
-
-    if (index === -1) {
-      index = 0
-    }
-
-    return this.choices[index]
-  }
-
   get type () {
     return 'Section'
   }
@@ -131,15 +102,13 @@ class Choice {
     * @param {String} text Human-readable description of the Choice
     * @memberof Choice
     */
-  constructor (owner, target, text, variables, mode, choiceI, condition, actions) {
+  constructor (owner, target, text, variables, mode, choiceI) {
     this.mode = mode
     this.text = text.trim()
     this.owner = owner
     this.target = target
     this.variables = variables
-    this.choiceI = choiceI
-    this.condition = condition || null
-    this.actions = actions
+    this.choiceI == choiceI
   }
 
   get type () {
@@ -171,7 +140,7 @@ class Passage extends Section {
 
 /* Grammar */
 const grammar = {
-  section: /ss>[a-zA-Z0-9`@"'-_:;\/\s!\*#\$\{\}]+?<ss/g,
+  section: /ss>[a-zA-Z0-9"'-_:;\/\s!\*#\$\{\}]+?<ss/g,
   comment: /\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*$/gm, // /\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/ /\/\*(\*(?!\/)|[^*])*\*\//g
   passage: /pp>[a-zA-Z0-9"'-_:,\/\s!\*#;]+?<pp/g,
   title: /tt>[A-Za-z0-9 '\$\{\}]+?<tt/g,
@@ -186,11 +155,10 @@ const grammar = {
   variable: /\$\{[a-zA-Z0-9=]+?\}/g,
   input: /__input/,
   secTimer: /@timer [0-9]+ \[\[\d+\]\]/,
-  variableAssignment: /\$\{[a-zA-Z0-9]+?=[a-zA-Z0-9_ "'\(\)]+?\}/g,
-  varValue: /[a-zA-Z0-9_ "\(\)]+/,
+  variableAssignment: /\$\{[a-zA-Z0-9]+?=[a-zA-Z0-9_ ]+?\}/g,
+  varValue: /[a-zA-Z0-9_ ]+/,
   setVarAsTarget: /\$\{__[a-zA-Z0-9_=]+?\}/g,
-  html: /<\s*\w+[^>]*>(.*?)(<\s*\/\s*\w+>)|/g,
-  scene: /scene>[a-zA-Z0-9"'-_:;@\/\s!\*#\$\{\}]+?<scene/gm
+  html: /<\s*\w+[^>]*>(.*?)(<\s*\/\s*\w+>)|/g
 }
 
 const variableRegex = grammar.variable
@@ -222,38 +190,92 @@ function parseText (text) {
 
   text = text.replace(grammar.section, '')
 
-  const scened = (text.match(grammar.scene) || [])
-    .map((scene, i) => parseScene(scene, i + 1))
-
   const passaged = (text.match(grammar.passage) || [])
     .map(passage => parsePassage(passage))
 
-  const story = new Story(Date.now().toString(), { sections: sectioned, passages: passaged, scenes: scened }, { referrable, startAt, fullTimer }, { globals })
+  const story = new Story(Date.now().toString(), { sections: sectioned, passages: passaged }, { referrable, startAt, fullTimer }, { globals })
 
   return story
 }
 
-function parseSection (string, serial) {
-  const parser = new nearley.Parser(nearley.Grammar.fromCompiled(sectionGrammar))
-  parser.feed(string)
-  const section = parser.results[0]
-  section.serial = serial
-  section.choices = section.choices.map(choice => {
-    choice.owner = serial
-    if (choice.mode === 'input') {
-      choice.text += `<input type="text" class="if_r-choice-input" id="if_r-choice-input-${choice.choiceI}"/>`
-    }
-    return choice
-  })
-  return section
+/**
+ * Parses a section string into a Section Instance.
+ *
+ * @param {string} section String of the section that is to be parsed
+ * @param {number} serial The serial order of the section to be parsed
+ * @returns {Section} Instance of Section
+ */
+function parseSection (section, serial) {
+  section = section.replace(/ss>/gi, '').replace(/<ss/gi, '')
+
+  let secset = section.match(grammar.sectionSettings) || []
+  secset = secset.length > 0 ? secset[0] : ''
+  const { timer } = parseSecSet(secset, serial)
+
+  let title = section.match(grammar.title) ? section.match(grammar.title)[0] : null || ''
+
+  // if (title === "")
+  // throw Error(({ "message": "A title for each section is required!", "code": "3" }));
+
+  title = title.replace(/tt>/, '').replace(/<tt/, '')
+
+  section = section.replace(grammar.title, '')
+
+  let text = '';
+
+  (section.match(grammar.para) || [])
+    .forEach(para => {
+      para = para.replace(/>>/, '').replace(/<</, '')
+      para = `<p>${para}</p>`
+      text += para
+    })
+
+  let i = 0
+
+  const choices = (section.match(grammar.choice) || [])
+    .map(choice => {
+      i += 1
+      return parseChoice(choice, serial, i)
+    })
+
+  return new Section(title, text, choices, serial, { timer })
 }
 
-function parseScene (string, serial) {
-  const parser = new nearley.Parser(nearley.Grammar.fromCompiled(sceneGrammar))
-  parser.feed(string)
-  const scene = parser.results[0]
-  scene.serial = serial
-  return scene
+function parseChoice (choice, serial, choiceI) {
+  choice = choice.replace(/ch>/, '').replace(/<ch/, '')
+  let target = choice.match(grammar.choiceTarget)
+  target = target ? target[0] : ''
+
+  // if (target = "")
+  // throw Error({ "message": "Choice target invalid or not present.", "code": "4" });
+
+  target = target.replace(/\[\[/, '').replace(/\]\]/, '')
+  target = parseInt(target, 10)
+
+  choice = choice.replace(grammar.choiceTarget, '')
+
+  choice = choice.replace(grammar.html, '')
+
+  let mode = 'basic'
+
+  const isInput = choice.match(grammar.input)
+  if (isInput) {
+    choice = choice.replace(grammar.input, `<input type="text" class="if_r-choice-input" id="if_r-choice-input-${choiceI}"/>`)
+    mode = 'input'
+  }
+
+  const variables =
+    (choice.match(grammar.setVarAsTarget) || [])
+      .map(variable => {
+        return variable.replace(/\$\{/, '').replace(/\}/, '').replace(/\s/g, '').replace('__', '')
+      })
+
+  choice = choice.replace(grammar.setVarAsTarget, '')
+
+  // if (variables.length <= 0)
+  // console.warn("No variable targets set, are you sure?");
+
+  return new Choice(serial, target, choice, variables, mode, choiceI)
 }
 
 /**
@@ -316,10 +338,31 @@ function parseGlobals (string) {
     var_value = var_value.length > 0 ? var_value[0] : ''
 
     if (var_value === '') { console.warn("Variable value was read as ''. Are you sure the value should be empty?") }
-    varObject[var_name] = parseInt(var_value) ? parseInt(var_value) : var_value
+    varObject[var_name] = var_value
   })
 
   return varObject
+}
+
+function parseSecSet (secset, serial) {
+  let timerString = secset.match(grammar.secTimer)
+
+  timerString = timerString ? timerString[0].replace(/@timer /, '') : '0'
+
+  const timerNumbers = timerString.match(/\d+/g)
+
+  const timer = {}
+  if (timerNumbers.length > 1) {
+    timer.timer = parseInt(timerNumbers[0]) ? parseInt(timerNumbers[0]) : 0
+    timer.target = parseInt(timerNumbers[1]) ? parseInt(timerNumbers[1]) : serial + 1
+  } else {
+    timer.timer = 0
+    timer.target = 1
+  }
+
+  secset = secset.replace(grammar.secTimer, '')
+
+  return { timer }
 }
 
 export default { Story, parseText, variableRegex }

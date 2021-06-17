@@ -2,7 +2,7 @@
 class Scene {
     constructor(sections, { first, name, music, serial }) {
         if (!(sections instanceof Array)) {
-            throw new IFError("Unexpected argument supplied." + sections + "is not an array.");
+            throw new ParsingException("Unexpected argument supplied." + sections + "is not an array.");
         }
 
         this.sections = sections;
@@ -15,11 +15,11 @@ class Scene {
 }
 %}
 
-scene -> "scene>" _ 
-(("@first " _ LN _):? 
-("@music " _ nospace _):?  
-("@sections " _ (LN __):+ _) 
-("@name " _ LNS _):?) _ 
+scene -> "scene>" _
+(("@first " _ LN _):?
+("@music " _ nospace _):?
+("@sections " _ (LN __):+ _)
+("@name " _ LNS _):?) _
 "<scene"
 {%
 function(d) {
