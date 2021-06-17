@@ -1,16 +1,18 @@
 {
   "name": "if-script-core",
-  "version": "0.2.7",
+  "version": "0.5.1",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "standard",
     "compile": "npm run compile:section npm run compile:scene && npm run compile:settings",
-    "compile:section": "nearleyc src/grammar/section.ne -o dist/grammar/section.grammar.js",
-    "compile:scene": "nearleyc src/grammar/scene.ne -o dist/grammar/scene.grammar.js",
-    "compile:settings": "nearleyc src/grammar/settings.ne -o dist/grammar/settings.grammar.js",
+    "compile:section": "nearleyc src/parsers/nearley/grammar/section.ne -o dist/grammar/section.grammar.js",
+    "compile:scene": "nearleyc src/parsers/nearley/grammar/scene.ne -o dist/grammar/scene.grammar.js",
+    "compile:settings": "nearleyc src/parsers/nearley/grammar/settings.ne -o dist/grammar/settings.grammar.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "debug": "node tmp/test.mjs",
+    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -43,17 +45,25 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "cross-env": "*",
     "css-loader": "^5.2.6",
+    "css-minimizer-webpack-plugin": "^3.0.1",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
     "prettier-config-standard": "^4.0.0",
     "standard": "^16.0.3",
     "style-loader": "^2.0.0",
     "webpack": "^5.37.1",
-    "webpack-cli": "^4.7.0"
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0"
   },
   "standard": {
     "ignore": [
       "src/web/assets/**",
       "src/web/js/lib/**",
       "dist/**"
+    ],
+    "globals": [
+      "localStorage"
     ]
   }
 }

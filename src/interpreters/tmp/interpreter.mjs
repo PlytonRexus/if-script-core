@@ -1,11 +1,10 @@
 import showdown from 'showdown'
-import './if_r.css'
+import '../../themes/default.css'
 
 const IF = {}
 IF.story = {}
-IF.grammar = {}
 IF.state = {}
-IF.DEBUG = !!localStorage.getItem('IF_DEBUG')
+IF.DEBUG = typeof process !== 'undefined' && process ? process.env.IF_DEBUG : !!localStorage.getItem('IF_DEBUG')
 
 IF.dom = {
   target_id: '#if_r-output-area',
@@ -15,8 +14,7 @@ IF.dom = {
   stats_div_id: '#if_r-stats-div',
   stats_div_class: '.if_r-stats-div',
   undo_button_id: '#if_r-undo-button',
-  reset_button_id: '#if_r-reset-button',
-  variableRegex: /\$\{[a-zA-Z0-9=]+?\}/g
+  reset_button_id: '#if_r-reset-button'
 }
 
 IF.methods = {
@@ -24,6 +22,7 @@ IF.methods = {
     const {
       name,
       sections,
+      // eslint-disable-next-line no-unused-vars
       passages
     } = story
     let wrapper = ''
@@ -32,7 +31,7 @@ IF.methods = {
     document.title = `${name} | IF`
 
     sections.forEach(section => {
-      wrapper += generateHTMLForSection(section)
+      wrapper += IF.methods.generateHTMLForSection(section)
     })
     return wrapper
   },
@@ -117,6 +116,7 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
     const {
       comparisons,
       glue,
+      // eslint-disable-next-line no-unused-vars
       type
     } = condition
     // let operators = ["==", ">=", "<=", ">", "<"];
@@ -185,24 +185,24 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
             num2 = parseInt(num2)
 
             valReplace =
-                        Math.floor(
-                          Math.random() *
-                            (Math.max(num2, num1) - Math.min(num2, num1))) +
-                        Math.min(num2, num1)
+              Math.floor(
+                Math.random() *
+                (Math.max(num2, num1) - Math.min(num2, num1))) +
+              Math.min(num2, num1)
           }
 
           text =
-                        text.replace(
-                          new RegExp('\\$\\{\\s*' + varName + '\\s*\\}'),
-                          valReplace
-                        )
+            text.replace(
+              new RegExp('\\$\\{\\s*' + varName + '\\s*\\}'),
+              valReplace
+            )
         } else {
           if (IF.DEBUG) { console.log('Rejecting:', varName, ', because the value is =', IF.story.variables[varName]) }
           text =
-                        text.replace(
-                          new RegExp('\\$\\{\\s*' + varName + '\\s*\\}'),
-                          ''
-                        )
+            text.replace(
+              new RegExp('\\$\\{\\s*' + varName + '\\s*\\}'),
+              ''
+            )
         }
       })
     }
@@ -210,10 +210,27 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
     return text
   },
 
+  replaceVariables (str, name, value) {
+    const then = Date.now()
+    if (typeof str === 'string') {
+      let j = 0
+      while (j >= 0 && Date.now() - then < 10000) {
+        j = str.indexOf('${' + name + '}', j > 0 ? j + 1 : 0)
+        if (j === -1 || (j > 0 && str[j - 1] === '\\')) {
+        } else {
+          const first = str.substring(0, j)
+          const last = str.substring(j + name.length + 3)
+          str = first + value + last
+        }
+      }
+
+      return str
+    }
+  },
+
   formatText: function (text) {
     if (!showdown) return text
     const converter = new showdown.Converter()
-    var text = text
     return converter.makeHtml(text)
   },
 
@@ -361,6 +378,7 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
   },
 
   executeJs: function (text) {
+    // eslint-disable-next-line no-eval
     return eval(text)
   },
 
@@ -439,6 +457,7 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
 
     if (music) {
       try {
+        // eslint-disable-next-line no-unused-vars
         const url = new URL(music)
         document.querySelector('#if_r-audio-source').src = music
         const player = document.querySelector('#if_r-audio-player')
@@ -453,7 +472,7 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
   },
 
   resetStory: function () {
-    if (confirm('Restart the story? IF.methods is a beta feature.')) {
+    if (window.confirm('Restart the story? IF.methods is a beta feature.')) {
       IF.methods.loadStory(IF.story)
     }
   },
@@ -550,7 +569,7 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
         return section.serial === serial
       })
 
-      if (index == -1) {
+      if (index === -1) {
         if (IF.DEBUG) console.warn('No section ' + serial + ' found. Reverting to default section serial 1.')
         index = 0
       }
@@ -573,7 +592,7 @@ data-if_r-variables="${variables.join(', ')}">${choiceText}</a>
     IF.story.sections = IF.story.sections.map(section => {
       section.findChoice = function (serial) {
         let index = this.choices.findIndex(choice => {
-          return choice.choiceI == serial
+          return choice.choiceI === serial
         })
 
         if (index === -1) {

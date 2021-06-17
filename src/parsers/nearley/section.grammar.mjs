@@ -339,4 +339,4 @@ const grammar = {
   ParserStart: 'section'
 }
 
-export {grammar}
+export { grammar }

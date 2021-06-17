@@ -1,5 +1,7 @@
-import { IF as terp } from './src/interpreter/if_r-terp'
-import parser from './src/parser/if-parser'
+import { IF as terp } from './src/interpreters/regex-nearley/if_r-terp.mjs'
+import parser from './src/parsers/nearley/if-parser.mjs'
+
+import IFScript from './src/IFScript.mjs'
 
 ;(function (root, factory) {
   if (typeof module === 'object' && module.exports) {
@@ -11,8 +13,9 @@ import parser from './src/parser/if-parser'
     // Browser globals (root is window)
     root.IF = factory()
   }
-})(typeof self !== 'undefined' ? self : this, function () {
+})(typeof self !== 'undefined' ? self : this, async function () {
   return {
+    IFScript,
     parser,
     interpreter: terp,
     ...terp
