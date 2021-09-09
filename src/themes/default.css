@@ -1,8 +1,8 @@
 /* Fonts */
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url('../../test/resources/Roboto-Regular.ttf');
-}
+/*@font-face {*/
+/*  font-family: 'Roboto-Regular';*/
+/*  src: url('../../test/resources/Roboto-Regular.ttf');*/
+/*}*/
 
 /* Scrollbars */
 /* width */
@@ -44,7 +44,7 @@
   overflow: auto;
   margin: 10px auto;
   max-width: 80vw;
-  background: #eaf8f3;
+  background: none;
   font-family: "Roboto-Regular", serif;
 }
 
@@ -67,7 +67,7 @@
   padding: 10px;
   border: 2px solid slategrey;
   border-radius: 10px;
-  color: black;
+  color: white;
   max-width: 60%;
   width: auto;
   min-height: 23px;
@@ -82,6 +82,7 @@
   cursor: pointer;
   padding: 10px;
   background: yellow;
+  color: black;
 }
 
 .if_r-section-choice-li {

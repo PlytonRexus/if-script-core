@@ -14,7 +14,7 @@ class Interpreter {
   /**
    * @param {Run} run
    */
-  constructor (run) {
+  constructor (run = null) {
     this.debug = typeof process !== 'undefined' && process
       ? process.env.IF_DEBUG
       : !!localStorage.getItem('IF_DEBUG')

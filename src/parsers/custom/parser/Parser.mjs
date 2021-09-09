@@ -31,7 +31,7 @@ class Parser {
   }
 
   static parseText (text) {
-    return new Parser(new TokenStream(new InputStream(text)))
+    return new Parser(new TokenStream(new InputStream(text))).parseStory()
   }
 
   skipPunctuation (ch) {

@@ -3,7 +3,7 @@ const paths = require('./paths')
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, '../index.mjs')
+    main: path.resolve(__dirname, '../index.js')
   },
   output: {
     path: paths.build,

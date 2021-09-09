@@ -9,16 +9,15 @@ section__
   @title "Introduction"
   "
 ### Welcome to your very first IF-Script game!
-\`\`\`
+
 Built: ${new Date().toDateString()}
 Copyright (c) 2021 The IF-Script Contributors
 Author(s): Mihir Jichkar
-MIT Licensed\`\`\`
+MIT Licensed
 
-[https://github.com/PlytonRexus/if-script-core.git](https://github.com/PlytonRexus/if-script-core.git)
+[Check this app on github](https://github.com/PlytonRexus/if-script.git)\n[Check the core on github](https://github.com/PlytonRexus/if-script-core.git)
 
-_\`Unless required by applicable law or agreed to in writing, software distributed under the License is
-distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\`_"
+_\`Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\`_"
   choice__
     @target 2
     "Next"

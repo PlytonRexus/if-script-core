@@ -67,6 +67,21 @@ class Story {
   get type () {
     return 'Story'
   }
+
+  /**
+   * Generate story instance from json
+   * @param {string} json
+   * @returns {Story} story instance
+   */
+  static fromJson(json) {
+    // TODO: We'll have to convert every single sub-object to its instance
+    // Every single action becomes an Action object and every section becomes
+    // a section object
+    const parsed = JSON.parse(json)
+    new Story(parsed.name, {
+      sections: parsed.sections, passages: [], scenes: parsed.scenes
+    }, parsed.settings, {globals: {  }, stats: {  }})
+  }
 }
 
 export default Story

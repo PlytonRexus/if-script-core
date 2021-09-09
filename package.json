@@ -1,8 +1,8 @@
 {
   "name": "if-script-core",
-  "version": "0.5.1",
+  "version": "0.5.7",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
-  "main": "index.mjs",
+  "main": "./index.js",
   "scripts": {
     "test": "standard",
     "compile": "npm run compile:section npm run compile:scene && npm run compile:settings",
