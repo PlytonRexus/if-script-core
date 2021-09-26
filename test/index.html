@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>IF Core | Test server</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="parallax">
+	<noscript>
+		<em class="plain-text" style="margin: auto;">
+			Looks like you have JavaScript disabled or unavailable in this browser. 
+			You should enable it to run this app.
+		</em>
+	</noscript>
+	
+	<div id="root">
+		<div id="if_r-output-area"></div>
+		<div id="if_r-exception-area"></div>
+	</div>
+	
+	<!-- <script type="module" src="/test/interprete.mjs"></script> -->
+
+    <script>
+        ;(function () {
+		    var src = '//cdn.jsdelivr.net/npm/eruda';
+		    if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+		    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+		    document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+		})();
+    </script>
+</body>
+
+</html>

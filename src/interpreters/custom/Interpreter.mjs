@@ -2,6 +2,7 @@ import Run from './Run.mjs'
 import DOM from '../../constants/custom/dom.mjs'
 import Story from '../../models/Story.mjs'
 import InterpreterException from '../../exceptions/InterpreterException.mjs'
+import Choice from '../../models/Choice.mjs'
 import Section from '../../models/Section.mjs'
 import Token from '../../models/Token.mjs'
 import TokenTypes from '../../constants/custom/tokenTypes.mjs'
@@ -76,7 +77,14 @@ class Interpreter {
 
   generateDisplay () {
     console.info('Generating dislay...')
-    const $main = document.querySelector(DOM.targetId)
+    let $main = document.querySelector(DOM.targetId)
+
+    if (!$main) {
+      const element = document.createElement('div')
+      element.setAttribute('id', this.replaceHash(DOM.targetId))
+      document.querySelector('body').appendChild(element)
+      $main = document.querySelector(DOM.targetId)
+    }
 
     $main.innerHTML = `
         <div id="${this.replaceHash(DOM.statsDivId)}" class="${this.replaceDot(DOM.statsDivClass)}">
@@ -86,7 +94,7 @@ class Interpreter {
             <a href="#" id="">Stats</a>
             <audio controls id="if_r-audio-player">
                 <source src="" type="audio/mp3" id="if_r-audio-source">
-                Your browser does not support the audio.
+                Your browser does not support audio.
             </audio>
         </div>
         <div id="if_r-status-bar">
@@ -130,16 +138,17 @@ class Interpreter {
       this.showAlert("Something's wrong!")
       return
     }
-    const {
+    let {
       title,
       choices,
       text,
       serial
     } = section
 
-    let titleText = this.resolveSyntaxTree(title, '')
+    // choices = []
+    let titleText = this.resolveSyntaxTree(title, '', section)
     titleText = this.utils.formatText(titleText)
-    let parasText = this.resolveSyntaxTree(text, '')
+    let parasText = this.resolveSyntaxTree(text, '', section)
     parasText = this.utils.formatText(parasText)
 
     wrapper += `<div class="if_r-section" id="section-${serial}">`
@@ -160,11 +169,12 @@ class Interpreter {
   /**
    * @param {ConditionalBlock} block
    */
-  resolveConditionalBlock (block) {
+  resolveConditionalBlock (block, section) {
     let result = ''
     if (block instanceof ConditionalBlock) {
-      if (this.resolveAction(block.cond)) result = this.resolveAction(block.then)
-      else if (block.else) result = this.resolveAction(block.else)
+      if (this.resolveAction(block.cond, false, section))
+        result = this.resolveAction(block.then, false, section)
+      else if (block.else) result = this.resolveAction(block.else, false, section)
     }
 
     return result
@@ -174,7 +184,7 @@ class Interpreter {
    * @param {Array|string} tree
    * @param start
    */
-  resolveSyntaxTree (tree, start = '') {
+  resolveSyntaxTree (tree, start = '', section) {
     if (typeof tree === 'string') { return tree }
     return tree.reduce((acc, v, idx) => {
       if (typeof start === 'string') {
@@ -185,10 +195,13 @@ class Interpreter {
           else if (v.type === NUMBER) acc += v.symbol
           else acc += v.symbol
         } else if (v instanceof ConditionalBlock) {
-          acc += this.resolveConditionalBlock(v)
+          acc += this.resolveConditionalBlock(v, section)
         } else if (v instanceof Action) {
-          acc += this.resolveAction(v)
+          acc += this.resolveAction(v, false, section)
         }
+      }
+      if (v instanceof Choice) {
+        section.choices.push(v)
       }
       return acc
     }, start)
@@ -198,22 +211,27 @@ class Interpreter {
    * @param {Action|Token} action
    * @param {boolean} returnName
    */
-  resolveAction (action, returnName = false) {
+  resolveAction (action, returnName = false, section) {
     if (action instanceof Action) {
       if (action.type === 'assign') {
-        (this.run.state.variables[this.resolveAction(action.left, true)] = this.resolveAction(action.right))
+        (this.run.state.variables[this.resolveAction(action.left, true, section)]
+          = this.resolveAction(action.right, false, section))
         return ''
       } else if (action.type === 'binary') {
-        const left = this.resolveAction(action.left)
-        const right = this.resolveAction(action.right)
+        const left = this.resolveAction(action.left, false, section)
+        const right = this.resolveAction(action.right, false, section)
         return this.utils.solveAction(action, left, right)
       }
     } else if (!returnName && action instanceof Token && action.type === TokenTypes.VARIABLE) {
       return this.run.state.variables[action.symbol]
+    } else if (action instanceof Choice) {
+      section.choices.push(action)
+      return null
     } else return action.symbol
   }
 
   loadChoices (choices, wrapper, serial) {
+    choices = [...new Set(choices)]
     choices.forEach((choice, i) => {
       const { target, owner, mode } = choice
       const choiceText = this.utils.formatText(this.resolveSyntaxTree(choice.text, '')).trim()
@@ -555,7 +573,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     }
   }
 
-  hideStatsDiv () {
+  hideStatsDiv = () => {
     const statsDiv = document.querySelector(DOM.statsDivClass)
     statsDiv.style.display = 'none'
     statsDiv.style.width = '0'

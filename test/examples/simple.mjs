@@ -9,7 +9,7 @@ section__
   "hello if-script" a "been swell!"
     choice__
       @target 1
-      @input leadName
+      @input a
       "Aloha!"
     __choice
     choice__

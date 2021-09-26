@@ -1,4 +1,9 @@
 const path = require('path')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 const paths = require('./paths')
 
 module.exports = {
@@ -10,7 +15,22 @@ module.exports = {
     filename: '[name].bundle.js',
     publicPath: '/'
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'IF | Web',
+      template: path.resolve(__dirname, '../test/index.html'), // template file
+      filename: 'index.html', // output file,
+      chunks: ['main']
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'test/**/*', to: path.resolve(paths.build, '')
+        }
+      ]
+    }),
+    new CleanWebpackPlugin()
+  ],
   module: {
     rules: [
       // JavaScript
@@ -45,4 +65,5 @@ module.exports = {
       '@': paths.src
     }
   }
+
 }

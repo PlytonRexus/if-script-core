@@ -43,7 +43,7 @@ module.exports = merge(base, {
       Author(s): Mihir Jichkar
 
       MIT Licensed
-      https://github.com/PlytonRexus/if-script.git\n
+      https://github.com/PlytonRexus/if-script-core.git\n
      `
     }),
     new CleanWebpackPlugin()

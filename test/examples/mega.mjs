@@ -17,7 +17,7 @@ section__
   b = 10
   "_hello if-script_" a "been swell!"
   if__ (a+b > 0) then__ a = a+1
-  else b = b+1
+  else__ b = b+1
     choice__
       @target 2
       @input leadName

@@ -18,75 +18,79 @@ import TokenStream from '../stream/TokenStream.mjs'
 import InputStream from '../stream/InputStream.mjs'
 
 // eslint-disable-next-line no-extend-native
-Array.prototype.size = function () { return this.length }
+Array.prototype.size = function () {
+  return this.length
+}
 
 class Parser {
   /**
    * @param {TokenStream} input
    */
-  constructor (input) {
+  constructor(input) {
     this.input = input
     this.utils = new ParserUtils()
     this.counts = { sectionNumber: 1, sceneNumber: 1, choiceNumber: 1 }
   }
 
-  static parseText (text) {
+  static parseText(text) {
     return new Parser(new TokenStream(new InputStream(text)))
   }
 
-  skipPunctuation (ch) {
+  skipPunctuation(ch) {
     if (this.utils.isPunctuation(this.input.peek(), ch)) this.input.next()
     else this.except('Expecting punctuation: "' + ch + '"')
   }
 
-  skipPropertyKeyword (kw) {
+  skipPropertyKeyword(kw) {
     if (this.utils.isPropertyKeyword(this.input.peek(), kw)) this.input.next()
     else this.except('Expecting property: "' + kw + '"')
   }
 
-  skipOtherKeyword (kw) {
+  skipOtherKeyword(kw) {
     if (this.utils.isOtherKeyword(this.input.peek(), kw)) this.input.next()
     else this.except('Expecting keyword: "' + kw + '"')
   }
 
-  skipSectionStart () {
+  skipSectionStart() {
     if (this.utils.isSectionStart(this.input.peek())) return this.input.next()
     else this.except('Expecting section starter: ')
   }
 
-  skipChoiceStart () {
+  skipChoiceStart() {
     if (this.utils.isChoiceStart(this.input.peek())) this.input.next()
     else this.except('Expecting choice starter')
   }
 
-  skipNewLine () {
-    while (this.utils.isTokenFor(this.input.peek(), TTS.NEWLINE_CHAR)) this.input.next()
+  skipNewLine() {
+    while (this.utils.isTokenFor(this.input.peek(), TTS.NEWLINE_CHAR))
+      this.input.next()
     return true
   }
 
-  skipOperator (op) {
+  skipOperator(op) {
     if (this.utils.isOperator(this.input.peek(), op)) this.input.next()
     else this.except('Expecting operator: "' + op + '"')
   }
 
-  skipConditionalToken (kw) {
-    if (this.utils.isConditionalKeyword(this.input.peek(), kw)) this.input.next()
+  skipConditionalToken(kw) {
+    if (this.utils.isConditionalKeyword(this.input.peek(), kw))
+      this.input.next()
     else this.except('Expecting conditional keyword: "' + kw + '"')
   }
 
-  unexpected () {
+  unexpected() {
     this.except('Unexpected token: ' + JSON.stringify(this.input.peek()))
   }
 
-  except (message) {
+  except(message) {
     return this.input.except(message)
   }
 
-  parseExpression () {
+  parseExpression() {
     return this.maybeBinary(this.parseAtom(...arguments), 0)
   }
 
-  maybeBinary (left, givenPrecedence) {
+  maybeBinary(left, givenPrecedence) {
     const isTok = this.utils.isOperator(this.input.preview())
     if (isTok) {
       const tok = this.input.preview()
@@ -96,8 +100,10 @@ class Parser {
         this.input.next()
         const immediateRight = this.parseAtom()
         const action = new Action(
-          tok.symbol === Operators.ASSIGNMENT ? 'assign' : 'binary', tok.symbol,
-          left, this.maybeBinary(immediateRight, currentPrecedence)
+          tok.symbol === Operators.ASSIGNMENT ? 'assign' : 'binary',
+          tok.symbol,
+          left,
+          this.maybeBinary(immediateRight, currentPrecedence)
         )
         return this.maybeBinary(action, givenPrecedence)
       }
@@ -105,37 +111,51 @@ class Parser {
     return left
   }
 
-  // maybeCall (expr) {
-  //   expr = expr()
-  //   return this.utils.isPunctuation(this.input.peek(), '(') ? this.parseCall(expr) : expr
-  // }
-
-  // parseCall (func) {
-  //   return {
-  //     type: 'call',
-  //     func: func,
-  //     args: this.delimited('(', ')', ',', this.parseExpression)
-  //   }
-  // }
-
-  parseConditionalBlock () {
+  parseConditionalBlock() {
     this.skipConditionalToken(KW.IF_BLOCK_START)
     const cond = this.parseExpression()
-    // if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE))
-    this.skipConditionalToken(KW.THEN)
-    const then = this.parseExpression()
-    const ret = new ConditionalBlock({ cond, then })
-    if (this.input.preview().type === TTS.NEWLINE_CHAR) this.input.next()
-    this.skipNewLine()
-    if (this.utils.isConditionalKeyword(this.input.peek(), KW.ELSE_BLOCK_START)) {
-      this.input.next()
-      ret.else = this.parseExpression()
-      this.input.next()
+    if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_OPEN)) {
+      this.skipConditionalToken(KW.THEN)
+      const then = this.parseExpression()
+      const ret = new ConditionalBlock({ cond, then })
+      if (this.input.preview().type === TTS.NEWLINE_CHAR) this.input.next()
+      this.skipNewLine()
+      if (
+        this.utils.isConditionalKeyword(this.input.peek(), KW.ELSE_BLOCK_START)
+      ) {
+        this.input.next()
+        ret.else = this.parseExpression()
+        // TODO: Check if 'if' block ends here
+        // if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) {
+        //   this.input.next()
+        //   return ret
+        // }
+        this.input.next()
+      }
+      return ret
+    } else if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_OPEN)) {
+      const then = this.parseExpression()
+
+      const ret = new ConditionalBlock({ cond, then })
+      this.skipNewLine()
+
+      if (
+        this.utils.isConditionalKeyword(this.input.peek(), KW.ELSE_BLOCK_START)
+      ) {
+        this.input.next()
+        ret.else = this.parseExpression()
+        // TODO: Check if 'if' block ends here
+        // if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) {
+        //   this.input.next()
+        //   return ret
+        // }
+        this.input.next()
+      }
+      return ret
     }
-    return ret
   }
 
-  parseSection () {
+  parseSection() {
     let tok = this.input.peek()
     const settings = new SectionSettings({ timer: 0, title: '' })
     const section = new Section([], [], this.counts.sectionNumber++, settings)
@@ -154,12 +174,20 @@ class Parser {
       if (component instanceof Choice) {
         component.owner = this.counts.sectionNumber - 1
         component.choiceI = choiceCounter++
-        section.choices.push(component)
-        if (!component.target) this.except('No target specified for choice number ' + choiceCounter - 1)
+        // section.choices.push(component)
+        section.text.push(component)
+        if (!component.target)
+          this.except(
+            'No target specified for choice number ' + choiceCounter - 1
+          )
       } else if (component instanceof Property) {
         section.settings[component.name] = component.value
         if (component.name === 'title') section.title = component.value
-      } else if (component instanceof Token || component instanceof ConditionalBlock || component instanceof Action) {
+      } else if (
+        component instanceof Token ||
+        component instanceof ConditionalBlock ||
+        component instanceof Action
+      ) {
         section.text.push(component)
       }
       if (this.input.peek().type === TTS.SECTION_END) break
@@ -169,7 +197,7 @@ class Parser {
     return section
   }
 
-  parseChoice () {
+  parseChoice() {
     this.skipChoiceStart()
     let tok = this.input.peek()
     const props = {
@@ -195,8 +223,13 @@ class Parser {
           choice.mode = 'input'
           choice.input = component.value
         } else if (component.name === 'target') choice.target = component.value
-        else if (component.name === 'targetType') choice.targetType = component.value
-      } else if (component instanceof Token || component instanceof ConditionalBlock || component instanceof Action) {
+        else if (component.name === 'targetType')
+          choice.targetType = component.value
+      } else if (
+        component instanceof Token ||
+        component instanceof ConditionalBlock ||
+        component instanceof Action
+      ) {
         choice.text.push(component)
       }
       if (this.input.peek().type === TTS.CHOICE_END) break
@@ -210,7 +243,7 @@ class Parser {
    * @param {string} type
    * @returns {StorySettings|SectionSettings} settings instance
    */
-  parseSettings (type) {
+  parseSettings(type) {
     let Entity = StorySettings
     let endKeyword = KW.SETTINGS_END
 
@@ -238,10 +271,13 @@ class Parser {
     return settings
   }
 
-  parseProperty () {
+  parseProperty() {
     let tok = this.input.peek()
     const propertyType = this.utils.getKeywordName(tok.symbol)
-    let name = propertyType === this.utils.getKeywordName(KW.PROP_CHOICE_INPUT) ? 'input' : null
+    let name =
+      propertyType === this.utils.getKeywordName(KW.PROP_CHOICE_INPUT)
+        ? 'input'
+        : null
     let resultIsArray = true
     const result = []
     const { isTokenFor } = this.utils
@@ -252,7 +288,8 @@ class Parser {
     const assignIfValid = (tok, type, predicate, useTok) => {
       let isValid
       if (typeof type === 'string') isValid = isTokenFor(tok, type)
-      else if (type instanceof Array) isValid = type.some(v => isTokenFor(tok, v))
+      else if (type instanceof Array)
+        isValid = type.some((v) => isTokenFor(tok, v))
       if (isValid) {
         try {
           if (!predicate || predicate(tok)) {
@@ -269,8 +306,8 @@ class Parser {
       resultIsArray = false
     }
 
-    const limitToN = n => {
-      if (result.size() > (n - 1)) this.unexpected()
+    const limitToN = (n) => {
+      if (result.size() > n - 1) this.unexpected()
       resultIsArray = true
     }
 
@@ -322,7 +359,7 @@ class Parser {
       propSceneMusic: () => {
         limitToOne()
         name = 'music'
-        assignIfValid(tok, TTS.STRING, t => new URL(t.symbol))
+        assignIfValid(tok, TTS.STRING, (t) => new URL(t.symbol))
       },
       propSceneName: () => {
         limitToOne()
@@ -347,6 +384,11 @@ class Parser {
         limitToOne()
         name = 'startAt'
         assignIfValid(tok, TTS.NUMBER)
+      },
+      propRequire: () => {
+        limitToOne()
+        name = 'require'
+        assignIfValid(tok, TTS.STRING)
       }
     }
 
@@ -368,11 +410,11 @@ class Parser {
     }
     return new Property({
       name,
-      value: result.size() > 0 ? resultIsArray ? result : result[0] : null
+      value: result.size() > 0 ? (resultIsArray ? result : result[0]) : null
     })
   }
 
-  parseScene () {
+  parseScene() {
     this.skipOtherKeyword(KW.SCENE_START)
 
     const { isTokenFor } = this.utils
@@ -390,25 +432,39 @@ class Parser {
     return scene
   }
 
-  parseAtom (insideChoice) {
-    if (this.utils.isTokenFor(this.input.peek(), TTS.NEWLINE_CHAR)) return this.input.next()
-    if (this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_OPEN)) {
+  parseAtom(insideChoice) {
+    if (this.utils.isTokenFor(this.input.peek(), TTS.NEWLINE_CHAR))
+      return this.skipNewLine()
+    if (
+      this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_OPEN)
+    ) {
       this.input.next()
       const expr = this.parseExpression()
-      if (this.utils.isPunctuation(this.input.preview(), Punctuations.PARENTHESIS_CLOSE)) this.input.next()
+      if (
+        this.utils.isPunctuation(
+          this.input.preview(),
+          Punctuations.PARENTHESIS_CLOSE
+        )
+      )
+        this.input.next()
       this.skipPunctuation(Punctuations.PARENTHESIS_CLOSE)
       return expr
     }
 
-    if (this.utils.isPunctuation(Punctuations.BRACE_OPEN)) {
+    if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_OPEN)) {
       this.input.next()
+      this.skipNewLine()
       const exp = this.parseExpression()
+      this.skipNewLine()
+      this.input.next()
+      this.skipNewLine()
       this.skipPunctuation(Punctuations.BRACE_CLOSE)
       return exp
     }
 
     // Keep
-    if (this.utils.isConditionalKeyword(this.input.peek(), KW.IF_BLOCK_START)) return this.parseConditionalBlock()
+    if (this.utils.isConditionalKeyword(this.input.peek(), KW.IF_BLOCK_START))
+      return this.parseConditionalBlock()
 
     // Keep
     if (this.utils.isBoolean(this.input.peek())) {
@@ -429,9 +485,13 @@ class Parser {
     }
 
     const tok = this.input.peek()
-    if (tok.type === TTS.VARIABLE ||
-        tok.type === TTS.NUMBER ||
-          tok.type === TTS.STRING) { return tok }
+    if (
+      tok.type === TTS.VARIABLE ||
+      tok.type === TTS.NUMBER ||
+      tok.type === TTS.STRING
+    ) {
+      return tok
+    }
     this.unexpected()
   }
 
@@ -439,7 +499,7 @@ class Parser {
    * @param {TokenStream} ts
    * @returns {Story}
    */
-  parseStory (ts) {
+  parseStory(ts) {
     if (!this.input) {
       this.input = ts
       this.counts = { sectionNumber: 0, sceneNumber: 0, choiceNumber: 0 }
@@ -450,9 +510,16 @@ class Parser {
       passages: []
     }
     const story = new Story(
-      '', components,
-      new StorySettings({ fullTimer: undefined, referrable: undefined, startAt: undefined, name: undefined }),
-      { globals: {}, stats: {} })
+      '',
+      components,
+      new StorySettings({
+        fullTimer: undefined,
+        referrable: undefined,
+        startAt: undefined,
+        name: undefined
+      }),
+      { globals: {}, stats: {} }
+    )
     this.story = story
 
     let tok = this.input.next() // .peek()
@@ -462,9 +529,15 @@ class Parser {
       if (this.input.eof()) break
 
       const { isTokenFor } = this.utils
-      if (isTokenFor(tok, TTS.SECTION_START)) { story.sections.push(this.parseSection()) }
-      if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) { story.scenes.push(this.parseScene()) }
-      if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) { story.settings = this.parseSettings(KW.SETTINGS_START) }
+      if (isTokenFor(tok, TTS.SECTION_START)) {
+        story.sections.push(this.parseSection())
+      }
+      if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
+        story.scenes.push(this.parseScene())
+      }
+      if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
+        story.settings = this.parseSettings(KW.SETTINGS_START)
+      }
       tok = this.input.next()
     }
 

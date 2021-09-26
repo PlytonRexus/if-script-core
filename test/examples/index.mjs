@@ -1,7 +1,7 @@
-import introduction from './introduction.js'
-import tough from './tough.js'
-import simple from './simple.js'
-import mega from './mega.js'
+import introduction from './introduction.mjs'
+import tough from './tough.mjs'
+import simple from './simple.mjs'
+import mega from './mega.mjs'
 
 const index = { tough, simple, mega, introduction }
 

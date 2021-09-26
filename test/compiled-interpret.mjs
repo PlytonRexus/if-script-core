@@ -1,5 +1,5 @@
+import Story from '../src/models/Story.mjs'
 import Interpreter from '../src/interpreters/custom/Interpreter.mjs'
-import parsed from './parse.mjs'
 
 localStorage.setItem('IF_DEBUG', 'true')
 
@@ -23,11 +23,18 @@ if (typeof window !== 'undefined' && !!window && !!window.location) {
 	if (!!themeName) useTheme(themeName)
 }
 
-try {
-	interpreter.loadStory(parsed, null, theme.name)
-} catch(err) {
-	let exceptionArea = document.querySelector('#if_r-exception-area')
-	exceptionArea.innerHTML += '<br><code>'+ JSON.stringify(err) +'</code>'
-}
+fetch('/test/compiled/introduction.json')
+.then(res => res.json())
+.then(str => {
+	try {
+		let story = new Story({}, {}, {}, {}, str)
+		console.log(story)
+		interpreter.loadStory(story, null, theme.name)
+	} catch(err) {
+		console.error(err)
+		let exceptionArea = document.querySelector('#if_r-exception-area')
+		exceptionArea.innerHTML += '<br><code>'+ err.toString() +'</code>'
+	}
+})
 
 export default interpreter

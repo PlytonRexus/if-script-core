@@ -13,6 +13,17 @@ class InputStream extends Stream {
     this.index = 0
   }
 
+  async init() {
+    const Assembler = (await import('./Assembler.js')).Assembler
+    this.assembler = new Assembler(this.input)
+    this.input = await this.assembler.assemble()
+    // console.log(this)
+  }
+
+  handleRequire() {
+    this.input.match(requireRegex)
+  }
+
   /**
    * @returns {string}
    */

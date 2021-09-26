@@ -5,6 +5,9 @@
  * @extends {Section}
  */
 class Passage {
+
+  _class = 'Passage'
+
   /**
    * Creates an instance of Passage.
    * @param {string} title Title of the Passage
@@ -18,6 +21,11 @@ class Passage {
   get type () {
     return 'Passage'
   }
+
+  set type(_type) {
+    this._class = _type
+  }
+
 }
 
 export default Passage

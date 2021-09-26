@@ -2,6 +2,8 @@ const Keywords = {
   // blocks
   SECTION_START: 'section__',
   SECTION_END: '__section',
+  IMPORT_START: 'import__',
+  IMPORT_END: '__import',
   SCENE_START: 'scene__',
   SCENE_END: '__scene',
   SETTINGS_START: 'settings__',
@@ -43,7 +45,10 @@ const Keywords = {
 
   // boolean
   TRUE: 'true',
-  FALSE: 'false'
+  FALSE: 'false',
+
+  // imports
+  PROP_REQUIRE: '@require'
 }
 
 export default Keywords

@@ -7,7 +7,7 @@ const paths = require('./paths')
 
 module.exports = merge(base, {
   entry: {
-    main: './test/interpret.mjs'
+    main: './test/compiled-interpret.mjs'
   },
   output: {
     path: paths.build,
@@ -46,14 +46,6 @@ module.exports = merge(base, {
 
   module: {
     rules: [
-      // Styles: Inject CSS into the head with source maps
-      // {
-      //   test: /\.(scss|css)$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader'
-      //   ]
-      // }
     ]
   },
 

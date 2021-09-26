@@ -1,0 +1,7 @@
+section__
+"The kingdom descends into chaos, but you manage to escape with your own hide. Perhaps in time you can return to restore order to this fair land."
+  choice__
+    @target 9
+    "Next ..."
+  __choice
+__section

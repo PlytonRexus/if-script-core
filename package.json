@@ -2,9 +2,15 @@
   "name": "if-script-core",
   "version": "0.5.1",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
+  "bin": {
+    "ifs": "./bin/index.mjs"
+  },
   "main": "index.mjs",
   "scripts": {
     "test": "standard",
+    "test:interpret": "node test/interpret.mjs",
+    "test:compile": "node test/compile.mjs",
+    "test:parse": "node test/parse.mjs",
     "compile": "npm run compile:section npm run compile:scene && npm run compile:settings",
     "compile:section": "nearleyc src/parsers/nearley/grammar/section.ne -o dist/grammar/section.grammar.js",
     "compile:scene": "nearleyc src/parsers/nearley/grammar/scene.ne -o dist/grammar/scene.grammar.js",
@@ -12,7 +18,8 @@
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
     "fix": "standard --fix",
     "debug": "node tmp/test.mjs",
-    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js"
+    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js"
   },
   "repository": {
     "type": "git",
@@ -34,8 +41,10 @@
   },
   "homepage": "https://github.com/PlytonRexus/if-script-core#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
+    "nearley": "^2.20.1",
     "showdown": "^1.9.1",
-    "nearley": "^2.20.1"
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
@@ -43,11 +52,13 @@
     "@babel/preset-env": "^7.14.2",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
     "cross-env": "*",
     "css-loader": "^5.2.6",
     "css-minimizer-webpack-plugin": "^3.0.1",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
+    "prettier": "^2.4.1",
     "prettier-config-standard": "^4.0.0",
     "standard": "^16.0.3",
     "style-loader": "^2.0.0",

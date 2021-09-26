@@ -1,4 +1,4 @@
-import InputStream from '../src/parsers/custom/stream/InputStream.mjs'
+compile.jsimport InputStream from '../src/parsers/custom/stream/InputStream.mjs'
 import TokenStream from '../src/parsers/custom/stream/TokenStream.mjs'
 import Parser from '../src/parsers/custom/parser/Parser.mjs'
 import index from './examples/index.mjs'
@@ -31,8 +31,11 @@ if (typeof window !== 'undefined' && !!window && !!window.location) {
 const is = new InputStream(story.path)
 let parsed
 
-const ts = new TokenStream(is)
-parsed = new Parser(ts).parseStory()
-console.log(JSON.stringify(parsed))
+is.init()
+.then(() => {
+	const ts = new TokenStream(is)
+	parsed = new Parser(ts).parseStory()
+	console.log(JSON.stringify(parsed))
+})
 
 export default parsed

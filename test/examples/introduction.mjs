@@ -7,10 +7,11 @@ __settings
 
 section__
   @title "Introduction"
+  a = 12
+  b = 4
   "
-### Welcome to your very first IF-Script game!
-\`\`\`
-Built: ${new Date().toDateString()}
+#### Welcome to your very first IF-Script game!
+\`\`\`Built: ${new Date().toDateString()}
 Copyright (c) 2021 The IF-Script Contributors
 Author(s): Mihir Jichkar
 MIT Licensed\`\`\`
@@ -27,10 +28,12 @@ distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, eit
     @target 2
     "Same as the last one"
   __choice
-  choice__
-    @target 2
-    "Same as the first one"
-  __choice
+  if__ (a > 10 && b == 4) {
+    choice__
+      @target 2
+      "Same as the first one"
+    __choice
+  } else b = 10
 __section
 
 section__
