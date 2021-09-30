@@ -1,4 +1,4 @@
-compile.jsimport InputStream from '../src/parsers/custom/stream/InputStream.mjs'
+import InputStream from '../src/parsers/custom/stream/InputStream.mjs'
 import TokenStream from '../src/parsers/custom/stream/TokenStream.mjs'
 import Parser from '../src/parsers/custom/parser/Parser.mjs'
 import index from './examples/index.mjs'

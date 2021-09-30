@@ -8,14 +8,13 @@ class IFScript {
   constructor (opts) {
     if (typeof opts === 'string') {
       this.version = opts || versions.EARLY
-      this.start()
     } else {
       this.parser = opts.parser
       this.interpreter = opts.interpreter
     }
   }
 
-  async start () {
+  async init () {
     if (this.version === versions.LEGACY) {
       this.generateDeliveryObject(await import('./parsers/regex/parser-regex.mjs'), terp)
     } else if (this.version === versions.EARLY) {
@@ -23,8 +22,11 @@ class IFScript {
     } else if (this.version === versions.STREAM) {
       const Parser = await import('./parsers/custom/parser/Parser.mjs')
       const Interpreter = await import('./interpreters/custom/Interpreter.mjs')
-      this.parser = { parseText: Parser.parseText }
-      this.interpreter = new Interpreter()
+      // console.log(Interpreter)
+      this.parse = Parser.default.parseText
+      this.interpreter = new Interpreter.default()
+      this.Interpreter = Interpreter.default
+      this.Parser = Parser
     }
   }
 

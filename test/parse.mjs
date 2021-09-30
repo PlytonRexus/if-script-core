@@ -28,7 +28,8 @@ if (typeof window !== 'undefined' && !!window && !!window.location) {
 	if (!!storyName) useStory(storyName)
 }
 
-const is = new InputStream(story.path)
+const is = new InputStream(story.content)
+
 let parsed
 
 const ts = new TokenStream(is)

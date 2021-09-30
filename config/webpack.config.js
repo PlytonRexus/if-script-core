@@ -63,7 +63,11 @@ module.exports = {
     extensions: ['.mjs', '.js', '.jsx', '.json'],
     alias: {
       '@': paths.src
-    }
+    },
+    fallback: {
+      path: require.resolve("path-browserify"),
+      fs: false
+    },
   }
 
 }
