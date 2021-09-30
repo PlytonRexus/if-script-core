@@ -1,0 +1,16 @@
+/* 4 */
+section__
+"The westerners have you at the point of a sword. They demand unfair terms from you."
+  choice__
+    @target 10
+    "Accept their terms for now"
+  __choice
+
+  choice__
+    @target 11
+    "Threaten to salt our fields if they don't offer better terms."
+  __choice
+__section
+
+/* 5 */
+import__"section5.partial.if"__import

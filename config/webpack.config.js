@@ -1,11 +1,14 @@
 const path = require('path')
-const paths = require('./paths')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+const paths = require('./paths')
 
 module.exports = {
   entry: {
-    ifscript: path.resolve(__dirname, '../index.js')
+    main: path.resolve(__dirname, '../index.mjs')
   },
   output: {
     path: paths.build,
@@ -13,19 +16,18 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new webpack.BannerPlugin({
-      banner: `
-  IF-Script  v0.2.4
-  ==============
-
-  Built: ${new Date().toDateString()}
-
-  Copyright (c) ${new Date().getUTCFullYear()} The IF-Script Contributors
-  Author(s): Mihir Jichkar
-
-  MIT Licensed
-  https://github.com/PlytonRexus/if-script-core.git\n
-     `
+    new HtmlWebpackPlugin({
+      title: 'IF | Web',
+      template: path.resolve(__dirname, '../test/index.html'), // template file
+      filename: 'index.html', // output file,
+      chunks: ['main']
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'test/**/*', to: path.resolve(paths.build, '')
+        }
+      ]
     }),
     new CleanWebpackPlugin()
   ],
@@ -35,30 +37,37 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-      // CSS
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['babel-loader']
       },
       // Images
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
+        type: 'asset/resource'
       },
       // Fonts and SVGs
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline',
+        test: /\.(ttf|otf|svg|)$/,
+        type: 'asset/inline'
+      },
+      {
+        test: /\.(scss|css)$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
-    ],
+    ]
   },
   resolve: {
     modules: [paths.src, 'node_modules'],
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.mjs', '.js', '.jsx', '.json'],
     alias: {
-      '@': paths.src,
+      '@': paths.src
+    },
+    fallback: {
+      path: require.resolve("path-browserify"),
+      fs: false
     },
   }
+
 }

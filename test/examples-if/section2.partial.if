@@ -1,0 +1,18 @@
+section__
+@title "Starvation"
+"Your majesty, your people are starving in the streets, and threaten revolution.
+Our enemies to the west are weak, but they threaten soon to invade. What will you do?"
+
+  choice__
+    @target 3
+    "Make pre-emptive war on the western lands."
+  __choice
+  choice__
+    @target 4
+    "Beat swords to plowshares and trade food to the westerners for protection."
+  __choice
+  choice__
+    @target 5
+    "Abdicate the throne. I have clearly mismanaged this kingdom!"
+  __choice
+__section

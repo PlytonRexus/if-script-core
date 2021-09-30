@@ -1,0 +1,18 @@
+section__
+@title "I choose war"
+"If you can seize their territory, your kingdom will flourish.
+But your army's morale is low and the kingdom's armory is empty.
+How will you win the war?"
+  choice__
+    @target 6
+    "Drive the peasants like slaves; if we work hard enough, we'll win."
+  __choice
+  choice__
+    @target 7
+    "Appoint charismatic knights and give them land, peasants, and resources."
+  __choice
+  choice__
+    @target 8
+    "Steal food and weapons from the enemy in the dead of night."
+  __choice
+__section
