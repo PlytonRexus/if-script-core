@@ -14,10 +14,11 @@ class InputStream extends Stream {
   }
 
   async init() {
-    const Assembler = (await import('./Assembler.js')).Assembler
-    this.assembler = new Assembler(this.input)
-    this.input = await this.assembler.assemble()
-    // console.log(this)
+    if (typeof module === 'object' && module.exports) {
+      const Assembler = (await import('./Assembler.js')).Assembler
+      this.assembler = new Assembler(this.input)
+      this.input = await this.assembler.assemble()
+    }
   }
 
   handleRequire() {

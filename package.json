@@ -1,6 +1,6 @@
 {
   "name": "if-script-core",
-  "version": "0.5.1",
+  "version": "0.5.8",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
   "bin": {
     "ifs": "./bin/index.mjs"
@@ -8,6 +8,7 @@
   "main": "index.mjs",
   "scripts": {
     "test": "standard",
+    "test:pkg": "cross-env NODE_ENV=development webpack serve --config config/webpack.pkg.js",
     "test:interpret": "node test/interpret.mjs",
     "test:compile": "node test/compile.mjs",
     "test:parse": "node test/parse.mjs",
@@ -58,6 +59,7 @@
     "css-minimizer-webpack-plugin": "^3.0.1",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
+    "path-browserify": "^1.0.1",
     "prettier": "^2.4.1",
     "prettier-config-standard": "^4.0.0",
     "standard": "^16.0.3",
