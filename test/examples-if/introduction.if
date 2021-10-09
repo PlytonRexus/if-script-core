@@ -9,6 +9,8 @@ section__
   a = 12
   b = 4
   "
+![IF-Script Logo](https://cdn.jsdelivr.net/gh/plytonrexus/if-script@v0.4-alpha/assets/images/if-logo.png)
+
 #### Welcome to your very first IF-Script game!
 \`\`\`Built: ${new Date().toDateString()}
 Copyright (c) 2021 The IF-Script Contributors

@@ -22,8 +22,7 @@ class IFScript {
     } else if (this.version === versions.STREAM) {
       const Parser = await import('./parsers/custom/parser/Parser.mjs')
       const Interpreter = await import('./interpreters/custom/Interpreter.mjs')
-      // console.log(Interpreter)
-      this.parse = Parser.default.parseText
+      this.parser = Parser.default.parseText
       this.interpreter = new Interpreter.default()
       this.Interpreter = Interpreter.default
       this.Parser = Parser
@@ -40,6 +39,11 @@ class IFScript {
     this.DEBUG = terp.DEBUG
     this.dom = terp.dom
   }
+
+  static versions() {
+    return versions
+  }
+
 }
 
 export default IFScript

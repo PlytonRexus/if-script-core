@@ -29,7 +29,7 @@ class Parser {
   constructor(input) {
     this.input = input
     this.utils = new ParserUtils()
-    this.counts = { sectionNumber: 1, sceneNumber: 1, choiceNumber: 1 }
+    this.counts = { sectionNumber: 1, sceneNumber: 1, choiceNumber: 1, identifiers: {} }
   }
 
   static parseText(text) {
@@ -118,7 +118,6 @@ class Parser {
       this.skipConditionalToken(KW.THEN)
       const then = this.parseExpression()
       const ret = new ConditionalBlock({ cond, then })
-      if (this.input.preview().type === TTS.NEWLINE_CHAR) this.input.next()
       this.skipNewLine()
       if (
         this.utils.isConditionalKeyword(this.input.peek(), KW.ELSE_BLOCK_START)
@@ -181,6 +180,12 @@ class Parser {
             'No target specified for choice number ' + choiceCounter - 1
           )
       } else if (component instanceof Property) {
+        if (component.name === 'identifier' && this.counts.identifiers[component.value])
+          this.except('Non-unique section identifier ' + component.value)
+        else if (component.name === 'identifier') {
+          this.counts.identifiers[component.value] = true
+          section.identifier = component.value
+        }
         section.settings[component.name] = component.value
         if (component.name === 'title') section.title = component.value
       } else if (
@@ -225,6 +230,8 @@ class Parser {
         } else if (component.name === 'target') choice.target = component.value
         else if (component.name === 'targetType')
           choice.targetType = component.value
+        else if (component.name === 'identifier')
+          choice.identifier = component.value
       } else if (
         component instanceof Token ||
         component instanceof ConditionalBlock ||
@@ -337,7 +344,7 @@ class Parser {
       propChoiceTarget: () => {
         limitToOne()
         name = 'target'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propFullTimer: () => {
         limitToN(2)
@@ -354,7 +361,7 @@ class Parser {
       propSceneFirst: () => {
         limitToOne()
         name = 'first'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propSceneMusic: () => {
         limitToOne()
@@ -368,7 +375,7 @@ class Parser {
       },
       propSceneSections: () => {
         name = 'sections'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propSectionTimer: () => {
         limitToOne()
@@ -378,6 +385,11 @@ class Parser {
       propSectionTitle: () => {
         limitToOne()
         name = 'title'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propIdentifier: () => {
+        limitToOne()
+        name = 'identifier'
         assignIfValid(tok, TTS.STRING)
       },
       propStartAt: () => {

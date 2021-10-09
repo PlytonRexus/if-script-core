@@ -25,6 +25,7 @@ const Keywords = {
   PROP_REFERRABLE: '@referrable',
   PROP_FULL_TIMER: '@fullTimer',
   PROP_IF_TITLE: '@storyTitle',
+  PROP_IDENTIFIER: '@id',
 
   // scene properties
   PROP_SCENE_FIRST: '@first',

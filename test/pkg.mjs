@@ -37,7 +37,7 @@ let interpreter
 		localStorage.setItem('IF_DEBUG', 'true')
 	}
 
-	const parsed = ifscript.parse(story.content).parseStory()
+	const parsed = ifscript.parser(story.content).parseStory()
 
 	let theme = {
 		name: 'bricks'
@@ -64,8 +64,10 @@ let interpreter
 	try {
 		interpreter.loadStory(parsed, null, theme.name)
 	} catch(err) {
-		if (typeof document !== 'undefined' && !!document)
-		exceptionArea.innerHTML += '<br><code>'+ JSON.stringify(err) +'</code>'
+		if (typeof document !== 'undefined' && !!document) {
+			console.log(err)
+			exceptionArea.innerHTML += '<br><code>'+ err.message +'</code>'
+		}
 	}
 })()
 

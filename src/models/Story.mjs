@@ -62,7 +62,13 @@ class Story {
   }
 
   findSection (serial) {
-    let index = this.sections.findIndex(section => section.serial === serial)
+    let index
+    if (typeof serial === 'number') {
+      index = this.sections.findIndex(section => section.serial === serial)
+    } else if (typeof serial === 'string') {
+      index = this.sections.findIndex(s =>
+        s.identifier?.toLowerCase() === serial?.toLowerCase())
+    }
 
     if (index === -1) {
       console.warn('No section ' + serial + ' found. Reverting to default section serial 1.')
@@ -72,8 +78,13 @@ class Story {
   }
 
   findScene (serial) {
-    let index = this.scenes.findIndex(scene => scene.serial === serial)
-
+    let index
+    if (typeof serial === 'number') {
+      index = this.scenes.findIndex(scene => scene.serial === serial)
+    } else if (typeof serial === 'string') {
+      index = this.scenes.findIndex(s =>
+        s.identifier?.toLowerCase() === serial?.toLowerCase())
+    }
     if (index === -1) {
       console.warn('No scene ' + serial + ' found. Reverting to default scene serial 1.')
       index = 0

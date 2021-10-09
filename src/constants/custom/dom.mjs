@@ -6,7 +6,9 @@ const dom = {
   statsDivId: '#if_r-stats-div',
   statsDivClass: '.if_r-stats-div',
   undoButtonId: '#if_r-undo-button',
-  resetButtonId: '#if_r-reset-button'
+  resetButtonId: '#if_r-reset-button',
+  saveGameId: "#if_r-save-game-button",
+  uploadSaveFileId: '#if_r-save-file-selector'
 }
 
 export default dom

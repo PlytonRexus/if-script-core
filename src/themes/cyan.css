@@ -1,8 +1,5 @@
-/* Fonts */
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url('../../resources/fonts/Roboto-Regular.ttf');
-}
+
+/* Scrollbars end */
 
 /*if_r output-area */
 
@@ -20,9 +17,8 @@
   overflow: auto;
   margin: 10px auto;
   max-width: 80vw;
-  font-family: "Roboto-Regular", serif;
   background: #eaf8f3;
-  color: black !important;
+  font-family: "Roboto-Regular", serif;
 }
 
 #if_r-output-area a {
@@ -36,14 +32,11 @@
 
 .if_r-section {
   padding: 10px 0 10px 0;
-  transition: 1s all;
 }
 
 .if_r-section-choices-list {
+  list-style: none;
   margin-left: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
 }
 
 .if_r-section-choice {
@@ -53,10 +46,9 @@
   border: 2px solid slategrey;
   border-radius: 10px;
   color: black;
-  max-width: 50vw;
+  max-width: 60%;
   width: auto;
-  margin: 0 5px 5px 5px;
-  transition: 0.3s all;
+  min-height: 23px;
 }
 
 .if_r-section-choice>p {
@@ -72,7 +64,7 @@
 
 .if_r-section-choice-li {
   padding-left: 0;
-  transition: 1s all;
+
 }
 
 /* if_r main end */
@@ -144,7 +136,7 @@
 .if_r-stats-div a {
   padding: 0 8px 0 25px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: black;
   display: block;
   transition: 0.3s;
@@ -174,22 +166,6 @@
   color: black;
 }
 
-code, pre {
-  padding: 5px;
-}
-
-.if_r-section > h3 {
-  transition: 1s all;
-}
-
-.if_r-section > div {
-  transition: 1s all;
-}
-
-.if_r-paras {
-  transition: 1s all;
-}
-
 /* Sidebar stats end */
 
 @media (max-width: 800px) {
@@ -199,8 +175,8 @@ code, pre {
 
   #if_r-section-display-area {
     padding: 10px;
-    transition: 1s all;
   }
+
 
   .if_r-section-choice {
     max-width: 95vw;

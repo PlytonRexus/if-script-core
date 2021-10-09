@@ -45,19 +45,25 @@ class Section {
       this.choices = choices
       this.serial = serial
       this.settings = settings
+      this.identifier = settings.identifier
     }
   }
-
 
   static fromJson(json) {
     return new Section({}, {}, {}, {}, json)
   }
 
   findChoice (serial) {
-    serial = parseInt(serial)
-    let index = this.choices.findIndex(choice => {
-      return choice.choiceI === serial
-    })
+    let index
+    let tmp = parseInt(serial)
+    if (!!serial) serial = tmp
+
+    if (typeof serial === 'number') {
+      index = this.choices.findIndex(c => c.choiceI === serial)
+    } else if (typeof serial === 'string') {
+      index = this.choices.findIndex(c =>
+        c.identifier?.toLowerCase() === serial?.toLowerCase())
+    }
 
     if (index === -1) {
       index = 0

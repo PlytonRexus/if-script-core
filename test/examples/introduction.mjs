@@ -1,6 +1,6 @@
 const introduction = `
 settings__
-  @storyTitle "Introduction"
+  @storyTitle "Tutorial"
   @fullTimer 100000 1
   @startAt 1
 __settings
@@ -9,35 +9,39 @@ section__
   @title "Introduction"
   a = 12
   b = 4
-  "
-#### Welcome to your very first IF-Script game!
+"### Welcome to your very first IF-Script game!
+
 \`\`\`Built: ${new Date().toDateString()}
-Copyright (c) 2021 The IF-Script Contributors
+Copyright (c) ${new Date().getUTCFullYear()} The IF-Script Contributors
 Author(s): Mihir Jichkar
 MIT Licensed\`\`\`
 
-[https://github.com/PlytonRexus/if-script-core.git](https://github.com/PlytonRexus/if-script-core.git)
+[https://github.com/plytonrexus/if-script-core.git](https://github.com/PlytonRexus/if-script-core.git)
 
-_\`Unless required by applicable law or agreed to in writing, software distributed under the License is
-distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\`_"
+\`Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\`"
   choice__
-    @target 2
+    @target "starvation"
     "Next"
   __choice
   choice__
-    @target 2
-    "Same as the last one"
+    @target "only_scene"
+    @targetType "scene"
+    "To war"
   __choice
   if__ (a > 10 && b == 4) {
     choice__
       @target 2
       "Same as the first one"
     __choice
-  } else b = 10
+  } else__ {
+    b = 10
+  }
 __section
 
 section__
 @title "Starvation"
+@id "starvation"
+
 "Your majesty, your people are starving in the streets, and threaten revolution.
 Our enemies to the west are weak, but they threaten soon to invade. What will you do?"
 
@@ -55,8 +59,16 @@ Our enemies to the west are weak, but they threaten soon to invade. What will yo
   __choice
 __section
 
+
+scene__
+  @first "war"
+  @sections "war" "sword" "chaos"
+  @id "only_scene"
+__scene
+
 /* 3 */
 section__
+@id "war"
 @title "I choose war"
 "If you can seize their territory, your kingdom will flourish.
 But your army's morale is low and the kingdom's armory is empty.
@@ -77,6 +89,7 @@ __section
 
 /* 4 */
 section__
+  @id "sword"
 "The westerners have you at the point of a sword. They demand unfair terms from you."
   choice__
     @target 10
@@ -91,6 +104,7 @@ __section
 
 /* 5 */
 section__
+  @id "chaos"
 "The kingdom descends into chaos, but you manage to escape with your own hide. Perhaps in time you can return to restore order to this fair land."
   choice__
     @target 9

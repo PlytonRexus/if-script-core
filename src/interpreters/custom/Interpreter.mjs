@@ -30,7 +30,7 @@ class Interpreter {
    * @param {string} theme
    */
   loadStory (story, run, theme) {
-    if (!story || !(story instanceof Story)) throw new InterpreterException('Invalid story supplied')
+    if ((!story && !run) || (!!story && !(story instanceof Story))) throw new InterpreterException('Invalid story supplied')
     this.run = run || new Run(story, null, theme)
     if (this.run) import('../../themes/' + this.run.theme + '.css')
     console.info('Story loading...')
@@ -39,9 +39,11 @@ class Interpreter {
 
     /* Bring variables to original values. */
     // TODO: Don't need this. No global variables.
+    if (!run)
     this.resetVariables()
 
     if (this.run.story.settings.fullTimer) {
+      // Adjust for loaded games
       /* Set timer, if any. */
       const {
         timer,
@@ -51,23 +53,31 @@ class Interpreter {
     }
 
     /* Set initial state and initial variables */
-    this.setState({
-      section: this.run.story.settings.startAt,
-      turn: 0
-    })
+    if (!this.run.state.section) {
+      this.setState({
+        section: this.run.story.settings.startAt,
+        turn: 0
+      })
+    } else {
+      // this.setState({
+      //   section: this.run.state.section,
+      //   turn: this.run.state.variables.turn
+      // })
+    }
+
     this.run.state.variables.turn = 0
 
     /* Load the section into the viewport */
-    this.loadSection(null, this.run.story.settings.startAt)
+    this.loadSection(null, this.run.state.section)
 
     /* Start the stats bar */
     this.showStats()
 
     /* Hide the undo button because the story's just
-         * started and no turns have been played.
-         */
+     * started and no turns have been played.
+     */
     document.querySelector(DOM.undoButtonId).style.display = 'none'
-
+    document.querySelector('#if_r-story-title-wrap').innerHTML = this.run.story.name
     /* Clear the console to make things clearer */
     if (!this.debug) console.clear()
 
@@ -87,25 +97,34 @@ class Interpreter {
     }
 
     $main.innerHTML = `
-        <div id="${this.replaceHash(DOM.statsDivId)}" class="${this.replaceDot(DOM.statsDivClass)}">
-            <a href="javascript:void(0)" class="closebtn">&times;</a>
-            <a href="#" id="${this.replaceHash(DOM.resetButtonId)}">Restart</a>
-            <a href="#" id="${this.replaceHash(DOM.undoButtonId)}">Undo</a>
-            <a href="#" id="">Stats</a>
+      <div id="if_r-story-title-wrap"></div>
+      <div id="${this.replaceHash(DOM.statsDivId)}" class="${this.replaceDot(DOM.statsDivClass)}">
+          <a href="javascript:void(0)" class="closebtn">&times;</a>
+          <a href="#" id="${this.replaceHash(DOM.resetButtonId)}">Restart</a>
+          <a href="#" id="${this.replaceHash(DOM.undoButtonId)}">Undo</a>
+          <a href="#" id="${this.replaceHash(DOM.saveGameId)}" download="${this.run.story.name} - ${new Date()}.ifsave">Save game</a>
+          <!-- <a href="#" id="">Stats</a> -->
+          <div>
+            <a href="#">Music</a>
             <audio controls id="if_r-audio-player">
-                <source src="" type="audio/mp3" id="if_r-audio-source">
-                Your browser does not support audio.
+              <source src="" type="audio/mp3" id="if_r-audio-source">
+              Your browser does not support audio.
             </audio>
-        </div>
-        <div id="if_r-status-bar">
-        <div id="${this.replaceHash(DOM.alertAreaId)}">
-        </div>
-        <div id="${this.replaceHash(DOM.burgerId)}">
-        <a href="#" id="if_r-burger-icon">&#9776;</a>
-        </div>
-        </div>
-        <div id="${this.replaceHash(DOM.sectionDisplayId)}">
-        </div>`
+          </div>
+          <div>
+            <a href="#">Upload save file</a>
+            <input type="file" id="${this.replaceHash(DOM.uploadSaveFileId)}" accept=".ifsave, .json" />
+          </div>
+      </div>
+      <div id="if_r-status-bar">
+      <div id="${this.replaceHash(DOM.alertAreaId)}">
+      </div>
+      <div id="${this.replaceHash(DOM.burgerId)}">
+      <a href="#" id="if_r-burger-icon">&#9776;</a>
+      </div>
+      </div>
+      <div id="${this.replaceHash(DOM.sectionDisplayId)}">
+      </div>`
 
     const burger = document.querySelector(DOM.burgerId)
 
@@ -124,7 +143,9 @@ class Interpreter {
   }
 
   generateSectionBySerial (serial) {
-    const section = this.run.story.findSection(parseInt(serial, 10))
+    let section
+    if (serial instanceof Section) section = serial
+    else section = this.run.story.findSection(serial)
     return this.generateHTMLForSection(section)
   }
 
@@ -151,9 +172,17 @@ class Interpreter {
     let parasText = this.resolveSyntaxTree(text, '', section)
     parasText = this.utils.formatText(parasText)
 
+    let exist = {}
+    choices = choices.filter(c => {
+      if (!exist[c.choiceI]) {
+        exist[c.choiceI] = true
+        return true
+      } else return false
+    })
+
     wrapper += `<div class="if_r-section" id="section-${serial}">`
 
-    wrapper += `<h3 class="if_r-section-title">${titleText}</h3>`
+    wrapper += `<span class="if_r-section-title">${titleText}</span>`
 
     wrapper += `<div class="if_r-paras">${parasText}</div>`
 
@@ -177,7 +206,7 @@ class Interpreter {
       else if (block.else) result = this.resolveAction(block.else, false, section)
     }
 
-    return result
+    return result ?? ''
   }
 
   /**
@@ -566,10 +595,35 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
       document.querySelector(`${DOM.statsDivId} .closebtn`).onclick = this.hideStatsDiv
       document.querySelector(DOM.undoButtonId).onclick = this.undoTurn
       document.querySelector(DOM.resetButtonId).onclick = this.resetStory.bind(this)
+      document.querySelector(DOM.saveGameId).onclick = this.saveGame.bind(this)
+      document.querySelector(DOM.uploadSaveFileId).onchange = this.uploadSaveFile.bind(this)
     } else if (setting === 'unset') {
       document.querySelector(`${DOM.statsDivClass} .closebtn`).onclick = ''
       document.querySelector(DOM.undoButtonId).onclick = ''
       document.querySelector(DOM.resetButtonId).onclick = ''
+      document.querySelector(DOM.saveGameId).onclick = ''
+    }
+  }
+
+  uploadSaveFile (e) {
+    let file = e.target.files[0]
+    const reader = new FileReader()
+    reader.addEventListener('load', (event) => {
+      // file.src = event.target.result
+      const result = event.target.result
+      const json = JSON.parse(result)
+      this.run = Run.fromJson(json)
+      this.loadStory(this.run.story, this.run, this.run.theme)
+    })
+    reader.readAsText(file)
+  }
+
+  saveGame (e) {
+    if (!!this.run) {
+      let saveJson = JSON.stringify(this.run)
+      console.log(saveJson)
+      const data = new Blob([saveJson], { type: 'application/json' })
+      e.target.setAttribute('href', window.URL.createObjectURL(data))
     }
   }
 
