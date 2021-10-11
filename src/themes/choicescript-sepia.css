@@ -28,7 +28,7 @@
 #if_r-story-title-wrap {
   padding: 0 10px 10px 0;
   font-size: xx-large;
-  text-align: left;
+  text-align: right;
 }
 
 /* if_r output-area */
@@ -37,7 +37,7 @@
 
 .if_r-section {
   padding: 10px 0 10px 0;
-  transition: 1s all;
+  transition: 0.3s all;
 }
 
 .if_r-section-choices-list {
@@ -87,7 +87,7 @@
 
 .if_r-section-choice-li {
   padding-left: 0;
-  transition: 1s all;
+  transition: 0.3s all;
 }
 
 /* if_r main end */
@@ -156,7 +156,7 @@
   z-index: 1;
   background-color: #aaa;
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.3s;
   display: none;
   line-height: 15px;
 }
@@ -201,16 +201,16 @@ pre {
 }
 
 .if_r-section > span {
-  transition: 1s all;
+  transition: 0.3s all;
   font-size: x-large;
 }
 
 .if_r-section > div {
-  transition: 1s all;
+  transition: 0.3s all;
 }
 
 .if_r-paras {
-  transition: 1s all;
+  transition: 0.3s all;
 }
 
 /* Sidebar stats end */
@@ -222,7 +222,7 @@ pre {
 
   #if_r-section-display-area {
     padding: 10px;
-    transition: 1s all;
+    transition: 0.3s all;
   }
 
   .if_r-section-choice {
