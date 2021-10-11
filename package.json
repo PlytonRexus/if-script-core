@@ -1,6 +1,6 @@
 {
   "name": "if-script-core",
-  "version": "0.5.18",
+  "version": "0.5.19",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
   "bin": {
     "ifs": "./bin/index.mjs"
