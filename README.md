@@ -1,6 +1,11 @@
 # IF-SCRIPT
 
-## Find available issues [here](https://github.com/PlytonRexus/if-script/issues)
+### Find available issues [here](https://github.com/PlytonRexus/if-script/issues)
+
+> After a long delibration, I've discarded NearleyJS entirely and re-written the entire parser from scratch. 
+> This will result in improved performance, more features, easier and more readable syntax and faster development. :)
+> 
+> Unfortunately, this will also mean, the current syntax is obsolete and so are the following docs. :(
 
 An extremely simple syntax for writing interactive fiction that can be embedded in any website.
 
