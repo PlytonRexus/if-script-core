@@ -1,5 +1,9 @@
 import IFScript from './src/IFScript.mjs'
 
+/**
+ * Adapted from [Universal Module Definition Patterns](https://github.com/umdjs/umd)
+ */
+
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
     // Node. Does not work with strict CommonJS, but
