@@ -5,7 +5,7 @@
 > After a long delibration, I've discarded NearleyJS entirely and re-written the entire parser from scratch. 
 > This will result in improved performance, more features, easier and more readable syntax and faster development. :)
 > 
-> Unfortunately, this will also mean, the current syntax is obsolete and so are the following docs. :(
+> Unfortunately, this will also mean, the current syntax is obsolete and so is the following syntax documentation. :(
 
 An extremely simple syntax for writing interactive fiction that can be embedded in any website.
 
@@ -17,10 +17,11 @@ You can use Markdown to format your story.
 _[Markdown cheat-sheet](https://www.markdownguide.org/cheat-sheet/) for reference._
 
 ### Dependencies
-[Nearley](https://github.com/kach/nearley) for parsing.
 [Showdown](https://github.com/showdownjs/showdown) for markdown rendering.
 
 A Regular Expression based parser is on the [if-script-regex](https://github.com/PlytonRexus/if-script/tree/if-script-regex) branch.
+
+### Anything after this is only relevant for <=v0.1.8
 
 ### [Embedding](#embedding)
 Sure, you can use the parser on node, but the interpreter will need the DOM to work
