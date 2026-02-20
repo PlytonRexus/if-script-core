@@ -90,6 +90,8 @@ Available settings:
 -   `@startAt` - The starting section number (number, default: 1)
 -   `@referrable` - Whether older sections remain visible when moving to new sections (boolean, default: false)
 -   `@fullTimer` - Time limit for completing the story in seconds, followed by the target section when time expires (two numbers, e.g., `300 1` means 300 seconds, then go to section 1)
+-   `@maxIterations` - Maximum iterations allowed in while loops (number, default: 10000)
+-   `@maxCallDepth` - Maximum function call depth for recursion (number, default: 1000)
 
 ### [Scenes](#scenes)
 
@@ -262,6 +264,252 @@ if__ (gold >= 100) then__ canBuyHorse = true else__ canBuyHorse = false
 ```
 
 Conditions use the same operators as choice conditions (see above).
+
+### [Arrays](#arrays)
+
+Arrays allow you to store and manipulate collections of values. Arrays provide unbounded memory for complex data structures and algorithms.
+
+**Creating arrays:**
+```
+inventory = []
+numbers = [1, 2, 3, 4, 5]
+nested = [[1, 2], [3, 4]]
+```
+
+**Accessing elements:**
+```
+first = numbers[0]
+second = numbers[1]
+innerValue = nested[0][1]
+```
+
+**Modifying elements:**
+```
+numbers[0] = 99
+inventory[2] = "sword"
+```
+
+**Array methods:**
+```
+inventory.push("potion")    // Add to end
+item = inventory.pop()       // Remove from end
+size = inventory.length      // Get length
+```
+
+**Arrays in loops:**
+```
+primes = []
+i = 2
+while__ (i < 20) {
+  if__ (isPrime(i)) {
+    primes.push(i)
+  }
+  i = i + 1
+}
+"Primes: ${primes}"
+```
+
+### [While Loops](#loops)
+
+While loops enable unbounded iteration, allowing you to repeat code blocks while a condition is true.
+
+**Basic while loop:**
+```
+counter = 0
+sum = 0
+while__ (counter < 10) {
+  sum = sum + counter
+  counter = counter + 1
+}
+"Sum: ${sum}"
+```
+
+**Break statement** - Exit the loop early:
+```
+i = 0
+while__ (i < 100) {
+  if__ (i == 10) {
+    break__
+  }
+  i = i + 1
+}
+"Stopped at: ${i}"
+```
+
+**Continue statement** - Skip to next iteration:
+```
+i = 0
+evenSum = 0
+while__ (i < 10) {
+  i = i + 1
+  if__ (i % 2 == 1) {
+    continue__
+  }
+  evenSum = evenSum + i
+}
+"Sum of even numbers: ${evenSum}"
+```
+
+**Nested loops:**
+```
+outer = 0
+while__ (outer < 3) {
+  inner = 0
+  while__ (inner < 2) {
+    "outer: ${outer}, inner: ${inner}"
+    inner = inner + 1
+  }
+  outer = outer + 1
+}
+```
+
+### [Functions](#functions)
+
+Functions enable code reuse and recursion. Functions have local scope for parameters and support return values.
+
+**Defining functions:**
+```
+function__ add(a, b) {
+  return__ a + b
+}
+
+function__ greet(name) {
+  return__ "Hello, ${name}!"
+}
+```
+
+**Calling functions:**
+```
+sum = add(5, 3)
+message = greet("Alice")
+```
+
+**Recursive functions:**
+```
+function__ factorial(n) {
+  if__ (n <= 1) {
+    return__ 1
+  }
+  return__ n * factorial(n - 1)
+}
+
+result = factorial(5)  // 120
+```
+
+**Functions with arrays:**
+```
+function__ makeRange(start, end) {
+  result = []
+  i = start
+  while__ (i <= end) {
+    result.push(i)
+    i = i + 1
+  }
+  return__ result
+}
+
+numbers = makeRange(1, 10)
+```
+
+**Function scope:**
+- Parameters are local to the function
+- Variables assigned inside functions become global if not parameters
+- Values are restored after function returns (local scope)
+
+**Complex example - Fibonacci:**
+```
+function__ fibonacci(n) {
+  if__ (n <= 1) {
+    return__ n
+  }
+  return__ fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+fib10 = fibonacci(10)
+"Fibonacci(10) = ${fib10}"
+```
+
+### [Safety Limits](#safety-limits)
+
+To prevent infinite loops and excessive recursion from freezing the browser, IF-Script includes configurable safety limits.
+
+**Default limits:**
+- Maximum iterations per loop: 10,000
+- Maximum function call depth: 1,000
+
+**Configuring limits in settings:**
+```
+settings__
+  @storyTitle "My Story"
+  @startAt 1
+  @maxIterations 50000
+  @maxCallDepth 2000
+__settings
+```
+
+When a limit is exceeded, an error is thrown with a clear message:
+- `"Maximum iterations (N) exceeded"`
+- `"Maximum call depth (N) exceeded"`
+
+These limits ensure your story remains responsive while still allowing complex algorithms to execute.
+
+### Classic algorithm examples:
+
+**Sieve of Eratosthenes (finding primes):**
+```
+function__ sieveOfEratosthenes(max) {
+  primes = []
+  i = 0
+  while__ (i < max) {
+    primes.push(true)
+    i = i + 1
+  }
+
+  primes[0] = false
+  primes[1] = false
+
+  p = 2
+  while__ (p * p < max) {
+    if__ (primes[p] == true) {
+      i = p * p
+      while__ (i < max) {
+        primes[i] = false
+        i = i + p
+      }
+    }
+    p = p + 1
+  }
+
+  result = []
+  i = 2
+  while__ (i < max) {
+    if__ (primes[i] == true) {
+      result.push(i)
+    }
+    i = i + 1
+  }
+
+  return__ result
+}
+
+primes = sieveOfEratosthenes(100)
+```
+
+**Greatest Common Divisor (Euclidean algorithm):**
+```
+function__ gcd(a, b) {
+  while__ (b != 0) {
+    temp = b
+    b = a % b
+    a = temp
+  }
+  return__ a
+}
+
+result = gcd(48, 18)  // 6
+```
+
+These capabilities make IF-Script suitable for implementing complex game logic, puzzles, and computational challenges within your interactive fiction.
 
 ### [Imports](#imports)
 

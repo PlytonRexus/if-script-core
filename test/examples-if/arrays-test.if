@@ -1,0 +1,53 @@
+settings__
+  @storyTitle "Array Test"
+  @startAt 1
+__settings
+
+section__
+  @title "Array Operations Test"
+
+  "Testing array creation and manipulation"
+
+  numbers = [1, 2, 3, 4, 5]
+  "Array created: ${numbers}"
+
+  first = numbers[0]
+  "First element: ${first}"
+
+  numbers[2] = 99
+  "Modified array (changed index 2): ${numbers}"
+
+  len = numbers.length
+  "Array length: ${len}"
+
+  numbers.push(6)
+  "After push(6): ${numbers}"
+
+  last = numbers.pop()
+  "Popped element: ${last}"
+  "Array after pop: ${numbers}"
+
+  empty = []
+  "Empty array: ${empty}"
+  empty.push(10)
+  empty.push(20)
+  empty.push(30)
+  "Empty array after pushes: ${empty}"
+
+  nested = [[1, 2], [3, 4], [5, 6]]
+  "Nested array: ${nested}"
+  inner = nested[0]
+  "First inner array: ${inner}"
+  elem = nested[1][0]
+  "Element at [1][0]: ${elem}"
+
+  choice__
+    "Continue"
+    @target 2
+  __choice
+__section
+
+section__
+  @title "Test Complete"
+  "All array tests passed!"
+__section

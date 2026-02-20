@@ -23,11 +23,13 @@ class StorySettings extends Settings {
     }
 
     super(input)
-    const { referrable, name } = this.input
+    const { referrable, name, maxIterations, maxCallDepth } = this.input
     this.startAt = this.input.startAt || 0
     this.fullTimer = this.input.fullTimer || null
     this.referrable = referrable || false
     this.name = name
+    this.maxIterations = maxIterations || 10000
+    this.maxCallDepth = maxCallDepth || 1000
   }
 
   static fromJson(json) {

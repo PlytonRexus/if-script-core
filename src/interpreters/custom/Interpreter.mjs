@@ -9,6 +9,12 @@ import TokenTypes from '../../constants/custom/tokenTypes.mjs'
 import ConditionalBlock from '../../models/ConditionalBlock.mjs'
 import Action from '../../models/Action.mjs'
 import InterpreterUtils from './InterpreterUtils.mjs'
+import Loop from '../../models/Loop.mjs'
+import ArrayLiteral from '../../models/ArrayLiteral.mjs'
+import ArrayAccess from '../../models/ArrayAccess.mjs'
+import MemberAccess from '../../models/MemberAccess.mjs'
+import FunctionDef from '../../models/FunctionDef.mjs'
+import FunctionCall from '../../models/FunctionCall.mjs'
 
 /* eslint-disable no-eval */
 class Interpreter {
@@ -22,6 +28,12 @@ class Interpreter {
     this.run = run || null
     this.utils = new InterpreterUtils()
     if (this.run) import('../../themes/' + this.run.theme + '.css')
+
+    this.callStack = []
+    this.MAX_CALL_DEPTH = 1000
+    this.MAX_ITERATIONS = 10000
+    this.loopControl = { break: false, continue: false }
+    this.functionReturn = { hasReturned: false, value: null }
   }
 
   /**
@@ -48,6 +60,13 @@ class Interpreter {
         target
       } = this.run.story.settings.fullTimer
       if (timer !== 0) this.setTimer(timer, target)
+    }
+
+    if (this.run.story.settings.maxIterations) {
+      this.MAX_ITERATIONS = this.run.story.settings.maxIterations
+    }
+    if (this.run.story.settings.maxCallDepth) {
+      this.MAX_CALL_DEPTH = this.run.story.settings.maxCallDepth
     }
 
     /* Set initial state and initial variables */
@@ -166,6 +185,155 @@ class Interpreter {
     return wrapper.replaceAll('<p></p>', '')
   }
 
+  resolveArrayLiteral (arrLit, section) {
+    const elements = arrLit.elements.map(elem => this.resolveAction(elem, false, section))
+    return elements
+  }
+
+  resolveArrayAccess (access, returnName, section) {
+    const array = this.resolveAction(access.array, false, section)
+    const index = this.resolveAction(access.index, false, section)
+
+    if (returnName) {
+      // For assignment: arr[idx] = value
+      // We need to return a way to set the value
+      return { array, index, isArrayAccess: true }
+    }
+
+    // For reading
+    if (!Array.isArray(array)) {
+      throw new InterpreterException('Cannot index non-array value')
+    }
+    return array[index]
+  }
+
+  resolveMemberAccess (member, section) {
+    const object = this.resolveAction(member.object, false, section)
+
+    if (member.args === null) {
+      // Property access
+      return object[member.member]
+    } else {
+      // Method call
+      const args = member.args.map(arg => this.resolveAction(arg, false, section))
+      if (typeof object[member.member] === 'function') {
+        return object[member.member](...args)
+      } else {
+        throw new InterpreterException(`${member.member} is not a method`)
+      }
+    }
+  }
+
+  resolveLoop (loop, section) {
+    let iterations = 0
+    this.loopControl = { break: false, continue: false }
+
+    while (this.resolveAction(loop.condition, false, section)) {
+      if (iterations++ >= this.MAX_ITERATIONS) {
+        throw new InterpreterException(`Maximum iterations (${this.MAX_ITERATIONS}) exceeded`)
+      }
+
+      this.loopControl.continue = false
+
+      for (const statement of loop.body) {
+        // Check for break
+        if (statement.type === 'break') {
+          this.loopControl.break = true
+          break
+        }
+
+        // Check for continue
+        if (statement.type === 'continue') {
+          this.loopControl.continue = true
+          break
+        }
+
+        // Check for return (from function)
+        if (statement instanceof Action && statement.type === 'return') {
+          this.functionReturn.hasReturned = true
+          this.functionReturn.value = statement.left !== null
+            ? this.resolveAction(statement.left, false, section)
+            : null
+          return ''
+        }
+
+        this.resolveSyntaxTree([statement], '', section)
+
+        if (this.loopControl.continue) break
+      }
+
+      if (this.loopControl.break) break
+      if (this.functionReturn.hasReturned) break
+    }
+
+    this.loopControl = { break: false, continue: false }
+    return ''
+  }
+
+  callFunction (funcCall, section) {
+    // Get function definition
+    const funcDef = this.run.story.persistent.functions[funcCall.name]
+    if (!funcDef) {
+      throw new InterpreterException(`Undefined function: ${funcCall.name}`)
+    }
+
+    // Check call depth
+    if (this.callStack.length >= this.MAX_CALL_DEPTH) {
+      throw new InterpreterException(`Maximum call depth (${this.MAX_CALL_DEPTH}) exceeded`)
+    }
+
+    // Evaluate arguments
+    const argValues = funcCall.args.map(arg => this.resolveAction(arg, false, section))
+
+    // Save current variables (for local scope)
+    const savedVars = { ...this.run.state.variables }
+
+    this.callStack.push({ name: funcCall.name, savedVars })
+
+    // Bind parameters
+    funcDef.params.forEach((param, i) => {
+      this.run.state.variables[param] = argValues[i]
+    })
+
+    // Reset function return state
+    this.functionReturn = { hasReturned: false, value: null }
+
+    // Execute function body
+    for (const statement of funcDef.body) {
+      // Check for return statement
+      if (statement instanceof Action && statement.type === 'return') {
+        this.functionReturn.hasReturned = true
+        this.functionReturn.value = statement.left !== null
+          ? this.resolveAction(statement.left, false, section)
+          : null
+        break
+      }
+
+      this.resolveSyntaxTree([statement], '', section)
+
+      if (this.functionReturn.hasReturned) break
+    }
+
+    const returnValue = this.functionReturn.value
+
+    this.callStack.pop()
+
+    // Restore variables (local scope)
+    // Keep any new globals created in the function
+    const newGlobals = {}
+    for (const key in this.run.state.variables) {
+      if (!(key in savedVars) && !funcDef.params.includes(key)) {
+        newGlobals[key] = this.run.state.variables[key]
+      }
+    }
+    this.run.state.variables = { ...savedVars, ...newGlobals }
+
+    // Reset function return state
+    this.functionReturn = { hasReturned: false, value: null }
+
+    return returnValue
+  }
+
   /**
    * @param {ConditionalBlock} block
    */
@@ -196,6 +364,11 @@ class Interpreter {
           else acc += v.symbol
         } else if (v instanceof ConditionalBlock) {
           acc += this.resolveConditionalBlock(v, section)
+        } else if (v instanceof Loop) {
+          acc += this.resolveLoop(v, section)
+        } else if (v instanceof FunctionDef) {
+          // Store function definition (already stored in story.persistent.functions by parser)
+          // Nothing to do here
         } else if (v instanceof Action) {
           acc += this.resolveAction(v, false, section)
         }
@@ -214,14 +387,33 @@ class Interpreter {
   resolveAction (action, returnName = false, section) {
     if (action instanceof Action) {
       if (action.type === 'assign') {
-        (this.run.state.variables[this.resolveAction(action.left, true, section)]
-          = this.resolveAction(action.right, false, section))
+        const leftResolved = this.resolveAction(action.left, true, section)
+
+        // Handle array access assignment: arr[idx] = value
+        if (leftResolved && leftResolved.isArrayAccess) {
+          leftResolved.array[leftResolved.index] = this.resolveAction(action.right, false, section)
+          return ''
+        }
+
+        // Normal variable assignment
+        this.run.state.variables[leftResolved] = this.resolveAction(action.right, false, section)
         return ''
       } else if (action.type === 'binary') {
         const left = this.resolveAction(action.left, false, section)
         const right = this.resolveAction(action.right, false, section)
         return this.utils.solveAction(action, left, right)
+      } else if (action.type === 'return') {
+        // Return statement - handled in resolveLoop and callFunction
+        return null
       }
+    } else if (action instanceof ArrayLiteral) {
+      return this.resolveArrayLiteral(action, section)
+    } else if (action instanceof ArrayAccess) {
+      return this.resolveArrayAccess(action, returnName, section)
+    } else if (action instanceof MemberAccess) {
+      return this.resolveMemberAccess(action, section)
+    } else if (action instanceof FunctionCall) {
+      return this.callFunction(action, section)
     } else if (!returnName && action instanceof Token && action.type === TokenTypes.VARIABLE) {
       return this.run.state.variables[action.symbol]
     } else if (action instanceof Choice) {

@@ -7,7 +7,7 @@
   },
   "main": "index.mjs",
   "scripts": {
-    "test": "standard",
+    "test": "npx standard",
     "test:pkg": "cross-env NODE_ENV=development webpack serve --config config/webpack.pkg.js",
     "test:interpret": "node test/interpret.mjs",
     "test:compile": "node test/compile.mjs",
@@ -17,7 +17,7 @@
     "compile:scene": "nearleyc src/parsers/nearley/grammar/scene.ne -o dist/grammar/scene.grammar.js",
     "compile:settings": "nearleyc src/parsers/nearley/grammar/settings.ne -o dist/grammar/settings.grammar.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-    "fix": "standard --fix",
+    "fix": "npx standard --fix",
     "debug": "node tmp/test.mjs",
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js"

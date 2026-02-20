@@ -16,6 +16,12 @@ import Token from '../../../models/Token.mjs'
 import ConditionalBlock from '../../../models/ConditionalBlock.mjs'
 import TokenStream from '../stream/TokenStream.mjs'
 import InputStream from '../stream/InputStream.mjs'
+import Loop from '../../../models/Loop.mjs'
+import ArrayLiteral from '../../../models/ArrayLiteral.mjs'
+import ArrayAccess from '../../../models/ArrayAccess.mjs'
+import MemberAccess from '../../../models/MemberAccess.mjs'
+import FunctionDef from '../../../models/FunctionDef.mjs'
+import FunctionCall from '../../../models/FunctionCall.mjs'
 
 // eslint-disable-next-line no-extend-native
 Array.prototype.size = function () {
@@ -108,6 +114,68 @@ class Parser {
         return this.maybeBinary(action, givenPrecedence)
       }
     }
+
+    // Handle postfix operators
+    // Array access: arr[index]
+    if (this.utils.isPunctuation(this.input.preview(), Punctuations.BRACKET_OPEN)) {
+      this.input.next()
+      this.input.next()
+      const index = this.parseExpression()
+      this.skipPunctuation(Punctuations.BRACKET_CLOSE)
+      return this.maybeBinary(new ArrayAccess({ array: left, index }), givenPrecedence)
+    }
+
+    // Member access: obj.member or obj.method(args)
+    if (this.utils.isPunctuation(this.input.preview(), Punctuations.DOT)) {
+      this.input.next()
+      this.input.next()
+      const memberTok = this.input.peek()
+      if (memberTok.type !== TTS.VARIABLE) {
+        this.except('Expected property or method name after .')
+      }
+      const member = memberTok.symbol
+      this.input.next()
+
+      // Check if this is a method call
+      if (this.utils.isPunctuation(this.input.preview(), Punctuations.PARENTHESIS_OPEN)) {
+        this.input.next()
+        this.input.next()
+        const args = []
+        let first = true
+        while (!this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_CLOSE)) {
+          if (first) first = false
+          else this.skipPunctuation(Punctuations.COMMA)
+          if (this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_CLOSE)) break
+          this.skipNewLine()
+          args.push(this.parseExpression())
+          this.skipNewLine()
+        }
+        this.skipPunctuation(Punctuations.PARENTHESIS_CLOSE)
+        return this.maybeBinary(new MemberAccess({ object: left, member, args }), givenPrecedence)
+      } else {
+        // Property access
+        return this.maybeBinary(new MemberAccess({ object: left, member, args: null }), givenPrecedence)
+      }
+    }
+
+    // Function call: func(args)
+    if (left.type === TTS.VARIABLE && this.utils.isPunctuation(this.input.preview(), Punctuations.PARENTHESIS_OPEN)) {
+      this.input.next()
+      this.input.next()
+      const args = []
+      let first = true
+      while (!this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_CLOSE)) {
+        if (first) first = false
+        else this.skipPunctuation(Punctuations.COMMA)
+        if (this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_CLOSE)) break
+        this.skipNewLine()
+        args.push(this.parseExpression())
+        this.skipNewLine()
+      }
+      this.skipPunctuation(Punctuations.PARENTHESIS_CLOSE)
+      return this.maybeBinary(new FunctionCall({ name: left.symbol, args }), givenPrecedence)
+    }
+
     return left
   }
 
@@ -186,7 +254,13 @@ class Parser {
       } else if (
         component instanceof Token ||
         component instanceof ConditionalBlock ||
-        component instanceof Action
+        component instanceof Action ||
+        component instanceof Loop ||
+        component instanceof FunctionDef ||
+        component instanceof ArrayLiteral ||
+        component instanceof ArrayAccess ||
+        component instanceof MemberAccess ||
+        component instanceof FunctionCall
       ) {
         section.text.push(component)
       }
@@ -228,7 +302,13 @@ class Parser {
       } else if (
         component instanceof Token ||
         component instanceof ConditionalBlock ||
-        component instanceof Action
+        component instanceof Action ||
+        component instanceof Loop ||
+        component instanceof FunctionDef ||
+        component instanceof ArrayLiteral ||
+        component instanceof ArrayAccess ||
+        component instanceof MemberAccess ||
+        component instanceof FunctionCall
       ) {
         choice.text.push(component)
       }
@@ -462,9 +542,34 @@ class Parser {
       return exp
     }
 
+    // Array literals
+    if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACKET_OPEN)) {
+      return this.parseArrayLiteral()
+    }
+
     // Keep
     if (this.utils.isConditionalKeyword(this.input.peek(), KW.IF_BLOCK_START))
       return this.parseConditionalBlock()
+
+    // While loops
+    if (this.utils.isTokenFor(this.input.peek(), TTS.LOOP_KW, KW.WHILE_START))
+      return this.parseWhileLoop()
+
+    // Functions
+    if (this.utils.isTokenFor(this.input.peek(), TTS.FUNCTION_KW, KW.FUNCTION_START))
+      return this.parseFunctionDef()
+
+    // Break statement
+    if (this.utils.isTokenFor(this.input.peek(), TTS.BREAK_KW))
+      return this.parseBreakStatement()
+
+    // Continue statement
+    if (this.utils.isTokenFor(this.input.peek(), TTS.CONTINUE_KW))
+      return this.parseContinueStatement()
+
+    // Return statement
+    if (this.utils.isTokenFor(this.input.peek(), TTS.RETURN_KW))
+      return this.parseReturnStatement()
 
     // Keep
     if (this.utils.isBoolean(this.input.peek())) {
@@ -495,6 +600,114 @@ class Parser {
     this.unexpected()
   }
 
+  parseArrayLiteral () {
+    const elements = []
+    this.skipPunctuation(Punctuations.BRACKET_OPEN)
+    this.skipNewLine()
+
+    let first = true
+    while (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACKET_CLOSE)) {
+      if (first) first = false
+      else this.skipPunctuation(Punctuations.COMMA)
+      if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACKET_CLOSE)) break
+      this.skipNewLine()
+      elements.push(this.parseExpression())
+      this.skipNewLine()
+    }
+    this.skipPunctuation(Punctuations.BRACKET_CLOSE)
+    return new ArrayLiteral({ elements })
+  }
+
+  parseWhileLoop () {
+    this.skipOtherKeyword(KW.WHILE_START)
+    this.skipPunctuation(Punctuations.PARENTHESIS_OPEN)
+    const condition = this.parseExpression()
+    this.skipPunctuation(Punctuations.PARENTHESIS_CLOSE)
+    this.skipNewLine()
+    this.skipPunctuation(Punctuations.BRACE_OPEN)
+    this.skipNewLine()
+
+    const body = []
+    while (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) {
+      this.skipNewLine()
+      if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) break
+      body.push(this.parseExpression())
+      this.skipNewLine()
+      if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) {
+        this.input.next()
+      }
+    }
+    this.skipPunctuation(Punctuations.BRACE_CLOSE)
+    return new Loop({ loopType: 'while', condition, body })
+  }
+
+  parseFunctionDef () {
+    this.skipOtherKeyword(KW.FUNCTION_START)
+    const nameTok = this.input.peek()
+    if (nameTok.type !== TTS.VARIABLE) {
+      this.except('Expected function name')
+    }
+    const name = nameTok.symbol
+    this.input.next()
+
+    this.skipPunctuation(Punctuations.PARENTHESIS_OPEN)
+    const params = []
+    let first = true
+    while (!this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_CLOSE)) {
+      if (first) first = false
+      else this.skipPunctuation(Punctuations.COMMA)
+      if (this.utils.isPunctuation(this.input.peek(), Punctuations.PARENTHESIS_CLOSE)) break
+      this.skipNewLine()
+      const paramTok = this.input.peek()
+      if (paramTok.type !== TTS.VARIABLE) {
+        this.except('Expected parameter name')
+      }
+      params.push(paramTok.symbol)
+      this.input.next()
+      this.skipNewLine()
+    }
+    this.skipPunctuation(Punctuations.PARENTHESIS_CLOSE)
+    this.skipNewLine()
+    this.skipPunctuation(Punctuations.BRACE_OPEN)
+    this.skipNewLine()
+
+    const body = []
+    while (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) {
+      this.skipNewLine()
+      if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) break
+      body.push(this.parseExpression())
+      this.skipNewLine()
+      if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) {
+        this.input.next()
+      }
+    }
+    this.skipPunctuation(Punctuations.BRACE_CLOSE)
+    return new FunctionDef({ name, params, body })
+  }
+
+  parseBreakStatement () {
+    const tok = this.input.peek()
+    this.input.next()
+    return new Token({ type: 'break', symbol: 'break__', id: tok.id, line: tok.line, col: tok.col })
+  }
+
+  parseContinueStatement () {
+    const tok = this.input.peek()
+    this.input.next()
+    return new Token({ type: 'continue', symbol: 'continue__', id: tok.id, line: tok.line, col: tok.col })
+  }
+
+  parseReturnStatement () {
+    this.input.next()
+    this.skipNewLine()
+    let value = null
+    if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE) &&
+        this.input.peek().type !== TTS.NEWLINE_CHAR) {
+      value = this.parseExpression()
+    }
+    return new Action('return', null, value, null)
+  }
+
   /**
    * @param {TokenStream} ts
    * @returns {Story}
@@ -522,6 +735,11 @@ class Parser {
     )
     this.story = story
 
+    // Initialize functions storage
+    if (!story.persistent.functions) {
+      story.persistent.functions = {}
+    }
+
     let tok = this.input.next() // .peek()
     while (!this.input.eof()) {
       this.skipNewLine()
@@ -537,6 +755,10 @@ class Parser {
       }
       if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
         story.settings = this.parseSettings(KW.SETTINGS_START)
+      }
+      if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
+        const funcDef = this.parseFunctionDef()
+        story.persistent.functions[funcDef.name] = funcDef
       }
       tok = this.input.next()
     }

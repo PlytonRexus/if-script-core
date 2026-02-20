@@ -136,6 +136,18 @@ class TokenStream extends Stream {
         return TokenTypes.BOOLEAN
       case Keywords.FALSE:
         return TokenTypes.BOOLEAN
+      case Keywords.WHILE_START:
+      case Keywords.WHILE_END:
+        return TokenTypes.LOOP_KW
+      case Keywords.BREAK:
+        return TokenTypes.BREAK_KW
+      case Keywords.CONTINUE:
+        return TokenTypes.CONTINUE_KW
+      case Keywords.FUNCTION_START:
+      case Keywords.FUNCTION_END:
+        return TokenTypes.FUNCTION_KW
+      case Keywords.RETURN:
+        return TokenTypes.RETURN_KW
     }
 
     if (propName.includes('PROP')) { return TokenTypes.PROPERTY_KW }

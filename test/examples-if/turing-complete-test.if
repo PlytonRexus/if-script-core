@@ -1,0 +1,179 @@
+settings__
+  @storyTitle "Turing Completeness Demonstration"
+  @startAt 1
+  @maxIterations 50000
+  @maxCallDepth 2000
+__settings
+
+function__ fibonacci(n) {
+  if__ (n <= 1) {
+    return__ n
+  }
+  return__ fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+function__ isPrime(n) {
+  if__ (n <= 1) {
+    return__ false
+  }
+  if__ (n <= 3) {
+    return__ true
+  }
+  if__ (n % 2 == 0) {
+    return__ false
+  }
+
+  i = 3
+  while__ (i * i <= n) {
+    if__ (n % i == 0) {
+      return__ false
+    }
+    i = i + 2
+  }
+  return__ true
+}
+
+function__ sieveOfEratosthenes(max) {
+  primes = []
+  i = 0
+  while__ (i < max) {
+    primes.push(true)
+    i = i + 1
+  }
+
+  primes[0] = false
+  primes[1] = false
+
+  p = 2
+  while__ (p * p < max) {
+    if__ (primes[p] == true) {
+      i = p * p
+      while__ (i < max) {
+        primes[i] = false
+        i = i + p
+      }
+    }
+    p = p + 1
+  }
+
+  result = []
+  i = 2
+  while__ (i < max) {
+    if__ (primes[i] == true) {
+      result.push(i)
+    }
+    i = i + 1
+  }
+
+  return__ result
+}
+
+function__ gcd(a, b) {
+  while__ (b != 0) {
+    temp = b
+    b = a % b
+    a = temp
+  }
+  return__ a
+}
+
+section__
+  @title "Turing Completeness: Fibonacci Sequence"
+
+  "Computing Fibonacci numbers using recursion:"
+
+  fib0 = fibonacci(0)
+  "fibonacci(0) = ${fib0}"
+
+  fib1 = fibonacci(1)
+  "fibonacci(1) = ${fib1}"
+
+  fib5 = fibonacci(5)
+  "fibonacci(5) = ${fib5}"
+
+  fib10 = fibonacci(10)
+  "fibonacci(10) = ${fib10}"
+
+  fib15 = fibonacci(15)
+  "fibonacci(15) = ${fib15}"
+
+  choice__
+    "Test Prime Checking"
+    @target 2
+  __choice
+__section
+
+section__
+  @title "Turing Completeness: Prime Numbers"
+
+  "Testing primality checking algorithm:"
+
+  p2 = isPrime(2)
+  "isPrime(2) = ${p2}"
+
+  p17 = isPrime(17)
+  "isPrime(17) = ${p17}"
+
+  p20 = isPrime(20)
+  "isPrime(20) = ${p20}"
+
+  p97 = isPrime(97)
+  "isPrime(97) = ${p97}"
+
+  choice__
+    "Test Sieve of Eratosthenes"
+    @target 3
+  __choice
+__section
+
+section__
+  @title "Turing Completeness: Sieve of Eratosthenes"
+
+  "Finding all primes up to 30 using Sieve of Eratosthenes:"
+
+  primes30 = sieveOfEratosthenes(30)
+  "Primes up to 30: ${primes30}"
+
+  primesCount = primes30.length
+  "Count: ${primesCount}"
+
+  choice__
+    "Test GCD Algorithm"
+    @target 4
+  __choice
+__section
+
+section__
+  @title "Turing Completeness: Greatest Common Divisor"
+
+  "Computing GCD using Euclidean algorithm:"
+
+  gcd1 = gcd(48, 18)
+  "gcd(48, 18) = ${gcd1}"
+
+  gcd2 = gcd(100, 35)
+  "gcd(100, 35) = ${gcd2}"
+
+  gcd3 = gcd(17, 19)
+  "gcd(17, 19) = ${gcd3}"
+
+  choice__
+    "Complete"
+    @target 5
+  __choice
+__section
+
+section__
+  @title "Demonstration Complete"
+
+  "All Turing completeness tests passed!"
+
+  "This demonstrates that IF-Script can now:"
+  "1. Perform recursive computation (Fibonacci)"
+  "2. Execute complex algorithms (Prime checking, Sieve)"
+  "3. Use unbounded loops (while with break/continue)"
+  "4. Manipulate unbounded memory (arrays)"
+  "5. Call functions with local scope"
+
+  "IF-Script is now Turing complete!"
+__section

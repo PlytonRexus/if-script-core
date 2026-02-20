@@ -25,6 +25,8 @@ const Keywords = {
   PROP_REFERRABLE: '@referrable',
   PROP_FULL_TIMER: '@fullTimer',
   PROP_IF_TITLE: '@storyTitle',
+  PROP_MAX_ITERATIONS: '@maxIterations',
+  PROP_MAX_CALL_DEPTH: '@maxCallDepth',
 
   // scene properties
   PROP_SCENE_FIRST: '@first',
@@ -48,7 +50,18 @@ const Keywords = {
   FALSE: 'false',
 
   // imports
-  PROP_REQUIRE: '@require'
+  PROP_REQUIRE: '@require',
+
+  // loops
+  WHILE_START: 'while__',
+  WHILE_END: '__while',
+  BREAK: 'break__',
+  CONTINUE: 'continue__',
+
+  // functions
+  FUNCTION_START: 'function__',
+  FUNCTION_END: '__function',
+  RETURN: 'return__'
 }
 
 export default Keywords
