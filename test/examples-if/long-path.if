@@ -1,0 +1,2885 @@
+settings__
+  @storyTitle "The Long Path: An Epic of the Waning Ring"
+  @startAt 1
+  @referrable false
+__settings
+
+/* Global variables */
+section__
+  @title "Prologue: The Quiet Hollow"
+
+  playerName = "Traveler"
+  home = "Hollow"
+  health = 100
+  courage = 10
+  carryingRing = false
+  ringName = ""
+  companions = []
+  pathTaken = []
+  gold = 0
+  lore = 0
+
+  "You remember a place of green hills and smoke curling from small chimneys — the ${home}."
+  "You remember simple songs and simpler tasks. But an old road calls you now."
+
+  choice__
+    @target 2
+    "Begin the tale"
+  __choice
+__section
+
+section__
+  @title "1 — The Farewell"
+
+  "On the eve of leaving, your oldest friend stays late by the gate, wringing a handkerchief."
+  "There is an old traveler’s pack ready and a crust of bread waiting."
+
+  choice__
+    @target 3
+    "Say goodbye and set out"
+  __choice
+__section
+
+section__
+  @title "2 — The Road South"
+
+  "The road is well-worn and sings beneath your boots, a low steady rhythm of travel."
+  pathTaken.push("road_south")
+  "Some distant bell marks the hour. The sun slides low."
+
+  choice__
+    @target 4
+    "Walk toward the low hills"
+  __choice
+__section
+
+section__
+  @title "3 — The Hollow Gate"
+
+  "At the gate a small figure presses a parcel into your hands — the handwriting is old-fashioned and cramped."
+  gold = gold + 5
+  "You find 5 gold coins and a folded sketch of a mountain with a red mark on its face."
+
+  choice__
+    @target 4
+    "Tuck the sketch away and move on"
+  __choice
+__section
+
+section__
+  @title "4 — The Inn of the Turning Road"
+
+  "An inn sits at the crossroad — smoke, voices, the smell of stew. A fireplace is bright and welcoming."
+  "You push open the door."
+
+  choice__
+    @target 5
+    "Speak with the innkeeper"
+  __choice
+
+  choice__
+    @target 6
+    "Listen to the travelers and move on"
+  __choice
+__section
+
+section__
+  @title "5 — Warm Light"
+
+  "The innkeeper hums as he polishes a mug. For a moment the world is nothing but warmth."
+  lore = lore + 1
+
+  choice__
+    @target 7
+    "Ask about the mountains on the sketch"
+  __choice
+__section
+
+section__
+  @title "6 — Passing Whispers"
+
+  "You overhear talk of a strange relic found in a barrow, something small that hums when the moon is full."
+  carryingRing = carryingRing || false
+
+  choice__
+    @target 7
+    "Follow the talk to learn more"
+  __choice
+__section
+
+section__
+  @title "7 — A Stranger at the Table"
+
+  "A tall stranger with weary eyes sits and tells a tale: 'A small band once carried a burden across the lands...'"
+  courage = courage + 1
+  lore = lore + 1
+
+  choice__
+    @target 8
+    "Tell the stranger of the folded sketch"
+  __choice
+__section
+
+section__
+  @title "8 — The Sketch Revealed"
+
+  "He takes the sketch slowly. His fingers tremble. 'That mark is old,' he says. 'It points to the Emberface — a clasped summit.'"
+  lore = lore + 2
+
+  choice__
+    @target 9
+    "Ask if he will come with you"
+  __choice
+
+  choice__
+    @target 10
+    "Tell him you'll go alone"
+  __choice
+__section
+
+section__
+  @title "9 — An Oath Sworn"
+
+  "He smiles a tired, honest smile. 'A short company is better than none,' he says, and stands."
+  companions.push("Elder stranger")
+  courage = courage + 2
+
+  choice__
+    @target 11
+    "Set out toward Emberface"
+  __choice
+__section
+
+section__
+  @title "10 — A Lone Step"
+
+  "You feel the road more keenly when you walk alone. The hills breathe with wind and the sky is wide."
+  pathTaken.push("alone")
+  courage = courage + 1
+
+  choice__
+    @target 11
+    "Continue to the Emberface path"
+  __choice
+__section
+
+section__
+  @title "11 — The Green Border"
+
+  "A ribbon of trees marks the border between past and what comes next. You pass through, and the inn disappears behind you."
+  "A narrow lane curves up to the first ridge."
+
+  choice__
+    @target 12
+    "Climb the ridge"
+  __choice
+__section
+
+section__
+  @title "12 — A Night Camp"
+
+  "You make a small fire; the stars are pricked in the wide sky. The stranger keeps watch."
+  health = health + 2
+  "You sleep uneasily, dreaming of iron and molten light."
+
+  choice__
+    @target 13
+    "Follow the lane at dawn"
+  __choice
+__section
+
+section__
+  @title "13 — Crossroads of Wind"
+
+  "A crossroads. A traveler points left and warns of bandits on the west pass; right, he says, is longer but safer."
+  choice__
+    @target 14
+    "Take the dangerous western pass"
+  __choice
+
+  choice__
+    @target 16
+    "Take the long safe road"
+  __choice
+__section
+
+section__
+  @title "14 — The West Pass"
+
+  "The path narrows and cliffs lean over it like watchful gargoyles."
+  courage = courage + 1
+
+  choice__
+    @target 15
+    "Press through the pass"
+  __choice
+__section
+
+section__
+  @title "15 — Ambushed!"
+
+  "A band of thieves drop from the crags. Fight or flight — your muscles remember the training of childhood games."
+  health = health - 15
+  courage = courage + 1
+
+  choice__
+    @target 17
+    "You fight and drive them off"
+  __choice
+__section
+
+section__
+  @title "16 — The Long Road"
+
+  "The long road winds like a silver thread. You pass small farms and an orchard heavy with fruit."
+  gold = gold + 3
+
+  choice__
+    @target 17
+    "Visit a farmhouse and ask for directions"
+  __choice
+__section
+
+section__
+  @title "17 — Old Stories"
+
+  "An old woman shows you a map of the Emberface and mentions a ruined watchtower at section 27."
+  lore = lore + 1
+
+  choice__
+    @target 18
+    "Head toward the watchtower"
+  __choice
+__section
+
+section__
+  @title "18 — The Ravine"
+
+  "A ravine cuts the land, spanned by a frail wooden bridge."
+  choice__
+    @target 19
+    "Cross the bridge cautiously"
+  __choice
+
+  choice__
+    @target 20
+    "Find a way around"
+  __choice
+__section
+
+section__
+  @title "19 — Bridge of Shakes"
+
+  "The bridge groans but holds. Midway you see a flash of metal far below."
+  carryingRing = carryingRing || false
+  pathTaken.push("bridge")
+
+  choice__
+    @target 21
+    "Hurry across"
+  __choice
+__section
+
+section__
+  @title "20 — A Path Less Shaky"
+
+  "Walking around the ravine takes time, but the fields smell of thyme and you pick a handful."
+  gold = gold + 1
+  lore = lore + 1
+
+  choice__
+    @target 21
+    "Rejoin the road"
+  __choice
+__section
+
+section__
+  @title "21 — Watchtower Ruins"
+
+  "A crumbling tower stands sentinel. The stone is carved with strange runes."
+  lore = lore + 2
+
+  choice__
+    @target 22
+    "Search the watchtower"
+  __choice
+
+  choice__
+    @target 23
+    "Keep to the road"
+  __choice
+__section
+
+section__
+  @title "22 — A Hidden Chamber"
+
+  "Beneath loose flagstones you find a small iron ring set with a dull, dark gem — it hums faintly in your hand."
+  carryingRing = true
+  ringName = "the Humble Ring"
+  lore = lore + 3
+
+  choice__
+    @target 24
+    "Pocket the ring"
+  __choice
+__section
+
+section__
+  @title "23 — The Road Ahead"
+
+  "You pass the tower without looking back. The sky clouds and a hush falls on the road."
+  pathTaken.push("past_tower")
+
+  choice__
+    @target 24
+    "Press onward"
+  __choice
+__section
+
+section__
+  @title "24 — The Burden"
+
+  "At night the ring warms and a small whisper rises — a voice like wind through leaves that says, 'Return...'"
+  if__ (carryingRing == true) {
+    courage = courage - 1
+  }
+
+  choice__
+    @target 25
+    "Keep it hidden"
+  __choice
+
+  choice__
+    @target 26
+    "Show it to your companion"
+  __choice
+__section
+
+section__
+  @title "25 — Quiet Resolve"
+
+  "You bury unease. Whatever this object is, you will not be tempted by faint words."
+  courage = courage + 1
+
+  choice__
+    @target 27
+    "Continue toward Emberface"
+  __choice
+__section
+
+section__
+  @title "26 — The Stranger's Countenance"
+
+  "The companion's face changes as they touch the ring. 'This is older than I thought,' they whisper. 'It calls to more than the hand.'"
+  companions.push("Companion who touched ring")
+  lore = lore + 2
+
+  choice__
+    @target 27
+    "Move on together"
+  __choice
+__section
+
+section__
+  @title "27 — The Fallen Gate"
+
+  "A gateway collapsed ages ago — beyond it smoke rises on the distant ridge where Emberface lives."
+  "You note the way ahead is a crooked line of blackened stone."
+
+  choice__
+    @target 28
+    "Follow the blackened road"
+  __choice
+__section
+
+section__
+  @title "28 — Night at the Fold"
+
+  "A shepherd shares a fire. He speaks of an old name: the Waning Ring — not found since the old wars."
+  lore = lore + 1
+
+  choice__
+    @target 29
+    "Ask more questions"
+  __choice
+
+  choice__
+    @target 30
+    "Leave at first light"
+  __choice
+__section
+
+section__
+  @title "29 — Stories by Firelight"
+
+  "The shepherd tells of a circle of stones and a river that runs backwards during a certain moon."
+  lore = lore + 2
+
+  choice__
+    @target 30
+    "Head out at dawn"
+  __choice
+__section
+
+section__
+  @title "30 — Riverford"
+
+  "At Riverford a small ferry takes you across. Traders glance at your pack and nod."
+  gold = gold + 2
+
+  choice__
+    @target 31
+    "Talk to the ferryman"
+  __choice
+__section
+
+section__
+  @title "31 — The Ferryman's Riddle"
+
+  "He asks: 'What is worn and warmed by those who dread it, yet often returned to the earth?'"
+  choice__
+    @target 32
+    "Answer: 'A burden carried.'"
+  __choice
+
+  choice__
+    @target 33
+    "Answer: 'A ring.'"
+  __choice
+__section
+
+section__
+  @title "32 — The Stern Nod"
+
+  "He nods and rows you across, muttering that riddles are not for those with heavy pockets."
+  lore = lore + 1
+
+  choice__
+    @target 34
+    "Disembark and follow the highroad"
+  __choice
+__section
+
+section__
+  @title "33 — A Quiet Laugh"
+
+  "The ferryman's laugh is not unkind. 'Many rings I have seen in my day, precious and plain. Careful with small things.'"
+  lore = lore + 1
+
+  choice__
+    @target 34
+    "Step onto the far bank"
+  __choice
+__section
+
+section__
+  @title "34 — Road to Emberface"
+
+  "The Emberface is a dark scar against the sky. A little village at its foot looks abandoned."
+  "Wind pushes dust across the square."
+
+  choice__
+    @target 35
+    "Search the village"
+  __choice
+
+  choice__
+    @target 36
+    "Head straight to the Emberface pass"
+  __choice
+__section
+
+section__
+  @title "35 — Echoes in the Square"
+
+  "In the abandoned inn you find graffito that warns: 'Do not call the stone.'"
+  lore = lore + 1
+
+  choice__
+    @target 36
+    "Leave the village"
+  __choice
+__section
+
+section__
+  @title "36 — Emberface Pass"
+
+  "The pass narrows. Black glass-like rock rings beneath your feet. The air smells of old metal."
+  health = health - 5
+
+  choice__
+    @target 37
+    "Keep climbing"
+  __choice
+__section
+
+section__
+  @title "37 — The Red Mark"
+
+  "You find a cleft with a red sigil matching your sketch. A mouth opens in the rock as if awaiting a word."
+  if__ (carryingRing == true) {
+    "When you step close the ring hums and a thin thread of smoke rises."
+  } else__ {
+    "The cleft holds only silence and old dust."
+  }
+
+  choice__
+    @target 38
+    "Search the cleft"
+  __choice
+__section
+
+section__
+  @title "38 — The Cavern Mouth"
+
+  "Inside, the cavern breathes. Stalactites like teeth drip slow drops. A stair winds down into the dark."
+  lore = lore + 1
+
+  choice__
+    @target 39
+    "Descend the stair"
+  __choice
+__section
+
+section__
+  @title "39 — The Hall of Echoes"
+
+  "The sound of your steps is multiplied until you cannot tell which voice is your own."
+  courage = courage - 1
+
+  choice__
+    @target 40
+    "Call out a name"
+  __choice
+__section
+
+section__
+  @title "40 — The Answer"
+
+  "From the gloom an old voice replies: 'Who dares stir the ashes of Emberface?'"
+  if__ (companions.length > 0) {
+    "Your companion steps forward to speak."
+  } else__ {
+    "You stand alone and small."
+  }
+
+  choice__
+    @target 41
+    "Speak true"
+  __choice
+__section
+
+section__
+  @title "41 — The Keeper"
+
+  "An ancient warden appears — half-shadow, half-wood. He examines you and the small ring in your hand, if you carry it."
+  if__ (carryingRing == true) {
+    "His eyes linger on the ring, and he warns, 'Some things are worn to be lost, and some are lost to be found.'"
+    lore = lore + 2
+  } else__ {
+    "He simply nods and tells you to move on."
+  }
+
+  choice__
+    @target 42
+    "Ask the warden about the ring"
+  __choice
+
+  choice__
+    @target 43
+    "Leave the Hall"
+  __choice
+__section
+
+section__
+  @title "42 — A Warning Given"
+
+  "The warden speaks of old bargains and lost songs. He says, 'Keep it hidden from those whose eyes long for crowns.'"
+  courage = courage - 1
+
+  choice__
+    @target 43
+    "Take his warning and go"
+  __choice
+__section
+
+section__
+  @title "43 — Down the Pass"
+
+  "You press onward. The wind keens. The path forks toward the summit and into a lower, shadowed way."
+  choice__
+    @target 44
+    "Take the summit path"
+  __choice
+
+  choice__
+    @target 46
+    "Descend into the shadowed way"
+  __choice
+__section
+
+section__
+  @title "44 — Summit Trail"
+
+  "At the summit a ruined altar stands, black and cold. The sky is an iron sheet."
+  lore = lore + 1
+
+  choice__
+    @target 45
+    "Inspect the altar"
+  __choice
+__section
+
+section__
+  @title "45 — The Echoing Altar"
+
+  "The altar shows carvings of battles and a place where a small ring might be held. You realize those runes match the watchtower stones."
+  lore = lore + 2
+
+  choice__
+    @target 47
+    "Choose to leave the ring here for safety"
+  __choice
+
+  choice__
+    @target 46
+    "Keep the ring and leave the summit"
+  __choice
+__section
+
+section__
+  @title "46 — The Gloomway"
+
+  "The shadowed way is damp and smells of old roots. Lanternlight reveals glittering shapes in the soil."
+  courage = courage - 1
+  health = health - 5
+
+  choice__
+    @target 47
+    "Enter deeper"
+  __choice
+__section
+
+section__
+  @title "47 — The Fork of Choice"
+
+  "A crossroads in rock. To the east, a river can be heard. To the west, a low hum like distant bells."
+  choice__
+    @target 48
+    "Go east toward the river"
+  __choice
+
+  choice__
+    @target 49
+    "Go west toward the hum"
+  __choice
+__section
+
+section__
+  @title "48 — River Below"
+
+  "The river runs cold. A figure in gray stands on the far bank, watching. He beckons."
+  choice__
+    @target 50
+    "Call back and seek a crossing"
+  __choice
+
+  choice__
+    @target 51
+    "Ignore and follow the river downstream"
+  __choice
+__section
+
+section__
+  @title "49 — The Bells of Stone"
+
+  "The hum resolves into ringing — stone bells set in the cliff-face. They ring with an unnatural timing."
+  lore = lore + 1
+
+  choice__
+    @target 52
+    "Climb to the bells"
+  __choice
+__section
+
+section__
+  @title "50 — The Gray Watcher"
+
+  "He crosses, silent as mist. 'You carry a small burden,' he says. 'Some things should be borne by many.'"
+  companions.push("Gray Watcher")
+  courage = courage + 2
+
+  choice__
+    @target 53
+    "Ask him to join you"
+  __choice
+__section
+
+section__
+  @title "51 — Following the Water"
+
+  "Downstream the river breaches a hidden glade where mushrooms glow faint blue."
+  gold = gold + 2
+  lore = lore + 1
+
+  choice__
+    @target 53
+    "Rest at the glade"
+  __choice
+__section
+
+section__
+  @title "52 — Bell-Climb"
+
+  "Up at the bells you find an old inscription: 'When the waning returns, bind it with truth.'"
+  lore = lore + 2
+
+  choice__
+    @target 53
+    "Descend and continue"
+  __choice
+__section
+
+section__
+  @title "53 — A Council of Three"
+
+  "Around a low fire you, the stranger, and the watcher speak of purpose. It is decided: you will travel as a company."
+  companions.push("Stranger Companion")
+  lore = lore + 1
+
+  choice__
+    @target 54
+    "Formally name your fellowship"
+  __choice
+__section
+
+section__
+  @title "54 — Names Given"
+
+  "You carve a small token and tie it to each pack. 'Fellowship of the Emberstride' you say, and they echo the phrase."
+  pathTaken.push("fellowship_formed")
+  courage = courage + 2
+
+  choice__
+    @target 55
+    "Set a plan to reach the Emberface core"
+  __choice
+__section
+
+section__
+  @title "55 — The Long Descent"
+
+  "You take a long descent toward a basin where a city of black glass once stood."
+  health = health - 5
+
+  choice__
+    @target 56
+    "Approach the ruins cautiously"
+  __choice
+__section
+
+section__
+  @title "56 — Ruins of Glass"
+
+  "Broken panes of glass glitter like a thousand eyes. In the center is a shallow pit where heat once rose."
+  lore = lore + 1
+
+  choice__
+    @target 57
+    "Search the pit"
+  __choice
+__section
+
+section__
+  @title "57 — The Pit's Secret"
+
+  "Within the pit you find a small box nailed with iron. Inside, a folded parchment with an old oath."
+  lore = lore + 2
+
+  choice__
+    @target 58
+    "Read the oath aloud"
+  __choice
+__section
+
+section__
+  @title "58 — Words of Binding"
+
+  "The oath speaks of binding a small ring to a pyre when the moon is right. The page ends mid-sentence with scorch marks."
+  lore = lore + 2
+
+  choice__
+    @target 59
+    "Decide whether to follow the oath"
+  __choice
+__section
+
+section__
+  @title "59 — The Decision"
+
+  "The fellowship argues. Some fear the power; others fear keeping it. Voices rise like cupped hands to the sky."
+  choice__
+    @target 60
+    "Bind it to the pyre at the Emberface"
+  __choice
+
+  choice__
+    @target 61
+    "Keep the ring and seek counsel elsewhere"
+  __choice
+__section
+
+section__
+  @title "60 — The Pyre Plan"
+
+  "You move to prepare a pyre at the old altar. Wood must be gathered and a clear wind is needed."
+  pathTaken.push("pyre_planned")
+  lore = lore + 1
+
+  choice__
+    @target 62
+    "Gather wood in the valley"
+  __choice
+__section
+
+section__
+  @title "61 — A Different Counsel"
+
+  "You decide to seek the Haven of Elders, a place whispered of where learned ones once sang the old songs."
+  pathTaken.push("seek_haven")
+  lore = lore + 1
+
+  choice__
+    @target 63
+    "Set out toward the Haven"
+  __choice
+__section
+
+section__
+  @title "62 — Fires in the Basin"
+
+  "As you gather wood, distant drums begin. Shapes move in the smoke—armored figures riding the wind."
+  courage = courage - 2
+
+  choice__
+    @target 64
+    "Stand and face the riders"
+  __choice
+
+  choice__
+    @target 66
+    "Hide and watch"
+  __choice
+__section
+
+section__
+  @title "63 — Road to Haven"
+
+  "The road bends through a grove of silver-leaved trees; at its heart stands a house with a tall window."
+  lore = lore + 1
+
+  choice__
+    @target 65
+    "Knock on the tall window"
+  __choice
+__section
+
+section__
+  @title "64 — The Riders"
+
+  "Those who come are not thieves; they are the Wardens of Ash — sentinels of the old hush. They seek the ring."
+  health = health - 10
+
+  choice__
+    @target 67
+    "Fight to defend the ring"
+  __choice
+
+  choice__
+    @target 68
+    "Attempt parley"
+  __choice
+__section
+
+section__
+  @title "65 — The House of Windows"
+
+  "A scholar greets you, silver-haired, with eyes like cold glass. 'We have watched Emberface since dawn's first fire,' she says."
+  companions.push("Scholar of the Haven")
+  lore = lore + 3
+
+  choice__
+    @target 69
+    "Ask for counsel"
+  __choice
+__section
+
+section__
+  @title "66 — Hidden Shadows"
+
+  "In hiding you watch the riders pass by with banners dipped in ash. They do not stop, but their leader glances upward and their hands search their cloaks."
+  pathTaken.push("hid_from_riders")
+  courage = courage - 1
+
+  choice__
+    @target 67
+    "Follow at distance"
+  __choice
+__section
+
+section__
+  @title "67 — Battle at the Basin"
+
+  "Steel flashes and the river turns red at the edges. You fight with desperation and strange effectiveness."
+  health = health - 20
+  courage = courage + 3
+
+  choice__
+    @target 70
+    "After the clash, tend the wounded"
+  __choice
+__section
+
+section__
+  @title "68 — Parley"
+
+  "The Warden leader listens. 'Some bear things that bring ruin,' he says. 'We ask to hold it in trust.'"
+  choice__
+    @target 71
+    "Refuse to surrender the ring"
+  __choice
+
+  choice__
+    @target 72
+    "Agree to a temporary handover"
+  __choice
+__section
+
+section__
+  @title "69 — The Scholar's Library"
+
+  "Ancient scrolls speak of a ritual at the river's bend. The scholar says, 'There is a way to test its weight upon the spirit.'"
+  lore = lore + 3
+
+  choice__
+    @target 73
+    "Request the ritual"
+  __choice
+
+  choice__
+    @target 74
+    "Decline and go your own way"
+  __choice
+__section
+
+section__
+  @title "70 — Tending Wounds"
+
+  "You bind cuts with cloth and murmur old blessings. The companion who touched the ring sleeps fitfully."
+  health = health + 10
+
+  choice__
+    @target 75
+    "Move to a safer path"
+  __choice
+__section
+
+section__
+  @title "71 — A Stiff Surrender"
+
+  "Surrender brings them close. They place the object on a stone. But as they do, the leader's hand trembles — his eyes shine with hunger."
+  courage = courage - 2
+
+  choice__
+    @target 76
+    "Seize the ring back and run"
+  __choice
+__section
+
+section__
+  @title "72 — Temporary Trust"
+
+  "They take the ring and swear an oath to return it. You mark their seal and travel on. Yet at night doubt blooms like mildew."
+  pathTaken.push("trusted_wardens")
+  lore = lore + 1
+
+  choice__
+    @target 75
+    "Keep moving"
+  __choice
+__section
+
+section__
+  @title "73 — The Spirit Test"
+
+  "By the river the scholar reads an old song and places the ring in clear water. The surface ripples and your reflection shudders."
+  if__ (carryingRing == true) {
+    "The ring shows a face that is neither yours nor wholly other."
+    lore = lore + 3
+  } else__ {
+    "The water shows only sky."
+  }
+
+  choice__
+    @target 75
+    "Leave the river and decide the next step"
+  __choice
+__section
+
+section__
+  @title "74 — A Lone Road"
+
+  "You decline, feeling the scholar's calm disapproving gaze. The road feels narrower when help is refused."
+  courage = courage - 1
+
+  choice__
+    @target 75
+    "Choose the road south"
+  __choice
+__section
+
+section__
+  @title "75 — Through the Thicket"
+
+  "Thorns catch cloak and flesh. You cut your way through with patience and a small knife."
+  health = health - 5
+
+  choice__
+    @target 77
+    "Press on toward the lowlands"
+  __choice
+__section
+
+section__
+  @title "76 — Running with the Ring"
+
+  "You snatch back the ring. Splinters of trust scatter like birds. You run, heart drum-fast, and the land blurs."
+  carryingRing = true
+  courage = courage - 1
+
+  choice__
+    @target 77
+    "Find shelter beyond the next rise"
+  __choice
+__section
+
+section__
+  @title "77 — A Hidden Vale"
+
+  "A secret vale cradles a clear pool where willow branches dip their hair. In the pool floats a small leaf with a mark similar to the ring's."
+  lore = lore + 1
+
+  choice__
+    @target 78
+    "Rest and wash away the dust"
+  __choice
+__section
+
+section__
+  @title "78 — Dreams by Water"
+
+  "Your dreams are filled with marching feet and a bell tolling far to the south. You wake with ash in your hair."
+  pathTaken.push("dreams_of_bell")
+  courage = courage - 1
+
+  choice__
+    @target 79
+    "Head south toward the bell"
+  __choice
+__section
+
+section__
+  @title "79 — The Bell of Torrow"
+
+  "At Torrow an ancient bell hangs in a ruin and is rung on rare days of warning."
+  lore = lore + 1
+
+  choice__
+    @target 80
+    "Climb the ruin"
+  __choice
+__section
+
+section__
+  @title "80 — The Tolling"
+
+  "From the ruin the view is wide. You see smoke on a distant plain to the east — a sign of an army in motion."
+  pathTaken.push("saw_smoke_east")
+  courage = courage + 1
+
+  choice__
+    @target 81
+    "Ride east to the smoke"
+  __choice
+__section
+
+section__
+  @title "81 — Plain of Ash"
+
+  "On the plain, banners of a strange design ripple. They are not friendly. The riders march in ordered lines."
+  health = health - 10
+
+  choice__
+    @target 82
+    "Skirmish at the fringe"
+  __choice
+
+  choice__
+    @target 83
+    "Skirt the plain and avoid the army"
+  __choice
+__section
+
+section__
+  @title "82 — Skirmish"
+
+  "You and your small band harry a supply column and slip away with a satchel of preserved meat and an iron token."
+  gold = gold + 4
+  courage = courage + 2
+
+  choice__
+    @target 84
+    "Head toward the Emberface core"
+  __choice
+__section
+
+section__
+  @title "83 — Avoiding the Army"
+
+  "You travel the long way, along a marsh where reeds whisper. A lonely heron lifts and goes."
+  health = health - 2
+
+  choice__
+    @target 84
+    "Move on"
+  __choice
+__section
+
+section__
+  @title "84 — The Lower Gates"
+
+  "You reach a low gate half-sunk into a field of glass. A small inscription reads: 'None pass who bear no vow.'"
+  lore = lore + 1
+
+  choice__
+    @target 85
+    "Declare your purpose honestly"
+  __choice
+
+  choice__
+    @target 86
+    "Try to slip through unnoticed"
+  __choice
+__section
+
+section__
+  @title "85 — The Vow"
+
+  "You swear a small vow to guard the land from a greater harm. The gate hums and gives; a voice says, 'So be it.'"
+  pathTaken.push("swore_vow")
+  courage = courage + 1
+
+  choice__
+    @target 87
+    "Enter the low gate"
+  __choice
+__section
+
+section__
+  @title "86 — A Quiet Slip"
+
+  "Trying to sneak earns you only a bruise and the attention of an old sentinel who lowers his spear, unimpressed."
+  health = health - 5
+
+  choice__
+    @target 87
+    "Talk to the sentinel"
+  __choice
+__section
+
+section__
+  @title "87 — Hall Beneath the Plain"
+
+  "Beneath the glass plain an ancient hall opens, frescoes half erased by heat. At its center is a shallow throne of cooled slag."
+  lore = lore + 2
+
+  choice__
+    @target 88
+    "Examine the throne"
+  __choice
+__section
+
+section__
+  @title "88 — The Throne's Whisper"
+
+  "In the hollows of the throne a whisper says: 'Bring what is small and heavy; bind it or break it.' You feel the ring grow warm."
+  if__ (carryingRing == true) {
+    courage = courage - 2
+    lore = lore + 1
+  }
+
+  choice__
+    @target 89
+    "Talk with your companions about it"
+  __choice
+__section
+
+section__
+  @title "89 — Council in the Hall"
+
+  "Around the throne you speak in low voices. Opinions clash: the pyre, the Haven, or a hidden vault?"
+  choice__
+    @target 90
+    "Vote to bind at Emberface (pyre)"
+  __choice
+
+  choice__
+    @target 91
+    "Vote to take to the Haven"
+  __choice
+__section
+
+section__
+  @title "90 — The Pyre Again"
+
+  "You decide on the pyre. The company splits wood and gathers clear coal."
+  pathTaken.push("pyre_rechosen")
+  lore = lore + 1
+
+  choice__
+    @target 92
+    "Build the pyre near the throne"
+  __choice
+__section
+
+section__
+  @title "91 — To the Haven Once More"
+
+  "You choose caution and the Haven. The scholar nods, and the watcher offers a road through the marsh."
+  pathTaken.push("haven_chosen")
+
+  choice__
+    @target 93
+    "Follow the scholar's route"
+  __choice
+__section
+
+section__
+  @title "92 — Flames and Oaths"
+
+  "At the pyre you set the ring upon a stone. The air tightens; embers leap. A shadow moves in the doorway."
+  if__ (carryingRing == true) {
+    "Something watches — not wholly enemy, not wholly friend."
+    courage = courage - 2
+  }
+
+  choice__
+    @target 94
+    "Proceed with the burning"
+  __choice
+
+  choice__
+    @target 96
+    "Halt — the ring resists"
+  __choice
+__section
+
+section__
+  @title "93 — Marsh Road"
+
+  "The marsh road is slow and the scholar speaks of an old singing stone that tests intention."
+  lore = lore + 2
+
+  choice__
+    @target 95
+    "Seek the singing stone"
+  __choice
+__section
+
+section__
+  @title "94 — Against the Flame"
+
+  "As the fire eats at the ring, the air screams like a caged thing. The ring bites at resolve and pulls at thoughts of glory."
+  if__ (courage >= 12) {
+    "You hold your hand steady. The ring flares then dims, and the fire accepts it."
+    carryingRing = false
+    ringName = ""
+    lore = lore + 3
+  } else__ {
+    "Your hand falters. The ring leaps from the stone and slides to your foot, warm and insistent."
+    carryingRing = true
+    courage = courage - 2
+  }
+
+  choice__
+    @target 97
+    "Gather the company and move on"
+  __choice
+__section
+
+section__
+  @title "95 — The Singing Stone"
+
+  "At the stone the scholar sings, and the rock answers with images — faces, roads, echoes of those who once bore burdens."
+  lore = lore + 3
+
+  choice__
+    @target 97
+    "Use the image to guide your next step"
+  __choice
+__section
+
+section__
+  @title "96 — The Ring's Resistance"
+
+  "The ring will not burn. It slides from the pyre and hides in a crack; its song thrums in your bones."
+  carryingRing = true
+  courage = courage - 2
+
+  choice__
+    @target 97
+    "Collect the ring and flee"
+  __choice
+__section
+
+section__
+  @title "97 — The Great Turning"
+
+  "With the pyre decision made or failed, the land reacts. Far away a horn sounds and pillars of smoke rise anew."
+  pathTaken.push("great_turning")
+  courage = courage + 1
+
+  choice__
+    @target 98
+    "Ride toward the horn"
+  __choice
+__section
+
+section__
+  @title "98 — On the High Road"
+
+  "Riding hard, you see columns of people moving — refugees, soldiers, watchers. The world at large is shifting."
+  gold = gold - 1
+
+  choice__
+    @target 99
+    "Bring a handful of refugees with you"
+  __choice
+__section
+
+section__
+  @title "99 — A Larger Company"
+
+  "Your company grows by necessity. A healer, a child, and a scout join."
+  companions.push("Healer")
+  companions.push("Child")
+  companions.push("Scout")
+  courage = courage + 2
+
+  choice__
+    @target 100
+    "Plan to move east toward the ancient forge"
+  __choice
+__section
+
+section__
+  @title "100 — The Old Forge"
+
+  "An abandoned forge smokes faintly with embers that never fully died. A smith's mark is half visible."
+  lore = lore + 2
+
+  choice__
+    @target 101
+    "Investigate the forge"
+  __choice
+__section
+
+section__
+  @title "101 — Hammer and Know-how"
+
+  "You find a broken hammer and a map to a subterranean vault at section 136."
+  lore = lore + 1
+  pathTaken.push("found_vault_map")
+
+  choice__
+    @target 102
+    "Follow the map"
+  __choice
+
+  choice__
+    @target 103
+    "Ignore and continue east"
+  __choice
+__section
+
+section__
+  @title "102 — The Vault Map"
+
+  "The map shows winding tunnels and a place marked 'Heart of Falling Stone' with a note: 'Do not awaken.'"
+  lore = lore + 3
+
+  choice__
+    @target 104
+    "Decide to open the vault"
+  __choice
+
+  choice__
+    @target 103
+    "Decide to leave it sealed"
+  __choice
+__section
+
+section__
+  @title "103 — March Eastward"
+
+  "You march east, the sky tightening into a low band of cloud. The company grows quiet under the strain."
+  health = health - 5
+
+  choice__
+    @target 105
+    "Keep the pace steady"
+  __choice
+__section
+
+section__
+  @title "104 — Vault Entrance (optional)"
+
+  "At the vault entrance the metalwork drinks the light. You must solve a lock of shifting shapes."
+  choice__
+    @target 106
+    "Attempt to solve the lock puzzle"
+  __choice
+__section
+
+section__
+  @title "105 — The Great Plain Again"
+
+  "Across a wide plain you see the army still moving. To the south, a lone tower stands with a beacon lit."
+  choice__
+    @target 107
+    "Head for the tower beacon"
+  __choice
+__section
+
+section__
+  @title "106 — The Lock"
+
+  "The lock is a pattern of moons and stars. With the scholar's help you align the pieces and the vault groans."
+  lore = lore + 2
+
+  choice__
+    @target 108
+    "Enter the vault"
+  __choice
+__section
+
+section__
+  @title "107 — The Beacon Tower"
+
+  "At the tower a small band of defenders holds a thin line. Their leader greets you with weary relief."
+  companions.push("Tower Captain")
+  lore = lore + 1
+
+  choice__
+    @target 109
+    "Offer help to the defenders"
+  __choice
+__section
+
+section__
+  @title "108 — Vault's Heart"
+
+  "Inside, the vault holds a brazier cold as memory and an iron chest with seven seals."
+  lore = lore + 3
+
+  choice__
+    @target 110
+    "Open the chest"
+  __choice
+__section
+
+section__
+  @title "109 — A Tower's Need"
+
+  "You pitch in. The defenders sing old marching songs as they work. The tower will hold if the walls stand."
+  courage = courage + 2
+  gold = gold - 2
+
+  choice__
+    @target 110
+    "Rest at the tower overnight"
+  __choice
+__section
+
+section__
+  @title "110 — The Seventh Seal"
+
+  "Breaking the seventh seal reveals a folded cloth and a small iron ring ornamented with a map of a valley."
+  if__ (carryingRing == false) {
+    carryingRing = true
+    ringName = "Iron Map Ring"
+  }
+  lore = lore + 2
+
+  choice__
+    @target 111
+    "Take the ring and study the map"
+  __choice
+__section
+
+section__
+  @title "111 — Map of Hollow Ways"
+
+  "The ring's map shivers in your palm, pointing a bright thread to a place marked 'The Deepforge' (section 136)."
+  pathTaken.push("ring_map_points")
+  lore = lore + 1
+
+  choice__
+    @target 112
+    "Set course for the Deepforge"
+  __choice
+__section
+
+section__
+  @title "112 — Crossing Wetlands"
+
+  "You wade through wetland grasses. The child in your company is frightened of the frogs; the healer hums a tune."
+  health = health - 3
+
+  choice__
+    @target 113
+    "Encourage the child"
+  __choice
+__section
+
+section__
+  @title "113 — A Small Comfort"
+
+  "The child's smile steadies the band. Small comforts can be more powerful than fine steel."
+  courage = courage + 1
+
+  choice__
+    @target 114
+    "Push toward the Deepforge pass"
+  __choice
+__section
+
+section__
+  @title "114 — The Forge Hills"
+
+  "The hills smell faintly of iron. Smoke threads through distant chimneys where stone-faces watch."
+  lore = lore + 1
+
+  choice__
+    @target 115
+    "Approach the forges"
+  __choice
+__section
+
+section__
+  @title "115 — Smiths of Old"
+
+  "An ancient smith studies you and says: 'The world remembers tools, but not always those who use them. What do you remember?'"
+  choice__
+    @target 116
+    "Tell him your name and purpose"
+  __choice
+__section
+
+section__
+  @title "116 — The Smith's Work"
+
+  "He offers to temper a sword or bless a pack. His hammer rings true and steady."
+  gold = gold - 3
+  courage = courage + 1
+
+  choice__
+    @target 117
+    "Ask about the Deepforge"
+  __choice
+__section
+
+section__
+  @title "117 — Deepforge Lore"
+
+  "The smith points to a cavern hidden behind molten rock and speaks of 'the sleeping bell' which only stirs at great toll."
+  lore = lore + 2
+
+  choice__
+    @target 118
+    "Seek the cavern"
+  __choice
+__section
+
+section__
+  @title "118 — Cavern Mouth"
+
+  "A narrow tunnel leads down into heat that tastes of iron and old stories."
+  health = health - 5
+
+  choice__
+    @target 119
+    "Descend into the Deepforge"
+  __choice
+__section
+
+section__
+  @title "119 — The Slumbering Bell"
+
+  "Far below, a bell the size of a house lies on its side—its rim lined with carvings of roads and rings."
+  lore = lore + 3
+
+  choice__
+    @target 120
+    "Touch the bell"
+  __choice
+__section
+
+section__
+  @title "120 — The Bell's Murmur"
+
+  "Your touch sends a slow murmur through the rock. Somewhere above, a distant horn answers."
+  pathTaken.push("touched_bell")
+  courage = courage - 1
+
+  choice__
+    @target 121
+    "Retreat and plan"
+  __choice
+__section
+
+section__
+  @title "121 — A Shadow Approaches"
+
+  "Footsteps in the tunnel announce others. Torchlight plays across helmets — members of the marching army."
+  health = health - 10
+
+  choice__
+    @target 122
+    "Hide in an alcove"
+  __choice
+
+  choice__
+    @target 123
+    "Stand and parley"
+  __choice
+__section
+
+section__
+  @title "122 — In the Alcove"
+
+  "In the dark you watch armored shapes pass, their banners patched, their faces set."
+  pathTaken.push("hid_in_alcove")
+
+  choice__
+    @target 124
+    "Follow them quietly"
+  __choice
+__section
+
+section__
+  @title "123 — Parley Underground"
+
+  "The captain speaks of 'a power waking beneath the world.' He does not mention the ring, but his eyes test you as if counting."
+  courage = courage - 1
+
+  choice__
+    @target 125
+    "Offer to help fight this power"
+  __choice
+
+  choice__
+    @target 126
+    "Refuse and slip away"
+  __choice
+__section
+
+section__
+  @title "124 — Trailing the Army"
+
+  "You track their march to a low camp where they guard a deep pit. Someone hammers stakes like a slow heartbeat."
+  lore = lore + 1
+
+  choice__
+    @target 127
+    "Scout the camp"
+  __choice
+__section
+
+section__
+  @title "125 — Joining Ranks"
+
+  "You swear to help against their shared enemy. They accept with cautious gratitude and lend you a small banner for the road."
+  companions.push("Army Ally")
+  courage = courage + 2
+
+  choice__
+    @target 128
+    "Travel with the army for a while"
+  __choice
+__section
+
+section__
+  @title "126 — Slipping Away"
+
+  "You leave them with quiet feet. Some roads are safer without large armies near small things."
+  pathTaken.push("slipped_away")
+
+  choice__
+    @target 128
+    "Turn toward the marked valley"
+  __choice
+__section
+
+section__
+  @title "127 — Camp Secrets"
+
+  "In a supply tent you find a diagram pointing to a place where a bell might toll to stir something beneath the earth."
+  lore = lore + 2
+
+  choice__
+    @target 129
+    "Compare notes with your scholar"
+  __choice
+__section
+
+section__
+  @title "128 — The Marching Days"
+
+  "Days pass as you travel. The child learns to mend and the healer hums and the scout reports small things."
+  health = health + 5
+  courage = courage + 1
+
+  choice__
+    @target 129
+    "Prepare for the valley approach"
+  __choice
+__section
+
+section__
+  @title "129 — The Valley Mouth"
+
+  "The valley mouth is narrow and planted with carved stones. A single stone bears the same sigil as your ring."
+  lore = lore + 2
+
+  choice__
+    @target 130
+    "Enter the valley cautiously"
+  __choice
+__section
+
+section__
+  @title "130 — Mist on the Steps"
+
+  "Mist rises and shapes form in the vapor. Voices call your name but from other times."
+  courage = courage - 1
+
+  choice__
+    @target 131
+    "Press through the mist"
+  __choice
+__section
+
+section__
+  @title "131 — The River of Glass"
+
+  "A river of black glass crosses the path. In it reflections of possible futures shimmer—some bright, some terrible."
+  if__ (carryingRing == true) {
+    "Your reflection shows a crown where your head should be."
+    courage = courage - 2
+  } else__ {
+    "You see a plain with people living quietly, and it gives you peace."
+    courage = courage + 1
+  }
+
+  choice__
+    @target 132
+    "Cross the river"
+  __choice
+__section
+
+section__
+  @title "132 — The Inner Gate"
+
+  "At the inner gate a final test stands: a set of stones that light beneath willing feet."
+  choice__
+    @target 133
+    "Step carefully"
+  __choice
+__section
+
+section__
+  @title "133 — The Heart's Trial"
+
+  "The stones record choices. When you step they glow with scenes of your life: kindnesses, cruelties, deeds undone."
+  lore = lore + 2
+
+  choice__
+    @target 134
+    "Accept what you see"
+  __choice
+
+  choice__
+    @target 135
+    "Deny and try to break the stone"
+  __choice
+__section
+
+section__
+  @title "134 — Acceptance"
+
+  "Acceptance brings a small calm; the stones dim and the path ahead opens without resistance."
+  courage = courage + 1
+
+  choice__
+    @target 136
+    "Follow the map to the Deepforge"
+  __choice
+__section
+
+section__
+  @title "135 — Breaking Stone"
+
+  "You strike the stone and it cracks like a small lightning. The world quivers and a bell tolls somewhere deep below."
+  health = health - 10
+  courage = courage - 2
+
+  choice__
+    @target 136
+    "Hurry forward"
+  __choice
+__section
+
+section__
+  @title "136 — The Deepforge"
+
+  "The Deepforge sits with a throat of black stone. Below, the bell you touched earlier now slowly turns on its hinge."
+  lore = lore + 3
+
+  choice__
+    @target 137
+    "Descend to the bell"
+  __choice
+__section
+
+section__
+  @title "137 — The Bell Rotates"
+
+  "The great bell begins to move. With each inch the ground hums and somewhere, far and near, people bend toward the sound."
+  pathTaken.push("bell_rotating")
+  courage = courage - 2
+
+  choice__
+    @target 138
+    "Climb atop the bell"
+  __choice
+__section
+
+section__
+  @title "138 — Atop the Bell"
+
+  "From the bell's rim you see a brightness opening like a wound in the sky. A column of light pierces through."
+  lore = lore + 2
+
+  choice__
+    @target 139
+    "Look into the light"
+  __choice
+__section
+
+section__
+  @title "139 — The Facing"
+
+  "The light shows you, not as you are, but as you could be. The ring, if present, projects a shadow like a crown."
+  if__ (carryingRing == true) {
+    "The ring's glow draws the eye of the light; a hand—made of smoke—reaches."
+    courage = courage - 3
+  }
+
+  choice__
+    @target 140
+    "Step forward to the rim"
+  __choice
+__section
+
+section__
+  @title "140 — The Hand of Smoke"
+
+  "A form of smoke and shadow reaches for the ring, but the watcher moves to bar it. Steel sings in the cramped dark."
+  health = health - 15
+
+  choice__
+    @target 141
+    "Strike at the shadow"
+  __choice
+
+  choice__
+    @target 142
+    "Pull the ring free and leap"
+  __choice
+__section
+
+section__
+  @title "141 — Steel and Shadow"
+
+  "Steel parries smoke. When the shadow is struck it scatters like cinders. The bell still turns, but slower."
+  courage = courage + 2
+
+  choice__
+    @target 143
+    "Call the company together"
+  __choice
+__section
+
+section__
+  @title "142 — Leap"
+
+  "You grab the ring and jump. For a moment you are weightless and the wind screams all the names you have ever heard."
+  if__ (carryingRing == true) {
+    "The ring clings and the world narrows to a single line of light."
+    courage = courage - 2
+  }
+
+  choice__
+    @target 143
+    "Land and regroup"
+  __choice
+__section
+
+section__
+  @title "143 — The Final Council"
+
+  "A council forms atop the bell rim. Voices call for final measures: bind the ring, cast it away, or hide it where none will find it."
+  choice__
+    @target 144
+    "Bind it in iron"
+  __choice
+
+  choice__
+    @target 145
+    "Cast it into the deepest forge"
+  __choice
+
+  choice__
+    @target 146
+    "Hide it where no one will seek"
+  __choice
+__section
+
+section__
+  @title "144 — Binding Iron"
+
+  "You attempt to bind the ring with iron tokens from the forge. The iron bites and falters; the ring resists and pulses."
+  if__ (courage >= 14) {
+    "With a cry you force the iron and the ring accepts a binding — thin but true."
+    carryingRing = false
+    ringName = ""
+    lore = lore + 3
+  } else__ {
+    "The iron snaps. You are singed and the ring laughs without sound."
+    health = health - 15
+  }
+
+  choice__
+    @target 147
+    "Gather the company and retreat"
+  __choice
+__section
+
+section__
+  @title "145 — Into the Forge"
+
+  "Throwing it into a forge seems right. Fires roar and the ring flares. For a second the world trembles."
+  if__ (courage >= 13) {
+    "The ring screams as metal drinks it; light bursts and a blackness rolls back like a tide. When it fades, the ring is gone."
+    carryingRing = false
+    ringName = ""
+    lore = lore + 5
+  } else__ {
+    "The ring refuses the flame. It leaps out at your hand, seeking."
+    carryingRing = true
+    health = health - 10
+  }
+
+  choice__
+    @target 147
+    "Step back from the forge"
+  __choice
+__section
+
+section__
+  @title "146 — The Hiding"
+
+  "You hide the ring in a hollow under the bell where stone meets shadow, and you place a small charm to mislead seekers."
+  carryingRing = false
+  ringName = ""
+  pathTaken.push("hid_under_bell")
+  lore = lore + 1
+
+  choice__
+    @target 147
+    "Seal the hollow"
+  __choice
+__section
+
+section__
+  @title "147 — Retreat and Reckoning"
+
+  "The company withdraws from the bell-mound. The world remains trembling, but for now the great noise falls."
+  health = health + 10
+
+  choice__
+    @target 148
+    "Find a resting place"
+  __choice
+__section
+
+section__
+  @title "148 — The Quiet of Dawn"
+
+  "Dawn brings birds and a strange peace. In the hush you count bodies and tend the wounded."
+  health = health + 5
+  courage = courage + 1
+
+  choice__
+    @target 149
+    "Decide on the final course"
+  __choice
+__section
+
+section__
+  @title "149 — Final Paths"
+
+  "Three courses remain: seek the council at the great capital, go to the sea to cast the ring into salt, or keep it hidden and watch."
+  choice__
+    @target 150
+    "Seek the great capital"
+  __choice
+
+  choice__
+    @target 152
+    "Go to the sea"
+  __choice
+
+  choice__
+    @target 154
+    "Keep watch over it in secret"
+  __choice
+__section
+
+section__
+  @title "150 — To the Capital"
+
+  "The capital sits at the confluence of three rivers. It is a place of many voices and high towers."
+  lore = lore + 1
+
+  choice__
+    @target 151
+    "Speak to the council"
+  __choice
+__section
+
+section__
+  @title "151 — The Council's Cold Eyes"
+
+  "At the council, robes swirl and a long debate ensues. Some want to wield it; others want to guard it. You feel old rivalries flare."
+  courage = courage - 1
+
+  choice__
+    @target 155
+    "Attempt to sway the council toward quiet guarding"
+  __choice
+__section
+
+section__
+  @title "152 — The Road to Sea"
+
+  "The sea calls like memory. Salt tang bites the lips and gulls circle overhead."
+  pathTaken.push("road_to_sea")
+
+  choice__
+    @target 153
+    "Seek a headland with a deep chute"
+  __choice
+__section
+
+section__
+  @title "153 — The Chute of Tides"
+
+  "At a headland a narrow chute drops into wild surf. To toss the ring here is to leave it to the sea's judgment."
+  if__ (carryingRing == true) {
+    "You stand with the ring in hand, every heartbeat a drum."
+  } else__ {
+    "You consult your companions about where you hid it."
+  }
+
+  choice__
+    @target 156
+    "Throw the ring into the sea"
+  __choice
+
+  choice__
+    @target 157
+    "Choose not to throw it"
+  __choice
+__section
+
+section__
+  @title "154 — Watchers in Secret"
+
+  "You choose to hide and watch. Years fold into years and you become a keeper of rumors and small lights."
+  pathTaken.push("secret_watch")
+  lore = lore + 1
+
+  choice__
+    @target 158
+    "Continue the watch in hidden places"
+  __choice
+__section
+
+section__
+  @title "155 — Swaying the Council"
+
+  "You argue for measured custody, for long watches and oaths. Some listen. Others bristle at your humility."
+  lore = lore + 1
+
+  choice__
+    @target 159
+    "Accept the council's verdict"
+  __choice
+__section
+
+section__
+  @title "156 — Into the Sea"
+
+  "You hurl the ring into the white throat of the tide. The sea swallows it with a sullen, final motion."
+  carryingRing = false
+  ringName = ""
+  lore = lore + 5
+
+  choice__
+    @target 160
+    "Stand on the cliff and watch the foam"
+  __choice
+__section
+
+section__
+  @title "157 — Choosing Not to"
+
+  "You hesitate. A voice inside says the ring could be used for good; another says all power corrupts."
+  courage = courage - 1
+
+  choice__
+    @target 161
+    "Take it back to concealment"
+  __choice
+
+  choice__
+    @target 160
+    "Return to the sea and decide again"
+  __choice
+__section
+
+section__
+  @title "158 — The Slow Watch"
+
+  "Decades might pass in secret watch: births, deaths, soft footsteps on winter wood. You become legend in one valley."
+  lore = lore + 2
+  courage = courage - 1
+
+  choice__
+    @target 162
+    "End this quiet life and step back into the world"
+  __choice
+__section
+
+section__
+  @title "159 — The Verdict"
+
+  "The council decides to lock the most dangerous things away and to send guardians in shifts. The ring — if found — will be contained in a warded vault."
+  pathTaken.push("council_decision")
+  lore = lore + 1
+
+  choice__
+    @target 163
+    "Agree to become a guardian"
+  __choice
+__section
+
+section__
+  @title "160 — Cliffside Calm"
+
+  "The sea takes its answer. Whether that was end or beginning depends on how tides turn."
+  pathTaken.push("sea_taken")
+  lore = lore + 1
+
+  choice__
+    @target 164
+    "Return inland"
+  __choice
+__section
+
+section__
+  @title "161 — Retrieving the Ring"
+
+  "You retrieve the hidden ring from its hollow and strap it to your neck. Secrets often weigh like stone."
+  carryingRing = true
+  courage = courage - 2
+
+  choice__
+    @target 165
+    "Set off with renewed purpose"
+  __choice
+__section
+
+section__
+  @title "162 — Back to the World"
+
+  "Leaving the watch, you find the world changed — roads new, songs altered. Your band must find its place once more."
+  health = health + 5
+
+  choice__
+    @target 165
+    "Seek to mend what frayed"
+  __choice
+__section
+
+section__
+  @title "163 — Guarding Oath"
+
+  "You take the oath and step into a vault of quiet rooms and small lamps. Your days are kept to tasks and song."
+  pathTaken.push("oath_guard")
+  lore = lore + 2
+
+  choice__
+    @target 166
+    "Remain in the vault"
+  __choice
+__section
+
+section__
+  @title "164 — Inland Again"
+
+  "You return inland with the scent of salt in your hair and a new humility. The land receives you like one returns home."
+  courage = courage + 1
+
+  choice__
+    @target 166
+    "Resume travels across the homeland"
+  __choice
+__section
+
+section__
+  @title "165 — A March Renewed"
+
+  "You march once more, driven by a purpose that is at once clear and heavy."
+  pathTaken.push("march_renewed")
+
+  choice__
+    @target 167
+    "Go to the place from the ring's map"
+  __choice
+__section
+
+section__
+  @title "166 — Vault and Vigil"
+
+  "In the vault you learn to read the small scripts carved on the bars. Time here is measured in lamps lit and doors bolted."
+  lore = lore + 2
+
+  choice__
+    @target 167
+    "Step out to see the world"
+  __choice
+__section
+
+section__
+  @title "167 — The Marked Vale"
+
+  "The map brings you back to a vale where a single stone bears a new scratch — fresh, like a warning left by a traveling hand."
+  lore = lore + 1
+
+  choice__
+    @target 168
+    "Investigate the scratch"
+  __choice
+__section
+
+section__
+  @title "168 — The Scratch Message"
+
+  "The scratch reads: 'Do not trust the crown.' Nearby, footprints lead toward a hill crowned with smoke."
+  lore = lore + 1
+
+  choice__
+    @target 169
+    "Follow the footprints"
+  __choice
+__section
+
+section__
+  @title "169 — The Hill of Smoke"
+
+  "At the hill's top a small encampment waits, and a hooded figure offers tea and a question: 'What would you sacrifice to end it?'"
+  courage = courage - 1
+
+  choice__
+    @target 170
+    "Offer yourself as sacrifice"
+  __choice
+
+  choice__
+    @target 171
+    "Offer a plan instead"
+  __choice
+__section
+
+section__
+  @title "170 — Self-Offered"
+
+  "Your words move the hooded figure. 'Many great things are owed to small sacrifices,' they say. They step into the ranks of your company."
+  companions.push("Hooded Figure")
+  courage = courage + 2
+
+  choice__
+    @target 172
+    "Return to the ring's hollow"
+  __choice
+__section
+
+section__
+  @title "171 — A Plan Formed"
+
+  "You present a plan to mislead those who seek the ring and to hide it where memory cannot follow."
+  lore = lore + 2
+
+  choice__
+    @target 172
+    "Put the plan into action"
+  __choice
+__section
+
+section__
+  @title "172 — The Hollow Again"
+
+  "You return to the hollow where you once hid the ring. Moss is grown and your token sits like a small sleeping thing."
+  choice__
+    @target 173
+    "Retrieve the ring and inspect it anew"
+  __choice
+__section
+
+section__
+  @title "173 — The Ring's Face"
+
+  "The ring is colder now. Its dark gem is like an eye that watches your hand."
+  if__ (carryingRing == false) {
+    carryingRing = true
+    ringName = "Hollow's Eye"
+  }
+
+  choice__
+    @target 174
+    "Decide to keep it safe in a new hiding place"
+  __choice
+__section
+
+section__
+  @title "174 — A Deeper Hollow"
+
+  "You dig where roots tangle and slip the ring into a stone's cavity, sealing with a small charm and a vow of silence."
+  carryingRing = false
+  ringName = ""
+  pathTaken.push("sealed_in_deeper_hollow")
+
+  choice__
+    @target 175
+    "Move away and change your name if needed"
+  __choice
+__section
+
+section__
+  @title "175 — The Name Changed"
+
+  "You take a new name in a new town to fool those who track by memory. It helps for a little while."
+  playerName = "Wanderer"
+  lore = lore + 1
+
+  choice__
+    @target 176
+    "Continue under the new name"
+  __choice
+__section
+
+section__
+  @title "176 — Quiet Days"
+
+  "Quiet days pass; gardens grow at the edges of roads and children learn new songs. You teach them how to patch boots."
+  courage = courage + 1
+  health = health + 5
+
+  choice__
+    @target 177
+    "Stay longer"
+  __choice
+__section
+
+section__
+  @title "177 — A Risen Shadow"
+
+  "Under a crescent moon a shadow moves through the town and the child you taught awakens, weeping."
+  "Someone took the charm and the hollow is bare."
+  pathTaken.push("charm_stolen")
+  lore = lore + 1
+
+  choice__
+    @target 178
+    "Pursue the thief"
+  __choice
+__section
+
+section__
+  @title "178 — The Chase"
+
+  "You chase across rooftops and down alleys until you corner a small thief who holds the charm trembling."
+  choice__
+    @target 179
+    "Question the thief gently"
+  __choice
+
+  choice__
+    @target 180
+    "Take the charm and the thief's purse"
+  __choice
+__section
+
+section__
+  @title "179 — Gentle Questions"
+
+  "The thief is a scared child who took the charm for its shine. They point to a cloaked caravan on the road."
+  companions.push("Thief-Child")
+  lore = lore + 1
+
+  choice__
+    @target 181
+    "Track the caravan"
+  __choice
+__section
+
+section__
+  @title "180 — Heavy-Handed"
+
+  "You take the charm and some coins. The child cries but runs. You feel the weight of having chosen force."
+  gold = gold + 2
+  courage = courage - 1
+
+  choice__
+    @target 181
+    "Follow the caravan quietly"
+  __choice
+__section
+
+section__
+  @title "181 — The Cloaked Caravan"
+
+  "The caravan is large and guarded. At its center a crowned man sits who studies a small ring in a glass case."
+  lore = lore + 2
+
+  choice__
+    @target 182
+    "Sneak to the center tent"
+  __choice
+
+  choice__
+    @target 183
+    "Challenge the man openly"
+  __choice
+__section
+
+section__
+  @title "182 — In the Tent"
+
+  "Inside the tent the crown's man smiles coldly. He knows more than he lets on and speaks of a 'sundered oath' that the ring breaks."
+  courage = courage - 1
+
+  choice__
+    @target 184
+    "Try to steal the ring back"
+  __choice
+
+  choice__
+    @target 185
+    "Speak to learn his aim"
+  __choice
+__section
+
+section__
+  @title "183 — Open Challenge"
+
+  "You step into the light. The caravan guards laugh at first, then circle. Your friends stand with you; the air tastes of iron."
+  health = health - 10
+
+  choice__
+    @target 184
+    "Fight to reclaim the ring"
+  __choice
+__section
+
+section__
+  @title "184 — A Swift Theft"
+
+  "In the bustle you slip a hand into the case and steal the ring. It slips onto your finger and the tent closes like a trap."
+  carryingRing = true
+  courage = courage - 2
+
+  choice__
+    @target 186
+    "Sprint from the tent"
+  __choice
+__section
+
+section__
+  @title "185 — Learning the Aim"
+
+  "He says: 'I will make it a tool to bind kings to order. With this, I will end war or crown myself.'"
+  courage = courage - 1
+
+  choice__
+    @target 186
+    "Try to dissuade him"
+  __choice
+__section
+
+section__
+  @title "186 — Fleeing the Caravan"
+
+  "You run through wagons and mud. Arrows stick, but your feet are fleet. At last you slip into a copse and breathe."
+  health = health - 5
+
+  choice__
+    @target 187
+    "Decide what to do with the ring now"
+  __choice
+__section
+
+section__
+  @title "187 — The Weight Again"
+
+  "By moonlight the ring glows faintly. You feel power and danger coiled together like twin serpents."
+  choice__
+    @target 188
+    "Seize power to force peace"
+  __choice
+
+  choice__
+    @target 189
+    "Destroy it if you can"
+  __choice
+
+  choice__
+    @target 190
+    "Hide it until better days"
+  __choice
+__section
+
+section__
+  @title "188 — Power's Promise"
+
+  "You imagine stopping wars, making laws that heal, holding a hand that steadies thousands."
+  courage = courage + 1
+
+  choice__
+    @target 191
+    "Use the ring to take action"
+  __choice
+__section
+
+section__
+  @title "189 — Forge and Fire"
+
+  "You return to the Deepforge where flames once licked at the ring. The smiths watch and they measure ash."
+  choice__
+    @target 192
+    "Try to melt it again"
+  __choice
+__section
+
+section__
+  @title "190 — Hiding"
+
+  "You hide the ring in a place where only you and the oldest friends know. You travel slowly, living small days."
+  pathTaken.push("hid_secretly_again")
+  lore = lore + 1
+
+  choice__
+    @target 193
+    "Live the quiet life while watching for danger"
+  __choice
+__section
+
+section__
+  @title "191 — Seizing Action"
+
+  "With the ring's whisper at your shoulder you command a small wane: wars end, but calm is brittle and built on fear."
+  courage = courage - 2
+  lore = lore + 1
+
+  choice__
+    @target 194
+    "Continue wielding power"
+  __choice
+__section
+
+section__
+  @title "192 — Melting Trial"
+
+  "The ring resists the heat as a living thing, and the smiths' faces go pale. Fire cannot hold what is bound to will."
+  if__ (courage >= 15) {
+    "With will and ancient words you temper flame until the ring softens like wax, then cracks and dissolves."
+    carryingRing = false
+    ringName = ""
+    lore = lore + 5
+  } else__ {
+    "The flame spits and the ring remains whole; something in the forges croaks like a bird."
+    health = health - 10
+  }
+
+  choice__
+    @target 195
+    "Leave the forge"
+  __choice
+__section
+
+section__
+  @title "193 — Quiet Watching"
+
+  "Years pass with small joys — harvests, children's laughter, the comfort of dawn. But you always glance behind trees."
+  courage = courage - 1
+  lore = lore + 1
+
+  choice__
+    @target 195
+    "Decide whether the safety is enough"
+  __choice
+__section
+
+section__
+  @title "194 — The Price of Order"
+
+  "Order built by command breeds a slow bitterness. Murmurs grow; some call your rule tyranny in new clothes."
+  courage = courage - 2
+
+  choice__
+    @target 196
+    "Renounce the ring"
+  __choice
+
+  choice__
+    @target 197
+    "Hold fast and tighten control"
+  __choice
+__section
+
+section__
+  @title "195 — After the Trial"
+
+  "You walk away from the forge with dust and heated iron on your boots. The world still moves; choices remain open."
+  choice__
+    @target 198
+    "Go to the valley and see what others do"
+  __choice
+__section
+
+section__
+  @title "196 — Renunciation"
+
+  "You place the ring upon a stone and speak a vow of renunciation. Tears fall and the ring warms, then cools."
+  carryingRing = false
+  ringName = ""
+  pathTaken.push("renounced_ring")
+  lore = lore + 3
+
+  choice__
+    @target 198
+    "Leave it where it rests and step back"
+  __choice
+__section
+
+section__
+  @title "197 — Tightening Control"
+
+  "You clamp down, laws are enforced, enemies made. For a time peace reigns, but under it, rot."
+  health = health - 20
+  courage = courage - 2
+
+  choice__
+    @target 199
+    "Face the consequences"
+  __choice
+__section
+
+section__
+  @title "198 — Valley's Choice"
+
+  "People argue at the valley. Some say the ring must be destroyed; others say it must be used wisely."
+  choice__
+    @target 200
+    "Encourage destruction"
+  __choice
+
+  choice__
+    @target 201
+    "Argue for custodial secrecy"
+  __choice
+__section
+
+section__
+  @title "199 — Consequence Day"
+
+  "Revolt comes in whispers and then in swords. You learn that power taken without consent is brittle and sharp."
+  health = health - 30
+  courage = courage - 3
+
+  choice__
+    @target 202
+    "Surrender the ring and seek atonement"
+  __choice
+__section
+
+section__
+  @title "200 — Destruction Attempt"
+
+  "At a common council you propose to break the ring by joint effort. Many hands together bend the will of small things."
+  if__ (lore >= 35) {
+    "With song, iron, and oath, the ring cracks and falls silent. The world exhales and a great weight lifts."
+    carryingRing = false
+    ringName = ""
+    lore = lore + 5
+  } else__ {
+    "Without knowledge and song the attempt fails; the ring laughs and slips away to hiding."
+    carryingRing = true
+    lore = lore - 2
+  }
+
+  choice__
+    @target 203
+    "Mark the new path forward"
+  __choice
+__section
+
+section__
+  @title "201 — Custody Secured"
+
+  "You argue for guarded custody. The vault is deemed the safer bet. The ring is sealed away under watch."
+  pathTaken.push("vaulted_ring")
+  carryingRing = false
+  ringName = ""
+  lore = lore + 2
+
+  choice__
+    @target 203
+    "Become one of the wardens"
+  __choice
+__section
+
+section__
+  @title "202 — Surrender and Atonement"
+
+  "You lay down arms and names in a small ceremony. Forgiveness is hard but honest; people heal slowly."
+  courage = courage + 2
+  health = health + 10
+
+  choice__
+    @target 203
+    "Live quietly and help rebuild"
+  __choice
+__section
+
+section__
+  @title "203 — Epilogue Beginnings"
+
+  "Whichever path you chose, the land moves on. Fields recover. Children laugh. Songs change and adapt like rivers."
+  "You keep memories, and you keep a responsibility to speak when small things become too heavy."
+
+  choice__
+    @target 204
+    "Hear the closing words"
+  __choice
+__section
+
+section__
+  @title "204 — Closing Words"
+
+  "Tales do not end; they fold into new beginnings. The ring, where it rests, is a lesson in how simple things can hold dangers and grace alike."
+  "You, ${playerName}, have seen much and learned that the largest choices are often made in the smallest acts."
+
+  choice__
+    @target 205
+    "Read a final recounting of the journey"
+  __choice
+__section
+
+section__
+  @title "205 — Recounting"
+
+  "You recall the roads: Bridge, Tower, Bell, Forge, Sea. Each step was an answer to a question you were afraid to ask."
+  "The company you formed was imperfect but true. You learned of courage, of the cost and of the quiet joys."
+
+  choice__
+    @target 206
+    "Receive the last blessing"
+  __choice
+__section
+
+section__
+  @title "206 — The Last Blessing"
+
+  "An elder lays a hand on your head and speaks: 'May your name be small where it must be, and large where it helps another.'"
+  courage = courage + 2
+
+  choice__
+    @target 207
+    "Walk home"
+  __choice
+__section
+
+section__
+  @title "207 — Homeward"
+
+  "The road home is not empty — it is full of people who remember you as one who chose when choices mattered."
+  health = health + 10
+
+  choice__
+    @target 208
+    "Return to the Hollow gate"
+  __choice
+__section
+
+section__
+  @title "208 — The Hollow Gate Revisited"
+
+  "At the gate your oldest friend waits, older but smiling. The world has been wide and you have been part of its change."
+  choice__
+    @target 209
+    "Sit and share a silent cup"
+  __choice
+__section
+
+section__
+  @title "209 — The Silent Cup"
+
+  "You drink and listen to the small daily sounds — a distant child, a dog barking, a saucepan clank. Peace is made of such fragments."
+  choice__
+    @target 210
+    "Lay down your pack and tie a token on the gate"
+  __choice
+__section
+
+section__
+  @title "210 — A Token on the Gate"
+
+  "You tie a simple token — a scrap of cloth or a hammered coin — to the gate. It flaps in the breeze like a small vow."
+  "This story is one of many; new voices will pick up the road where you left off."
+
+  "THE END (for this telling — other paths remain.)"
+__section

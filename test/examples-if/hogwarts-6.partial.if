@@ -1,0 +1,521 @@
+/* ===============================
+   SCENE: THE SCHOOL AT WAR
+   =============================== */
+
+scene__
+  @name "The School at War"
+  @first 166
+  @sections 166 167 168 169 170 171 172 173 174 175
+__scene
+
+section__
+  @title "Morning Without Bells"
+
+  markVisited(166)
+
+  "No bells."
+  ""
+  "No schedules."
+  ""
+  "Only movement."
+
+  choice__
+    @target 167
+    "Arm yourself"
+  __choice
+
+  choice__
+    @target 168
+    "Hide"
+  __choice
+__section
+
+section__
+  @title "Prepared for Violence"
+
+  markVisited(167)
+  courage = courage + 1
+
+  "Your wand hums."
+  ""
+  "The ash vibrates."
+
+  choice__
+    @target 169
+    "Move toward the noise"
+  __choice
+__section
+
+section__
+  @title "Hiding Is Not Safety"
+
+  markVisited(168)
+  wisdom = wisdom + 1
+
+  "Walls whisper routes."
+  ""
+  "Some are traps."
+
+  choice__
+    @target 169
+    "Move anyway"
+  __choice
+__section
+
+section__
+  @title "Hallway Clash"
+
+  markVisited(169)
+
+  "Students duel."
+  ""
+  "Teachers intervene—and fail."
+
+  choice__
+    @target 170
+    "Help someone"
+  __choice
+
+  choice__
+    @target 171
+    "Push through"
+  __choice
+__section
+
+section__
+  @title "Saving One"
+
+  markVisited(170)
+  loyalty = loyalty + 1
+
+  "You pull a student clear."
+  ""
+  "Another falls."
+
+  choice__
+    @target 172
+    "Keep moving"
+  __choice
+__section
+
+section__
+  @title "No Time for Mercy"
+
+  markVisited(171)
+  cunning = cunning + 1
+
+  "You step over broken glass."
+  ""
+  "And someone else."
+
+  choice__
+    @target 172
+    "Keep moving"
+  __choice
+__section
+
+section__
+  @title "The Castle Splits"
+
+  markVisited(172)
+
+  "A corridor collapses."
+  ""
+  "The castle is choosing."
+
+  choice__
+    @target 173
+    "Follow stone"
+  __choice
+
+  choice__
+    @target 174
+    "Follow ash"
+  __choice
+__section
+
+section__
+  @title "Stone Route"
+
+  markVisited(173)
+  wisdom = wisdom + 1
+
+  "The walls shield you."
+  ""
+  "At a cost."
+
+  choice__
+    @target 175
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "Ash Route"
+
+  markVisited(174)
+  courage = courage + 1
+
+  "The air burns."
+  ""
+  "You move faster."
+
+  choice__
+    @target 175
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "The Great Stairwell"
+
+  markVisited(175)
+
+  "Everyone converges here."
+
+  choice__
+    @targetType "scene"
+    @target 13
+    "Face the fracture"
+  __choice
+__section
+
+/* ===============================
+   SCENE: MEMORY FAILURE
+   =============================== */
+
+scene__
+  @name "Memory Failure"
+  @first 176
+  @sections 176 177 178 179 180 181 182 183 184 185
+__scene
+
+section__
+  @title "You Forget the Spell"
+
+  markVisited(176)
+
+  "A duel."
+  ""
+  "You raise your wand."
+  ""
+  "Nothing comes."
+
+  choice__
+    @target 177
+    "Force it"
+  __choice
+
+  choice__
+    @target 178
+    "Let ash act"
+  __choice
+__section
+
+section__
+  @title "Brute Recall"
+
+  markVisited(177)
+  courage = courage + 1
+  wisdom = wisdom - 1
+
+  "Pain sharpens memory."
+  ""
+  "Briefly."
+
+  choice__
+    @target 179
+    "Cast"
+  __choice
+__section
+
+section__
+  @title "Autonomous Magic"
+
+  markVisited(178)
+
+  "The wand casts *without you*."
+  ""
+  "You are not consulted."
+
+  inventory.push("loss of agency")
+
+  choice__
+    @target 179
+    "React"
+  __choice
+__section
+
+section__
+  @title "Collateral"
+
+  markVisited(179)
+
+  "Someone screams."
+  ""
+  "You don't know who."
+
+  choice__
+    @target 180
+    "Look"
+  __choice
+
+  choice__
+    @target 181
+    "Don't"
+  __choice
+__section
+
+section__
+  @title "Witness"
+
+  markVisited(180)
+  loyalty = loyalty - 1
+
+  "You see what you did."
+  ""
+  "You will remember this."
+
+  choice__
+    @target 182
+    "Move on"
+  __choice
+__section
+
+section__
+  @title "Avoidance"
+
+  markVisited(181)
+  cunning = cunning + 1
+
+  "You preserve function."
+  ""
+  "Not humanity."
+
+  choice__
+    @target 182
+    "Move on"
+  __choice
+__section
+
+section__
+  @title "Headmaster Intervenes"
+
+  markVisited(182)
+
+  "*Enough,* he says."
+  ""
+  "The air freezes."
+
+  choice__
+    @target 183
+    "Submit"
+  __choice
+
+  choice__
+    @target 184
+    "Resist"
+  __choice
+__section
+
+section__
+  @title "Containment Spell"
+
+  markVisited(183)
+  wisdom = wisdom + 1
+
+  "You are locked in place."
+
+  choice__
+    @target 185
+    "Wait"
+  __choice
+__section
+
+section__
+  @title "Ash Breaks Chains"
+
+  markVisited(184)
+  courage = courage + 2
+
+  "The spell shatters."
+  ""
+  "So does trust."
+
+  choice__
+    @target 185
+    "Run"
+  __choice
+__section
+
+section__
+  @title "The Choice Seen"
+
+  markVisited(185)
+
+  "Everyone saw that."
+
+  choice__
+    @targetType "scene"
+    @target 14
+    "Flee deeper"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE WAND REBELS
+   =============================== */
+
+scene__
+  @name "The Wand Rebels"
+  @first 186
+  @sections 186 187 188 189 190 191 192 193 194 195
+__scene
+
+section__
+  @title "You Drop the Wand"
+
+  markVisited(186)
+
+  "It does not fall."
+  ""
+  "It hovers."
+
+  choice__
+    @target 187
+    "Command it"
+  __choice
+
+  choice__
+    @target 188
+    "Let it decide"
+  __choice
+__section
+
+section__
+  @title "Authority Challenged"
+
+  markVisited(187)
+  courage = courage + 1
+
+  "*You are not whole,* the wand thinks."
+
+  choice__
+    @target 189
+    "Argue"
+  __choice
+__section
+
+section__
+  @title "Surrendered Will"
+
+  markVisited(188)
+  wisdom = wisdom - 1
+
+  "The wand turns outward."
+
+  choice__
+    @target 189
+    "Watch"
+  __choice
+__section
+
+section__
+  @title "Independent Action"
+
+  markVisited(189)
+
+  "Ash lashes stone."
+  ""
+  "The castle screams again."
+
+  choice__
+    @target 190
+    "Stop it"
+  __choice
+
+  choice__
+    @target 191
+    "Encourage it"
+  __choice
+__section
+
+section__
+  @title "Attempted Control"
+
+  markVisited(190)
+  courage = courage - 1
+
+  "Your grip burns."
+
+  choice__
+    @target 192
+    "Persist"
+  __choice
+__section
+
+section__
+  @title "Full Release"
+
+  markVisited(191)
+  loyalty = loyalty - 1
+
+  "The wand acts freely."
+  ""
+  "This is what it wanted."
+
+  choice__
+    @target 192
+    "Follow"
+  __choice
+__section
+
+section__
+  @title "Collapse Accelerates"
+
+  markVisited(192)
+
+  "Foundations crack."
+  ""
+  "Students flee."
+
+  choice__
+    @target 193
+    "Choose an ending path"
+  __choice
+__section
+
+section__
+  @title "Paths Revealed"
+
+  markVisited(193)
+
+  "Three futures open."
+
+  choice__
+    @target 194
+    "Burn the castle"
+  __choice
+
+  choice__
+    @target 195
+    "Bind the wand forever"
+  __choice
+
+  choice__
+    @target 196
+    "Erase yourself"
+  __choice
+__section
+
+section__
+  @title "End of Part Six"
+
+  markVisited(194)
+
+  "This is the last calm moment."
+  ""
+  "Whatever you choose next—"
+  ""
+  "*The world will remember.*"
+__section

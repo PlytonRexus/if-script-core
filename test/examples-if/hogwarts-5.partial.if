@@ -1,0 +1,484 @@
+/* ===============================
+   SCENE: FAULT LINES
+   =============================== */
+
+scene__
+  @name "Fault Lines"
+  @first 131
+  @sections 131 132 133 134 135 136 137 138 139 140
+__scene
+
+section__
+  @title "The Wand Speaks Clearly"
+
+  markVisited(131)
+
+  if__ (hasItem("ashen wand")) {
+    "*They will erase you,* the wand thinks."
+  } else__ {
+    "The absence of the wand aches."
+  }
+
+  choice__
+    @target 132
+    "Side with the wand"
+  __choice
+
+  choice__
+    @target 133
+    "Side with the castle"
+  __choice
+
+  choice__
+    @target 134
+    "Side with no one"
+  __choice
+__section
+
+section__
+  @title "Ash Allegiance"
+
+  markVisited(132)
+  courage = courage + 2
+  loyalty = loyalty - 1
+
+  inventory.push("faction: ash")
+
+  "The wand warms."
+  ""
+  "*We burn forward.*"
+
+  choice__
+    @target 135
+    "Prepare"
+  __choice
+__section
+
+section__
+  @title "Stone Allegiance"
+
+  markVisited(133)
+  wisdom = wisdom + 2
+  courage = courage - 1
+
+  inventory.push("faction: stone")
+
+  "The castle exhales."
+  ""
+  "*You will be contained.*"
+
+  choice__
+    @target 135
+    "Prepare"
+  __choice
+__section
+
+section__
+  @title "No Allegiance"
+
+  markVisited(134)
+  cunning = cunning + 2
+
+  inventory.push("faction: self")
+
+  "Both forces recoil."
+  ""
+  "That frightens them."
+
+  choice__
+    @target 135
+    "Prepare alone"
+  __choice
+__section
+
+section__
+  @title "The School Fractures"
+
+  markVisited(135)
+
+  "Corridors split."
+  ""
+  "Students whisper sides."
+
+  choice__
+    @target 136
+    "Seek the last ally"
+  __choice
+
+  choice__
+    @target 137
+    "Move immediately"
+  __choice
+__section
+
+section__
+  @title "A Quiet Conversation"
+
+  markVisited(136)
+
+  if__ (hasItem("last ally")) {
+    "*Someone is going to die tonight,* they say."
+  } else__ {
+    "No one comes."
+  }
+
+  choice__
+    @target 138
+    "Ask who"
+  __choice
+__section
+
+section__
+  @title "No Time"
+
+  markVisited(137)
+
+  "The castle shifts violently."
+
+  choice__
+    @target 138
+    "Run"
+  __choice
+__section
+
+section__
+  @title "The Name Spoken"
+
+  markVisited(138)
+
+  "A familiar name."
+  ""
+  "A student you argued with."
+  ""
+  "A student you ignored."
+
+  choice__
+    @target 139
+    "Try to intervene"
+  __choice
+
+  choice__
+    @target 140
+    "Let events unfold"
+  __choice
+__section
+
+section__
+  @title "Too Late"
+
+  markVisited(139)
+  courage = courage + 1
+
+  "You run."
+  ""
+  "You are not fast enough."
+
+  choice__
+    @targetType "scene"
+    @target 11
+    "Arrive"
+  __choice
+__section
+
+section__
+  @title "Choosing Not To Act"
+
+  markVisited(140)
+  cunning = cunning + 1
+
+  "You stay still."
+  ""
+  "The castle notices."
+
+  choice__
+    @targetType "scene"
+    @target 11
+    "Hear the scream"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE FIRST DEATH
+   =============================== */
+
+scene__
+  @name "The First Death"
+  @first 141
+  @sections 141 142 143 144 145 146 147 148 149 150
+__scene
+
+section__
+  @title "The Body"
+
+  markVisited(141)
+
+  "A student lies broken."
+  ""
+  "Not by spell."
+  ""
+  "By architecture."
+
+  choice__
+    @target 142
+    "Check for life"
+  __choice
+__section
+
+section__
+  @title "Gone"
+
+  markVisited(142)
+
+  "The castle does not undo itself."
+
+  choice__
+    @target 143
+    "React"
+  __choice
+__section
+
+section__
+  @title "Blame"
+
+  markVisited(143)
+
+  if__ (hasItem("faction: ash")) {
+    "Whispers blame *you*."
+  } else__ if__ (hasItem("faction: stone")) {
+    "Whispers blame *the castle*."
+  } else__ {
+    "Whispers blame *no one*."
+  }
+
+  choice__
+    @target 144
+    "Speak"
+  __choice
+
+  choice__
+    @target 145
+    "Remain silent"
+  __choice
+__section
+
+section__
+  @title "Words Fall Flat"
+
+  markVisited(144)
+  loyalty = loyalty - 1
+
+  "No one listens."
+
+  choice__
+    @target 146
+    "Step back"
+  __choice
+__section
+
+section__
+  @title "Silence Is Not Neutral"
+
+  markVisited(145)
+  wisdom = wisdom - 1
+
+  "Your quiet is recorded."
+
+  choice__
+    @target 146
+    "Leave"
+  __choice
+__section
+
+section__
+  @title "The Castle Responds"
+
+  markVisited(146)
+
+  "Doors slam."
+  ""
+  "Stairs lock."
+
+  choice__
+    @target 147
+    "Force escape"
+  __choice
+
+  choice__
+    @target 148
+    "Use ash"
+  __choice
+__section
+
+section__
+  @title "Stone Resists Flesh"
+
+  markVisited(147)
+  courage = courage - 1
+
+  "You are thrown back."
+
+  choice__
+    @target 149
+    "Fall"
+  __choice
+__section
+
+section__
+  @title "Ash Bites Stone"
+
+  markVisited(148)
+  courage = courage + 1
+
+  "The wall cracks."
+  ""
+  "The castle screams."
+
+  choice__
+    @target 149
+    "Escape"
+  __choice
+__section
+
+section__
+  @title "Aftermath"
+
+  markVisited(149)
+
+  "Classes are cancelled."
+  ""
+  "Truth is buried."
+
+  choice__
+    @target 150
+    "Regret"
+  __choice
+
+  choice__
+    @target 151
+    "Justify"
+  __choice
+__section
+
+section__
+  @title "Grief"
+
+  markVisited(150)
+  loyalty = loyalty + 1
+
+  "You feel the loss."
+
+  choice__
+    @targetType "scene"
+    @target 12
+    "Night falls"
+  __choice
+__section
+
+/* ===============================
+   SCENE: NO MORE PRETENSE
+   =============================== */
+
+scene__
+  @name "No More Pretense"
+  @first 151
+  @sections 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165
+__scene
+
+section__
+  @title "Justification"
+
+  markVisited(151)
+  cunning = cunning + 2
+
+  "You rewrite the story."
+  ""
+  "It almost works."
+
+  choice__
+    @target 152
+    "Move forward"
+  __choice
+__section
+
+section__
+  @title "Faculty Intervention"
+
+  markVisited(152)
+
+  "*This ends now,* a professor says."
+  ""
+  "They are afraid."
+
+  choice__
+    @target 153
+    "Submit"
+  __choice
+
+  choice__
+    @target 154
+    "Refuse"
+  __choice
+__section
+
+section__
+  @title "Submission"
+
+  markVisited(153)
+  wisdom = wisdom + 1
+
+  "You are confined."
+
+  choice__
+    @target 155
+    "Wait"
+  __choice
+__section
+
+section__
+  @title "Refusal"
+
+  markVisited(154)
+  courage = courage + 2
+
+  "Wands rise."
+  ""
+  "So does ash."
+
+  choice__
+    @target 155
+    "Break away"
+  __choice
+__section
+
+section__
+  @title "A Line Crossed"
+
+  markVisited(155)
+
+  "There is no normal left."
+
+  choice__
+    @target 156
+    "Plan"
+  __choice
+__section
+
+section__
+  @title "End of Part Five"
+
+  markVisited(156)
+
+  "A student is dead."
+  ""
+  "Sides are chosen."
+  ""
+  "The castle is unstable."
+  ""
+  "**Stats:**"
+  "- Courage: ${courage}"
+  "- Wisdom: ${wisdom}"
+  "- Cunning: ${cunning}"
+  "- Loyalty: ${loyalty}"
+  ""
+  "*The end will not be kind.*"
+__section

@@ -1,0 +1,291 @@
+settings__
+  @storyTitle "A Stranger in Veracruz"
+  @startAt 1
+__settings
+
+/* 1 */
+section__
+  @title "The Docks at Midnight"
+  hasEnvelope = false
+  knowsVargas = false
+  fixerMet = false
+  hasLead = false
+  knowsHistory = false
+  exposedVargas = false
+  filedStory = false
+  dealMade = false
+  "The smell of diesel and salt and something rotting sweetly beneath the dock planks. The city behind you is a wall of noise — a brass band four streets over, a dog that will not stop, the perpetual argument of the harbor.
+
+  He finds you at the gangway. An old man in a white shirt gone grey with handling, one hand pressed to his ribs as though counting them. He says something you do not catch, then something you do: _Vargas._
+
+  He pushes an envelope into your jacket pocket and is gone before you can ask. Into the crowd. Into the night.
+
+  The envelope is thick and slightly damp."
+  choice__
+    @target 2
+    @input playerName
+    @action hasEnvelope = true
+    "Open the envelope — you are a journalist, after all"
+  __choice
+  choice__
+    @target 13
+    @input playerName
+    "Pocket it without looking — you are tired and did not come here for this"
+  __choice
+__section
+
+/* 2 */
+section__
+  @title "The Envelope"
+  "You find a doorway on the Malecón and open it there.
+
+  Inside: a photograph, a typewritten list of twelve names, and a date six weeks from now. The photograph shows a man at a podium — well-dressed, confident, speaking to a crowd. Someone has drawn a small X above his lapel in red ink.
+
+  You do not know the man. But you know the face of a man who expects to not be known, and this one does not have it.
+
+  _Whatever this is, it is not nothing._"
+  choice__
+    @target 3
+    "Go to the Hotel Morales — you need a room and time to think"
+  __choice
+  choice__
+    @target 5
+    "Find the telegraph office — file something before it gets away from you"
+  __choice
+  choice__
+    @target 6
+    "Find a bar — you need a drink and someone who talks"
+  __choice
+__section
+
+/* 3 */
+section__
+  @title "The Hotel Morales"
+  "The lobby is green tile and a ceiling fan turning at the speed of something dying. The night clerk is asleep. You take your key from the hook yourself — room twelve, which you know from having been here before.
+
+  But on the mezzanine, at the rail, a man is watching the lobby. Not casually. With the posture of someone who has been waiting.
+
+  He sees you see him. He does not look away."
+  choice__
+    @target 8
+    "Go directly to your room — you need sleep more than answers"
+  __choice
+  choice__
+    @target 4
+    "Climb the stairs toward him"
+  __choice
+__section
+
+/* 4 */
+section__
+  @title "The Fixer"
+  fixerMet = true
+  "He is not what you expected. Forty-five, perhaps. A careful suit, careful shoes. He speaks good English with a Veracruz accent — the vowels too open, the consonants too soft. His name, he says, is Rodríguez, which is probably not his name.
+
+  He knows about the envelope. He knew about it before you opened it, judging by the way he does not ask what is in it.
+
+  _The question_, ${playerName}, _is not what you are going to do. It is how fast._"
+  choice__
+    @target 7
+    @action hasLead = true
+    "Trust him — he has information you do not"
+  __choice
+  choice__
+    @target 7
+    "Refuse — you do not trust the man who was already waiting when you arrived"
+  __choice
+__section
+
+/* 5 */
+section__
+  @title "Telegraph Office"
+  filedStory = true
+  knowsVargas = true
+  "The operator is a woman of fifty with the wrists of a pianist and the eyes of someone who has read too many other people's telegrams. She takes your copy and begins to key it without reading it — then stops.
+
+  She says: _Vargas._
+
+  Just the word. She does not look up. She finishes keying and hands back your carbon copy.
+
+  You leave without asking what she meant. This is a mistake you will evaluate for several years."
+  choice__
+    @target 7
+    "Go back and ask her what she knows"
+  __choice
+  choice__
+    @target 7
+    "Let it go — some things are better not confirmed"
+  __choice
+__section
+
+/* 6 */
+section__
+  @title "The Bar"
+  "The American has been in Veracruz since 1938 and has no plans to leave. He drinks rum and reads yesterday's Mexican newspapers, translating the headlines to himself quietly. He knows everyone in this city who matters and some who do not.
+
+  You ask about Vargas."
+  choice__
+    @target 7
+    @action knowsHistory = true
+    "Ask directly — who is Vargas?"
+  __choice
+  choice__
+    @target 3
+    "Deflect — you do not know who is listening"
+  __choice
+__section
+
+/* 7 */
+section__
+  @title "What Vargas Is"
+  if__ (knowsHistory == true) {
+    "The American told you what Vargas is, or was: a functionary who became more than a functionary. The kind of man who survives transitions of power by being useful to both sides. The list in your envelope, the American said, is the reason he has survived this long — and possibly the reason he will not."
+  }
+  "Vargas has an office on the Calle Independencia. He receives visitors on Tuesday mornings. This is, by all accounts, a Tuesday."
+  choice__
+    @target 9
+    "Go find him"
+  __choice
+  choice__
+    @target 12
+    "Go to the cathedral first — something is pulling you there"
+  __choice
+__section
+
+/* 8 */
+section__
+  @title "Your Room"
+  "Room twelve is the same as it always is: one window, one chair, one overhead bulb with a pull cord. The noise from the street is exactly the kind that becomes silence if you stay long enough.
+
+  You sit on the edge of the bed. You put the envelope on the desk. You do not open it again.
+
+  By five in the morning, the light changes. By six, there are roosters.
+
+  _${playerName}, you think: you came here to cover an election. You are now holding something else entirely._"
+  choice__
+    @target 9
+    "Go find Vargas"
+  __choice
+__section
+
+/* 9 */
+section__
+  @title "Vargas"
+  "He is smaller than the photograph suggests. The office smells of old paper and coffee and the specific warmth of a room that has been occupied for years by the same body. He stands when you enter.
+
+  He is charming. This is the first warning.
+
+  He does not ask how you found him. He does not ask what you want. He offers coffee and waits."
+  if__ (hasLead == true) {
+    "Rodríguez told you to mention the date — the one from the envelope. You do. Vargas's smile changes: same muscles, different meaning."
+  }
+  choice__
+    @target 11
+    @action exposedVargas = true
+    "Expose him — you know enough to publish, and publishing is what you do"
+  __choice
+  choice__
+    @target 10
+    @action dealMade = true
+    "Make a deal — the names on the list are not your business"
+  __choice
+__section
+
+/* 10 */
+section__
+  @title "The Deal"
+  "You shake hands. He pours better coffee.
+
+  The terms are simple: you publish a piece about the election — accurate, unremarkable, nothing about the list or the photograph or the old man on the dock. In return, you leave the city safely, and something is arranged for your next assignment. Not a bribe, exactly, but a door left unlocked.
+
+  You agree. He is very pleasant about it."
+  choice__
+    @target 14
+    "Walk to the morning ferry"
+  __choice
+__section
+
+/* 11 */
+section__
+  @title "The Dispatch"
+  "You write it in the hotel room, longhand, then type it at the telegraph office in the morning. The woman with pianist's wrists reads it this time before she keys it. She does not comment.
+
+  The story runs in four papers. It is not the most important story you will ever write, but it is the most accurate."
+  if__ (fixerMet == true) {
+    "Rodríguez, it turns out, wanted the story published. He had arranged your safe passage before you ever decided to trust him."
+  }
+  choice__
+    @target 15
+    "Get out of the city"
+  __choice
+__section
+
+/* 12 */
+section__
+  @title "The Cathedral"
+  "You had not intended to go in. The door was open.
+
+  The priest is old enough to have been a priest during the last difficult time, and he has the look of a man who expects another one. He is hiding three people in the sacristy. He does not tell you this. You figure it out from the sounds.
+
+  He gives you water and a place to sit and does not ask your business.
+
+  _You stay longer than you meant to. When you leave, the city looks different: less like a place and more like a series of decisions._"
+  choice__
+    @target 14
+    "Walk toward the ferry"
+  __choice
+__section
+
+/* 13 */
+section__
+  @title "You Let It Go"
+  "You put the envelope in the lining of your bag and do not think about it until you are on the ferry home, when you drop it into the Gulf of Mexico — a small white rectangle, damp, gone.
+
+  Six weeks later, a dispatch reaches you from a colleague still in Veracruz. Twelve people, arrested. Some held. Some not.
+
+  You do not know if the envelope would have changed this.
+
+  _You will spend some time deciding that it would not have. This is probably not true. You are probably the only person who will ever know the difference._"
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section
+
+/* 14 */
+section__
+  @title "The Morning Ferry"
+  "The light on the Gulf at six in the morning is dazzling. The city recedes: the green dome of the cathedral, the cranes, the long curve of the Malecón.
+
+  You lean on the rail and watch it go.
+
+  _${playerName}: journalist. You came here to cover an election. You found something larger and decided, in the end, what to do with it._"
+  if__ (exposedVargas == true) {
+    "The dispatch is already on the wire. Whatever happens next in Veracruz, you will not be the one to cover it."
+  }
+  if__ (dealMade == true) {
+    "The story you filed was accurate. It was also not the whole truth. You have made this kind of calculation before."
+  }
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section
+
+/* 15 */
+section__
+  @title "Night Bus Out"
+  if__ (fixerMet == true) {
+    "Rodríguez left a ticket at the hotel desk. You do not ask how he knew you would need it. The bus leaves at eleven — one seat, aisle, no name on the booking. You are on it."
+  }
+  if__ (fixerMet == false) {
+    "You buy a ticket at the station window with the last of your pesos. The man behind the glass does not look at you. The bus is nearly full. You stand in the aisle for the first hour until someone gets off at a dark junction and you take their seat."
+  }
+  "The road north is empty at this hour. The bus smells of diesel and oranges and the close warmth of sleeping strangers.
+
+  _The story is out. Whatever comes next is not your story to tell._"
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section

@@ -1,0 +1,509 @@
+settings__
+  @storyTitle "The Ashes of a Hidden Wand"
+  @startAt 1
+  @referrable false
+  @maxIterations 20000
+__settings
+
+/* ===============================
+   GLOBAL VARIABLES & FUNCTIONS
+   =============================== */
+
+playerName = "Student"
+house = ""
+courage = 0
+cunning = 0
+wisdom = 0
+loyalty = 0
+wandCore = ""
+inventory = []
+visited = []
+
+function__ markVisited(n) {
+  visited.push(n)
+}
+
+function__ hasItem(item) {
+  i = 0
+  while__ (i < inventory.length) {
+    if__ (inventory[i] == item) {
+      return__ true
+    }
+    i = i + 1
+  }
+  return__ false
+}
+
+/* ===============================
+   SCENE: PROLOGUE
+   =============================== */
+
+scene__
+  @name "Prologue: The Letter"
+  @first 1
+  @sections 1 2 3 4
+__scene
+
+section__
+  @title "The Letter Arrives"
+
+  markVisited(1)
+
+  "The letter arrives at dawn."
+  "Not by owl—but by **fire**."
+  ""
+  "The parchment smolders in your hands, yet does not burn."
+  ""
+  "**Dear ${playerName},**"
+  ""
+  "*If you are reading this, then Hogwarts has already made a mistake.*"
+
+  choice__
+    @target 2
+    "Read the letter carefully"
+  __choice
+
+  choice__
+    @target 3
+    "Throw it into the fire"
+  __choice
+__section
+
+section__
+  @title "Words That Watch You"
+
+  markVisited(2)
+  wisdom = wisdom + 1
+
+  "The ink shifts as you read."
+  ""
+  "*You will be Sorted, but not as you expect.*"
+  "*Trust the wand. Fear the castle.*"
+
+  choice__
+    @target 4
+    "Fold the letter and prepare to leave"
+  __choice
+__section
+
+section__
+  @title "The Fire Answers"
+
+  markVisited(3)
+  courage = courage + 1
+
+  "You throw the letter into the hearth."
+  ""
+  "The flames roar—then whisper your name."
+  ""
+  "The letter reappears, unharmed."
+
+  choice__
+    @target 4
+    "Accept that this is happening"
+  __choice
+__section
+
+section__
+  @title "Platform Nine and Three-Quarters"
+
+  markVisited(4)
+
+  "Steam. Luggage. Nervous parents."
+  ""
+  "Hogwarts looms closer."
+
+  choice__
+    @targetType "scene"
+    @target 2
+    "Board the train"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE HOGWARTS EXPRESS
+   =============================== */
+
+scene__
+  @name "The Hogwarts Express"
+  @first 5
+  @sections 5 6 7 8 9 10
+__scene
+
+section__
+  @title "A Compartment of Strangers"
+
+  markVisited(5)
+
+  "You enter an empty compartment."
+  "Moments later, three students arrive."
+
+  choice__
+    @target 6
+    "Sit with the quiet one by the window"
+  __choice
+
+  choice__
+    @target 7
+    "Talk to the confident older student"
+  __choice
+
+  choice__
+    @target 8
+    "Remain silent and observe"
+  __choice
+__section
+
+section__
+  @title "The One Who Watches"
+
+  markVisited(6)
+  wisdom = wisdom + 1
+
+  "The quiet student finally speaks:"
+  ""
+  "*Hogwarts remembers things it shouldn't.*"
+
+  choice__
+    @target 9
+    "Ask what they mean"
+  __choice
+__section
+
+section__
+  @title "Confidence and Cruelty"
+
+  markVisited(7)
+  cunning = cunning + 1
+
+  "The older student sneers."
+  ""
+  "*Hope you're not sorted poorly.*"
+
+  choice__
+    @target 9
+    "Ignore them"
+  __choice
+__section
+
+section__
+  @title "Listening Is Power"
+
+  markVisited(8)
+  loyalty = loyalty + 1
+
+  "You listen."
+  "You learn names, rivalries, fears."
+
+  choice__
+    @target 9
+    "When the train slows, stand"
+  __choice
+__section
+
+section__
+  @title "Arrival at Night"
+
+  markVisited(9)
+
+  "Torches flicker along the lake."
+  "The castle watches."
+
+  choice__
+    @target 10
+    "Follow the boats"
+  __choice
+__section
+
+section__
+  @title "The Great Doors Open"
+
+  markVisited(10)
+
+  "You step into Hogwarts."
+
+  choice__
+    @targetType "scene"
+    @target 3
+    "Enter the Great Hall"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE SORTING
+   =============================== */
+
+scene__
+  @name "The Sorting"
+  @first 11
+  @sections 11 12 13 14 15 16 17 18
+__scene
+
+section__
+  @title "The Hat Descends"
+
+  markVisited(11)
+
+  "The Sorting Hat slips over your eyes."
+  ""
+  "*Ah… you are interesting.*"
+
+  choice__
+    @target 12
+    "Let the Hat decide"
+  __choice
+
+  choice__
+    @target 13
+    "Argue with the Hat"
+  __choice
+__section
+
+section__
+  @title "Measured Quietly"
+
+  markVisited(12)
+
+  if__ (wisdom >= 2) then__ house = "Ravenclaw"
+  else__ if__ (courage >= 2) then__ house = "Gryffindor"
+  else__ if__ (cunning >= 2) then__ house = "Slytherin"
+  else__ house = "Hufflepuff"
+
+  "*Very well.*"
+
+  choice__
+    @target 18
+    "Hear your fate"
+  __choice
+__section
+
+section__
+  @title "You Push Back"
+
+  markVisited(13)
+  courage = courage + 1
+
+  "*Ah… defiance.*"
+
+  if__ (courage >= 2) then__ house = "Gryffindor"
+  else__ house = "Slytherin"
+
+  choice__
+    @target 18
+    "Accept the verdict"
+  __choice
+__section
+
+section__
+  @title "The Announcement"
+
+  markVisited(18)
+
+  "**${house}!**"
+  ""
+  "Applause erupts."
+
+  choice__
+    @targetType "scene"
+    @target 4
+    "Attend the feast"
+  __choice
+__section
+
+/* ===============================
+   SCENE: FIRST NIGHT
+   =============================== */
+
+scene__
+  @name "First Night at Hogwarts"
+  @first 19
+  @sections 19 20 21 22 23 24 25 26 27 28 29 30
+__scene
+
+section__
+  @title "The Feast"
+
+  markVisited(19)
+
+  "Food appears."
+  "So do whispers."
+
+  choice__
+    @target 20
+    "Eat and listen"
+  __choice
+
+  choice__
+    @target 21
+    "Slip away early"
+  __choice
+__section
+
+section__
+  @title "Old Stories"
+
+  markVisited(20)
+  wisdom = wisdom + 1
+
+  "They speak of a **sealed corridor**."
+  "One that shouldn't exist."
+
+  choice__
+    @target 22
+    "Remember this"
+  __choice
+__section
+
+section__
+  @title "The Hallway That Moves"
+
+  markVisited(21)
+  courage = courage + 1
+
+  "The castle rearranges itself."
+  "You are briefly lost."
+
+  choice__
+    @target 22
+    "Find your way"
+  __choice
+__section
+
+section__
+  @title "Your Common Room"
+
+  markVisited(22)
+
+  "Your bed feels earned."
+  ""
+  "But sleep does not come easily."
+
+  choice__
+    @target 23
+    "Sneak out at night"
+  __choice
+
+  choice__
+    @target 24
+    "Sleep"
+  __choice
+__section
+
+section__
+  @title "Footsteps After Midnight"
+
+  markVisited(23)
+  inventory.push("mysterious map")
+
+  "You find a folded map."
+  ""
+  "*It redraws itself.*"
+
+  choice__
+    @target 25
+    "Follow the map"
+  __choice
+__section
+
+section__
+  @title "Dreams of Ash"
+
+  markVisited(24)
+
+  "You dream of a wand burning."
+  ""
+  "*It knows you.*"
+
+  choice__
+    @target 26
+    "Wake up"
+  __choice
+__section
+
+section__
+  @title "The Hidden Staircase"
+
+  markVisited(25)
+
+  "The map leads somewhere impossible."
+
+  choice__
+    @target 27
+    "Descend"
+  __choice
+__section
+
+section__
+  @title "Morning Comes"
+
+  markVisited(26)
+
+  "Classes await."
+  "So do secrets."
+
+  choice__
+    @target 30
+    "Begin your first day"
+  __choice
+__section
+
+section__
+  @title "Below the Castle"
+
+  markVisited(27)
+
+  "You hear something breathing."
+
+  choice__
+    @target 28
+    "Run"
+  __choice
+
+  choice__
+    @target 29
+    "Step forward"
+  __choice
+__section
+
+section__
+  @title "Cowardice or Wisdom"
+
+  markVisited(28)
+  loyalty = loyalty + 1
+
+  "You survive—for now."
+
+  choice__
+    @target 30
+    "Return to safety"
+  __choice
+__section
+
+section__
+  @title "The Thing That Waits"
+
+  markVisited(29)
+  courage = courage + 2
+
+  "Something ancient opens an eye."
+
+  choice__
+    @target 30
+    "Face the consequences"
+  __choice
+__section
+
+section__
+  @title "End of Part One"
+
+  "Your story has only begun."
+  ""
+  "**Stats:**"
+  "- Courage: ${courage}"
+  "- Wisdom: ${wisdom}"
+  "- Cunning: ${cunning}"
+  "- Loyalty: ${loyalty}"
+  "- House: ${house}"
+  ""
+  "*To be continued…*"
+__section

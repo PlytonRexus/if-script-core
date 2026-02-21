@@ -1,0 +1,665 @@
+/* ===============================
+   SCENE: THE FIRST DUEL
+   =============================== */
+
+scene__
+  @name "The First Duel"
+  @first 66
+  @sections 66 67 68 69 70 71 72 73 74 75
+__scene
+
+section__
+  @title "The Challenge Comes"
+
+  markVisited(66)
+
+  "A note slides under your door."
+  ""
+  "*Midnight. Trophy Room. Come alone.*"
+
+  choice__
+    @target 67
+    "Go armed"
+  __choice
+
+  choice__
+    @target 68
+    "Bring no wand"
+  __choice
+__section
+
+section__
+  @title "Prepared"
+
+  markVisited(67)
+  courage = courage + 1
+
+  "Your wand feels warm."
+  ""
+  "Too warm."
+
+  choice__
+    @target 69
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "Unarmed"
+
+  markVisited(68)
+  wisdom = wisdom + 1
+
+  "You rely on instinct."
+  ""
+  "The castle approves."
+
+  choice__
+    @target 69
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "The Trophy Room"
+
+  markVisited(69)
+
+  "Glass cases gleam."
+  ""
+  "A student steps from the shadows."
+
+  choice__
+    @target 70
+    "Speak first"
+  __choice
+
+  choice__
+    @target 71
+    "Cast immediately"
+  __choice
+__section
+
+section__
+  @title "Words Before Wands"
+
+  markVisited(70)
+  loyalty = loyalty + 1
+
+  "*You shouldn’t be chasing ash,* they say."
+
+  choice__
+    @target 72
+    "Ask how they know"
+  __choice
+__section
+
+section__
+  @title "Magic Without Warning"
+
+  markVisited(71)
+  courage = courage + 2
+
+  "The spell tears the air."
+  ""
+  "Something answers."
+
+  inventory.push("echoing curse")
+
+  choice__
+    @target 73
+    "Stand your ground"
+  __choice
+__section
+
+section__
+  @title "The Warning"
+
+  markVisited(72)
+
+  "*The castle takes memories.*"
+
+  choice__
+    @target 73
+    "Demand proof"
+  __choice
+__section
+
+section__
+  @title "The Duel Proper"
+
+  markVisited(73)
+
+  "Magic collides."
+  ""
+  "Glass shatters."
+
+  choice__
+    @target 74
+    "Cast the fractured spell"
+  __choice
+
+  choice__
+    @target 75
+    "Disarm only"
+  __choice
+__section
+
+section__
+  @title "Forbidden Resonance"
+
+  markVisited(74)
+  courage = courage + 1
+  wisdom = wisdom - 1
+
+  "The fractured spell *remembers itself*."
+  ""
+  "The room goes silent."
+
+  inventory.push("marked by ash")
+
+  choice__
+    @targetType "scene"
+    @target 8
+    "Face the consequences"
+  __choice
+__section
+
+section__
+  @title "Mercy Wins"
+
+  markVisited(75)
+  loyalty = loyalty + 2
+
+  "Your opponent lowers their wand."
+  ""
+  "*You don't know what you've avoided.*"
+
+  choice__
+    @targetType "scene"
+    @target 8
+    "Leave together"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE CASTLE REMEMBERS
+   =============================== */
+
+scene__
+  @name "The Castle Remembers"
+  @first 76
+  @sections 76 77 78 79 80 81 82 83 84 85
+__scene
+
+section__
+  @title "Stairs That Refuse"
+
+  markVisited(76)
+
+  "The staircase refuses your step."
+  ""
+  "*Payment is due.*"
+
+  choice__
+    @target 77
+    "Demand passage"
+  __choice
+
+  choice__
+    @target 78
+    "Offer something"
+  __choice
+__section
+
+section__
+  @title "Defiance"
+
+  markVisited(77)
+  courage = courage + 1
+
+  "The stair trembles."
+  ""
+  "You feel watched."
+
+  choice__
+    @target 79
+    "Force your way"
+  __choice
+__section
+
+section__
+  @title "A Willing Offering"
+
+  markVisited(78)
+  wisdom = wisdom + 1
+
+  "A memory surfaces."
+  ""
+  "Your earliest magic."
+
+  choice__
+    @target 80
+    "Give it up"
+  __choice
+__section
+
+section__
+  @title "Punishment"
+
+  markVisited(79)
+
+  "Pain—without wound."
+  ""
+  "You forget a face."
+
+  inventory.push("memory scar")
+
+  choice__
+    @target 81
+    "Stagger onward"
+  __choice
+__section
+
+section__
+  @title "The Memory Tax"
+
+  markVisited(80)
+
+  "The stair accepts."
+  ""
+  "But the memory fades."
+
+  wisdom = wisdom - 1
+
+  choice__
+    @target 81
+    "Climb"
+  __choice
+__section
+
+section__
+  @title "Whispers in Stone"
+
+  markVisited(81)
+
+  "*Ash walks freely,* the walls murmur."
+
+  choice__
+    @target 82
+    "Ask what ash is"
+  __choice
+__section
+
+section__
+  @title "A Partial Truth"
+
+  markVisited(82)
+
+  "*A wand that remembers loss.*"
+
+  choice__
+    @target 83
+    "Seek it"
+  __choice
+
+  choice__
+    @target 84
+    "Avoid it"
+  __choice
+__section
+
+section__
+  @title "Marked Path"
+
+  markVisited(83)
+  courage = courage + 1
+
+  "The castle shifts to help you."
+
+  choice__
+    @target 85
+    "Descend deeper"
+  __choice
+__section
+
+section__
+  @title "Cowardice Is Not Free"
+
+  markVisited(84)
+  loyalty = loyalty - 1
+
+  "A door seals behind you."
+
+  choice__
+    @target 85
+    "Find another way"
+  __choice
+__section
+
+section__
+  @title "Below the Foundations"
+
+  markVisited(85)
+
+  "Ash coats the stones."
+  ""
+  "Something waits."
+
+  choice__
+    @targetType "scene"
+    @target 9
+    "Step forward"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE ASHEN WAND
+   =============================== */
+
+scene__
+  @name "The Ashen Wand"
+  @first 86
+  @sections 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105
+__scene
+
+section__
+  @title "The Reliquary"
+
+  markVisited(86)
+
+  "A wand floats in ash."
+  ""
+  "Broken. Whole."
+
+  choice__
+    @target 87
+    "Touch it"
+  __choice
+
+  choice__
+    @target 88
+    "Bow"
+  __choice
+__section
+
+section__
+  @title "Contact"
+
+  markVisited(87)
+
+  "Pain—then clarity."
+  ""
+  "*What will you give?*"
+
+  choice__
+    @target 89
+    "Give a memory"
+  __choice
+
+  choice__
+    @target 90
+    "Give loyalty"
+  __choice
+__section
+
+section__
+  @title "Respect"
+
+  markVisited(88)
+  loyalty = loyalty + 1
+
+  "The ash stirs."
+
+  choice__
+    @target 87
+    "Approach"
+  __choice
+__section
+
+section__
+  @title "Memory Sacrifice"
+
+  markVisited(89)
+  wisdom = wisdom - 2
+
+  inventory.push("ashen wand")
+
+  "A childhood joy vanishes."
+  ""
+  "The wand accepts you."
+
+  choice__
+    @target 91
+    "Bind it"
+  __choice
+__section
+
+section__
+  @title "Loyalty Broken"
+
+  markVisited(90)
+  loyalty = loyalty - 2
+
+  inventory.push("ashen wand")
+
+  "You feel alone."
+  ""
+  "The wand approves."
+
+  choice__
+    @target 91
+    "Bind it"
+  __choice
+__section
+
+section__
+  @title "The Binding"
+
+  markVisited(91)
+
+  "Ash crawls along your veins."
+  ""
+  "*You are mine,* the wand thinks."
+
+  choice__
+    @target 92
+    "Accept"
+  __choice
+
+  choice__
+    @target 93
+    "Resist"
+  __choice
+__section
+
+section__
+  @title "Acceptance"
+
+  markVisited(92)
+  courage = courage + 2
+
+  "Power settles."
+  ""
+  "So does debt."
+
+  choice__
+    @target 94
+    "Return"
+  __choice
+__section
+
+section__
+  @title "Resistance"
+
+  markVisited(93)
+  wisdom = wisdom + 2
+
+  "The wand cracks."
+  ""
+  "But remains."
+
+  choice__
+    @target 94
+    "Return"
+  __choice
+__section
+
+section__
+  @title "Aftermath"
+
+  markVisited(94)
+
+  "The castle is silent."
+  ""
+  "Too silent."
+
+  choice__
+    @target 95
+    "Sleep"
+  __choice
+__section
+
+section__
+  @title "Dream of Fire"
+
+  markVisited(95)
+
+  "You burn—but do not die."
+  ""
+  "*Next payment soon.*"
+
+  choice__
+    @target 96
+    "Wake screaming"
+  __choice
+__section
+
+section__
+  @title "A New Day"
+
+  markVisited(96)
+
+  "Classes resume."
+  ""
+  "Nothing is normal."
+
+  choice__
+    @target 97
+    "Hide the wand"
+  __choice
+
+  choice__
+    @target 98
+    "Use it"
+  __choice
+__section
+
+section__
+  @title "Secrecy"
+
+  markVisited(97)
+  cunning = cunning + 1
+
+  "Ash obeys silence."
+
+  choice__
+    @target 99
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "Power Displayed"
+
+  markVisited(98)
+  courage = courage + 1
+
+  "Others notice."
+
+  choice__
+    @target 99
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "The Headmaster Watches"
+
+  markVisited(99)
+
+  "Eyes like old fire."
+  ""
+  "*We will speak,* he says."
+
+  choice__
+    @target 100
+    "Agree"
+  __choice
+
+  choice__
+    @target 101
+    "Lie"
+  __choice
+__section
+
+section__
+  @title "Honesty"
+
+  markVisited(100)
+  loyalty = loyalty + 1
+
+  "Silence stretches."
+
+  choice__
+    @target 102
+    "Wait"
+  __choice
+__section
+
+section__
+  @title "Deception"
+
+  markVisited(101)
+  cunning = cunning + 2
+
+  "He smiles."
+  ""
+  "He knows."
+
+  choice__
+    @target 102
+    "Leave"
+  __choice
+__section
+
+section__
+  @title "Judgment Deferred"
+
+  markVisited(102)
+
+  "*The castle will decide,* he says."
+
+  choice__
+    @target 103
+    "Accept fate"
+  __choice
+__section
+
+section__
+  @title "End of Part Three"
+
+  markVisited(103)
+
+  "You carry ash."
+  ""
+  "And ash carries you."
+  ""
+  "**Stats:**"
+  "- Courage: ${courage}"
+  "- Wisdom: ${wisdom}"
+  "- Cunning: ${cunning}"
+  "- Loyalty: ${loyalty}"
+  ""
+  "*The story cannot go back now.*"
+__section

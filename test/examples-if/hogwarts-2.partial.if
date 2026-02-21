@@ -1,0 +1,531 @@
+/* ===============================
+   SCENE: FIRST DAY OF CLASSES
+   =============================== */
+
+scene__
+  @name "First Day of Classes"
+  @first 31
+  @sections 31 32 33 34 35 36 37 38 39 40
+__scene
+
+section__
+  @title "Morning Bells"
+
+  markVisited(31)
+
+  "The castle wakes before you do."
+  ""
+  "Bells echo through stone."
+  ""
+  "Your schedule writes itself onto parchment."
+
+  choice__
+    @target 32
+    "Attend Charms"
+  __choice
+
+  choice__
+    @target 33
+    "Attend Potions"
+  __choice
+
+  choice__
+    @target 34
+    "Skip class and explore"
+  __choice
+__section
+
+section__
+  @title "Charms Classroom"
+
+  markVisited(32)
+  wisdom = wisdom + 1
+
+  "The professor smiles too widely."
+  ""
+  "*Magic is intent made precise.*"
+
+  choice__
+    @target 35
+    "Practice carefully"
+  __choice
+
+  choice__
+    @target 36
+    "Experiment recklessly"
+  __choice
+__section
+
+section__
+  @title "Potions Dungeon"
+
+  markVisited(33)
+  cunning = cunning + 1
+
+  "The air burns your throat."
+  ""
+  "*Mistakes are permanent,* the professor says."
+
+  choice__
+    @target 35
+    "Follow instructions exactly"
+  __choice
+
+  choice__
+    @target 37
+    "Improve the recipe"
+  __choice
+__section
+
+section__
+  @title "The Unmapped Corridor"
+
+  markVisited(34)
+  courage = courage + 1
+
+  "The map in your pocket twitches."
+  ""
+  "A corridor stretches where none should exist."
+
+  choice__
+    @target 38
+    "Follow it"
+  __choice
+
+  choice__
+    @target 35
+    "Turn back"
+  __choice
+__section
+
+section__
+  @title "Lessons Learned"
+
+  markVisited(35)
+
+  "You survive the morning."
+  ""
+  "Not everyone does as well."
+
+  choice__
+    @target 39
+    "Head to the library"
+  __choice
+__section
+
+section__
+  @title "A Spell Goes Wrong"
+
+  markVisited(36)
+  courage = courage + 1
+
+  "The charm explodes."
+  ""
+  "For a moment—everything freezes."
+
+  inventory.push("fractured spell")
+
+  choice__
+    @target 35
+    "Pretend nothing happened"
+  __choice
+__section
+
+section__
+  @title "A Better Potion"
+
+  markVisited(37)
+  wisdom = wisdom + 1
+
+  "The potion hums."
+  ""
+  "The professor pretends not to notice."
+
+  inventory.push("unstable draught")
+
+  choice__
+    @target 35
+    "Bottle it quietly"
+  __choice
+__section
+
+section__
+  @title "The Corridor Breathes"
+
+  markVisited(38)
+
+  "The walls pulse."
+  ""
+  "*You are early,* the stone whispers."
+
+  choice__
+    @target 40
+    "Ask what it means"
+  __choice
+
+  choice__
+    @target 35
+    "Run"
+  __choice
+__section
+
+section__
+  @title "The Library Beckons"
+
+  markVisited(39)
+
+  "Books whisper louder than people."
+
+  choice__
+    @targetType "scene"
+    @target 5
+    "Enter the Restricted Section"
+  __choice
+__section
+
+section__
+  @title "No Answers Yet"
+
+  markVisited(40)
+
+  "The corridor seals itself."
+  ""
+  "You are left with questions."
+
+  choice__
+    @target 39
+    "Seek answers elsewhere"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE RESTRICTED SECTION
+   =============================== */
+
+scene__
+  @name "The Restricted Section"
+  @first 41
+  @sections 41 42 43 44 45 46 47 48 49 50
+__scene
+
+section__
+  @title "Beyond the Chains"
+
+  markVisited(41)
+
+  "The chains resist—then loosen."
+  ""
+  "A book slides free on its own."
+
+  choice__
+    @target 42
+    "Read it"
+  __choice
+
+  choice__
+    @target 43
+    "Hide it"
+  __choice
+__section
+
+section__
+  @title "The Ashen Wand"
+
+  markVisited(42)
+  wisdom = wisdom + 1
+
+  "The book speaks of a wand burned—but not destroyed."
+  ""
+  "*Ash remembers shape.*"
+
+  choice__
+    @target 44
+    "Read more"
+  __choice
+__section
+
+section__
+  @title "Secrets Kept"
+
+  markVisited(43)
+  cunning = cunning + 1
+
+  inventory.push("forbidden tome")
+
+  "You hide the book beneath your robes."
+
+  choice__
+    @target 44
+    "Leave quietly"
+  __choice
+__section
+
+section__
+  @title "A Name Repeats"
+
+  markVisited(44)
+
+  "One name appears again and again:"
+  ""
+  "**The Cinder Scholar**"
+
+  choice__
+    @target 45
+    "Search for the name"
+  __choice
+__section
+
+section__
+  @title "A Librarian Notices"
+
+  markVisited(45)
+
+  "Eyes like knives."
+  ""
+  "*That book is not for you.*"
+
+  choice__
+    @target 46
+    "Lie"
+  __choice
+
+  choice__
+    @target 47
+    "Tell the truth"
+  __choice
+__section
+
+section__
+  @title "A Convincing Lie"
+
+  markVisited(46)
+  cunning = cunning + 1
+
+  "She believes you."
+  ""
+  "That worries you."
+
+  choice__
+    @target 48
+    "Leave"
+  __choice
+__section
+
+section__
+  @title "Dangerous Honesty"
+
+  markVisited(47)
+  courage = courage + 1
+
+  "She sighs."
+  ""
+  "*Then be careful.*"
+
+  choice__
+    @target 48
+    "Leave"
+  __choice
+__section
+
+section__
+  @title "Footsteps Behind You"
+
+  markVisited(48)
+
+  "Someone follows."
+
+  choice__
+    @target 49
+    "Confront them"
+  __choice
+
+  choice__
+    @target 50
+    "Lose them in the stacks"
+  __choice
+__section
+
+section__
+  @title "A Fellow Seeker"
+
+  markVisited(49)
+  loyalty = loyalty + 1
+
+  "A student lowers their hood."
+  ""
+  "*You're not the only one looking.*"
+
+  inventory.push("ally: seeker")
+
+  choice__
+    @targetType "scene"
+    @target 6
+    "Agree to meet again"
+  __choice
+__section
+
+section__
+  @title "Alone Again"
+
+  markVisited(50)
+
+  "The footsteps fade."
+  ""
+  "But you are no longer alone in this."
+
+  choice__
+    @targetType "scene"
+    @target 6
+    "Return to your House"
+  __choice
+__section
+
+/* ===============================
+   SCENE: HOUSE CONSEQUENCES
+   =============================== */
+
+scene__
+  @name "House Consequences"
+  @first 51
+  @sections 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65
+__scene
+
+section__
+  @title "Common Room Whispers"
+
+  markVisited(51)
+
+  "Your House watches you differently now."
+
+  if__ (house == "Gryffindor") {
+    "They call you brave."
+  } else__ if__ (house == "Slytherin") {
+    "They call you ambitious."
+  } else__ if__ (house == "Ravenclaw") {
+    "They call you dangerous."
+  } else__ {
+    "They call you strange."
+  }
+
+  choice__
+    @target 52
+    "Ignore it"
+  __choice
+__section
+
+section__
+  @title "A Challenge"
+
+  markVisited(52)
+
+  "A student approaches."
+  ""
+  "*You shouldn't dig so deep.*"
+
+  choice__
+    @target 53
+    "Threaten them"
+  __choice
+
+  choice__
+    @target 54
+    "Hear them out"
+  __choice
+__section
+
+section__
+  @title "Sharp Words"
+
+  markVisited(53)
+  courage = courage + 1
+
+  "They back off."
+  ""
+  "Not defeated—just delayed."
+
+  choice__
+    @target 55
+    "Walk away"
+  __choice
+__section
+
+section__
+  @title "A Warning"
+
+  markVisited(54)
+  wisdom = wisdom + 1
+
+  "*The castle takes payment.*"
+
+  choice__
+    @target 55
+    "Ask what that means"
+  __choice
+__section
+
+section__
+  @title "No Answers Tonight"
+
+  markVisited(55)
+
+  "Night falls heavy."
+
+  choice__
+    @target 56
+    "Study the map"
+  __choice
+
+  choice__
+    @target 57
+    "Destroy the map"
+  __choice
+__section
+
+section__
+  @title "Lines That Move"
+
+  markVisited(56)
+
+  "The map adds a new mark."
+  ""
+  "**ASH BELOW THIS POINT**"
+
+  choice__
+    @target 58
+    "Follow it tomorrow"
+  __choice
+__section
+
+section__
+  @title "Fire Does Not Obey"
+
+  markVisited(57)
+  courage = courage + 2
+
+  "The map burns."
+  ""
+  "The mark remains—inside your mind."
+
+  choice__
+    @target 58
+    "Accept the burden"
+  __choice
+__section
+
+section__
+  @title "End of Part Two"
+
+  "You are being watched."
+  ""
+  "Not by teachers."
+  ""
+  "*By the castle itself.*"
+  ""
+  "**Stats:**"
+  "- Courage: ${courage}"
+  "- Wisdom: ${wisdom}"
+  "- Cunning: ${cunning}"
+  "- Loyalty: ${loyalty}"
+  ""
+  "*The wand is closer now.*"
+__section

@@ -1,0 +1,194 @@
+settings__
+  @storyTitle "The Road Not Taken"
+  @startAt 1
+__settings
+
+/* 1 */
+section__
+  @title "October Light"
+  "The path divides here, where the oaks thin and the light comes down sideways.
+
+  You have walked this wood a hundred times, always the same way. Today you took a wrong turn somewhere behind the ridge — or perhaps the wood rearranged itself. Either way, here you are.
+
+  Both paths disappear into shadow. Neither is marked. The air smells of damp leaves and something faintly mineral, like stone after rain.
+
+  _You have time. You are not expected anywhere._"
+  choice__
+    @target 2
+    "Take the worn path — flat stones, the sound of something turning in the distance"
+  __choice
+  choice__
+    @target 5
+    "Take the overgrown path — mud and thorns and a spider's web still holding frost"
+  __choice
+__section
+
+/* 2 */
+section__
+  @title "The Worn Path"
+  "The stones are evenly spaced. Someone laid them, years ago, with intention. The ground between them is packed hard and bare, the way ground gets when feet have crossed it for a generation.
+
+  You can hear a mill, or something like a mill — a low turning sound that could be water over a wheel or simply the wind finding the right hollow. The path is easy under your boots. You could almost run.
+
+  A beech tree leans over the right side of the path, its roots lifting the last stone slightly."
+  choice__
+    @target 3
+    "Press on toward the sound"
+  __choice
+  choice__
+    @target 4
+    "Rest a moment under the beech"
+  __choice
+__section
+
+/* 3 */
+section__
+  @title "The Mill Pond"
+  "The sound was water after all — but not a mill. A pond. Black and still at its center, catching the October sky, pale as tin.
+
+  There is no mill. There may never have been one. The turning sound, you realize, was your own pulse translated by expectation.
+
+  ---
+
+  The path ends here. Cattails, mud, a rusted iron pin sunk in a stone — someone's mooring post from before the water rose, or before it fell.
+
+  You could go back to the fork. Or you could follow the pond's edge, which bends out of sight to the right."
+  choice__
+    @target 1
+    "Return to the fork"
+  __choice
+  choice__
+    @target 8
+    "Follow the pond's edge into the wood"
+  __choice
+__section
+
+/* 4 */
+section__
+  @title "Under the Beech"
+  "The roots make a seat of sorts. You sit.
+
+  The leaves have not fallen yet, not most of them, but they have loosened. Every few seconds one spirals down into the path, unhurried, with the deliberate quality of things that have already decided.
+
+  Across the path, through a gap in the trees, you can see a figure on the overgrown trail. They move slowly, picking their way through mud, pausing at something low to the ground. They do not look up.
+
+  _You watch them for a while. Then you do not._"
+  choice__
+    @target 3
+    "Stand up, walk on"
+  __choice
+__section
+
+/* 5 */
+section__
+  @title "The Overgrown Path"
+  "The mud takes your boots to the ankle on the third step. After that it firms up — ice-near, compacted with old leaves. The brambles are shoulder-high on both sides but have not closed over the center yet.
+
+  A redstart lands on a branch six feet ahead and stays. Its tail trembles constantly, a nervous habit or perhaps just the wind. Its breast is the color of rust on iron.
+
+  The spider's web you passed through on the way in was still holding its morning frost, each strand a necklace of small moons."
+  choice__
+    @target 6
+    "Follow the sound of water to the left"
+  __choice
+  choice__
+    @target 7
+    "Push deeper, where the path appears to widen"
+  __choice
+__section
+
+/* 6 */
+section__
+  @title "The Hidden Stream"
+  "You find it by sound before you find it by sight — a quick, light sound, nothing like the mill-pond. The stream is eight inches wide and perfectly clear. You can see every pebble on the bottom.
+
+  It runs over a shelf of pale rock, picks up speed, and disappears under a mat of roots. The cold comes off it in small waves.
+
+  _You did not know this was here._ In a wood you have walked a hundred times."
+  choice__
+    @target 8
+    "Kneel and drink from your cupped hands"
+  __choice
+  choice__
+    @target 8
+    "Simply stand and watch it pass"
+  __choice
+__section
+
+/* 7 */
+section__
+  @title "Deeper Wood"
+  "The path does widen, briefly, into a place that might once have been a clearing — the stumps are old enough that the moss has fully claimed them. Then it narrows again, and darkens.
+
+  You feel, for a moment, the specific anxiety of not knowing which direction is out. The trees are all the same diameter. The light comes from nowhere in particular.
+
+  Then you hear something: a woodpecker, rapid and percussive, to your left. Left, which is the direction you came from. You feel briefly foolish — and then do not."
+  choice__
+    @target 5
+    "Turn back toward the sound"
+  __choice
+  choice__
+    @target 8
+    "Go further, toward whatever comes next"
+  __choice
+__section
+
+/* 8 */
+section__
+  @title "The Clearing"
+  "Late afternoon light, low and orange, pours through a gap in the canopy.
+
+  The clearing is not large — thirty paces across — but it has the quality of a room: bounded, still, deliberate. At its center stands a single oak, much older than the surrounding trees. Its bark is nearly black.
+
+  You are not sure how you got here. The path did not announce itself. And yet here you are, and the light is doing something remarkable.
+
+  _You think: I will remember this place._
+
+  _You think: I am already forgetting it._"
+  choice__
+    @target 9
+    "Walk home. I came through the wood."
+  __choice
+  choice__
+    @target 10
+    "Walk home. I came the long way."
+  __choice
+__section
+
+/* 9 */
+section__
+  @title "Home"
+  "You come out at the stile you always use. The field beyond it is the same field. Your car is where you left it.
+
+  Walking back, you find yourself narrating the afternoon to yourself — composing the sentence you will use to explain where you were. _I found a pond I did not know was there._ _The light was extraordinary._
+
+  The sentences feel slightly wrong. Not false, exactly. Smaller than the thing they describe.
+
+  ---
+
+  _You chose the known path. You found something new anyway. Whether that proves the path was wrong, or the knowing was wrong, or neither — you will not work it out before dinner._"
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section
+
+/* 10 */
+section__
+  @title "Home (The Other Way)"
+  "You come out through a gap in the hedge you have never used before. You are in the wrong field — one over from where you parked. You walk along the fence line to the gate.
+
+  It takes longer. The light is nearly gone.
+
+  Walking back, you find yourself not narrating it at all. The afternoon sits in you like an object — solid, specific, not yet language.
+
+  ---
+
+  _You chose the uncertain path. You found something you were not looking for. You are not sure you chose correctly, and you are not sure that is the right question._
+
+  _Two roads. Both taken. Both led somewhere. Neither led to the same place twice._"
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section

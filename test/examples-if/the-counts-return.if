@@ -1,0 +1,421 @@
+settings__
+  @storyTitle "The Count's Return"
+  @startAt 1
+__settings
+
+scene__
+  @name "Act One: Arrival in Paris"
+  @first 1
+  @sections 1 2 3 4 5 6
+__scene
+
+scene__
+  @name "Act Two: The Reckoning"
+  @first 7
+  @sections 7 8 9 10 11 12 13 14
+__scene
+
+scene__
+  @name "Act Three: The Aftermath"
+  @first 15
+  @sections 15 16 17 18 19 20
+__scene
+
+/* 1 */
+section__
+  @title "The Count Arrives"
+  gold = 500000
+  alliances = []
+  secrets = []
+  morcerf_ruined = false
+  danglars_ruined = false
+  villefort_ruined = false
+  albertSpared = false
+  danglars_exposed = false
+  "Paris receives you as it receives all men of sufficient wealth: without curiosity.
+
+  You arrived at dusk, by the Rue du Faubourg Saint-Honoré. The coachman did not look twice at your face. The doorman did not ask your name. You are the Count of Monte Cristo, and the Count of Monte Cristo is exactly what Paris has been expecting.
+
+  Twenty years, four months, and eleven days since they put you in the Château d'If. You have had time to prepare.
+
+  Three men destroyed you. You have come to return the favor — methodically, completely, and without haste.
+
+  _You have_ ${gold} _livres. You have patience. You have a list._"
+  choice__
+    @target 2
+    "Attend the Morcerf salon tonight"
+  __choice
+  choice__
+    @target 4
+    "Find Haydée first"
+  __choice
+__section
+
+/* 2 */
+section__
+  @title "The Salon"
+  alliances.push("Albert")
+  "The salon of the Comtesse de Morcerf is exactly what you anticipated: chandeliers, champagne, the tight smiles of people who have been watching each other for twenty years.
+
+  Albert de Morcerf finds you within the hour. He is young, handsome, and wholly unaware of what his father did to you. He admires your horses. He invites you to his box at the opera.
+
+  You accept with pleasure. He is not your enemy.
+
+  _He may, in fact, be useful._"
+  choice__
+    @target 3
+    "Press Albert for his father's confidence"
+  __choice
+  choice__
+    @target 5
+    "Let Albert go — you will move against Fernand through other means"
+  __choice
+__section
+
+/* 3 */
+section__
+  @title "Albert's Confession"
+  secrets.push("Fernand_treason")
+  "Over brandy, in the small hours, Albert tells you something his father told him once when his father was drunk and perhaps already afraid: a story about Greece, about a pasha, about testimony that went one way instead of another.
+
+  Albert does not understand what he is telling you. He thinks it is a war story.
+
+  _You understand perfectly._"
+  choice__
+    @target 5
+    "File it away and move on"
+  __choice
+__section
+
+/* 4 */
+section__
+  @title "Haydée"
+  alliances.push("Haydée")
+  "She is in her apartments on the Champs-Élysées, surrounded by the things you brought her from the East: silk, incense, the low light of oil lamps.
+
+  She does not ask why you have come to Paris, or what you intend. She already knows. She has known since before you did.
+
+  'I will testify,' she says, before you can ask. 'I saw what Fernand de Morcerf did in Yanina. I was there.'
+
+  _You had not counted on this. You find that it changes something._"
+  choice__
+    @target 5
+    "Continue with the plan"
+  __choice
+__section
+
+/* 5 */
+section__
+  @title "Danglars's Bank"
+  gold = gold - 100000
+  alliances.push("Danglars_debt")
+  "Danglars receives you in his counting house with the reverence he extends only to fortunes larger than his own. You present yourself as a client of the Monte Cristo estate. The numbers are staggering enough that he does not question them.
+
+  He opens a line of credit in your name, backed by nothing he can reach. He is delighted. He offers you wine.
+
+  _You accept the wine. The trap is already closed._"
+  choice__
+    @target 6
+    "Complete the transaction and depart"
+  __choice
+  choice__
+    @target 6
+    "Plant a false rumor about his holdings before you go"
+  __choice
+__section
+
+/* 6 */
+section__
+  @title "The Rumor Spreads"
+  i = 0
+  whispers = []
+  while__ (i < 5) {
+    whispers.push(i + 1)
+    i = i + 1
+  }
+  whisper_count = whispers.length
+  danglars_exposed = true
+  "A name passed in the wrong ear becomes a stone dropped in still water. You know which ears to use.
+
+  By morning the rumor has moved from the Bourse to the clubs to the drawing rooms of the Faubourg Saint-Germain. Danglars is over-extended. Danglars has pledged assets he does not own. Danglars's credit is backed by a Levantine house that does not, in fact, exist.
+
+  _${whisper_count} whispers cross Paris tonight. By next week they will be facts._"
+  choice__
+    @targetType "scene"
+    @target 2
+    "The reckoning begins"
+  __choice
+__section
+
+/* 7 */
+section__
+  @title "The Trial of Morcerf"
+  "The Chamber of Peers sits in judgment on General Fernand de Morcerf, accused of treason in the matter of Ali Pasha of Yanina. The charge: that he delivered the pasha to his enemies for a price.
+
+  Morcerf denies everything. His lawyers are excellent. The case rests on documents that can be disputed and a past that is conveniently distant."
+  if__ (contains(alliances, "Haydée") && contains(secrets, "Fernand_treason")) {
+    "But you have two things his lawyers did not anticipate."
+    choice__
+      @target 8
+      "Present Haydée's testimony — she was there"
+    __choice
+  }
+  choice__
+    @target 10
+    "Move against him privately — ruin without the spectacle"
+  __choice
+__section
+
+/* 8 */
+section__
+  @title "Public Disgrace"
+  morcerf_ruined = true
+  "Haydée enters the Chamber in full Ottoman dress and speaks for forty minutes without notes or hesitation. She names dates, places, the amount of money that changed hands. She was twelve years old. She remembers everything.
+
+  The Chamber is silent.
+
+  Fernand de Morcerf — General, Peer of France, Comte — becomes, in the space of an afternoon, a man without a name worth keeping.
+
+  Albert is in the gallery. He sees everything. His face, when it finds yours, is unreadable."
+  choice__
+    @target 9
+    "Receive Albert's challenge"
+  __choice
+__section
+
+/* 9 */
+section__
+  @title "The Duel with Albert"
+  "Albert de Morcerf meets you at dawn in the Bois de Boulogne with two seconds and a pistol and the particular calm of a young man who has decided to die well.
+
+  He did not choose his father. He does not know, yet, what his father truly was. He knows only that his family has been destroyed and you are standing at the center of it.
+
+  _You have a choice._"
+  choice__
+    @target 11
+    @action albertSpared = true
+    "Refuse to fire — let him have his honor"
+  __choice
+  choice__
+    @target 11
+    "Accept the terms"
+  __choice
+__section
+
+/* 10 */
+section__
+  @title "Private Ruin"
+  morcerf_ruined = true
+  albertSpared = false
+  "The documents reach Fernand through channels he cannot trace. By the time he understands what has been done to him, there is no public spectacle to appeal to, no tribunal to address. There is only the quiet withdrawal of everything he was.
+
+  He is found in his study at noon on a Thursday.
+
+  Albert does not come to find you. Perhaps he already suspects. Perhaps he will spend the rest of his life not knowing, which is a mercy you did not plan."
+  choice__
+    @target 11
+    "Turn to Danglars"
+  __choice
+__section
+
+/* 11 */
+section__
+  @title "Danglars Falls"
+  danglars_ruined = true
+  gold = gold + 50000
+  if__ (danglars_exposed == true) {
+    "The whispers did their work. The rumor about the Levantine house reached Danglars's largest creditors before he could answer it. They called their notes simultaneously, as though coordinated — which they were not, quite, though the timing was not accidental."
+  }
+  "The bank fails on a Thursday. You watch from across the square as the clerks carry boxes out of the building and set them on the pavement.
+
+  Danglars himself surfaces three weeks later in Rome, penniless, selling his watch. You will see him once more, in circumstances of your choosing."
+  choice__
+    @target 12
+    "Now: Villefort"
+  __choice
+__section
+
+/* 12 */
+section__
+  @title "Villefort"
+  len_secrets = secrets.length
+  i = 0
+  secrets_count = 0
+  while__ (i < len_secrets) {
+    secrets_count = secrets_count + 1
+    i = i + 1
+  }
+  "Gérard de Villefort is the Procureur du Roi who signed your warrant twenty years ago. He had his reasons — you were dangerous to him, specifically, and he was the sort of man who dealt with specific dangers efficiently.
+
+  He has since become the sort of man who tells himself he has forgotten.
+
+  You have ${secrets_count} documented secrets in your possession. Against Villefort, you will need only one."
+  choice__
+    @target 13
+    "Ruin him in open court"
+  __choice
+  choice__
+    @target 14
+    "Confront him alone, in his house, in the dark"
+  __choice
+__section
+
+/* 13 */
+section__
+  @title "The Courtroom"
+  villefort_ruined = true
+  "You arrange it through a series of witnesses you have been cultivating for two years. The trial concerns an entirely different matter — a poisoning case — but the truth about Villefort's past surfaces in testimony like a body rising to the surface of a lake.
+
+  He collapses in the dock. Not from the revelation — from what he sees when he turns and finds you in the gallery.
+
+  _He recognizes you. You let him._"
+  choice__
+    @targetType "scene"
+    @target 3
+    "The aftermath"
+  __choice
+__section
+
+/* 14 */
+section__
+  @title "Villefort's Conscience"
+  villefort_ruined = true
+  "His study. Two in the morning. You let yourself in through the garden.
+
+  You do not speak for a long time. When you do, you do not accuse — you simply name. Dates, places, choices he made and told himself he had to make. His face does not change, exactly, but something goes out of it.
+
+  He does not call for help. He does not pick up the letter opener on the desk.
+
+  _He simply sits, and looks at the document you have placed in front of him, and begins to understand that the story he has been living in has a different ending than the one he wrote._"
+  choice__
+    @targetType "scene"
+    @target 3
+    "The aftermath"
+  __choice
+__section
+
+/* 15 */
+section__
+  @title "The Count Takes Stock"
+  flags = [morcerf_ruined, danglars_ruined, villefort_ruined]
+  i = 0
+  ruined_count = 0
+  while__ (i < 3) {
+    if__ (flags[i] == true) {
+      ruined_count = ruined_count + 1
+    }
+    i = i + 1
+  }
+  "You sit in your study on the Champs-Élysées and do the accounting.
+
+  ${ruined_count} of three enemies destroyed.
+
+  You thought this would feel like something specific. Completion, perhaps, or satisfaction, or the particular peace of a debt settled. What it feels like is this: the end of a very long project.
+
+  _You are not sure what you are now that the project is over._"
+  choice__
+    @target 16
+    "Continue"
+  __choice
+__section
+
+/* 16 */
+section__
+  @title "Valentine"
+  "Maximilien Morrel's happiness is not incidental to your plans — it is, in some ways, the center of them. He loved you once, Maximilien's father did, and that love is the only debt you have carried that you still want to pay.
+
+  Valentine de Villefort is alive because you made her so. She will live her life without knowing how close it came. This is also something you planned.
+
+  _You are better at saving people than they know. You are less sure about yourself._"
+  choice__
+    @target 17
+    "Continue"
+  __choice
+__section
+
+/* 17 */
+section__
+  @title "Haydée's Question"
+  if__ (albertSpared == true) {
+    "She asks: 'Was it worth it — sparing the son?'
+
+    You think about this for longer than the question seems to require.
+
+    'He did not choose his father,' you say finally.
+
+    'Neither did I,' she says. 'You still chose to ruin his family.'
+
+    _She is not wrong. You are not sure she is entirely right._"
+  }
+  if__ (albertSpared == false) {
+    "She asks: 'What are you now?'
+
+    Not what you were, not what you planned to be. What are you _now_.
+
+    You find you do not have a ready answer. This is new."
+  }
+  choice__
+    @target 18
+    "Continue"
+  __choice
+__section
+
+/* 18 */
+section__
+  @title "Farewell to Paris"
+  ally_count = alliances.length
+  "You settle your affairs in three days. The house on the Champs-Élysées goes to Maximilien and Valentine as a wedding gift, which embarrasses them appropriately.
+
+  You leave with ${gold} livres and ${ally_count} allies you will never see again.
+
+  Paris does not notice you leaving. This is correct. Paris never noticed you arriving either — only the Count, and the Count is a performance you are retiring."
+  if__ (morcerf_ruined == true && danglars_ruined == true && villefort_ruined == true) {
+    "The list is complete. Every name crossed off. You feel, distantly, that this ought to be enough."
+  }
+  if__ (albertSpared == true) {
+    choice__
+      @target 19
+      "Sail to the island with Haydée"
+    __choice
+  }
+  choice__
+    @target 20
+    "Sail alone"
+  __choice
+__section
+
+/* 19 */
+section__
+  @title "The Island"
+  "Monte Cristo again. The same rock, the same sea, the same sky that has not changed in twenty years.
+
+  Haydée watches the island as the yacht comes in. She has never seen it before. She sees it as it is: a place, not a symbol.
+
+  _You have spent so long understanding this island as a beginning and an ending that you had forgotten it could simply be somewhere to live._
+
+  She takes your hand when you step ashore. The gesture is unremarkable and somehow extraordinary.
+
+  You stay."
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section
+
+/* 20 */
+section__
+  @title "Alone"
+  "Monte Cristo again. The yacht drops anchor. You go ashore in the small boat, alone.
+
+  The cave is still there, sealed as you left it. The island does not remember you. Islands do not do that.
+
+  _You sit on the rock where you once counted treasure and try to remember what it felt like to want something other than this._
+
+  You cannot quite. But you are also not unhappy — which is different from what you expected, and perhaps better.
+
+  There is still time. You are not yet fifty."
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section

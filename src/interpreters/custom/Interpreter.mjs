@@ -1,4 +1,5 @@
 import Run from './Run.mjs'
+import BUILTINS from './Builtins.mjs'
 import DOM from '../../constants/custom/dom.mjs'
 import Story from '../../models/Story.mjs'
 import InterpreterException from '../../exceptions/InterpreterException.mjs'
@@ -297,10 +298,18 @@ class Interpreter {
   }
 
   callFunction (funcCall, section) {
-    // Get function definition
-    const funcDef = this.run.story.persistent.functions[funcCall.name]
+    const funcName = typeof funcCall.name === 'string' ? funcCall.name : funcCall.name.symbol
+
+    // Check built-in functions first
+    if (BUILTINS[funcName]) {
+      const argValues = funcCall.args.map(arg => this.resolveAction(arg, false, section))
+      return BUILTINS[funcName](...argValues)
+    }
+
+    // Get user-defined function
+    const funcDef = this.run.story.persistent.functions[funcName]
     if (!funcDef) {
-      throw new InterpreterException(`Undefined function: ${funcCall.name}`)
+      throw new InterpreterException(`Undefined function: ${funcName}`)
     }
 
     // Check call depth
@@ -314,7 +323,7 @@ class Interpreter {
     // Save current variables (for local scope)
     const savedVars = { ...this.run.state.variables }
 
-    this.callStack.push({ name: funcCall.name, savedVars })
+    this.callStack.push({ name: funcName, savedVars })
 
     // Bind parameters
     funcDef.params.forEach((param, i) => {
