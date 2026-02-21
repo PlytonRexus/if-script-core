@@ -1,6 +1,5 @@
 import path from 'path'
 import fs from 'fs'
-import File from '../parsers/custom/stream/File.js'
 import InputStream from '../parsers/custom/stream/InputStream.mjs'
 import TokenStream from '../parsers/custom/stream/TokenStream.mjs'
 import Parser from '../parsers/custom/parser/Parser.mjs'
@@ -26,8 +25,7 @@ async function compile (argv) {
   // console.log(parsed)
 
   if (o) {
-    const file = new File(o, '')
-    await file.write(JSON.stringify(parsed))
+    await fs.promises.writeFile(o, JSON.stringify(parsed))
     console.log('Done.')
     console.log('Compiled to', o)
   }

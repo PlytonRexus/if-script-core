@@ -2,7 +2,6 @@ import Stream from './Stream.mjs'
 import Token from '../../../models/Token.mjs'
 import Validator from './Validator.mjs'
 import TokenTypes from '../../../constants/custom/tokenTypes.mjs'
-import { grammar } from '../../../constants/regex/regexGrammar.mjs'
 import Keywords from '../../../constants/custom/keywords.mjs'
 
 class TokenStream extends Stream {
@@ -68,8 +67,8 @@ class TokenStream extends Stream {
   }
 
   removeComments () {
-    const { comment } = grammar
-    this.input.input = this.input.input.replace(comment, '').replace(/>>/g, '').replace(/<</g, '')
+    const commentRegex = /\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*$/gm
+    this.input.input = this.input.input.replace(commentRegex, '').replace(/>>/g, '').replace(/<</g, '')
   }
 
   readString () {

@@ -1,7 +1,5 @@
 const versions = {
-  STREAM: 'STREAM',
-  EARLY: 'EARLY',
-  LEGACY: 'LEGACY'
+  STREAM: 'STREAM'
 }
 
 export default versions

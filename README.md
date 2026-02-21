@@ -2,22 +2,17 @@
 
 ### Find available issues [here](https://github.com/PlytonRexus/if-script/issues)
 
-> The parser has been completely rewritten from scratch, replacing NearleyJS with a custom streaming parser.
-> This brings improved performance, more features, and cleaner syntax. **The documentation below reflects the new syntax (v0.2.0+).**
-
 An extremely simple syntax for writing interactive fiction that can be embedded in any website.
 
 Make interactive fiction with variables, timers, conditions, music and statistics. The story is parsed into plain HTML, CSS and JavaScript.
 
 [Try it!](https://plytonrexus.github.io/if-script/)
 
-You can use Markdown to format your story. 
+You can use Markdown to format your story.
 _[Markdown cheat-sheet](https://www.markdownguide.org/cheat-sheet/) for reference._
 
 ### Dependencies
 [Showdown](https://github.com/showdownjs/showdown) for markdown rendering.
-
-A Regular Expression based parser is on the [if-script-regex](https://github.com/PlytonRexus/if-script/tree/if-script-regex) branch.
 
 ### Current Syntax (v0.2.0+)
 
@@ -28,9 +23,9 @@ Sure, you can use the parser on node, but the interpreter will need the DOM to w
 ```js
 import IFScript from 'if-script-core'
 ```
-2. Initialize with STREAM parser (default)
+2. Initialize
 ```js
-const ifScript = new IFScript('STREAM')
+const ifScript = new IFScript()
 await ifScript.init()
 ```
 3. Parse story text
@@ -547,7 +542,7 @@ Configure the import system when creating an `IFScript` instance:
 ```javascript
 import IFScript from 'if-script-core'
 
-const ifScript = new IFScript('STREAM', {
+const ifScript = new IFScript({
   // Path configuration
   paths: {
     aliases: {
@@ -605,12 +600,12 @@ import__"scenes/intro.partial.if"__import
 ✅ **Browser Support** - Works in both Node.js and browsers
 ```javascript
 // Option 1: Dynamic fetch (requires server)
-const ifScript = new IFScript('STREAM', {
+const ifScript = new IFScript({
   browser: { baseUrl: 'https://example.com/stories/' }
 })
 
 // Option 2: Pre-bundled files (works offline)
-const ifScript = new IFScript('STREAM', {
+const ifScript = new IFScript({
   browser: {
     preloadedFiles: {
       '/lib/file.if': '/* content here */'
