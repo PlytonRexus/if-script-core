@@ -53,13 +53,13 @@ __section
   - It only ensures sections exist
 */
 
-import__ "hogwarts-1.partial.if"
-import__ "hogwarts-2.partial.if"
-import__ "hogwarts-3.partial.if"
-import__ "hogwarts-4.partial.if"
-import__ "hogwarts-5.partial.if"
-import__ "hogwarts-6.partial.if"
-import__ "hogwarts-7.partial.if"
+import__ "hogwarts-1.partial.if" __import
+import__ "hogwarts-2.partial.if" __import
+import__ "hogwarts-3.partial.if" __import
+import__ "hogwarts-4.partial.if" __import
+import__ "hogwarts-5.partial.if" __import
+import__ "hogwarts-6.partial.if" __import
+/* import__ "hogwarts-7.partial.if" __import */
 
 /* ---------- SAFETY NET ---------- */
 

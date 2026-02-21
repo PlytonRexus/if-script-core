@@ -32,7 +32,7 @@ section__
   @title "1 — The Farewell"
 
   "On the eve of leaving, your oldest friend stays late by the gate, wringing a handkerchief."
-  "There is an old traveler’s pack ready and a crust of bread waiting."
+  "There is an old traveler's pack ready and a crust of bread waiting."
 
   choice__
     @target 3

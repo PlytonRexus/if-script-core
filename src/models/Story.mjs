@@ -63,6 +63,8 @@ class Story {
   }
 
   findSection (serial) {
+    // Support name-based lookup when a string is passed
+    if (typeof serial === 'string') return this.findSectionByTitle(serial)
     let index = this.sections.findIndex(section => section.serial === serial)
 
     if (index === -1) {
@@ -72,7 +74,18 @@ class Story {
     return this.sections[index]
   }
 
+  findSectionByTitle (title) {
+    const section = this.sections.find(s => s.settings && s.settings.title === title)
+    if (!section) {
+      console.warn('No section titled "' + title + '" found. Reverting to first section.')
+      return this.sections[0]
+    }
+    return section
+  }
+
   findScene (serial) {
+    // Support name-based lookup when a string is passed
+    if (typeof serial === 'string') return this.findSceneByName(serial)
     let index = this.scenes.findIndex(scene => scene.serial === serial)
 
     if (index === -1) {
@@ -80,6 +93,15 @@ class Story {
       index = 0
     }
     return this.scenes[index]
+  }
+
+  findSceneByName (name) {
+    const scene = this.scenes.find(s => s.name === name)
+    if (!scene) {
+      console.warn('No scene named "' + name + '" found. Reverting to first scene.')
+      return this.scenes[0]
+    }
+    return scene
   }
 
   findPassage (serial) {

@@ -6,11 +6,12 @@ import IFScript from '../../index.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const srcDir = path.resolve(__dirname, '..')
+const vendorDir = path.resolve(srcDir, '../node_modules')
 
 async function preview (argv) {
   const inputFile = path.resolve(process.cwd(), argv.i)
   const port = argv.port || 3001
-  const theme = argv.theme || 'bricks'
+  const theme = argv.theme || 'parchment'
   const clients = new Set()
 
   async function parseStory () {
@@ -36,15 +37,39 @@ async function preview (argv) {
       return
     }
 
+    // Serve showdown as a synthetic ES module wrapping the UMD build
+    if (url.pathname === '/vendor/showdown.js') {
+      const showdownPath = path.join(vendorDir, 'showdown/dist/showdown.js')
+      try {
+        const umd = await fs.promises.readFile(showdownPath, 'utf-8')
+        const esm = `const __m = { exports: {} };\n(function (module, exports) {\n${umd}\n}(__m, __m.exports));\nexport default __m.exports;\n`
+        res.writeHead(200, { 'Content-Type': 'text/javascript' })
+        res.end(esm)
+      } catch { res.writeHead(404); res.end() }
+      return
+    }
+
     // Serve src/** for native ES module imports
     if (url.pathname.startsWith('/src/')) {
       const filePath = path.join(srcDir, url.pathname.slice(5))
       try {
         const content = await fs.promises.readFile(filePath, 'utf-8')
         const ext = path.extname(filePath)
-        const mime = ext === '.css' ? 'text/css' : 'text/javascript'
-        res.writeHead(200, { 'Content-Type': mime })
-        res.end(content)
+        if (ext === '.css') {
+          // CSS requested as a module script (e.g. dynamic import() in Interpreter)
+          // — serve a JS wrapper that injects the styles, otherwise serve plain CSS.
+          if (req.headers['sec-fetch-dest'] === 'script') {
+            const js = `const __s = document.createElement('style');\n__s.textContent = ${JSON.stringify(content)};\ndocument.head.appendChild(__s);\nexport default __s;\n`
+            res.writeHead(200, { 'Content-Type': 'text/javascript' })
+            res.end(js)
+          } else {
+            res.writeHead(200, { 'Content-Type': 'text/css' })
+            res.end(content)
+          }
+        } else {
+          res.writeHead(200, { 'Content-Type': 'text/javascript' })
+          res.end(content)
+        }
       } catch { res.writeHead(404); res.end() }
       return
     }
@@ -94,6 +119,7 @@ function buildHtml (story, theme, port) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${story.title || 'IF Preview'}</title>
+  <script type="importmap">{"imports": {"showdown": "/vendor/showdown.js"}}</script>
   <link rel="stylesheet" href="/src/themes/${theme}.css">
 </head>
 <body>
@@ -103,21 +129,22 @@ function buildHtml (story, theme, port) {
   </div>
   <script type="module">
     import Interpreter from '/src/interpreters/custom/Interpreter.mjs'
+    import Story from '/src/models/Story.mjs'
 
-    const story = ${JSON.stringify(story)}
+    const storyJson = ${JSON.stringify(story)}
     const theme = ${JSON.stringify(theme)}
     const interpreter = new Interpreter(null)
 
-    function render (s) {
+    function render (json) {
       document.querySelector('#if_r-output-area').innerHTML = ''
       document.querySelector('#if_r-exception-area').innerHTML = ''
-      try { interpreter.loadStory(s, null, theme) } catch (err) {
+      try { interpreter.loadStory(Story.fromJson(json), null, theme) } catch (err) {
         document.querySelector('#if_r-exception-area').innerHTML =
           '<code>' + err.message + '</code>'
       }
     }
 
-    render(story)
+    render(storyJson)
 
     const es = new EventSource('/events')
     es.addEventListener('message', (e) => render(JSON.parse(e.data)))

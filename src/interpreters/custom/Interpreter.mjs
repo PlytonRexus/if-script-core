@@ -29,6 +29,75 @@ class Interpreter {
     this.run = run || null
     this.utils = new InterpreterUtils()
     this.themeSheets = {}
+
+    // Inject persistent UI styles before any applyTheme call so this sheet
+    // is already counted in applyTheme's `before` baseline and never gets
+    // mistakenly captured as a theme sheet (which would cause it to be
+    // disabled on theme switches).
+    if (typeof window !== 'undefined' && !document.getElementById('if_r-cs-styles')) {
+      const csStyle = document.createElement('style')
+      csStyle.id = 'if_r-cs-styles'
+      csStyle.textContent = `
+        /* Reset white-space inherited from #if_r-output-area (pre-wrap in many themes) */
+        .if_r-stats-div { white-space: normal; }
+        /* Paragraph content: override pre-wrap so the newlines between showdown's
+           <p> tags don't render as extra blank lines, and normalise paragraph spacing. */
+        .if_r-paras { white-space: normal; }
+        .if_r-paras p { margin: 0 0 0.75em; }
+        .if_r-paras p:last-child { margin-bottom: 0; }
+        /* Override global pre{color} rules so status-bar stats text inherits
+           the correct themed color from #if_r-status-bar instead. */
+        #if_r-alerts-area pre { color: inherit; }
+        /* Sidebar panel layout */
+        .if_r-sb-header {
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 13px 16px 13px 20px;
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .if_r-sb-title {
+          font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+          text-transform: uppercase; opacity: 0.45;
+        }
+        .if_r-stats-div .if_r-sb-header .closebtn {
+          position: static; font-size: 18px; margin: 0; padding: 0;
+          display: inline-block; opacity: 0.5; line-height: 1;
+        }
+        .if_r-stats-div .if_r-sb-header .closebtn:hover { opacity: 1; background: none; }
+        .if_r-sb-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
+        .if_r-sb-group-label {
+          padding: 6px 20px 3px;
+          font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+          text-transform: uppercase; opacity: 0.4;
+        }
+        /* Custom theme dropdown */
+        .if_r-cs { position: relative; width: 100%; }
+        .if_r-cs-btn {
+          display: flex; justify-content: space-between; align-items: center;
+          width: 100%; padding: 7px 12px;
+          cursor: pointer; background: rgba(0,0,0,0.18); color: inherit;
+          border: 1px solid rgba(255,255,255,0.15); font-size: 14px;
+          font-family: inherit; border-radius: 3px; text-align: left;
+          transition: background 0.15s, border-color 0.15s; box-sizing: border-box;
+        }
+        .if_r-cs-btn:hover { background: rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.28); }
+        .if_r-cs-arrow { font-size: 9px; transition: transform 0.2s; line-height: 1; opacity: 0.6; }
+        .if_r-cs.open .if_r-cs-arrow { transform: rotate(180deg); }
+        .if_r-cs-list {
+          position: absolute; left: 0; right: 0; z-index: 200;
+          margin: 3px 0 0; padding: 4px 0; list-style: none;
+          background: inherit; border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 3px; box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden;
+        }
+        .if_r-cs-opt { padding: 8px 14px; cursor: pointer; font-size: 14px; transition: background 0.12s; }
+        .if_r-cs-opt:hover { background: rgba(255,255,255,0.1); }
+        .if_r-cs-opt.selected { font-weight: 600; }
+        /* Ensure non-<a> elements in the sidebar inherit the theme's sidebar color */
+        .if_r-sb-title, .if_r-sb-group-label { color: inherit; }
+        .if_r-cs-btn, .if_r-cs-opt { color: inherit; }
+      `
+      document.head.appendChild(csStyle)
+    }
+
     // Only apply theme in browser environments
     if (this.run && typeof window !== 'undefined') {
       this.applyTheme(this.run.theme)
@@ -116,25 +185,37 @@ class Interpreter {
 
     $main.innerHTML = `
         <div id="${this.replaceHash(DOM.statsDivId)}" class="${this.replaceDot(DOM.statsDivClass)}">
-            <a href="javascript:void(0)" class="closebtn">&times;</a>
-            <a href="#" id="${this.replaceHash(DOM.resetButtonId)}">Restart</a>
-            <a href="#" id="${this.replaceHash(DOM.undoButtonId)}">Undo</a>
-            <a href="#" id="">Stats</a>
-            <div id="if_r-theme-row" style="padding:6px 8px 6px 25px">
-              <select id="${this.replaceHash(DOM.themeSelectId)}" style="width:100%;margin-top:4px;font-size:14px;background:inherit;color:inherit;border:1px solid currentColor;padding:2px 4px">
-                <option value="default">Default</option>
-                <option value="bricks">Bricks</option>
-                <option value="terminal">Terminal</option>
-                <option value="neon">Neon</option>
-                <option value="parchment">Parchment</option>
-                <option value="contrast">Contrast</option>
-                <option value="dark">Dark</option>
-                <option value="minimal">Minimal</option>
-                <option value="glass">Glass</option>
-              </select>
+            <div class="if_r-sb-header">
+              <span class="if_r-sb-title">Menu</span>
+              <a href="javascript:void(0)" class="closebtn">&#215;</a>
             </div>
-            <a href="#" id="${this.replaceHash(DOM.animToggleId)}">Animations: on</a>
-            <audio controls id="if_r-audio-player">
+            <div class="if_r-sb-divider"></div>
+            <a href="#" id="${this.replaceHash(DOM.resetButtonId)}">&#8635;&ensp;Restart</a>
+            <a href="#" id="${this.replaceHash(DOM.undoButtonId)}">&#8592;&ensp;Undo</a>
+            <div class="if_r-sb-divider"></div>
+            <div class="if_r-sb-group-label">Theme</div>
+            <div style="padding:0 12px 10px;position:relative;background:inherit">
+              <div id="${this.replaceHash(DOM.themeSelectId)}" class="if_r-cs" style="background:inherit">
+                <button class="if_r-cs-btn" type="button">
+                  <span class="if_r-cs-label">Theme</span>
+                  <span class="if_r-cs-arrow">&#9660;</span>
+                </button>
+                <ul class="if_r-cs-list" hidden>
+                  <li class="if_r-cs-opt" data-value="default">Default</li>
+                  <li class="if_r-cs-opt" data-value="bricks">Bricks</li>
+                  <li class="if_r-cs-opt" data-value="terminal">Terminal</li>
+                  <li class="if_r-cs-opt" data-value="neon">Neon</li>
+                  <li class="if_r-cs-opt" data-value="parchment">Parchment</li>
+                  <li class="if_r-cs-opt" data-value="contrast">Contrast</li>
+                  <li class="if_r-cs-opt" data-value="dark">Dark</li>
+                  <li class="if_r-cs-opt" data-value="minimal">Minimal</li>
+                  <li class="if_r-cs-opt" data-value="glass">Glass</li>
+                </ul>
+              </div>
+            </div>
+            <div class="if_r-sb-divider"></div>
+            <a href="#" id="${this.replaceHash(DOM.animToggleId)}">&#9889;&ensp;Animations: on</a>
+            <audio controls id="if_r-audio-player" style="display:none">
                 <source src="" type="audio/mp3" id="if_r-audio-source">
                 Your browser does not support audio.
             </audio>
@@ -149,15 +230,19 @@ class Interpreter {
         <div id="${this.replaceHash(DOM.sectionDisplayId)}">
         </div>`
 
-    const sel = document.querySelector(DOM.themeSelectId)
-    if (sel && this.run) sel.value = this.run.theme || 'default'
+    if (this.run) this._syncThemeSelect(this.run.theme || 'default')
     this._updateAnimToggleLabel(!document.body.classList.contains('if_r-reduce-motion'))
 
     const burger = document.querySelector(DOM.burgerId)
 
     burger.addEventListener('click', (e) => {
       e.preventDefault()
-      this.showStatsDiv()
+      const panel = document.querySelector(DOM.statsDivClass)
+      if (panel && panel.style.display === 'block') {
+        this.hideStatsDiv()
+      } else {
+        this.showStatsDiv()
+      }
     })
 
     console.info('Display loaded.')
@@ -184,6 +269,7 @@ class Interpreter {
       this.showAlert("Something's wrong!")
       return
     }
+    section.choices = []
     let {
       title,
       choices,
@@ -191,10 +277,11 @@ class Interpreter {
       serial
     } = section
 
-    // choices = []
     let titleText = this.resolveSyntaxTree(title, '', section)
+    titleText = this.replaceVars(titleText, this.run.state.variables)
     titleText = this.utils.formatText(titleText)
     let parasText = this.resolveSyntaxTree(text, '', section)
+    parasText = this.replaceVars(parasText, this.run.state.variables)
     parasText = this.utils.formatText(parasText)
 
     wrapper += `<div class="if_r-section" id="section-${serial}">`
@@ -394,7 +481,7 @@ class Interpreter {
         if (v instanceof Token) {
           const { VARIABLE, STRING, NUMBER } = TokenTypes
           if (v.type === VARIABLE) acc += this.run.state.variables[v.symbol]
-          else if (v.type === STRING) acc += v.symbol
+          else if (v.type === STRING) acc += v.symbol + '\n\n'
           else if (v.type === NUMBER) acc += v.symbol
           else acc += v.symbol
         } else if (v instanceof ConditionalBlock) {
@@ -402,8 +489,13 @@ class Interpreter {
         } else if (v instanceof Loop) {
           acc += this.resolveLoop(v, section)
         } else if (v instanceof FunctionDef) {
-          // Store function definition (already stored in story.persistent.functions by parser)
-          // Nothing to do here
+          // Already stored in story.persistent.functions by parser; nothing to do here
+        } else if (v instanceof FunctionCall || v instanceof MemberAccess || v instanceof ArrayAccess) {
+          // Statement-level call (e.g. markVisited(1), arr.push(x)) — execute but don't add to text
+          try {
+            const result = this.resolveAction(v, false, section)
+            if (result !== null && result !== undefined && result !== '') acc += result
+          } catch (e) { /* ignore errors from statement-level calls */ }
         } else if (v instanceof Action) {
           acc += this.resolveAction(v, false, section)
         }
@@ -638,7 +730,10 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     let statsHTML = `<pre> <b>Turn:</b> ${this.run.state.turn}   `
 
     stats.forEach(stat => {
-      if (stat !== 'turn')statsHTML += `<b>${stat}:</b> ${this.run.state.variables[stat]}   `
+      if (stat === 'turn') return
+      const val = this.run.state.variables[stat]
+      if (val !== null && typeof val === 'object') return
+      statsHTML += `<b>${stat}:</b> ${val}   `
     })
 
     statsHTML += '</pre>'
@@ -691,7 +786,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
   }
 
   replaceSection (sectionHTML, serial) {
-    if (serial) document.querySelector(DOM.sectionDisplayId).innerHTML = this.generateSectionBySerial(serial)
+    if (serial !== null && serial !== undefined) document.querySelector(DOM.sectionDisplayId).innerHTML = this.generateSectionBySerial(serial)
     else {
       document.querySelector(DOM.sectionDisplayId).innerHTML = sectionHTML
     }
@@ -699,7 +794,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
   }
 
   appendSection (sectionHTML, serial) {
-    if (serial) document.querySelector(DOM.sectionDisplayId).innerHTML = this.generateSectionBySerial(serial)
+    if (serial !== null && serial !== undefined) document.querySelector(DOM.sectionDisplayId).innerHTML = this.generateSectionBySerial(serial)
     else {
       document.querySelector(DOM.sectionDisplayId).innerHTML += sectionHTML
     }
@@ -793,14 +888,44 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
       document.querySelector(`${DOM.statsDivId} .closebtn`).onclick = this.hideStatsDiv
       document.querySelector(DOM.undoButtonId).onclick = this.undoTurn
       document.querySelector(DOM.resetButtonId).onclick = this.resetStory.bind(this)
-      document.querySelector(DOM.themeSelectId).onchange = (e) => { this.applyTheme(e.target.value) }
       document.querySelector(DOM.animToggleId).onclick = (e) => { e.preventDefault(); this.toggleAnimations() }
+
+      const cs = document.querySelector(DOM.themeSelectId)
+      const csBtn = cs.querySelector('.if_r-cs-btn')
+      const csList = cs.querySelector('.if_r-cs-list')
+      csBtn.onclick = () => {
+        const closing = !csList.hidden
+        csList.hidden = closing
+        cs.classList.toggle('open', !closing)
+      }
+      csList.onclick = (e) => {
+        const opt = e.target.closest('.if_r-cs-opt')
+        if (!opt) return
+        this.applyTheme(opt.dataset.value)
+        csList.hidden = true
+        cs.classList.remove('open')
+      }
+      this._csOutside = (e) => {
+        if (!cs.contains(e.target)) { csList.hidden = true; cs.classList.remove('open') }
+      }
+      document.addEventListener('click', this._csOutside)
     } else if (setting === 'unset') {
       document.querySelector(`${DOM.statsDivClass} .closebtn`).onclick = ''
       document.querySelector(DOM.undoButtonId).onclick = ''
       document.querySelector(DOM.resetButtonId).onclick = ''
-      document.querySelector(DOM.themeSelectId).onchange = null
       document.querySelector(DOM.animToggleId).onclick = null
+
+      const cs = document.querySelector(DOM.themeSelectId)
+      if (cs) {
+        const csBtn = cs.querySelector('.if_r-cs-btn')
+        if (csBtn) csBtn.onclick = null
+        const csList = cs.querySelector('.if_r-cs-list')
+        if (csList) csList.onclick = null
+      }
+      if (this._csOutside) {
+        document.removeEventListener('click', this._csOutside)
+        this._csOutside = null
+      }
     }
   }
 
@@ -810,6 +935,21 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     statsDiv.style.width = '0'
 
     this.sidebarListeners('unset')
+  }
+
+  _syncThemeSelect (name) {
+    const cs = document.querySelector(DOM.themeSelectId)
+    if (!cs) return
+    const label = cs.querySelector('.if_r-cs-label')
+    if (label) label.textContent = name.charAt(0).toUpperCase() + name.slice(1)
+    cs.querySelectorAll('.if_r-cs-opt').forEach(o => o.classList.toggle('selected', o.dataset.value === name))
+
+    // Re-read the themed link color and apply it to the sidebar container so
+    // non-<a> children (spans, buttons, divs) inherit the correct color after
+    // every theme switch.
+    const statsDiv = document.querySelector(DOM.statsDivId)
+    const firstLink = statsDiv ? statsDiv.querySelector('a[id]') : null
+    if (firstLink) statsDiv.style.color = window.getComputedStyle(firstLink).color
   }
 
   replaceHash (str, to) {
@@ -867,9 +1007,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     ;(this.themeSheets[name] || []).forEach(s => { s.disabled = false })
     this.run.theme = name
     localStorage.setItem('if-theme', name)
-    // Keep select in sync
-    const sel = document.querySelector(DOM.themeSelectId)
-    if (sel) sel.value = name
+    this._syncThemeSelect(name)
   }
 
   applyAnimationPreference () {

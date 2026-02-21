@@ -283,7 +283,7 @@ class Parser {
         section.text.push(component)
       }
       if (!this.input.peek() || this.input.peek().type === TTS.SECTION_END) break
-      tok = this.input.next()
+      if (!(component instanceof ConditionalBlock)) tok = this.input.next()
     }
 
     return section
@@ -433,7 +433,7 @@ class Parser {
       propChoiceTarget: () => {
         limitToOne()
         name = 'target'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propFullTimer: () => {
         limitToN(2)
@@ -500,6 +500,7 @@ class Parser {
 
     while (!isTokenFor(tok, TTS.NEWLINE_CHAR)) {
       parsers[this.utils.camelize(propertyType.toLowerCase())]()
+      if (isTokenFor(this.input.peek(), TTS.NEWLINE_CHAR)) break
       this.input.next()
       tok = this.input.peek()
     }
@@ -526,6 +527,7 @@ class Parser {
 
     const { isTokenFor } = this.utils
     const scene = new Scene([], { first: 0, name: '' })
+    scene.serial = this.counts.sceneNumber++
 
     while (!isTokenFor(this.input.peek(), TTS.OTHER_KW, KW.SCENE_END)) {
       this.skipNewLine()
@@ -787,7 +789,8 @@ class Parser {
     const components = {
       sections: [],
       scenes: [],
-      functions: {}
+      functions: {},
+      initVars: {} // top-level literal variable assignments (merged into story.persistent)
     }
 
     let tok
@@ -805,18 +808,26 @@ class Parser {
           components.sections.push(...importStmt.module.sections)
           components.scenes.push(...importStmt.module.scenes)
           Object.assign(components.functions, importStmt.module.functions)
+          Object.assign(components.initVars, importStmt.module.initVars || {})
         }
+        continue
       }
 
       if (isTokenFor(tok, TTS.SECTION_START)) {
         components.sections.push(this.parseSection())
-      }
-      if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
+      } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
         components.scenes.push(this.parseScene())
-      }
-      if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
+      } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
+        // Parse and discard module settings (they are for standalone testing only)
+        this.parseSettings(KW.SETTINGS_START)
+      } else if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
         const funcDef = this.parseFunctionDef()
         components.functions[funcDef.name] = funcDef
+      } else if (isTokenFor(tok, TTS.VARIABLE)) {
+        // Top-level variable assignment — evaluate simple literals at parse time
+        const expr = this.parseExpression(false)
+        this._tryStoreInitVar(expr, components.initVars)
+        continue // parseExpression consumed the tokens; skip the trailing this.input.next()
       }
 
       tok = this.input.next()
@@ -826,14 +837,32 @@ class Parser {
   }
 
   /**
+   * If expr is a simple literal assignment (name = literal), store it in the target map.
+   * @param {*} expr - parsed expression
+   * @param {Object} target - initVars map to populate
+   */
+  _tryStoreInitVar (expr, target) {
+    if (!(expr instanceof Action) || expr.type !== 'assign') return
+    if (!(expr.left instanceof Token) || expr.left.type !== TTS.VARIABLE) return
+    const varName = expr.left.symbol
+    const rhs = expr.right
+    if (rhs instanceof Token) {
+      target[varName] = rhs.symbol
+    } else if (rhs instanceof ArrayLiteral && rhs.elements.length === 0) {
+      target[varName] = []
+    }
+  }
+
+  /**
    * @param {TokenStream} ts
    * @returns {Story}
    */
   async parseStory (ts) {
-    if (!this.input) {
-      this.input = ts
-      this.counts = { sectionNumber: 0, sceneNumber: 0, choiceNumber: 0 }
-    }
+    if (ts && !this.input) this.input = ts
+    // Main story sections/scenes start at 0 so they don't collide with
+    // imported module sections/scenes, which use a fresh parser whose
+    // constructor initialises its own counter starting at 1.
+    this.counts = { sectionNumber: 0, sceneNumber: 0, choiceNumber: 0 }
     const components = {
       sections: [],
       scenes: [],
@@ -873,23 +902,27 @@ class Parser {
           story.sections.push(...importStmt.module.sections)
           story.scenes.push(...importStmt.module.scenes)
           Object.assign(story.persistent.functions, importStmt.module.functions)
+          // Merge top-level variable initialisers from the module
+          Object.assign(story.persistent, importStmt.module.initVars || {})
         }
         continue // Skip to next iteration
       }
 
       if (isTokenFor(tok, TTS.SECTION_START)) {
         story.sections.push(this.parseSection())
-      }
-      if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
+      } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
         story.scenes.push(this.parseScene())
-      }
-      if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
+      } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
         story.settings = this.parseSettings(KW.SETTINGS_START)
-      }
-      if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
+      } else if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
         const funcDef = this.parseFunctionDef()
         story.persistent.functions[funcDef.name] = funcDef
         story.functions.push(funcDef)
+      } else if (isTokenFor(tok, TTS.VARIABLE)) {
+        // Top-level variable assignment in the main story file
+        const expr = this.parseExpression(false)
+        this._tryStoreInitVar(expr, story.persistent)
+        continue
       }
       tok = this.input.next()
     }
