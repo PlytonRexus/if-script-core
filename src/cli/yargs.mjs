@@ -1,6 +1,7 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import compile from './compile.mjs'
+import preview from './preview.mjs'
 
 const yargsc = yargs(hideBin(process.argv))
 
@@ -43,6 +44,17 @@ yargsc.command({
     process.stdout.write('Compiling... ')
     compile(argv)
   }
+})
+
+yargsc.command({
+  command: 'preview',
+  describe: 'Preview an IF-Script story in the browser with hot reload',
+  builder: {
+    'input-file': { alias: 'i', describe: 'Path to .if story file', type: 'string', demandOption: true },
+    theme: { alias: 't', describe: 'Theme name (default: bricks)', type: 'string', default: 'bricks' },
+    port: { alias: 'p', describe: 'Server port (default: 3001)', type: 'number', default: 3001 }
+  },
+  handler: (argv) => preview(argv)
 })
 
 export default yargsc

@@ -11,7 +11,7 @@ let interpreter
   const story = {
     name: 'introduction',
     content: index.introduction,
-    path: '/home/mihir/dev/IF/if-script-core/test/examples-if/introduction.if'
+    path: '/test/examples-if/introduction.if'
   }
 
   function useStory (storyName) {
@@ -34,7 +34,7 @@ let interpreter
     localStorage.setItem('IF_DEBUG', 'true')
   }
 
-  const parsed = ifscript.parse(story.content).parseStory()
+  const parsed = await ifscript.parse(story.content, story.path)
 
   const theme = {
     name: 'bricks'

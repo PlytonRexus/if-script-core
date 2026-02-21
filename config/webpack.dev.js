@@ -7,7 +7,7 @@ const paths = require('./paths')
 
 module.exports = merge(base, {
   entry: {
-    main: './test/interpret.mjs'
+    main: './test/pkg.mjs'
   },
   output: {
     path: paths.build,
