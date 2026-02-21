@@ -14,6 +14,62 @@ _[Markdown cheat-sheet](https://www.markdownguide.org/cheat-sheet/) for referenc
 ### Dependencies
 [Showdown](https://github.com/showdownjs/showdown) for markdown rendering.
 
+---
+
+## Author Workflow
+
+This section covers the end-to-end workflow for writing and previewing IF-Script stories using the CLI.
+
+### Installation
+
+```bash
+npm install -g if-script-core
+```
+
+### Writing a story
+
+Create a file with the `.if` extension and write your story using the IF-Script syntax documented below. Large stories can be split across multiple `.partial.if` files using [imports](#imports).
+
+### Previewing
+
+```bash
+ifs preview -i my-story.if
+```
+
+This starts a local HTTP server and opens the story in your browser. The browser automatically reloads whenever you save changes to the file — no manual refresh needed.
+
+**Options:**
+
+| Flag | Alias | Default | Description |
+|------|-------|---------|-------------|
+| `--input-file` | `-i` | *(required)* | Path to `.if` story file |
+| `--theme` | `-t` | `bricks` | Theme name (`default` or `bricks`) |
+| `--port` | `-p` | `3001` | Local server port |
+
+**Example:**
+```bash
+ifs preview -i my-story.if -t default -p 8080
+```
+
+Parse errors are displayed directly in the browser so you can fix them without leaving your editor.
+
+### Compiling
+
+Once your story is ready, compile it to JSON for distribution or embedding:
+
+```bash
+ifs compile -i my-story.if -o story.json
+```
+
+**Options:**
+
+| Flag | Alias | Default | Description |
+|------|-------|---------|-------------|
+| `--input-file` | `-i` | *(required)* | Path to `.if` story file |
+| `--output-file` | `-o` | `out.json` | Path for the compiled JSON output |
+
+---
+
 ### Current Syntax (v0.2.0+)
 
 ### [Embedding](#embedding)
