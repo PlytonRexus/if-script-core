@@ -6,7 +6,9 @@ const dom = {
   statsDivId: '#if_r-stats-div',
   statsDivClass: '.if_r-stats-div',
   undoButtonId: '#if_r-undo-button',
-  resetButtonId: '#if_r-reset-button'
+  resetButtonId: '#if_r-reset-button',
+  themeSelectId: '#if_r-theme-select',
+  animToggleId: '#if_r-anim-toggle'
 }
 
 export default dom

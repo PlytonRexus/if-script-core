@@ -27,11 +27,10 @@ class Interpreter {
       : !!localStorage.getItem('IF_DEBUG')
     this.run = run || null
     this.utils = new InterpreterUtils()
-    // Only import CSS in browser environments
+    this.themeSheets = {}
+    // Only apply theme in browser environments
     if (this.run && typeof window !== 'undefined') {
-      import('../../themes/' + this.run.theme + '.css').catch(() => {
-        // Silently ignore CSS import errors (e.g., in test environments)
-      })
+      this.applyTheme(this.run.theme)
     }
 
     this.callStack = []
@@ -49,11 +48,10 @@ class Interpreter {
   loadStory (story, run, theme) {
     if (!story || !(story instanceof Story)) throw new InterpreterException('Invalid story supplied')
     this.run = run || new Run(story, null, theme)
-    // Only import CSS in browser environments
-    if (this.run && typeof window !== 'undefined') {
-      import('../../themes/' + this.run.theme + '.css').catch(() => {
-        // Silently ignore CSS import errors (e.g., in test environments)
-      })
+    // Only apply theme/preferences in browser environments
+    if (typeof window !== 'undefined') {
+      this.applyTheme(this.run.theme)
+      this.applyAnimationPreference()
     }
     console.info('Story loading...')
 
@@ -121,6 +119,20 @@ class Interpreter {
             <a href="#" id="${this.replaceHash(DOM.resetButtonId)}">Restart</a>
             <a href="#" id="${this.replaceHash(DOM.undoButtonId)}">Undo</a>
             <a href="#" id="">Stats</a>
+            <div id="if_r-theme-row" style="padding:6px 8px 6px 25px">
+              <select id="${this.replaceHash(DOM.themeSelectId)}" style="width:100%;margin-top:4px;font-size:14px;background:inherit;color:inherit;border:1px solid currentColor;padding:2px 4px">
+                <option value="default">Default</option>
+                <option value="bricks">Bricks</option>
+                <option value="terminal">Terminal</option>
+                <option value="neon">Neon</option>
+                <option value="parchment">Parchment</option>
+                <option value="contrast">Contrast</option>
+                <option value="dark">Dark</option>
+                <option value="minimal">Minimal</option>
+                <option value="glass">Glass</option>
+              </select>
+            </div>
+            <a href="#" id="${this.replaceHash(DOM.animToggleId)}">Animations: on</a>
             <audio controls id="if_r-audio-player">
                 <source src="" type="audio/mp3" id="if_r-audio-source">
                 Your browser does not support audio.
@@ -135,6 +147,10 @@ class Interpreter {
         </div>
         <div id="${this.replaceHash(DOM.sectionDisplayId)}">
         </div>`
+
+    const sel = document.querySelector(DOM.themeSelectId)
+    if (sel && this.run) sel.value = this.run.theme || 'default'
+    this._updateAnimToggleLabel(!document.body.classList.contains('if_r-reduce-motion'))
 
     const burger = document.querySelector(DOM.burgerId)
 
@@ -768,10 +784,14 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
       document.querySelector(`${DOM.statsDivId} .closebtn`).onclick = this.hideStatsDiv
       document.querySelector(DOM.undoButtonId).onclick = this.undoTurn
       document.querySelector(DOM.resetButtonId).onclick = this.resetStory.bind(this)
+      document.querySelector(DOM.themeSelectId).onchange = (e) => { this.applyTheme(e.target.value) }
+      document.querySelector(DOM.animToggleId).onclick = (e) => { e.preventDefault(); this.toggleAnimations() }
     } else if (setting === 'unset') {
       document.querySelector(`${DOM.statsDivClass} .closebtn`).onclick = ''
       document.querySelector(DOM.undoButtonId).onclick = ''
       document.querySelector(DOM.resetButtonId).onclick = ''
+      document.querySelector(DOM.themeSelectId).onchange = null
+      document.querySelector(DOM.animToggleId).onclick = null
     }
   }
 
@@ -821,6 +841,53 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
 
   setStats (html) {
     document.querySelector(DOM.statsDivId).innerHTML = html
+  }
+
+  async applyTheme (name) {
+    if (typeof window === 'undefined') return
+    if (!this.themeSheets[name]) {
+      const before = document.styleSheets.length
+      await import('../../themes/' + name + '.css').catch(() => {})
+      this.themeSheets[name] = Array.from(document.styleSheets).slice(before)
+    }
+    // Disable all tracked theme sheets
+    for (const sheets of Object.values(this.themeSheets)) {
+      sheets.forEach(s => { s.disabled = true })
+    }
+    // Enable target
+    ;(this.themeSheets[name] || []).forEach(s => { s.disabled = false })
+    this.run.theme = name
+    localStorage.setItem('if-theme', name)
+    // Keep select in sync
+    const sel = document.querySelector(DOM.themeSelectId)
+    if (sel) sel.value = name
+  }
+
+  applyAnimationPreference () {
+    // Inject disable-rule stylesheet once
+    if (!document.getElementById('if_r-reduce-motion-style')) {
+      const s = document.createElement('style')
+      s.id = 'if_r-reduce-motion-style'
+      s.textContent = 'body.if_r-reduce-motion *,body.if_r-reduce-motion *::before,body.if_r-reduce-motion *::after{animation:none!important;transition:none!important}'
+      document.head.appendChild(s)
+    }
+    const saved = localStorage.getItem('if-reduce-motion')
+    const osPrefers = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (saved === '1' || (saved === null && osPrefers)) {
+      document.body.classList.add('if_r-reduce-motion')
+      this._updateAnimToggleLabel(false)
+    }
+  }
+
+  toggleAnimations () {
+    const reduced = document.body.classList.toggle('if_r-reduce-motion')
+    localStorage.setItem('if-reduce-motion', reduced ? '1' : '0')
+    this._updateAnimToggleLabel(!reduced)
+  }
+
+  _updateAnimToggleLabel (animationsOn) {
+    const btn = document.querySelector(DOM.animToggleId)
+    if (btn) btn.textContent = animationsOn ? 'Animations: on' : 'Animations: off'
   }
 }
 
