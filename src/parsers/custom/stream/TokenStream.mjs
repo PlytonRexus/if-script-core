@@ -23,18 +23,18 @@ class TokenStream extends Stream {
    * @returns {Token}
    */
   peek () {
-    return this.current // || (this.current = this.readNext())
+    if (!this.nextToken && !this.eof()) {
+      this.nextToken = this.readNext()
+    }
+    return this.nextToken
   }
 
   /**
    * @returns {Token}
    */
   next () {
-    // const tok = this.current
-    // this.current = null
-    // return tok || (this.readNext())
     this.current = this.nextToken || this.readNext()
-    if (!this.eof()) this.nextToken = this.readNext()
+    this.nextToken = this.readNext()
     return this.current
   }
 

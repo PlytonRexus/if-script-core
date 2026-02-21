@@ -1,30 +1,41 @@
+/**
+ * @deprecated This file is deprecated and will be removed in v0.4.0.
+ * Use the new FileAdapter system instead.
+ * See: src/parsers/custom/loader/NodeFileAdapter.mjs
+ * See: src/parsers/custom/loader/BrowserFileAdapter.mjs
+ *
+ * This legacy file handler was part of the old text-substitution import system
+ * that only worked in Node.js. The new FileAdapter system provides a unified
+ * interface for both Node.js and browser environments.
+ */
+
 if (typeof module === 'object' && module.exports) {
-	const fs = require('fs')
-	const path = require('path')
+  const fs = require('fs')
+  const path = require('path')
 
-	const IOException = require('../../../exceptions/IOException')
+  const IOException = require('../../../exceptions/IOException')
 
-	class File {
-		constructor(relativePath, baseFilePath) {
-			// Check existence: (await exists(relativePath))
-			if (!relativePath) {
-				throw new IOException('File not found')
-			}
-			this.relativePath = relativePath
-			this.baseFilePath = baseFilePath
-			this.path = path.resolve(baseFilePath, '..', relativePath)
-		}
+  class File {
+    constructor (relativePath, baseFilePath) {
+      // Check existence: (await exists(relativePath))
+      if (!relativePath) {
+        throw new IOException('File not found')
+      }
+      this.relativePath = relativePath
+      this.baseFilePath = baseFilePath
+      this.path = path.resolve(baseFilePath, '..', relativePath)
+    }
 
-		static exists(filePath) {
-			return new Promise((resolve, reject) => {
+    static exists (filePath) {
+      return new Promise((resolve, reject) => {
 	    	fs.access(filePath, fs.constants.F_OK, err => {
 	    		if (err) resolve(false)
 	    		else resolve(true)
 	    	})
 	    })
-		}
+    }
 
-		read() {
+    read () {
 		  return new Promise((resolve, reject) => {
 		    fs.readFile(this.path, (err, buffer) => {
 		      if (err) {
@@ -34,52 +45,50 @@ if (typeof module === 'object' && module.exports) {
 		      resolve(buffer)
 		    })
 		  })
-		}
+    }
 
-		write(str) {
-			return new Promise((function (resolve, reject) {
-				fs.writeFile(this.path, str, e => {
-		      if (e)
-		        reject(new IOException(e.message));
-		      resolve(this.path);
+    write (str) {
+      return new Promise(function (resolve, reject) {
+        fs.writeFile(this.path, str, e => {
+		      if (e) { reject(new IOException(e.message)) }
+		      resolve(this.path)
 		    })
-			}).bind(this))
-		}
+      }.bind(this))
+    }
 
-		append(str) {
-			return new Promise((resolve, reject) => {
-				fs.writeFile(this.path, buffer, function(e) {
-		      if (e)
-		        reject(new IOException(e.message));
-		      resolve(this.path);
+    append (str) {
+      return new Promise((resolve, reject) => {
+        fs.writeFile(this.path, buffer, function (e) {
+		      if (e) { reject(new IOException(e.message)) }
+		      resolve(this.path)
 		    })
-			})
-		}
+      })
+    }
 
-		async extractRequire() {
-			let content = (await this.read()).toString()
-			return new Promise((resolve, reject) => {
-				let requirements = (content.match(/import__".*"__import/g) || [])
-				try {
-					requirements = requirements.map(r => {
-						r = r.replace(/import__/, "")
-						r = r.replace(/__import/, "")
-						r = r.trim()
-						r = r.replaceAll('"', '')
-						return r
-					})
-					requirements = new Set(requirements)
-					// console.log(requirements)
-					resolve(requirements)
-				} catch (err) {
-					reject(err)
-				}
-			})
-		}
+    async extractRequire () {
+      const content = (await this.read()).toString()
+      return new Promise((resolve, reject) => {
+        let requirements = (content.match(/import__".*"__import/g) || [])
+        try {
+          requirements = requirements.map(r => {
+            r = r.replace(/import__/, '')
+            r = r.replace(/__import/, '')
+            r = r.trim()
+            r = r.replaceAll('"', '')
+            return r
+          })
+          requirements = new Set(requirements)
+          // console.log(requirements)
+          resolve(requirements)
+        } catch (err) {
+          reject(err)
+        }
+      })
+    }
 
-		replaceRequire(str, name, value) {
-			const then = Date.now()
-			const importStatementLiteral ='import__"' + name + '"__import'
+    replaceRequire (str, name, value) {
+      const then = Date.now()
+      const importStatementLiteral = 'import__"' + name + '"__import'
 	    let j = 0
 	    while (j >= 0 && Date.now() - then < 10000) {
 	      j = str.indexOf(importStatementLiteral, j > 0 ? j + 1 : 0)
@@ -90,9 +99,9 @@ if (typeof module === 'object' && module.exports) {
 	        const last = str.substring(j + name.length + 18)
 	    //     console.log(first)
 	    //     console.log("\n")
-					// console.log(last)
+          // console.log(last)
 	    //     console.log("\n")
-					// console.log(value)
+          // console.log(value)
 	    //     console.log("\n")
 
 	        str = first + value + last
@@ -102,29 +111,28 @@ if (typeof module === 'object' && module.exports) {
 	    // console.log(str)
 
 	    return str
-		}
+    }
 
-		async assemble(main) {
-			let str = (await this.read()).toString()
-			const requirements = new Array(...(await this.extractRequire()))
+    async assemble (main) {
+      let str = (await this.read()).toString()
+      const requirements = new Array(...(await this.extractRequire()))
 
-			// console.log(requirements)
+      // console.log(requirements)
 
-			const assembledFiles = await Promise.all(requirements.map(async v => {
-				let file = new File(v, main)
-				return await file.assemble(main)
-			}))
+      const assembledFiles = await Promise.all(requirements.map(async v => {
+        const file = new File(v, main)
+        return await file.assemble(main)
+      }))
 
-			assembledFiles.forEach((assembled, idx) => {
-				str = this.replaceRequire(str, requirements[idx], assembled)
-			})
+      assembledFiles.forEach((assembled, idx) => {
+        str = this.replaceRequire(str, requirements[idx], assembled)
+      })
 
-			return str
-		}
+      return str
+    }
+  }
 
-	}
-
-	module.exports = File
+  module.exports = File
 } else {
-	module.exports = class File {}
+  module.exports = class File {}
 }

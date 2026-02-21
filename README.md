@@ -513,24 +513,141 @@ These capabilities make IF-Script suitable for implementing complex game logic, 
 
 ### [Imports](#imports)
 
-Split large stories across multiple files for better organization and maintainability.
+Split large stories across multiple files for better organization and maintainability. IF-Script supports a powerful import system that works in both Node.js and browsers, with features like circular dependency detection, caching, and path aliases.
+
+#### Basic Syntax
 
 ```
 import__"chapter2.partial.if"__import
 ```
 
--   Use relative paths from the current file
--   Imported files are processed during parsing
--   Useful for splitting chapters, scenes, or reusable content
--   Files typically use `.partial.if` extension to indicate they're part of a larger story
+#### Path Types
 
-Example structure:
+**1. Relative Paths** - Relative to the current file
 ```
-main.if
-  ├── import__"intro.partial.if"__import
-  ├── import__"chapter1.partial.if"__import
-  └── import__"chapter2.partial.if"__import
+import__"./chapter2.partial.if"__import
+import__"../shared/intro.partial.if"__import
 ```
+
+**2. Absolute Paths** - From the project root
+```
+import__"/lib/combat-system.partial.if"__import
+```
+
+**3. Path Aliases** - Configured shortcuts (see Configuration below)
+```
+import__"@lib/common.partial.if"__import
+import__"@components/inventory.partial.if"__import
+```
+
+#### Configuration
+
+Configure the import system when creating an `IFScript` instance:
+
+```javascript
+import IFScript from 'if-script-core'
+
+const ifScript = new IFScript('STREAM', {
+  // Path configuration
+  paths: {
+    aliases: {
+      '@lib': '/story-lib',
+      '@components': '/components'
+    },
+    extensions: ['.if', '.partial.if']  // Auto-try these extensions
+  },
+
+  // Browser-specific configuration
+  browser: {
+    baseUrl: 'https://example.com/stories/',  // Base URL for fetching
+    allowFetch: true,  // Enable dynamic fetching
+    preloadedFiles: {  // Pre-bundle files for offline use
+      '/lib/file.if': '/* file content */'
+    }
+  },
+
+  // Module loader configuration
+  loader: {
+    maxImportDepth: 50,        // Max nesting depth
+    enableCache: true,         // Cache loaded modules
+    circularDetection: true    // Detect circular imports
+  }
+})
+
+await ifScript.init()
+const story = await ifScript.parse(storyText, filePath)
+```
+
+#### Features
+
+✅ **Circular Dependency Detection** - Prevents infinite import loops
+```
+// a.if imports b.if, b.if imports a.if
+// Error: Circular import detected: a.if → b.if → a.if
+```
+
+✅ **Import Caching** - Files are loaded and parsed only once
+```
+// Both imports use the cached version
+import__"common.partial.if"__import
+import__"common.partial.if"__import
+```
+
+✅ **Nested Imports** - Imported files can import other files
+```
+// main.if
+import__"chapter1.partial.if"__import
+
+// chapter1.partial.if
+import__"scenes/intro.partial.if"__import
+```
+
+✅ **Browser Support** - Works in both Node.js and browsers
+```javascript
+// Option 1: Dynamic fetch (requires server)
+const ifScript = new IFScript('STREAM', {
+  browser: { baseUrl: 'https://example.com/stories/' }
+})
+
+// Option 2: Pre-bundled files (works offline)
+const ifScript = new IFScript('STREAM', {
+  browser: {
+    preloadedFiles: {
+      '/lib/file.if': '/* content here */'
+    },
+    allowFetch: false  // Disable dynamic fetching
+  }
+})
+```
+
+✅ **Clear Error Messages** - Detailed errors with file paths and line numbers
+```
+Import Error at 5:1
+  Import: "missing.if"
+  File not found: /path/to/missing.if (tried extensions: .if, .partial.if)
+```
+
+#### Example Structure
+
+```
+story/
+├── main.if
+│   ├── import__"@lib/intro.partial.if"__import
+│   ├── import__"chapter1.partial.if"__import
+│   └── import__"chapter2.partial.if"__import
+├── chapter1.partial.if
+│   └── import__"scenes/battle.partial.if"__import
+├── chapter2.partial.if
+└── lib/
+    └── intro.partial.if
+```
+
+#### File Extensions
+
+-   `.if` - Main story files
+-   `.partial.if` - Importable modules (convention, not required)
+
+Both extensions work the same way; the `.partial.if` convention just indicates the file is designed to be imported rather than used standalone.
 
 ### [Complete Example](#example)
 
@@ -600,12 +717,3 @@ section__
 __section
 ```
 
-This example shows:
--   Story settings with title and starting section
--   Variable declaration and modification
--   String interpolation in text
--   Input collection from the user
--   Conditional choices based on gold
--   Actions that modify variables
--   Conditional text blocks
--   Navigation between sections

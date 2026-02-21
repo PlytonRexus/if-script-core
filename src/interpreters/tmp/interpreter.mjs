@@ -1,5 +1,11 @@
 import showdown from 'showdown'
-import '../../themes/default.css'
+
+// Only import CSS in browser environments
+if (typeof window !== 'undefined') {
+  import('../../themes/default.css').catch(() => {
+    // Silently ignore CSS import errors
+  })
+}
 
 const IF = {}
 IF.story = {}

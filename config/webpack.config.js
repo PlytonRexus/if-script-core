@@ -65,9 +65,9 @@ module.exports = {
       '@': paths.src
     },
     fallback: {
-      path: require.resolve("path-browserify"),
+      path: require.resolve('path-browserify'),
       fs: false
-    },
+    }
   }
 
 }

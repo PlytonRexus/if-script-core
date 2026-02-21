@@ -45,6 +45,7 @@ class Story {
       this.sections = sections || []
       this.passages = passages || []
       this.scenes = scenes || []
+      this.functions = []
       this.settings = settings
       this.variables = {}
       if (globals) {

@@ -29,6 +29,7 @@ class ParserUtils {
   isOperator = (tok) => tok && tok.type === TTS.OPERATOR
 
   isTokenFor = (tok, type, kw) => {
+    if (!tok) return false
     if (!!type)
       return !!kw ? (tok.type === type && tok.symbol === kw) : (tok.type === type)
     else

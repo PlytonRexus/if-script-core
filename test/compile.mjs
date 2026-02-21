@@ -28,14 +28,23 @@ if (typeof window !== 'undefined' && !!window && !!window.location) {
 	if (!!storyName) useStory(storyName)
 }
 
-const is = new InputStream(story.path)
+// Use IFScript for proper module loader initialization
+import IFScript from '../src/IFScript.mjs'
+import versions from '../src/constants/versions.mjs'
+
 let parsed
 
-is.init()
-.then(() => {
-	const ts = new TokenStream(is)
-	parsed = new Parser(ts).parseStory()
+// Initialize IFScript with module loader support
+const ifScript = new IFScript(versions.STREAM)
+await ifScript.init()
+
+// Parse the story (now async)
+try {
+	parsed = await ifScript.parse(story.content, story.path)
 	console.log(JSON.stringify(parsed))
-})
+} catch (error) {
+	console.error('Parse error:', error)
+	throw error
+}
 
 export default parsed

@@ -11,18 +11,7 @@ class InputStream extends Stream {
     this.line = 1
     this.col = 0
     this.index = 0
-  }
-
-  async init() {
-    if (typeof module === 'object' && module.exports) {
-      const Assembler = (await import('./Assembler.js')).Assembler
-      this.assembler = new Assembler(this.input)
-      this.input = await this.assembler.assemble()
-    }
-  }
-
-  handleRequire() {
-    this.input.match(requireRegex)
+    this.currentFile = null // Track current file for imports
   }
 
   /**

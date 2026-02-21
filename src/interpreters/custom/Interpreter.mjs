@@ -27,7 +27,12 @@ class Interpreter {
       : !!localStorage.getItem('IF_DEBUG')
     this.run = run || null
     this.utils = new InterpreterUtils()
-    if (this.run) import('../../themes/' + this.run.theme + '.css')
+    // Only import CSS in browser environments
+    if (this.run && typeof window !== 'undefined') {
+      import('../../themes/' + this.run.theme + '.css').catch(() => {
+        // Silently ignore CSS import errors (e.g., in test environments)
+      })
+    }
 
     this.callStack = []
     this.MAX_CALL_DEPTH = 1000
@@ -44,7 +49,12 @@ class Interpreter {
   loadStory (story, run, theme) {
     if (!story || !(story instanceof Story)) throw new InterpreterException('Invalid story supplied')
     this.run = run || new Run(story, null, theme)
-    if (this.run) import('../../themes/' + this.run.theme + '.css')
+    // Only import CSS in browser environments
+    if (this.run && typeof window !== 'undefined') {
+      import('../../themes/' + this.run.theme + '.css').catch(() => {
+        // Silently ignore CSS import errors (e.g., in test environments)
+      })
+    }
     console.info('Story loading...')
 
     this.generateDisplay()

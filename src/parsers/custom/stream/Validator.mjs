@@ -34,7 +34,7 @@ class Validator {
 
   isOperatorChar = ch => '+-*/%=&|<>!'.indexOf(ch) >= 0
 
-  isPunctuation = ch => ';(){}[].'.indexOf(ch) >= 0
+  isPunctuation = ch => ';(){}[].,'.indexOf(ch) >= 0
 
   isSectionEnd = phrase => phrase.indexOf(Keywords.SECTION_END) === 0
 
