@@ -207,6 +207,7 @@ class Parser {
         this.skipNewLine()
         if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) break
         ifBlock.push(this.parseExpression())
+        if (this.utils.isTokenFor(this.input.peek(), TTS.CHOICE_END)) this.input.next()
         this.skipNewLine()
       }
       this.skipPunctuation(Punctuations.BRACE_CLOSE)
@@ -225,6 +226,7 @@ class Parser {
             this.skipNewLine()
             if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE)) break
             elseBlock.push(this.parseExpression())
+            if (this.utils.isTokenFor(this.input.peek(), TTS.CHOICE_END)) this.input.next()
             this.skipNewLine()
           }
           this.skipPunctuation(Punctuations.BRACE_CLOSE)
