@@ -27,6 +27,7 @@ const Keywords = {
   PROP_IF_TITLE: '@storyTitle',
   PROP_MAX_ITERATIONS: '@maxIterations',
   PROP_MAX_CALL_DEPTH: '@maxCallDepth',
+  PROP_STATUS_BAR: '@statusBar',
 
   // scene properties
   PROP_SCENE_FIRST: '@first',

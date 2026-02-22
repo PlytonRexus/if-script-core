@@ -94,6 +94,22 @@ class Interpreter {
         /* Ensure non-<a> elements in the sidebar inherit the theme's sidebar color */
         .if_r-sb-title, .if_r-sb-group-label { color: inherit; }
         .if_r-cs-btn, .if_r-cs-opt { color: inherit; }
+        .if_r-made-with {
+          position: fixed;
+          left: 50%;
+          bottom: 10px;
+          transform: translateX(-50%);
+          z-index: 120;
+          font-size: 12px;
+          opacity: 0.7;
+          text-align: center;
+          padding: 4px 10px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.45);
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
+          pointer-events: none;
+        }
       `
       document.head.appendChild(csStyle)
     }
@@ -228,7 +244,8 @@ class Interpreter {
         </div>
         </div>
         <div id="${this.replaceHash(DOM.sectionDisplayId)}">
-        </div>`
+        </div>
+        <div class="if_r-made-with">Made with ❤️ in IF-Script</div>`
 
     if (this.run) this._syncThemeSelect(this.run.theme || 'default')
     this._updateAnimToggleLabel(!document.body.classList.contains('if_r-reduce-motion'))
@@ -255,7 +272,7 @@ class Interpreter {
   }
 
   generateSectionBySerial (serial) {
-    const section = this.run.story.findSection(parseInt(serial, 10))
+    const section = this.run.story.findSection(serial)
     return this.generateHTMLForSection(section)
   }
 
@@ -725,7 +742,22 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     this.run.state.variables.turn = abs || (change ? (this.run.state.turn + change) : this.run.state.turn + 1)
   }
 
+  _isStatusStatVisible (name, statsConfig, hasExplicitInclusions) {
+    const config = statsConfig[name]
+    if (config && typeof config === 'object' && Object.prototype.hasOwnProperty.call(config, 'showInStatusBar')) {
+      return config.showInStatusBar === true
+    }
+    return !hasExplicitInclusions
+  }
+
   showStats () {
+    const statsConfig = this.run.story && this.run.story.stats && typeof this.run.story.stats === 'object'
+      ? this.run.story.stats
+      : {}
+    const hasExplicitInclusions = Object.values(statsConfig).some(cfg =>
+      cfg && typeof cfg === 'object' && cfg.showInStatusBar === true
+    )
+
     const stats = Object.keys(this.run.state.variables)
     let statsHTML = `<pre> <b>Turn:</b> ${this.run.state.turn}   `
 
@@ -733,7 +765,12 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
       if (stat === 'turn') return
       const val = this.run.state.variables[stat]
       if (val !== null && typeof val === 'object') return
-      statsHTML += `<b>${stat}:</b> ${val}   `
+      if (!this._isStatusStatVisible(stat, statsConfig, hasExplicitInclusions)) return
+      const config = statsConfig[stat]
+      const displayName = config && typeof config === 'object' && typeof config.statusBarLabel === 'string' && config.statusBarLabel.trim() !== ''
+        ? config.statusBarLabel
+        : stat
+      statsHTML += `<b>${displayName}:</b> ${val}   `
     })
 
     statsHTML += '</pre>'

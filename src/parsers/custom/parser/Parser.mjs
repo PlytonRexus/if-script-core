@@ -41,6 +41,7 @@ class Parser {
     this.counts = { sectionNumber: 1, sceneNumber: 1, choiceNumber: 1 }
     this.moduleLoader = moduleLoader
     this.currentFile = input.input?.currentFile || '<inline>'
+    this.statusConfigTarget = null
   }
 
   static async parseText (text) {
@@ -93,6 +94,21 @@ class Parser {
 
   except (message) {
     return this.input.except(message)
+  }
+
+  _applyStatusBarSetting (target, config) {
+    if (!target || typeof target !== 'object' || !config) return
+    const { variable, show, label } = config
+    if (typeof variable !== 'string' || variable.trim() === '') return
+
+    const nextConfig = {
+      ...(target[variable] || {}),
+      showInStatusBar: show !== false
+    }
+    if (typeof label === 'string') {
+      nextConfig.statusBarLabel = label
+    }
+    target[variable] = nextConfig
   }
 
   parseExpression () {
@@ -267,8 +283,12 @@ class Parser {
           )
         }
       } else if (component instanceof Property) {
-        section.settings[component.name] = component.value
-        if (component.name === 'title') section.title = component.value
+        if (component.name === 'statusBar') {
+          this._applyStatusBarSetting(this.statusConfigTarget, component.value)
+        } else {
+          section.settings[component.name] = component.value
+          if (component.name === 'title') section.title = component.value
+        }
       } else if (
         component instanceof Token ||
         component instanceof ConditionalBlock ||
@@ -315,7 +335,11 @@ class Parser {
           choice.mode = 'input'
           choice.input = component.value
         } else if (component.name === 'target') choice.target = component.value
-        else if (component.name === 'targetType') { choice.targetType = component.value }
+        else if (component.name === 'targetType') {
+          choice.targetType = component.value
+        } else if (component.name === 'statusBar') {
+          this._applyStatusBarSetting(this.statusConfigTarget, component.value)
+        }
       } else if (
         component instanceof Token ||
         component instanceof ConditionalBlock ||
@@ -340,7 +364,7 @@ class Parser {
    * @param {string} type
    * @returns {StorySettings|SectionSettings} settings instance
    */
-  parseSettings (type) {
+  parseSettings (type, statusTarget = null) {
     let Entity = StorySettings
     let endKeyword = KW.SETTINGS_END
 
@@ -353,13 +377,17 @@ class Parser {
 
     const settings = new Entity({ referrable: false, startAt: 0, fullTimer: 0 })
 
-    this.skipOtherKeyword(KW.SETTINGS_START)
+    this.skipOtherKeyword(type)
     while (!isTokenFor(this.input.peek(), TTS.OTHER_KW, endKeyword)) {
       this.skipNewLine()
       if (isTokenFor(this.input.peek(), TTS.OTHER_KW, endKeyword)) break
       if (isTokenFor(this.input.peek(), TTS.PROPERTY_KW)) {
         const prop = this.parseProperty()
-        settings[prop.name] = prop.value
+        if (prop.name === 'statusBar' && type === KW.SETTINGS_START) {
+          this._applyStatusBarSetting(statusTarget, prop.value)
+        } else {
+          settings[prop.name] = prop.value
+        }
       } else this.unexpected()
 
       if (isTokenFor(this.input.peek(), TTS.OTHER_KW, endKeyword)) break
@@ -438,7 +466,8 @@ class Parser {
       propFullTimer: () => {
         limitToN(2)
         name = 'fullTimer'
-        assignIfValid(tok, TTS.NUMBER)
+        if (result.size() === 0) assignIfValid(tok, TTS.NUMBER)
+        else assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propReferrable: () => {
         limitToOne()
@@ -450,7 +479,7 @@ class Parser {
       propSceneFirst: () => {
         limitToOne()
         name = 'first'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propSceneMusic: () => {
         limitToOne()
@@ -464,12 +493,13 @@ class Parser {
       },
       propSceneSections: () => {
         name = 'sections'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propSectionTimer: () => {
-        limitToOne()
+        limitToN(2)
         name = 'timer'
-        assignIfValid(tok, TTS.NUMBER)
+        if (result.size() === 0) assignIfValid(tok, TTS.NUMBER)
+        else assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propSectionTitle: () => {
         limitToOne()
@@ -479,7 +509,7 @@ class Parser {
       propStartAt: () => {
         limitToOne()
         name = 'startAt'
-        assignIfValid(tok, TTS.NUMBER)
+        assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
       propRequire: () => {
         limitToOne()
@@ -495,6 +525,22 @@ class Parser {
         limitToOne()
         name = 'maxCallDepth'
         assignIfValid(tok, TTS.NUMBER)
+      },
+      propStatusBar: () => {
+        limitToN(3)
+        name = 'statusBar'
+        if (result.size() === 0) {
+          assignIfValid(tok, TTS.VARIABLE)
+        } else if (result.size() === 1) {
+          if (isTokenFor(tok, TTS.BOOLEAN)) {
+            result.push(this.utils.isTrue(tok))
+          } else if (isTokenFor(tok, TTS.STRING)) {
+            result.push(true)
+            result.push(tok.symbol)
+          } else this.unexpected()
+        } else if (result.size() === 2 && typeof result[1] === 'boolean') {
+          assignIfValid(tok, TTS.STRING)
+        } else this.unexpected()
       }
     }
 
@@ -508,13 +554,32 @@ class Parser {
     // this.input.next()
 
     if (name === 'fullTimer') {
-      return {
+      return new Property({
         name,
         value: {
           timer: result[0],
           target: result[1]
         }
-      }
+      })
+    }
+    if (name === 'timer') {
+      return new Property({
+        name,
+        value: {
+          timer: result[0],
+          target: result.size() > 1 ? result[1] : null
+        }
+      })
+    }
+    if (name === 'statusBar') {
+      return new Property({
+        name,
+        value: {
+          variable: result[0],
+          show: result.size() > 1 ? result[1] : true,
+          label: result.size() > 2 ? result[2] : undefined
+        }
+      })
     }
     return new Property({
       name,
@@ -790,8 +855,10 @@ class Parser {
       sections: [],
       scenes: [],
       functions: {},
-      initVars: {} // top-level literal variable assignments (merged into story.persistent)
+      initVars: {}, // top-level literal variable assignments (merged into story.persistent)
+      stats: {}
     }
+    this.statusConfigTarget = components.stats
 
     let tok
     while (!this.input.eof()) {
@@ -809,6 +876,7 @@ class Parser {
           components.scenes.push(...importStmt.module.scenes)
           Object.assign(components.functions, importStmt.module.functions)
           Object.assign(components.initVars, importStmt.module.initVars || {})
+          Object.assign(components.stats, importStmt.module.stats || {})
         }
         continue
       }
@@ -818,8 +886,8 @@ class Parser {
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
         components.scenes.push(this.parseScene())
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
-        // Parse and discard module settings (they are for standalone testing only)
-        this.parseSettings(KW.SETTINGS_START)
+        // Parse module settings for metadata, but don't apply global behavior.
+        this.parseSettings(KW.SETTINGS_START, components.stats)
       } else if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
         const funcDef = this.parseFunctionDef()
         components.functions[funcDef.name] = funcDef
@@ -828,11 +896,17 @@ class Parser {
         const expr = this.parseExpression(false)
         this._tryStoreInitVar(expr, components.initVars)
         continue // parseExpression consumed the tokens; skip the trailing this.input.next()
+      } else if (isTokenFor(tok, TTS.PROPERTY_KW)) {
+        const prop = this.parseProperty()
+        if (prop.name === 'statusBar') {
+          this._applyStatusBarSetting(components.stats, prop.value)
+        }
       }
 
       tok = this.input.next()
     }
 
+    this.statusConfigTarget = null
     return components
   }
 
@@ -880,6 +954,7 @@ class Parser {
       { globals: {}, stats: {} }
     )
     this.story = story
+    this.statusConfigTarget = story.stats
 
     // Initialize functions storage
     if (!story.persistent.functions) {
@@ -904,6 +979,7 @@ class Parser {
           Object.assign(story.persistent.functions, importStmt.module.functions)
           // Merge top-level variable initialisers from the module
           Object.assign(story.persistent, importStmt.module.initVars || {})
+          Object.assign(story.stats, importStmt.module.stats || {})
         }
         continue // Skip to next iteration
       }
@@ -913,7 +989,7 @@ class Parser {
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
         story.scenes.push(this.parseScene())
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
-        story.settings = this.parseSettings(KW.SETTINGS_START)
+        story.settings = this.parseSettings(KW.SETTINGS_START, story.stats)
       } else if (isTokenFor(tok, TTS.FUNCTION_KW, KW.FUNCTION_START)) {
         const funcDef = this.parseFunctionDef()
         story.persistent.functions[funcDef.name] = funcDef
@@ -923,10 +999,16 @@ class Parser {
         const expr = this.parseExpression(false)
         this._tryStoreInitVar(expr, story.persistent)
         continue
+      } else if (isTokenFor(tok, TTS.PROPERTY_KW)) {
+        const prop = this.parseProperty()
+        if (prop.name === 'statusBar') {
+          this._applyStatusBarSetting(story.stats, prop.value)
+        }
       }
       tok = this.input.next()
     }
 
+    this.statusConfigTarget = null
     if (story.settings.name) story.name = story.settings.name
     return story
   }

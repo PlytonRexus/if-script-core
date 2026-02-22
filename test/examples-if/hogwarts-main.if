@@ -59,7 +59,7 @@ import__ "hogwarts-3.partial.if" __import
 import__ "hogwarts-4.partial.if" __import
 import__ "hogwarts-5.partial.if" __import
 import__ "hogwarts-6.partial.if" __import
-/* import__ "hogwarts-7.partial.if" __import */
+import__ "hogwarts-7.partial.if" __import
 
 /* ---------- SAFETY NET ---------- */
 

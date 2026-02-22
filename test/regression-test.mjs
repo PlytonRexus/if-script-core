@@ -13,6 +13,8 @@ import {
   assertDefined,
   runTestSuite
 } from './test-utils.mjs'
+import SectionRef from '../src/models/SectionRef.mjs'
+import SceneRef from '../src/models/SceneRef.mjs'
 
 // ===== Basic Features =====
 
@@ -215,6 +217,202 @@ __section`
   assertDefined(parsed.settings, 'Should have settings')
   assertEqual(parsed.settings.name, 'Test Story', 'Story title should match')
   assertEqual(parsed.settings.startAt, 1, 'Start section should be 1')
+}
+
+async function testStartAtTitleRef () {
+  const storyText = `settings__
+  @storyTitle "Ref Story"
+  @startAt "Entry"
+__settings
+
+section__
+  @title "Entry"
+  "Entry section"
+__section
+
+section__
+  @title "Exit"
+  "Exit section"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assertEqual(parsed.settings.startAt, 'Entry', 'Start section title ref should be preserved')
+  assertEqual(parsed.findSection(new SectionRef('Entry')).settings.title, 'Entry', 'SectionRef(title) should resolve correctly')
+}
+
+async function testFullTimerTitleTargetRef () {
+  const storyText = `settings__
+  @storyTitle "Timer Ref Story"
+  @startAt 1
+  @fullTimer 30 "Timeout"
+__settings
+
+section__
+  @title "Start"
+  "Start section"
+__section
+
+section__
+  @title "Timeout"
+  "Timeout section"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assertDefined(parsed.settings.fullTimer, 'Full timer should be defined')
+  assertEqual(parsed.settings.fullTimer.timer, 30, 'Full timer seconds should match')
+  assertEqual(parsed.settings.fullTimer.target, 'Timeout', 'Full timer target should accept section title refs')
+}
+
+async function testSceneSectionRefs () {
+  const storyText = `scene__
+  @name "Chapter One"
+  @first "Entry"
+  @sections "Entry" 2 "Exit"
+__scene
+
+section__
+  @title "Entry"
+  "Entry section"
+__section
+
+section__
+  @title "Middle"
+  "Middle section"
+__section
+
+section__
+  @title "Exit"
+  "Exit section"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  const scene = parsed.findScene(new SceneRef('Chapter One'))
+  assertDefined(scene, 'Scene should resolve by SceneRef(name)')
+  assertEqual(scene.first, 'Entry', 'Scene @first should accept section title refs')
+  assert(Array.isArray(scene.sections), 'Scene sections should be array')
+  assertEqual(scene.sections[0], 'Entry', 'Scene sections should preserve title refs')
+  assertEqual(scene.sections[1], 2, 'Scene sections should preserve numeric refs')
+}
+
+async function testSectionTimerTargetRef () {
+  const storyText = `section__
+  @title "Start"
+  @timer 15 "Timeout"
+  "Start section"
+__section
+
+section__
+  @title "Timeout"
+  "Timeout section"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  const timer = parsed.sections[0].settings.timer
+  assertDefined(timer, 'Section timer should be defined')
+  assertEqual(timer.timer, 15, 'Section timer seconds should match')
+  assertEqual(timer.target, 'Timeout', 'Section timer target should accept section title refs')
+}
+
+async function testStatusBarSettings () {
+  const storyText = `settings__
+  @storyTitle "Status Config Story"
+  @statusBar health
+  @statusBar gold false
+__settings
+
+section__
+  health = 10
+  gold = 5
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assert(parsed !== null, 'Story should parse successfully')
+  assertDefined(parsed.stats.health, 'Health stat config should exist')
+  assertEqual(parsed.stats.health.showInStatusBar, true, 'Health should be visible')
+  assertDefined(parsed.stats.gold, 'Gold stat config should exist')
+  assertEqual(parsed.stats.gold.showInStatusBar, false, 'Gold should be hidden')
+}
+
+async function testStatusBarPropertyOutsideSettings () {
+  const storyText = `@statusBar morale
+@statusBar secret false
+
+section__
+  morale = 9
+  secret = 1
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assert(parsed !== null, 'Story should parse successfully')
+  assertDefined(parsed.stats.morale, 'Morale stat config should exist')
+  assertEqual(parsed.stats.morale.showInStatusBar, true, 'Morale should be visible')
+  assertDefined(parsed.stats.secret, 'Secret stat config should exist')
+  assertEqual(parsed.stats.secret.showInStatusBar, false, 'Secret should be hidden')
+}
+
+async function testStatusBarCustomLabels () {
+  const storyText = `settings__
+  @storyTitle "Status Label Story"
+  @statusBar health "Health Points"
+  @statusBar gold false "Gold Coins"
+__settings
+
+section__
+  health = 10
+  gold = 5
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assert(parsed !== null, 'Story should parse successfully')
+  assertDefined(parsed.stats.health, 'Health stat config should exist')
+  assertEqual(parsed.stats.health.showInStatusBar, true, 'Health should be visible')
+  assertEqual(parsed.stats.health.statusBarLabel, 'Health Points', 'Health should use custom status label')
+  assertDefined(parsed.stats.gold, 'Gold stat config should exist')
+  assertEqual(parsed.stats.gold.showInStatusBar, false, 'Gold should be hidden')
+  assertEqual(parsed.stats.gold.statusBarLabel, 'Gold Coins', 'Gold should use custom status label')
+}
+
+async function testStatusBarCustomLabelsTopLevelProperty () {
+  const storyText = `@statusBar morale "Morale Meter"
+@statusBar secret false "Hidden Secret"
+
+section__
+  morale = 9
+  secret = 1
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assert(parsed !== null, 'Story should parse successfully')
+  assertDefined(parsed.stats.morale, 'Morale stat config should exist')
+  assertEqual(parsed.stats.morale.showInStatusBar, true, 'Morale should be visible')
+  assertEqual(parsed.stats.morale.statusBarLabel, 'Morale Meter', 'Morale should use custom status label')
+  assertDefined(parsed.stats.secret, 'Secret stat config should exist')
+  assertEqual(parsed.stats.secret.showInStatusBar, false, 'Secret should be hidden')
+  assertEqual(parsed.stats.secret.statusBarLabel, 'Hidden Secret', 'Secret should use custom status label')
 }
 
 async function testScenes () {
@@ -437,6 +635,14 @@ export async function runRegressionTests () {
     { name: 'Basic: String interpolation', fn: testStringInterpolation },
     { name: 'Basic: Multiple sections', fn: testMultipleSections },
     { name: 'Basic: Settings', fn: testSettings },
+    { name: 'Refs: @startAt title', fn: testStartAtTitleRef },
+    { name: 'Refs: @fullTimer target title', fn: testFullTimerTitleTargetRef },
+    { name: 'Refs: Scene first/sections', fn: testSceneSectionRefs },
+    { name: 'Refs: Section timer target', fn: testSectionTimerTargetRef },
+    { name: 'Basic: Status bar settings', fn: testStatusBarSettings },
+    { name: 'Basic: Status bar top-level property', fn: testStatusBarPropertyOutsideSettings },
+    { name: 'Basic: Status bar custom labels', fn: testStatusBarCustomLabels },
+    { name: 'Basic: Status bar custom labels top-level property', fn: testStatusBarCustomLabelsTopLevelProperty },
     { name: 'Basic: Scenes', fn: testScenes },
     { name: 'Basic: Comments', fn: testComments },
     { name: 'Operators: Boolean (&&, ||, !)', fn: testBooleanOperators },

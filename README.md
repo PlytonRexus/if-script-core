@@ -43,7 +43,7 @@ This starts a local HTTP server and opens the story in your browser. The browser
 | Flag | Alias | Default | Description |
 |------|-------|---------|-------------|
 | `--input-file` | `-i` | *(required)* | Path to `.if` story file |
-| `--theme` | `-t` | `bricks` | Theme name (`default` or `bricks`) |
+| `--theme` | `-t` | `parchment` | Theme name (`default`, `bricks`, `terminal`, `neon`, `parchment`, `contrast`, `dark`, `minimal`, `glass`) |
 | `--port` | `-p` | `3001` | Local server port |
 
 **Example:**
@@ -70,10 +70,10 @@ ifs compile -i my-story.if -o story.json
 
 ---
 
-### Current Syntax (v0.2.0+)
+### Current Syntax (v0.5.8+)
 
 ### [Embedding](#embedding)
-Sure, you can use the parser on node, but the interpreter will need the DOM to work
+You can parse in Node.js, but the interpreter requires a DOM.
 
 1. Import the library
 ```js
@@ -84,14 +84,16 @@ import IFScript from 'if-script-core'
 const ifScript = new IFScript()
 await ifScript.init()
 ```
-3. Parse story text
+3. Parse story text (async)
 ```js
 const myStoryText = '/* my story */'
-const parsed = ifScript.parse(myStoryText)
+const parsed = await ifScript.parse(myStoryText, '/stories/my-story.if')
 ```
+Pass a stable `filePath` whenever you use `import__...__import` so relative imports resolve correctly.
+
 4. Load into DOM with optional theme
 ```js
-ifScript.interpreter.loadStory(parsed, null, 'default')
+ifScript.interpreter.loadStory(parsed, null, 'parchment')
 ```
 
 *The indentation does not matter.*
@@ -133,16 +135,26 @@ settings__
   @startAt 1
   @referrable false
   @fullTimer 300 1
+  @statusBar health
+  @statusBar stamina "Stamina"
+  @statusBar gold false
+  @statusBar hp true "Health"
 __settings
 ```
 
 Available settings:
 -   `@storyTitle` - The title of your story (string)
--   `@startAt` - The starting section number (number, default: 1)
+-   `@startAt` - The starting section ref (serial number or section title string, default: 0). Set this explicitly in real stories.
 -   `@referrable` - Whether older sections remain visible when moving to new sections (boolean, default: false)
--   `@fullTimer` - Time limit for completing the story in seconds, followed by the target section when time expires (two numbers, e.g., `300 1` means 300 seconds, then go to section 1)
+-   `@fullTimer` - Time limit for completing the story in seconds, followed by a target section ref (serial or title, e.g., `300 1` or `300 "Game Over"`)
 -   `@maxIterations` - Maximum iterations allowed in while loops (number, default: 10000)
 -   `@maxCallDepth` - Maximum function call depth for recursion (number, default: 1000)
+-   `@statusBar` - Configure status-bar visibility and display label for a variable. Supported forms:
+    `@statusBar hp`
+    `@statusBar hp false`
+    `@statusBar hp "Health"`
+    `@statusBar hp true "Health"`
+    If any variable is explicitly marked `true`, only `true` variables are shown. When a label is provided, it is shown instead of the variable name.
 
 ### [Scenes](#scenes)
 
@@ -159,9 +171,19 @@ __scene
 
 Properties:
 -   `@name` - Display name for the scene (string)
--   `@first` - The first section in this scene (number, optional)
+-   `@first` - The first section ref in this scene (serial or title, optional)
 -   `@music` - URL to background music for this scene (string, optional)
--   `@sections` - Space-separated list of section numbers in this scene (numbers)
+-   `@sections` - Space-separated list of section refs in this scene (serials and/or titles)
+
+Use scene names in choices when possible:
+```
+choice__
+  @targetType "scene"
+  @target "Chapter One"
+  "Start Chapter One"
+__choice
+```
+
 ### [Sections](#section-syntax)
 
 Sections are independent locations/situations in a story. These can be reached through choices. Each section can have its own settings including timers that redirect to another section if the reader doesn't choose within the specified time.
@@ -177,12 +199,12 @@ section__
   "What will you do?"
 
   choice__
-    @target 2
+    @target "Royal Audience"
     "Bow respectfully"
   __choice
 
   choice__
-    @target 3
+    @target "Defiant Speech"
     "Speak boldly"
   __choice
 __section
@@ -190,7 +212,7 @@ __section
 
 Properties:
 -   `@title` - The title of this section (string, optional)
--   `@timer` - Countdown timer in seconds, followed by the target section when time expires (two numbers, e.g., `30 5` means 30 seconds, then go to section 5)
+-   `@timer` - Countdown timer in seconds, followed by a target section ref (serial or title, e.g., `30 5` or `30 "Timeout"`)
 
 Sections can contain:
 -   Variable assignments
@@ -204,8 +226,8 @@ Choices are the primary method to navigate through your story by reaching sectio
 **Basic choice** - Navigate to a section:
 ```
 choice__
-  @target 5
-  "Continue to section 5"
+  @target "Market Square"
+  "Continue to the market"
 __choice
 ```
 
@@ -213,15 +235,15 @@ __choice
 ```
 choice__
   @targetType "scene"
-  @target 2
-  "Begin Chapter 2"
+  @target "Chapter Two"
+  "Begin Chapter Two"
 __choice
 ```
 
 **Input choice** - Collect user input and store in a variable:
 ```
 choice__
-  @target 3
+  @target "After Name Entry"
   @input playerName
   "Enter your name:"
 __choice
@@ -230,17 +252,18 @@ __choice
 **Action choice** - Perform an action when clicked:
 ```
 choice__
-  @target 4
+  @target "After Potion"
   @action health = health + 10
   "Drink health potion (+10 HP)"
 __choice
 ```
 
-**Multiple actions** - Chain actions with semicolons:
+**Multiple actions** - Add multiple `@action` lines:
 ```
 choice__
-  @target 6
-  @action gold = gold - 50; hasSword = true
+  @target "Armory"
+  @action gold = gold - 50
+  @action hasSword = true
   "Buy sword (50 gold)"
 __choice
 ```
@@ -249,7 +272,7 @@ __choice
 ```
 if__ (gold >= 50) {
   choice__
-    @target 6
+    @target "Armory"
     "Buy sword (50 gold)"
   __choice
 }
@@ -277,11 +300,23 @@ Arithmetic (in actions):
 -   `%` - Modulo
 
 Choice properties:
--   `@target` - The section number to navigate to (number)
--   `@targetType` - Set to `"scene"` to navigate to a scene instead of a section (string, optional)
+-   `@target` - Where to navigate: section title/serial by default, or scene name/serial when `@targetType "scene"` is set (number or string)
+-   `@targetType` - Set to `"scene"` to navigate to a scene instead of a section (string, optional, default: `"section"`)
 -   `@input` - Variable name to store user input (identifier, optional)
--   `@action` - Expression to execute when chosen (expression, optional)
--   `@read` - Mark content as read (boolean, optional)
+-   `@action` - Expression to execute when chosen. Add multiple lines for multiple actions. (expression, optional)
+
+Targeting tips:
+-   Prefer string targets for readability and to avoid renumbering issues (`@target "Section Title"` or scene `@target "Scene Name"` with `@targetType "scene"`).
+-   String targets match section `@title` / scene `@name` exactly, so keep those values unique.
+-   Numeric targets are still useful for deliberate serial jumps; string refs are useful for readability and stability.
+
+Example when numeric targeting is intentional:
+```
+choice__
+  @target 42
+  "Jump to fallback section serial 42"
+__choice
+```
 
 ### [Conditional Blocks](#conditionals)
 
@@ -301,7 +336,7 @@ if__ (health < 20) {
 if__ (hasKey == true) {
   "You unlock the door."
   choice__
-    @target 10
+    @target "Treasure Room"
     "Enter the room"
   __choice
 } else__ {
@@ -591,6 +626,14 @@ import__"@lib/common.partial.if"__import
 import__"@components/inventory.partial.if"__import
 ```
 
+#### Serial Counters Across Imports
+
+Each imported module is parsed with its own section/scene serial counters. Nested imported modules do the same. The main story file uses a separate counter space.
+
+In practice:
+- Use string targets (`@target "Section Title"` or scene `@target "Scene Name"`) for cross-module navigation.
+- Use numeric targets when you explicitly want a serial jump; timers (`@timer`, `@fullTimer`) support both serial and title refs.
+
 #### Configuration
 
 Configure the import system when creating an `IFScript` instance:
@@ -723,7 +766,7 @@ section__
   "You have ${gold} gold pieces."
 
   choice__
-    @target 2
+    @target "Market Square"
     @input playerName
     "Enter your name:"
   __choice
@@ -737,14 +780,15 @@ section__
 
   if__ (gold >= 5) {
     choice__
-      @target 3
-      @action gold = gold - 5; hasMap = true
+      @target "The Crossroads"
+      @action gold = gold - 5
+      @action hasMap = true
       "Buy a map (5 gold)"
     __choice
   }
 
   choice__
-    @target 3
+    @target "The Crossroads"
     "Continue your journey"
   __choice
 __section
@@ -762,9 +806,8 @@ section__
   "You have ${gold} gold remaining."
 
   choice__
-    @target 1
+    @target "The Village"
     "Return to the village"
   __choice
 __section
 ```
-

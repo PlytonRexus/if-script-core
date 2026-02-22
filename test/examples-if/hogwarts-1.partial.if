@@ -115,7 +115,7 @@ section__
 
   choice__
     @targetType "scene"
-    @target 2
+    @target "The Hogwarts Express"
     "Board the train"
   __choice
 __section

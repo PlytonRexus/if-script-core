@@ -1,6 +1,8 @@
 import Section from './Section.mjs'
 import Scene from './Scene.mjs'
 import StorySettings from './StorySettings.mjs'
+import SectionRef from './SectionRef.mjs'
+import SceneRef from './SceneRef.mjs'
 /**
  * @author Mihir Jichkar
  * @description Each story is composed of Sections and Passages
@@ -62,9 +64,14 @@ class Story {
     return new Story({}, {}, {}, {}, json)
   }
 
-  findSection (serial) {
-    // Support name-based lookup when a string is passed
-    if (typeof serial === 'string') return this.findSectionByTitle(serial)
+  findSection (sectionRef) {
+    const ref = SectionRef.from(sectionRef)
+    if (!ref) return this.sections[0]
+    if (ref.kind === 'title') return this.findSectionByTitle(ref.value)
+    return this.findSectionBySerial(ref.value)
+  }
+
+  findSectionBySerial (serial) {
     let index = this.sections.findIndex(section => section.serial === serial)
 
     if (index === -1) {
@@ -83,9 +90,14 @@ class Story {
     return section
   }
 
-  findScene (serial) {
-    // Support name-based lookup when a string is passed
-    if (typeof serial === 'string') return this.findSceneByName(serial)
+  findScene (sceneRef) {
+    const ref = SceneRef.from(sceneRef)
+    if (!ref) return this.scenes[0]
+    if (ref.kind === 'name') return this.findSceneByName(ref.value)
+    return this.findSceneBySerial(ref.value)
+  }
+
+  findSceneBySerial (serial) {
     let index = this.scenes.findIndex(scene => scene.serial === serial)
 
     if (index === -1) {
