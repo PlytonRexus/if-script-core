@@ -535,7 +535,7 @@ function buildRootStory () {
   return [
     'settings__',
     '  @storyTitle "Thrones"',
-    '  @startAt "T001 - ACT0 - Oath at Riverrun"',
+    '  @startAt "Oath at Riverrun"',
     '  @maxIterations 20000',
     '  @maxCallDepth 2000',
     '  @theme "cinematic"',

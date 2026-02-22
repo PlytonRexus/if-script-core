@@ -1,12 +1,12 @@
 /* Thrones module: 03-act3-stormlands.partial.if */
 scene__
   @name "ACT3: Stormlands Oaths"
-  @first "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
-  @sections "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky" "T194 - ACT3 - Moat Cailin Whispered Warning at the gatehouse" "T195 - ACT3 - Oldtown Silent Betrayal behind closed doors" "T196 - ACT3 - Pyke Hostage Exchange at the broken tower" "T197 - ACT3 - Highgarden Siege Promise in the throne shadow" "T198 - ACT3 - Sunspear Prison Confession with steel drawn" "T199 - ACT3 - The Trident Salt Pact by the harbor chain" "T200 - ACT3 - Riverrun Broken Oath under rain" "T201 - ACT3 - The Kingsroad Blackmail Ledger after the feast" "T202 - ACT3 - The Red Keep Raven Intercept before the sept bell" "T203 - ACT3 - Winterfell Night Council before witnesses" "T204 - ACT3 - The Twins Debt Collection under wolf banners" "T205 - ACT3 - Harrenhal Torchlit Census at the rookery" "T206 - ACT3 - Dragonstone Blood Price at first light" "T207 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals" "T208 - ACT3 - The Dreadfort Border Muster in crowded galleries" "T209 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T210 - ACT3 - Pentos Harbor Ambush in river fog" "T211 - ACT3 - Qarth Alliance Split near the godswood" "T212 - ACT3 - The Wall War Map against old law" "T213 - ACT3 - Castle Black Inheritance Claim under moonless sky" "T214 - ACT3 - Moat Cailin Whispered Warning at the gatehouse" "T215 - ACT3 - Oldtown Silent Betrayal behind closed doors" "T216 - ACT3 - Pyke Hostage Exchange at the broken tower"
+  @first "Castle Black Inheritance Claim under moonless sky"
+  @sections "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower"
 __scene
 
 section__
-  @title "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-193.jpg"
@@ -18,7 +18,7 @@ Your choice determines whether these lords obey a shared chain of command or mer
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T194 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T195 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -37,7 +37,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T194 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-194.jpg"
@@ -49,7 +49,7 @@ Every hour spent debating rightful command costs stone walls, grain stores, and 
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T195 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -57,7 +57,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T196 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -69,7 +69,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T195 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-195.jpg"
@@ -81,7 +81,7 @@ If you prioritize one banner publicly, you gain a reliable spearpoint and risk a
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T196 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -89,7 +89,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T197 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -99,7 +99,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T198 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -110,7 +110,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T196 - ACT3 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-196.jpg"
@@ -122,7 +122,7 @@ This module is claim enforcement under siege pressure: lawful sequencing earns l
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T197 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -130,7 +130,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T198 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -141,7 +141,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T199 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -152,7 +152,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T197 - ACT3 - Highgarden Siege Promise in the throne shadow"
+  @title "Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-197.jpg"
@@ -164,7 +164,7 @@ Your choice determines whether these lords obey a shared chain of command or mer
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T198 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -172,7 +172,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T199 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -183,7 +183,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T198 - ACT3 - Sunspear Prison Confession with steel drawn"
+  @title "Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-198.jpg"
@@ -195,7 +195,7 @@ Every hour spent debating rightful command costs stone walls, grain stores, and 
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T199 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -203,7 +203,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T200 - ACT3 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -215,7 +215,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T199 - ACT3 - The Trident Salt Pact by the harbor chain"
+  @title "The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-199.jpg"
@@ -227,7 +227,7 @@ If you prioritize one banner publicly, you gain a reliable spearpoint and risk a
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T200 - ACT3 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -235,7 +235,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T201 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -246,7 +246,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T200 - ACT3 - Riverrun Broken Oath under rain"
+  @title "Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-200.jpg"
@@ -258,7 +258,7 @@ This module is claim enforcement under siege pressure: lawful sequencing earns l
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T201 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -266,7 +266,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T202 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -277,7 +277,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T203 - ACT3 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -288,7 +288,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T201 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-201.jpg"
@@ -300,7 +300,7 @@ Your choice determines whether these lords obey a shared chain of command or mer
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T202 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -308,7 +308,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T203 - ACT3 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -319,7 +319,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T202 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-202.jpg"
@@ -331,7 +331,7 @@ Every hour spent debating rightful command costs stone walls, grain stores, and 
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T203 - ACT3 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -339,7 +339,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T204 - ACT3 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -351,7 +351,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T203 - ACT3 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-203.jpg"
@@ -363,7 +363,7 @@ If you prioritize one banner publicly, you gain a reliable spearpoint and risk a
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T204 - ACT3 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -371,7 +371,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T205 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -381,7 +381,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T206 - ACT3 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -392,7 +392,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T204 - ACT3 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-204.jpg"
@@ -404,7 +404,7 @@ This module is claim enforcement under siege pressure: lawful sequencing earns l
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T205 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -412,7 +412,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T206 - ACT3 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -424,7 +424,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T205 - ACT3 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-205.jpg"
@@ -436,7 +436,7 @@ Your choice determines whether these lords obey a shared chain of command or mer
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T206 - ACT3 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -444,7 +444,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T207 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -454,7 +454,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T208 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -465,7 +465,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T206 - ACT3 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-206.jpg"
@@ -477,7 +477,7 @@ Every hour spent debating rightful command costs stone walls, grain stores, and 
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T207 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -485,7 +485,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T208 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -497,7 +497,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T207 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-207.jpg"
@@ -509,7 +509,7 @@ If you prioritize one banner publicly, you gain a reliable spearpoint and risk a
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T208 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -517,7 +517,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T209 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -528,7 +528,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T208 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+  @title "The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-208.jpg"
@@ -540,7 +540,7 @@ This module is claim enforcement under siege pressure: lawful sequencing earns l
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T209 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -548,7 +548,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T210 - ACT3 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -560,7 +560,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T209 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+  @title "The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-209.jpg"
@@ -572,7 +572,7 @@ Your choice determines whether these lords obey a shared chain of command or mer
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T210 - ACT3 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -580,7 +580,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T211 - ACT3 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -591,7 +591,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T210 - ACT3 - Pentos Harbor Ambush in river fog"
+  @title "Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-210.jpg"
@@ -603,7 +603,7 @@ Every hour spent debating rightful command costs stone walls, grain stores, and 
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T211 - ACT3 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -611,7 +611,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T212 - ACT3 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -622,7 +622,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T213 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -633,7 +633,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T211 - ACT3 - Qarth Alliance Split near the godswood"
+  @title "Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-211.jpg"
@@ -645,7 +645,7 @@ If you prioritize one banner publicly, you gain a reliable spearpoint and risk a
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T212 - ACT3 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -653,7 +653,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T213 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -664,7 +664,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T212 - ACT3 - The Wall War Map against old law"
+  @title "The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-212.jpg"
@@ -676,7 +676,7 @@ This module is claim enforcement under siege pressure: lawful sequencing earns l
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T213 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -684,7 +684,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T214 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -696,7 +696,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T213 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-213.jpg"
@@ -708,7 +708,7 @@ Your choice determines whether these lords obey a shared chain of command or mer
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T214 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -716,7 +716,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T215 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -727,7 +727,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T214 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-214.jpg"
@@ -739,7 +739,7 @@ Every hour spent debating rightful command costs stone walls, grain stores, and 
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T215 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -747,7 +747,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T216 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -759,7 +759,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
 __section
 
 section__
-  @title "T215 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-215.jpg"
@@ -771,7 +771,7 @@ If you prioritize one banner publicly, you gain a reliable spearpoint and risk a
 You balance strategy against attrition in plain numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Whatever you choose, someone will call it betrayal and someone else will call it survival."
 
   choice__
-    @target "T216 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -779,7 +779,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T217 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
@@ -789,7 +789,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
   __choice
 
   choice__
-    @target "T218 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -800,7 +800,7 @@ You balance strategy against attrition in plain numbers: honor=${honor}, ruthles
 __section
 
 section__
-  @title "T216 - ACT3 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-stormlands/frame-216.jpg"
@@ -812,7 +812,7 @@ This module is claim enforcement under siege pressure: lawful sequencing earns l
 The campaign compresses to the same grim accounting: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The weather will not wait for a cleaner decision."
 
   choice__
-    @target "T217 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -820,7 +820,7 @@ The campaign compresses to the same grim accounting: honor=${honor}, ruthlessnes
   __choice
 
   choice__
-    @target "T218 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)

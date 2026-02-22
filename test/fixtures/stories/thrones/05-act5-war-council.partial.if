@@ -1,12 +1,12 @@
 /* Thrones module: 05-act5-war-council.partial.if */
 scene__
   @name "ACT5: War Council"
-  @first "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
-  @sections "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky" "T314 - ACT5 - Moat Cailin Whispered Warning at the gatehouse" "T315 - ACT5 - Oldtown Silent Betrayal behind closed doors" "T316 - ACT5 - Pyke Hostage Exchange at the broken tower" "T317 - ACT5 - Highgarden Siege Promise in the throne shadow" "T318 - ACT5 - Sunspear Prison Confession with steel drawn" "T319 - ACT5 - The Trident Salt Pact by the harbor chain" "T320 - ACT5 - Riverrun Broken Oath under rain" "T321 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T322 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T323 - ACT5 - Winterfell Night Council before witnesses" "T324 - ACT5 - The Twins Debt Collection under wolf banners" "T325 - ACT5 - Harrenhal Torchlit Census at the rookery" "T326 - ACT5 - Dragonstone Blood Price at first light" "T327 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals" "T328 - ACT5 - The Dreadfort Border Muster in crowded galleries" "T329 - ACT5 - The Eyrie Crown Ultimatum by candle smoke" "T330 - ACT5 - Pentos Harbor Ambush in river fog" "T331 - ACT5 - Qarth Alliance Split near the godswood" "T332 - ACT5 - The Wall War Map against old law" "T333 - ACT5 - Castle Black Inheritance Claim under moonless sky" "T334 - ACT5 - Moat Cailin Whispered Warning at the gatehouse" "T335 - ACT5 - Oldtown Silent Betrayal behind closed doors" "T336 - ACT5 - Pyke Hostage Exchange at the broken tower"
+  @first "Castle Black Inheritance Claim under moonless sky"
+  @sections "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower"
 __scene
 
 section__
-  @title "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-313.jpg"
@@ -18,7 +18,7 @@ Act Four bought you allies by promise and coin. Act Five asks whether those prom
 Every captain in the hall is waiting to see whether House Valehart governs by witnessed law or private coercion. You have one clean decision before dawn locks everyone into their own story."
 
   choice__
-    @target "T314 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ Every captain in the hall is waiting to see whether House Valehart governs by wi
   __choice
 
   choice__
-    @target "T315 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -36,7 +36,7 @@ Every captain in the hall is waiting to see whether House Valehart governs by wi
 __section
 
 section__
-  @title "T314 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-314.jpg"
@@ -48,7 +48,7 @@ Desertions are no longer rumors. Men vanish in twos from night watch, taking mul
 The garrison waits under dripping shields for your ruling. What you choose here will decide whether orders move by trust or fear through every fort south of the Wall."
 
   choice__
-    @target "T315 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -56,7 +56,7 @@ The garrison waits under dripping shields for your ruling. What you choose here 
   __choice
 
   choice__
-    @target "T316 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -67,7 +67,7 @@ The garrison waits under dripping shields for your ruling. What you choose here 
 __section
 
 section__
-  @title "T315 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-315.jpg"
@@ -79,7 +79,7 @@ The betrayal matters less for the names and more for timing. Hostage exchanges a
 You can choose daylight justice, midnight coercion, or an expensive foreign detour that moves the crisis off your immediate board. All three paths buy survival differently and each leaves a scar."
 
   choice__
-    @target "T316 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -87,7 +87,7 @@ You can choose daylight justice, midnight coercion, or an expensive foreign deto
   __choice
 
   choice__
-    @target "T317 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -96,7 +96,7 @@ You can choose daylight justice, midnight coercion, or an expensive foreign deto
   __choice
 
   choice__
-    @target "T318 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -106,7 +106,7 @@ You can choose daylight justice, midnight coercion, or an expensive foreign deto
 __section
 
 section__
-  @title "T316 - ACT5 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-316.jpg"
@@ -118,7 +118,7 @@ This is where coalition trust becomes measurable. Mishandle the sequence and eit
 You can impose a strict, public protocol that costs time and pride, or you can secure compliance through private pressure and threats no one can prove. The tower stones drip saltwater like a clock. Delay is its own verdict."
 
   choice__
-    @target "T317 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -126,7 +126,7 @@ You can impose a strict, public protocol that costs time and pride, or you can s
   __choice
 
   choice__
-    @target "T318 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -137,7 +137,7 @@ You can impose a strict, public protocol that costs time and pride, or you can s
 __section
 
 section__
-  @title "T317 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @title "Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-317.jpg"
@@ -149,7 +149,7 @@ If ration policy remains political, commanders will starve rivals before they fa
 You need a policy that can be enforced by sunset and survived by sunrise. The men around you are not asking what is noble. They are asking whose soldiers eat, whose horses weaken, and whose banners still answer your summons tomorrow."
 
   choice__
-    @target "T318 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -157,7 +157,7 @@ You need a policy that can be enforced by sunset and survived by sunrise. The me
   __choice
 
   choice__
-    @target "T319 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -167,7 +167,7 @@ You need a policy that can be enforced by sunset and survived by sunrise. The me
 __section
 
 section__
-  @title "T318 - ACT5 - Sunspear Prison Confession with steel drawn"
+  @title "Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-318.jpg"
@@ -179,7 +179,7 @@ One banner house has already sent a final warning: prove you can secure messenge
 The prisoner keeps begging for terms in exchange for names. Whether you grant law, fear, or outside intervention will set the precedent for every confession that follows."
 
   choice__
-    @target "T319 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -187,7 +187,7 @@ The prisoner keeps begging for terms in exchange for names. Whether you grant la
   __choice
 
   choice__
-    @target "T320 - ACT5 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -198,7 +198,7 @@ The prisoner keeps begging for terms in exchange for names. Whether you grant la
 __section
 
 section__
-  @title "T319 - ACT5 - The Trident Salt Pact by the harbor chain"
+  @title "The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-319.jpg"
@@ -210,7 +210,7 @@ Neutral houses are circling like crows. They will join whichever side proves it 
 You must choose between transparent obligations and flexible coercion. The tide keeps climbing the wharf steps, reminding everyone that delay is another form of loss."
 
   choice__
-    @target "T320 - ACT5 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -218,7 +218,7 @@ You must choose between transparent obligations and flexible coercion. The tide 
   __choice
 
   choice__
-    @target "T321 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -228,7 +228,7 @@ You must choose between transparent obligations and flexible coercion. The tide 
 __section
 
 section__
-  @title "T320 - ACT5 - Riverrun Broken Oath under rain"
+  @title "Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-320.jpg"
@@ -240,7 +240,7 @@ Your scouts add worse news: entire companies are slipping away at night because 
 You can answer with legal theater, covert coercion, or a costly external surge that buys time with foreign assets. The hall smells of wet leather and cold iron, and everyone is measuring whether your next order will be obeyed tomorrow."
 
   choice__
-    @target "T321 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -248,7 +248,7 @@ You can answer with legal theater, covert coercion, or a costly external surge t
   __choice
 
   choice__
-    @target "T322 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -258,7 +258,7 @@ You can answer with legal theater, covert coercion, or a costly external surge t
   __choice
 
   choice__
-    @target "T323 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -268,7 +268,7 @@ You can answer with legal theater, covert coercion, or a costly external surge t
 __section
 
 section__
-  @title "T321 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-321.jpg"
@@ -280,7 +280,7 @@ Stannis wants every name nailed to the gate by sunrise. Robb warns that public h
 If you move in daylight, you may lose useful cowards and keep lawful legitimacy. If you move in shadow, you may hold the network together while becoming its master. Either way, this ledger has already made neutrality impossible."
 
   choice__
-    @target "T322 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -288,7 +288,7 @@ If you move in daylight, you may lose useful cowards and keep lawful legitimacy.
   __choice
 
   choice__
-    @target "T323 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -298,7 +298,7 @@ If you move in daylight, you may lose useful cowards and keep lawful legitimacy.
 __section
 
 section__
-  @title "T322 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-322.jpg"
@@ -310,7 +310,7 @@ Tyrion argues this is exactly how the capital survives: by issuing plausible den
 You can read both letters aloud and force the realm to witness the fraud. You can quietly manipulate the channels and feed each faction what keeps them useful. Or you can bypass local lines entirely with paid Essosi relay and dragon-backed intimidation. Speed, legitimacy, and control no longer sit on the same branch."
 
   choice__
-    @target "T323 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -318,7 +318,7 @@ You can read both letters aloud and force the realm to witness the fraud. You ca
   __choice
 
   choice__
-    @target "T324 - ACT5 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -328,7 +328,7 @@ You can read both letters aloud and force the realm to witness the fraud. You ca
   __choice
 
   choice__
-    @target "T325 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -338,7 +338,7 @@ You can read both letters aloud and force the realm to witness the fraud. You ca
 __section
 
 section__
-  @title "T323 - ACT5 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-323.jpg"
@@ -350,7 +350,7 @@ Your own captains are splitting by allegiance, not duty. Grain wagons leave late
 Tonight is a command test, not a debate. You can establish one public doctrine and bind every house to it in record. Or you can run the campaign through quiet compartments, rewarding obedience and isolating dissent before it spreads. Both can win battles. Only one can be defended in daylight."
 
   choice__
-    @target "T324 - ACT5 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -358,7 +358,7 @@ Tonight is a command test, not a debate. You can establish one public doctrine a
   __choice
 
   choice__
-    @target "T325 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -368,7 +368,7 @@ Tonight is a command test, not a debate. You can establish one public doctrine a
 __section
 
 section__
-  @title "T324 - ACT5 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-324.jpg"
@@ -380,7 +380,7 @@ Robb wants to contest the claims in public and dare the Freys to refuse lawful a
 If you cave publicly, every petty lord copies the tactic. If you break them privately, no one forgets. The toll here is not only silver; it is precedent."
 
   choice__
-    @target "T325 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -388,7 +388,7 @@ If you cave publicly, every petty lord copies the tactic. If you break them priv
   __choice
 
   choice__
-    @target "T326 - ACT5 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -399,7 +399,7 @@ If you cave publicly, every petty lord copies the tactic. If you break them priv
 __section
 
 section__
-  @title "T325 - ACT5 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-325.jpg"
@@ -411,7 +411,7 @@ Neutral houses are demanding proof that your command can count honestly before t
 You can publish the census and purge openly, preserving institutional trust while weakening immediate manpower. You can hide the shortfall and preserve the facade with covert pressure. Or you can spend hard coin to import outside support and dragon deterrence, buying capacity at the price of dependence."
 
   choice__
-    @target "T326 - ACT5 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -419,7 +419,7 @@ You can publish the census and purge openly, preserving institutional trust whil
   __choice
 
   choice__
-    @target "T327 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -428,7 +428,7 @@ You can publish the census and purge openly, preserving institutional trust whil
   __choice
 
   choice__
-    @target "T328 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -438,7 +438,7 @@ You can publish the census and purge openly, preserving institutional trust whil
 __section
 
 section__
-  @title "T326 - ACT5 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-326.jpg"
@@ -450,7 +450,7 @@ Your captains are already brittle. Desertions rose after the census, and men tru
 You can bind this pact in strict public limits and keep a legal spine. Or you can arrange a private understanding that gives you immediate force with fewer witnesses and more future debt."
 
   choice__
-    @target "T327 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -458,7 +458,7 @@ You can bind this pact in strict public limits and keep a legal spine. Or you ca
   __choice
 
   choice__
-    @target "T328 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -469,7 +469,7 @@ You can bind this pact in strict public limits and keep a legal spine. Or you ca
 __section
 
 section__
-  @title "T327 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-327.jpg"
@@ -481,7 +481,7 @@ Davos pushes for a transparent maritime charter with fixed escort duties and pos
 You can stabilize trade through lawful contract and visible accountability. Or you can run it through private coercion and hidden obligations. Both routes move cargo. Only one leaves a paper trail you can defend in front of hostile lords."
 
   choice__
-    @target "T328 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -489,7 +489,7 @@ You can stabilize trade through lawful contract and visible accountability. Or y
   __choice
 
   choice__
-    @target "T329 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -499,7 +499,7 @@ You can stabilize trade through lawful contract and visible accountability. Or y
 __section
 
 section__
-  @title "T328 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+  @title "The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-328.jpg"
@@ -511,7 +511,7 @@ Raven traffic has become a weapon. Half your orders arrive with altered phrasing
 You need one answer now: visible, lawful alignment that costs flexibility, or covert pressure that secures immediate obedience and deepens long-term fear. The banners above you barely move in the draft, like men holding their breath."
 
   choice__
-    @target "T329 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -519,7 +519,7 @@ You need one answer now: visible, lawful alignment that costs flexibility, or co
   __choice
 
   choice__
-    @target "T330 - ACT5 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -530,7 +530,7 @@ You need one answer now: visible, lawful alignment that costs flexibility, or co
 __section
 
 section__
-  @title "T329 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+  @title "The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-329.jpg"
@@ -542,7 +542,7 @@ Command coherence is now a resource. If orders split by faction, your grain rout
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T330 - ACT5 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -550,7 +550,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T331 - ACT5 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -559,7 +559,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T332 - ACT5 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -569,7 +569,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T330 - ACT5 - Pentos Harbor Ambush in river fog"
+  @title "Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-330.jpg"
@@ -581,7 +581,7 @@ Every compromise now carries strategic weight. One false concession can buy a ca
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T331 - ACT5 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -589,7 +589,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T332 - ACT5 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -599,7 +599,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T333 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -609,7 +609,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T331 - ACT5 - Qarth Alliance Split near the godswood"
+  @title "Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-331.jpg"
@@ -621,7 +621,7 @@ The council can survive arguments, but it cannot survive contradictory enforceme
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T332 - ACT5 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -629,7 +629,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T333 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -639,7 +639,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T332 - ACT5 - The Wall War Map against old law"
+  @title "The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-332.jpg"
@@ -651,7 +651,7 @@ Coalition discipline is fraying: quartermasters are rationing by allegiance, not
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T333 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -659,7 +659,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T334 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -670,7 +670,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T333 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-333.jpg"
@@ -682,7 +682,7 @@ Command coherence is now a resource. If orders split by faction, your grain rout
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T334 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -690,7 +690,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T335 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -700,7 +700,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T334 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-334.jpg"
@@ -712,7 +712,7 @@ Every compromise now carries strategic weight. One false concession can buy a ca
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T335 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -720,7 +720,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T336 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -731,7 +731,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T335 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-335.jpg"
@@ -743,7 +743,7 @@ The council can survive arguments, but it cannot survive contradictory enforceme
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T336 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -751,7 +751,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T337 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -760,7 +760,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T338 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -770,7 +770,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
 __section
 
 section__
-  @title "T336 - ACT5 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-war-council/frame-336.jpg"
@@ -782,7 +782,7 @@ Coalition discipline is fraying: quartermasters are rationing by allegiance, not
 You must decide whether Valehart leads through visible law or covert coercion. Both routes can keep the alliance moving tonight, and both create enemies you will meet again before this act closes."
 
   choice__
-    @target "T337 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -790,7 +790,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T338 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -800,7 +800,7 @@ You must decide whether Valehart leads through visible law or covert coercion. B
   __choice
 
   choice__
-    @target "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)

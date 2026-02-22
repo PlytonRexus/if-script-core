@@ -33,7 +33,7 @@ export const ENDING_TITLES = [
   'END-F: Ashes of the Seven Kingdoms'
 ]
 
-const FIRST_TITLE = 'T001 - ACT0 - Oath at Riverrun'
+const FIRST_TITLE = 'Oath at Riverrun'
 
 const places = [
   'Riverrun',

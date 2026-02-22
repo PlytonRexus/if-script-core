@@ -1,12 +1,12 @@
 /* Thrones module: 02-act2-north.partial.if */
 scene__
   @name "ACT2: Northern Musters"
-  @first "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
-  @sections "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T123 - ACT2 - Winterfell Night Council before witnesses" "T124 - ACT2 - The Twins Debt Collection under wolf banners" "T125 - ACT2 - Harrenhal Torchlit Census at the rookery" "T126 - ACT2 - Dragonstone Blood Price at first light" "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries" "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke" "T130 - ACT2 - Pentos Harbor Ambush in river fog" "T131 - ACT2 - Qarth Alliance Split near the godswood" "T132 - ACT2 - The Wall War Map against old law" "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky" "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse" "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors" "T136 - ACT2 - Pyke Hostage Exchange at the broken tower" "T137 - ACT2 - Highgarden Siege Promise in the throne shadow" "T138 - ACT2 - Sunspear Prison Confession with steel drawn" "T139 - ACT2 - The Trident Salt Pact by the harbor chain" "T140 - ACT2 - Riverrun Broken Oath under rain" "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T143 - ACT2 - Winterfell Night Council before witnesses" "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+  @first "The Kingsroad Blackmail Ledger after the feast"
+  @sections "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners"
 __scene
 
 section__
-  @title "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-121.jpg"
@@ -18,7 +18,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T123 - ACT2 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -37,7 +37,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-122.jpg"
@@ -49,7 +49,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T123 - ACT2 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -58,7 +58,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T124 - ACT2 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -69,7 +69,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T123 - ACT2 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-123.jpg"
@@ -81,7 +81,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T124 - ACT2 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -90,7 +90,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T125 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -100,7 +100,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T124 - ACT2 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-124.jpg"
@@ -112,7 +112,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T125 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -121,7 +121,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T126 - ACT2 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -132,7 +132,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T125 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-125.jpg"
@@ -144,7 +144,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T126 - ACT2 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -153,7 +153,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -162,7 +162,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -174,7 +174,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T126 - ACT2 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-126.jpg"
@@ -186,7 +186,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -195,7 +195,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -205,7 +205,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -217,7 +217,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-127.jpg"
@@ -229,7 +229,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -238,7 +238,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -248,7 +248,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+  @title "The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-128.jpg"
@@ -260,7 +260,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -269,7 +269,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T130 - ACT2 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -280,7 +280,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+  @title "The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-129.jpg"
@@ -292,7 +292,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T130 - ACT2 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -301,7 +301,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T131 - ACT2 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -311,7 +311,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T130 - ACT2 - Pentos Harbor Ambush in river fog"
+  @title "Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-130.jpg"
@@ -323,7 +323,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T131 - ACT2 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -332,7 +332,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T132 - ACT2 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -342,7 +342,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -354,7 +354,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T131 - ACT2 - Qarth Alliance Split near the godswood"
+  @title "Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-131.jpg"
@@ -366,7 +366,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T132 - ACT2 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -375,7 +375,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -385,7 +385,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
 __section
 
 section__
-  @title "T132 - ACT2 - The Wall War Map against old law"
+  @title "The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-132.jpg"
@@ -397,7 +397,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -406,7 +406,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -417,7 +417,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-133.jpg"
@@ -429,7 +429,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -438,7 +438,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -447,7 +447,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -459,7 +459,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-134.jpg"
@@ -471,7 +471,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -480,7 +480,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -491,7 +491,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-135.jpg"
@@ -503,7 +503,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -512,7 +512,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T137 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -521,7 +521,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -533,7 +533,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-136.jpg"
@@ -545,7 +545,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T137 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -554,7 +554,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -565,7 +565,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T137 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @title "Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-137.jpg"
@@ -577,7 +577,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -586,7 +586,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T139 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -596,7 +596,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+  @title "Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-138.jpg"
@@ -608,7 +608,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T139 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -617,7 +617,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T140 - ACT2 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -628,7 +628,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T139 - ACT2 - The Trident Salt Pact by the harbor chain"
+  @title "The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-139.jpg"
@@ -640,7 +640,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T140 - ACT2 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -649,7 +649,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -659,7 +659,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T140 - ACT2 - Riverrun Broken Oath under rain"
+  @title "Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-140.jpg"
@@ -671,7 +671,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -680,7 +680,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -690,7 +690,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T143 - ACT2 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -702,7 +702,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-141.jpg"
@@ -714,7 +714,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -723,7 +723,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T143 - ACT2 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -733,7 +733,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-north/frame-142.jpg"
@@ -745,7 +745,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T143 - ACT2 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -754,7 +754,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -765,7 +765,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T143 - ACT2 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-north/frame-143.jpg"
@@ -777,7 +777,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -786,7 +786,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
   __choice
 
   choice__
-    @target "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -796,7 +796,7 @@ By now, every earlier compromise is due, and the North can no longer pretend del
 __section
 
 section__
-  @title "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-north/frame-144.jpg"
@@ -808,7 +808,7 @@ Distance has turned command into a trust problem: orders travel slowly, rumor tr
 The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -817,7 +817,7 @@ The North still has room to choose methods, but not room to avoid cost. The next
   __choice
 
   choice__
-    @target "T146 - ACT2 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)

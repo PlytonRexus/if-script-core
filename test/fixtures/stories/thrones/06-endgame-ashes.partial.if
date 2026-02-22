@@ -1,12 +1,12 @@
 /* Thrones module: 06-endgame-ashes.partial.if */
 scene__
   @name "ACT6: Last Ashes"
-  @first "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
-  @sections "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast" "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell" "T423 - ACT6 - Winterfell Night Council before witnesses" "T424 - ACT6 - The Twins Debt Collection under wolf banners" "T425 - ACT6 - Harrenhal Torchlit Census at the rookery" "T426 - ACT6 - Dragonstone Blood Price at first light" "END-A: The Just Crown" "END-B: The Iron Tyrant" "END-C: The Hidden Kingmaker" "END-D: Exile Across the Narrow Sea" "END-E: The Long Night Unchecked" "END-F: Ashes of the Seven Kingdoms"
+  @first "The Kingsroad Blackmail Ledger after the feast"
+  @sections "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "END-A: The Just Crown" "END-B: The Iron Tyrant" "END-C: The Hidden Kingmaker" "END-D: Exile Across the Narrow Sea" "END-E: The Long Night Unchecked" "END-F: Ashes of the Seven Kingdoms"
 __scene
 
 section__
-  @title "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-ashes/frame-421.jpg"
@@ -18,7 +18,7 @@ This is the first day after settlement and the realm already tests whether law s
 Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The war is over on paper. The consequences are not."
 
   choice__
-    @target "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "T423 - ACT6 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
 __section
 
 section__
-  @title "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-ashes/frame-422.jpg"
@@ -48,7 +48,7 @@ Your captains are deserting from confusion more than fear, waiting to see if rec
 Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Every recovery order now doubles as a verdict."
 
   choice__
-    @target "T423 - ACT6 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -56,7 +56,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "T424 - ACT6 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -67,7 +67,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
 __section
 
 section__
-  @title "T423 - ACT6 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-ashes/frame-423.jpg"
@@ -79,7 +79,7 @@ Hostage politics survived the war and now infects reconstruction grants, grain r
 Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Winter does not care which story you prefer."
 
   choice__
-    @target "T424 - ACT6 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -87,7 +87,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "T425 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -97,7 +97,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
 __section
 
 section__
-  @title "T424 - ACT6 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-ashes/frame-424.jpg"
@@ -109,7 +109,7 @@ Forged orders continue to circulate, rerouting aid columns toward houses with in
 Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Mercy and solvency are now competing line items."
 
   choice__
-    @target "T425 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -117,7 +117,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -128,7 +128,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
 __section
 
 section__
-  @title "T425 - ACT6 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-ashes/frame-425.jpg"
@@ -140,7 +140,7 @@ Quartermasters already ration by predicted loyalty, turning recovery into anothe
 Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. This is the final accounting before history fixes your name."
 
   choice__
-    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -148,7 +148,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -157,7 +157,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -167,7 +167,7 @@ Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness
 __section
 
 section__
-  @title "T426 - ACT6 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-ashes/frame-426.jpg"

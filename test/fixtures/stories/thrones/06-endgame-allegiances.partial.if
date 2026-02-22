@@ -1,12 +1,12 @@
 /* Thrones module: 06-endgame-allegiances.partial.if */
 scene__
   @name "ACT6: Allegiance Reckoning"
-  @first "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
-  @sections "T385 - ACT6 - Harrenhal Torchlit Census at the rookery" "T386 - ACT6 - Dragonstone Blood Price at first light" "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals" "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries" "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke" "T390 - ACT6 - Pentos Harbor Ambush in river fog" "T391 - ACT6 - Qarth Alliance Split near the godswood" "T392 - ACT6 - The Wall War Map against old law" "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky" "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse" "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors" "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+  @first "Harrenhal Torchlit Census at the rookery"
+  @sections "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower"
 __scene
 
 section__
-  @title "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-385.jpg"
@@ -18,7 +18,7 @@ This is no longer about winning fields. It is about deciding which banners survi
 Wax drips across maps of the Trident while your quartermaster whispers that grain trains can cover two fronts, not three. Whatever oath you issue tonight becomes the architecture of the next kingdom."
 
   choice__
-    @target "T386 - ACT6 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ Wax drips across maps of the Trident while your quartermaster whispers that grai
   __choice
 
   choice__
-    @target "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -35,7 +35,7 @@ Wax drips across maps of the Trident while your quartermaster whispers that grai
   __choice
 
   choice__
-    @target "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -45,7 +45,7 @@ Wax drips across maps of the Trident while your quartermaster whispers that grai
 __section
 
 section__
-  @title "T386 - ACT6 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-386.jpg"
@@ -57,7 +57,7 @@ Your garrisons are exhausted after the sacrifice campaigns, and captains now des
 Outside, chains slap the sea wall in hard rhythm. You can hear the storm before you see it, and so can everyone waiting on your signature."
 
   choice__
-    @target "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -65,7 +65,7 @@ Outside, chains slap the sea wall in hard rhythm. You can hear the storm before 
   __choice
 
   choice__
-    @target "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -76,7 +76,7 @@ Outside, chains slap the sea wall in hard rhythm. You can hear the storm before 
 __section
 
 section__
-  @title "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-387.jpg"
@@ -88,7 +88,7 @@ You can settle this publicly and make convoy law visible to every house. That st
 Tar smoke rolls in through the shutters while bells count the watch. One mistake here does not lose an argument. It loses the road network that keeps your armies from eating each other."
 
   choice__
-    @target "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -96,7 +96,7 @@ Tar smoke rolls in through the shutters while bells count the watch. One mistake
   __choice
 
   choice__
-    @target "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -106,7 +106,7 @@ Tar smoke rolls in through the shutters while bells count the watch. One mistake
 __section
 
 section__
-  @title "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+  @title "The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-388.jpg"
@@ -118,7 +118,7 @@ Rumors have outrun your ravens all week. Rivals are already quoting forged draft
 Snowmelt runs red-brown down the ditch from butchered pack mules. This gate is ugly, crowded, and strategically decisive. Whoever controls it writes the opening line of winter."
 
   choice__
-    @target "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -126,7 +126,7 @@ Snowmelt runs red-brown down the ditch from butchered pack mules. This gate is u
   __choice
 
   choice__
-    @target "T390 - ACT6 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -137,7 +137,7 @@ Snowmelt runs red-brown down the ditch from butchered pack mules. This gate is u
 __section
 
 section__
-  @title "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+  @title "The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-389.jpg"
@@ -149,7 +149,7 @@ Your quartermasters have started rationing by banner reliability, and everyone k
 You taste vinegar and cold stone as another messenger arrives with a broken seal. The realm no longer waits for consensus. It waits for command."
 
   choice__
-    @target "T390 - ACT6 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -157,7 +157,7 @@ You taste vinegar and cold stone as another messenger arrives with a broken seal
   __choice
 
   choice__
-    @target "T391 - ACT6 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -167,7 +167,7 @@ You taste vinegar and cold stone as another messenger arrives with a broken seal
 __section
 
 section__
-  @title "T390 - ACT6 - Pentos Harbor Ambush in river fog"
+  @title "Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-390.jpg"
@@ -179,7 +179,7 @@ Public clarity would steady frightened captains and stop three competing rumor l
 The fog tastes of salt and lamp oil. On the outer pier, men are already loading grain under crossbows. Your next order decides whether those crates feed allies or enemies."
 
   choice__
-    @target "T391 - ACT6 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -187,7 +187,7 @@ The fog tastes of salt and lamp oil. On the outer pier, men are already loading 
   __choice
 
   choice__
-    @target "T392 - ACT6 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -197,7 +197,7 @@ The fog tastes of salt and lamp oil. On the outer pier, men are already loading 
   __choice
 
   choice__
-    @target "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -207,7 +207,7 @@ The fog tastes of salt and lamp oil. On the outer pier, men are already loading 
 __section
 
 section__
-  @title "T391 - ACT6 - Qarth Alliance Split near the godswood"
+  @title "Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-391.jpg"
@@ -219,7 +219,7 @@ This split is the price of surviving too long. Everyone agrees you are useful; n
 A raven startles from the weirwood and drops black feathers into the mud at your feet. Even silence feels like a vote now."
 
   choice__
-    @target "T392 - ACT6 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -227,7 +227,7 @@ A raven startles from the weirwood and drops black feathers into the mud at your
   __choice
 
   choice__
-    @target "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -237,7 +237,7 @@ A raven startles from the weirwood and drops black feathers into the mud at your
 __section
 
 section__
-  @title "T392 - ACT6 - The Wall War Map against old law"
+  @title "The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-392.jpg"
@@ -249,7 +249,7 @@ Desertions have climbed because no one believes the coalition can fight court wa
 Your gloves stick briefly to the frozen map pins when you move them. The old law says the Wall protects the realm. Tonight, you decide whether the realm still protects the Wall."
 
   choice__
-    @target "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -257,7 +257,7 @@ Your gloves stick briefly to the frozen map pins when you move them. The old law
   __choice
 
   choice__
-    @target "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -267,7 +267,7 @@ Your gloves stick briefly to the frozen map pins when you move them. The old law
   __choice
 
   choice__
-    @target "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -277,7 +277,7 @@ Your gloves stick briefly to the frozen map pins when you move them. The old law
 __section
 
 section__
-  @title "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-393.jpg"
@@ -289,7 +289,7 @@ Every unanswered claim becomes a recruitment tool for rival banners. If you sett
 Frost climbs the iron hinges while ravens claw at the shutters. This decision decides who can issue lawful orders when the snows close the roads."
 
   choice__
-    @target "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -297,7 +297,7 @@ Frost climbs the iron hinges while ravens claw at the shutters. This decision de
   __choice
 
   choice__
-    @target "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -307,7 +307,7 @@ Frost climbs the iron hinges while ravens claw at the shutters. This decision de
 __section
 
 section__
-  @title "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-394.jpg"
@@ -319,7 +319,7 @@ By sundown, either the forgery ring is exposed or the entire crossing fractures 
 Water drips through the arrow loop onto your map of the Neck. Each drop blurs another route you may need before winter closes in."
 
   choice__
-    @target "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -327,7 +327,7 @@ Water drips through the arrow loop onto your map of the Neck. Each drop blurs an
   __choice
 
   choice__
-    @target "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -338,7 +338,7 @@ Water drips through the arrow loop onto your map of the Neck. Each drop blurs an
 __section
 
 section__
-  @title "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-395.jpg"
@@ -350,7 +350,7 @@ Your ration lists already favor loyal banners, and everyone feels it. If you pro
 Outside the shuttered windows, bells call the harbor watch. You can hear war preparations in every toll."
 
   choice__
-    @target "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -358,7 +358,7 @@ Outside the shuttered windows, bells call the harbor watch. You can hear war pre
   __choice
 
   choice__
-    @target "T397 - ACT6 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -367,7 +367,7 @@ Outside the shuttered windows, bells call the harbor watch. You can hear war pre
   __choice
 
   choice__
-    @target "T398 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -377,7 +377,7 @@ Outside the shuttered windows, bells call the harbor watch. You can hear war pre
 __section
 
 section__
-  @title "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-396.jpg"
@@ -389,7 +389,7 @@ This is the last alignment node before open terminal conflict. If you lock terms
 Wave foam blows across the table and blots the ink on one hostage roster. The tower bell rings once. Siege lines are already being drawn."
 
   choice__
-    @target "T397 - ACT6 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -397,7 +397,7 @@ Wave foam blows across the table and blots the ink on one hostage roster. The to
   __choice
 
   choice__
-    @target "T398 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)

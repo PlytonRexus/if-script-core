@@ -1,12 +1,12 @@
 /* Thrones module: 05-act5-arc-sacrifice.partial.if */
 scene__
   @name "ACT5: The Price of Blood"
-  @first "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
-  @sections "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T363 - ACT5 - Winterfell Night Council before witnesses" "T364 - ACT5 - The Twins Debt Collection under wolf banners" "T365 - ACT5 - Harrenhal Torchlit Census at the rookery" "T366 - ACT5 - Dragonstone Blood Price at first light" "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals" "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries" "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke" "T370 - ACT5 - Pentos Harbor Ambush in river fog" "T371 - ACT5 - Qarth Alliance Split near the godswood" "T372 - ACT5 - The Wall War Map against old law" "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky" "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse" "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors" "T376 - ACT5 - Pyke Hostage Exchange at the broken tower" "T377 - ACT5 - Highgarden Siege Promise in the throne shadow" "T378 - ACT5 - Sunspear Prison Confession with steel drawn" "T379 - ACT5 - The Trident Salt Pact by the harbor chain" "T380 - ACT5 - Riverrun Broken Oath under rain" "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T383 - ACT5 - Winterfell Night Council before witnesses" "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+  @first "The Kingsroad Blackmail Ledger after the feast"
+  @sections "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners"
 __scene
 
 section__
-  @title "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-361.jpg"
@@ -18,7 +18,7 @@ The war has moved from strategy to accounting for the dead. Families demand just
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T363 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-362.jpg"
@@ -48,7 +48,7 @@ Irreversible choices are stacking. Mercy can look weak, cruelty can look necessa
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T363 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -56,7 +56,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T364 - ACT5 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -67,7 +67,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T363 - ACT5 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-363.jpg"
@@ -79,7 +79,7 @@ Your officers are carrying losses they cannot replace. If you mishandle this mom
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T364 - ACT5 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -87,7 +87,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T365 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -97,7 +97,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T364 - ACT5 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-364.jpg"
@@ -109,7 +109,7 @@ Now the cost is personal. Every new order names people, not just positions, and 
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T365 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -117,7 +117,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T366 - ACT5 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -127,7 +127,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -137,7 +137,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T365 - ACT5 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-365.jpg"
@@ -149,7 +149,7 @@ The war has moved from strategy to accounting for the dead. Families demand just
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T366 - ACT5 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -157,7 +157,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -166,7 +166,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -176,7 +176,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T366 - ACT5 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-366.jpg"
@@ -188,7 +188,7 @@ Irreversible choices are stacking. Mercy can look weak, cruelty can look necessa
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -196,7 +196,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -207,7 +207,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-367.jpg"
@@ -219,7 +219,7 @@ Your officers are carrying losses they cannot replace. If you mishandle this mom
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -227,7 +227,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -237,7 +237,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+  @title "The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-368.jpg"
@@ -249,7 +249,7 @@ Now the cost is personal. Every new order names people, not just positions, and 
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -257,7 +257,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T370 - ACT5 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -268,7 +268,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+  @title "The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-369.jpg"
@@ -280,7 +280,7 @@ The war has moved from strategy to accounting for the dead. Families demand just
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T370 - ACT5 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -288,7 +288,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T371 - ACT5 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -298,7 +298,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T370 - ACT5 - Pentos Harbor Ambush in river fog"
+  @title "Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-370.jpg"
@@ -310,7 +310,7 @@ Irreversible choices are stacking. Mercy can look weak, cruelty can look necessa
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T371 - ACT5 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -318,7 +318,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T372 - ACT5 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -328,7 +328,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -338,7 +338,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T371 - ACT5 - Qarth Alliance Split near the godswood"
+  @title "Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-371.jpg"
@@ -350,7 +350,7 @@ Your officers are carrying losses they cannot replace. If you mishandle this mom
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T372 - ACT5 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -358,7 +358,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -367,7 +367,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -377,7 +377,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T372 - ACT5 - The Wall War Map against old law"
+  @title "The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-372.jpg"
@@ -389,7 +389,7 @@ Now the cost is personal. Every new order names people, not just positions, and 
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -397,7 +397,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -408,7 +408,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-373.jpg"
@@ -420,7 +420,7 @@ The war has moved from strategy to accounting for the dead. Families demand just
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -428,7 +428,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -438,7 +438,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-374.jpg"
@@ -450,7 +450,7 @@ Irreversible choices are stacking. Mercy can look weak, cruelty can look necessa
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -458,7 +458,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T376 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -469,7 +469,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-375.jpg"
@@ -481,7 +481,7 @@ Your officers are carrying losses they cannot replace. If you mishandle this mom
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T376 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -489,7 +489,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T377 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -498,7 +498,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -508,7 +508,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T376 - ACT5 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-376.jpg"
@@ -520,7 +520,7 @@ Now the cost is personal. Every new order names people, not just positions, and 
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T377 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -528,7 +528,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -539,7 +539,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T377 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @title "Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-377.jpg"
@@ -551,7 +551,7 @@ The war has moved from strategy to accounting for the dead. Families demand just
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -559,7 +559,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T379 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -569,7 +569,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+  @title "Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-378.jpg"
@@ -581,7 +581,7 @@ Irreversible choices are stacking. Mercy can look weak, cruelty can look necessa
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T379 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -589,7 +589,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T380 - ACT5 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -599,7 +599,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -609,7 +609,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T379 - ACT5 - The Trident Salt Pact by the harbor chain"
+  @title "The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-379.jpg"
@@ -621,7 +621,7 @@ Your officers are carrying losses they cannot replace. If you mishandle this mom
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T380 - ACT5 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -629,7 +629,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -639,7 +639,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T380 - ACT5 - Riverrun Broken Oath under rain"
+  @title "Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-380.jpg"
@@ -651,7 +651,7 @@ Now the cost is personal. Every new order names people, not just positions, and 
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -659,7 +659,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -669,7 +669,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T383 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -679,7 +679,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-381.jpg"
@@ -691,7 +691,7 @@ The war has moved from strategy to accounting for the dead. Families demand just
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -699,7 +699,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T383 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -709,7 +709,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-382.jpg"
@@ -721,7 +721,7 @@ Irreversible choices are stacking. Mercy can look weak, cruelty can look necessa
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T383 - ACT5 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -729,7 +729,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -740,7 +740,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T383 - ACT5 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-383.jpg"
@@ -752,7 +752,7 @@ Your officers are carrying losses they cannot replace. If you mishandle this mom
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -760,7 +760,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -770,7 +770,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
 __section
 
 section__
-  @title "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-384.jpg"
@@ -782,7 +782,7 @@ Now the cost is personal. Every new order names people, not just positions, and 
 You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
 
   choice__
-    @target "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -790,7 +790,7 @@ You can answer loss with formal justice and shared burden, or with private enfor
   __choice
 
   choice__
-    @target "T386 - ACT6 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)

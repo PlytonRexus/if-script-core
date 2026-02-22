@@ -1,12 +1,12 @@
 /* Thrones module: 01-act1-arc-stark-lannister.partial.if */
 scene__
   @name "ACT1: Wolves and Lions"
-  @first "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
-  @sections "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T076 - ACT1 - Pyke Hostage Exchange at the broken tower" "T077 - ACT1 - Highgarden Siege Promise in the throne shadow" "T078 - ACT1 - Sunspear Prison Confession with steel drawn" "T079 - ACT1 - The Trident Salt Pact by the harbor chain" "T080 - ACT1 - Riverrun Broken Oath under rain" "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast" "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell" "T083 - ACT1 - Winterfell Night Council before witnesses" "T084 - ACT1 - The Twins Debt Collection under wolf banners" "T085 - ACT1 - Harrenhal Torchlit Census at the rookery" "T086 - ACT1 - Dragonstone Blood Price at first light" "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals" "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries" "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T090 - ACT1 - Pentos Harbor Ambush in river fog" "T091 - ACT1 - Qarth Alliance Split near the godswood" "T092 - ACT1 - The Wall War Map against old law" "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @first "Castle Black Inheritance Claim under moonless sky"
+  @sections "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower"
 __scene
 
 section__
-  @title "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-073.jpg"
@@ -18,7 +18,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -37,7 +37,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-074.jpg"
@@ -49,7 +49,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -58,7 +58,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T076 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -69,7 +69,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-075.jpg"
@@ -81,7 +81,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T076 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -90,7 +90,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T077 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -99,7 +99,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -111,7 +111,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T076 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-076.jpg"
@@ -123,7 +123,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T077 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -132,7 +132,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -143,7 +143,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T077 - ACT1 - Highgarden Siege Promise in the throne shadow"
+  @title "Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-077.jpg"
@@ -155,7 +155,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -164,7 +164,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T079 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -173,7 +173,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T080 - ACT1 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -185,7 +185,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+  @title "Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-078.jpg"
@@ -197,7 +197,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T079 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @target "The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -206,7 +206,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T080 - ACT1 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -217,7 +217,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T079 - ACT1 - The Trident Salt Pact by the harbor chain"
+  @title "The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-079.jpg"
@@ -229,7 +229,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T080 - ACT1 - Riverrun Broken Oath under rain"
+    @target "Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -238,7 +238,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -248,7 +248,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T080 - ACT1 - Riverrun Broken Oath under rain"
+  @title "Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-080.jpg"
@@ -260,7 +260,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @target "The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -269,7 +269,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -279,7 +279,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T083 - ACT1 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -291,7 +291,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+  @title "The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-081.jpg"
@@ -303,7 +303,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @target "The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -312,7 +312,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T083 - ACT1 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -322,7 +322,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+  @title "The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-082.jpg"
@@ -334,7 +334,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T083 - ACT1 - Winterfell Night Council before witnesses"
+    @target "Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -343,7 +343,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T084 - ACT1 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -354,7 +354,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T083 - ACT1 - Winterfell Night Council before witnesses"
+  @title "Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-083.jpg"
@@ -366,7 +366,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T084 - ACT1 - The Twins Debt Collection under wolf banners"
+    @target "The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -375,7 +375,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T085 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -385,7 +385,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T084 - ACT1 - The Twins Debt Collection under wolf banners"
+  @title "The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-084.jpg"
@@ -397,7 +397,7 @@ This arc runs on retaliation cycles: each concession is read as weakness by one 
 You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
 
   choice__
-    @target "T085 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @target "Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -406,7 +406,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T086 - ACT1 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -416,7 +416,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
   __choice
 
   choice__
-    @target "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -428,7 +428,7 @@ You are no longer balancing abstract values. You are deciding which feud hardens
 __section
 
 section__
-  @title "T085 - ACT1 - Harrenhal Torchlit Census at the rookery"
+  @title "Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-085.jpg"
@@ -440,7 +440,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T086 - ACT1 - Dragonstone Blood Price at first light"
+    @target "Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -449,7 +449,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -458,7 +458,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -470,7 +470,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T086 - ACT1 - Dragonstone Blood Price at first light"
+  @title "Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-086.jpg"
@@ -482,7 +482,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -491,7 +491,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -502,7 +502,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-087.jpg"
@@ -514,7 +514,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @target "The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -523,7 +523,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -533,7 +533,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+  @title "The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-088.jpg"
@@ -545,7 +545,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @target "The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -554,7 +554,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T090 - ACT1 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -565,7 +565,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @title "The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-089.jpg"
@@ -577,7 +577,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T090 - ACT1 - Pentos Harbor Ambush in river fog"
+    @target "Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -586,7 +586,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T091 - ACT1 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -596,7 +596,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T090 - ACT1 - Pentos Harbor Ambush in river fog"
+  @title "Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-090.jpg"
@@ -608,7 +608,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T091 - ACT1 - Qarth Alliance Split near the godswood"
+    @target "Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -617,7 +617,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T092 - ACT1 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -627,7 +627,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -639,7 +639,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T091 - ACT1 - Qarth Alliance Split near the godswood"
+  @title "Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-091.jpg"
@@ -651,7 +651,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T092 - ACT1 - The Wall War Map against old law"
+    @target "The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -660,7 +660,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -669,7 +669,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -681,7 +681,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T092 - ACT1 - The Wall War Map against old law"
+  @title "The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-092.jpg"
@@ -693,7 +693,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @target "Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -702,7 +702,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -713,7 +713,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @title "Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-093.jpg"
@@ -725,7 +725,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @target "Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -734,7 +734,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -744,7 +744,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+  @title "Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-094.jpg"
@@ -756,7 +756,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @target "Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -765,7 +765,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -776,7 +776,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+  @title "Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-095.jpg"
@@ -788,7 +788,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @target "Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -797,7 +797,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -806,7 +806,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -818,7 +818,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
 __section
 
 section__
-  @title "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @title "Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-096.jpg"
@@ -830,7 +830,7 @@ Late in Act 1, positions have hardened. Public rulings still carry legitimacy, b
 You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
 
   choice__
-    @target "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @target "Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action north_trust = clampStat(north_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -839,7 +839,7 @@ You can still choose method and target, not consequence-free outcomes. What you 
   __choice
 
   choice__
-    @target "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @target "Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)

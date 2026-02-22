@@ -53,3 +53,5 @@ tmp/**
 out.json
 
 dist-pages-temp/**
+
+gh-pages/**
