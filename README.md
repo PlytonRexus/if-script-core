@@ -72,6 +72,45 @@ ifs compile -i my-story.if -o story.json
 
 ### Current Syntax (v0.5.8+)
 
+Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Imports](#imports)
+
+### [Quick Reference](#quick-reference)
+
+**Block keywords**
+
+| Block | Open | Close |
+|------|------|------|
+| Settings | `settings__` | `__settings` |
+| Scene | `scene__` | `__scene` |
+| Section | `section__` | `__section` |
+| Choice | `choice__` | `__choice` |
+| If block | `if__ (cond) { ... }` | `}` |
+| While loop | `while__ (cond) { ... }` | `}` |
+| Function | `function__ name(args) { ... }` | `}` |
+| Import | `import__"file.partial.if"__import` | n/a |
+
+**Core properties**
+
+| Context | Properties |
+|------|------|
+| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`, `@statusBar` |
+| Scene | `@name`, `@first`, `@music`, `@sections` |
+| Section | `@title`, `@timer` |
+| Choice | `@target`, `@targetType`, `@input`, `@action` |
+
+**Control flow + expressions**
+- Conditionals: `if__ (cond) { ... } else__ { ... }`
+- Inline conditional assignment: `if__ (cond) then__ a = 1 else__ a = 2`
+- Loop control: `break__`, `continue__`
+- Function return: `return__ value`
+- Operators: `+ - * / % == != < > <= >= && ||`
+
+**Arrays + calls**
+- Array literal: `inventory = []`, `nums = [1, 2, 3]`
+- Access: `first = nums[0]`
+- Mutation: `nums[1] = 10`, `nums.push(4)`, `item = nums.pop()`
+- Calls: `result = myFunc(1, 2)`, `len = nums.length`
+
 ### [Embedding](#embedding)
 You can parse in Node.js, but the interpreter requires a DOM.
 
