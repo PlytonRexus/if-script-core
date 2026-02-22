@@ -72,7 +72,7 @@ ifs compile -i my-story.if -o story.json
 
 ### Current Syntax (v0.5.8+)
 
-Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Imports](#imports)
+Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls)
 
 ### [Quick Reference](#quick-reference)
 
@@ -804,6 +804,23 @@ story/
 -   `.partial.if` - Importable modules (convention, not required)
 
 Both extensions work the same way; the `.partial.if` convention just indicates the file is designed to be imported rather than used standalone.
+
+### [Author Pitfalls](#author-pitfalls)
+
+- Duplicate section titles / scene names make string targets ambiguous.
+Tip: Keep every `@title` and `@name` unique when using string refs.
+
+- Numeric targets across imports can be confusing because each module has its own serial counters.
+Tip: Prefer string refs (`@target "Section Title"` / scene `@target "Scene Name"`) for cross-file navigation.
+
+- User-defined function names that match builtins can shadow your intent.
+Tip: Avoid naming your own functions after builtin helpers (`len`, `range`, `randomInt`, etc.).
+
+- `break__`, `continue__`, and `return__` only make sense in specific contexts.
+Tip: Use `break__`/`continue__` inside loops and `return__` inside functions to avoid hard-to-debug flow behavior.
+
+- Imported module settings do not replace main-story runtime settings.
+Tip: Keep global runtime controls (`@startAt`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`) in the root file.
 
 ### [Complete Example](#example)
 
