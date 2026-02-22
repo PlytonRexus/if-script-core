@@ -1,34 +1,25 @@
 import path from 'path'
 import fs from 'fs'
-import InputStream from '../parsers/custom/stream/InputStream.mjs'
-import TokenStream from '../parsers/custom/stream/TokenStream.mjs'
-import Parser from '../parsers/custom/parser/Parser.mjs'
+import IFScript from '../../index.mjs'
 
 async function compile (argv) {
   const cwd = process.cwd()
-  let i = argv.i
-  let o = argv.o
+  const inputArg = argv.i || argv['input-file']
+  const outputArg = argv.o || argv['output-file']
 
-  i = path.resolve(cwd, i)
+  const inputPath = path.resolve(cwd, inputArg)
+  const outputPath = outputArg
+    ? path.resolve(cwd, outputArg)
+    : path.resolve(cwd, './out.json')
 
-  if (o) o = path.resolve(cwd, o)
-  else o = path.resolve(cwd, './out.json')
+  const content = await fs.promises.readFile(inputPath, 'utf-8')
+  const ifscript = new IFScript('STREAM')
+  await ifscript.init()
+  const parsed = await ifscript.parse(content, inputPath)
 
-  const is = new InputStream(i)
-  let parsed
-
-  await is.init()
-
-  const ts = new TokenStream(is)
-  parsed = new Parser(ts).parseStory()
-
-  // console.log(parsed)
-
-  if (o) {
-    await fs.promises.writeFile(o, JSON.stringify(parsed))
-    console.log('Done.')
-    console.log('Compiled to', o)
-  }
+  await fs.promises.writeFile(outputPath, JSON.stringify(parsed))
+  console.log('Done.')
+  console.log('Compiled to', outputPath)
 }
 
 export default compile
