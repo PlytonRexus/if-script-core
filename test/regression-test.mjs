@@ -441,6 +441,44 @@ __scene`
   assertEqual(scene.title, 'Chapter 1', 'Scene title should match')
 }
 
+async function testSceneMusicRelativePath () {
+  const storyText = `scene__
+  @name "Chapter One"
+  @music "music/theme.mp3"
+__scene
+
+section__
+  "Start"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  const scene = parsed.scenes[0]
+  assertDefined(scene, 'Scene should parse')
+  assertEqual(scene.music, 'music/theme.mp3', 'Relative @music paths should be allowed')
+}
+
+async function testSceneMusicAbsoluteUrl () {
+  const storyText = `scene__
+  @name "Chapter One"
+  @music "https://example.com/theme.mp3"
+__scene
+
+section__
+  "Start"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  const scene = parsed.scenes[0]
+  assertDefined(scene, 'Scene should parse')
+  assertEqual(scene.music, 'https://example.com/theme.mp3', 'Absolute @music URLs should still be allowed')
+}
+
 async function testComments () {
   const storyText = `section__
   /* This is a comment */
@@ -738,6 +776,8 @@ export async function runRegressionTests () {
     { name: 'Basic: Status bar custom labels', fn: testStatusBarCustomLabels },
     { name: 'Basic: Status bar custom labels top-level property', fn: testStatusBarCustomLabelsTopLevelProperty },
     { name: 'Basic: Scenes', fn: testScenes },
+    { name: 'Basic: Scene music relative path', fn: testSceneMusicRelativePath },
+    { name: 'Basic: Scene music absolute URL', fn: testSceneMusicAbsoluteUrl },
     { name: 'Basic: Comments', fn: testComments },
     { name: 'Basic: Preserve // in strings', fn: testCommentsPreserveSlashesInString },
     { name: 'Basic: Preserve >> and << in strings', fn: testCommentsPreserveArrowsInString },

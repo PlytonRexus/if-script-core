@@ -484,7 +484,12 @@ class Parser {
       propSceneMusic: () => {
         limitToOne()
         name = 'music'
-        assignIfValid(tok, TTS.STRING, (t) => new URL(t.symbol))
+        assignIfValid(tok, TTS.STRING, (t) => {
+          if (typeof t.symbol !== 'string' || t.symbol.trim() === '') {
+            throw new Error('Scene music path cannot be empty')
+          }
+          return true
+        })
       },
       propSceneName: () => {
         limitToOne()
