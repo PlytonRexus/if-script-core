@@ -72,7 +72,7 @@ ifs compile -i my-story.if -o story.json
 
 ### Current Syntax (v0.5.8+)
 
-Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls)
+Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls) · [Troubleshooting](#troubleshooting)
 
 ### [Quick Reference](#quick-reference)
 
@@ -821,6 +821,19 @@ Tip: Use `break__`/`continue__` inside loops and `return__` inside functions to 
 
 - Imported module settings do not replace main-story runtime settings.
 Tip: Keep global runtime controls (`@startAt`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`) in the root file.
+
+### [Troubleshooting](#troubleshooting)
+
+| Error message (or pattern) | Likely cause | Fix |
+|------|------|------|
+| `Undefined function: X` | Called a function that was never defined/imported, or name mismatch/case mismatch | Define/import the function before use, and verify exact spelling |
+| `Maximum iterations (N) exceeded` | Loop condition never becomes false (or needs higher cap) | Fix loop termination logic, or increase `@maxIterations` if intentional |
+| `Maximum call depth (N) exceeded` | Recursion without a solid base case (or deep recursion by design) | Add/verify base case, or increase `@maxCallDepth` if safe |
+| `Circular import detected: ...` | Files import each other in a cycle | Break the cycle by extracting shared code into a one-way dependency |
+| `File not found: ...` (import) | Wrong relative path/alias/base path or missing extension resolution | Check import path from current file location, aliases, and extensions config |
+| `Expecting punctuation: ...` / `Expecting keyword: ...` / `Unexpected token: ...` | Syntax structure is incomplete or malformed | Check nearby block delimiters and keyword pairs (`section__`/`__section`, `choice__`/`__choice`, braces/parentheses) |
+| `Cannot index non-array value` | Used `value[index]` on a non-array | Ensure the variable is an array before indexing |
+| `X is not a method` | Called `.method()` on a value that does not support that method | Verify value type and method name (`push`, `pop`, `length`, etc.) |
 
 ### [Complete Example](#example)
 
