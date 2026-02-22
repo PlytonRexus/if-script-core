@@ -5,7 +5,7 @@
  * Builtins are tested directly since the interpreter requires a DOM environment.
  */
 
-import BUILTINS from '../src/interpreters/custom/Builtins.mjs'
+import BUILTINS, { resetBuiltinState } from '../src/interpreters/custom/Builtins.mjs'
 import IFScript from '../src/IFScript.mjs'
 import versions from '../src/constants/versions.mjs'
 import {
@@ -119,6 +119,46 @@ async function testShuffle () {
   assertArrayEqual(sortedShuffled, sortedOriginal, 'shuffle should preserve all elements')
 }
 
+async function testSeededRandomDeterministic () {
+  resetBuiltinState()
+  BUILTINS.setSeed(12345)
+  const seqA = [BUILTINS.seededRandom(), BUILTINS.seededRandom(), BUILTINS.seededRandom()]
+
+  resetBuiltinState()
+  BUILTINS.setSeed(12345)
+  const seqB = [BUILTINS.seededRandom(), BUILTINS.seededRandom(), BUILTINS.seededRandom()]
+
+  assertArrayEqual(seqA, seqB, 'same seed should produce same random sequence')
+}
+
+async function testSeededRandomDifferentSeed () {
+  resetBuiltinState()
+  BUILTINS.setSeed(111)
+  const a = BUILTINS.seededRandom()
+
+  resetBuiltinState()
+  BUILTINS.setSeed(222)
+  const b = BUILTINS.seededRandom()
+
+  assert(a !== b, 'different seeds should produce different first value')
+}
+
+async function testSeededRandomIntRange () {
+  resetBuiltinState()
+  BUILTINS.setSeed(9)
+  for (let i = 0; i < 50; i++) {
+    const val = BUILTINS.seededRandomInt(3, 7)
+    assert(val >= 3 && val <= 7, `seededRandomInt(3,7) should stay in range, got ${val}`)
+    assert(Number.isInteger(val), `seededRandomInt(3,7) should be integer, got ${val}`)
+  }
+}
+
+async function testSetSeedInvalidNormalizes () {
+  resetBuiltinState()
+  const seed = BUILTINS.setSeed('not-a-number')
+  assertEqual(seed, 1, 'invalid seed should normalize to 1')
+}
+
 // ===== Type Conversion Tests =====
 
 async function testToNumber () {
@@ -197,6 +237,28 @@ async function testRangeTwoArgs () {
   assertArrayEqual(BUILTINS.range(2, 5), [2, 3, 4], 'range(2,5) should be [2,3,4]')
   assertArrayEqual(BUILTINS.range(0, 3), [0, 1, 2], 'range(0,3) should be [0,1,2]')
   assertArrayEqual(BUILTINS.range(3, 3), [], 'range(3,3) should be []')
+}
+
+async function testSum () {
+  assertEqual(BUILTINS.sum([1, 2, 3, 4]), 10, 'sum([1,2,3,4]) should be 10')
+  assertEqual(BUILTINS.sum('x'), 0, 'sum(non-array) should be 0')
+}
+
+async function testAvg () {
+  assertEqual(BUILTINS.avg([2, 4, 6]), 4, 'avg([2,4,6]) should be 4')
+  assertEqual(BUILTINS.avg([]), 0, 'avg([]) should be 0')
+  assertEqual(BUILTINS.avg('x'), 0, 'avg(non-array) should be 0')
+}
+
+async function testUnique () {
+  assertArrayEqual(BUILTINS.unique([1, 2, 2, 3, 1]), [1, 2, 3], 'unique should remove duplicates while preserving first-seen order')
+  assertArrayEqual(BUILTINS.unique('x'), [], 'unique(non-array) should return []')
+}
+
+async function testFindIndex () {
+  assertEqual(BUILTINS.findIndex(['a', 'b', 'c'], 'b'), 1, 'findIndex should find existing item')
+  assertEqual(BUILTINS.findIndex(['a', 'b', 'c'], 'z'), -1, 'findIndex should return -1 when missing')
+  assertEqual(BUILTINS.findIndex('x', 'x'), -1, 'findIndex(non-array) should return -1')
 }
 
 // ===== Date & Time Tests =====
@@ -317,6 +379,10 @@ export async function runBuiltinsTests () {
     { name: 'pick(arr)', fn: testPick },
     { name: 'chance(percent)', fn: testChance },
     { name: 'shuffle(arr)', fn: testShuffle },
+    { name: 'setSeed()/seededRandom() deterministic', fn: testSeededRandomDeterministic },
+    { name: 'seededRandom() with different seeds', fn: testSeededRandomDifferentSeed },
+    { name: 'seededRandomInt(min, max)', fn: testSeededRandomIntRange },
+    { name: 'setSeed(invalid) normalizes', fn: testSetSeedInvalidNormalizes },
     { name: 'toNumber(x)', fn: testToNumber },
     { name: 'toString(x)', fn: testToString },
     { name: 'upper(x)', fn: testUpper },
@@ -328,6 +394,10 @@ export async function runBuiltinsTests () {
     { name: 'len(x)', fn: testLen },
     { name: 'contains(collection, item)', fn: testContains },
     { name: 'clamp(value, min, max)', fn: testClamp },
+    { name: 'sum(arr)', fn: testSum },
+    { name: 'avg(arr)', fn: testAvg },
+    { name: 'unique(arr)', fn: testUnique },
+    { name: 'findIndex(arr, item)', fn: testFindIndex },
     { name: 'range(n)', fn: testRangeOneArg },
     { name: 'range(start, end)', fn: testRangeTwoArgs },
     { name: 'now()', fn: testNow },

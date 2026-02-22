@@ -31,10 +31,17 @@ Notes:
 |------|------|------|
 | `random()` | `number` in `[0, 1)` | `random()` |
 | `randomInt(min, max)` | inclusive integer | `randomInt(1, 6)` |
+| `setSeed(seed)` | normalized seed `number` | `setSeed(42)` |
+| `seededRandom()` | deterministic `number` in `[0, 1)` | `seededRandom()` |
+| `seededRandomInt(min, max)` | deterministic inclusive integer | `seededRandomInt(1, 6)` |
 | `randomChoice(arr)` | one element from `arr` | `randomChoice(["a", "b"])` |
 | `pick(arr)` | one element from `arr` | `pick(["a", "b"])` |
 | `chance(percent)` | `boolean` | `chance(25)` |
 | `shuffle(arr)` | shuffled copy of `arr` | `shuffle([1,2,3])` |
+
+Deterministic RNG notes:
+- `setSeed(seed)` normalizes invalid values to `1`.
+- `seededRandom*` results are repeatable for the same seed and call order.
 
 ## Type Conversion
 
@@ -59,10 +66,16 @@ Notes:
 | `len(x)` | `number` length | `len("hello") // 5` |
 | `contains(collection, item)` | `boolean` | `contains([1,2,3], 2)` |
 | `clamp(value, min, max)` | bounded number | `clamp(15, 0, 10) // 10` |
+| `sum(arr)` | numeric sum | `sum([1,2,3]) // 6` |
+| `avg(arr)` | numeric average | `avg([2,4,6]) // 4` |
+| `unique(arr)` | de-duplicated copy | `unique([1,2,2,3]) // [1,2,3]` |
+| `findIndex(arr, item)` | first index or `-1` | `findIndex(["a","b"], "b") // 1` |
 | `range(n)` | array `[0..n-1]` | `range(5) // [0,1,2,3,4]` |
 | `range(start, end)` | array `[start..end-1]` | `range(2, 5) // [2,3,4]` |
 
 `range` uses half-open intervals and excludes the end value.
+Collection helper edge behavior:
+- Non-array input returns `0` for `sum`/`avg`, `[]` for `unique`, and `-1` for `findIndex`.
 
 ## Date and Time
 

@@ -15,7 +15,6 @@ const Keywords = {
 
   // conditional blocks
   IF_BLOCK_START: 'if__',
-  IF_BLOCK_END: '__if',
   THEN: 'then__',
   ELSE_BLOCK_START: 'else__',
   ELSE_BLOCK_END: '__else',
@@ -63,7 +62,6 @@ const Keywords = {
 
   // loops
   WHILE_START: 'while__',
-  WHILE_END: '__while',
   BREAK: 'break__',
   CONTINUE: 'continue__',
 

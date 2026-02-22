@@ -242,7 +242,7 @@ Available settings:
 -   `@allowUndo` - Enable/disable undo interaction in runtime UI (boolean, default: true)
 -   `@showTurn` - Show/hide turn counter in status area (boolean, default: true)
 -   `@animations` - Enable/disable runtime animations (boolean, default: true)
--   `@autoSave` - Reserved for save-system integrations; parsed and preserved in story JSON (boolean)
+-   `@autoSave` - Enable browser localStorage save/resume for this story (boolean, default: false)
 -   `@statusBar` - Configure status-bar visibility and display label for a variable. Supported forms:
     `@statusBar hp`
     `@statusBar hp false`
@@ -253,9 +253,14 @@ Available settings:
 Settings precedence:
 - Host/CLI overrides > story settings > runtime defaults.
 
+Save/resume notes:
+- When `@autoSave` is true, runtime state is persisted under `ifscript:save:<key>`.
+- Host apps can provide `run.options.saveKey` to override the key suffix.
+- Host apps can set `run.options.resumePrompt = false` to auto-resume without confirmation.
+
 ### [Scenes](#scenes)
 
-Scenes are collections of sections that can be used to organize your story into chapters or acts.
+Scenes are collections of sections that can be used to organize your story into chapters, arcs, or acts.
 
 ```
 scene__
@@ -647,6 +652,9 @@ IF-Script includes builtin helper functions you can call like normal functions:
 roll = randomInt(1, 6)
 today = formatDate(now())
 count = len(inventory)
+setSeed(42)
+detRoll = seededRandomInt(1, 6)
+total = sum([1, 2, 3])
 ```
 
 Full reference (signatures, return types, examples, edge behavior):
@@ -933,6 +941,11 @@ Tip: run `ifs check -i my-story.if` for static diagnostics before preview/compil
 | `Undefined function: X` | Called a function that was never defined/imported, or name mismatch/case mismatch | Define/import the function before use, and verify exact spelling |
 | `Maximum iterations (N) exceeded` | Loop condition never becomes false (or needs higher cap) | Fix loop termination logic, or increase `@maxIterations` if intentional |
 | `Maximum call depth (N) exceeded` | Recursion without a solid base case (or deep recursion by design) | Add/verify base case, or increase `@maxCallDepth` if safe |
+| `START_AT_UNRESOLVED` (check) | `@startAt` points to a missing section ref | Update `@startAt` to an existing section serial/title |
+| `FULL_TIMER_TARGET_UNRESOLVED` (check) | `@fullTimer` target points to a missing section ref | Update `@fullTimer` target to an existing section serial/title |
+| `SECTION_TIMER_TARGET_UNRESOLVED` (check) | A section `@timer` target points to a missing section ref | Update the section timer target to an existing section serial/title |
+| `SCENE_FIRST_UNRESOLVED` (check) | Scene `@first` points to a missing section ref | Update `@first` to an existing section serial/title |
+| `DUPLICATE_FUNCTION_NAME` (check warning) | Same function name declared multiple times | Rename one definition to avoid accidental overrides |
 | `Circular import detected: ...` | Files import each other in a cycle | Break the cycle by extracting shared code into a one-way dependency |
 | `File not found: ...` (import) | Wrong relative path/alias/base path or missing extension resolution | Check import path from current file location, aliases, and extensions config |
 | `Expecting punctuation: ...` / `Expecting keyword: ...` / `Unexpected token: ...` | Syntax structure is incomplete or malformed | Check nearby block delimiters and keyword pairs (`section__`/`__section`, `choice__`/`__choice`, braces/parentheses) |

@@ -11,6 +11,7 @@ import { runEdgeCaseTests } from './edge-cases-test.mjs'
 import { runPerformanceTests } from './performance-test.mjs'
 import { runErrorMessageTests } from './error-messages-test.mjs'
 import { runCheckTests } from './check-test.mjs'
+import { runSaveResumeTests } from './save-resume-test.mjs'
 
 console.log('╔══════════════════════════════════════════════════════════════╗')
 console.log('║  IF-Script Turing Completeness Test Suite                   ║')
@@ -59,6 +60,12 @@ async function runAllTests () {
       name: 'CLI Check Command',
       description: 'Static diagnostics command',
       fn: runCheckTests,
+      critical: false
+    },
+    {
+      name: 'Save/Resume Helpers',
+      description: 'Autosave payload and restore behavior',
+      fn: runSaveResumeTests,
       critical: false
     }
   ]

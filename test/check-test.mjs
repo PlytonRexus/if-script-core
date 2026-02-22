@@ -29,6 +29,16 @@ function runCheck (args) {
   })
 }
 
+function runCheckJson (storyPath) {
+  const result = runCheck(['-i', storyPath, '--json'])
+  const payload = JSON.parse(result.stdout)
+  return { result, payload }
+}
+
+function hasCode (payload, code) {
+  return payload.diagnostics.some(d => d.code === code)
+}
+
 async function testCheckNoDiagnosticsExitZero () {
   const content = `section__
   @title "Start"
@@ -85,11 +95,104 @@ __section`
   })
 }
 
+async function testCheckStartAtUnresolved () {
+  const content = `settings__
+  @startAt "Missing Section"
+__settings
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'startAt unresolved should fail check')
+    assert(hasCode(payload, 'START_AT_UNRESOLVED'), 'should emit START_AT_UNRESOLVED')
+  })
+}
+
+async function testCheckFullTimerTargetUnresolved () {
+  const content = `settings__
+  @fullTimer 30 "Missing Timeout"
+__settings
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'fullTimer unresolved should fail check')
+    assert(hasCode(payload, 'FULL_TIMER_TARGET_UNRESOLVED'), 'should emit FULL_TIMER_TARGET_UNRESOLVED')
+  })
+}
+
+async function testCheckSectionTimerTargetUnresolved () {
+  const content = `section__
+  @title "Start"
+  @timer 10 "Missing Timeout"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'section timer unresolved should fail check')
+    assert(hasCode(payload, 'SECTION_TIMER_TARGET_UNRESOLVED'), 'should emit SECTION_TIMER_TARGET_UNRESOLVED')
+  })
+}
+
+async function testCheckSceneFirstUnresolved () {
+  const content = `scene__
+  @name "Chapter 1"
+  @first "Missing Start"
+__scene
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'scene first unresolved should fail check')
+    assert(hasCode(payload, 'SCENE_FIRST_UNRESOLVED'), 'should emit SCENE_FIRST_UNRESOLVED')
+  })
+}
+
+async function testCheckDuplicateFunctionNameWarningOnly () {
+  const content = `function__ helper(a) {
+  return__ a
+}
+
+function__ helper(b) {
+  return__ b + 1
+}
+
+section__
+  @title "Start"
+  x = helper(2)
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = runCheckJson(storyPath)
+    assertEqual(result.status, 0, 'duplicate function name should warn but not fail check')
+    assert(hasCode(payload, 'DUPLICATE_FUNCTION_NAME'), 'should emit DUPLICATE_FUNCTION_NAME')
+    assertEqual(payload.summary.errors, 0, 'warning-only case should have zero errors')
+  })
+}
+
 export async function runCheckTests () {
   return runTestSuite('CLI Check Command Tests', [
     { name: 'check exits 0 with no diagnostics', fn: testCheckNoDiagnosticsExitZero },
     { name: 'check exits 1 with unresolved target', fn: testCheckUnresolvedTargetExitOne },
-    { name: 'check --json output shape', fn: testCheckJsonOutputShape }
+    { name: 'check --json output shape', fn: testCheckJsonOutputShape },
+    { name: 'check startAt unresolved', fn: testCheckStartAtUnresolved },
+    { name: 'check fullTimer target unresolved', fn: testCheckFullTimerTargetUnresolved },
+    { name: 'check section timer target unresolved', fn: testCheckSectionTimerTargetUnresolved },
+    { name: 'check scene first unresolved', fn: testCheckSceneFirstUnresolved },
+    { name: 'check duplicate function name warning', fn: testCheckDuplicateFunctionNameWarningOnly }
   ])
 }
 

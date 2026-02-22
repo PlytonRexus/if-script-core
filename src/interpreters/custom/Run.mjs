@@ -5,6 +5,7 @@ class Run {
    * @param {Story} story
    * @param {State} state
    * @param {string} theme
+   * @param {{ saveKey?: string, resumePrompt?: boolean }} options
    */
   constructor (story, state = null, theme = null, options = null) {
     this.story = story

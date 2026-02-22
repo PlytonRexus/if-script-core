@@ -1,3 +1,26 @@
+let seededState = 1
+
+function normalizeSeed (seed) {
+  const n = Number(seed)
+  if (!Number.isFinite(n) || Number.isNaN(n)) return 1
+  const normalized = (Math.abs(Math.floor(n)) >>> 0)
+  return normalized === 0 ? 1 : normalized
+}
+
+function nextSeededRandom () {
+  seededState = (1664525 * seededState + 1013904223) >>> 0
+  return seededState / 4294967296
+}
+
+function numberOrZero (value) {
+  const n = Number(value)
+  return Number.isFinite(n) ? n : 0
+}
+
+function resetBuiltinState () {
+  seededState = 1
+}
+
 const BUILTINS = {
   // Math
   abs: (x) => Math.abs(x),
@@ -12,6 +35,19 @@ const BUILTINS = {
   // Randomness
   random: () => Math.random(),
   randomInt: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+  setSeed: (seed) => {
+    seededState = normalizeSeed(seed)
+    return seededState
+  },
+  seededRandom: () => nextSeededRandom(),
+  seededRandomInt: (min, max) => {
+    const low = Number(min)
+    const high = Number(max)
+    if (!Number.isFinite(low) || !Number.isFinite(high)) return 0
+    const a = Math.floor(Math.min(low, high))
+    const b = Math.floor(Math.max(low, high))
+    return Math.floor(nextSeededRandom() * (b - a + 1)) + a
+  },
   randomChoice: (arr) => arr[Math.floor(Math.random() * arr.length)],
   pick: (arr) => arr[Math.floor(Math.random() * arr.length)],
   chance: (percent) => Math.random() * 100 < Number(percent),
@@ -40,6 +76,12 @@ const BUILTINS = {
   len: (x) => x.length,
   contains: (collection, item) => collection.includes(item),
   clamp: (value, min, max) => Math.min(Math.max(Number(value), Number(min)), Number(max)),
+  sum: (arr) => Array.isArray(arr) ? arr.reduce((acc, val) => acc + numberOrZero(val), 0) : 0,
+  avg: (arr) => Array.isArray(arr) && arr.length > 0
+    ? arr.reduce((acc, val) => acc + numberOrZero(val), 0) / arr.length
+    : 0,
+  unique: (arr) => Array.isArray(arr) ? [...new Set(arr)] : [],
+  findIndex: (arr, item) => Array.isArray(arr) ? arr.findIndex(v => v === item) : -1,
   range: (startOrN, end) => {
     const start = end === undefined ? 0 : startOrN
     const stop = end === undefined ? startOrN : end
@@ -74,3 +116,4 @@ const BUILTINS = {
 }
 
 export default BUILTINS
+export { resetBuiltinState }

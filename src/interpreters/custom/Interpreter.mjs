@@ -1,5 +1,5 @@
 import Run from './Run.mjs'
-import BUILTINS from './Builtins.mjs'
+import BUILTINS, { resetBuiltinState } from './Builtins.mjs'
 import DOM from '../../constants/custom/dom.mjs'
 import Story from '../../models/Story.mjs'
 import InterpreterException from '../../exceptions/InterpreterException.mjs'
@@ -131,6 +131,7 @@ class Interpreter {
       animations: true,
       autoSave: false
     }
+    this.AUTO_SAVE_VERSION = 1
   }
 
   /**
@@ -144,6 +145,32 @@ class Interpreter {
     this.run.story = story
     this.runtimeOptions = this.resolveRuntimeOptions(story, this.run, theme)
     this.run.theme = this.runtimeOptions.theme
+    resetBuiltinState()
+
+    /* Bring variables to original values. */
+    // TODO: Don't need this. No global variables.
+    this.resetVariables()
+    this.run.state.onceConsumed = {}
+    this.run.state.oldOnceConsumed = {}
+
+    let startSection = this.run.story.settings.startAt
+    let startTurn = 0
+    const restoredState = this._loadAutoSave()
+    if (restoredState) {
+      this.run.state.variables = {
+        ...this.run.state.variables,
+        ...(restoredState.variables || {})
+      }
+      this.run.state.onceConsumed = { ...(restoredState.onceConsumed || {}) }
+      this.run.state.oldOnceConsumed = { ...(restoredState.onceConsumed || {}) }
+      startSection = restoredState.sectionSerial
+      startTurn = typeof restoredState.turn === 'number' ? restoredState.turn : 0
+      if (typeof restoredState.theme === 'string' && restoredState.theme.trim() !== '') {
+        this.run.theme = restoredState.theme
+        this.runtimeOptions.theme = restoredState.theme
+      }
+    }
+
     // Only apply theme/preferences in browser environments
     if (typeof window !== 'undefined') {
       this.applyTheme(this.run.theme || 'default')
@@ -153,10 +180,6 @@ class Interpreter {
 
     this.generateDisplay()
     this.applyRuntimeUiSettings()
-
-    /* Bring variables to original values. */
-    // TODO: Don't need this. No global variables.
-    this.resetVariables()
 
     if (this.run.story.settings.fullTimer) {
       /* Set timer, if any. */
@@ -176,23 +199,23 @@ class Interpreter {
 
     /* Set initial state and initial variables */
     this.setState({
-      section: this.run.story.settings.startAt,
-      turn: 0
+      section: startSection,
+      turn: startTurn
     })
-    this.run.state.variables.turn = 0
-    this.run.state.onceConsumed = {}
-    this.run.state.oldOnceConsumed = {}
+    this.run.state.variables.turn = startTurn
 
     /* Load the section into the viewport */
-    this.loadSection(null, this.run.story.settings.startAt)
+    this.loadSection(null, startSection)
 
     /* Start the stats bar */
     this.showStats()
 
-    /* Hide the undo button because the story's just
-         * started and no turns have been played.
-         */
-    document.querySelector(DOM.undoButtonId).style.display = 'none'
+    const undoButton = document.querySelector(DOM.undoButtonId)
+    if (undoButton) {
+      undoButton.style.display = this.runtimeOptions.allowUndo && startTurn > 0 ? 'block' : 'none'
+    }
+
+    if (!restoredState) this._persistAutoSave()
 
     /* Clear the console to make things clearer */
     if (!this.debug) console.clear()
@@ -225,6 +248,142 @@ class Interpreter {
       ...hostOptions,
       ...explicitTheme,
       theme: (explicitTheme.theme || hostOptions.theme || storyOptions.theme || defaults.theme)
+    }
+  }
+
+  _getStorage () {
+    if (typeof localStorage === 'undefined') return null
+    return localStorage
+  }
+
+  _isAutoSaveEnabled () {
+    return this.runtimeOptions && this.runtimeOptions.autoSave === true
+  }
+
+  _hashString (text) {
+    let hash = 5381
+    for (let i = 0; i < text.length; i++) {
+      hash = ((hash << 5) + hash) + text.charCodeAt(i)
+      hash = hash >>> 0
+    }
+    return hash.toString(16)
+  }
+
+  _computeStoryFingerprint () {
+    const story = this.run && this.run.story ? this.run.story : null
+    if (!story) return 'unknown'
+    const descriptor = {
+      name: story.name || null,
+      startAt: story.settings ? story.settings.startAt : null,
+      sections: (story.sections || []).map(s => ({
+        serial: s.serial,
+        title: s && s.settings ? s.settings.title : null
+      })),
+      scenes: (story.scenes || []).map(s => ({
+        serial: s.serial,
+        name: s.name,
+        first: s.first
+      }))
+    }
+    return this._hashString(JSON.stringify(descriptor))
+  }
+
+  _getSaveKey () {
+    const runOptions = this.run && this.run.options ? this.run.options : {}
+    const suffix = runOptions.saveKey || this._computeStoryFingerprint()
+    return `ifscript:save:${suffix}`
+  }
+
+  _buildSavePayload () {
+    if (!this.run || !this.run.state || !this.run.story) return null
+    const sectionSerial = this.run.state.section ? this.run.state.section.serial : null
+    if (typeof sectionSerial !== 'number') return null
+
+    const variables = {}
+    const sourceVars = this.run.state.variables || {}
+    Object.keys(sourceVars).forEach(key => {
+      if (key === 'functions') return
+      const value = sourceVars[key]
+      if (typeof value === 'function') return
+      try {
+        variables[key] = JSON.parse(JSON.stringify(value))
+      } catch {
+        // Skip non-serializable values.
+      }
+    })
+
+    return {
+      version: this.AUTO_SAVE_VERSION,
+      savedAt: Date.now(),
+      storyFingerprint: this._computeStoryFingerprint(),
+      sectionSerial,
+      turn: this.run.state.turn,
+      variables,
+      onceConsumed: { ...(this.run.state.onceConsumed || {}) },
+      theme: this.run.theme || this.runtimeOptions.theme || null
+    }
+  }
+
+  _isValidSavePayload (payload) {
+    if (!payload || typeof payload !== 'object') return false
+    if (payload.version !== this.AUTO_SAVE_VERSION) return false
+    if (payload.storyFingerprint !== this._computeStoryFingerprint()) return false
+    if (typeof payload.sectionSerial !== 'number') return false
+    const sectionExists = (this.run.story.sections || []).some(section => section.serial === payload.sectionSerial)
+    if (!sectionExists) return false
+    if (payload.variables && typeof payload.variables !== 'object') return false
+    if (payload.onceConsumed && typeof payload.onceConsumed !== 'object') return false
+    return true
+  }
+
+  _persistAutoSave () {
+    if (!this._isAutoSaveEnabled()) return
+    const storage = this._getStorage()
+    if (!storage) return
+    const payload = this._buildSavePayload()
+    if (!payload) return
+    try {
+      storage.setItem(this._getSaveKey(), JSON.stringify(payload))
+    } catch (err) {
+      if (this.debug) console.warn('Auto-save failed:', err.message)
+    }
+  }
+
+  _loadAutoSave () {
+    if (!this._isAutoSaveEnabled()) return null
+    const storage = this._getStorage()
+    if (!storage) return null
+    let payload = null
+    try {
+      const raw = storage.getItem(this._getSaveKey())
+      if (!raw) return null
+      payload = JSON.parse(raw)
+    } catch (err) {
+      if (this.debug) console.warn('Failed to parse saved state:', err.message)
+      return null
+    }
+
+    if (!this._isValidSavePayload(payload)) return null
+
+    if (this.run.options && this.run.options.resumePrompt === false) {
+      return payload
+    }
+
+    if (typeof window !== 'undefined' && typeof window.confirm === 'function') {
+      const dateText = payload.savedAt ? new Date(payload.savedAt).toLocaleString() : 'unknown time'
+      const accepted = window.confirm(`Resume previous session from ${dateText}?`)
+      if (!accepted) return null
+    }
+    return payload
+  }
+
+  _clearAutoSave () {
+    const storage = this._getStorage()
+    if (!storage) return
+    try {
+      storage.removeItem(this._getSaveKey())
+    } catch (err) {
+      if (this.debug) console.warn('Failed to clear saved state:', err.message)
     }
   }
 
@@ -782,6 +941,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     this.changeTurn(-1)
     this.switchSection(this.run.state.lastSection.serial, true)
     document.querySelector(DOM.undoButtonId).style.display = 'none'
+    this._persistAutoSave()
   }
 
   switchSection (targetSec, isUndo) {
@@ -810,6 +970,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     })
 
     this.showStats()
+    this._persistAutoSave()
   }
 
   setState (opts) {
@@ -887,6 +1048,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     vars.forEach(variable => {
       this.run.state.variables[variable instanceof Token ? variable.symbol : variable] = parseInt(to) ? parseInt(to) : to
     })
+    this._persistAutoSave()
   }
 
   doActions (actions) {
@@ -894,6 +1056,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
       Object.assign(this.run.state.oldValues, this.run.state.variables)
       this.resolveAction(act)
     })
+    this._persistAutoSave()
   }
 
   finishAction (subject, op, modifier) {
@@ -1008,6 +1171,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
 
   resetStory () {
     if (window.confirm('Restart the story? this is a beta feature.')) {
+      this._clearAutoSave()
       this.loadStory(this.run.story, null, this.run.theme)
     }
   }
@@ -1149,6 +1313,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     this.run.theme = name
     localStorage.setItem('if-theme', name)
     this._syncThemeSelect(name)
+    this._persistAutoSave()
   }
 
   applyAnimationPreference (animationsEnabled = true) {
