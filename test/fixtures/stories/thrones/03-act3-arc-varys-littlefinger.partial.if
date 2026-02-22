@@ -1,12 +1,12 @@
 /* Thrones module: 03-act3-arc-varys-littlefinger.partial.if */
 scene__
   @name "ACT3: Spiders and Coins"
-  @first "Highgarden Siege Promise in the throne shadow"
-  @sections "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain"
+  @first "T217 - ACT3 - Highgarden Siege Promise in the throne shadow"
+  @sections "T217 - ACT3 - Highgarden Siege Promise in the throne shadow" "T218 - ACT3 - Sunspear Prison Confession with steel drawn" "T219 - ACT3 - The Trident Salt Pact by the harbor chain" "T220 - ACT3 - Riverrun Broken Oath under rain" "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast" "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell" "T223 - ACT3 - Winterfell Night Council before witnesses" "T224 - ACT3 - The Twins Debt Collection under wolf banners" "T225 - ACT3 - Harrenhal Torchlit Census at the rookery" "T226 - ACT3 - Dragonstone Blood Price at first light" "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals" "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries" "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T230 - ACT3 - Pentos Harbor Ambush in river fog" "T231 - ACT3 - Qarth Alliance Split near the godswood" "T232 - ACT3 - The Wall War Map against old law" "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky" "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse" "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors" "T236 - ACT3 - Pyke Hostage Exchange at the broken tower" "T237 - ACT3 - Highgarden Siege Promise in the throne shadow" "T238 - ACT3 - Sunspear Prison Confession with steel drawn" "T239 - ACT3 - The Trident Salt Pact by the harbor chain" "T240 - ACT3 - Riverrun Broken Oath under rain"
 __scene
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T217 - ACT3 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-217.jpg"
@@ -18,7 +18,7 @@ Every instruction here creates both leverage and exposure, and your enemies are 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T218 - ACT3 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T219 - ACT3 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T220 - ACT3 - Riverrun Broken Oath under rain"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -47,7 +47,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T218 - ACT3 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-218.jpg"
@@ -59,7 +59,7 @@ If you starve the spy network, you fight blind; if you indulge it, you normalize
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T219 - ACT3 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -68,7 +68,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T220 - ACT3 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -79,7 +79,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T219 - ACT3 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-219.jpg"
@@ -91,7 +91,7 @@ A legal move may lose the race; a deniable move may win the race and poison the 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T220 - ACT3 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -100,7 +100,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -110,7 +110,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T220 - ACT3 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-220.jpg"
@@ -122,7 +122,7 @@ This chapter is blackmail economics in motion: open process protects legitimacy 
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -131,7 +131,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -141,7 +141,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T223 - ACT3 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -152,7 +152,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-221.jpg"
@@ -164,7 +164,7 @@ Every instruction here creates both leverage and exposure, and your enemies are 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -173,7 +173,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T223 - ACT3 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -183,7 +183,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-222.jpg"
@@ -195,7 +195,7 @@ If you starve the spy network, you fight blind; if you indulge it, you normalize
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T223 - ACT3 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -204,7 +204,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T224 - ACT3 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -215,7 +215,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T223 - ACT3 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-223.jpg"
@@ -227,7 +227,7 @@ A legal move may lose the race; a deniable move may win the race and poison the 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T224 - ACT3 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -236,7 +236,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T225 - ACT3 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -246,7 +246,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T224 - ACT3 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-224.jpg"
@@ -258,7 +258,7 @@ This chapter is blackmail economics in motion: open process protects legitimacy 
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T225 - ACT3 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -267,7 +267,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T226 - ACT3 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -277,7 +277,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -288,7 +288,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T225 - ACT3 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-225.jpg"
@@ -300,7 +300,7 @@ Every instruction here creates both leverage and exposure, and your enemies are 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T226 - ACT3 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -309,7 +309,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -318,7 +318,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -329,7 +329,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T226 - ACT3 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-226.jpg"
@@ -341,7 +341,7 @@ If you starve the spy network, you fight blind; if you indulge it, you normalize
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -350,7 +350,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -361,7 +361,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-227.jpg"
@@ -373,7 +373,7 @@ A legal move may lose the race; a deniable move may win the race and poison the 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -382,7 +382,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -392,7 +392,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-228.jpg"
@@ -404,7 +404,7 @@ This chapter is blackmail economics in motion: open process protects legitimacy 
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -413,7 +413,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T230 - ACT3 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -424,7 +424,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-229.jpg"
@@ -436,7 +436,7 @@ Every instruction here creates both leverage and exposure, and your enemies are 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T230 - ACT3 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -445,7 +445,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T231 - ACT3 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -455,7 +455,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T230 - ACT3 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-230.jpg"
@@ -467,7 +467,7 @@ If you starve the spy network, you fight blind; if you indulge it, you normalize
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T231 - ACT3 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -476,7 +476,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T232 - ACT3 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -486,7 +486,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -497,7 +497,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T231 - ACT3 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-231.jpg"
@@ -509,7 +509,7 @@ A legal move may lose the race; a deniable move may win the race and poison the 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T232 - ACT3 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -518,7 +518,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -527,7 +527,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -538,7 +538,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T232 - ACT3 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-232.jpg"
@@ -550,7 +550,7 @@ This chapter is blackmail economics in motion: open process protects legitimacy 
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -559,7 +559,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -570,7 +570,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-233.jpg"
@@ -582,7 +582,7 @@ Every instruction here creates both leverage and exposure, and your enemies are 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -591,7 +591,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -601,7 +601,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-234.jpg"
@@ -613,7 +613,7 @@ If you starve the spy network, you fight blind; if you indulge it, you normalize
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -622,7 +622,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T236 - ACT3 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -633,7 +633,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-235.jpg"
@@ -645,7 +645,7 @@ A legal move may lose the race; a deniable move may win the race and poison the 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T236 - ACT3 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -654,7 +654,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T237 - ACT3 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -663,7 +663,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -674,7 +674,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T236 - ACT3 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-236.jpg"
@@ -686,7 +686,7 @@ This chapter is blackmail economics in motion: open process protects legitimacy 
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T237 - ACT3 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -695,7 +695,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -706,7 +706,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T237 - ACT3 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-237.jpg"
@@ -718,7 +718,7 @@ Every instruction here creates both leverage and exposure, and your enemies are 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -727,7 +727,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T239 - ACT3 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -737,7 +737,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-238.jpg"
@@ -749,7 +749,7 @@ If you starve the spy network, you fight blind; if you indulge it, you normalize
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T239 - ACT3 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -758,7 +758,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T240 - ACT3 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -768,7 +768,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T241 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -779,7 +779,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T239 - ACT3 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-239.jpg"
@@ -791,7 +791,7 @@ A legal move may lose the race; a deniable move may win the race and poison the 
 By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T240 - ACT3 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -800,7 +800,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T241 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -810,7 +810,7 @@ By the time this order leaves your hand, the math is already running: honor=${ho
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T240 - ACT3 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-240.jpg"
@@ -822,7 +822,7 @@ This chapter is blackmail economics in motion: open process protects legitimacy 
 Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T241 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -831,7 +831,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T242 - ACT4 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -841,7 +841,7 @@ Your political balance sheet will still be judged by hard values: honor=${honor}
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T243 - ACT4 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)

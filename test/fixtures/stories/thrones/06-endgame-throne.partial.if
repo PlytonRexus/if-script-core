@@ -1,12 +1,12 @@
 /* Thrones module: 06-endgame-throne.partial.if */
 scene__
   @name "ACT6: Throne Calculus"
-  @first "The Eyrie Crown Ultimatum by candle smoke"
-  @sections "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain"
+  @first "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke" "T410 - ACT6 - Pentos Harbor Ambush in river fog" "T411 - ACT6 - Qarth Alliance Split near the godswood" "T412 - ACT6 - The Wall War Map against old law" "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky" "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse" "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors" "T416 - ACT6 - Pyke Hostage Exchange at the broken tower" "T417 - ACT6 - Highgarden Siege Promise in the throne shadow" "T418 - ACT6 - Sunspear Prison Confession with steel drawn" "T419 - ACT6 - The Trident Salt Pact by the harbor chain" "T420 - ACT6 - Riverrun Broken Oath under rain"
 __scene
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-409.jpg"
@@ -18,7 +18,7 @@ Neutral lords no longer ask who won the sieges. They ask who can guarantee roads
 Outside, high winds rattle the shutters like dice in a cup. The first decree of the new order will decide what sort of throne can survive the second decree."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T410 - ACT6 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ Outside, high winds rattle the shutters like dice in a cup. The first decree of 
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T411 - ACT6 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -37,7 +37,7 @@ Outside, high winds rattle the shutters like dice in a cup. The first decree of 
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T410 - ACT6 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-410.jpg"
@@ -49,7 +49,7 @@ Succession is now an operational problem as much as a moral one. If command law 
 The throne room echoes with boots, steel, and whispered arithmetic. Every party here is counting what your settlement will cost them before they decide whether to honor it."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T411 - ACT6 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -58,7 +58,7 @@ The throne room echoes with boots, steel, and whispered arithmetic. Every party 
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T412 - ACT6 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -68,7 +68,7 @@ The throne room echoes with boots, steel, and whispered arithmetic. Every party 
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -79,7 +79,7 @@ The throne room echoes with boots, steel, and whispered arithmetic. Every party 
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T411 - ACT6 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-411.jpg"
@@ -91,7 +91,7 @@ You can formalize these alliances in open record and force outside actors to acc
 Rain strikes the casement glass in hard bursts. Somewhere below, a hostage child is crying, and no one in this room pretends not to hear it."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T412 - ACT6 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -100,7 +100,7 @@ Rain strikes the casement glass in hard bursts. Somewhere below, a hostage child
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -110,7 +110,7 @@ Rain strikes the casement glass in hard bursts. Somewhere below, a hostage child
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T412 - ACT6 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-412.jpg"
@@ -122,7 +122,7 @@ This is the fault line between spectacle and survival. A public frontier compact
 The map table is pinned with black stones for dead keeps and white stones for those still holding. There are fewer white stones every week."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -131,7 +131,7 @@ The map table is pinned with black stones for dead keeps and white stones for th
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -142,7 +142,7 @@ The map table is pinned with black stones for dead keeps and white stones for th
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-413.jpg"
@@ -154,7 +154,7 @@ Granting northern guarantees in open law can stabilize military confidence while
 Snow presses against the leaded windows, muting the hall. The people gathered here have heard too many promises and buried too many men to accept another vague one."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -163,7 +163,7 @@ Snow presses against the leaded windows, muting the hall. The people gathered he
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -172,7 +172,7 @@ Snow presses against the leaded windows, muting the hall. The people gathered he
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -183,7 +183,7 @@ Snow presses against the leaded windows, muting the hall. The people gathered he
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-414.jpg"
@@ -195,7 +195,7 @@ One faction threatens to break by sunrise unless you prove who actually commands
 Mud from a hundred boots has turned the floor black. These are the last hours where allegiance can still be negotiated instead of imposed."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -204,7 +204,7 @@ Mud from a hundred boots has turned the floor black. These are the last hours wh
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -215,7 +215,7 @@ Mud from a hundred boots has turned the floor black. These are the last hours wh
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-415.jpg"
@@ -227,7 +227,7 @@ Neutral houses now wait to commit grain and coin until they see whether your set
 The bells of Oldtown carry through the shutters in slow intervals. Each one sounds like a deadline the realm can no longer postpone."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -236,7 +236,7 @@ The bells of Oldtown carry through the shutters in slow intervals. Each one soun
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T417 - ACT6 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -245,7 +245,7 @@ The bells of Oldtown carry through the shutters in slow intervals. Each one soun
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
@@ -256,7 +256,7 @@ The bells of Oldtown carry through the shutters in slow intervals. Each one soun
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-416.jpg"
@@ -268,7 +268,7 @@ Desertion reports from western garrisons show the same pattern: officers flee wh
 Salt has blurred half the signatures on yesterday's draft. The sea is erasing indecision faster than your scribes can rewrite it."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T417 - ACT6 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -277,7 +277,7 @@ Salt has blurred half the signatures on yesterday's draft. The sea is erasing in
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -288,7 +288,7 @@ Salt has blurred half the signatures on yesterday's draft. The sea is erasing in
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T417 - ACT6 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-417.jpg"
@@ -300,7 +300,7 @@ Hostage dynamics have hardened into succession leverage. A lawful ratification c
 The room smells of polished steel and drying blood. No one present believes there will be another neutral meeting after tonight."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -309,7 +309,7 @@ The room smells of polished steel and drying blood. No one present believes ther
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T419 - ACT6 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -319,7 +319,7 @@ The room smells of polished steel and drying blood. No one present believes ther
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-418.jpg"
@@ -331,7 +331,7 @@ This is the final intelligence bottleneck before the settlement closes. Public a
 Dust motes drift through angled light onto shackles bolted in the floor. The room is built to hold bodies, but tonight it is holding the future of your paperwork."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T419 - ACT6 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -340,7 +340,7 @@ Dust motes drift through angled light onto shackles bolted in the floor. The roo
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T420 - ACT6 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -351,7 +351,7 @@ Dust motes drift through angled light onto shackles bolted in the floor. The roo
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T419 - ACT6 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-419.jpg"
@@ -363,7 +363,7 @@ This is the last pact before terminal reckoning. A public oath can harden legiti
 Wax cools in the signet bowls while thunder rolls upriver. If this pact is crooked, the next act begins with funerals instead of governance."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T420 - ACT6 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -372,7 +372,7 @@ Wax cools in the signet bowls while thunder rolls upriver. If this pact is crook
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -382,7 +382,7 @@ Wax cools in the signet bowls while thunder rolls upriver. If this pact is crook
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T420 - ACT6 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/06-endgame-throne/frame-420.jpg"
@@ -394,7 +394,7 @@ This is the final fork before the reckoning of ashes. You can impose a witnessed
 Rain beats on the river stones like distant drums. By dawn, the realm will know whether it has inherited a government, a racket, or a countdown."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -403,7 +403,7 @@ Rain beats on the river stones like distant drums. By dawn, the realm will know 
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -413,7 +413,7 @@ Rain beats on the river stones like distant drums. By dawn, the realm will know 
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T423 - ACT6 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)

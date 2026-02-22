@@ -1,12 +1,12 @@
 /* Thrones module: 05-act5-battlefront.partial.if */
 scene__
   @name "ACT5: Field of Crows"
-  @first "Highgarden Siege Promise in the throne shadow"
-  @sections "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain"
+  @first "T337 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @sections "T337 - ACT5 - Highgarden Siege Promise in the throne shadow" "T338 - ACT5 - Sunspear Prison Confession with steel drawn" "T339 - ACT5 - The Trident Salt Pact by the harbor chain" "T340 - ACT5 - Riverrun Broken Oath under rain" "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T343 - ACT5 - Winterfell Night Council before witnesses" "T344 - ACT5 - The Twins Debt Collection under wolf banners" "T345 - ACT5 - Harrenhal Torchlit Census at the rookery" "T346 - ACT5 - Dragonstone Blood Price at first light" "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals" "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries" "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke" "T350 - ACT5 - Pentos Harbor Ambush in river fog" "T351 - ACT5 - Qarth Alliance Split near the godswood" "T352 - ACT5 - The Wall War Map against old law" "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky" "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse" "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors" "T356 - ACT5 - Pyke Hostage Exchange at the broken tower" "T357 - ACT5 - Highgarden Siege Promise in the throne shadow" "T358 - ACT5 - Sunspear Prison Confession with steel drawn" "T359 - ACT5 - The Trident Salt Pact by the harbor chain" "T360 - ACT5 - Riverrun Broken Oath under rain"
 __scene
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T337 - ACT5 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-337.jpg"
@@ -18,7 +18,7 @@ Morale fractures are spreading faster than wounds heal. Units fight harder when 
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T338 - ACT5 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T338 - ACT5 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-338.jpg"
@@ -48,7 +48,7 @@ Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes stra
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -56,7 +56,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T340 - ACT5 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -67,7 +67,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-339.jpg"
@@ -79,7 +79,7 @@ You can hold ground with blood, but you cannot hold coalition confidence if casu
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T340 - ACT5 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -87,7 +87,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -97,7 +97,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T340 - ACT5 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-340.jpg"
@@ -109,7 +109,7 @@ The field is eating men faster than replacement lines can march. Attrition is no
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -117,7 +117,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -127,7 +127,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T343 - ACT5 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -137,7 +137,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-341.jpg"
@@ -149,7 +149,7 @@ Morale fractures are spreading faster than wounds heal. Units fight harder when 
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -157,7 +157,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T343 - ACT5 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -167,7 +167,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-342.jpg"
@@ -179,7 +179,7 @@ Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes stra
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T343 - ACT5 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -187,7 +187,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T344 - ACT5 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -198,7 +198,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T343 - ACT5 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-343.jpg"
@@ -210,7 +210,7 @@ You can hold ground with blood, but you cannot hold coalition confidence if casu
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T344 - ACT5 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -218,7 +218,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T345 - ACT5 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -227,7 +227,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T346 - ACT5 - Dragonstone Blood Price at first light"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -237,7 +237,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T344 - ACT5 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-344.jpg"
@@ -249,7 +249,7 @@ The field is eating men faster than replacement lines can march. Attrition is no
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T345 - ACT5 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -257,7 +257,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T346 - ACT5 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -268,7 +268,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T345 - ACT5 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-345.jpg"
@@ -280,7 +280,7 @@ Morale fractures are spreading faster than wounds heal. Units fight harder when 
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T346 - ACT5 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -288,7 +288,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -297,7 +297,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -307,7 +307,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T346 - ACT5 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-346.jpg"
@@ -319,7 +319,7 @@ Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes stra
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -327,7 +327,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -338,7 +338,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-347.jpg"
@@ -350,7 +350,7 @@ You can hold ground with blood, but you cannot hold coalition confidence if casu
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -358,7 +358,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -368,7 +368,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-348.jpg"
@@ -380,7 +380,7 @@ The field is eating men faster than replacement lines can march. Attrition is no
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -388,7 +388,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T350 - ACT5 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -399,7 +399,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-349.jpg"
@@ -411,7 +411,7 @@ Morale fractures are spreading faster than wounds heal. Units fight harder when 
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T350 - ACT5 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -419,7 +419,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T351 - ACT5 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -429,7 +429,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T350 - ACT5 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-350.jpg"
@@ -441,7 +441,7 @@ Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes stra
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T351 - ACT5 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -449,7 +449,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T352 - ACT5 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -459,7 +459,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -469,7 +469,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T351 - ACT5 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-351.jpg"
@@ -481,7 +481,7 @@ You can hold ground with blood, but you cannot hold coalition confidence if casu
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T352 - ACT5 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -489,7 +489,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -499,7 +499,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T352 - ACT5 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-352.jpg"
@@ -511,7 +511,7 @@ The field is eating men faster than replacement lines can march. Attrition is no
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -519,7 +519,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -530,7 +530,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-353.jpg"
@@ -542,7 +542,7 @@ Morale fractures are spreading faster than wounds heal. Units fight harder when 
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -550,7 +550,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -560,7 +560,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-354.jpg"
@@ -572,7 +572,7 @@ Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes stra
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -580,7 +580,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T356 - ACT5 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -591,7 +591,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-355.jpg"
@@ -603,7 +603,7 @@ You can hold ground with blood, but you cannot hold coalition confidence if casu
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T356 - ACT5 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -611,7 +611,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T357 - ACT5 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -620,7 +620,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -630,7 +630,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T356 - ACT5 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-356.jpg"
@@ -642,7 +642,7 @@ The field is eating men faster than replacement lines can march. Attrition is no
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T357 - ACT5 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -650,7 +650,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -661,7 +661,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T357 - ACT5 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-357.jpg"
@@ -673,7 +673,7 @@ Morale fractures are spreading faster than wounds heal. Units fight harder when 
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -681,7 +681,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T359 - ACT5 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -690,7 +690,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T360 - ACT5 - Riverrun Broken Oath under rain"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -700,7 +700,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-358.jpg"
@@ -712,7 +712,7 @@ Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes stra
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T359 - ACT5 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -720,7 +720,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T360 - ACT5 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -731,7 +731,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T359 - ACT5 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-359.jpg"
@@ -743,7 +743,7 @@ You can hold ground with blood, but you cannot hold coalition confidence if casu
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T360 - ACT5 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -751,7 +751,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -761,7 +761,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T360 - ACT5 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/05-act5-battlefront/frame-360.jpg"
@@ -773,7 +773,7 @@ The field is eating men faster than replacement lines can march. Attrition is no
 You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -781,7 +781,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -791,7 +791,7 @@ You can distribute sacrifice transparently and risk slower action, or force outc
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T363 - ACT5 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)

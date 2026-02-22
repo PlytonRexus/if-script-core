@@ -1,12 +1,12 @@
 /* Thrones module: 04-act4-iron-islands.partial.if */
 scene__
   @name "ACT4: Salt and Iron"
-  @first "Harrenhal Torchlit Census at the rookery"
-  @sections "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries"
+  @first "T265 - ACT4 - Harrenhal Torchlit Census at the rookery"
+  @sections "T265 - ACT4 - Harrenhal Torchlit Census at the rookery" "T266 - ACT4 - Dragonstone Blood Price at first light" "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals" "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries" "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke" "T270 - ACT4 - Pentos Harbor Ambush in river fog" "T271 - ACT4 - Qarth Alliance Split near the godswood" "T272 - ACT4 - The Wall War Map against old law" "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky" "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse" "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors" "T276 - ACT4 - Pyke Hostage Exchange at the broken tower" "T277 - ACT4 - Highgarden Siege Promise in the throne shadow" "T278 - ACT4 - Sunspear Prison Confession with steel drawn" "T279 - ACT4 - The Trident Salt Pact by the harbor chain" "T280 - ACT4 - Riverrun Broken Oath under rain" "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast" "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell" "T283 - ACT4 - Winterfell Night Council before witnesses" "T284 - ACT4 - The Twins Debt Collection under wolf banners" "T285 - ACT4 - Harrenhal Torchlit Census at the rookery" "T286 - ACT4 - Dragonstone Blood Price at first light" "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals" "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
 __scene
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T265 - ACT4 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-265.jpg"
@@ -18,7 +18,7 @@ Neutrality is over. If your sea lanes are not protected by force, they are invit
 Kelp, tar, and wet wool fill the bridge. You are not choosing whether to engage the islands. You are choosing how much of their logic you are willing to import into your rule."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T266 - ACT4 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ Kelp, tar, and wet wool fill the bridge. You are not choosing whether to engage 
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -35,7 +35,7 @@ Kelp, tar, and wet wool fill the bridge. You are not choosing whether to engage 
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -45,7 +45,7 @@ Kelp, tar, and wet wool fill the bridge. You are not choosing whether to engage 
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T266 - ACT4 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-266.jpg"
@@ -57,7 +57,7 @@ This is command coherence under raider law. A public compensation formula could 
 Hemp smoke stings your throat while tally stones click on a war table. What you pay at first light determines whether Ironborn service feels like alliance or occupation."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -65,7 +65,7 @@ Hemp smoke stings your throat while tally stones click on a war table. What you 
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -75,7 +75,7 @@ Hemp smoke stings your throat while tally stones click on a war table. What you 
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -85,7 +85,7 @@ Hemp smoke stings your throat while tally stones click on a war table. What you 
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-267.jpg"
@@ -97,7 +97,7 @@ Delay is lethal here. Public adjudication can keep your reputation aligned with 
 Fish scales glitter in torchlight like coins on black cloth. This bargain is not just about Blackwater seals. It is about whether your maritime law is real or theatrical."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -105,7 +105,7 @@ Fish scales glitter in torchlight like coins on black cloth. This bargain is not
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -115,7 +115,7 @@ Fish scales glitter in torchlight like coins on black cloth. This bargain is not
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-268.jpg"
@@ -127,7 +127,7 @@ If you publish muster quotas and route assignments in open hearing, you may stop
 The gallery boards tremble under boots while gulls scream over the surf below. Today is less about where your fleet sails than whether it sails under one authority."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -135,7 +135,7 @@ The gallery boards tremble under boots while gulls scream over the surf below. T
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T270 - ACT4 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -146,7 +146,7 @@ The gallery boards tremble under boots while gulls scream over the surf below. T
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-269.jpg"
@@ -158,7 +158,7 @@ Rations are already being allocated by perceived loyalty, and this dispute will 
 Charcoal flakes drift down like black snow as priests await your instruction. The policy you choose here will be repeated by captains who care only about precedent."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T270 - ACT4 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -166,7 +166,7 @@ Charcoal flakes drift down like black snow as priests await your instruction. Th
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T271 - ACT4 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -176,7 +176,7 @@ Charcoal flakes drift down like black snow as priests await your instruction. Th
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T270 - ACT4 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-270.jpg"
@@ -188,7 +188,7 @@ You need discipline without paralysis. A visible convoy code can reduce panic an
 Fog beads on your gloves while lookouts ring warning bells from the sea tower. Every bell asks the same question: will your response build order or simply spread terror."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T271 - ACT4 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -196,7 +196,7 @@ Fog beads on your gloves while lookouts ring warning bells from the sea tower. E
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T272 - ACT4 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -206,7 +206,7 @@ Fog beads on your gloves while lookouts ring warning bells from the sea tower. E
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -216,7 +216,7 @@ Fog beads on your gloves while lookouts ring warning bells from the sea tower. E
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T271 - ACT4 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-271.jpg"
@@ -228,7 +228,7 @@ No captain will wait for perfect certainty. If you broker terms publicly, you pr
 Wet rope hangs from beams and drips onto loan tablets. What looks like a financing dispute is really a referendum on whether Valehart can keep partners aligned without permanent coercion."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T272 - ACT4 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -236,7 +236,7 @@ Wet rope hangs from beams and drips onto loan tablets. What looks like a financi
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -246,7 +246,7 @@ Wet rope hangs from beams and drips onto loan tablets. What looks like a financi
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T272 - ACT4 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-272.jpg"
@@ -258,7 +258,7 @@ Desertion rumors have already spread through your mixed crews. A public commitme
 Cold rain starts over the market roofs while shipwrights wait for your loading orders. The map from the Wall is thin parchment, but the decision it demands is heavy."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -266,7 +266,7 @@ Cold rain starts over the market roofs while shipwrights wait for your loading o
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -277,7 +277,7 @@ Cold rain starts over the market roofs while shipwrights wait for your loading o
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-273.jpg"
@@ -289,7 +289,7 @@ Hostage pressure tightens by the hour. If you honor the claim in public hearing,
 Rain taps the tower shutters while clerks hold quills over wet parchment. This ruling determines whether your logistics run on recognisable law or on whichever blade is nearest."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -297,7 +297,7 @@ Rain taps the tower shutters while clerks hold quills over wet parchment. This r
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -306,7 +306,7 @@ Rain taps the tower shutters while clerks hold quills over wet parchment. This r
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -316,7 +316,7 @@ Rain taps the tower shutters while clerks hold quills over wet parchment. This r
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-274.jpg"
@@ -328,7 +328,7 @@ Information drift is now a tactical weapon. A transparent correction can reestab
 Coal smoke from tide braziers mixes with kelp stink on the dock. One set of route orders goes out tonight, and every captain will treat it as the new standard."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -336,7 +336,7 @@ Coal smoke from tide braziers mixes with kelp stink on the dock. One set of rout
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -347,7 +347,7 @@ Coal smoke from tide braziers mixes with kelp stink on the dock. One set of rout
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-275.jpg"
@@ -359,7 +359,7 @@ Quartermasters already ration by loyalty, and this betrayal gives every underfed
 Spray lashes the railing while the accused kneels with shackled wrists, staring at your banner instead of your face. How you punish betrayal here will define the discipline culture of every ship still under Valehart colors."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -367,7 +367,7 @@ Spray lashes the railing while the accused kneels with shackled wrists, staring 
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T277 - ACT4 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -376,7 +376,7 @@ Spray lashes the railing while the accused kneels with shackled wrists, staring 
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -386,7 +386,7 @@ Spray lashes the railing while the accused kneels with shackled wrists, staring 
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-276.jpg"
@@ -398,7 +398,7 @@ A public sequence with witnesses could keep this exchange enforceable and reduce
 Rainwater runs down cracked stones and pools around shackled ankles. You must choose between visible constraint and private insurance in full view of men who respect neither."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T277 - ACT4 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -406,7 +406,7 @@ Rainwater runs down cracked stones and pools around shackled ankles. You must ch
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -417,7 +417,7 @@ Rainwater runs down cracked stones and pools around shackled ankles. You must ch
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T277 - ACT4 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-277.jpg"
@@ -429,7 +429,7 @@ Neutral captains are watching for one thing: whether Valehart policy protects th
 Rust flakes from anchor chains onto the contract table like brown snow. This promise to Highgarden is really a decision about the legal shape of sanctioned violence."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -437,7 +437,7 @@ Rust flakes from anchor chains onto the contract table like brown snow. This pro
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T279 - ACT4 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -447,7 +447,7 @@ Rust flakes from anchor chains onto the contract table like brown snow. This pro
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-278.jpg"
@@ -459,7 +459,7 @@ Desertion is already feeding on uncertainty. Public process could restore clarit
 The prisoner trembles in chain shadow while gulls cry over the surf. Your decision tells every captain whether truth in Valehart service is documented, purchased, or feared."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T279 - ACT4 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -467,7 +467,7 @@ The prisoner trembles in chain shadow while gulls cry over the surf. Your decisi
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T280 - ACT4 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -478,7 +478,7 @@ The prisoner trembles in chain shadow while gulls cry over the surf. Your decisi
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T279 - ACT4 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-279.jpg"
@@ -490,7 +490,7 @@ If you sign strict public terms, you may protect strategic corridors and reduce 
 Salt wind snaps the banners while clerks hold molten wax over waiting seals. Whatever language you choose here will be quoted in every port court and every tavern brawl."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T280 - ACT4 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -498,7 +498,7 @@ Salt wind snaps the banners while clerks hold molten wax over waiting seals. Wha
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -508,7 +508,7 @@ Salt wind snaps the banners while clerks hold molten wax over waiting seals. Wha
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T280 - ACT4 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-280.jpg"
@@ -520,7 +520,7 @@ Information edits spread faster than truth in bad weather. A documented legal re
 Rain rattles on shields stacked by the bridge and turns torch smoke into greasy streaks. This ruling closes the middle movement of Act 4 and determines what kind of fleet enters the next escalation."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -528,7 +528,7 @@ Rain rattles on shields stacked by the bridge and turns torch smoke into greasy 
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -538,7 +538,7 @@ Rain rattles on shields stacked by the bridge and turns torch smoke into greasy 
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T283 - ACT4 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -548,7 +548,7 @@ Rain rattles on shields stacked by the bridge and turns torch smoke into greasy 
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-281.jpg"
@@ -560,7 +560,7 @@ Rations are already short, and false accounting turns scarcity into mutiny fuel.
 Hemp smoke clings to your cloak while thralls watch for the first captain named. This is a decision about whether discipline here is written, whispered, or bought."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -568,7 +568,7 @@ Hemp smoke clings to your cloak while thralls watch for the first captain named.
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T283 - ACT4 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -578,7 +578,7 @@ Hemp smoke clings to your cloak while thralls watch for the first captain named.
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-282.jpg"
@@ -590,7 +590,7 @@ One choice prioritizes narrative legitimacy, the other deterrence through fear. 
 Rust and fish oil stain the message table while scribes compare wax seals for forgery. Your response here determines whether people trust your words or only your reach."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T283 - ACT4 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -598,7 +598,7 @@ Rust and fish oil stain the message table while scribes compare wax seals for fo
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T284 - ACT4 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -609,7 +609,7 @@ Rust and fish oil stain the message table while scribes compare wax seals for fo
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T283 - ACT4 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-283.jpg"
@@ -621,7 +621,7 @@ There is no neutral lane left. A public recommitment to northern protection can 
 Sea wind whistles through arrow slits as your messengers wait for sealed orders. This reply decides whether the North sees a partner or a temporary necessity."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T284 - ACT4 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -629,7 +629,7 @@ Sea wind whistles through arrow slits as your messengers wait for sealed orders.
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T285 - ACT4 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -639,7 +639,7 @@ Sea wind whistles through arrow slits as your messengers wait for sealed orders.
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T284 - ACT4 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-284.jpg"
@@ -651,7 +651,7 @@ Desertion reports worsen whenever wages look uncertain. A public debt audit coul
 Water slaps stone pilings beneath the dock while toll sheets flap in wet wind. Tonight you choose whether debt pressure is resolved in law, in fear, or in expensive ambiguity."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T285 - ACT4 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -659,7 +659,7 @@ Water slaps stone pilings beneath the dock while toll sheets flap in wet wind. T
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T286 - ACT4 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -670,7 +670,7 @@ Water slaps stone pilings beneath the dock while toll sheets flap in wet wind. T
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T285 - ACT4 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-285.jpg"
@@ -682,7 +682,7 @@ Hostage politics are no longer abstract; they are consuming manpower and legitim
 The bridge planks shudder beneath marching boots as clerks call out losses. Census figures do not care about pride, only sustainability."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T286 - ACT4 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -690,7 +690,7 @@ The bridge planks shudder beneath marching boots as clerks call out losses. Cens
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -699,7 +699,7 @@ The bridge planks shudder beneath marching boots as clerks call out losses. Cens
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -709,7 +709,7 @@ The bridge planks shudder beneath marching boots as clerks call out losses. Cens
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T286 - ACT4 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-286.jpg"
@@ -721,7 +721,7 @@ Raven edits and deliberate leaks have already blurred reality enough that overre
 The longhall braziers spit resin as first light leaks under the doors. Whatever you declare at dawn becomes the baseline for how dragon power is treated in your maritime strategy."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -729,7 +729,7 @@ The longhall braziers spit resin as first light leaks under the doors. Whatever 
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -740,7 +740,7 @@ The longhall braziers spit resin as first light leaks under the doors. Whatever 
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-287.jpg"
@@ -752,7 +752,7 @@ This is an end-of-module pressure point: whichever side gets priority sets expec
 Market gutters run with fish blood and rainwater while seals wait on hot wax. One signature decides who still believes your hierarchy of obligations."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -760,7 +760,7 @@ Market gutters run with fish blood and rainwater while seals wait on hot wax. On
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -769,7 +769,7 @@ Market gutters run with fish blood and rainwater while seals wait on hot wax. On
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T290 - ACT4 - Pentos Harbor Ambush in river fog"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -779,7 +779,7 @@ Market gutters run with fish blood and rainwater while seals wait on hot wax. On
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-288.jpg"
@@ -791,7 +791,7 @@ The ultimatum is simple and brutal: choose legible structure and preserve govern
 Sea spray lashes the windows while horns call shift change below. This is the hinge between maritime coercion politics and dragon-era risk, and your final island decision will follow you into both."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 2, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -799,7 +799,7 @@ Sea spray lashes the windows while horns call shift change below. This is the hi
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T290 - ACT4 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)

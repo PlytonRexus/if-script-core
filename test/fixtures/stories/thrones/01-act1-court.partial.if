@@ -1,12 +1,12 @@
 /* Thrones module: 01-act1-court.partial.if */
 scene__
   @name "ACT1: Red Keep Intrigue"
-  @first "The Eyrie Crown Ultimatum by candle smoke"
-  @sections "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law"
+  @first "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T050 - ACT1 - Pentos Harbor Ambush in river fog" "T051 - ACT1 - Qarth Alliance Split near the godswood" "T052 - ACT1 - The Wall War Map against old law" "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T056 - ACT1 - Pyke Hostage Exchange at the broken tower" "T057 - ACT1 - Highgarden Siege Promise in the throne shadow" "T058 - ACT1 - Sunspear Prison Confession with steel drawn" "T059 - ACT1 - The Trident Salt Pact by the harbor chain" "T060 - ACT1 - Riverrun Broken Oath under rain" "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast" "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell" "T063 - ACT1 - Winterfell Night Council before witnesses" "T064 - ACT1 - The Twins Debt Collection under wolf banners" "T065 - ACT1 - Harrenhal Torchlit Census at the rookery" "T066 - ACT1 - Dragonstone Blood Price at first light" "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals" "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries" "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T070 - ACT1 - Pentos Harbor Ambush in river fog" "T071 - ACT1 - Qarth Alliance Split near the godswood" "T072 - ACT1 - The Wall War Map against old law"
 __scene
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-049.jpg"
@@ -18,7 +18,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T050 - ACT1 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T051 - ACT1 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T052 - ACT1 - The Wall War Map against old law"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -47,7 +47,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T050 - ACT1 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-050.jpg"
@@ -59,7 +59,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T051 - ACT1 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -68,7 +68,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T052 - ACT1 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -78,7 +78,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -89,7 +89,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T051 - ACT1 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-051.jpg"
@@ -101,7 +101,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T052 - ACT1 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -110,7 +110,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -120,7 +120,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T052 - ACT1 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-052.jpg"
@@ -132,7 +132,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -141,7 +141,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -152,7 +152,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-053.jpg"
@@ -164,7 +164,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -173,7 +173,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -183,7 +183,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-054.jpg"
@@ -195,7 +195,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -204,7 +204,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T056 - ACT1 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -215,7 +215,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-055.jpg"
@@ -227,7 +227,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T056 - ACT1 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -236,7 +236,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T057 - ACT1 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -245,7 +245,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -256,7 +256,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T056 - ACT1 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-056.jpg"
@@ -268,7 +268,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T057 - ACT1 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -277,7 +277,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -287,7 +287,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -298,7 +298,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T057 - ACT1 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-057.jpg"
@@ -310,7 +310,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -319,7 +319,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -329,7 +329,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-058.jpg"
@@ -341,7 +341,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -350,7 +350,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T060 - ACT1 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -361,7 +361,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-059.jpg"
@@ -373,7 +373,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T060 - ACT1 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -382,7 +382,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -392,7 +392,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T060 - ACT1 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-060.jpg"
@@ -404,7 +404,7 @@ Capital politics rewards timing over sincerity. If you move publicly, you gain p
 This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -413,7 +413,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -423,7 +423,7 @@ This is not debate for its own sake. In King's Landing, information control is f
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T063 - ACT1 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -434,7 +434,7 @@ This is not debate for its own sake. In King's Landing, information control is f
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-061.jpg"
@@ -446,7 +446,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -455,7 +455,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T063 - ACT1 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -465,7 +465,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-062.jpg"
@@ -477,7 +477,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T063 - ACT1 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -486,7 +486,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T064 - ACT1 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -497,7 +497,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T063 - ACT1 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-063.jpg"
@@ -509,7 +509,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T064 - ACT1 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -518,7 +518,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T065 - ACT1 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -527,7 +527,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T066 - ACT1 - Dragonstone Blood Price at first light"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -538,7 +538,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T064 - ACT1 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-064.jpg"
@@ -550,7 +550,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T065 - ACT1 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -559,7 +559,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T066 - ACT1 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -570,7 +570,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T065 - ACT1 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-065.jpg"
@@ -582,7 +582,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T066 - ACT1 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -591,7 +591,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -600,7 +600,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -611,7 +611,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T066 - ACT1 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-066.jpg"
@@ -623,7 +623,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -632,7 +632,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -643,7 +643,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-067.jpg"
@@ -655,7 +655,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -664,7 +664,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -674,7 +674,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-068.jpg"
@@ -686,7 +686,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -695,7 +695,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T070 - ACT1 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -706,7 +706,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-069.jpg"
@@ -718,7 +718,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T070 - ACT1 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -727,7 +727,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T071 - ACT1 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -737,7 +737,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T070 - ACT1 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/01-act1-court/frame-070.jpg"
@@ -749,7 +749,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T071 - ACT1 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -758,7 +758,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T072 - ACT1 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -768,7 +768,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 2, 0, 30)
@@ -779,7 +779,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T071 - ACT1 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/01-act1-court/frame-071.jpg"
@@ -791,7 +791,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T072 - ACT1 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -800,7 +800,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -810,7 +810,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T072 - ACT1 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/01-act1-court/frame-072.jpg"
@@ -822,7 +822,7 @@ By this stage of Act 1, court memory is weaponized: each earlier concession is n
 What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -831,7 +831,7 @@ What happens in this chamber will be retold at ten tables by dawn, each version 
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)

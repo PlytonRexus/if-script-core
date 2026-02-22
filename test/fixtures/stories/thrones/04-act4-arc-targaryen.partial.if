@@ -1,12 +1,12 @@
 /* Thrones module: 04-act4-arc-targaryen.partial.if */
 scene__
   @name "ACT4: Dragons and Pretenders"
-  @first "The Eyrie Crown Ultimatum by candle smoke"
-  @sections "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law"
+  @first "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke" "T290 - ACT4 - Pentos Harbor Ambush in river fog" "T291 - ACT4 - Qarth Alliance Split near the godswood" "T292 - ACT4 - The Wall War Map against old law" "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky" "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse" "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors" "T296 - ACT4 - Pyke Hostage Exchange at the broken tower" "T297 - ACT4 - Highgarden Siege Promise in the throne shadow" "T298 - ACT4 - Sunspear Prison Confession with steel drawn" "T299 - ACT4 - The Trident Salt Pact by the harbor chain" "T300 - ACT4 - Riverrun Broken Oath under rain" "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast" "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell" "T303 - ACT4 - Winterfell Night Council before witnesses" "T304 - ACT4 - The Twins Debt Collection under wolf banners" "T305 - ACT4 - Harrenhal Torchlit Census at the rookery" "T306 - ACT4 - Dragonstone Blood Price at first light" "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals" "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries" "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke" "T310 - ACT4 - Pentos Harbor Ambush in river fog" "T311 - ACT4 - Qarth Alliance Split near the godswood" "T312 - ACT4 - The Wall War Map against old law"
 __scene
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-289.jpg"
@@ -18,7 +18,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T290 - ACT4 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T291 - ACT4 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -38,7 +38,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T290 - ACT4 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-290.jpg"
@@ -50,7 +50,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T291 - ACT4 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -59,7 +59,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T292 - ACT4 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -70,7 +70,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -82,7 +82,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T291 - ACT4 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-291.jpg"
@@ -94,7 +94,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T292 - ACT4 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -103,7 +103,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -114,7 +114,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T292 - ACT4 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-292.jpg"
@@ -126,7 +126,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -135,7 +135,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -147,7 +147,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-293.jpg"
@@ -159,7 +159,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -168,7 +168,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -179,7 +179,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-294.jpg"
@@ -191,7 +191,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -200,7 +200,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T296 - ACT4 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -211,7 +211,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -223,7 +223,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-295.jpg"
@@ -235,7 +235,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T296 - ACT4 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -244,7 +244,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -254,7 +254,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -266,7 +266,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T296 - ACT4 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-296.jpg"
@@ -278,7 +278,7 @@ The dragon question is still being framed: allies want deterrence, rivals want p
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -287,7 +287,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -299,7 +299,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-297.jpg"
@@ -311,7 +311,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -320,7 +320,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T299 - ACT4 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -331,7 +331,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-298.jpg"
@@ -343,7 +343,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T299 - ACT4 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -352,7 +352,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T300 - ACT4 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -364,7 +364,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T299 - ACT4 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-299.jpg"
@@ -376,7 +376,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T300 - ACT4 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -385,7 +385,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -396,7 +396,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T300 - ACT4 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-300.jpg"
@@ -408,7 +408,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -417,7 +417,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -428,7 +428,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T303 - ACT4 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -440,7 +440,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-301.jpg"
@@ -452,7 +452,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -461,7 +461,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T303 - ACT4 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -471,7 +471,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T304 - ACT4 - The Twins Debt Collection under wolf banners"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -483,7 +483,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-302.jpg"
@@ -495,7 +495,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T303 - ACT4 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -504,7 +504,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T304 - ACT4 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -516,7 +516,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T303 - ACT4 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-303.jpg"
@@ -528,7 +528,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T304 - ACT4 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -537,7 +537,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T305 - ACT4 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -548,7 +548,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T304 - ACT4 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-304.jpg"
@@ -560,7 +560,7 @@ By the middle of this arc, pretender propaganda, debt pressure, and battlefield 
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T305 - ACT4 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -569,7 +569,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T306 - ACT4 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -581,7 +581,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T305 - ACT4 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-305.jpg"
@@ -593,7 +593,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T306 - ACT4 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -602,7 +602,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -612,7 +612,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -624,7 +624,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T306 - ACT4 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-306.jpg"
@@ -636,7 +636,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -645,7 +645,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -657,7 +657,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-307.jpg"
@@ -669,7 +669,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -678,7 +678,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -689,7 +689,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-308.jpg"
@@ -701,7 +701,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -710,7 +710,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T310 - ACT4 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -721,7 +721,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T311 - ACT4 - Qarth Alliance Split near the godswood"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -733,7 +733,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-309.jpg"
@@ -745,7 +745,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T310 - ACT4 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -754,7 +754,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T311 - ACT4 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -765,7 +765,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T310 - ACT4 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-310.jpg"
@@ -777,7 +777,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T311 - ACT4 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -786,7 +786,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T312 - ACT4 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -797,7 +797,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -809,7 +809,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T311 - ACT4 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-311.jpg"
@@ -821,7 +821,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T312 - ACT4 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -830,7 +830,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
@@ -841,7 +841,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T312 - ACT4 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-312.jpg"
@@ -853,7 +853,7 @@ Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon lev
 Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -862,7 +862,7 @@ Torchlight jumps across wet stone as messengers wait for sealed orders. What you
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T314 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)

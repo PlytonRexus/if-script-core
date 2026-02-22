@@ -1,12 +1,12 @@
 /* Thrones module: 02-act2-riverlands.partial.if */
 scene__
   @name "ACT2: Riverlands Burning"
-  @first "Highgarden Siege Promise in the throne shadow"
-  @sections "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain"
+  @first "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @sections "T097 - ACT2 - Highgarden Siege Promise in the throne shadow" "T098 - ACT2 - Sunspear Prison Confession with steel drawn" "T099 - ACT2 - The Trident Salt Pact by the harbor chain" "T100 - ACT2 - Riverrun Broken Oath under rain" "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T103 - ACT2 - Winterfell Night Council before witnesses" "T104 - ACT2 - The Twins Debt Collection under wolf banners" "T105 - ACT2 - Harrenhal Torchlit Census at the rookery" "T106 - ACT2 - Dragonstone Blood Price at first light" "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries" "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke" "T110 - ACT2 - Pentos Harbor Ambush in river fog" "T111 - ACT2 - Qarth Alliance Split near the godswood" "T112 - ACT2 - The Wall War Map against old law" "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky" "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse" "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors" "T116 - ACT2 - Pyke Hostage Exchange at the broken tower" "T117 - ACT2 - Highgarden Siege Promise in the throne shadow" "T118 - ACT2 - Sunspear Prison Confession with steel drawn" "T119 - ACT2 - The Trident Salt Pact by the harbor chain" "T120 - ACT2 - Riverrun Broken Oath under rain"
 __scene
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-097.jpg"
@@ -18,7 +18,7 @@ Civilian camps now outnumber trained spears along your route. If you ration by l
 You hear millstones grinding where no grain remains to grind. The next order you sign will decide whether Valehart is remembered as a steward of a starving region or one more predator in armor."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -26,7 +26,7 @@ You hear millstones grinding where no grain remains to grind. The next order you
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T099 - ACT2 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ You hear millstones grinding where no grain remains to grind. The next order you
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-098.jpg"
@@ -48,7 +48,7 @@ Desertion grows because your soldiers think command has no coherent enemy, only 
 Mud sucks at your boots while septas stack fresh shrouds nearby. You can choose clean process, quiet expedience, or foreign speed, but not a path without civilian cost."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T099 - ACT2 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -56,7 +56,7 @@ Mud sucks at your boots while septas stack fresh shrouds nearby. You can choose 
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T100 - ACT2 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -66,7 +66,7 @@ Mud sucks at your boots while septas stack fresh shrouds nearby. You can choose 
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -76,7 +76,7 @@ Mud sucks at your boots while septas stack fresh shrouds nearby. You can choose 
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T099 - ACT2 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-099.jpg"
@@ -88,7 +88,7 @@ A salt pact could stabilize routes for civilians and troops alike, but only if e
 The river stinks of algae and dead horses. You must choose whether the pact is a public law, a private weapon, or another hidden debt."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T100 - ACT2 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -96,7 +96,7 @@ The river stinks of algae and dead horses. You must choose whether the pact is a
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -106,7 +106,7 @@ The river stinks of algae and dead horses. You must choose whether the pact is a
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T100 - ACT2 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-100.jpg"
@@ -118,7 +118,7 @@ Rumor outruns every raven now. If you act publicly, you may restore order but al
 Wet straw, horse blood, and lamp oil fill the hall as you decide whether broken oath is judged in the open, buried in fear, or outsourced to foreign pressure."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -126,7 +126,7 @@ Wet straw, horse blood, and lamp oil fill the hall as you decide whether broken 
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -136,7 +136,7 @@ Wet straw, horse blood, and lamp oil fill the hall as you decide whether broken 
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T103 - ACT2 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -146,7 +146,7 @@ Wet straw, horse blood, and lamp oil fill the hall as you decide whether broken 
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-101.jpg"
@@ -158,7 +158,7 @@ Refugee caravans queue on both banks, waiting for escort orders you cannot issue
 The ferry creaks under the weight of grain sacks and wounded men. This is not a question of innocence. It is a question of what kind of order you can enforce before winter closes the crossings."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -166,7 +166,7 @@ The ferry creaks under the weight of grain sacks and wounded men. This is not a 
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T103 - ACT2 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -176,7 +176,7 @@ The ferry creaks under the weight of grain sacks and wounded men. This is not a 
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-102.jpg"
@@ -188,7 +188,7 @@ One banner house already threatens to break from your command if you obey King's
 Rain drips through the mill roof onto the sealed letter. You cannot satisfy every oath now. You can only decide which institution you betray first and why."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T103 - ACT2 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -196,7 +196,7 @@ Rain drips through the mill roof onto the sealed letter. You cannot satisfy ever
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T104 - ACT2 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -207,7 +207,7 @@ Rain drips through the mill roof onto the sealed letter. You cannot satisfy ever
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T103 - ACT2 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-103.jpg"
@@ -219,7 +219,7 @@ Neutral minor lords now demand guarantees before they loan carts, mules, or brid
 Snowmelt wind cuts through wet canvas as scribes wait on your seal. Whatever you promise here will be measured against corpses, not rhetoric."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T104 - ACT2 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -227,7 +227,7 @@ Snowmelt wind cuts through wet canvas as scribes wait on your seal. Whatever you
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T105 - ACT2 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -237,7 +237,7 @@ Snowmelt wind cuts through wet canvas as scribes wait on your seal. Whatever you
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T104 - ACT2 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-104.jpg"
@@ -249,7 +249,7 @@ Your own captains are cracking. Desertion has risen because men believe command 
 River mist coils around the pilings as bodies drift in the current below. The crossing is open for now. It will not stay that way once you answer."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T105 - ACT2 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -257,7 +257,7 @@ River mist coils around the pilings as bodies drift in the current below. The cr
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T106 - ACT2 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -268,7 +268,7 @@ River mist coils around the pilings as bodies drift in the current below. The cr
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T105 - ACT2 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-105.jpg"
@@ -280,7 +280,7 @@ Hostage exchanges have replaced market days in half the Riverlands. Each delay m
 Ravens crowd the rafters as scribes wait for your seal. Counting people has become deciding who is protected and who is expendable."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T106 - ACT2 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -288,7 +288,7 @@ Ravens crowd the rafters as scribes wait for your seal. Counting people has beco
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -297,7 +297,7 @@ Ravens crowd the rafters as scribes wait for your seal. Counting people has beco
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -307,7 +307,7 @@ Ravens crowd the rafters as scribes wait for your seal. Counting people has beco
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T106 - ACT2 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-106.jpg"
@@ -319,7 +319,7 @@ Forged raven copies are already circulating, each with different totals, each en
 The ferry deck shudders beneath sacks of damp grain and wounded men. One order from you decides whether taxation remains government or becomes banditry with paperwork."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -327,7 +327,7 @@ The ferry deck shudders beneath sacks of damp grain and wounded men. One order f
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -338,7 +338,7 @@ The ferry deck shudders beneath sacks of damp grain and wounded men. One order f
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-107.jpg"
@@ -350,7 +350,7 @@ Your quartermasters are now allocating food and medicine by route security, whic
 Storm wind rattles broken shutters as negotiators wait. This is less a trade pact than a choice about who controls the Riverlands' last functioning supply arteries."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -358,7 +358,7 @@ Storm wind rattles broken shutters as negotiators wait. This is less a trade pac
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -368,7 +368,7 @@ Storm wind rattles broken shutters as negotiators wait. This is less a trade pac
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-108.jpg"
@@ -380,7 +380,7 @@ A key banner house now demands proof you can keep the roads secure before they r
 Rainwater pools in fresh graves while septas count new names. Frontier security and civilian confidence are now the same problem."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -388,7 +388,7 @@ Rainwater pools in fresh graves while septas count new names. Frontier security 
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T110 - ACT2 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -399,7 +399,7 @@ Rainwater pools in fresh graves while septas count new names. Frontier security 
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-109.jpg"
@@ -411,7 +411,7 @@ Neutral houses hover, waiting to sell loyalty to whichever side guarantees safer
 Wax drips on the map as your clerks wait. This decree will decide whether the Riverlands remain a corridor or fracture into armed toll islands."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T110 - ACT2 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -419,7 +419,7 @@ Wax drips on the map as your clerks wait. This decree will decide whether the Ri
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T111 - ACT2 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -429,7 +429,7 @@ Wax drips on the map as your clerks wait. This decree will decide whether the Ri
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T110 - ACT2 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-110.jpg"
@@ -441,7 +441,7 @@ Desertion climbs because your men believe raiders always know convoy timing. A p
 Lantern light shakes on black water as interrogators await instruction. Delay means another burned wagon by dawn."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T111 - ACT2 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -449,7 +449,7 @@ Lantern light shakes on black water as interrogators await instruction. Delay me
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T112 - ACT2 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -459,7 +459,7 @@ Lantern light shakes on black water as interrogators await instruction. Delay me
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -469,7 +469,7 @@ Lantern light shakes on black water as interrogators await instruction. Delay me
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T111 - ACT2 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-111.jpg"
@@ -481,7 +481,7 @@ Refugee caravans choke both riverbanks, and hostage exchanges keep collapsing wh
 The ferry ropes groan under overloaded carts while scribes copy clauses by torchlight. Your signature decides whether survival is funded by sovereignty or mortgaged against it."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T112 - ACT2 - The Wall War Map against old law"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -489,7 +489,7 @@ The ferry ropes groan under overloaded carts while scribes copy clauses by torch
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -499,7 +499,7 @@ The ferry ropes groan under overloaded carts while scribes copy clauses by torch
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T112 - ACT2 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-112.jpg"
@@ -511,7 +511,7 @@ Ravens carrying edited fragments of the dispatch are already circulating, each v
 Broken men warm their hands over damp fires outside your tent. The realm expects you to choose between nearby suffering and distant catastrophe, as if either can be ignored."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -519,7 +519,7 @@ Broken men warm their hands over damp fires outside your tent. The realm expects
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -529,7 +529,7 @@ Broken men warm their hands over damp fires outside your tent. The realm expects
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -539,7 +539,7 @@ Broken men warm their hands over damp fires outside your tent. The realm expects
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-113.jpg"
@@ -551,7 +551,7 @@ Your quartermasters now ration by route reliability, which means loyalty can be 
 The night smells of wet canvas and turned soil from fresh graves. Your ruling will decide whether duty to distant walls outranks bread in nearby hands."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -559,7 +559,7 @@ The night smells of wet canvas and turned soil from fresh graves. Your ruling wi
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -569,7 +569,7 @@ The night smells of wet canvas and turned soil from fresh graves. Your ruling wi
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-114.jpg"
@@ -581,7 +581,7 @@ A major banner threatens to withdraw grain teams unless you prove who is behind 
 River mist crawls through the sept doors while engineers await escort orders. Every hour lost here fractures both roads and alliances."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -589,7 +589,7 @@ River mist crawls through the sept doors while engineers await escort orders. Ev
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T116 - ACT2 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -600,7 +600,7 @@ River mist crawls through the sept doors while engineers await escort orders. Ev
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-115.jpg"
@@ -612,7 +612,7 @@ Neutral houses now demand payment before sharing their own scouts, citing repeat
 Burned wheat and lamp smoke hang over the floodplain. The next dispatch you authorize determines whether trust is rebuilt in court or enforced in shadows."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T116 - ACT2 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -620,7 +620,7 @@ Burned wheat and lamp smoke hang over the floodplain. The next dispatch you auth
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T117 - ACT2 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -629,7 +629,7 @@ Burned wheat and lamp smoke hang over the floodplain. The next dispatch you auth
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -639,7 +639,7 @@ Burned wheat and lamp smoke hang over the floodplain. The next dispatch you auth
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T116 - ACT2 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-116.jpg"
@@ -651,7 +651,7 @@ Refugee escorts are deserting because they no longer trust command to protect no
 The ferry timbers creak under chained prisoners and trembling families. You can buy order through law or through fear, but not both without cost."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T117 - ACT2 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -659,7 +659,7 @@ The ferry timbers creak under chained prisoners and trembling families. You can 
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -670,7 +670,7 @@ The ferry timbers creak under chained prisoners and trembling families. You can 
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T117 - ACT2 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-117.jpg"
@@ -682,7 +682,7 @@ Hostage politics are now intertwined with food drops: captors release prisoners 
 Thunder rolls over smashed mills as both sides count barrels in the dark. These wagons carry bread, leverage, and the next round of accusations."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -690,7 +690,7 @@ Thunder rolls over smashed mills as both sides count barrels in the dark. These 
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T119 - ACT2 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -700,7 +700,7 @@ Thunder rolls over smashed mills as both sides count barrels in the dark. These 
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-118.jpg"
@@ -712,7 +712,7 @@ Edited versions of the confession are already in circulation, each one accusing 
 Vigil lamps flicker over rows of marked graves. Your next move decides whether justice is immediate and risky, or careful and politically expensive."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T119 - ACT2 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -720,7 +720,7 @@ Vigil lamps flicker over rows of marked graves. Your next move decides whether j
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T120 - ACT2 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -731,7 +731,7 @@ Vigil lamps flicker over rows of marked graves. Your next move decides whether j
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T119 - ACT2 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-119.jpg"
@@ -743,7 +743,7 @@ Quartermasters now assign food by secured district, effectively turning policy i
 River wind rattles stained sept glass while carts queue for salt. The Riverlands can survive hypocrisy for a season, but not disorder."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T120 - ACT2 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -751,7 +751,7 @@ River wind rattles stained sept glass while carts queue for salt. The Riverlands
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -760,7 +760,7 @@ River wind rattles stained sept glass while carts queue for salt. The Riverlands
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -770,7 +770,7 @@ River wind rattles stained sept glass while carts queue for salt. The Riverlands
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T120 - ACT2 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-riverlands/frame-120.jpg"
@@ -782,7 +782,7 @@ Several houses threaten to fracture if you do not decide now between strict publ
 You taste smoke, river salt, and rain as scribes set final orders. What you choose here determines how Act 2 hands its wounds to the Northward campaign."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 2, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
     @action survival_clock = clampStat(survival_clock - 1, 0, 30)
@@ -790,7 +790,7 @@ You taste smoke, river salt, and rain as scribes set final orders. What you choo
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -800,7 +800,7 @@ You taste smoke, river salt, and rain as scribes set final orders. What you choo
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T123 - ACT2 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)

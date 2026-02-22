@@ -1,12 +1,12 @@
 /* Thrones module: 02-act2-arc-nightwatch.partial.if */
 scene__
   @name "ACT2: Black Brothers"
-  @first "Harrenhal Torchlit Census at the rookery"
-  @sections "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries"
+  @first "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @sections "T145 - ACT2 - Harrenhal Torchlit Census at the rookery" "T146 - ACT2 - Dragonstone Blood Price at first light" "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries" "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke" "T150 - ACT2 - Pentos Harbor Ambush in river fog" "T151 - ACT2 - Qarth Alliance Split near the godswood" "T152 - ACT2 - The Wall War Map against old law" "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky" "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse" "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors" "T156 - ACT2 - Pyke Hostage Exchange at the broken tower" "T157 - ACT2 - Highgarden Siege Promise in the throne shadow" "T158 - ACT2 - Sunspear Prison Confession with steel drawn" "T159 - ACT2 - The Trident Salt Pact by the harbor chain" "T160 - ACT2 - Riverrun Broken Oath under rain" "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T163 - ACT2 - Winterfell Night Council before witnesses" "T164 - ACT2 - The Twins Debt Collection under wolf banners" "T165 - ACT2 - Harrenhal Torchlit Census at the rookery" "T166 - ACT2 - Dragonstone Blood Price at first light" "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
 __scene
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-145.jpg"
@@ -18,7 +18,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T146 - ACT2 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -36,7 +36,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -48,7 +48,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T146 - ACT2 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-146.jpg"
@@ -60,7 +60,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -69,7 +69,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -80,7 +80,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-147.jpg"
@@ -92,7 +92,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -101,7 +101,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -110,7 +110,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T150 - ACT2 - Pentos Harbor Ambush in river fog"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -122,7 +122,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-148.jpg"
@@ -134,7 +134,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -143,7 +143,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T150 - ACT2 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -154,7 +154,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-149.jpg"
@@ -166,7 +166,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T150 - ACT2 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -175,7 +175,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T151 - ACT2 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -185,7 +185,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T150 - ACT2 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-150.jpg"
@@ -197,7 +197,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T151 - ACT2 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -206,7 +206,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T152 - ACT2 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -216,7 +216,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -228,7 +228,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T151 - ACT2 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-151.jpg"
@@ -240,7 +240,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T152 - ACT2 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -249,7 +249,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -259,7 +259,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T152 - ACT2 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-152.jpg"
@@ -271,7 +271,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -280,7 +280,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -291,7 +291,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-153.jpg"
@@ -303,7 +303,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -312,7 +312,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -322,7 +322,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-154.jpg"
@@ -334,7 +334,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -343,7 +343,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T156 - ACT2 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -353,7 +353,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -365,7 +365,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-155.jpg"
@@ -377,7 +377,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T156 - ACT2 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -386,7 +386,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -395,7 +395,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -407,7 +407,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T156 - ACT2 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-156.jpg"
@@ -419,7 +419,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -428,7 +428,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -439,7 +439,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-157.jpg"
@@ -451,7 +451,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -460,7 +460,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T159 - ACT2 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -470,7 +470,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-158.jpg"
@@ -482,7 +482,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T159 - ACT2 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -491,7 +491,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T160 - ACT2 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -502,7 +502,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T159 - ACT2 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-159.jpg"
@@ -514,7 +514,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T160 - ACT2 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -523,7 +523,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -533,7 +533,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T160 - ACT2 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-160.jpg"
@@ -545,7 +545,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -554,7 +554,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -564,7 +564,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T163 - ACT2 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -576,7 +576,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-161.jpg"
@@ -588,7 +588,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -597,7 +597,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T163 - ACT2 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -606,7 +606,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T164 - ACT2 - The Twins Debt Collection under wolf banners"
     @when ((wealth + essos_ties + dragon_factor) >= 8)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -618,7 +618,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-162.jpg"
@@ -630,7 +630,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T163 - ACT2 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -639,7 +639,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T164 - ACT2 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -650,7 +650,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T163 - ACT2 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-163.jpg"
@@ -662,7 +662,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T164 - ACT2 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -671,7 +671,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T165 - ACT2 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -681,7 +681,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T164 - ACT2 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-164.jpg"
@@ -693,7 +693,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T165 - ACT2 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -702,7 +702,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T166 - ACT2 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -713,7 +713,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T165 - ACT2 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-165.jpg"
@@ -725,7 +725,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T166 - ACT2 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -734,7 +734,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -743,7 +743,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -755,7 +755,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T166 - ACT2 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-166.jpg"
@@ -767,7 +767,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -776,7 +776,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -787,7 +787,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-167.jpg"
@@ -799,7 +799,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -808,7 +808,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
     @action leverage = clampStat(leverage + 1, 0, 30)
@@ -818,7 +818,7 @@ The frontier is now reactive, and every delayed choice is paid for in bodies bef
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-168.jpg"
@@ -830,7 +830,7 @@ At the edge of the realm, logistics is survival doctrine. If you force this thro
 The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action watch_trust = clampStat(watch_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -839,7 +839,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T170 - ACT3 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 2, 0, 30)
@@ -849,7 +849,7 @@ The frontier is under-resourced, and each decision reallocates risk between vill
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T171 - ACT3 - Qarth Alliance Split near the godswood"
     @when ((wealth + essos_ties + dragon_factor) >= 10)
     @action wealth = clampStat(wealth - 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)

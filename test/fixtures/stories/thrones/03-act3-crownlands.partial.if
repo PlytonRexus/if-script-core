@@ -1,12 +1,12 @@
 /* Thrones module: 03-act3-crownlands.partial.if */
 scene__
   @name "ACT3: Crownlands Conspiracy"
-  @first "The Eyrie Crown Ultimatum by candle smoke"
-  @sections "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law" "Castle Black Inheritance Claim under moonless sky" "Moat Cailin Whispered Warning at the gatehouse" "Oldtown Silent Betrayal behind closed doors" "Pyke Hostage Exchange at the broken tower" "Highgarden Siege Promise in the throne shadow" "Sunspear Prison Confession with steel drawn" "The Trident Salt Pact by the harbor chain" "Riverrun Broken Oath under rain" "The Kingsroad Blackmail Ledger after the feast" "The Red Keep Raven Intercept before the sept bell" "Winterfell Night Council before witnesses" "The Twins Debt Collection under wolf banners" "Harrenhal Torchlit Census at the rookery" "Dragonstone Blood Price at first light" "Blackwater Bay Sealed Bargain beneath lion seals" "The Dreadfort Border Muster in crowded galleries" "The Eyrie Crown Ultimatum by candle smoke" "Pentos Harbor Ambush in river fog" "Qarth Alliance Split near the godswood" "The Wall War Map against old law"
+  @first "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T170 - ACT3 - Pentos Harbor Ambush in river fog" "T171 - ACT3 - Qarth Alliance Split near the godswood" "T172 - ACT3 - The Wall War Map against old law" "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky" "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse" "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors" "T176 - ACT3 - Pyke Hostage Exchange at the broken tower" "T177 - ACT3 - Highgarden Siege Promise in the throne shadow" "T178 - ACT3 - Sunspear Prison Confession with steel drawn" "T179 - ACT3 - The Trident Salt Pact by the harbor chain" "T180 - ACT3 - Riverrun Broken Oath under rain" "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast" "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell" "T183 - ACT3 - Winterfell Night Council before witnesses" "T184 - ACT3 - The Twins Debt Collection under wolf banners" "T185 - ACT3 - Harrenhal Torchlit Census at the rookery" "T186 - ACT3 - Dragonstone Blood Price at first light" "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals" "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries" "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T190 - ACT3 - Pentos Harbor Ambush in river fog" "T191 - ACT3 - Qarth Alliance Split near the godswood" "T192 - ACT3 - The Wall War Map against old law"
 __scene
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-169.jpg"
@@ -18,7 +18,7 @@ Act Three begins as a problem of enforcement, not persuasion. Bread carts vanish
 The account in front of you is brutal: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. History has already opened its ledger; this choice decides what gets written first."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T170 - ACT3 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -27,7 +27,7 @@ The account in front of you is brutal: honor=${honor}, ruthlessness=${ruthlessne
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T171 - ACT3 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -37,7 +37,7 @@ The account in front of you is brutal: honor=${honor}, ruthlessness=${ruthlessne
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T170 - ACT3 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-170.jpg"
@@ -49,7 +49,7 @@ City stability hangs on who controls arrivals: grain, rumor, and armed men. If c
 Your position compresses to numbers and hours: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. One decision now decides whether order arrives by law, fear, or foreign debt."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T171 - ACT3 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -58,7 +58,7 @@ Your position compresses to numbers and hours: honor=${honor}, ruthlessness=${ru
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T172 - ACT3 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -68,7 +68,7 @@ Your position compresses to numbers and hours: honor=${honor}, ruthlessness=${ru
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -78,7 +78,7 @@ Your position compresses to numbers and hours: honor=${honor}, ruthlessness=${ru
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T171 - ACT3 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-171.jpg"
@@ -90,7 +90,7 @@ This is where blackmail economics meets crowd politics. If debt houses believe t
 You measure margin against collapse: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The wrong creditor leaves this chamber richer and the city poorer."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T172 - ACT3 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -99,7 +99,7 @@ You measure margin against collapse: honor=${honor}, ruthlessness=${ruthlessness
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -109,7 +109,7 @@ You measure margin against collapse: honor=${honor}, ruthlessness=${ruthlessness
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T172 - ACT3 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-172.jpg"
@@ -121,7 +121,7 @@ Regime control now depends on information discipline. If your enemies can edit o
 The numbers refuse sentiment: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not choosing comfort, only which cost reaches you first."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -130,7 +130,7 @@ The numbers refuse sentiment: honor=${honor}, ruthlessness=${ruthlessness}, secr
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -141,7 +141,7 @@ The numbers refuse sentiment: honor=${honor}, ruthlessness=${ruthlessness}, secr
 __section
 
 section__
-  @title "Castle Black Inheritance Claim under moonless sky"
+  @title "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-173.jpg"
@@ -153,7 +153,7 @@ This node is about legitimacy through logistics. If rations follow oath and need
 You calculate authority in shrinking margins: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. A ration mark on parchment now can decide a siege outcome months from now."
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -162,7 +162,7 @@ You calculate authority in shrinking margins: honor=${honor}, ruthlessness=${rut
   __choice
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -172,7 +172,7 @@ You calculate authority in shrinking margins: honor=${honor}, ruthlessness=${rut
 __section
 
 section__
-  @title "Moat Cailin Whispered Warning at the gatehouse"
+  @title "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-174.jpg"
@@ -184,7 +184,7 @@ Crowd control politics punishes hesitation. A transparent crackdown can restore 
 Your mandate balances on diminishing reserves: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Enforcement is coming either way; the question is whose name the city curses."
 
   choice__
-    @target "Oldtown Silent Betrayal behind closed doors"
+    @target "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -193,7 +193,7 @@ Your mandate balances on diminishing reserves: honor=${honor}, ruthlessness=${ru
   __choice
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T176 - ACT3 - Pyke Hostage Exchange at the broken tower"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -204,7 +204,7 @@ Your mandate balances on diminishing reserves: honor=${honor}, ruthlessness=${ru
 __section
 
 section__
-  @title "Oldtown Silent Betrayal behind closed doors"
+  @title "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-175.jpg"
@@ -216,7 +216,7 @@ Neutrality in the Crownlands is now a commodity. If you lock these houses into p
 Your strategic balance sheet narrows by the hour: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can purchase calm tonight, but never without interest."
 
   choice__
-    @target "Pyke Hostage Exchange at the broken tower"
+    @target "T176 - ACT3 - Pyke Hostage Exchange at the broken tower"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -225,7 +225,7 @@ Your strategic balance sheet narrows by the hour: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T177 - ACT3 - Highgarden Siege Promise in the throne shadow"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -234,7 +234,7 @@ Your strategic balance sheet narrows by the hour: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -244,7 +244,7 @@ Your strategic balance sheet narrows by the hour: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "Pyke Hostage Exchange at the broken tower"
+  @title "T176 - ACT3 - Pyke Hostage Exchange at the broken tower"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-176.jpg"
@@ -256,7 +256,7 @@ Regime enforcement fails fastest when officers believe policy changes with every
 All choices cash out against the same reserve: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The city will obey someone by dawn; decide whether it is your law or your fear."
 
   choice__
-    @target "Highgarden Siege Promise in the throne shadow"
+    @target "T177 - ACT3 - Highgarden Siege Promise in the throne shadow"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -265,7 +265,7 @@ All choices cash out against the same reserve: honor=${honor}, ruthlessness=${ru
   __choice
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -276,7 +276,7 @@ All choices cash out against the same reserve: honor=${honor}, ruthlessness=${ru
 __section
 
 section__
-  @title "Highgarden Siege Promise in the throne shadow"
+  @title "T177 - ACT3 - Highgarden Siege Promise in the throne shadow"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-177.jpg"
@@ -288,7 +288,7 @@ If you over-correct with force, you risk coordinated backlash; if you delay for 
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "Sunspear Prison Confession with steel drawn"
+    @target "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -297,7 +297,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T179 - ACT3 - The Trident Salt Pact by the harbor chain"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -307,7 +307,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "Sunspear Prison Confession with steel drawn"
+  @title "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-178.jpg"
@@ -319,7 +319,7 @@ Every order now carries two prices, one immediate and one deferred, and your riv
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "The Trident Salt Pact by the harbor chain"
+    @target "T179 - ACT3 - The Trident Salt Pact by the harbor chain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -328,7 +328,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T180 - ACT3 - Riverrun Broken Oath under rain"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -339,7 +339,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "The Trident Salt Pact by the harbor chain"
+  @title "T179 - ACT3 - The Trident Salt Pact by the harbor chain"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-179.jpg"
@@ -351,7 +351,7 @@ Crowd control politics leaves no neutral ground; public discipline stabilizes le
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "Riverrun Broken Oath under rain"
+    @target "T180 - ACT3 - Riverrun Broken Oath under rain"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -360,7 +360,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -370,7 +370,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "Riverrun Broken Oath under rain"
+  @title "T180 - ACT3 - Riverrun Broken Oath under rain"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-180.jpg"
@@ -382,7 +382,7 @@ This is regime enforcement in its ugliest form: if you choose transparent proces
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "The Kingsroad Blackmail Ledger after the feast"
+    @target "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -391,7 +391,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -401,7 +401,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T183 - ACT3 - Winterfell Night Council before witnesses"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -411,7 +411,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "The Kingsroad Blackmail Ledger after the feast"
+  @title "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-181.jpg"
@@ -423,7 +423,7 @@ If you over-correct with force, you risk coordinated backlash; if you delay for 
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "The Red Keep Raven Intercept before the sept bell"
+    @target "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -432,7 +432,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T183 - ACT3 - Winterfell Night Council before witnesses"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -442,7 +442,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "The Red Keep Raven Intercept before the sept bell"
+  @title "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-182.jpg"
@@ -454,7 +454,7 @@ Every order now carries two prices, one immediate and one deferred, and your riv
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "Winterfell Night Council before witnesses"
+    @target "T183 - ACT3 - Winterfell Night Council before witnesses"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -463,7 +463,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T184 - ACT3 - The Twins Debt Collection under wolf banners"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -473,7 +473,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
     @when ((wealth + essos_ties + dragon_factor) >= 9)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -483,7 +483,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "Winterfell Night Council before witnesses"
+  @title "T183 - ACT3 - Winterfell Night Council before witnesses"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-183.jpg"
@@ -495,7 +495,7 @@ Crowd control politics leaves no neutral ground; public discipline stabilizes le
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "The Twins Debt Collection under wolf banners"
+    @target "T184 - ACT3 - The Twins Debt Collection under wolf banners"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -504,7 +504,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -514,7 +514,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "The Twins Debt Collection under wolf banners"
+  @title "T184 - ACT3 - The Twins Debt Collection under wolf banners"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-184.jpg"
@@ -526,7 +526,7 @@ This is regime enforcement in its ugliest form: if you choose transparent proces
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "Harrenhal Torchlit Census at the rookery"
+    @target "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -535,7 +535,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T186 - ACT3 - Dragonstone Blood Price at first light"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -546,7 +546,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "Harrenhal Torchlit Census at the rookery"
+  @title "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-185.jpg"
@@ -558,7 +558,7 @@ If you over-correct with force, you risk coordinated backlash; if you delay for 
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "Dragonstone Blood Price at first light"
+    @target "T186 - ACT3 - Dragonstone Blood Price at first light"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -567,7 +567,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -576,7 +576,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -586,7 +586,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "Dragonstone Blood Price at first light"
+  @title "T186 - ACT3 - Dragonstone Blood Price at first light"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-186.jpg"
@@ -598,7 +598,7 @@ Every order now carries two prices, one immediate and one deferred, and your riv
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "Blackwater Bay Sealed Bargain beneath lion seals"
+    @target "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -607,7 +607,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -618,7 +618,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "Blackwater Bay Sealed Bargain beneath lion seals"
+  @title "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-187.jpg"
@@ -630,7 +630,7 @@ Crowd control politics leaves no neutral ground; public discipline stabilizes le
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "The Dreadfort Border Muster in crowded galleries"
+    @target "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -639,7 +639,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -649,7 +649,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "The Dreadfort Border Muster in crowded galleries"
+  @title "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-188.jpg"
@@ -661,7 +661,7 @@ This is regime enforcement in its ugliest form: if you choose transparent proces
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "The Eyrie Crown Ultimatum by candle smoke"
+    @target "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -670,7 +670,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T190 - ACT3 - Pentos Harbor Ambush in river fog"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -681,7 +681,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "The Eyrie Crown Ultimatum by candle smoke"
+  @title "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-189.jpg"
@@ -693,7 +693,7 @@ If you over-correct with force, you risk coordinated backlash; if you delay for 
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "Pentos Harbor Ambush in river fog"
+    @target "T190 - ACT3 - Pentos Harbor Ambush in river fog"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -702,7 +702,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T191 - ACT3 - Qarth Alliance Split near the godswood"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -711,7 +711,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T192 - ACT3 - The Wall War Map against old law"
     @when ((wealth + essos_ties + dragon_factor) >= 11)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -721,7 +721,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "Pentos Harbor Ambush in river fog"
+  @title "T190 - ACT3 - Pentos Harbor Ambush in river fog"
   @textPacing "cinematic"
   @shot "medium"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-190.jpg"
@@ -733,7 +733,7 @@ Every order now carries two prices, one immediate and one deferred, and your riv
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "Qarth Alliance Split near the godswood"
+    @target "T191 - ACT3 - Qarth Alliance Split near the godswood"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -742,7 +742,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T192 - ACT3 - The Wall War Map against old law"
     @when ((secrecy + leverage) >= 7)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
@@ -752,7 +752,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @when ((wealth + essos_ties + dragon_factor) >= 7)
     @action essos_ties = clampStat(essos_ties + 1, 0, 30)
     @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
@@ -762,7 +762,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
 __section
 
 section__
-  @title "Qarth Alliance Split near the godswood"
+  @title "T191 - ACT3 - Qarth Alliance Split near the godswood"
   @textPacing "cinematic"
   @shot "close"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-191.jpg"
@@ -774,7 +774,7 @@ Crowd control politics leaves no neutral ground; public discipline stabilizes le
 You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
 
   choice__
-    @target "The Wall War Map against old law"
+    @target "T192 - ACT3 - The Wall War Map against old law"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -783,7 +783,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
   __choice
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
     @action leverage = clampStat(leverage + 2, 0, 30)
@@ -793,7 +793,7 @@ You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=$
 __section
 
 section__
-  @title "The Wall War Map against old law"
+  @title "T192 - ACT3 - The Wall War Map against old law"
   @textPacing "cinematic"
   @shot "wide"
   @backdrop "https://example.com/thrones/03-act3-crownlands/frame-192.jpg"
@@ -805,7 +805,7 @@ This is regime enforcement in its ugliest form: if you choose transparent proces
 Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
 
   choice__
-    @target "Castle Black Inheritance Claim under moonless sky"
+    @target "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
     @action honor = clampStat(honor + 1, 0, 30)
     @action crown_trust = clampStat(crown_trust + 1, 0, 30)
     @action war_readiness = clampStat(war_readiness + 1, 0, 30)
@@ -814,7 +814,7 @@ Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}
   __choice
 
   choice__
-    @target "Moat Cailin Whispered Warning at the gatehouse"
+    @target "T194 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
     @when ((secrecy + leverage) >= 5)
     @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
     @action secrecy = clampStat(secrecy + 1, 0, 30)
