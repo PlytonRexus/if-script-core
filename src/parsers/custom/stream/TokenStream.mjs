@@ -14,25 +14,32 @@ class TokenStream extends Stream {
     this.validator = new Validator()
     this.id = 0
     this.lastToken = null
-    this.nextToken = null
+    this.buffer = []
   }
 
   /**
    * @returns {Token}
    */
   peek () {
-    if (!this.nextToken && !this.eof()) {
-      this.nextToken = this.readNext()
-    }
-    return this.nextToken
+    return this.peekAhead(0)
+  }
+
+  /**
+   * Peek with lookahead offset.
+   * @param {number} offset
+   * @returns {Token|null}
+   */
+  peekAhead (offset = 0) {
+    this.fillBuffer(offset + 1)
+    return this.buffer[offset] || null
   }
 
   /**
    * @returns {Token}
    */
   next () {
-    this.current = this.nextToken || this.readNext()
-    this.nextToken = this.readNext()
+    this.fillBuffer(1)
+    this.current = this.buffer.shift() || null
     return this.current
   }
 
@@ -40,7 +47,7 @@ class TokenStream extends Stream {
    * @returns {boolean|*}
    */
   eof () {
-    return this.input.eof()
+    return this.buffer.length === 0 && this.input.eof()
   }
 
   except (message) {
@@ -51,7 +58,15 @@ class TokenStream extends Stream {
    * @returns {Token}
    */
   preview () {
-    return this.nextToken
+    return this.peek()
+  }
+
+  fillBuffer (minLength) {
+    while (this.buffer.length < minLength) {
+      const next = this.readNext()
+      if (!next) break
+      this.buffer.push(next)
+    }
   }
 
   getTokenInstance (type, symbol) {

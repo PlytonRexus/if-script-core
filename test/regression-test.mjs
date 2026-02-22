@@ -679,6 +679,106 @@ __section`
   assertEqual(run.state.variables.c, true, 'Unary !0 should evaluate to true')
 }
 
+async function testChoiceErgonomicsPropertiesParse () {
+  const storyText = `section__
+  @title "Start"
+  gold = 10
+  choice__
+    @target "Next"
+    @when gold >= 50
+    @once true
+    @disabledText "Need 50 gold"
+    "Buy sword"
+  __choice
+__section
+
+section__
+  @title "Next"
+  "Done"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+  const choice = parsed.sections[0].choices[0]
+
+  assertDefined(choice, 'Choice should exist')
+  assertDefined(choice.when, 'Choice @when expression should parse')
+  assertEqual(choice.once, true, '@once should parse to boolean true')
+  assertEqual(choice.disabledText, 'Need 50 gold', '@disabledText should parse as string')
+}
+
+async function testStoryUxSettingsParse () {
+  const storyText = `settings__
+  @storyTitle "UX Story"
+  @startAt 1
+  @theme "minimal"
+  @allowUndo false
+  @showTurn false
+  @animations false
+  @autoSave true
+__settings
+
+section__
+  "Start"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assertEqual(parsed.settings.theme, 'minimal', '@theme should parse')
+  assertEqual(parsed.settings.allowUndo, false, '@allowUndo should parse')
+  assertEqual(parsed.settings.showTurn, false, '@showTurn should parse')
+  assertEqual(parsed.settings.animations, false, '@animations should parse')
+  assertEqual(parsed.settings.autoSave, true, '@autoSave should parse')
+}
+
+async function testWriterModeMinimalSectionParse () {
+  const storyText = `section "Village"
+  "Welcome"
+  -> "Go" => "End"
+end
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assertEqual(parsed.sections.length, 2, 'Should parse writer mode and legacy sections together')
+  assertEqual(parsed.sections[0].settings.title, 'Village', 'Writer section title should be set')
+  assertEqual(parsed.sections[0].choices.length, 1, 'Writer arrow choice should parse')
+  assertEqual(parsed.sections[0].choices[0].target, 'End', 'Writer arrow target should parse')
+}
+
+async function testWriterModeSceneTargetParse () {
+  const storyText = `section "Start"
+  -> "Open chapter" => scene "Chapter One"
+end
+
+scene__
+  @name "Chapter One"
+  @first "End"
+__scene
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  const choice = parsed.sections[0].choices[0]
+  assertEqual(choice.targetType, 'scene', 'Writer scene target should set targetType=scene')
+  assertEqual(choice.target, 'Chapter One', 'Writer scene target should preserve scene name')
+}
+
 // ===== Test Existing Example Files =====
 
 async function testArraysExampleFile () {
@@ -787,6 +887,10 @@ export async function runRegressionTests () {
     { name: 'Operators: Comparison (>, <, ==, !=)', fn: testComparisonOperators },
     { name: 'Operators: Unary parse (-, !)', fn: testUnaryOperatorsParse },
     { name: 'Operators: Unary runtime (-, !)', fn: testUnaryOperatorsRuntime },
+    { name: 'Choices: @when/@once/@disabledText parse', fn: testChoiceErgonomicsPropertiesParse },
+    { name: 'Settings: theme/undo/turn/animations/autosave parse', fn: testStoryUxSettingsParse },
+    { name: 'Writer mode: section + arrow choice', fn: testWriterModeMinimalSectionParse },
+    { name: 'Writer mode: scene arrow target', fn: testWriterModeSceneTargetParse },
     { name: 'Example files: arrays-test.if', fn: testArraysExampleFile },
     { name: 'Example files: loops-test.if', fn: testLoopsExampleFile },
     { name: 'Example files: functions-test.if', fn: testFunctionsExampleFile },

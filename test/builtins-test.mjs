@@ -93,6 +93,32 @@ async function testRandomChoice () {
   }
 }
 
+async function testPick () {
+  const arr = ['x', 'y', 'z']
+  for (let i = 0; i < 30; i++) {
+    const val = BUILTINS.pick(arr)
+    assert(arr.includes(val), `pick should return element from array, got ${val}`)
+  }
+}
+
+async function testChance () {
+  assertEqual(BUILTINS.chance(0), false, 'chance(0) should always be false')
+  assertEqual(BUILTINS.chance(-10), false, 'chance(-10) should always be false')
+  assertEqual(BUILTINS.chance(100), true, 'chance(100) should always be true')
+  assertEqual(BUILTINS.chance(1000), true, 'chance(1000) should always be true')
+}
+
+async function testShuffle () {
+  const arr = [1, 2, 3, 4, 5]
+  const shuffled = BUILTINS.shuffle(arr)
+  assert(Array.isArray(shuffled), 'shuffle() should return array')
+  assertEqual(arr.length, shuffled.length, 'shuffle should preserve length')
+  assert(shuffled !== arr, 'shuffle should return a copy, not mutate original reference')
+  const sortedOriginal = [...arr].sort((a, b) => a - b)
+  const sortedShuffled = [...shuffled].sort((a, b) => a - b)
+  assertArrayEqual(sortedShuffled, sortedOriginal, 'shuffle should preserve all elements')
+}
+
 // ===== Type Conversion Tests =====
 
 async function testToNumber () {
@@ -109,6 +135,26 @@ async function testToString () {
   assertEqual(BUILTINS.toString(true), 'true', 'toString(true) should be "true"')
   assertEqual(BUILTINS.toString(null), 'null', 'toString(null) should be "null"')
   assertEqual(BUILTINS.toString('hello'), 'hello', 'toString("hello") should be "hello"')
+}
+
+async function testUpper () {
+  assertEqual(BUILTINS.upper('abc'), 'ABC', 'upper("abc") should be "ABC"')
+}
+
+async function testLower () {
+  assertEqual(BUILTINS.lower('AbC'), 'abc', 'lower("AbC") should be "abc"')
+}
+
+async function testTrim () {
+  assertEqual(BUILTINS.trim('  hello  '), 'hello', 'trim should remove edge whitespace')
+}
+
+async function testSplit () {
+  assertArrayEqual(BUILTINS.split('a,b,c', ','), ['a', 'b', 'c'], 'split should tokenize string by separator')
+}
+
+async function testJoin () {
+  assertEqual(BUILTINS.join(['a', 'b', 'c'], '-'), 'a-b-c', 'join should concatenate array with separator')
 }
 
 // ===== Inspection & Utility Tests =====
@@ -133,6 +179,12 @@ async function testContains () {
   assert(!BUILTINS.contains([1, 2, 3], 5), 'contains([1,2,3], 5) should be false')
   assert(BUILTINS.contains('hello world', 'world'), 'contains("hello world", "world") should be true')
   assert(!BUILTINS.contains('hello', 'xyz'), 'contains("hello", "xyz") should be false')
+}
+
+async function testClamp () {
+  assertEqual(BUILTINS.clamp(5, 1, 10), 5, 'clamp within bounds should return value')
+  assertEqual(BUILTINS.clamp(-5, 1, 10), 1, 'clamp below min should return min')
+  assertEqual(BUILTINS.clamp(50, 1, 10), 10, 'clamp above max should return max')
 }
 
 async function testRangeOneArg () {
@@ -262,11 +314,20 @@ export async function runBuiltinsTests () {
     { name: 'random()', fn: testRandom },
     { name: 'randomInt(min, max)', fn: testRandomInt },
     { name: 'randomChoice(arr)', fn: testRandomChoice },
+    { name: 'pick(arr)', fn: testPick },
+    { name: 'chance(percent)', fn: testChance },
+    { name: 'shuffle(arr)', fn: testShuffle },
     { name: 'toNumber(x)', fn: testToNumber },
     { name: 'toString(x)', fn: testToString },
+    { name: 'upper(x)', fn: testUpper },
+    { name: 'lower(x)', fn: testLower },
+    { name: 'trim(x)', fn: testTrim },
+    { name: 'split(x, sep)', fn: testSplit },
+    { name: 'join(arr, sep)', fn: testJoin },
     { name: 'type(x)', fn: testType },
     { name: 'len(x)', fn: testLen },
     { name: 'contains(collection, item)', fn: testContains },
+    { name: 'clamp(value, min, max)', fn: testClamp },
     { name: 'range(n)', fn: testRangeOneArg },
     { name: 'range(start, end)', fn: testRangeTwoArgs },
     { name: 'now()', fn: testNow },

@@ -1,6 +1,11 @@
 import Action from './Action.mjs'
 import Token from './Token.mjs'
 import ConditionalBlock from './ConditionalBlock.mjs'
+import Loop from './Loop.mjs'
+import ArrayLiteral from './ArrayLiteral.mjs'
+import ArrayAccess from './ArrayAccess.mjs'
+import MemberAccess from './MemberAccess.mjs'
+import FunctionCall from './FunctionCall.mjs'
 
 /**
  * @author Mihir Jichkar
@@ -26,11 +31,36 @@ class Choice {
    * @memberof Choice
    */
   constructor (primary, secondary, json) {
+    const reviveNode = (node) => {
+      if (!node || typeof node !== 'object') return node
+      if (node._class === 'Token') return Token.fromJson(node)
+      if (node._class === 'ConditionalBlock') return ConditionalBlock.fromJson(node)
+      if (node._class === 'Action') return Action.fromJson(node)
+      if (node._class === 'Loop') return Loop.fromJson(node)
+      if (node._class === 'ArrayLiteral') return ArrayLiteral.fromJson(node)
+      if (node._class === 'ArrayAccess') return ArrayAccess.fromJson(node)
+      if (node._class === 'MemberAccess') return MemberAccess.fromJson(node)
+      if (node._class === 'FunctionCall') return FunctionCall.fromJson(node)
+      return node
+    }
+
     if (!!json) {
       if (typeof json === 'string') json = JSON.parse(json)
-      let { owner, target, text, variables,
-        mode, choiceI, condition, actions,
-        input, targetType } = json
+      let {
+        owner,
+        target,
+        text,
+        variables,
+        mode,
+        choiceI,
+        condition,
+        actions,
+        input,
+        targetType,
+        when,
+        once,
+        disabledText
+      } = json
       this.mode = mode
       this.text = text
       this.owner = owner
@@ -41,20 +71,16 @@ class Choice {
       this.actions = actions
       this.input = this.mode === 'input' ? input : null
       this.targetType = targetType || 'section'
+      this.when = when || null
+      this.once = once === true
+      this.disabledText = typeof disabledText === 'string' ? disabledText : null
 
       this.actions = (this.actions || []).map(Action.fromJson)
-      this.text = (this.text || []).map(t => {
-        if (t._class === 'Token') {
-          return Token.fromJson(t)
-        } else if (t._class === 'ConditionalBlock') {
-          return ConditionalBlock.fromJson(t)
-        } else if (t._class === 'Action') {
-          return Action.fromJson(t)
-        }
-      })
+      this.text = (this.text || []).map(reviveNode)
+      this.when = reviveNode(this.when)
     } else {
       let { owner, target, text } = primary
-      let { variables, mode, choiceI, condition, actions, input, targetType } = secondary
+      let { variables, mode, choiceI, condition, actions, input, targetType, when, once, disabledText } = secondary
       this.mode = mode
       this.text = text
       this.owner = owner
@@ -65,6 +91,9 @@ class Choice {
       this.actions = actions
       this.input = this.mode === 'input' ? input : null
       this.targetType = targetType || 'section'
+      this.when = when || null
+      this.once = once === true
+      this.disabledText = typeof disabledText === 'string' ? disabledText : null
     }
     // Object.assign(this, ...arguments)
   }

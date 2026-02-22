@@ -23,13 +23,28 @@ class StorySettings extends Settings {
     }
 
     super(input)
-    const { referrable, name, maxIterations, maxCallDepth } = this.input
-    this.startAt = this.input.startAt || 0
+    const {
+      referrable,
+      name,
+      maxIterations,
+      maxCallDepth,
+      theme,
+      allowUndo,
+      showTurn,
+      animations,
+      autoSave
+    } = this.input
+    this.startAt = this.input.startAt !== undefined ? this.input.startAt : 0
     this.fullTimer = this.input.fullTimer || null
-    this.referrable = referrable || false
+    this.referrable = referrable !== undefined ? referrable : false
     this.name = name
-    this.maxIterations = maxIterations || 10000
-    this.maxCallDepth = maxCallDepth || 1000
+    this.maxIterations = maxIterations !== undefined ? maxIterations : 10000
+    this.maxCallDepth = maxCallDepth !== undefined ? maxCallDepth : 1000
+    this.theme = theme || null
+    this.allowUndo = allowUndo !== undefined ? allowUndo : true
+    this.showTurn = showTurn !== undefined ? showTurn : true
+    this.animations = animations !== undefined ? animations : true
+    this.autoSave = autoSave !== undefined ? autoSave : false
   }
 
   static fromJson(json) {

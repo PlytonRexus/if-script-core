@@ -28,6 +28,11 @@ const Keywords = {
   PROP_MAX_ITERATIONS: '@maxIterations',
   PROP_MAX_CALL_DEPTH: '@maxCallDepth',
   PROP_STATUS_BAR: '@statusBar',
+  PROP_THEME: '@theme',
+  PROP_ALLOW_UNDO: '@allowUndo',
+  PROP_SHOW_TURN: '@showTurn',
+  PROP_ANIMATIONS: '@animations',
+  PROP_AUTO_SAVE: '@autoSave',
 
   // scene properties
   PROP_SCENE_FIRST: '@first',
@@ -45,6 +50,9 @@ const Keywords = {
   PROP_CHOICE_READ: '@read',
   PROP_CHOICE_ACTION: '@action',
   PROP_CHOICE_TARGET_TYPE: '@targetType',
+  PROP_CHOICE_WHEN: '@when',
+  PROP_CHOICE_ONCE: '@once',
+  PROP_CHOICE_DISABLED_TEXT: '@disabledText',
 
   // boolean
   TRUE: 'true',

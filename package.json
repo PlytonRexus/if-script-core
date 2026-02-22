@@ -20,6 +20,7 @@
     "test:turing:edges": "node test/edge-cases-test.mjs",
     "test:turing:performance": "node test/performance-test.mjs",
     "test:turing:errors": "node test/error-messages-test.mjs",
+    "test:check": "node test/check-test.mjs",
     "test:builtins": "node test/builtins-test.mjs",
     "test:turing:all": "npm test && npm run test:turing",
     "build":"cross-env NODE_ENV=production webpack --config config/webpack.config.js",

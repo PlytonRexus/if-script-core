@@ -68,11 +68,25 @@ ifs compile -i my-story.if -o story.json
 | `--input-file` | `-i` | *(required)* | Path to `.if` story file |
 | `--output-file` | `-o` | `out.json` | Path for the compiled JSON output |
 
+### Checking (Static Diagnostics)
+
+Run static checks before preview/compile:
+
+```bash
+ifs check -i my-story.if
+```
+
+Use JSON output for CI and tooling:
+
+```bash
+ifs check -i my-story.if --json
+```
+
 ---
 
 ### Current Syntax (v0.5.8+)
 
-Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Built-in Functions](#built-in-functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls) · [Troubleshooting](#troubleshooting)
+Jump to: [Quick Reference](#quick-reference) · [Writer Mode](#writer-mode-minimal-v1) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Built-in Functions](#built-in-functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls) · [Troubleshooting](#troubleshooting)
 
 ### [Quick Reference](#quick-reference)
 
@@ -88,15 +102,17 @@ Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings
 | While loop | `while__ (cond) { ... }` | `}` |
 | Function | `function__ name(args) { ... }` | `}` |
 | Import | `import__"file.partial.if"__import` | n/a |
+| Writer section (alias) | `section "Title"` | `end` |
+| Writer choice (alias) | `-> "Text" => "Target"` | n/a |
 
 **Core properties**
 
 | Context | Properties |
 |------|------|
-| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`, `@statusBar` |
+| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`, `@statusBar`, `@theme`, `@allowUndo`, `@showTurn`, `@animations`, `@autoSave` |
 | Scene | `@name`, `@first`, `@music`, `@sections` |
 | Section | `@title`, `@timer` |
-| Choice | `@target`, `@targetType`, `@input`, `@action` |
+| Choice | `@target`, `@targetType`, `@input`, `@action`, `@when`, `@once`, `@disabledText` |
 
 **Control flow + expressions**
 - Conditionals: `if__ (cond) { ... } else__ { ... }`
@@ -110,6 +126,35 @@ Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings
 - Access: `first = nums[0]`
 - Mutation: `nums[1] = 10`, `nums.push(4)`, `item = nums.pop()`
 - Calls: `result = myFunc(1, 2)`, `len = nums.length`
+
+### [Writer Mode Syntax](#writer-mode-minimal-v1)
+
+Writer Mode is always enabled and can be mixed with other syntax in the same file.
+
+```if
+section "Village Square"
+  "You are in the square."
+  -> "Go to Market" => "Market"
+  -> "Skip to Chapter" => scene "Chapter One"
+end
+```
+
+Equivalent syntax:
+```if
+section__
+  @title "Village Square"
+  "You are in the square."
+  choice__
+    @target "Market"
+    "Go to Market"
+  __choice
+  choice__
+    @targetType "scene"
+    @target "Chapter One"
+    "Skip to Chapter"
+  __choice
+__section
+```
 
 ### [Embedding](#embedding)
 You can parse in Node.js, but the interpreter requires a DOM.
@@ -173,6 +218,11 @@ settings__
   @storyTitle "My Story"
   @startAt 1
   @referrable false
+  @theme "minimal"
+  @allowUndo false
+  @showTurn false
+  @animations false
+  @autoSave true
   @fullTimer 300 1
   @statusBar health
   @statusBar stamina "Stamina"
@@ -188,12 +238,20 @@ Available settings:
 -   `@fullTimer` - Time limit for completing the story in seconds, followed by a target section ref (serial or title, e.g., `300 1` or `300 "Game Over"`)
 -   `@maxIterations` - Maximum iterations allowed in while loops (number, default: 10000)
 -   `@maxCallDepth` - Maximum function call depth for recursion (number, default: 1000)
+-   `@theme` - Preferred runtime theme when host/CLI does not override it (string)
+-   `@allowUndo` - Enable/disable undo interaction in runtime UI (boolean, default: true)
+-   `@showTurn` - Show/hide turn counter in status area (boolean, default: true)
+-   `@animations` - Enable/disable runtime animations (boolean, default: true)
+-   `@autoSave` - Reserved for save-system integrations; parsed and preserved in story JSON (boolean)
 -   `@statusBar` - Configure status-bar visibility and display label for a variable. Supported forms:
     `@statusBar hp`
     `@statusBar hp false`
     `@statusBar hp "Health"`
     `@statusBar hp true "Health"`
     If any variable is explicitly marked `true`, only `true` variables are shown. When a label is provided, it is shown instead of the variable name.
+
+Settings precedence:
+- Host/CLI overrides > story settings > runtime defaults.
 
 ### [Scenes](#scenes)
 
@@ -317,6 +375,31 @@ if__ (gold >= 50) {
 }
 ```
 
+**Conditional visibility on choice itself** - Hide or disable by property:
+```
+choice__
+  @target "Armory"
+  @when gold >= 50
+  @disabledText "Need 50 gold"
+  "Buy sword"
+__choice
+```
+
+When `@when` is false:
+- If `@disabledText` is not set, the choice is hidden.
+- If `@disabledText` is set, a disabled row is shown with that text.
+
+**One-time choice** - Consume after first click:
+```
+choice__
+  @target "Vault"
+  @once true
+  "Open the vault"
+__choice
+```
+
+`@once` state is undo-aware: undo restores one-time availability.
+
 **Available operators:**
 
 Comparison:
@@ -343,6 +426,9 @@ Choice properties:
 -   `@targetType` - Set to `"scene"` to navigate to a scene instead of a section (string, optional, default: `"section"`)
 -   `@input` - Variable name to store user input (identifier, optional)
 -   `@action` - Expression to execute when chosen. Add multiple lines for multiple actions. (expression, optional)
+-   `@when` - Expression gate for choice visibility/availability (expression, optional)
+-   `@once` - Consume the choice after it is selected once (boolean, optional, default: false)
+-   `@disabledText` - Disabled label shown when `@when` is false (string, optional)
 
 Targeting tips:
 -   Prefer string targets for readability and to avoid renumbering issues (`@target "Section Title"` or scene `@target "Scene Name"` with `@targetType "scene"`).
@@ -839,6 +925,8 @@ Tip: Use `break__`/`continue__` inside loops and `return__` inside functions to 
 Tip: Keep global runtime controls (`@startAt`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`) in the root file.
 
 ### [Troubleshooting](#troubleshooting)
+
+Tip: run `ifs check -i my-story.if` for static diagnostics before preview/compile.
 
 | Error message (or pattern) | Likely cause | Fix |
 |------|------|------|

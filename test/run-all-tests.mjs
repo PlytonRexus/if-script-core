@@ -10,6 +10,7 @@ import { runRegressionTests } from './regression-test.mjs'
 import { runEdgeCaseTests } from './edge-cases-test.mjs'
 import { runPerformanceTests } from './performance-test.mjs'
 import { runErrorMessageTests } from './error-messages-test.mjs'
+import { runCheckTests } from './check-test.mjs'
 
 console.log('╔══════════════════════════════════════════════════════════════╗')
 console.log('║  IF-Script Turing Completeness Test Suite                   ║')
@@ -52,6 +53,12 @@ async function runAllTests () {
       name: 'Error Messages',
       description: 'Error quality',
       fn: runErrorMessageTests,
+      critical: false
+    },
+    {
+      name: 'CLI Check Command',
+      description: 'Static diagnostics command',
+      fn: runCheckTests,
       critical: false
     }
   ]

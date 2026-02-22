@@ -13,15 +13,33 @@ const BUILTINS = {
   random: () => Math.random(),
   randomInt: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
   randomChoice: (arr) => arr[Math.floor(Math.random() * arr.length)],
+  pick: (arr) => arr[Math.floor(Math.random() * arr.length)],
+  chance: (percent) => Math.random() * 100 < Number(percent),
+  shuffle: (arr) => {
+    const out = Array.isArray(arr) ? [...arr] : []
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const tmp = out[i]
+      out[i] = out[j]
+      out[j] = tmp
+    }
+    return out
+  },
 
   // Type conversion
   toNumber: (x) => { const n = Number(x); return isNaN(n) ? 0 : n },
   toString: (x) => String(x),
+  upper: (x) => String(x).toUpperCase(),
+  lower: (x) => String(x).toLowerCase(),
+  trim: (x) => String(x).trim(),
+  split: (x, sep) => String(x).split(sep === undefined ? ',' : sep),
+  join: (arr, sep) => Array.isArray(arr) ? arr.join(sep === undefined ? ',' : sep) : '',
 
   // Inspection & utilities
   type: (x) => Array.isArray(x) ? 'array' : x === null ? 'null' : typeof x,
   len: (x) => x.length,
   contains: (collection, item) => collection.includes(item),
+  clamp: (value, min, max) => Math.min(Math.max(Number(value), Number(min)), Number(max)),
   range: (startOrN, end) => {
     const start = end === undefined ? 0 : startOrN
     const stop = end === undefined ? startOrN : end

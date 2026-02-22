@@ -32,6 +32,9 @@ Notes:
 | `random()` | `number` in `[0, 1)` | `random()` |
 | `randomInt(min, max)` | inclusive integer | `randomInt(1, 6)` |
 | `randomChoice(arr)` | one element from `arr` | `randomChoice(["a", "b"])` |
+| `pick(arr)` | one element from `arr` | `pick(["a", "b"])` |
+| `chance(percent)` | `boolean` | `chance(25)` |
+| `shuffle(arr)` | shuffled copy of `arr` | `shuffle([1,2,3])` |
 
 ## Type Conversion
 
@@ -39,6 +42,11 @@ Notes:
 |------|------|------|
 | `toNumber(x)` | `number` | `toNumber("42") // 42` |
 | `toString(x)` | `string` | `toString(42) // "42"` |
+| `upper(x)` | uppercase `string` | `upper("abc") // "ABC"` |
+| `lower(x)` | lowercase `string` | `lower("ABC") // "abc"` |
+| `trim(x)` | trimmed `string` | `trim(" a ") // "a"` |
+| `split(x, sep)` | `array<string>` | `split("a,b", ",") // ["a","b"]` |
+| `join(arr, sep)` | `string` | `join(["a","b"], "-") // "a-b"` |
 
 `toNumber(x)` edge behavior:
 - If conversion is `NaN`, IF-Script returns `0`.
@@ -50,6 +58,7 @@ Notes:
 | `type(x)` | `string` type name | `type([1,2]) // "array"` |
 | `len(x)` | `number` length | `len("hello") // 5` |
 | `contains(collection, item)` | `boolean` | `contains([1,2,3], 2)` |
+| `clamp(value, min, max)` | bounded number | `clamp(15, 0, 10) // 10` |
 | `range(n)` | array `[0..n-1]` | `range(5) // [0,1,2,3,4]` |
 | `range(start, end)` | array `[start..end-1]` | `range(2, 5) // [2,3,4]` |
 

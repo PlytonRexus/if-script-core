@@ -23,6 +23,19 @@ class State {
   oldValues = {}
 
   /**
+   * Snapshot of consumed one-time choices for undo.
+   * Key format: "<sectionSerial>:<choiceIndex>"
+   * @type {object}
+   */
+  onceConsumed = {}
+
+  /**
+   * Previous onceConsumed snapshot for undo.
+   * @type {object}
+   */
+  oldOnceConsumed = {}
+
+  /**
    * @type {number}
    */
   currentTimeout = 0

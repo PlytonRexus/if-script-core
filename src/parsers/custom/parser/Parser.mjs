@@ -92,8 +92,29 @@ class Parser {
     this.except('Unexpected token: ' + JSON.stringify(this.input.peek()))
   }
 
-  except (message) {
-    return this.input.except(message)
+  except (message, hint = null) {
+    const autoHint = hint || this._hintForError(message)
+    return this.input.except(message, autoHint)
+  }
+
+  _hintForError (message) {
+    if (typeof message !== 'string') return null
+    if (message.includes('Expecting section starter')) return 'Start sections with section__ (legacy) or section "Title" (Writer Mode).'
+    if (message.includes('Expecting choice starter')) return 'Choices begin with choice__ ... __choice or writer arrow syntax.'
+    if (message.includes('Expecting property')) return 'Property lines start with @ and must use a supported property name.'
+    if (message.includes('Expecting keyword')) return 'Check block delimiters and IF-Script keywords around this line.'
+    if (message.includes('Expecting operator')) return 'Check expression operators (+, -, *, /, %, ==, &&, etc.) and spacing.'
+    if (message.includes('Expecting punctuation: "("')) return 'Add an opening parenthesis "(" before the expression.'
+    if (message.includes('Expecting punctuation: ")"')) return 'Add a closing parenthesis ")" to finish the expression.'
+    if (message.includes('Expecting punctuation: "{"')) return 'Add an opening brace "{" to start the block.'
+    if (message.includes('Expecting punctuation: "}"')) return 'Check for a missing closing brace "}" in the current block.'
+    if (message.includes('Expecting punctuation: "]"')) return 'Check for a missing closing bracket "]" in your array access or literal.'
+    if (message.includes('Expected function name')) return 'Use function__ name(args) with a valid identifier as the function name.'
+    if (message.includes('Expected parameter name')) return 'Function parameters must be valid identifiers, separated by commas.'
+    if (message.includes('Expected property or method name after .')) return 'Member access must be in the form object.property or object.method(args).'
+    if (message.includes('Expected string path after import__')) return 'Imports require a quoted path: import__"file.partial.if"__import.'
+    if (message.includes('Unexpected token')) return 'Check the token near this line for missing block terminators or malformed expressions.'
+    return null
   }
 
   _applyStatusBarSetting (target, config) {
@@ -109,6 +130,22 @@ class Parser {
       nextConfig.statusBarLabel = label
     }
     target[variable] = nextConfig
+  }
+
+  _isWriterSectionStartToken (tok) {
+    return tok &&
+      tok.type === TTS.VARIABLE &&
+      tok.symbol === 'section' &&
+      this.input.peekAhead(1) &&
+      this.input.peekAhead(1).type === TTS.STRING
+  }
+
+  _isWriterSectionEndToken (tok) {
+    return tok && tok.type === TTS.VARIABLE && tok.symbol === 'end'
+  }
+
+  _isWriterArrowChoiceStart (tok) {
+    return tok && tok.type === TTS.OPERATOR && tok.symbol === Operators.ARROW
   }
 
   parseExpression () {
@@ -269,7 +306,12 @@ class Parser {
       this.skipNewLine()
       tok = this.input.peek()
       if (this.utils.isSectionEnd(tok)) break
-      const component = this.parseExpression(false)
+      let component
+      if (this._isWriterArrowChoiceStart(tok)) {
+        component = this.parseWriterArrowChoice()
+      } else {
+        component = this.parseExpression(false)
+      }
       // Check what this component is
       // a setting or a choice or text, variable, or conditional block and then push
       if (component instanceof Choice) {
@@ -279,7 +321,7 @@ class Parser {
         section.text.push(component)
         if (!component.target) {
           this.except(
-            'No target specified for choice number ' + choiceCounter - 1
+            'No target specified for choice number ' + (choiceCounter - 1)
           )
         }
       } else if (component instanceof Property) {
@@ -309,6 +351,126 @@ class Parser {
     return section
   }
 
+  parseWriterSection () {
+    const sectionToken = this.input.peek()
+    this.input.next() // section
+    const titleTok = this.input.peek()
+    if (!titleTok || titleTok.type !== TTS.STRING) {
+      this.except('Writer mode section requires a string title')
+    }
+    this.input.next()
+
+    const settings = new SectionSettings({ timer: 0, title: titleTok.symbol })
+    const section = new Section([], [], this.counts.sectionNumber++, settings)
+    section.title = titleTok.symbol
+
+    let choiceCounter = 1
+    while (!this.input.eof()) {
+      this.skipNewLine()
+      const tok = this.input.peek()
+      if (!tok) break
+      if (this._isWriterSectionEndToken(tok)) {
+        return section
+      }
+
+      let component
+      if (this._isWriterArrowChoiceStart(tok)) {
+        component = this.parseWriterArrowChoice()
+      } else {
+        component = this.parseExpression(false)
+      }
+
+      if (component instanceof Choice) {
+        component.owner = this.counts.sectionNumber - 1
+        component.choiceI = choiceCounter++
+        section.choices.push(component)
+        section.text.push(component)
+        if (!component.target) {
+          this.except(
+            'No target specified for choice number ' + (choiceCounter - 1)
+          )
+        }
+      } else if (component instanceof Property) {
+        if (component.name === 'statusBar') {
+          this._applyStatusBarSetting(this.statusConfigTarget, component.value)
+        } else {
+          section.settings[component.name] = component.value
+          if (component.name === 'title') section.title = component.value
+        }
+      } else if (
+        component instanceof Token ||
+        component instanceof ConditionalBlock ||
+        component instanceof Action ||
+        component instanceof Loop ||
+        component instanceof FunctionDef ||
+        component instanceof ArrayLiteral ||
+        component instanceof ArrayAccess ||
+        component instanceof MemberAccess ||
+        component instanceof FunctionCall
+      ) {
+        section.text.push(component)
+      }
+
+    }
+
+    throw new ParsingException(
+      'Writer mode section started at line ' + sectionToken.line + ' is missing end',
+      sectionToken.line,
+      sectionToken.col,
+      this.currentFile,
+      'Close the writer section with end.',
+      false
+    )
+  }
+
+  parseWriterArrowChoice () {
+    const arrowTok = this.input.peek()
+    if (!this._isWriterArrowChoiceStart(arrowTok)) {
+      this.except('Expected writer mode choice arrow "->"')
+    }
+    this.input.next() // ->
+
+    const textTok = this.input.peek()
+    if (!textTok || textTok.type !== TTS.STRING) {
+      this.except('Expected choice text string after "->"')
+    }
+    this.input.next()
+
+    const targetArrow = this.input.peek()
+    if (!targetArrow || targetArrow.type !== TTS.OPERATOR || targetArrow.symbol !== Operators.FAT_ARROW) {
+      this.except('Expected "=>" after writer choice text')
+    }
+    this.input.next()
+
+    let targetType = 'section'
+    let targetTok = this.input.peek()
+    if (targetTok && targetTok.type === TTS.VARIABLE && targetTok.symbol === 'scene') {
+      this.input.next()
+      targetType = 'scene'
+      targetTok = this.input.peek()
+    }
+
+    if (!targetTok || (targetTok.type !== TTS.STRING && targetTok.type !== TTS.NUMBER)) {
+      this.except('Writer choice target must be a section/scene string or number')
+    }
+    this.input.next()
+
+    const props = {
+      variables: [],
+      mode: 'basic',
+      choiceI: null,
+      condition: undefined,
+      actions: [],
+      input: null,
+      when: null,
+      once: false,
+      disabledText: null,
+      targetType
+    }
+    const ownerTargetText = { owner: undefined, target: targetTok.symbol, text: [textTok] }
+    return new Choice(ownerTargetText, props)
+  }
+
   parseChoice () {
     this.skipChoiceStart()
     let tok = this.input.peek()
@@ -318,7 +480,10 @@ class Parser {
       choiceI: null,
       condition: undefined,
       actions: [],
-      input: null
+      input: null,
+      when: null,
+      once: false,
+      disabledText: null
     }
     const ownerTargetText = { owner: undefined, target: undefined, text: [] }
 
@@ -337,6 +502,12 @@ class Parser {
         } else if (component.name === 'target') choice.target = component.value
         else if (component.name === 'targetType') {
           choice.targetType = component.value
+        } else if (component.name === 'when') {
+          choice.when = component.value
+        } else if (component.name === 'once') {
+          choice.once = component.value === true
+        } else if (component.name === 'disabledText') {
+          choice.disabledText = component.value
         } else if (component.name === 'statusBar') {
           this._applyStatusBarSetting(this.statusConfigTarget, component.value)
         }
@@ -458,6 +629,23 @@ class Parser {
         name = 'targetType'
         assignIfValid(tok, TTS.STRING)
       },
+      propChoiceWhen: () => {
+        limitToOne()
+        name = 'when'
+        result.push(this.parseExpression())
+      },
+      propChoiceOnce: () => {
+        limitToOne()
+        name = 'once'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propChoiceDisabledText: () => {
+        limitToOne()
+        name = 'disabledText'
+        assignIfValid(tok, TTS.STRING)
+      },
       propChoiceTarget: () => {
         limitToOne()
         name = 'target'
@@ -530,6 +718,39 @@ class Parser {
         limitToOne()
         name = 'maxCallDepth'
         assignIfValid(tok, TTS.NUMBER)
+      },
+      propTheme: () => {
+        limitToOne()
+        name = 'theme'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propAllowUndo: () => {
+        limitToOne()
+        name = 'allowUndo'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propShowTurn: () => {
+        limitToOne()
+        name = 'showTurn'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propAnimations: () => {
+        limitToOne()
+        name = 'animations'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propAutoSave: () => {
+        limitToOne()
+        name = 'autoSave'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
       },
       propStatusBar: () => {
         limitToN(3)
@@ -888,6 +1109,8 @@ class Parser {
 
       if (isTokenFor(tok, TTS.SECTION_START)) {
         components.sections.push(this.parseSection())
+      } else if (this._isWriterSectionStartToken(tok)) {
+        components.sections.push(this.parseWriterSection())
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
         components.scenes.push(this.parseScene())
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {
@@ -991,6 +1214,8 @@ class Parser {
 
       if (isTokenFor(tok, TTS.SECTION_START)) {
         story.sections.push(this.parseSection())
+      } else if (this._isWriterSectionStartToken(tok)) {
+        story.sections.push(this.parseWriterSection())
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SCENE_START)) {
         story.scenes.push(this.parseScene())
       } else if (isTokenFor(tok, TTS.OTHER_KW, KW.SETTINGS_START)) {

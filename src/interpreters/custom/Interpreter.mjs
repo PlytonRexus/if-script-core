@@ -116,7 +116,7 @@ class Interpreter {
 
     // Only apply theme in browser environments
     if (this.run && typeof window !== 'undefined') {
-      this.applyTheme(this.run.theme)
+      this.applyTheme(this.run.theme || 'default')
     }
 
     this.callStack = []
@@ -124,6 +124,13 @@ class Interpreter {
     this.MAX_ITERATIONS = 10000
     this.loopControl = { break: false, continue: false }
     this.functionReturn = { hasReturned: false, value: null }
+    this.runtimeOptions = {
+      theme: 'default',
+      allowUndo: true,
+      showTurn: true,
+      animations: true,
+      autoSave: false
+    }
   }
 
   /**
@@ -133,15 +140,19 @@ class Interpreter {
    */
   loadStory (story, run, theme) {
     if (!story || !(story instanceof Story)) throw new InterpreterException('Invalid story supplied')
-    this.run = run || new Run(story, null, theme)
+    this.run = run || new Run(story, null, null)
+    this.run.story = story
+    this.runtimeOptions = this.resolveRuntimeOptions(story, this.run, theme)
+    this.run.theme = this.runtimeOptions.theme
     // Only apply theme/preferences in browser environments
     if (typeof window !== 'undefined') {
-      this.applyTheme(this.run.theme)
-      this.applyAnimationPreference()
+      this.applyTheme(this.run.theme || 'default')
+      this.applyAnimationPreference(this.runtimeOptions.animations)
     }
     console.info('Story loading...')
 
     this.generateDisplay()
+    this.applyRuntimeUiSettings()
 
     /* Bring variables to original values. */
     // TODO: Don't need this. No global variables.
@@ -169,6 +180,8 @@ class Interpreter {
       turn: 0
     })
     this.run.state.variables.turn = 0
+    this.run.state.onceConsumed = {}
+    this.run.state.oldOnceConsumed = {}
 
     /* Load the section into the viewport */
     this.loadSection(null, this.run.story.settings.startAt)
@@ -186,6 +199,41 @@ class Interpreter {
 
     /* Good luck! */
     console.info('Load finished. Happy playing!')
+  }
+
+  resolveRuntimeOptions (story, run, themeOverride) {
+    const defaults = {
+      theme: 'default',
+      allowUndo: true,
+      showTurn: true,
+      animations: true,
+      autoSave: false
+    }
+    const settings = story && story.settings ? story.settings : {}
+    const storyOptions = {
+      theme: settings.theme || null,
+      allowUndo: settings.allowUndo,
+      showTurn: settings.showTurn,
+      animations: settings.animations,
+      autoSave: settings.autoSave
+    }
+    const hostOptions = run && run.options ? run.options : {}
+    const explicitTheme = themeOverride !== undefined && themeOverride !== null ? { theme: themeOverride } : {}
+    return {
+      ...defaults,
+      ...storyOptions,
+      ...hostOptions,
+      ...explicitTheme,
+      theme: (explicitTheme.theme || hostOptions.theme || storyOptions.theme || defaults.theme)
+    }
+  }
+
+  applyRuntimeUiSettings () {
+    const undoButton = document.querySelector(DOM.undoButtonId)
+    if (!undoButton) return
+    if (!this.runtimeOptions.allowUndo) {
+      undoButton.style.display = 'none'
+    }
   }
 
   generateDisplay () {
@@ -575,11 +623,19 @@ class Interpreter {
     choices = [...new Set(choices)]
     choices.forEach((choice, i) => {
       const { target, owner, mode } = choice
+      const choiceIndex = choice.choiceI || (i + 1)
+      if (choice.once && this.isChoiceConsumed(choice)) return
+      const visibility = this.evaluateChoiceVisibility(choice, this.run.state.section)
+      if (!visibility.visible) {
+        if (typeof choice.disabledText === 'string' && choice.disabledText.trim() !== '') {
+          wrapper += this.getDisabledChoiceWrapper(choice.disabledText)
+        }
+        return
+      }
       const choiceText = this.utils.formatText(this.resolveSyntaxTree(choice.text, '')).trim()
         .replace(/^<p>/, '').replace(/<\/p>$/, '')
-      i++
-      if (choice.mode === 'input') wrapper += this.getChoiceWrapper(target, owner, serial, i, mode, `${choiceText} <input type="text" class="if_r-choice-input" id="if_r-choice-input-${i}" />`)
-      else wrapper += this.getChoiceWrapper(target, owner, serial, i, mode, choiceText)
+      if (choice.mode === 'input') wrapper += this.getChoiceWrapper(target, owner, serial, choiceIndex, mode, `${choiceText} <input type="text" class="if_r-choice-input" id="if_r-choice-input-${choiceIndex}" />`)
+      else wrapper += this.getChoiceWrapper(target, owner, serial, choiceIndex, mode, choiceText)
     })
     return wrapper
   }
@@ -588,6 +644,34 @@ class Interpreter {
     return `<div class="if_r-section-choice-li"> <div class="if_r-section-choice" data-if_r-target="${target}"
 data-if_r-owner="${owner}" id="if_r-${serial}-choice-${i}"
 data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
+  }
+
+  getDisabledChoiceWrapper (choiceText) {
+    const safeText = this.utils.formatText(choiceText).trim().replace(/^<p>/, '').replace(/<\/p>$/, '')
+    return `<div class="if_r-section-choice-li"><div class="if_r-section-choice if_r-section-choice-disabled" aria-disabled="true">${safeText}</div></div>`
+  }
+
+  getChoiceKey (choice) {
+    return `${choice.owner}:${choice.choiceI}`
+  }
+
+  isChoiceConsumed (choice) {
+    return this.run.state.onceConsumed[this.getChoiceKey(choice)] === true
+  }
+
+  consumeChoice (choice) {
+    if (!choice || choice.once !== true) return
+    this.run.state.onceConsumed[this.getChoiceKey(choice)] = true
+  }
+
+  evaluateChoiceVisibility (choice, section) {
+    if (!choice || !choice.when) return { visible: true }
+    try {
+      return { visible: !!this.resolveAction(choice.when, false, section) }
+    } catch (err) {
+      if (this.debug) console.warn('Failed to evaluate @when for choice:', err.message)
+      return { visible: false }
+    }
   }
 
   isSatisfied (condition) {
@@ -692,7 +776,9 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
   }
 
   undoTurn () {
+    if (!this.runtimeOptions.allowUndo) return
     this.undoVars(this.run.state.oldValues)
+    this.run.state.onceConsumed = { ...this.run.state.oldOnceConsumed }
     this.changeTurn(-1)
     this.switchSection(this.run.state.lastSection.serial, true)
     document.querySelector(DOM.undoButtonId).style.display = 'none'
@@ -704,7 +790,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
 
     if (!isUndo) {
       this.setupUndo()
-      document.querySelector(DOM.undoButtonId).style.display = 'block'
+      document.querySelector(DOM.undoButtonId).style.display = this.runtimeOptions.allowUndo ? 'block' : 'none'
     }
 
     const section = this.run.story.findSection(targetSec)
@@ -764,7 +850,10 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     )
 
     const stats = Object.keys(this.run.state.variables)
-    let statsHTML = `<pre> <b>Turn:</b> ${this.run.state.turn}   `
+    let statsHTML = '<pre> '
+    if (this.runtimeOptions.showTurn !== false) {
+      statsHTML += `<b>Turn:</b> ${this.run.state.turn}   `
+    }
 
     stats.forEach(stat => {
       if (stat === 'turn') return
@@ -852,10 +941,14 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
 
   setListenersOnChoices () {
     document.querySelectorAll('.if_r-section-choice').forEach(choice => {
+      if (choice.classList.contains('if_r-section-choice-disabled')) return
       choice.onclick = (e) => {
         e.preventDefault()
         const choiceI = choice.getAttribute('data-if_r-i')
+        if (!choiceI) return
         let { actions, targetType, mode, variables: vars, target: tar, input } = this.run.state.section.findChoice(choiceI)
+        const selectedChoice = this.run.state.section.findChoice(choiceI)
+        this.run.state.oldOnceConsumed = { ...this.run.state.onceConsumed }
 
         // if (this.debug) console.log("owner:", owner);
 
@@ -876,12 +969,14 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
             this.changeVariables(vars, inputValue)
             this.changeVariables(input, inputValue)
             if (actions) this.doActions(actions)
+            this.consumeChoice(selectedChoice)
             this.switchSection(tar)
           }
         } else {
           choice.onclick = ''
           this.changeVariables(vars, choice.innerHTML)
           if (actions) this.doActions(actions)
+          this.consumeChoice(selectedChoice)
           this.switchSection(tar)
         }
       }
@@ -928,7 +1023,11 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
   sidebarListeners (setting) {
     if (setting === 'set') {
       document.querySelector(`${DOM.statsDivId} .closebtn`).onclick = this.hideStatsDiv
-      document.querySelector(DOM.undoButtonId).onclick = this.undoTurn
+      if (this.runtimeOptions.allowUndo) {
+        document.querySelector(DOM.undoButtonId).onclick = this.undoTurn
+      } else {
+        document.querySelector(DOM.undoButtonId).onclick = null
+      }
       document.querySelector(DOM.resetButtonId).onclick = this.resetStory.bind(this)
       document.querySelector(DOM.animToggleId).onclick = (e) => { e.preventDefault(); this.toggleAnimations() }
 
@@ -1052,7 +1151,7 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     this._syncThemeSelect(name)
   }
 
-  applyAnimationPreference () {
+  applyAnimationPreference (animationsEnabled = true) {
     // Inject disable-rule stylesheet once
     if (!document.getElementById('if_r-reduce-motion-style')) {
       const s = document.createElement('style')
@@ -1060,11 +1159,19 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
       s.textContent = 'body.if_r-reduce-motion *,body.if_r-reduce-motion *::before,body.if_r-reduce-motion *::after{animation:none!important;transition:none!important}'
       document.head.appendChild(s)
     }
+    if (animationsEnabled === false) {
+      document.body.classList.add('if_r-reduce-motion')
+      this._updateAnimToggleLabel(false)
+      return
+    }
     const saved = localStorage.getItem('if-reduce-motion')
     const osPrefers = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (saved === '1' || (saved === null && osPrefers)) {
       document.body.classList.add('if_r-reduce-motion')
       this._updateAnimToggleLabel(false)
+    } else {
+      document.body.classList.remove('if_r-reduce-motion')
+      this._updateAnimToggleLabel(true)
     }
   }
 

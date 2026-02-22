@@ -2,6 +2,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import compile from './compile.mjs'
 import preview from './preview.mjs'
+import check from './check.mjs'
 
 const yargsc = yargs(hideBin(process.argv))
 
@@ -55,6 +56,16 @@ yargsc.command({
     port: { alias: 'p', describe: 'Server port (default: 3001)', type: 'number', default: 3001 }
   },
   handler: (argv) => preview(argv)
+})
+
+yargsc.command({
+  command: 'check',
+  describe: 'Run static diagnostics for an IF-Script story',
+  builder: {
+    'input-file': { alias: 'i', describe: 'Path to .if story file', type: 'string', demandOption: true },
+    json: { describe: 'Emit diagnostics as JSON', type: 'boolean', default: false }
+  },
+  handler: (argv) => check(argv)
 })
 
 export default yargsc

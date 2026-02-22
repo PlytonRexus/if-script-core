@@ -45,8 +45,8 @@ class InputStream extends Stream {
   /**
    * @param {...IArguments} message
    */
-  except (message) {
-    throw new ParsingException(message, this.line, this.col, true)
+  except (message, hint = null) {
+    throw new ParsingException(message, this.line, this.col, this.currentFile, hint, false)
   }
 
   /**
