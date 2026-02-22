@@ -1,12 +1,12 @@
 import IFScript from '../index.mjs'
 import index from './examples/index.mjs'
 
-let interpreter
+let runtime
 
 ;(async function () {
   const ifscript = new IFScript('STREAM')
   await ifscript.init()
-  interpreter = ifscript.interpreter
+  runtime = await ifscript.createRuntime({ debug: true })
 
   const story = {
     name: 'introduction',
@@ -36,32 +36,27 @@ let interpreter
 
   const parsed = await ifscript.parse(story.content, story.path)
 
-  const theme = {
-    name: 'bricks'
-  }
-
-  function useTheme (storyName) {
-    theme.name = storyName
-
-    if (!theme.name) {
-      theme.name = 'bricks'
-    }
-  }
+  let theme = 'literary-default'
 
   let exceptionArea
   if (typeof window !== 'undefined' && !!window && !!window.location) {
     const url = new URL(window.location.href)
     const themeName = url.searchParams.get('theme')
-    if (themeName) useTheme(themeName)
+    if (themeName === 'cinematic' || themeName === 'literary-default') theme = themeName
     exceptionArea = document.querySelector('#if_r-exception-area')
   }
 
   console.log(parsed)
   try {
-    interpreter.loadStory(parsed, null, theme.name)
+    runtime.mount('#if_r-output-area')
+    runtime.start(parsed, {
+      theme,
+      presentationMode: theme === 'cinematic' ? 'cinematic' : 'literary',
+      resume: false
+    })
   } catch (err) {
     if (typeof document !== 'undefined' && !!document) { exceptionArea.innerHTML += '<br><code>' + JSON.stringify(err) + '</code>' }
   }
 })()
 
-export default interpreter
+export default runtime

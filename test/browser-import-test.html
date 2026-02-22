@@ -90,7 +90,6 @@
 
   <script type="module">
     import IFScript from '../src/IFScript.mjs'
-    import versions from '../src/constants/versions.mjs'
 
     // Make test functions global
     window.testPreloadedFiles = async function() {
@@ -99,7 +98,7 @@
 
       try {
         // Create IFScript with preloaded files
-        const ifScript = new IFScript(versions.STREAM, {
+        const ifScript = new IFScript({
           browser: {
             preloadedFiles: {
               '/lib/section2.partial.if': `/* 2 */
@@ -134,9 +133,9 @@ import__"/lib/section2.partial.if"__import
         output.innerHTML += `<span class="info">Cache size: ${ifScript.moduleLoader.getCacheStats().size}</span>\n`
         output.innerHTML += `\nParsed story:\n${JSON.stringify(parsed, null, 2)}`
 
-        // Load into interpreter
-        ifScript.interpreter.loadStory(parsed, null, 'default')
-        document.getElementById('story').innerHTML = '<p class="success">Story loaded! Check the story div above.</p>'
+        const runtime = await ifScript.createRuntime()
+        runtime.mount('#story')
+        runtime.start(parsed, { theme: 'literary-default', resume: false })
       } catch (error) {
         output.innerHTML = `<span class="error">✗ Test Failed!</span>\n${error.message}\n`
         if (error.cause) {
@@ -152,7 +151,7 @@ import__"/lib/section2.partial.if"__import
 
       try {
         // Create IFScript with dynamic fetch enabled
-        const ifScript = new IFScript(versions.STREAM, {
+        const ifScript = new IFScript({
           browser: {
             baseUrl: window.location.origin + '/test/examples-if/',
             allowFetch: true
@@ -189,7 +188,7 @@ import__"section2.partial.if"__import
 
       try {
         // Create IFScript with path aliases
-        const ifScript = new IFScript(versions.STREAM, {
+        const ifScript = new IFScript({
           paths: {
             aliases: {
               '@lib': '/library',

@@ -12,6 +12,10 @@ class EngineState {
     this.choiceLookup = {}
     this.sectionTimerHandle = null
     this.fullTimerHandle = null
+    this.timers = {
+      section: null,
+      full: null
+    }
     this.storyFingerprint = null
     this.traceCounter = 0
   }

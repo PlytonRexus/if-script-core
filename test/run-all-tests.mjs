@@ -13,6 +13,7 @@ import { runErrorMessageTests } from './error-messages-test.mjs'
 import { runCheckTests } from './check-test.mjs'
 import { runSaveResumeTests } from './save-resume-test.mjs'
 import { runRuntimeV2Tests } from './runtime-v2-test.mjs'
+import { runAudioAdapterTests } from './audio-adapter-test.mjs'
 
 console.log('╔══════════════════════════════════════════════════════════════╗')
 console.log('║  IF-Script Turing Completeness Test Suite                   ║')
@@ -73,6 +74,12 @@ async function runAllTests () {
       name: 'Runtime v2 / Metadata',
       description: 'New runtime API and cinematic metadata parsing',
       fn: runRuntimeV2Tests,
+      critical: false
+    },
+    {
+      name: 'Runtime Audio Adapter',
+      description: 'Audio channel priority and fallback behavior',
+      fn: runAudioAdapterTests,
       critical: false
     }
   ]

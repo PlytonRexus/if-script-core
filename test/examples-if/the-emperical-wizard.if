@@ -1,0 +1,867 @@
+settings__
+  @storyTitle "The Empirical Wizard"
+  @startAt "Prologue: What Harry Knows"
+  @maxIterations 20000
+  @maxCallDepth 2000
+  @theme "literary-default"
+  @presentationMode "literary"
+  @allowUndo true
+  @showTurn true
+  @animations true
+  @autoSave true
+  @statusBar social true "Allies"
+  @statusBar rigor true "Rigor"
+  @statusBar risk true "Risk"
+__settings
+
+scene__
+  @name "Prologue"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=prologue"
+  @first "Prologue: What Harry Knows"
+  @sections "Prologue: What Harry Knows"
+__scene
+
+scene__
+  @name "Act One: The Train"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=act-one"
+  @first "N01 - Compartment of Strangers"
+  @sections "N01 - Compartment of Strangers" "N02-A - The Open Invitation" "N02-B - The Selective Invitation" "N02-C - The Neutral Play" "N03 - What the Prefect Says" "N04-A - The Social Investment" "N04-B - The Observation"
+__scene
+
+scene__
+  @name "Act Two: The Castle"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=act-two"
+  @first "N05 - The Hat"
+  @sections "N05 - The Hat" "N06-Ravenclaw - The Eagle's Tower" "N06-Slytherin - The Dungeon" "N06-Gryffindor - The Tower" "N07 - The Anomaly"
+__scene
+
+scene__
+  @name "Act Three: The Investigation"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=act-three"
+  @first "N08-A - The Solo Pursuit"
+  @sections "N08-A - The Solo Pursuit" "N08-B - The Ally" "N08-C - The Direct Approach" "N09 - Quirrell Encounter" "N10-A - The Willing Student" "N10-B - The Silence" "N10-C - The Gambit"
+__scene
+
+scene__
+  @name "Act Four: The Stone"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=act-four"
+  @first "N11 - The Discovery"
+  @sections "N11 - The Discovery" "N12 - Dumbledore" "N13-A - The Partnership" "N13-B - The Deal" "N13-C - The Unilateral Decision" "N14 - The Plan"
+__scene
+
+scene__
+  @name "Act Five: The Mirror"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=act-five"
+  @first "N15-Alone - Down Alone"
+  @sections "N15-Alone - Down Alone" "N15-Together - Down With an Ally" "N15-Trigger - The Careful Move" "N16 - The Mirror" "N17-Truth - Sharing the Hypothesis" "N17-Partial - The Careful Truth" "N17-Lie - The False Hypothesis" "N17-Mirror - What the Mirror Shows" "N18-A - Conversation" "N18-B - Negotiation" "N19 - The Confrontation"
+__scene
+
+scene__
+  @name "Endings"
+  @sceneAmbience "/tmp/hedwig.mp3?scene=endings"
+  @first "Ending A - The Instrument"
+  @sections "Ending A - The Instrument" "Ending B - The Ally" "Ending C - The Sacrifice" "Ending D - The Transformation" "Ending E - The Escape" "Ending F - The Dark Compromise" "Ending G - The Loop"
+__scene
+
+section__
+  @title "Prologue: What Harry Knows"
+  house = ""
+  ally = "none"
+  research_mode = ""
+  dumbledore_plan = ""
+  mirror_strategy = ""
+
+  met_hermione = false
+  met_draco = false
+  trusted_ally = false
+  accelerated = false
+  time_turner_research = false
+  run_with_ally = false
+  has_stone = false
+
+  social = 0
+  rigor = 0
+  risk = 0
+  insight = 0
+
+  "Harry Potter is eleven and starts with four assumptions: the universe is lawful, laws can be found, observers are biased, and notebooks are mandatory."
+  ""
+  "His Hogwarts letter forces a massive update. Magic is real, culture-laden, and only partly understood."
+  ""
+  "He boards the train with one promise to himself: no inherited explanation will survive without evidence."
+
+  choice__
+    @target "N01 - Compartment of Strangers"
+    "Begin on the Hogwarts Express"
+  __choice
+__section
+
+section__
+  @title "N01 - Compartment of Strangers"
+  "A girl with a theory text and a blond aristocrat enter Harry's compartment at once."
+  ""
+  "One wants a seat. One wants status. Harry wants data."
+
+  choice__
+    @target "N02-A - The Open Invitation"
+    @action met_hermione = true
+    @action met_draco = true
+    @action social = social + 1
+    "Invite both in and start asking technical questions"
+  __choice
+
+  choice__
+    @target "N02-B - The Selective Invitation"
+    @action met_hermione = true
+    @action rigor = rigor + 1
+    "Invite only the girl with the theory book"
+  __choice
+
+  choice__
+    @target "N02-C - The Neutral Play"
+    @action met_hermione = true
+    @action met_draco = true
+    @action rigor = rigor + 1
+    @action risk = risk + 1
+    "Stay neutral and preserve information asymmetry"
+  __choice
+__section
+
+section__
+  @title "N02-A - The Open Invitation"
+  "Harry introduces himself, asks both students how magic feels from the inside, and takes notes while Draco recalibrates and Hermione lights up."
+  ""
+  "His first social experiment succeeds because he is openly strange instead of strategically normal."
+
+  choice__
+    @target "N03 - What the Prefect Says"
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "N02-B - The Selective Invitation"
+  "Harry chooses Hermione and closes the door on Draco."
+  ""
+  "He and Hermione debate charm theory for hours and identify the same weakness in most magical texts: they describe outputs, not mechanisms."
+
+  choice__
+    @target "N03 - What the Prefect Says"
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "N02-C - The Neutral Play"
+  "Harry speaks carefully, discloses little, and watches everyone else perform their role."
+  ""
+  "By the end of the exchange he has three live hypotheses and zero certainty. That is good enough to proceed."
+
+  choice__
+    @target "N03 - What the Prefect Says"
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "N03 - What the Prefect Says"
+  "A prefect explains Houses in broad moral categories. Harry asks for measurable input variables."
+
+  if__ (met_hermione) {
+    "Hermione appears delighted and mildly alarmed."
+  }
+
+  if__ (met_draco) {
+    "Draco appears to be updating a private model of Harry in real time."
+  }
+
+  "As Scotland approaches, Harry decides whether to optimize for allies or for information."
+
+  choice__
+    @target "N04-A - The Social Investment"
+    @action social = social + 1
+    "Prioritize friendships before arrival"
+  __choice
+
+  choice__
+    @target "N04-B - The Observation"
+    @action rigor = rigor + 1
+    "Prioritize eavesdropping and notebook work"
+  __choice
+__section
+
+section__
+  @title "N04-A - The Social Investment"
+  "Harry spends an hour learning how Hermione and Draco think under low stakes."
+  ""
+  "He treats rapport as infrastructure, not decoration."
+
+  choice__
+    @target "N05 - The Hat"
+    "Arrive at Hogwarts"
+  __choice
+__section
+
+section__
+  @title "N04-B - The Observation"
+  "Harry maps school mythology from overheard conversations: the Restricted Section, a cursed Defense post, and selective adult silence."
+  ""
+  "He arrives with fewer friends and a better threat model."
+
+  choice__
+    @target "N05 - The Hat"
+    "Arrive at Hogwarts"
+  __choice
+__section
+
+section__
+  @title "N05 - The Hat"
+  "The Sorting Hat identifies Harry as dangerous in one specific way: he follows ideas all the way to consequences."
+  ""
+  "It asks what he wants under the methodology. He answers: understanding and prevention."
+
+  choice__
+    @target "N06-Ravenclaw - The Eagle's Tower"
+    @action house = "Ravenclaw"
+    @action ally = "Hermione"
+    @action trusted_ally = true
+    @action rigor = rigor + 1
+    "Request information access and intellectual peers"
+  __choice
+
+  choice__
+    @target "N06-Slytherin - The Dungeon"
+    @action house = "Slytherin"
+    @action ally = "Draco"
+    @action trusted_ally = true
+    @action risk = risk + 1
+    "Request influence over political structure"
+  __choice
+
+  choice__
+    @target "N06-Gryffindor - The Tower"
+    @action house = "Gryffindor"
+    @action ally = "Hermione"
+    @action trusted_ally = true
+    @action social = social + 1
+    "Refuse optimization and ask for where you belong"
+  __choice
+__section
+
+section__
+  @title "N06-Ravenclaw - The Eagle's Tower"
+  "Ravenclaw gives Harry access to argument, riddles, and insomnia under stars."
+  ""
+  "That night he writes: if Voldemort was immortal by method, then disappearance is not disproof."
+
+  choice__
+    @target "N07 - The Anomaly"
+    "Begin first month"
+  __choice
+__section
+
+section__
+  @title "N06-Slytherin - The Dungeon"
+  "Slytherin gives Harry green light, social calculus, and Draco's frank admission: power aligns around prediction."
+  ""
+  "Harry notes that architecture itself can be ideology."
+
+  choice__
+    @target "N07 - The Anomaly"
+    "Begin first month"
+  __choice
+__section
+
+section__
+  @title "N06-Gryffindor - The Tower"
+  "Gryffindor gives Harry noise, courage narratives, and friends who treat action as default."
+  ""
+  "He notes that bravery may be less about fearlessness and more about decision latency under risk."
+
+  choice__
+    @target "N07 - The Anomaly"
+    "Begin first month"
+  __choice
+__section
+
+section__
+  @title "N07 - The Anomaly"
+  "By October, Harry has confirmed three things: intent affects magic, memory shapes learning, and Quirrell performs weakness too consistently to be weak."
+  ""
+  "In a restricted text about the Killing Curse, he finds margin notes: 'The curse disconnects. Find the mechanism.'"
+
+  choice__
+    @target "N08-A - The Solo Pursuit"
+    @action research_mode = "solo"
+    @action rigor = rigor + 1
+    "Investigate alone and tell no one"
+  __choice
+
+  choice__
+    @target "N08-B - The Ally"
+    @action research_mode = "ally"
+    @action social = social + 1
+    "Share findings with your most trusted peer"
+  __choice
+
+  choice__
+    @target "N08-C - The Direct Approach"
+    @action research_mode = "quirrell"
+    @action accelerated = true
+    @action risk = risk + 2
+    "Bring the notes directly to Professor Quirrell"
+  __choice
+__section
+
+section__
+  @title "N08-A - The Solo Pursuit"
+  "Working alone, Harry models curse mechanics, soul theory, and handwriting provenance."
+  ""
+  "The notes are not Quirrell's. That increases uncertainty, not comfort."
+
+  if__ (house == "Ravenclaw") {
+    "Ravenclaw archives expose one more thread: time-turner loop theory, practical limit six hours, memory reliability uncertain."
+    choice__
+      @target "N09 - Quirrell Encounter"
+      @action time_turner_research = true
+      @action rigor = rigor + 1
+      "Add loop theory to the notebook before proceeding"
+    __choice
+  }
+
+  choice__
+    @target "N09 - Quirrell Encounter"
+    "Proceed to the first direct test"
+  __choice
+__section
+
+section__
+  @title "N08-B - The Ally"
+  if__ (house == "Slytherin") {
+    "Draco confirms old blood rumors about surviving fragments and does not finish one sentence while looking at Harry's scar."
+  } else__ {
+    "Hermione finds sacrifice-ward literature in minutes and reframes Lily's act as a binding contract, not a metaphor."
+  }
+
+  "The research becomes less elegant and more accurate."
+
+  choice__
+    @target "N09 - Quirrell Encounter"
+    @action insight = insight + 1
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "N08-C - The Direct Approach"
+  "Quirrell reads the margin notes, drops his stutter for one dangerous moment, then restores it."
+  ""
+  "Harry names Albania. The room temperature does not change, but threat level does."
+
+  choice__
+    @target "N09 - Quirrell Encounter"
+    @action insight = insight + 2
+    @action accelerated = true
+    "Leave before the conversation can close around you"
+  __choice
+__section
+
+section__
+  @title "N09 - Quirrell Encounter"
+  if__ (accelerated) {
+    "The next day Quirrell offers a private lesson. The bait is obvious and still useful."
+  } else__ {
+    "Six weeks later Quirrell offers a private lesson. By now Harry has enough context to hear the omissions."
+  }
+
+  "Quirrell says: 'I was right about you.'"
+
+  choice__
+    @target "N10-A - The Willing Student"
+    @action rigor = rigor + 1
+    "Engage and extract as much as possible"
+  __choice
+
+  choice__
+    @target "N10-B - The Silence"
+    @action risk = max(risk - 1, 0)
+    "Stay silent and force Quirrell to reveal preference"
+  __choice
+
+  choice__
+    @target "N10-C - The Gambit"
+    @action insight = insight + 1
+    @action risk = risk + 1
+    "Signal that you have noticed him too"
+  __choice
+__section
+
+section__
+  @title "N10-A - The Willing Student"
+  "A two-hour exchange covers dark arts history, immortality mechanics, and controlled references to soul fragmentation."
+  ""
+  "Harry leaves with high-value data and a sharper fear of his teacher."
+
+  choice__
+    @target "N11 - The Discovery"
+    @action insight = insight + 2
+    "Synthesize the evidence"
+  __choice
+__section
+
+section__
+  @title "N10-B - The Silence"
+  "Silence forces Quirrell to spend effort. He does, then dismisses Harry earlier than planned."
+  ""
+  "At the door Harry asks whether sustaining the stutter hurts. Quirrell answers yes."
+
+  choice__
+    @target "N11 - The Discovery"
+    @action insight = insight + 1
+    "Synthesize the evidence"
+  __choice
+__section
+
+section__
+  @title "N10-C - The Gambit"
+  "Harry says the words 'Albania' and 'deal' in the same conversation and survives it."
+  ""
+  "Quirrell does not deny enough."
+
+  choice__
+    @target "N11 - The Discovery"
+    @action insight = insight + 2
+    @action accelerated = true
+    "Escalate to strategic planning"
+  __choice
+__section
+
+section__
+  @title "N11 - The Discovery"
+  "By December, five propositions are stable:"
+  "1. Hogwarts hides Flamel's Stone."
+  "2. Voldemort is not fully dead."
+  "3. Quirrell is linked to acquisition attempts."
+  "4. Harry's scar reacts to Quirrell."
+  "5. Lily's protection has a specific mechanism and a counter-condition."
+  ""
+  "Harry goes to Dumbledore because partial information has become a direct hazard."
+
+  choice__
+    @target "N12 - Dumbledore"
+    "Request a meeting"
+  __choice
+__section
+
+section__
+  @title "N12 - Dumbledore"
+  "In an office of moving instruments, Harry argues that Dumbledore's obstacle design is delay engineering, not prevention."
+  ""
+  "Dumbledore says: 'Make your case.'"
+
+  choice__
+    @target "N13-A - The Partnership"
+    @action dumbledore_plan = "partnership"
+    @action social = social + 1
+    "Demand full collaboration and full disclosure"
+  __choice
+
+  choice__
+    @target "N13-B - The Deal"
+    @action dumbledore_plan = "deal"
+    @action rigor = rigor + 1
+    "Offer a limited information trade"
+  __choice
+
+  choice__
+    @target "N13-C - The Unilateral Decision"
+    @action dumbledore_plan = "unilateral"
+    @action risk = risk + 1
+    "Lie about your certainty and prepare to act alone"
+  __choice
+__section
+
+section__
+  @title "N13-A - The Partnership"
+  "Dumbledore confirms the Stone, confirms Quirrell's possession state, and does not deny Horcrux plurality."
+  ""
+  "Harry receives more truth than expected and less than needed."
+
+  choice__
+    @target "N14 - The Plan"
+    @action insight = insight + 1
+    "Design June operations"
+  __choice
+__section
+
+section__
+  @title "N13-B - The Deal"
+  "A narrow deal is struck: Harry gives model detail, Dumbledore confirms counter-conditions and withholds scar specifics."
+  ""
+  "Harry accepts temporary incompleteness and writes around it."
+
+  choice__
+    @target "N14 - The Plan"
+    @action insight = insight + 1
+    "Design June operations"
+  __choice
+__section
+
+section__
+  @title "N13-C - The Unilateral Decision"
+  "Harry exits convinced that he is a piece in a game with hidden constraints."
+  ""
+  "He decides to optimize for independently verifiable outcomes."
+
+  choice__
+    @target "N14 - The Plan"
+    @action risk = risk + 1
+    "Design June operations"
+  __choice
+__section
+
+section__
+  @title "N14 - The Plan"
+  "June. Harry has a map of the obstacle chain, a timeline model for Quirrell, and sealed contingency notes."
+  ""
+  "Goal: acquire the Stone from the Mirror before Quirrell can force an extraction."
+
+  choice__
+    @target "Ending G - The Loop"
+    @when house == "Ravenclaw" && research_mode == "solo" && time_turner_research == true
+    "Abort tonight and run a six-hour loop protocol"
+  __choice
+
+  choice__
+    @target "N15-Alone - Down Alone"
+    @action run_with_ally = false
+    @action risk = risk + 1
+    "Enter alone at predicted time"
+  __choice
+
+  choice__
+    @target "N15-Together - Down With an Ally"
+    @when trusted_ally == true
+    @action run_with_ally = true
+    @action social = social + 1
+    "Enter with one trusted ally"
+  __choice
+
+  choice__
+    @target "N15-Trigger - The Careful Move"
+    @action run_with_ally = false
+    @action social = social + 1
+    "Trigger faculty alarm and move as observer"
+  __choice
+__section
+
+section__
+  @title "N15-Alone - Down Alone"
+  "Harry solves each obstacle by model inversion, not brute force."
+  ""
+  "Purple flame. Mirror chamber. Quirrell already present. Scar burning."
+
+  choice__
+    @target "N16 - The Mirror"
+    "Enter the chamber"
+  __choice
+__section
+
+section__
+  @title "N15-Together - Down With an Ally"
+  "Two minds accelerate chess and verification. At the final threshold, Harry sends ${ally} back to preserve one witness stream."
+  ""
+  "He steps through alone anyway."
+
+  choice__
+    @target "N16 - The Mirror"
+    "Enter the chamber"
+  __choice
+__section
+
+section__
+  @title "N15-Trigger - The Careful Move"
+  "McGonagall believes him fast enough to act and reluctantly lets him come under strict command discipline."
+  ""
+  "Chamber access becomes coordinated, not clean."
+
+  choice__
+    @target "N16 - The Mirror"
+    "Enter the chamber"
+  __choice
+__section
+
+section__
+  @title "N16 - The Mirror"
+  has_stone = true
+  "The Mirror confirms the key rule: it yields the Stone to one who seeks it without intent to use it."
+  ""
+  "Voldemort's voice from Quirrell asks for your scar hypothesis."
+
+  choice__
+    @target "N17-Truth - Sharing the Hypothesis"
+    @action mirror_strategy = "truth"
+    @action rigor = rigor + 1
+    "Tell the full hypothesis"
+  __choice
+
+  choice__
+    @target "N17-Partial - The Careful Truth"
+    @action mirror_strategy = "partial"
+    @action risk = risk + 1
+    "Tell a strategic partial truth"
+  __choice
+
+  choice__
+    @target "N17-Lie - The False Hypothesis"
+    @action mirror_strategy = "lie"
+    @action risk = risk + 2
+    "Offer a deliberately false model"
+  __choice
+
+  choice__
+    @target "N17-Mirror - What the Mirror Shows"
+    @action mirror_strategy = "look"
+    @action rigor = rigor + 1
+    "Do not answer; look directly into the Mirror"
+  __choice
+__section
+
+section__
+  @title "N17-Truth - Sharing the Hypothesis"
+  "Harry names the core fear: the scar may be a vessel, not a wound."
+  ""
+  "The chamber shifts from interrogation to negotiation."
+
+  choice__
+    @target "N18-A - Conversation"
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "N17-Partial - The Careful Truth"
+  "Harry explains Lily's ward mechanism and withholds scar architecture."
+  ""
+  "Voldemort offers a transaction: identity truth for Stone transfer."
+
+  choice__
+    @target "N18-B - Negotiation"
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "N17-Lie - The False Hypothesis"
+  "The lie is coherent but not evidence-aligned. Voldemort identifies that immediately."
+  ""
+  "Both sides acknowledge the bluff and continue anyway."
+
+  choice__
+    @target "N18-B - Negotiation"
+    "Proceed"
+  __choice
+__section
+
+section__
+  @title "N17-Mirror - What the Mirror Shows"
+  "Harry sees not dominion but understanding: equations, mechanism, proof."
+  ""
+  "The Stone appears in his pocket. Conflict becomes immediate."
+
+  choice__
+    @target "N19 - The Confrontation"
+    "Turn and move"
+  __choice
+__section
+
+section__
+  @title "N18-A - Conversation"
+  "Harry proposes a third path: suspend Stone conflict, exchange full research, and pursue non-fragmentation immortality theory."
+
+  choice__
+    @target "Ending D - The Transformation"
+    @when dumbledore_plan == "partnership"
+    "Continue in genuine good faith"
+  __choice
+
+  choice__
+    @target "N19 - The Confrontation"
+    @when dumbledore_plan != "partnership"
+    "Try good faith without institutional backing"
+  __choice
+
+  choice__
+    @target "Ending A - The Instrument"
+    @when house == "Slytherin" && dumbledore_plan == "unilateral"
+    "Use dialogue as cover for covert capture and extraction"
+  __choice
+
+  choice__
+    @target "N19 - The Confrontation"
+    @when !(house == "Slytherin" && dumbledore_plan == "unilateral")
+    "Use dialogue as cover, but without the full setup"
+  __choice
+__section
+
+section__
+  @title "N18-B - Negotiation"
+  "Voldemort offers scar truth in two halves, contingent on Stone transfer."
+  ""
+  "Harry computes value of information against immediate threat escalation."
+
+  choice__
+    @target "Ending F - The Dark Compromise"
+    "Give Voldemort the Stone"
+  __choice
+
+  choice__
+    @target "Ending E - The Escape"
+    @when (house == "Slytherin" && dumbledore_plan == "unilateral" && mirror_strategy == "lie") || (dumbledore_plan == "deal" && insight >= 2)
+    "Keep the Stone and execute a controlled retreat"
+  __choice
+
+  choice__
+    @target "N19 - The Confrontation"
+    @when !((house == "Slytherin" && dumbledore_plan == "unilateral" && mirror_strategy == "lie") || (dumbledore_plan == "deal" && insight >= 2))
+    "Keep the Stone and run under active pursuit"
+  __choice
+__section
+
+section__
+  @title "N19 - The Confrontation"
+  "Harry closes distance at an unexpected angle and makes direct skin contact."
+  ""
+  "The ward burns both of them. Time compresses into two choices."
+
+  choice__
+    @target "Ending C - The Sacrifice"
+    "Hold contact as long as physically possible"
+  __choice
+
+  choice__
+    @target "Ending B - The Ally"
+    @when run_with_ally == true
+    "Break contact, run, and hand off the Stone to your ally"
+  __choice
+
+  choice__
+    @target "Ending C - The Sacrifice"
+    @when run_with_ally == false
+    "Break contact and attempt solo extraction"
+  __choice
+__section
+
+section__
+  @title "Ending A - The Instrument"
+  "Harry leaves with the Stone and a covertly captured confession stream."
+  ""
+  "He destroys Horcruxes methodically over six years, wins at seventeen, and notices the cost: people have become variables in his plans."
+  ""
+  "He records this as a trade, not a triumph."
+  ""
+  "Profile: house=${house}, plan=${dumbledore_plan}, strategy=${mirror_strategy}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section
+
+section__
+  @title "Ending B - The Ally"
+  "Harry escapes and collapses beside ${ally}, who takes the Stone before he can rationalize keeping it."
+  ""
+  "Dumbledore arrives to two children and one intact mission. The fragment is dispersed; the Stone is surrendered."
+  ""
+  "Harry writes that method mattered, but partnership mattered more."
+  ""
+  "Profile: house=${house}, ally=${ally}, research=${research_mode}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section
+
+section__
+  @title "Ending C - The Sacrifice"
+  "Harry holds contact until Quirrell stops moving."
+  ""
+  "He survives with severe burns and a notebook full of probabilities that did not include how much pain certainty costs."
+  ""
+  "Asked if he is all right, he answers with a delayed check-in protocol."
+  ""
+  "Profile: house=${house}, risk=${risk}, rigor=${rigor}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section
+
+section__
+  @title "Ending D - The Transformation"
+  "Harry commits to the long negotiation path under Dumbledore's partnership umbrella."
+  ""
+  "Over years, he develops a cleaner model of continuity than Horcrux fragmentation and attempts a reconstruction program that may be mercy or hubris."
+  ""
+  "He keeps working because 'closest to correct' remains his moral primitive."
+  ""
+  "Profile: plan=${dumbledore_plan}, insight=${insight}, rigor=${rigor}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section
+
+section__
+  @title "Ending E - The Escape"
+  "Harry refuses the exchange, exits with the Stone, and meets Dumbledore in the corridor."
+  ""
+  "He trades custody of the Stone for truth about the scar and the information regime around him."
+  ""
+  "The next chapter starts in the Headmaster's office with a blank notebook page."
+  ""
+  "Profile: plan=${dumbledore_plan}, strategy=${mirror_strategy}, insight=${insight}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section
+
+section__
+  @title "Ending F - The Dark Compromise"
+  "Harry gives Voldemort the Stone to close an information gap now instead of later."
+  ""
+  "The decision is coherent, costly, and irreversible. The war that follows is longer and bloodier."
+  ""
+  "He wins eventually and keeps an accounting ledger because abstraction is no longer an excuse."
+  ""
+  "Profile: risk=${risk}, insight=${insight}, strategy=${mirror_strategy}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section
+
+section__
+  @title "Ending G - The Loop"
+  "Harry delays the chamber entry and uses a time-turner with notebook-based state transfer discipline."
+  ""
+  "He writes for his future self: memory is lossy, paper is not."
+  ""
+  "The first loop fails, the second narrows variables, the third closes the model."
+  ""
+  "He wins by designing a system that does not depend on remembering every failure."
+  ""
+  "Profile: house=${house}, research=${research_mode}, rigor=${rigor}."
+
+  choice__
+    @target "Prologue: What Harry Knows"
+    "Restart"
+  __choice
+__section

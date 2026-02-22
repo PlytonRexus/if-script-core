@@ -25,16 +25,21 @@ async function testParseNewPresentationAndAudioMetadata () {
 settings__
   @storyTitle "V2 Meta"
   @presentationMode "cinematic"
+  @storyAmbience "https://example.com/story-bed.mp3"
+  @storyAmbienceVolume 0.22
+  @storyAmbienceLoop false
+  @storyAmbienceFadeInMs 1500
+  @storyAmbienceFadeOutMs 1200
 __settings
 
 scene__
   @name "Main"
   @first 1
-  @music "https://example.com/music.mp3"
-  @musicVolume 0.6
-  @musicLoop true
-  @musicFadeInMs 1200
-  @musicFadeOutMs 900
+  @sceneAmbience "https://example.com/music.mp3"
+  @sceneAmbienceVolume 0.6
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 1200
+  @sceneAmbienceFadeOutMs 900
   @sceneTransition "fade"
   @sections 1
 __scene
@@ -65,6 +70,11 @@ __section
   const story = await ifScript.parse(storyText, 'runtime-v2-meta.if')
 
   assertEqual(story.settings.presentationMode, 'cinematic', 'presentationMode should parse')
+  assertEqual(story.settings.storyAmbience, 'https://example.com/story-bed.mp3', 'storyAmbience should parse')
+  assertEqual(story.settings.storyAmbienceVolume, 0.22, 'storyAmbienceVolume should parse')
+  assertEqual(story.settings.storyAmbienceLoop, false, 'storyAmbienceLoop should parse')
+  assertEqual(story.settings.storyAmbienceFadeInMs, 1500, 'storyAmbienceFadeInMs should parse')
+  assertEqual(story.settings.storyAmbienceFadeOutMs, 1200, 'storyAmbienceFadeOutMs should parse')
   const scene = story.scenes[0]
   assertEqual(scene.musicVolume, 0.6, 'musicVolume should parse')
   assertEqual(scene.musicLoop, true, 'musicLoop should parse')
@@ -101,6 +111,27 @@ __section
     async () => ifScript.parse(storyText, 'runtime-v2-invalid.if'),
     'Invalid value "nope" for @presentationMode',
     'invalid enum should throw a clear parse error'
+  )
+}
+
+async function testParseRejectsDeprecatedSceneMusicProperties () {
+  const storyText = `
+scene__
+  @name "Deprecated"
+  @music "https://example.com/old.mp3"
+__scene
+
+section__
+  @title "Start"
+  "x"
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  await assertThrows(
+    async () => ifScript.parse(storyText, 'runtime-v2-deprecated-scene-music.if'),
+    'Property @music is deprecated and no longer supported. Use @sceneAmbience instead.',
+    'deprecated scene music properties should throw a clear parse error'
   )
 }
 
@@ -312,16 +343,148 @@ __section
   }
 }
 
+async function testRuntimeExposesActiveTimerMetadataInViewModel () {
+  const storyText = `
+settings__
+  @storyTitle "Timer View Model"
+  @startAt 0
+  @fullTimer 60 1
+  @fullTimerOutcome "When the story timer ends, fate takes over."
+__settings
+
+section__
+  @title "Start"
+  @timer 30 1
+  @timerOutcome "You hesitated too long."
+  "A clock is ticking."
+  choice__
+    @target 1
+    "Move"
+  __choice
+__section
+
+section__
+  @title "Timeout"
+  "Time is up."
+  choice__
+    @target 1
+    "Stay"
+  __choice
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-timer-view.if')
+  const runtime = await ifScript.createRuntime()
+
+  try {
+    const view = runtime.start(story, { resume: false })
+    assert(Array.isArray(view.timers), 'view model should expose timers array')
+    assertEqual(view.timers.length, 2, 'full + section timers should both be visible as active timers')
+
+    const sectionTimer = view.timers.find(timer => timer.timerType === 'section')
+    const fullTimer = view.timers.find(timer => timer.timerType === 'full')
+    assert(sectionTimer, 'section timer metadata should be present')
+    assert(fullTimer, 'full timer metadata should be present')
+    assertEqual(
+      sectionTimer.outcomeText,
+      'You hesitated too long.',
+      'section timer should expose author-defined timeout outcome text'
+    )
+    assertEqual(
+      fullTimer.outcomeText,
+      'When the story timer ends, fate takes over.',
+      'full timer should expose author-defined timeout outcome text'
+    )
+    assert(
+      !Object.prototype.hasOwnProperty.call(sectionTimer, 'targetLabel'),
+      'player-facing timer view should not expose destination labels'
+    )
+    assert(typeof sectionTimer.startedAt === 'number', 'section timer should include startedAt timestamp')
+    assert(typeof sectionTimer.deadlineAt === 'number', 'section timer should include deadlineAt timestamp')
+    assert(sectionTimer.deadlineAt > sectionTimer.startedAt, 'deadline should be after start time')
+    assertEqual(sectionTimer.durationMs, 30000, 'section timer duration should be exposed in milliseconds')
+    assertEqual(fullTimer.durationMs, 60000, 'full timer duration should be exposed in milliseconds')
+  } finally {
+    runtime.destroy()
+  }
+}
+
+async function testSceneMusicResolvesTitleBasedSceneRefs () {
+  const storyText = `
+settings__
+  @storyTitle "Scene Music Refs"
+  @startAt "Dock"
+__settings
+
+scene__
+  @name "Opening"
+  @first "Dock"
+  @sceneAmbience "https://example.com/audio/opening.mp3"
+  @sections "Dock"
+__scene
+
+scene__
+  @name "Bridge"
+  @first "Bridge"
+  @sceneAmbience "https://example.com/audio/bridge.mp3"
+  @sections "Bridge"
+__scene
+
+section__
+  @title "Dock"
+  "At the dock."
+  choice__
+    @target "Bridge"
+    "Move"
+  __choice
+__section
+
+section__
+  @title "Bridge"
+  "At the bridge."
+  choice__
+    @target "Dock"
+    "Back"
+  __choice
+__section
+`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-scene-title-refs.if')
+  const runtime = await ifScript.createRuntime()
+  const sceneMusic = []
+
+  const unsubscribe = runtime.on('scene_changed', payload => {
+    sceneMusic.push(payload && payload.scene ? payload.scene.music : null)
+  })
+
+  try {
+    runtime.start(story, { resume: false })
+    assertEqual(sceneMusic[0], 'https://example.com/audio/opening.mp3', 'start scene should emit opening music for title-based refs')
+
+    runtime.selectChoice({ choiceIndex: 1 })
+    assertEqual(sceneMusic[sceneMusic.length - 1], 'https://example.com/audio/bridge.mp3', 'switching sections should emit next scene music for title-based refs')
+  } finally {
+    if (typeof unsubscribe === 'function') unsubscribe()
+    runtime.destroy()
+  }
+}
+
 export async function runRuntimeV2Tests () {
   return runTestSuite('Runtime v2 / Metadata Tests', [
     { name: 'createRuntime factory', fn: testCreateRuntimeFactory },
     { name: 'parse new cinematic/audio metadata', fn: testParseNewPresentationAndAudioMetadata },
     { name: 'reject invalid presentation enum', fn: testParseRejectsInvalidEnum },
+    { name: 'reject deprecated @music scene properties', fn: testParseRejectsDeprecatedSceneMusicProperties },
     { name: 'build input choice markup with inline placeholder', fn: testInputChoiceMarkupBuilder },
     { name: 'block input choices without value and store valid input', fn: testInputChoiceRequiresValue },
     { name: 'execute JSON-roundtripped runtime AST safely', fn: testRuntimeHandlesJsonRoundTripAst },
     { name: 'interpolate function templates in example story text', fn: testRuntimeInterpolatesFunctionTemplatesInStoryText },
-    { name: 'prevent statement call value leaks in body text', fn: testStatementFunctionCallsDoNotLeakIntoNarrativeText }
+    { name: 'prevent statement call value leaks in body text', fn: testStatementFunctionCallsDoNotLeakIntoNarrativeText },
+    { name: 'expose active timer metadata in view model', fn: testRuntimeExposesActiveTimerMetadataInViewModel },
+    { name: 'resolve scene music for title-based scene refs', fn: testSceneMusicResolvesTitleBasedSceneRefs }
   ])
 }
 

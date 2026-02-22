@@ -15,9 +15,7 @@ import {
 } from './test-utils.mjs'
 import SectionRef from '../src/models/SectionRef.mjs'
 import SceneRef from '../src/models/SceneRef.mjs'
-import Interpreter from '../src/interpreters/custom/Interpreter.mjs'
-import Run from '../src/interpreters/custom/Run.mjs'
-import State from '../src/interpreters/custom/State.mjs'
+import EngineRuntime from '../src/runtime/engine/EngineRuntime.mjs'
 
 // ===== Basic Features =====
 
@@ -328,6 +326,59 @@ __section`
   assertEqual(timer.target, 'Timeout', 'Section timer target should accept section title refs')
 }
 
+async function testFullTimerOutcomeTextParse () {
+  const storyText = `settings__
+  @storyTitle "Timer Outcome Story"
+  @startAt 1
+  @fullTimer 20 "Timeout"
+  @fullTimerOutcome "If you wait too long, destiny intervenes."
+__settings
+
+section__
+  @title "Start"
+  "Start section"
+__section
+
+section__
+  @title "Timeout"
+  "Timeout section"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assertEqual(
+    parsed.settings.fullTimerOutcome,
+    'If you wait too long, destiny intervenes.',
+    'Story @fullTimerOutcome should parse as author-defined timer consequence text'
+  )
+}
+
+async function testSectionTimerOutcomeTextParse () {
+  const storyText = `section__
+  @title "Start"
+  @timer 15 "Timeout"
+  @timerOutcome "Wait too long and the door locks behind you."
+  "Start section"
+__section
+
+section__
+  @title "Timeout"
+  "Timeout section"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+
+  assertEqual(
+    parsed.sections[0].settings.timerOutcome,
+    'Wait too long and the door locks behind you.',
+    'Section @timerOutcome should parse as author-defined timer consequence text'
+  )
+}
+
 async function testStatusBarSettings () {
   const storyText = `settings__
   @storyTitle "Status Config Story"
@@ -444,7 +495,7 @@ __scene`
 async function testSceneMusicRelativePath () {
   const storyText = `scene__
   @name "Chapter One"
-  @music "music/theme.mp3"
+  @sceneAmbience "music/theme.mp3"
 __scene
 
 section__
@@ -457,13 +508,13 @@ __section`
 
   const scene = parsed.scenes[0]
   assertDefined(scene, 'Scene should parse')
-  assertEqual(scene.music, 'music/theme.mp3', 'Relative @music paths should be allowed')
+  assertEqual(scene.music, 'music/theme.mp3', 'Relative @sceneAmbience paths should be allowed')
 }
 
 async function testSceneMusicAbsoluteUrl () {
   const storyText = `scene__
   @name "Chapter One"
-  @music "https://example.com/theme.mp3"
+  @sceneAmbience "https://example.com/theme.mp3"
 __scene
 
 section__
@@ -476,7 +527,7 @@ __section`
 
   const scene = parsed.scenes[0]
   assertDefined(scene, 'Scene should parse')
-  assertEqual(scene.music, 'https://example.com/theme.mp3', 'Absolute @music URLs should still be allowed')
+  assertEqual(scene.music, 'https://example.com/theme.mp3', 'Absolute @sceneAmbience URLs should still be allowed')
 }
 
 async function testComments () {
@@ -666,17 +717,14 @@ __section`
   const ifScript = new IFScript(versions.STREAM)
   await ifScript.init()
   const parsed = await ifScript.parse(storyText)
-  const section = parsed.sections[0]
 
-  const run = new Run(parsed, new State())
-  const interpreter = new Interpreter(run)
-  section.text
-    .filter(item => item.type === 'assign')
-    .forEach(item => interpreter.resolveAction(item, false, section))
+  const runtime = new EngineRuntime(null)
+  runtime.start(parsed, { resume: false })
 
-  assertEqual(run.state.variables.a, -10, 'Unary minus should evaluate to negative number')
-  assertEqual(run.state.variables.b, true, 'Unary !false should evaluate to true')
-  assertEqual(run.state.variables.c, true, 'Unary !0 should evaluate to true')
+  assertEqual(runtime.run.state.variables.a, -10, 'Unary minus should evaluate to negative number')
+  assertEqual(runtime.run.state.variables.b, true, 'Unary !false should evaluate to true')
+  assertEqual(runtime.run.state.variables.c, true, 'Unary !0 should evaluate to true')
+  runtime.destroy()
 }
 
 async function testChoiceErgonomicsPropertiesParse () {
@@ -712,7 +760,7 @@ async function testStoryUxSettingsParse () {
   const storyText = `settings__
   @storyTitle "UX Story"
   @startAt 1
-  @theme "minimal"
+  @theme "literary-default"
   @allowUndo false
   @showTurn false
   @animations false
@@ -727,7 +775,7 @@ __section`
   await ifScript.init()
   const parsed = await ifScript.parse(storyText)
 
-  assertEqual(parsed.settings.theme, 'minimal', '@theme should parse')
+  assertEqual(parsed.settings.theme, 'literary-default', '@theme should parse')
   assertEqual(parsed.settings.allowUndo, false, '@allowUndo should parse')
   assertEqual(parsed.settings.showTurn, false, '@showTurn should parse')
   assertEqual(parsed.settings.animations, false, '@animations should parse')
@@ -871,6 +919,8 @@ export async function runRegressionTests () {
     { name: 'Refs: @fullTimer target title', fn: testFullTimerTitleTargetRef },
     { name: 'Refs: Scene first/sections', fn: testSceneSectionRefs },
     { name: 'Refs: Section timer target', fn: testSectionTimerTargetRef },
+    { name: 'Refs: @fullTimer outcome text', fn: testFullTimerOutcomeTextParse },
+    { name: 'Refs: Section timer outcome text', fn: testSectionTimerOutcomeTextParse },
     { name: 'Basic: Status bar settings', fn: testStatusBarSettings },
     { name: 'Basic: Status bar top-level property', fn: testStatusBarPropertyOutsideSettings },
     { name: 'Basic: Status bar custom labels', fn: testStatusBarCustomLabels },

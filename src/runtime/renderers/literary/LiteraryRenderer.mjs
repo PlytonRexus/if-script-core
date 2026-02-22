@@ -8,11 +8,18 @@ class LiteraryRenderer extends RendererContract {
     this.model = {
       section: null,
       stats: [],
+      timers: [],
       mode: 'literary',
       themeId: 'literary-default',
       menuOpen: false,
       saveOpen: false,
       themes: [],
+      audio: {
+        enabled: true,
+        paused: false,
+        hasLoadedAudio: false,
+        playing: false
+      },
       saveState: {
         autoSavedAt: null,
         slots: []
@@ -45,6 +52,11 @@ class LiteraryRenderer extends RendererContract {
     if (this.root) this.root.setModel(this.model, this.handlers)
   }
 
+  setAudioState (audioState) {
+    this.model.audio = audioState || this.model.audio
+    if (this.root) this.root.setModel(this.model, this.handlers)
+  }
+
   toggleMenu (open) {
     this.model.menuOpen = open
     if (this.root) this.root.setModel(this.model, this.handlers)
@@ -59,7 +71,8 @@ class LiteraryRenderer extends RendererContract {
     this.model = {
       ...this.model,
       section: viewModel ? viewModel.section : null,
-      stats: viewModel ? viewModel.stats : []
+      stats: viewModel ? viewModel.stats : [],
+      timers: viewModel ? viewModel.timers : []
     }
     if (this.root) this.root.setModel(this.model, this.handlers)
   }

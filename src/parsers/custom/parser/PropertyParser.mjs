@@ -19,7 +19,7 @@ switch (propertyType) {
     break
   case KW.PROP_SCENE_FIRST:
     break
-  case KW.PROP_SCENE_MUSIC:
+  case KW.PROP_SCENE_AMBIENCE:
     break
   case KW.PROP_SCENE_NAME:
     break

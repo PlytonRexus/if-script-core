@@ -109,9 +109,9 @@ Jump to: [Quick Reference](#quick-reference) · [Writer Mode](#writer-mode-minim
 
 | Context | Properties |
 |------|------|
-| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`, `@statusBar`, `@theme`, `@presentationMode`, `@allowUndo`, `@showTurn`, `@animations`, `@autoSave` |
-| Scene | `@name`, `@first`, `@music`, `@musicVolume`, `@musicLoop`, `@musicFadeInMs`, `@musicFadeOutMs`, `@sceneTransition`, `@sections` |
-| Section | `@title`, `@timer`, `@ambience`, `@ambienceVolume`, `@ambienceLoop`, `@ambienceFadeInMs`, `@ambienceFadeOutMs`, `@sfx`, `@backdrop`, `@shot`, `@textPacing` |
+| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@fullTimerOutcome`, `@maxIterations`, `@maxCallDepth`, `@statusBar`, `@theme`, `@storyAmbience`, `@storyAmbienceVolume`, `@storyAmbienceLoop`, `@storyAmbienceFadeInMs`, `@storyAmbienceFadeOutMs`, `@presentationMode`, `@allowUndo`, `@showTurn`, `@animations`, `@autoSave` |
+| Scene | `@name`, `@first`, `@sceneAmbience`, `@sceneAmbienceVolume`, `@sceneAmbienceLoop`, `@sceneAmbienceFadeInMs`, `@sceneAmbienceFadeOutMs`, `@sceneTransition`, `@sections` |
+| Section | `@title`, `@timer`, `@timerOutcome`, `@ambience`, `@ambienceVolume`, `@ambienceLoop`, `@ambienceFadeInMs`, `@ambienceFadeOutMs`, `@sfx`, `@backdrop`, `@shot`, `@textPacing` |
 | Choice | `@target`, `@targetType`, `@input`, `@action`, `@when`, `@once`, `@disabledText` |
 
 **Control flow + expressions**
@@ -157,7 +157,7 @@ __section
 ```
 
 ### [Embedding](#embedding)
-You can parse in Node.js, but the interpreter requires a DOM.
+You can parse/compile/check in Node.js. Runtime rendering requires a DOM.
 
 1. Import the library
 ```js
@@ -220,12 +220,16 @@ settings__
   @storyTitle "My Story"
   @startAt 1
   @referrable false
-  @theme "minimal"
+  @theme "literary-default"
+  @storyAmbience "https://example.com/audio/city-bed.mp3"
+  @storyAmbienceVolume 0.2
+  @storyAmbienceLoop true
   @allowUndo false
   @showTurn false
   @animations false
   @autoSave true
   @fullTimer 300 1
+  @fullTimerOutcome "If the hourglass empties, the castle falls."
   @statusBar health
   @statusBar stamina "Stamina"
   @statusBar gold false
@@ -238,9 +242,15 @@ Available settings:
 -   `@startAt` - The starting section ref (serial number or section title string, default: 0). Set this explicitly in real stories.
 -   `@referrable` - Whether older sections remain visible when moving to new sections (boolean, default: false)
 -   `@fullTimer` - Time limit for completing the story in seconds, followed by a target section ref (serial or title, e.g., `300 1` or `300 "Game Over"`)
+-   `@fullTimerOutcome` - Player-facing timeout consequence text shown in runtime timer UI. This is author-defined copy and does not reveal target section internals. (string, optional)
 -   `@maxIterations` - Maximum iterations allowed in while loops (number, default: 10000)
 -   `@maxCallDepth` - Maximum function call depth for recursion (number, default: 1000)
 -   `@theme` - Preferred runtime theme when host/CLI does not override it (string)
+-   `@storyAmbience` - Fallback whole-story ambience URL used only when neither section `@ambience` nor scene `@sceneAmbience` is active (string, optional)
+-   `@storyAmbienceVolume` - Story ambience volume from `0` to `1` (number, optional, default: `1`)
+-   `@storyAmbienceLoop` - Loop story ambience playback (boolean, optional, default: `true`)
+-   `@storyAmbienceFadeInMs` - Story ambience fade-in metadata in milliseconds (number, optional; currently not applied by built-in runtime mixer)
+-   `@storyAmbienceFadeOutMs` - Story ambience fade-out metadata in milliseconds (number, optional; currently not applied by built-in runtime mixer)
 -   `@presentationMode` - Preferred runtime renderer mode: `"literary"` or `"cinematic"` (string, default: `"literary"`)
 -   `@allowUndo` - Enable/disable undo interaction in runtime UI (boolean, default: true)
 -   `@showTurn` - Show/hide turn counter in status area (boolean, default: true)
@@ -257,9 +267,14 @@ Settings precedence:
 - Host/CLI overrides > story settings > runtime defaults.
 
 Save/resume notes:
-- When `@autoSave` is true, runtime state is persisted under `ifscript:save:<key>`.
-- Host apps can provide `run.options.saveKey` to override the key suffix.
-- Host apps can set `run.options.resumePrompt = false` to auto-resume without confirmation.
+- When `@autoSave` is true, Runtime v2 persists snapshots under `ifscript:v2:auto:<storyFingerprint>`.
+- Manual save slots are stored as `ifscript:v2:slot:<slot>:<storyFingerprint>`.
+- Hosts can pass `resumePrompt: false` to `runtime.start(...)` to auto-resume without confirmation.
+
+Timer UI note (Runtime v2):
+- Active `@fullTimer` and section `@timer` values render as a thin animated progress ribbon pinned to the top of the viewport.
+- The status area shows per-timer countdown text plus author-defined timeout consequence text.
+- If both timers are active, the ribbon shows one thin lane per timer.
 
 ### [Scenes](#scenes)
 
@@ -269,7 +284,7 @@ Scenes are collections of sections that can be used to organize your story into 
 scene__
   @name "Chapter One"
   @first 1
-  @music "https://example.com/music.mp3"
+  @sceneAmbience "https://example.com/music.mp3"
   @sections 1 2 3 4 5
 __scene
 ```
@@ -277,13 +292,17 @@ __scene
 Properties:
 -   `@name` - Display name for the scene (string)
 -   `@first` - The first section ref in this scene (serial or title, optional)
--   `@music` - URL to background music for this scene (string, optional)
--   `@musicVolume` - Music channel volume from `0` to `1` (number, optional, default: `1`)
--   `@musicLoop` - Loop scene music playback (boolean, optional, default: `true`)
--   `@musicFadeInMs` - Fade-in duration in milliseconds (number, optional)
--   `@musicFadeOutMs` - Fade-out duration in milliseconds (number, optional)
+-   `@sceneAmbience` - URL to background music for this scene (string, optional)
+-   `@sceneAmbienceVolume` - Music channel volume from `0` to `1` (number, optional, default: `1`)
+-   `@sceneAmbienceLoop` - Loop scene music playback (boolean, optional, default: `true`)
+-   `@sceneAmbienceFadeInMs` - Fade-in metadata in milliseconds (number, optional; currently not applied by built-in runtime mixer)
+-   `@sceneAmbienceFadeOutMs` - Fade-out metadata in milliseconds (number, optional; currently not applied by built-in runtime mixer)
 -   `@sceneTransition` - Cinematic transition hint: `"cut"`, `"fade"`, `"dissolve"`, `"slide"` (string, optional)
 -   `@sections` - Space-separated list of section refs in this scene (serials and/or titles)
+
+Deprecation:
+- `@music`, `@musicVolume`, `@musicLoop`, `@musicFadeInMs`, and `@musicFadeOutMs` are no longer supported.
+- Use `@sceneAmbience*` equivalents instead.
 
 Use scene names in choices when possible:
 ```
@@ -294,6 +313,30 @@ choice__
 __choice
 ```
 
+### [Audio Runtime Behavior](#audio-runtime-behavior)
+
+Runtime v2 uses four channels:
+- `ambience` from section `@ambience` (highest-priority background)
+- `sceneMusic` from scene `@sceneAmbience` (middle-priority background)
+- `storyAmbience` from settings `@storyAmbience` (lowest-priority background fallback)
+- `sfx` from `@sfx`, `@choiceSfx`, `@focusSfx` (one-shots)
+
+Important behavior:
+- Scene music changes only when the active scene changes. If two consecutive scenes point to the same `@sceneAmbience` URL, no restart occurs.
+- Ambience is re-evaluated on every section enter. If a section omits `@ambience`, ambience is stopped for that section.
+- Background playback is exclusive and priority-based: `section ambience` > `scene music` > `story ambience`.
+- If the current highest-priority background ends/clears, the runtime automatically falls back to the next available layer.
+- For non-looping backgrounds (`@ambienceLoop false`, `@sceneAmbienceLoop false`, `@storyAmbienceLoop false`), natural `ended` also triggers fallback.
+- `Mute` toggles channel/SFX output off. `Pause` pauses current playback state and `Play` resumes it.
+
+Autoplay/browser policy:
+- Browsers may block `play()` before first user interaction.
+- Seeing a debug sequence like `play blocked` followed later by `start` is normal: first attempt was blocked, then playback resumed after click/key/touch unlock.
+
+Authoring guidance:
+- Put each playable section in exactly one scene via `@sections` (or as a scene `@first`) for predictable scene music transitions.
+- Prefer `@sceneAmbience` for score and `@ambience` for environmental beds (rain, crowd, machinery, wind, etc.).
+
 ### [Sections](#section-syntax)
 
 Sections are independent locations/situations in a story. These can be reached through choices. Each section can have its own settings including timers that redirect to another section if the reader doesn't choose within the specified time.
@@ -302,6 +345,7 @@ Sections are independent locations/situations in a story. These can be reached t
 section__
   @title "The Throne Room"
   @timer 30 5
+  @timerOutcome "You hesitate, and the guards seize the room."
 
   mood = "tense"
 
@@ -323,11 +367,12 @@ __section
 Properties:
 -   `@title` - The title of this section (string, optional)
 -   `@timer` - Countdown timer in seconds, followed by a target section ref (serial or title, e.g., `30 5` or `30 "Timeout"`)
+-   `@timerOutcome` - Player-facing timeout consequence text shown for this section timer in runtime UI. This is author-defined copy and does not reveal target section internals. (string, optional)
 -   `@ambience` - URL to looping section ambience (string, optional)
 -   `@ambienceVolume` - Ambience volume from `0` to `1` (number, optional, default: `1`)
 -   `@ambienceLoop` - Loop ambience playback (boolean, optional, default: `true`)
--   `@ambienceFadeInMs` - Ambience fade-in duration in milliseconds (number, optional)
--   `@ambienceFadeOutMs` - Ambience fade-out duration in milliseconds (number, optional)
+-   `@ambienceFadeInMs` - Ambience fade-in metadata in milliseconds (number, optional; currently not applied by built-in runtime mixer)
+-   `@ambienceFadeOutMs` - Ambience fade-out metadata in milliseconds (number, optional; currently not applied by built-in runtime mixer)
 -   `@sfx` - Section SFX URL. Repeat this property to queue multiple sounds in order (string, repeatable)
 -   `@backdrop` - Backdrop image/media URL hint for cinematic renderers (string, optional)
 -   `@shot` - Cinematic framing hint: `"wide"`, `"medium"`, `"close"`, `"extreme_close"` (string, optional)

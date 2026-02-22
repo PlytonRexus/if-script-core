@@ -600,6 +600,20 @@ class Parser {
   parseProperty () {
     let tok = this.input.peek()
     const propertyType = this.utils.getKeywordName(tok.symbol)
+    const deprecatedSceneAudioProps = {
+      '@music': '@sceneAmbience',
+      '@musicVolume': '@sceneAmbienceVolume',
+      '@musicLoop': '@sceneAmbienceLoop',
+      '@musicFadeInMs': '@sceneAmbienceFadeInMs',
+      '@musicFadeOutMs': '@sceneAmbienceFadeOutMs'
+    }
+    if (!propertyType) {
+      const replacement = deprecatedSceneAudioProps[tok.symbol]
+      if (replacement) {
+        this.except(`Property ${tok.symbol} is deprecated and no longer supported. Use ${replacement} instead.`)
+      }
+      this.except(`Unknown property keyword: ${tok.symbol}`)
+    }
     let name =
       propertyType === this.utils.getKeywordName(KW.PROP_CHOICE_INPUT)
         ? 'input'
@@ -705,6 +719,11 @@ class Parser {
         if (result.size() === 0) assignIfValid(tok, TTS.NUMBER)
         else assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
+      propFullTimerOutcome: () => {
+        limitToOne()
+        name = 'fullTimerOutcome'
+        assignIfValid(tok, TTS.STRING)
+      },
       propReferrable: () => {
         limitToOne()
         name = 'referrable'
@@ -717,12 +736,12 @@ class Parser {
         name = 'first'
         assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
       },
-      propSceneMusic: () => {
+      propSceneAmbience: () => {
         limitToOne()
         name = 'music'
         assignIfValid(tok, TTS.STRING, (t) => {
           if (typeof t.symbol !== 'string' || t.symbol.trim() === '') {
-            throw new Error('Scene music path cannot be empty')
+            throw new Error('Scene ambience path cannot be empty')
           }
           return true
         })
@@ -741,6 +760,11 @@ class Parser {
         name = 'timer'
         if (result.size() === 0) assignIfValid(tok, TTS.NUMBER)
         else assignIfValid(tok, [TTS.NUMBER, TTS.STRING])
+      },
+      propSectionTimerOutcome: () => {
+        limitToOne()
+        name = 'timerOutcome'
+        assignIfValid(tok, TTS.STRING)
       },
       propSectionTitle: () => {
         limitToOne()
@@ -771,6 +795,38 @@ class Parser {
         limitToOne()
         name = 'theme'
         assignIfValid(tok, TTS.STRING)
+      },
+      propStoryAmbience: () => {
+        limitToOne()
+        name = 'storyAmbience'
+        assignIfValid(tok, TTS.STRING, (t) => {
+          if (typeof t.symbol !== 'string' || t.symbol.trim() === '') {
+            throw new Error('Story ambience path cannot be empty')
+          }
+          return true
+        })
+      },
+      propStoryAmbienceVolume: () => {
+        limitToOne()
+        name = 'storyAmbienceVolume'
+        assignUnitInterval(tok, 'storyAmbienceVolume')
+      },
+      propStoryAmbienceLoop: () => {
+        limitToOne()
+        name = 'storyAmbienceLoop'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propStoryAmbienceFadeInMs: () => {
+        limitToOne()
+        name = 'storyAmbienceFadeInMs'
+        assignIfValid(tok, TTS.NUMBER)
+      },
+      propStoryAmbienceFadeOutMs: () => {
+        limitToOne()
+        name = 'storyAmbienceFadeOutMs'
+        assignIfValid(tok, TTS.NUMBER)
       },
       propPresentationMode: () => {
         limitToOne()
@@ -805,24 +861,24 @@ class Parser {
           result.push(this.utils.isTrue(tok))
         } else this.unexpected()
       },
-      propSceneMusicVolume: () => {
+      propSceneAmbienceVolume: () => {
         limitToOne()
         name = 'musicVolume'
-        assignUnitInterval(tok, 'musicVolume')
+        assignUnitInterval(tok, 'sceneAmbienceVolume')
       },
-      propSceneMusicLoop: () => {
+      propSceneAmbienceLoop: () => {
         limitToOne()
         name = 'musicLoop'
         if (isTokenFor(tok, TTS.BOOLEAN)) {
           result.push(this.utils.isTrue(tok))
         } else this.unexpected()
       },
-      propSceneMusicFadeInMs: () => {
+      propSceneAmbienceFadeInMs: () => {
         limitToOne()
         name = 'musicFadeInMs'
         assignIfValid(tok, TTS.NUMBER)
       },
-      propSceneMusicFadeOutMs: () => {
+      propSceneAmbienceFadeOutMs: () => {
         limitToOne()
         name = 'musicFadeOutMs'
         assignIfValid(tok, TTS.NUMBER)

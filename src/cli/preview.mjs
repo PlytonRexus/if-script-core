@@ -7,6 +7,35 @@ import IFScript from '../../index.mjs'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const srcDir = path.resolve(__dirname, '..')
 const vendorDir = path.resolve(srcDir, '../node_modules')
+const projectRoot = process.cwd()
+
+function getMimeType (filePath) {
+  const ext = path.extname(filePath).toLowerCase()
+  if (ext === '.mp3') return 'audio/mpeg'
+  if (ext === '.wav') return 'audio/wav'
+  if (ext === '.ogg') return 'audio/ogg'
+  if (ext === '.m4a') return 'audio/mp4'
+  if (ext === '.flac') return 'audio/flac'
+  if (ext === '.json') return 'application/json'
+  if (ext === '.css') return 'text/css'
+  if (ext === '.js' || ext === '.mjs') return 'text/javascript'
+  if (ext === '.png') return 'image/png'
+  if (ext === '.jpg' || ext === '.jpeg') return 'image/jpeg'
+  if (ext === '.gif') return 'image/gif'
+  if (ext === '.svg') return 'image/svg+xml'
+  if (ext === '.if') return 'text/plain'
+  return 'application/octet-stream'
+}
+
+function resolveUnderRoot (requestPath, rootDir) {
+  const decoded = decodeURIComponent(requestPath || '/')
+  const relative = decoded.replace(/^\/+/, '')
+  if (!relative) return null
+  const resolved = path.resolve(rootDir, relative)
+  const rootResolved = path.resolve(rootDir)
+  if (!(resolved === rootResolved || resolved.startsWith(rootResolved + path.sep))) return null
+  return resolved
+}
 
 async function preview (argv) {
   const inputFile = path.resolve(process.cwd(), argv.i)
@@ -139,6 +168,23 @@ async function preview (argv) {
         }
       } catch { res.writeHead(404); res.end() }
       return
+    }
+
+    // Serve static project files (audio, images, compiled JSON, etc.)
+    // so story-relative paths like "tmp/foo.mp3" work in preview mode.
+    const staticPath = resolveUnderRoot(url.pathname, projectRoot)
+    if (staticPath) {
+      try {
+        const stat = await fs.promises.stat(staticPath)
+        if (stat.isFile()) {
+          const content = await fs.promises.readFile(staticPath)
+          res.writeHead(200, { 'Content-Type': getMimeType(staticPath) })
+          res.end(content)
+          return
+        }
+      } catch {
+        // Ignore and fall through to HTML response.
+      }
     }
 
     // Main page

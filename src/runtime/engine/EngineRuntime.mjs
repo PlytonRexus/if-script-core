@@ -596,37 +596,87 @@ class EngineRuntime {
     if (this.engineState.sectionTimerHandle) {
       clearTimeout(this.engineState.sectionTimerHandle)
       this.engineState.sectionTimerHandle = null
+      this.engineState.timers.section = null
       this.emit('timer_stopped', { timerType: 'section' })
     }
 
-    if (!timerConfig || typeof timerConfig.timer !== 'number' || timerConfig.timer <= 0 || timerConfig.target === null || timerConfig.target === undefined) return
+    if (!timerConfig || typeof timerConfig.timer !== 'number' || timerConfig.timer <= 0 || timerConfig.target === null || timerConfig.target === undefined) {
+      this.engineState.timers.section = null
+      return
+    }
+    const durationMs = timerConfig.timer * 1000
+    const startedAt = Date.now()
+    const sectionTimerOutcome = this.run.state.section && this.run.state.section.settings
+      ? this.run.state.section.settings.timerOutcome
+      : null
+    const outcomeText = typeof sectionTimerOutcome === 'string' && sectionTimerOutcome.trim() !== ''
+      ? sectionTimerOutcome.trim()
+      : null
+    this.engineState.timers.section = {
+      timerType: 'section',
+      seconds: timerConfig.timer,
+      durationMs,
+      startedAt,
+      deadlineAt: startedAt + durationMs,
+      outcomeText
+    }
     this.emit('timer_started', {
       timerType: 'section',
       seconds: timerConfig.timer,
-      target: timerConfig.target
+      target: timerConfig.target,
+      startedAt,
+      deadlineAt: startedAt + durationMs,
+      outcomeText
     })
     this.engineState.sectionTimerHandle = setTimeout(() => {
+      this.engineState.sectionTimerHandle = null
+      this.engineState.timers.section = null
       this.emit('timer_elapsed', { timerType: 'section', target: timerConfig.target })
       this.switchSection(timerConfig.target)
-    }, timerConfig.timer * 1000)
+    }, durationMs)
   }
 
   setFullTimer (seconds, target) {
     if (this.engineState.fullTimerHandle) {
       clearTimeout(this.engineState.fullTimerHandle)
       this.engineState.fullTimerHandle = null
+      this.engineState.timers.full = null
       this.emit('timer_stopped', { timerType: 'full' })
     }
-    if (typeof seconds !== 'number' || seconds <= 0 || target === undefined || target === null) return
+    if (typeof seconds !== 'number' || seconds <= 0 || target === undefined || target === null) {
+      this.engineState.timers.full = null
+      return
+    }
+    const durationMs = seconds * 1000
+    const startedAt = Date.now()
+    const fullTimerOutcome = this.run && this.run.story && this.run.story.settings
+      ? this.run.story.settings.fullTimerOutcome
+      : null
+    const outcomeText = typeof fullTimerOutcome === 'string' && fullTimerOutcome.trim() !== ''
+      ? fullTimerOutcome.trim()
+      : null
+    this.engineState.timers.full = {
+      timerType: 'full',
+      seconds,
+      durationMs,
+      startedAt,
+      deadlineAt: startedAt + durationMs,
+      outcomeText
+    }
     this.emit('timer_started', {
       timerType: 'full',
       seconds,
-      target
+      target,
+      startedAt,
+      deadlineAt: startedAt + durationMs,
+      outcomeText
     })
     this.engineState.fullTimerHandle = setTimeout(() => {
+      this.engineState.fullTimerHandle = null
+      this.engineState.timers.full = null
       this.emit('timer_elapsed', { timerType: 'full', target })
       this.switchSection(target)
-    }, seconds * 1000)
+    }, durationMs)
   }
 
   clearTimers () {
@@ -634,10 +684,12 @@ class EngineRuntime {
       clearTimeout(this.engineState.sectionTimerHandle)
       this.engineState.sectionTimerHandle = null
     }
+    this.engineState.timers.section = null
     if (this.engineState.fullTimerHandle) {
       clearTimeout(this.engineState.fullTimerHandle)
       this.engineState.fullTimerHandle = null
     }
+    this.engineState.timers.full = null
   }
 
   setupUndo () {
@@ -689,21 +741,46 @@ class EngineRuntime {
     })
   }
 
+  resolveSectionSerialRef (sectionRef) {
+    if (typeof sectionRef === 'number') return sectionRef
+    if (typeof sectionRef === 'string') {
+      const sections = this.run && this.run.story && Array.isArray(this.run.story.sections)
+        ? this.run.story.sections
+        : []
+      const match = sections.find(section => section && section.settings && section.settings.title === sectionRef)
+      return match ? match.serial : null
+    }
+    return null
+  }
+
+  sceneIncludesSection (scene, sectionSerial) {
+    if (!scene || typeof sectionSerial !== 'number') return false
+    const firstSerial = this.resolveSectionSerialRef(scene.first)
+    if (firstSerial === sectionSerial) return true
+    const refs = Array.isArray(scene.sections) ? scene.sections : []
+    return refs.some(ref => this.resolveSectionSerialRef(ref) === sectionSerial)
+  }
+
+  createSceneEventPayload (scene) {
+    if (!scene) return null
+    return {
+      serial: scene.serial,
+      name: scene.name,
+      music: scene.music || null,
+      musicVolume: typeof scene.musicVolume === 'number' ? scene.musicVolume : 1,
+      musicLoop: scene.musicLoop !== undefined ? scene.musicLoop : true,
+      musicFadeInMs: scene.musicFadeInMs || 0,
+      musicFadeOutMs: scene.musicFadeOutMs || 0,
+      sceneTransition: scene.sceneTransition || 'cut'
+    }
+  }
+
   syncSceneForSection (sectionSerial) {
-    const scene = (this.run.story.scenes || []).find(s => (s.sections || []).includes(sectionSerial) || s.first === sectionSerial)
+    const scene = (this.run.story.scenes || []).find(s => this.sceneIncludesSection(s, sectionSerial))
     if (!scene) return
     this.run.state.scene = scene
     this.emit('scene_changed', {
-      scene: {
-        serial: scene.serial,
-        name: scene.name,
-        music: scene.music || null,
-        musicVolume: typeof scene.musicVolume === 'number' ? scene.musicVolume : 1,
-        musicLoop: scene.musicLoop !== undefined ? scene.musicLoop : true,
-        musicFadeInMs: scene.musicFadeInMs || 0,
-        musicFadeOutMs: scene.musicFadeOutMs || 0,
-        sceneTransition: scene.sceneTransition || 'cut'
-      }
+      scene: this.createSceneEventPayload(scene)
     })
   }
 
@@ -736,7 +813,7 @@ class EngineRuntime {
       const scene = this.run.story.findScene(target)
       target = scene.first
       this.run.state.scene = scene
-      this.emit('scene_changed', { scene })
+      this.emit('scene_changed', { scene: this.createSceneEventPayload(scene) })
     }
 
     if (selected.mode === 'input') {
@@ -821,12 +898,28 @@ class EngineRuntime {
     return stats
   }
 
+  getActiveTimersView () {
+    const now = Date.now()
+    const timers = [this.engineState.timers.section, this.engineState.timers.full]
+      .filter(timer => timer && typeof timer.deadlineAt === 'number' && timer.deadlineAt > now)
+      .map(timer => ({
+        timerType: timer.timerType,
+        seconds: timer.seconds,
+        durationMs: timer.durationMs,
+        startedAt: timer.startedAt,
+        deadlineAt: timer.deadlineAt,
+        outcomeText: timer.outcomeText || null
+      }))
+    return timers.sort((a, b) => a.deadlineAt - b.deadlineAt)
+  }
+
   getViewModel () {
     return {
       runtimeOptions: { ...this.engineState.runtimeOptions },
       themeId: this.run ? this.run.theme : this.engineState.runtimeOptions.theme,
       section: this.engineState.currentSectionView,
       stats: this.getStatsView(),
+      timers: this.getActiveTimersView(),
       turn: this.run && this.run.state ? this.run.state.turn : 0
     }
   }

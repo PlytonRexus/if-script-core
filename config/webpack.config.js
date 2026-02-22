@@ -26,6 +26,11 @@ module.exports = {
       patterns: [
         {
           from: 'test/**/*', to: path.resolve(paths.build, '')
+        },
+        {
+          from: 'tmp/**/*.mp3',
+          to: path.resolve(paths.build, ''),
+          noErrorOnMissing: true
         }
       ]
     }),

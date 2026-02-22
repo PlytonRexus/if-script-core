@@ -8,7 +8,7 @@ scene__
   @first 1
   @sections 1 2 3
   @name "Wakarimashita"
-  @music "https://google.com"
+  @sceneAmbience "https://google.com"
 __scene
 
 section__

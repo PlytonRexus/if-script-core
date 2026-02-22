@@ -183,6 +183,28 @@ __section`
   })
 }
 
+async function testCheckDeprecatedSceneMusicPropertyFailsParse () {
+  const content = `scene__
+  @name "Old"
+  @music "theme.mp3"
+__scene
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'deprecated @music should fail check via parse error')
+    assert(hasCode(payload, 'PARSE_OR_IMPORT_ERROR'), 'should emit PARSE_OR_IMPORT_ERROR for deprecated property')
+    assert(
+      payload.diagnostics.some(d => String(d.message || '').includes('Property @music is deprecated')),
+      'diagnostic message should explain @music deprecation'
+    )
+  })
+}
+
 export async function runCheckTests () {
   return runTestSuite('CLI Check Command Tests', [
     { name: 'check exits 0 with no diagnostics', fn: testCheckNoDiagnosticsExitZero },
@@ -192,7 +214,8 @@ export async function runCheckTests () {
     { name: 'check fullTimer target unresolved', fn: testCheckFullTimerTargetUnresolved },
     { name: 'check section timer target unresolved', fn: testCheckSectionTimerTargetUnresolved },
     { name: 'check scene first unresolved', fn: testCheckSceneFirstUnresolved },
-    { name: 'check duplicate function name warning', fn: testCheckDuplicateFunctionNameWarningOnly }
+    { name: 'check duplicate function name warning', fn: testCheckDuplicateFunctionNameWarningOnly },
+    { name: 'check deprecated @music parse failure', fn: testCheckDeprecatedSceneMusicPropertyFailsParse }
   ])
 }
 

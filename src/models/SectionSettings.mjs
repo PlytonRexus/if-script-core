@@ -13,7 +13,7 @@ class SectionSettings extends Settings {
   }
 
   /**
-   * @param { { timer:number, title:string|Array } } input
+   * @param { { timer:number, timerOutcome:string, title:string|Array } } input
    */
   constructor (input, json) {
     if (!!json) {
@@ -33,6 +33,9 @@ class SectionSettings extends Settings {
     } else {
       this.timer = { timer: 0, target: null }
     }
+    this.timerOutcome = typeof input.timerOutcome === 'string' && input.timerOutcome.trim() !== ''
+      ? input.timerOutcome
+      : null
     this.title = input.title || ''
     this.ambience = input.ambience || null
     this.ambienceVolume = typeof input.ambienceVolume === 'number' ? input.ambienceVolume : 1

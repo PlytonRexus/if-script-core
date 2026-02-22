@@ -56,11 +56,11 @@ function__ peakSignal(readings) {
 scene__
   @name "Act I: Harbor Night"
   @first "Midnight at the Docks"
-  @music "https://example.com/audio/veracruz-harbor-night.mp3"
-  @musicVolume 0.35
-  @musicLoop true
-  @musicFadeInMs 1200
-  @musicFadeOutMs 800
+  @sceneAmbience "/tmp/hedwig.mp3"
+  @sceneAmbienceVolume 0.35
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 1200
+  @sceneAmbienceFadeOutMs 800
   @sceneTransition "fade"
   @sections "Midnight at the Docks" "Inside the Envelope" "Morales Mezzanine"
 __scene
@@ -68,11 +68,11 @@ __scene
 scene__
   @name "Act II: City of Echoes"
   @first "City Grid Before Dawn"
-  @music "https://example.com/audio/veracruz-streets-before-dawn.mp3"
-  @musicVolume 0.3
-  @musicLoop true
-  @musicFadeInMs 900
-  @musicFadeOutMs 700
+  @sceneAmbience "/tmp/hedwig.mp3"
+  @sceneAmbienceVolume 0.3
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 900
+  @sceneAmbienceFadeOutMs 700
   @sceneTransition "dissolve"
   @sections "City Grid Before Dawn" "Telegraph Office" "La Perla" "Cathedral Sacristy" "Tuesday Window"
 __scene
@@ -80,11 +80,11 @@ __scene
 scene__
   @name "Act III: Tuesday Morning"
   @first "Vargas's Office"
-  @music "https://example.com/audio/tuesday-morning-tension.mp3"
-  @musicVolume 0.4
-  @musicLoop true
-  @musicFadeInMs 700
-  @musicFadeOutMs 500
+  @sceneAmbience "https://example.com/audio/tuesday-morning-tension.mp3"
+  @sceneAmbienceVolume 0.4
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 700
+  @sceneAmbienceFadeOutMs 500
   @sceneTransition "cut"
   @sections "Vargas's Office" "Red-Line Dispatch" "Quiet Arrangement" "Compromised Exit" "Deadline Missed"
 __scene
@@ -92,11 +92,11 @@ __scene
 scene__
   @name "Epilogue: Gulf Morning"
   @first "Morning Ferry"
-  @music "https://example.com/audio/gulf-morning-light.mp3"
-  @musicVolume 0.28
-  @musicLoop true
-  @musicFadeInMs 1000
-  @musicFadeOutMs 1200
+  @sceneAmbience "https://example.com/audio/gulf-morning-light.mp3"
+  @sceneAmbienceVolume 0.28
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 1000
+  @sceneAmbienceFadeOutMs 1200
   @sceneTransition "fade"
   @sections "Morning Ferry" "New Assignment Wire"
 __scene
@@ -317,6 +317,7 @@ __section
 section__
   @title "Telegraph Office"
   @timer 60 "Compromised Exit"
+  @timerOutcome "Time is running out..."
   @backdrop "https://example.com/img/telegraph-counter.jpg"
   @shot "close"
   registryParts = split("dock-7,warehouse-3,registry-12", ",")

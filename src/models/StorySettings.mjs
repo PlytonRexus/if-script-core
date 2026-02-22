@@ -13,7 +13,18 @@ class StorySettings extends Settings {
   }
 
   /**
-   * @param {{ referrable:boolean, startAt:number, fullTimer:{timer:number, target:number}, name:string }} input
+   * @param {{
+   *   referrable:boolean,
+   *   startAt:number|string,
+   *   fullTimer:{timer:number, target:number|string},
+   *   fullTimerOutcome:string,
+   *   name:string,
+   *   storyAmbience:string,
+   *   storyAmbienceVolume:number,
+   *   storyAmbienceLoop:boolean,
+   *   storyAmbienceFadeInMs:number,
+   *   storyAmbienceFadeOutMs:number
+   * }} input
    */
   constructor (input, json) {
     if (!!json) {
@@ -26,9 +37,15 @@ class StorySettings extends Settings {
     const {
       referrable,
       name,
+      fullTimerOutcome,
       maxIterations,
       maxCallDepth,
       theme,
+      storyAmbience,
+      storyAmbienceVolume,
+      storyAmbienceLoop,
+      storyAmbienceFadeInMs,
+      storyAmbienceFadeOutMs,
       allowUndo,
       showTurn,
       animations,
@@ -37,11 +54,19 @@ class StorySettings extends Settings {
     } = this.input
     this.startAt = this.input.startAt !== undefined ? this.input.startAt : 0
     this.fullTimer = this.input.fullTimer || null
+    this.fullTimerOutcome = typeof fullTimerOutcome === 'string' && fullTimerOutcome.trim() !== ''
+      ? fullTimerOutcome
+      : null
     this.referrable = referrable !== undefined ? referrable : false
     this.name = name
     this.maxIterations = maxIterations !== undefined ? maxIterations : 10000
     this.maxCallDepth = maxCallDepth !== undefined ? maxCallDepth : 1000
     this.theme = theme || null
+    this.storyAmbience = storyAmbience || null
+    this.storyAmbienceVolume = typeof storyAmbienceVolume === 'number' ? storyAmbienceVolume : 1
+    this.storyAmbienceLoop = storyAmbienceLoop !== undefined ? storyAmbienceLoop : true
+    this.storyAmbienceFadeInMs = typeof storyAmbienceFadeInMs === 'number' ? storyAmbienceFadeInMs : 0
+    this.storyAmbienceFadeOutMs = typeof storyAmbienceFadeOutMs === 'number' ? storyAmbienceFadeOutMs : 0
     this.allowUndo = allowUndo !== undefined ? allowUndo : true
     this.showTurn = showTurn !== undefined ? showTurn : true
     this.animations = animations !== undefined ? animations : true

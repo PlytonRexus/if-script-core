@@ -10,7 +10,6 @@ class IFScript {
     const InputStream = await import('./parsers/custom/stream/InputStream.mjs')
     const TokenStream = await import('./parsers/custom/stream/TokenStream.mjs')
     const Parser = await import('./parsers/custom/parser/Parser.mjs')
-    const Interpreter = await import('./interpreters/custom/Interpreter.mjs')
     const ModuleLoader = await import('./parsers/custom/loader/ModuleLoader.mjs')
     const PathResolver = await import('./parsers/custom/loader/PathResolver.mjs')
 
@@ -52,8 +51,6 @@ class IFScript {
       return await new Parser.default(ts, moduleLoader).parseStory()
     }
 
-    this.interpreter = new Interpreter.default()
-    this.Interpreter = Interpreter.default
     this.Parser = Parser
   }
 

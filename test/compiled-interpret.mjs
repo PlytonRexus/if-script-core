@@ -1,40 +1,45 @@
 import Story from '../src/models/Story.mjs'
-import Interpreter from '../src/interpreters/custom/Interpreter.mjs'
+import IFScript from '../src/IFScript.mjs'
 
-localStorage.setItem('IF_DEBUG', 'true')
+let runtime
 
-const interpreter = new Interpreter(null)
+;(async function () {
+  const ifScript = new IFScript('STREAM')
+  await ifScript.init()
+  runtime = await ifScript.createRuntime({ debug: true })
 
-const theme = {
-  name: 'bricks'
-}
+  let theme = 'literary-default'
 
-function useTheme (storyName) {
-  theme.name = storyName
-
-  if (!theme.name) {
-    theme.name = 'bricks'
-  }
-}
-
-if (typeof window !== 'undefined' && !!window && !!window.location) {
-  const url = new URL(window.location.href)
-  const themeName = url.searchParams.get('theme')
-  if (themeName) useTheme(themeName)
-}
-
-fetch('/test/compiled/introduction.json')
-  .then(res => res.json())
-  .then(str => {
-    try {
-      const story = new Story({}, {}, {}, {}, str)
-      console.log(story)
-      interpreter.loadStory(story, null, theme.name)
-    } catch (err) {
-      console.error(err)
-      const exceptionArea = document.querySelector('#if_r-exception-area')
-      exceptionArea.innerHTML += '<br><code>' + err.toString() + '</code>'
+  function useTheme (storyName) {
+    if (storyName === 'cinematic' || storyName === 'literary-default') {
+      theme = storyName
     }
-  })
+  }
 
-export default interpreter
+  if (typeof window !== 'undefined' && !!window && !!window.location) {
+    const url = new URL(window.location.href)
+    const themeName = url.searchParams.get('theme')
+    if (themeName) useTheme(themeName)
+  }
+
+  fetch('/test/compiled/introduction.json')
+    .then(res => res.json())
+    .then(str => {
+      try {
+        runtime.mount('#if_r-output-area')
+        const story = Story.fromJson(str)
+        console.log(story)
+        runtime.start(story, {
+          theme,
+          presentationMode: theme === 'cinematic' ? 'cinematic' : 'literary',
+          resume: false
+        })
+      } catch (err) {
+        console.error(err)
+        const exceptionArea = document.querySelector('#if_r-exception-area')
+        exceptionArea.innerHTML += '<br><code>' + err.toString() + '</code>'
+      }
+    })
+})()
+
+export default runtime

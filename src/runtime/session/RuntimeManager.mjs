@@ -30,7 +30,7 @@ class RuntimeManager {
     this.options = options
     this.engine = new EngineRuntime(null, { debug: options.debug === true })
     this.storage = new StorageAdapter(options.storage || null)
-    this.audio = new AudioAdapter()
+    this.audio = new AudioAdapter({ debug: options.debug === true })
     this.themeRegistry = new ThemeRegistry()
     this.target = null
     this.renderer = null
@@ -40,8 +40,11 @@ class RuntimeManager {
     this.saveOpen = false
     this.activeTheme = 'literary-default'
     this.lastRendered = null
+    this.isBootstrapping = false
+    this.audioUnlockHandler = null
 
     this.debugEnabled = this.resolveDebugEnabled(options)
+    this.audio.setDebug(this.debugEnabled)
     this.eventTimeline = new EventTimeline()
     this.stateInspector = new StateInspector()
     this.debugPanel = this.debugEnabled ? new DebugPanel() : null
@@ -98,8 +101,39 @@ class RuntimeManager {
     this.target = this.resolveTarget(target)
     if (!this.target) throw new Error('Runtime mount target not found')
     this.ensureRenderer(this.options.presentationMode || 'literary')
+    this.installAudioUnlock()
     if (this.debugPanel) this.debugPanel.mount()
     return this
+  }
+
+  installAudioUnlock () {
+    if (typeof document === 'undefined') return
+    if (this.audioUnlockHandler) return
+
+    const handler = () => {
+      this.audio.resume()
+      this.removeAudioUnlock()
+      // Defer UI sync so first interaction (e.g. clicking a choice) can complete.
+      if (typeof setTimeout === 'function') {
+        setTimeout(() => this.syncAudioUi(), 0)
+      } else {
+        this.syncAudioUi()
+      }
+    }
+
+    this.audioUnlockHandler = handler
+    document.addEventListener('pointerdown', handler, { once: true })
+    document.addEventListener('keydown', handler, { once: true })
+    document.addEventListener('touchstart', handler, { once: true })
+  }
+
+  removeAudioUnlock () {
+    if (typeof document === 'undefined') return
+    if (!this.audioUnlockHandler) return
+    document.removeEventListener('pointerdown', this.audioUnlockHandler)
+    document.removeEventListener('keydown', this.audioUnlockHandler)
+    document.removeEventListener('touchstart', this.audioUnlockHandler)
+    this.audioUnlockHandler = null
   }
 
   ensureRenderer (mode = 'literary') {
@@ -114,6 +148,7 @@ class RuntimeManager {
       this.renderer.setThemes(this.themeRegistry.getAvailableThemes())
       this.renderer.toggleMenu(this.menuOpen)
       this.renderer.toggleSavePanel(this.saveOpen)
+      this.syncAudioUi()
     }
   }
 
@@ -124,6 +159,8 @@ class RuntimeManager {
       onUndo: () => this.undo(),
       onRestart: () => this.restart(),
       onThemeChange: (themeId) => this.setTheme(themeId),
+      onToggleAudioEnabled: () => this.toggleAudioEnabled(),
+      onToggleAudioPaused: () => this.toggleAudioPaused(),
       onToggleMenu: () => this.toggleMenu(),
       onToggleSavePanel: () => this.toggleSavePanel(),
       onSaveSlot: (slot) => this.save(slot),
@@ -135,23 +172,38 @@ class RuntimeManager {
     this.story = story
     const presentationMode = options.presentationMode || (story && story.settings ? story.settings.presentationMode : 'literary') || 'literary'
     this.ensureRenderer(presentationMode)
+    this.audio.stopAll({ resetPaused: false, clearState: true })
+    if (story && story.settings) this.audio.applyStory(story.settings)
 
-    let view = this.engine.start(story, options)
+    this.isBootstrapping = true
+    try {
+      let view = this.engine.start(story, options)
 
-    if (this.engine.engineState.runtimeOptions.autoSave === true && options.resume !== false) {
-      const auto = this.storage.readAutoSave(this.engine.engineState.storyFingerprint)
-      const shouldResume = !!auto && this.shouldResumeAutoSave(auto, options)
-      if (shouldResume) {
-        const restored = this.engine.loadSnapshot(auto)
-        if (restored) view = restored
+      if (this.engine.engineState.runtimeOptions.autoSave === true && options.resume !== false) {
+        const auto = this.storage.readAutoSave(this.engine.engineState.storyFingerprint)
+        const shouldResume = !!auto && this.shouldResumeAutoSave(auto, options)
+        if (shouldResume) {
+          const restored = this.engine.loadSnapshot(auto)
+          if (restored) {
+            this.applyAudioState(auto.audioState)
+            view = restored
+          }
+        }
       }
-    }
 
-    const requestedTheme = options.theme || this.engine.engineState.runtimeOptions.theme || 'literary-default'
-    this.setTheme(requestedTheme)
-    this.render(view)
-    this.refreshSaveState()
-    return view
+      const requestedTheme = options.theme || this.engine.engineState.runtimeOptions.theme || 'literary-default'
+      this.setTheme(requestedTheme)
+      this.render(view)
+      this.refreshSaveState()
+
+      if (this.engine.engineState.runtimeOptions.autoSave === true) {
+        this.persistAutoSave()
+      }
+
+      return view
+    } finally {
+      this.isBootstrapping = false
+    }
   }
 
   shouldResumeAutoSave (payload, options = {}) {
@@ -172,6 +224,12 @@ class RuntimeManager {
     this.renderer.toggleMenu(this.menuOpen)
     this.renderer.toggleSavePanel(this.saveOpen)
     this.renderer.setSaveState(this.getSavePanelState())
+    this.syncAudioUi()
+  }
+
+  syncAudioUi () {
+    if (!this.renderer || typeof this.renderer.setAudioState !== 'function') return
+    this.renderer.setAudioState(this.audio.getUiState())
   }
 
   getSavePanelState () {
@@ -199,6 +257,19 @@ class RuntimeManager {
     if (!payload) return
     const ok = this.storage.writeAutoSave(fingerprint, payload)
     if (ok) this.emit('save_written', { slot: 'auto', payload })
+  }
+
+  applyAudioState (audioState) {
+    if (!audioState || typeof audioState !== 'object') return
+    this.audio.setState(audioState)
+    if (audioState.enabled === false) {
+      this.audio.setEnabled(false)
+    } else if (audioState.paused === true) {
+      this.audio.pausePlayback()
+    } else {
+      this.audio.resumePlayback()
+    }
+    this.syncAudioUi()
   }
 
   selectChoice ({ choiceIndex, inputValue = '' }) {
@@ -253,6 +324,7 @@ class RuntimeManager {
     if (!payload) return null
     const view = this.engine.loadSnapshot(payload)
     if (!view) return null
+    this.applyAudioState(payload.audioState)
     this.emit('save_loaded', { slot, payload })
     this.render(view)
     this.persistAutoSave()
@@ -267,6 +339,7 @@ class RuntimeManager {
     this.activeTheme = applied.id
     this.engine.setPreference({ key: 'theme', value: applied.id })
     if (this.renderer) this.renderer.setTheme(applied.id)
+    this.persistAutoSave()
     this.refreshSaveState()
     return applied
   }
@@ -280,7 +353,27 @@ class RuntimeManager {
       this.setTheme(value)
     } else if (key === 'audioEnabled') {
       this.audio.setEnabled(value)
+      this.syncAudioUi()
     }
+    this.persistAutoSave()
+    this.refreshSaveState()
+  }
+
+  toggleAudioEnabled () {
+    const current = this.audio.getUiState()
+    const next = !current.enabled
+    this.setPreference({ key: 'audioEnabled', value: next })
+    return next
+  }
+
+  toggleAudioPaused () {
+    const current = this.audio.getUiState()
+    if (current.paused) this.audio.resumePlayback()
+    else this.audio.pausePlayback()
+    this.syncAudioUi()
+    this.persistAutoSave()
+    this.refreshSaveState()
+    return !current.paused
   }
 
   toggleMenu () {
@@ -305,6 +398,7 @@ class RuntimeManager {
 
     if (eventName === 'scene_changed' && payload && payload.scene) {
       this.audio.applyScene(payload.scene)
+      this.syncAudioUi()
     }
     if (eventName === 'section_entered') {
       const current = this.engine && this.engine.run && this.engine.run.state ? this.engine.run.state.section : null
@@ -313,7 +407,8 @@ class RuntimeManager {
         const sectionSfx = Array.isArray(current.settings.sfx) ? current.settings.sfx : []
         sectionSfx.forEach(url => this.audio.playSfx(url))
       }
-      this.persistAutoSave()
+      this.syncAudioUi()
+      if (!this.isBootstrapping) this.persistAutoSave()
       this.render(this.engine.getViewModel())
       this.refreshSaveState()
     }
@@ -335,7 +430,8 @@ class RuntimeManager {
   }
 
   destroy () {
-    this.audio.stopAll()
+    this.removeAudioUnlock()
+    this.audio.stopAll({ clearState: true })
     this.engine.destroy()
     if (this.renderer) this.renderer.destroy()
     this.renderer = null
