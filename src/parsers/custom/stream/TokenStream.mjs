@@ -10,7 +10,6 @@ class TokenStream extends Stream {
    */
   constructor (input) {
     super(input)
-    this.removeComments()
     this.current = null
     this.validator = new Validator()
     this.id = 0
@@ -66,9 +65,53 @@ class TokenStream extends Stream {
     return this.lastToken
   }
 
-  removeComments () {
-    const commentRegex = /\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*$/gm
-    this.input.input = this.input.input.replace(commentRegex, '').replace(/>>/g, '').replace(/<</g, '')
+  matchesAhead (pattern) {
+    for (let i = 0; i < pattern.length; i++) {
+      if (this.input.input.charAt(this.input.pos + i) !== pattern[i]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  skipLineComment () {
+    this.input.next() // /
+    this.input.next() // /
+    while (!this.input.eof() && this.input.peek() !== '\n') {
+      this.input.next()
+    }
+  }
+
+  skipBlockComment () {
+    this.input.next() // /
+    this.input.next() // *
+    while (!this.input.eof()) {
+      if (this.matchesAhead('*/')) {
+        this.input.next()
+        this.input.next()
+        break
+      }
+      this.input.next()
+    }
+  }
+
+  skipIgnored () {
+    while (!this.eof()) {
+      this.readWhile(this.validator.isWhiteSpace)
+      if (this.input.eof()) return
+
+      if (this.matchesAhead('//')) {
+        this.skipLineComment()
+        continue
+      }
+
+      if (this.matchesAhead('/*')) {
+        this.skipBlockComment()
+        continue
+      }
+
+      break
+    }
   }
 
   readString () {
@@ -168,7 +211,7 @@ class TokenStream extends Stream {
   }
 
   readNext () {
-    this.readWhile(this.validator.isWhiteSpace)
+    this.skipIgnored()
     if (this.input.eof()) return null
     const ch = this.input.peek()
     if (ch === '"') return this.readString()

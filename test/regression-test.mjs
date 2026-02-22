@@ -459,6 +459,51 @@ __section`
   assertDefined(assignment, 'Should find assignment (comments ignored)')
 }
 
+async function testCommentsPreserveSlashesInString () {
+  const storyText = `section__
+  "https://example.com/path // not a comment"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+  const section = parsed.sections[0]
+  const text = section.text.find(item => item.type === 'STRING')
+
+  assertDefined(text, 'Should find story text')
+  assertEqual(text.symbol, 'https://example.com/path // not a comment', 'Should preserve // inside string')
+}
+
+async function testCommentsPreserveArrowsInString () {
+  const storyText = `section__
+  "Keep >> and << as-is"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+  const section = parsed.sections[0]
+  const text = section.text.find(item => item.type === 'STRING')
+
+  assertDefined(text, 'Should find story text')
+  assertEqual(text.symbol, 'Keep >> and << as-is', 'Should preserve >> and << inside string')
+}
+
+async function testLineCommentsStillIgnored () {
+  const storyText = `section__
+  x = 10 // this should be ignored
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+  const section = parsed.sections[0]
+  const assignment = section.text.find(item => item.type === 'assign')
+
+  assertDefined(assignment, 'Should parse assignment before // comment')
+  assertEqual(assignment.left.symbol, 'x', 'Assignment target should remain correct')
+}
+
 async function testBooleanOperators () {
   const storyText = `section__
   a = true
@@ -645,6 +690,9 @@ export async function runRegressionTests () {
     { name: 'Basic: Status bar custom labels top-level property', fn: testStatusBarCustomLabelsTopLevelProperty },
     { name: 'Basic: Scenes', fn: testScenes },
     { name: 'Basic: Comments', fn: testComments },
+    { name: 'Basic: Preserve // in strings', fn: testCommentsPreserveSlashesInString },
+    { name: 'Basic: Preserve >> and << in strings', fn: testCommentsPreserveArrowsInString },
+    { name: 'Basic: // comments still ignored', fn: testLineCommentsStillIgnored },
     { name: 'Operators: Boolean (&&, ||, !)', fn: testBooleanOperators },
     { name: 'Operators: Arithmetic (+, -, *, /, %)', fn: testArithmeticOperators },
     { name: 'Operators: Comparison (>, <, ==, !=)', fn: testComparisonOperators },
