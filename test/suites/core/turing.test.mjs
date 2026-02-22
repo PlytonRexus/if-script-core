@@ -4,15 +4,16 @@
  * Tests for arrays, loops, and functions
  */
 
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { pathToFileURL } from 'url'
 import {
   assert,
   assertEqual,
   assertArrayEqual,
   assertDefined,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 // ===== Array Tests =====
 
@@ -636,8 +637,10 @@ export async function runTuringTests () {
 }
 
 // Run if executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   runTuringTests().then(passed => {
     process.exit(passed ? 0 : 1)
   })
 }
+
+

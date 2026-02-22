@@ -5,15 +5,16 @@
  * Builtins are tested directly since the interpreter requires a DOM environment.
  */
 
-import BUILTINS, { resetBuiltinState } from '../src/interpreters/custom/Builtins.mjs'
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import BUILTINS, { resetBuiltinState } from '../../../src/interpreters/custom/Builtins.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { pathToFileURL } from 'url'
 import {
   assert,
   assertEqual,
   assertArrayEqual,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 // ===== Math Tests =====
 
@@ -463,10 +464,12 @@ export async function runBuiltinsTests () {
   ])
 }
 
-// Run directly
-runBuiltinsTests()
-  .then(passed => process.exit(passed ? 0 : 1))
-  .catch(err => {
-    console.error(err)
-    process.exit(1)
-  })
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runBuiltinsTests()
+    .then(passed => process.exit(passed ? 0 : 1))
+    .catch(err => {
+      console.error(err)
+      process.exit(1)
+    })
+}
+

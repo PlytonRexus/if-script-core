@@ -4,14 +4,15 @@
  * Tests boundary conditions and unusual inputs for arrays, loops, and functions
  */
 
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { pathToFileURL } from 'url'
 import {
   assert,
   assertEqual,
   assertDefined,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 // ===== Array Edge Cases =====
 
@@ -559,8 +560,10 @@ export async function runEdgeCaseTests () {
 }
 
 // Run if executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   runEdgeCaseTests().then(passed => {
     process.exit(passed ? 0 : 1)
   })
 }
+
+

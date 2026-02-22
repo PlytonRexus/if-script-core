@@ -1,11 +1,11 @@
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
 import { pathToFileURL } from 'url'
 import {
   assert,
   assertEqual,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 function createMemoryStorage () {
   const store = {}
@@ -159,3 +159,4 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       process.exit(1)
     })
 }
+

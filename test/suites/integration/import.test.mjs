@@ -4,8 +4,9 @@
  * Tests for the new multi-file import system with ModuleLoader
  */
 
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { pathToFileURL } from 'url'
 
 console.log('=== IF-Script Import System Tests ===\n')
 
@@ -22,7 +23,7 @@ settings__
   @startAt 1
 __settings
 
-import__"./test-imports/common.partial.if"__import
+import__"./fixtures/imports/common.partial.if"__import
 
 section__
   @title "Main Section"
@@ -67,8 +68,8 @@ settings__
   @startAt 1
 __settings
 
-import__"./test-imports/common.partial.if"__import
-import__"./test-imports/common.partial.if"__import
+import__"./fixtures/imports/common.partial.if"__import
+import__"./fixtures/imports/common.partial.if"__import
 
 section__
   @title "Main Section"
@@ -140,7 +141,7 @@ async function testPathResolution () {
     const ifScript = new IFScript(versions.STREAM, {
       paths: {
         aliases: {
-          '@imports': 'test/test-imports'
+          '@imports': 'test/fixtures/imports'
         }
       }
     })
@@ -185,7 +186,7 @@ settings__
   @startAt 1
 __settings
 
-import__"./test-imports/chapter1.partial.if"__import
+import__"./fixtures/imports/chapter1.partial.if"__import
 
 section__
   @title "Main Section"
@@ -233,8 +234,10 @@ async function runTests () {
   }
 }
 
-// Run tests
-runTests().catch(error => {
-  console.error('Test runner failed:', error)
-  process.exit(1)
-})
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runTests().catch(error => {
+    console.error('Test runner failed:', error)
+    process.exit(1)
+  })
+}
+

@@ -89,7 +89,7 @@
   </div>
 
   <script type="module">
-    import IFScript from '../src/IFScript.mjs'
+    import IFScript from '../../../src/IFScript.mjs'
 
     // Make test functions global
     window.testPreloadedFiles = async function() {
@@ -153,7 +153,7 @@ import__"/lib/section2.partial.if"__import
         // Create IFScript with dynamic fetch enabled
         const ifScript = new IFScript({
           browser: {
-            baseUrl: window.location.origin + '/test/examples-if/',
+            baseUrl: window.location.origin + '/test/fixtures/stories/',
             allowFetch: true
           }
         })
@@ -247,3 +247,4 @@ import__"@components/menu.partial.if"__import
   </script>
 </body>
 </html>
+

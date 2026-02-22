@@ -1,7 +1,7 @@
-import IFScript from '../src/IFScript.mjs'
-import Story from '../src/models/Story.mjs'
-import versions from '../src/constants/versions.mjs'
-import { buildInputChoiceMarkup } from '../src/runtime/components/if-choice-list.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import Story from '../../../src/models/Story.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { buildInputChoiceMarkup } from '../../../src/runtime/components/if-choice-list.mjs'
 import { pathToFileURL } from 'url'
 import fs from 'fs/promises'
 import {
@@ -9,7 +9,7 @@ import {
   assertEqual,
   assertThrows,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 async function testCreateRuntimeFactory () {
   const ifScript = new IFScript(versions.STREAM)
@@ -277,7 +277,7 @@ async function testRuntimeInterpolatesFunctionTemplatesInStoryText () {
   await ifScript.init()
 
   const storyText = await fs.readFile(
-    new URL('./examples-if/a-stranger-in-veracruz.if', import.meta.url),
+    new URL('../../fixtures/stories/a-stranger-in-veracruz.if', import.meta.url),
     'utf8'
   )
   const story = await ifScript.parse(storyText, 'a-stranger-in-veracruz.if')
@@ -496,3 +496,4 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       process.exit(1)
     })
 }
+

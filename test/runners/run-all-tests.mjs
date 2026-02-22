@@ -4,16 +4,17 @@
  * Runs all Turing Completeness test suites
  */
 
-import { runTuringTests } from './turing-test.mjs'
-import { runSafetyTests } from './safety-limits-test.mjs'
-import { runRegressionTests } from './regression-test.mjs'
-import { runEdgeCaseTests } from './edge-cases-test.mjs'
-import { runPerformanceTests } from './performance-test.mjs'
-import { runErrorMessageTests } from './error-messages-test.mjs'
-import { runCheckTests } from './check-test.mjs'
-import { runSaveResumeTests } from './save-resume-test.mjs'
-import { runRuntimeV2Tests } from './runtime-v2-test.mjs'
-import { runAudioAdapterTests } from './audio-adapter-test.mjs'
+import { runTuringTests } from '../suites/core/turing.test.mjs'
+import { runSafetyTests } from '../suites/core/safety-limits.test.mjs'
+import { runRegressionTests } from '../suites/core/regression.test.mjs'
+import { runBuiltinsTests } from '../suites/core/builtins.test.mjs'
+import { runEdgeCaseTests } from '../suites/core/edge-cases.test.mjs'
+import { runPerformanceTests } from '../suites/core/performance.test.mjs'
+import { runErrorMessageTests } from '../suites/core/error-messages.test.mjs'
+import { runCheckTests } from '../suites/cli/check.test.mjs'
+import { runSaveResumeTests } from '../suites/runtime/save-resume.test.mjs'
+import { runRuntimeV2Tests } from '../suites/runtime/runtime-v2.test.mjs'
+import { runAudioAdapterTests } from '../suites/runtime/audio-adapter.test.mjs'
 
 console.log('╔══════════════════════════════════════════════════════════════╗')
 console.log('║  IF-Script Turing Completeness Test Suite                   ║')
@@ -38,6 +39,12 @@ async function runAllTests () {
       name: 'Regression Tests',
       description: 'Backward compatibility',
       fn: runRegressionTests,
+      critical: true
+    },
+    {
+      name: 'Built-in Library Functions',
+      description: 'Builtins runtime and parser compatibility',
+      fn: runBuiltinsTests,
       critical: true
     },
     {

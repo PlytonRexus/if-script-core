@@ -6,10 +6,10 @@ import {
   assert,
   assertEqual,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const repoRoot = path.resolve(__dirname, '..')
+const repoRoot = path.resolve(__dirname, '../../..')
 const cliEntry = path.join(repoRoot, 'bin/index.mjs')
 
 async function withTempStory (content, fn) {
@@ -224,3 +224,4 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     process.exit(passed ? 0 : 1)
   })
 }
+

@@ -7,7 +7,7 @@ const paths = require('./paths')
 
 module.exports = merge(base, {
   entry: {
-    main: './test/pkg.mjs'
+    main: './test/harness/web/pkg.mjs'
   },
   output: {
     path: paths.build,

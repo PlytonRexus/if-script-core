@@ -1,5 +1,5 @@
-import IFScript from '../index.mjs'
-import index from './examples/index.mjs'
+import IFScript from '../../../index.mjs'
+import index from '../../fixtures/story-sources/index.mjs'
 
 let runtime
 
@@ -11,7 +11,7 @@ let runtime
   const story = {
     name: 'introduction',
     content: index.introduction,
-    path: '/test/examples-if/introduction.if'
+    path: '/test/fixtures/stories/introduction.if'
   }
 
   function useStory (storyName) {
@@ -60,3 +60,4 @@ let runtime
 })()
 
 export default runtime
+

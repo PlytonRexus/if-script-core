@@ -1,12 +1,16 @@
-import InputStream from '../src/parsers/custom/stream/InputStream.mjs'
-import TokenStream from '../src/parsers/custom/stream/TokenStream.mjs'
-import Parser from '../src/parsers/custom/parser/Parser.mjs'
-import index from './examples/index.mjs'
+import InputStream from '../../../src/parsers/custom/stream/InputStream.mjs'
+import TokenStream from '../../../src/parsers/custom/stream/TokenStream.mjs'
+import Parser from '../../../src/parsers/custom/parser/Parser.mjs'
+import index from '../../fixtures/story-sources/index.mjs'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 let story = {
 	name: 'introduction',
 	content: index.introduction,
-	path: '/home/mihir/dev/IF/if-script-core/test/examples-if/introduction.if'
+	path: path.resolve(__dirname, '../../fixtures/stories/introduction.if')
 }
 
 function useStory(storyName) {
@@ -29,8 +33,8 @@ if (typeof window !== 'undefined' && !!window && !!window.location) {
 }
 
 // Use IFScript for proper module loader initialization
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
 
 let parsed
 
@@ -48,3 +52,4 @@ try {
 }
 
 export default parsed
+

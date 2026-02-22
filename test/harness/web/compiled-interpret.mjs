@@ -1,5 +1,5 @@
-import Story from '../src/models/Story.mjs'
-import IFScript from '../src/IFScript.mjs'
+import Story from '../../../src/models/Story.mjs'
+import IFScript from '../../../src/IFScript.mjs'
 
 let runtime
 
@@ -22,7 +22,7 @@ let runtime
     if (themeName) useTheme(themeName)
   }
 
-  fetch('/test/compiled/introduction.json')
+  fetch('/test/fixtures/compiled/introduction.json')
     .then(res => res.json())
     .then(str => {
       try {
@@ -43,3 +43,4 @@ let runtime
 })()
 
 export default runtime
+

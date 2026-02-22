@@ -1,5 +1,5 @@
 import parsed from './parse.mjs'
-import IFScript from '../src/IFScript.mjs'
+import IFScript from '../../../src/IFScript.mjs'
 
 let runtime
 
@@ -36,3 +36,4 @@ let runtime
 })()
 
 export default runtime
+

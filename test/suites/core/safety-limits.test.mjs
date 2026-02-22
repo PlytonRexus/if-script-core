@@ -4,13 +4,14 @@
  * Tests for MAX_ITERATIONS and MAX_CALL_DEPTH safety limits
  */
 
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { pathToFileURL } from 'url'
 import {
   assert,
   assertEqual,
   runTestSuite
-} from './test-utils.mjs'
+} from '../../support/test-utils.mjs'
 
 // ===== Infinite Loop Detection =====
 
@@ -351,8 +352,10 @@ export async function runSafetyTests () {
 }
 
 // Run if executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   runSafetyTests().then(passed => {
     process.exit(passed ? 0 : 1)
   })
 }
+
+

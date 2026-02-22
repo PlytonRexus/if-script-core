@@ -1,6 +1,6 @@
-import InputStream from '../src/parsers/custom/stream/InputStream.mjs'
-import TokenStream from '../src/parsers/custom/stream/TokenStream.mjs'
-import Parser from '../src/parsers/custom/parser/Parser.mjs'
+import InputStream from '../../../src/parsers/custom/stream/InputStream.mjs'
+import TokenStream from '../../../src/parsers/custom/stream/TokenStream.mjs'
+import Parser from '../../../src/parsers/custom/parser/Parser.mjs'
 
 const storyText = `section__
   numbers = [1, 2, 3]
@@ -39,3 +39,4 @@ try {
   console.log('\n✗ Parse failed:', error.message)
   console.log('Stack:', error.stack.split('\n').slice(0, 10).join('\n'))
 }
+

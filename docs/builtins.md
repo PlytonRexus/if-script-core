@@ -102,4 +102,4 @@ Collection helper edge behavior:
 
 For source-of-truth behavior, see:
 - `src/interpreters/custom/Builtins.mjs`
-- `test/builtins-test.mjs`
+- `test/suites/core/builtins.test.mjs`

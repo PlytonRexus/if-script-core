@@ -4,18 +4,19 @@
  * Ensures backward compatibility - existing features still work correctly
  */
 
-import IFScript from '../src/IFScript.mjs'
-import versions from '../src/constants/versions.mjs'
+import IFScript from '../../../src/IFScript.mjs'
+import versions from '../../../src/constants/versions.mjs'
+import { pathToFileURL } from 'url'
 import { readFile } from 'fs/promises'
 import {
   assert,
   assertEqual,
   assertDefined,
   runTestSuite
-} from './test-utils.mjs'
-import SectionRef from '../src/models/SectionRef.mjs'
-import SceneRef from '../src/models/SceneRef.mjs'
-import EngineRuntime from '../src/runtime/engine/EngineRuntime.mjs'
+} from '../../support/test-utils.mjs'
+import SectionRef from '../../../src/models/SectionRef.mjs'
+import SceneRef from '../../../src/models/SceneRef.mjs'
+import EngineRuntime from '../../../src/runtime/engine/EngineRuntime.mjs'
 
 // ===== Basic Features =====
 
@@ -831,10 +832,10 @@ __section`
 
 async function testArraysExampleFile () {
   try {
-    const content = await readFile('test/examples-if/arrays-test.if', 'utf-8')
+    const content = await readFile('test/fixtures/stories/arrays-test.if', 'utf-8')
     const ifScript = new IFScript(versions.STREAM)
     await ifScript.init()
-    const parsed = await ifScript.parse(content, 'test/examples-if/arrays-test.if')
+    const parsed = await ifScript.parse(content, 'test/fixtures/stories/arrays-test.if')
 
     assert(parsed !== null, 'arrays-test.if should parse successfully')
     assert(parsed.sections.length > 0, 'Should have sections')
@@ -849,10 +850,10 @@ async function testArraysExampleFile () {
 
 async function testLoopsExampleFile () {
   try {
-    const content = await readFile('test/examples-if/loops-test.if', 'utf-8')
+    const content = await readFile('test/fixtures/stories/loops-test.if', 'utf-8')
     const ifScript = new IFScript(versions.STREAM)
     await ifScript.init()
-    const parsed = await ifScript.parse(content, 'test/examples-if/loops-test.if')
+    const parsed = await ifScript.parse(content, 'test/fixtures/stories/loops-test.if')
 
     assert(parsed !== null, 'loops-test.if should parse successfully')
     assert(parsed.sections.length > 0, 'Should have sections')
@@ -867,10 +868,10 @@ async function testLoopsExampleFile () {
 
 async function testFunctionsExampleFile () {
   try {
-    const content = await readFile('test/examples-if/functions-test.if', 'utf-8')
+    const content = await readFile('test/fixtures/stories/functions-test.if', 'utf-8')
     const ifScript = new IFScript(versions.STREAM)
     await ifScript.init()
-    const parsed = await ifScript.parse(content, 'test/examples-if/functions-test.if')
+    const parsed = await ifScript.parse(content, 'test/fixtures/stories/functions-test.if')
 
     assert(parsed !== null, 'functions-test.if should parse successfully')
     assert(parsed.sections.length > 0, 'Should have sections')
@@ -886,10 +887,10 @@ async function testFunctionsExampleFile () {
 
 async function testTuringCompleteExampleFile () {
   try {
-    const content = await readFile('test/examples-if/turing-complete-test.if', 'utf-8')
+    const content = await readFile('test/fixtures/stories/turing-complete-test.if', 'utf-8')
     const ifScript = new IFScript(versions.STREAM)
     await ifScript.init()
-    const parsed = await ifScript.parse(content, 'test/examples-if/turing-complete-test.if')
+    const parsed = await ifScript.parse(content, 'test/fixtures/stories/turing-complete-test.if')
 
     assert(parsed !== null, 'turing-complete-test.if should parse successfully')
     assert(parsed.sections.length > 0, 'Should have sections')
@@ -951,8 +952,10 @@ export async function runRegressionTests () {
 }
 
 // Run if executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   runRegressionTests().then(passed => {
     process.exit(passed ? 0 : 1)
   })
 }
+
+
