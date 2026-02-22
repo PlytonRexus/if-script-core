@@ -634,6 +634,29 @@ In practice:
 - Use string targets (`@target "Section Title"` or scene `@target "Scene Name"`) for cross-module navigation.
 - Use numeric targets when you explicitly want a serial jump; timers (`@timer`, `@fullTimer`) support both serial and title refs.
 
+#### Imported Module Behavior (Important)
+
+When a file is brought in via `import__"..."__import`, IF-Script merges:
+- Sections
+- Scenes
+- Functions
+- Top-level variable initializers (limited; see below)
+- Status-bar config (`@statusBar`)
+
+Global story behavior settings from imported module `settings__` blocks are **not** applied to the main story run:
+- `@startAt` from imported modules is ignored for startup
+- `@fullTimer` from imported modules is ignored for global timer behavior
+- `@storyTitle` from imported modules does not replace the main story title
+- `@maxIterations` / `@maxCallDepth` from imported modules are not used as global runtime limits
+
+Top-level variable initializer capture from imported modules is intentionally narrow:
+- Supported: simple single-token RHS values (numbers, strings, booleans) and empty arrays (`[]`)
+- Not evaluated at import time: expression-based initializers like `x = a + 1`, function calls, non-empty array expressions
+
+For predictable cross-file behavior, prefer:
+- Defining global runtime settings in the main root `.if` file
+- Initializing complex imported state inside sections/functions (not via top-level computed assignments)
+
 #### Configuration
 
 Configure the import system when creating an `IFScript` instance:
