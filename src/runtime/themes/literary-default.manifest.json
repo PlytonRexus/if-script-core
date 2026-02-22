@@ -3,7 +3,7 @@
   "name": "Literary Default",
   "version": "1.0.0",
   "runtimeApi": "2.x",
-  "entryCss": "/src/runtime/themes/literary-default.css",
+  "entryCss": "src/runtime/themes/literary-default.css",
   "renderers": ["literary", "cinematic"],
   "tokens": {},
   "features": {

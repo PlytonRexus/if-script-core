@@ -1,0 +1,850 @@
+/* Thrones module: 01-act1-arc-stark-lannister.partial.if */
+scene__
+  @name "ACT1: Wolves and Lions"
+  @first "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @sections "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T076 - ACT1 - Pyke Hostage Exchange at the broken tower" "T077 - ACT1 - Highgarden Siege Promise in the throne shadow" "T078 - ACT1 - Sunspear Prison Confession with steel drawn" "T079 - ACT1 - The Trident Salt Pact by the harbor chain" "T080 - ACT1 - Riverrun Broken Oath under rain" "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast" "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell" "T083 - ACT1 - Winterfell Night Council before witnesses" "T084 - ACT1 - The Twins Debt Collection under wolf banners" "T085 - ACT1 - Harrenhal Torchlit Census at the rookery" "T086 - ACT1 - Dragonstone Blood Price at first light" "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals" "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries" "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T090 - ACT1 - Pentos Harbor Ambush in river fog" "T091 - ACT1 - Qarth Alliance Split near the godswood" "T092 - ACT1 - The Wall War Map against old law" "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+__scene
+
+section__
+  @title "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-073.jpg"
+
+  "At a trampled crossroads, mud, blood, and horse foam mix under torchlight as envoys wait for your signal. Brienne of Tarth pushes for an immediate ruling on a command claim with direct factional consequences, while Theon Greyjoy watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a command claim with direct factional consequences before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a command claim with direct factional consequences through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-074.jpg"
+
+  "A seized watchtower smells of pitch and damp mail where both wolf and lion messengers demand immediate terms. Tywin Lannister pushes for an immediate ruling on chokepoint warnings that can trigger preemptive retaliation, while Robb Stark watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve chokepoint warnings that can trigger preemptive retaliation before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T076 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle chokepoint warnings that can trigger preemptive retaliation through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T075 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-075.jpg"
+
+  "On a battered riverbank, archers from opposed banners share a fire they do not trust and a road they both need. Theon Greyjoy pushes for an immediate ruling on leak evidence each faction wants weaponized first, while Brienne of Tarth watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T076 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve leak evidence each faction wants weaponized first before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T077 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle leak evidence each faction wants weaponized first through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+
+  choice__
+    @target "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit outside coin and operators to force pace on leak evidence each faction wants weaponized first, gaining rapid leverage at the cost of broader escalation risk."
+  __choice
+__section
+
+section__
+  @title "T076 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-076.jpg"
+
+  "In a rain-dark command pavilion, wet furs steam over coals while rival scouts glare across the same map table. Robb Stark pushes for an immediate ruling on hostage terms that can ignite revenge if mishandled, while Tywin Lannister watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T077 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve hostage terms that can ignite revenge if mishandled before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle hostage terms that can ignite revenge if mishandled through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T077 - ACT1 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-077.jpg"
+
+  "At a trampled crossroads, mud, blood, and horse foam mix under torchlight as envoys wait for your signal. Brienne of Tarth pushes for an immediate ruling on aid pledges tied to demands for strategic obedience, while Theon Greyjoy watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve aid pledges tied to demands for strategic obedience before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T079 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle aid pledges tied to demands for strategic obedience through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+
+  choice__
+    @target "T080 - ACT1 - Riverrun Broken Oath under rain"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit outside coin and operators to force pace on aid pledges tied to demands for strategic obedience, gaining rapid leverage at the cost of broader escalation risk."
+  __choice
+__section
+
+section__
+  @title "T078 - ACT1 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-078.jpg"
+
+  "A seized watchtower smells of pitch and damp mail where both wolf and lion messengers demand immediate terms. Tywin Lannister pushes for an immediate ruling on a confession that can reorder enemy lists overnight, while Robb Stark watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T079 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a confession that can reorder enemy lists overnight before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T080 - ACT1 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a confession that can reorder enemy lists overnight through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T079 - ACT1 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-079.jpg"
+
+  "On a battered riverbank, archers from opposed banners share a fire they do not trust and a road they both need. Theon Greyjoy pushes for an immediate ruling on supply terms that determine which banners hold cohesion, while Brienne of Tarth watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T080 - ACT1 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve supply terms that determine which banners hold cohesion before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle supply terms that determine which banners hold cohesion through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T080 - ACT1 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-080.jpg"
+
+  "In a rain-dark command pavilion, wet furs steam over coals while rival scouts glare across the same map table. Robb Stark pushes for an immediate ruling on an oath breach both factions can use to justify retaliation, while Tywin Lannister watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve an oath breach both factions can use to justify retaliation before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle an oath breach both factions can use to justify retaliation through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+
+  choice__
+    @target "T083 - ACT1 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit outside coin and operators to force pace on an oath breach both factions can use to justify retaliation, gaining rapid leverage at the cost of broader escalation risk."
+  __choice
+__section
+
+section__
+  @title "T081 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-081.jpg"
+
+  "At a trampled crossroads, mud, blood, and horse foam mix under torchlight as envoys wait for your signal. Brienne of Tarth pushes for an immediate ruling on a blackmail cache that can fracture command chains, while Theon Greyjoy watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a blackmail cache that can fracture command chains before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T083 - ACT1 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a blackmail cache that can fracture command chains through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T082 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-082.jpg"
+
+  "A seized watchtower smells of pitch and damp mail where both wolf and lion messengers demand immediate terms. Tywin Lannister pushes for an immediate ruling on an intercept proving one faction lied in public, while Robb Stark watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T083 - ACT1 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve an intercept proving one faction lied in public before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T084 - ACT1 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle an intercept proving one faction lied in public through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T083 - ACT1 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-083.jpg"
+
+  "On a battered riverbank, archers from opposed banners share a fire they do not trust and a road they both need. Theon Greyjoy pushes for an immediate ruling on a northern council demand that forces explicit alignment, while Brienne of Tarth watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T084 - ACT1 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a northern council demand that forces explicit alignment before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T085 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a northern council demand that forces explicit alignment through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+__section
+
+section__
+  @title "T084 - ACT1 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-084.jpg"
+
+  "In a rain-dark command pavilion, wet furs steam over coals while rival scouts glare across the same map table. Robb Stark pushes for an immediate ruling on crossing extortion that turns allies into targets, while Tywin Lannister watches for any hesitation that can be spun as allegiance to the other camp before dawn.
+
+This arc runs on retaliation cycles: each concession is read as weakness by one side and treachery by the other. A public ruling can restrain rumor and bind witnesses, but it narrows your tactical options. A covert ruling can preserve initiative, yet it deepens the expectation that violence, not process, decides outcomes.
+
+You are no longer balancing abstract values. You are deciding which feud hardens tonight and which one can still be postponed."
+
+  choice__
+    @target "T085 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve crossing extortion that turns allies into targets before sworn banners, lock terms to record, and absorb immediate strain to preserve cross-faction legitimacy."
+  __choice
+
+  choice__
+    @target "T086 - ACT1 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle crossing extortion that turns allies into targets through deniable pressure and private guarantees, holding tempo now while feeding the next retaliation cycle."
+  __choice
+
+  choice__
+    @target "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit outside coin and operators to force pace on crossing extortion that turns allies into targets, gaining rapid leverage at the cost of broader escalation risk."
+  __choice
+__section
+
+section__
+  @title "T085 - ACT1 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-085.jpg"
+
+  "A flooded crossing stinks of blood and wet straw where rival outriders trade threats under truce banners. Brienne of Tarth demands you settle field-roll evidence that can expose manipulated war levies before midnight, while Theon Greyjoy prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T086 - ACT1 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle field-roll evidence that can expose manipulated war levies in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle field-roll evidence that can expose manipulated war levies through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+
+  choice__
+    @target "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend external coin and operators to force tempo on field-roll evidence that can expose manipulated war levies, gaining rapid control at the price of wider escalation."
+  __choice
+__section
+
+section__
+  @title "T086 - ACT1 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-086.jpg"
+
+  "In a looted granary yard, quartermasters count sacks while captains count insults that could start the next clash. Tywin Lannister demands you settle a blood-price order each faction wants interpreted to its advantage before midnight, while Robb Stark prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a blood-price order each faction wants interpreted to its advantage in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a blood-price order each faction wants interpreted to its advantage through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T087 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-087.jpg"
+
+  "At dusk by the Trident, horses stamp in freezing mud while envoys rehearse accusations for whichever path you choose. Theon Greyjoy demands you settle a supply pact that can be framed as betrayal by either camp before midnight, while Brienne of Tarth prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a supply pact that can be framed as betrayal by either camp in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a supply pact that can be framed as betrayal by either camp through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T088 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-088.jpg"
+
+  "Stormlight flickers across spear points as both camps watch your command tent for signs of preference or fear. Robb Stark demands you settle force deployments that can trigger retaliatory cycles before midnight, while Tywin Lannister prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle force deployments that can trigger retaliatory cycles in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T090 - ACT1 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle force deployments that can trigger retaliatory cycles through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T089 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-089.jpg"
+
+  "A flooded crossing stinks of blood and wet straw where rival outriders trade threats under truce banners. Brienne of Tarth demands you settle a legal ultimatum both wolves and lions plan to exploit before midnight, while Theon Greyjoy prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T090 - ACT1 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a legal ultimatum both wolves and lions plan to exploit in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T091 - ACT1 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a legal ultimatum both wolves and lions plan to exploit through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T090 - ACT1 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-090.jpg"
+
+  "In a looted granary yard, quartermasters count sacks while captains count insults that could start the next clash. Tywin Lannister demands you settle an ambush dossier that can justify escalation or restraint before midnight, while Robb Stark prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T091 - ACT1 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle an ambush dossier that can justify escalation or restraint in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T092 - ACT1 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle an ambush dossier that can justify escalation or restraint through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+
+  choice__
+    @target "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend external coin and operators to force tempo on an ambush dossier that can justify escalation or restraint, gaining rapid control at the price of wider escalation."
+  __choice
+__section
+
+section__
+  @title "T091 - ACT1 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-091.jpg"
+
+  "At dusk by the Trident, horses stamp in freezing mud while envoys rehearse accusations for whichever path you choose. Theon Greyjoy demands you settle foreign backing offers that harden faction alignment before midnight, while Brienne of Tarth prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T092 - ACT1 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle foreign backing offers that harden faction alignment in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle foreign backing offers that harden faction alignment through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+
+  choice__
+    @target "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend external coin and operators to force tempo on foreign backing offers that harden faction alignment, gaining rapid control at the price of wider escalation."
+  __choice
+__section
+
+section__
+  @title "T092 - ACT1 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-092.jpg"
+
+  "Stormlight flickers across spear points as both camps watch your command tent for signs of preference or fear. Robb Stark demands you settle frontier commitments used as tests of faction loyalty before midnight, while Tywin Lannister prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle frontier commitments used as tests of faction loyalty in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle frontier commitments used as tests of faction loyalty through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T093 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-093.jpg"
+
+  "A flooded crossing stinks of blood and wet straw where rival outriders trade threats under truce banners. Brienne of Tarth demands you settle a command claim with direct factional consequences before midnight, while Theon Greyjoy prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a command claim with direct factional consequences in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a command claim with direct factional consequences through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T094 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-094.jpg"
+
+  "In a looted granary yard, quartermasters count sacks while captains count insults that could start the next clash. Tywin Lannister demands you settle chokepoint warnings that can trigger preemptive retaliation before midnight, while Robb Stark prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle chokepoint warnings that can trigger preemptive retaliation in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle chokepoint warnings that can trigger preemptive retaliation through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section
+
+section__
+  @title "T095 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-095.jpg"
+
+  "At dusk by the Trident, horses stamp in freezing mud while envoys rehearse accusations for whichever path you choose. Theon Greyjoy demands you settle leak evidence each faction wants weaponized first before midnight, while Brienne of Tarth prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle leak evidence each faction wants weaponized first in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle leak evidence each faction wants weaponized first through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+
+  choice__
+    @target "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend external coin and operators to force tempo on leak evidence each faction wants weaponized first, gaining rapid control at the price of wider escalation."
+  __choice
+__section
+
+section__
+  @title "T096 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-arc-stark-lannister/frame-096.jpg"
+
+  "Stormlight flickers across spear points as both camps watch your command tent for signs of preference or fear. Robb Stark demands you settle hostage terms that can ignite revenge if mishandled before midnight, while Tywin Lannister prepares to treat any ambiguity as hostile alignment.
+
+Late in Act 1, positions have hardened. Public rulings still carry legitimacy, but each one locks you more tightly to one interpretation of honor and obligation. Covert rulings still buy speed, but now almost guarantee discovery and revenge. Every decision is less about avoiding conflict and more about shaping where the next blow lands.
+
+You can still choose method and target, not consequence-free outcomes. What you issue here becomes the bridge into Act 2's wider war."
+
+  choice__
+    @target "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle hostage terms that can ignite revenge if mishandled in open witness court, bind both factions to the ruling, and accept immediate operational cost for legitimacy."
+  __choice
+
+  choice__
+    @target "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle hostage terms that can ignite revenge if mishandled through private coercion and deniable terms, preserving initiative while intensifying revenge risk."
+  __choice
+__section

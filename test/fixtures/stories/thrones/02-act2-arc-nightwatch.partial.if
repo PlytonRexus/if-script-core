@@ -1,0 +1,861 @@
+/* Thrones module: 02-act2-arc-nightwatch.partial.if */
+scene__
+  @name "ACT2: Black Brothers"
+  @first "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @sections "T145 - ACT2 - Harrenhal Torchlit Census at the rookery" "T146 - ACT2 - Dragonstone Blood Price at first light" "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries" "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke" "T150 - ACT2 - Pentos Harbor Ambush in river fog" "T151 - ACT2 - Qarth Alliance Split near the godswood" "T152 - ACT2 - The Wall War Map against old law" "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky" "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse" "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors" "T156 - ACT2 - Pyke Hostage Exchange at the broken tower" "T157 - ACT2 - Highgarden Siege Promise in the throne shadow" "T158 - ACT2 - Sunspear Prison Confession with steel drawn" "T159 - ACT2 - The Trident Salt Pact by the harbor chain" "T160 - ACT2 - Riverrun Broken Oath under rain" "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T163 - ACT2 - Winterfell Night Council before witnesses" "T164 - ACT2 - The Twins Debt Collection under wolf banners" "T165 - ACT2 - Harrenhal Torchlit Census at the rookery" "T166 - ACT2 - Dragonstone Blood Price at first light" "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+__scene
+
+section__
+  @title "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-145.jpg"
+
+  "In a draft-ridden keep room, lamp oil stings your nose and frost blooms along cracked map tables. Jon Snow presses you to act on relief census rolls that decide who is fed, while Dolorous Edd watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T146 - ACT2 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put relief census rolls that decide who is fed before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle relief census rolls that decide who is fed through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move relief census rolls that decide who is fed fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T146 - ACT2 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-146.jpg"
+
+  "Raven cages rattle in gale bursts, and the yard below smells of boiled leather, blood, and smoke. Qhorin Halfhand presses you to act on a blood-price levy demanded under royal law, while Bowen Marsh watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a blood-price levy demanded under royal law before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a blood-price levy demanded under royal law through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T147 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-147.jpg"
+
+  "At a night watchfire, frozen mud hardens around wagon wheels as exhausted men trade rumors in hoarse voices. Maester Aemon presses you to act on a sealed supply contract with political hooks, while Yoren watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a sealed supply contract with political hooks before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a sealed supply contract with political hooks through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T150 - ACT2 - Pentos Harbor Ambush in river fog"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move a sealed supply contract with political hooks fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T148 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-148.jpg"
+
+  "Snowmelt runs through the gate tunnel while quartermasters argue over dwindling lamp oil and arrow bundles. Jeor Mormont presses you to act on a Bolton muster probing your weak points, while Samwell Tarly watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a Bolton muster probing your weak points before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T150 - ACT2 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a Bolton muster probing your weak points through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T149 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-149.jpg"
+
+  "The frontier sky stays slate-dark at noon, and every messenger arrives with fewer horses than he left with. Jon Snow presses you to act on a Vale ultimatum on roads and inspection rights, while Dolorous Edd watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T150 - ACT2 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a Vale ultimatum on roads and inspection rights before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T151 - ACT2 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a Vale ultimatum on roads and inspection rights through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T150 - ACT2 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-150.jpg"
+
+  "Black wind claws across the Wall and drives ice grit into your eyes while horn calls echo from distant towers. Qhorin Halfhand presses you to act on an ambush network funded through river smugglers, while Bowen Marsh watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T151 - ACT2 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put an ambush network funded through river smugglers before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T152 - ACT2 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle an ambush network funded through river smugglers through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move an ambush network funded through river smugglers fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T151 - ACT2 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-151.jpg"
+
+  "In a draft-ridden keep room, lamp oil stings your nose and frost blooms along cracked map tables. Maester Aemon presses you to act on foreign financing offers tied to future concessions, while Yoren watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T152 - ACT2 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put foreign financing offers tied to future concessions before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle foreign financing offers tied to future concessions through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T152 - ACT2 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-152.jpg"
+
+  "Raven cages rattle in gale bursts, and the yard below smells of boiled leather, blood, and smoke. Jeor Mormont presses you to act on frontier maps proving how thin your defense has become, while Samwell Tarly watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put frontier maps proving how thin your defense has become before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle frontier maps proving how thin your defense has become through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T153 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-153.jpg"
+
+  "At a night watchfire, frozen mud hardens around wagon wheels as exhausted men trade rumors in hoarse voices. Jon Snow presses you to act on a legal claim over command and supply authority, while Dolorous Edd watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a legal claim over command and supply authority before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a legal claim over command and supply authority through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T154 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-154.jpg"
+
+  "Snowmelt runs through the gate tunnel while quartermasters argue over dwindling lamp oil and arrow bundles. Qhorin Halfhand presses you to act on chokepoint sabotage reports from the Neck, while Bowen Marsh watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put chokepoint sabotage reports from the Neck before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T156 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle chokepoint sabotage reports from the Neck through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move chokepoint sabotage reports from the Neck fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T155 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-155.jpg"
+
+  "The frontier sky stays slate-dark at noon, and every messenger arrives with fewer horses than he left with. Maester Aemon presses you to act on information leaks sold through learned channels, while Yoren watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T156 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put information leaks sold through learned channels before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle information leaks sold through learned channels through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move information leaks sold through learned channels fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T156 - ACT2 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-156.jpg"
+
+  "Black wind claws across the Wall and drives ice grit into your eyes while horn calls echo from distant towers. Jeor Mormont presses you to act on hostage terms brokered through raiders, while Samwell Tarly watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put hostage terms brokered through raiders before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve hostage terms brokered through raiders through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T157 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-157.jpg"
+
+  "In a draft-ridden keep room, lamp oil stings your nose and frost blooms along cracked map tables. Jon Snow presses you to act on a grain promise carrying command strings attached, while Dolorous Edd watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a grain promise carrying command strings attached before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T159 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a grain promise carrying command strings attached through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T158 - ACT2 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-158.jpg"
+
+  "Raven cages rattle in gale bursts, and the yard below smells of boiled leather, blood, and smoke. Qhorin Halfhand presses you to act on a confession that could fracture allied houses, while Bowen Marsh watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T159 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a confession that could fracture allied houses before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T160 - ACT2 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a confession that could fracture allied houses through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T159 - ACT2 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-159.jpg"
+
+  "At a night watchfire, frozen mud hardens around wagon wheels as exhausted men trade rumors in hoarse voices. Maester Aemon presses you to act on salt-control terms that decide winter survival, while Yoren watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T160 - ACT2 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put salt-control terms that decide winter survival before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve salt-control terms that decide winter survival through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T160 - ACT2 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-160.jpg"
+
+  "Snowmelt runs through the gate tunnel while quartermasters argue over dwindling lamp oil and arrow bundles. Jeor Mormont presses you to act on a broken oath crisis at a critical supply hub, while Samwell Tarly watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a broken oath crisis at a critical supply hub before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a broken oath crisis at a critical supply hub through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+
+  choice__
+    @target "T163 - ACT2 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move a broken oath crisis at a critical supply hub fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T161 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-161.jpg"
+
+  "The frontier sky stays slate-dark at noon, and every messenger arrives with fewer horses than he left with. Jon Snow presses you to act on the blackmail ledger tying bannermen to stolen grain, while Dolorous Edd watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the blackmail ledger tying bannermen to stolen grain before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T163 - ACT2 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve the blackmail ledger tying bannermen to stolen grain through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+
+  choice__
+    @target "T164 - ACT2 - The Twins Debt Collection under wolf banners"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move the blackmail ledger tying bannermen to stolen grain fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T162 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-162.jpg"
+
+  "Black wind claws across the Wall and drives ice grit into your eyes while horn calls echo from distant towers. Qhorin Halfhand presses you to act on a crown raven order that conflicts with local survival, while Bowen Marsh watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T163 - ACT2 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a crown raven order that conflicts with local survival before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T164 - ACT2 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a crown raven order that conflicts with local survival through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T163 - ACT2 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-163.jpg"
+
+  "In a draft-ridden keep room, lamp oil stings your nose and frost blooms along cracked map tables. Maester Aemon presses you to act on the Winterfell muster plan and its burden of proof, while Yoren watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T164 - ACT2 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the Winterfell muster plan and its burden of proof before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T165 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve the Winterfell muster plan and its burden of proof through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T164 - ACT2 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-164.jpg"
+
+  "Raven cages rattle in gale bursts, and the yard below smells of boiled leather, blood, and smoke. Jeor Mormont presses you to act on the crossing toll regime strangling refugee movement, while Samwell Tarly watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T165 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the crossing toll regime strangling refugee movement before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T166 - ACT2 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve the crossing toll regime strangling refugee movement through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T165 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-165.jpg"
+
+  "At a night watchfire, frozen mud hardens around wagon wheels as exhausted men trade rumors in hoarse voices. Jon Snow presses you to act on relief census rolls that decide who is fed, while Dolorous Edd watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T166 - ACT2 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put relief census rolls that decide who is fed before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve relief census rolls that decide who is fed through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+
+  choice__
+    @target "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move relief census rolls that decide who is fed fast, gaining time now while increasing frontier dependency."
+  __choice
+__section
+
+section__
+  @title "T166 - ACT2 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-166.jpg"
+
+  "Snowmelt runs through the gate tunnel while quartermasters argue over dwindling lamp oil and arrow bundles. Qhorin Halfhand presses you to act on a blood-price levy demanded under royal law, while Bowen Marsh watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a blood-price levy demanded under royal law before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a blood-price levy demanded under royal law through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T167 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-167.jpg"
+
+  "The frontier sky stays slate-dark at noon, and every messenger arrives with fewer horses than he left with. Maester Aemon presses you to act on a sealed supply contract with political hooks, while Yoren watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is now reactive, and every delayed choice is paid for in bodies before sunrise. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a sealed supply contract with political hooks before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a sealed supply contract with political hooks through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T168 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-arc-nightwatch/frame-168.jpg"
+
+  "Black wind claws across the Wall and drives ice grit into your eyes while horn calls echo from distant towers. Jeor Mormont presses you to act on a Bolton muster probing your weak points, while Samwell Tarly watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+At the edge of the realm, logistics is survival doctrine. If you force this through public process, you gain legitimacy and lose precious hours. If you handle it through covert pressure, you may buy immediate control while corroding the very cohesion that keeps undermanned outposts alive through winter.
+
+The frontier is under-resourced, and each decision reallocates risk between villages and the Wall. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a Bolton muster probing your weak points before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T170 - ACT3 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a Bolton muster probing your weak points through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T171 - ACT3 - Qarth Alliance Split near the godswood"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit scarce coin and external operators to move a Bolton muster probing your weak points fast, gaining time now while increasing frontier dependency."
+  __choice
+__section

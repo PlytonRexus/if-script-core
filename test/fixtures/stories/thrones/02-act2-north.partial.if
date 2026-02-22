@@ -1,0 +1,828 @@
+/* Thrones module: 02-act2-north.partial.if */
+scene__
+  @name "ACT2: Northern Musters"
+  @first "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @sections "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T123 - ACT2 - Winterfell Night Council before witnesses" "T124 - ACT2 - The Twins Debt Collection under wolf banners" "T125 - ACT2 - Harrenhal Torchlit Census at the rookery" "T126 - ACT2 - Dragonstone Blood Price at first light" "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries" "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke" "T130 - ACT2 - Pentos Harbor Ambush in river fog" "T131 - ACT2 - Qarth Alliance Split near the godswood" "T132 - ACT2 - The Wall War Map against old law" "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky" "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse" "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors" "T136 - ACT2 - Pyke Hostage Exchange at the broken tower" "T137 - ACT2 - Highgarden Siege Promise in the throne shadow" "T138 - ACT2 - Sunspear Prison Confession with steel drawn" "T139 - ACT2 - The Trident Salt Pact by the harbor chain" "T140 - ACT2 - Riverrun Broken Oath under rain" "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T143 - ACT2 - Winterfell Night Council before witnesses" "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+__scene
+
+section__
+  @title "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-121.jpg"
+
+  "Ice fog crawls over the yard while smiths hammer spearheads in the dark, filling the hall with iron and soot. Catelyn Stark presses you to act on the blackmail ledger tying bannermen to stolen grain, while Roose Bolton watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the blackmail ledger tying bannermen to stolen grain before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T123 - ACT2 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the blackmail ledger tying bannermen to stolen grain through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-122.jpg"
+
+  "Rime clings to the rafters of a longhall where dripping cloaks steam over coals and every whisper carries. Greatjon Umber presses you to act on a crown raven order that conflicts with local survival, while Galbart Glover watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T123 - ACT2 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a crown raven order that conflicts with local survival before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T124 - ACT2 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a crown raven order that conflicts with local survival through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T123 - ACT2 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-123.jpg"
+
+  "At the edge of the Wolfswood, sleet needles your face and horse breath hangs white over muddy cart ruts. Maege Mormont presses you to act on the Winterfell muster plan and its burden of proof, while Rickard Karstark watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T124 - ACT2 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the Winterfell muster plan and its burden of proof before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T125 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Winterfell muster plan and its burden of proof through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T124 - ACT2 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-124.jpg"
+
+  "Rookery ink, tallow wax, and wet fur mix in the chamber where riders wait for your seal. Robb Stark presses you to act on the crossing toll regime strangling refugee movement, while Maester Luwin watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T125 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the crossing toll regime strangling refugee movement before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T126 - ACT2 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the crossing toll regime strangling refugee movement through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T125 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-125.jpg"
+
+  "A frozen ford creaks beneath loaded wagons while far horns mark patrols that are already too thin. Catelyn Stark presses you to act on relief census rolls that decide who is fed, while Roose Bolton watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T126 - ACT2 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put relief census rolls that decide who is fed before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle relief census rolls that decide who is fed through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and outside contacts to accelerate relief census rolls that decide who is fed, buying operational speed at the cost of northern autonomy."
+  __choice
+__section
+
+section__
+  @title "T126 - ACT2 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-126.jpg"
+
+  "Snow squeaks under boot heels outside your command hall, and the air smells of pine smoke and damp wool. Greatjon Umber presses you to act on a blood-price levy demanded under royal law, while Galbart Glover watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a blood-price levy demanded under royal law before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a blood-price levy demanded under royal law through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and outside contacts to accelerate a blood-price levy demanded under royal law, buying operational speed at the cost of northern autonomy."
+  __choice
+__section
+
+section__
+  @title "T127 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-127.jpg"
+
+  "Ice fog crawls over the yard while smiths hammer spearheads in the dark, filling the hall with iron and soot. Maege Mormont presses you to act on a sealed supply contract with political hooks, while Rickard Karstark watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a sealed supply contract with political hooks before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a sealed supply contract with political hooks through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T128 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-128.jpg"
+
+  "Rime clings to the rafters of a longhall where dripping cloaks steam over coals and every whisper carries. Robb Stark presses you to act on a Bolton muster probing your weak points, while Maester Luwin watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a Bolton muster probing your weak points before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T130 - ACT2 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a Bolton muster probing your weak points through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T129 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-129.jpg"
+
+  "At the edge of the Wolfswood, sleet needles your face and horse breath hangs white over muddy cart ruts. Catelyn Stark presses you to act on a Vale ultimatum on roads and inspection rights, while Roose Bolton watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T130 - ACT2 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a Vale ultimatum on roads and inspection rights before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T131 - ACT2 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle a Vale ultimatum on roads and inspection rights through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T130 - ACT2 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-130.jpg"
+
+  "Rookery ink, tallow wax, and wet fur mix in the chamber where riders wait for your seal. Greatjon Umber presses you to act on an ambush network funded through river smugglers, while Galbart Glover watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T131 - ACT2 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put an ambush network funded through river smugglers before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T132 - ACT2 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle an ambush network funded through river smugglers through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+
+  choice__
+    @target "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and outside contacts to accelerate an ambush network funded through river smugglers, buying operational speed at the cost of northern autonomy."
+  __choice
+__section
+
+section__
+  @title "T131 - ACT2 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-131.jpg"
+
+  "A frozen ford creaks beneath loaded wagons while far horns mark patrols that are already too thin. Maege Mormont presses you to act on foreign financing offers tied to future concessions, while Rickard Karstark watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T132 - ACT2 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put foreign financing offers tied to future concessions before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle foreign financing offers tied to future concessions through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section
+
+section__
+  @title "T132 - ACT2 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-132.jpg"
+
+  "Snow squeaks under boot heels outside your command hall, and the air smells of pine smoke and damp wool. Robb Stark presses you to act on frontier maps proving how thin your defense has become, while Maester Luwin watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put frontier maps proving how thin your defense has become before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve frontier maps proving how thin your defense has become through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T133 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-133.jpg"
+
+  "Ice fog crawls over the yard while smiths hammer spearheads in the dark, filling the hall with iron and soot. Catelyn Stark presses you to act on a legal claim over command and supply authority, while Roose Bolton watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a legal claim over command and supply authority before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a legal claim over command and supply authority through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+
+  choice__
+    @target "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and outside contacts to accelerate a legal claim over command and supply authority, buying operational speed at the cost of northern autonomy."
+  __choice
+__section
+
+section__
+  @title "T134 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-134.jpg"
+
+  "Rime clings to the rafters of a longhall where dripping cloaks steam over coals and every whisper carries. Greatjon Umber presses you to act on chokepoint sabotage reports from the Neck, while Galbart Glover watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put chokepoint sabotage reports from the Neck before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve chokepoint sabotage reports from the Neck through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T135 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-135.jpg"
+
+  "At the edge of the Wolfswood, sleet needles your face and horse breath hangs white over muddy cart ruts. Maege Mormont presses you to act on information leaks sold through learned channels, while Rickard Karstark watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put information leaks sold through learned channels before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T137 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve information leaks sold through learned channels through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+
+  choice__
+    @target "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and outside contacts to accelerate information leaks sold through learned channels, buying operational speed at the cost of northern autonomy."
+  __choice
+__section
+
+section__
+  @title "T136 - ACT2 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-136.jpg"
+
+  "Rookery ink, tallow wax, and wet fur mix in the chamber where riders wait for your seal. Robb Stark presses you to act on hostage terms brokered through raiders, while Maester Luwin watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T137 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put hostage terms brokered through raiders before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve hostage terms brokered through raiders through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T137 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-137.jpg"
+
+  "A frozen ford creaks beneath loaded wagons while far horns mark patrols that are already too thin. Catelyn Stark presses you to act on a grain promise carrying command strings attached, while Roose Bolton watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a grain promise carrying command strings attached before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T139 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a grain promise carrying command strings attached through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T138 - ACT2 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-138.jpg"
+
+  "Snow squeaks under boot heels outside your command hall, and the air smells of pine smoke and damp wool. Greatjon Umber presses you to act on a confession that could fracture allied houses, while Galbart Glover watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T139 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a confession that could fracture allied houses before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T140 - ACT2 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a confession that could fracture allied houses through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T139 - ACT2 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-139.jpg"
+
+  "Ice fog crawls over the yard while smiths hammer spearheads in the dark, filling the hall with iron and soot. Maege Mormont presses you to act on salt-control terms that decide winter survival, while Rickard Karstark watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T140 - ACT2 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put salt-control terms that decide winter survival before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve salt-control terms that decide winter survival through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T140 - ACT2 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-140.jpg"
+
+  "Rime clings to the rafters of a longhall where dripping cloaks steam over coals and every whisper carries. Robb Stark presses you to act on a broken oath crisis at a critical supply hub, while Maester Luwin watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a broken oath crisis at a critical supply hub before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a broken oath crisis at a critical supply hub through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+
+  choice__
+    @target "T143 - ACT2 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and outside contacts to accelerate a broken oath crisis at a critical supply hub, buying operational speed at the cost of northern autonomy."
+  __choice
+__section
+
+section__
+  @title "T141 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-141.jpg"
+
+  "At the edge of the Wolfswood, sleet needles your face and horse breath hangs white over muddy cart ruts. Catelyn Stark presses you to act on the blackmail ledger tying bannermen to stolen grain, while Roose Bolton watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the blackmail ledger tying bannermen to stolen grain before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T143 - ACT2 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve the blackmail ledger tying bannermen to stolen grain through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T142 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-142.jpg"
+
+  "Rookery ink, tallow wax, and wet fur mix in the chamber where riders wait for your seal. Greatjon Umber presses you to act on a crown raven order that conflicts with local survival, while Galbart Glover watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T143 - ACT2 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put a crown raven order that conflicts with local survival before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a crown raven order that conflicts with local survival through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T143 - ACT2 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-143.jpg"
+
+  "A frozen ford creaks beneath loaded wagons while far horns mark patrols that are already too thin. Maege Mormont presses you to act on the Winterfell muster plan and its burden of proof, while Rickard Karstark watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+By now, every earlier compromise is due, and the North can no longer pretend delay is strategy. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the Winterfell muster plan and its burden of proof before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve the Winterfell muster plan and its burden of proof through sealed orders and deniable pressure, preserving short-term control while deepening future backlash."
+  __choice
+__section
+
+section__
+  @title "T144 - ACT2 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-north/frame-144.jpg"
+
+  "Snow squeaks under boot heels outside your command hall, and the air smells of pine smoke and damp wool. Robb Stark presses you to act on the crossing toll regime strangling refugee movement, while Maester Luwin watches for hesitation that rivals can exploit before the next rider leaves camp. You are not adjudicating theory; you are deciding who moves, who waits, and who pays for that delay.
+
+Distance has turned command into a trust problem: orders travel slowly, rumor travels first, and hungry bannermen improvise policy when your writ is late. If you act in open law, you may steady northern legitimacy while sacrificing tempo. If you act through sealed pressure, you can move faster now and spend trust you may need later.
+
+The North still has room to choose methods, but not room to avoid cost. The next order goes out under your name, and it will be judged not by speeches but by how many fires are still lit when night closes again."
+
+  choice__
+    @target "T145 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the crossing toll regime strangling refugee movement before sworn witnesses, bind terms in writing, and accept immediate strain to preserve public legitimacy."
+  __choice
+
+  choice__
+    @target "T146 - ACT2 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the crossing toll regime strangling refugee movement through covert channels and selective disclosure, trading transparency for immediate command leverage."
+  __choice
+__section

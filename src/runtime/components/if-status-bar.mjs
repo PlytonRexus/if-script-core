@@ -109,6 +109,7 @@ class IFStatusBar extends BaseHTMLElement {
           background: var(--if-status-bg, #efe5d3);
           color: var(--if-status-text, #3b2a1c);
           font-size: 13px;
+          font-family: monospace;
         }
         .stats {
           display: flex;

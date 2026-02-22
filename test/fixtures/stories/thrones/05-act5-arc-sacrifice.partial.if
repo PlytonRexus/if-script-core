@@ -1,0 +1,801 @@
+/* Thrones module: 05-act5-arc-sacrifice.partial.if */
+scene__
+  @name "ACT5: The Price of Blood"
+  @first "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @sections "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T363 - ACT5 - Winterfell Night Council before witnesses" "T364 - ACT5 - The Twins Debt Collection under wolf banners" "T365 - ACT5 - Harrenhal Torchlit Census at the rookery" "T366 - ACT5 - Dragonstone Blood Price at first light" "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals" "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries" "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke" "T370 - ACT5 - Pentos Harbor Ambush in river fog" "T371 - ACT5 - Qarth Alliance Split near the godswood" "T372 - ACT5 - The Wall War Map against old law" "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky" "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse" "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors" "T376 - ACT5 - Pyke Hostage Exchange at the broken tower" "T377 - ACT5 - Highgarden Siege Promise in the throne shadow" "T378 - ACT5 - Sunspear Prison Confession with steel drawn" "T379 - ACT5 - The Trident Salt Pact by the harbor chain" "T380 - ACT5 - Riverrun Broken Oath under rain" "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T383 - ACT5 - Winterfell Night Council before witnesses" "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+__scene
+
+section__
+  @title "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-361.jpg"
+
+  "Along the Kingsroad, sour ale and horse sweat hang over a ledger full of purchased silence. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sansa Stark tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent. What began as policy at the battlefront has become names on funeral cloth.
+
+The war has moved from strategy to accounting for the dead. Families demand justice while commanders demand silence to keep lines intact.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T363 - ACT5 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-362.jpg"
+
+  "Before the sept bell in the capital, raven feathers and hot wax litter the floor around forged orders. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Sansa Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent. The camps are full of kin demanding meaning for losses that cannot be reversed.
+
+Irreversible choices are stacking. Mercy can look weak, cruelty can look necessary, and either one can poison the settlement you still hope to reach.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T363 - ACT5 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T364 - ACT5 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T363 - ACT5 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-363.jpg"
+
+  "In Winterfell at night, pine smoke and snowmelt drift through a council chamber packed with wary bannermen. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Catelyn Stark tests your posture in public while Arya Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Your officers are carrying losses they cannot replace. If you mishandle this moment, survivors obey out of fear and never trust again.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T364 - ACT5 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T365 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T364 - ACT5 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-364.jpg"
+
+  "At the Twins, river mist and rotting rope surround toll tables where every number is a weapon. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Arya Stark tests your posture in public while Catelyn Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Now the cost is personal. Every new order names people, not just positions, and grief is starting to outrank discipline in camp decisions.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T365 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T366 - ACT5 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+
+  choice__
+    @target "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Spend coin on Essosi couriers and dragon-backed deterrence, buying speed while draining treasury reserves."
+  __choice
+__section
+
+section__
+  @title "T365 - ACT5 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-365.jpg"
+
+  "In Harrenhal torchlight, ash and damp stone sharpen the smell of ink as casualty numbers are counted. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sansa Stark tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The war has moved from strategy to accounting for the dead. Families demand justice while commanders demand silence to keep lines intact.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T366 - ACT5 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Outsource pressure to offshore partners, accelerate deployments, and accept escalating dependence on external force."
+  __choice
+__section
+
+section__
+  @title "T366 - ACT5 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-366.jpg"
+
+  "On Dragonstone at first light, sulfur sea mist curls over black rock where envoys demand costly terms. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Sansa Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Irreversible choices are stacking. Mercy can look weak, cruelty can look necessary, and either one can poison the settlement you still hope to reach.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T367 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-367.jpg"
+
+  "Across Blackwater Bay, tar, fish rot, and lamp smoke drift over sealed contracts and guarded cargo. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Catelyn Stark tests your posture in public while Arya Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Your officers are carrying losses they cannot replace. If you mishandle this moment, survivors obey out of fear and never trust again.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T368 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-368.jpg"
+
+  "At the Dreadfort galleries, wet fur and old blood cling to banners as border captains wait on you. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Arya Stark tests your posture in public while Catelyn Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Now the cost is personal. Every new order names people, not just positions, and grief is starting to outrank discipline in camp decisions.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T370 - ACT5 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T369 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-369.jpg"
+
+  "At the Eyrie, thin mountain air tastes of candle wax and frost while heralds wait for your ruling. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sansa Stark tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The war has moved from strategy to accounting for the dead. Families demand justice while commanders demand silence to keep lines intact.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T370 - ACT5 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T371 - ACT5 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T370 - ACT5 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-370.jpg"
+
+  "At Pentos harbor, river fog stings your eyes and muffles the chain-rattle of hidden ships. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Sansa Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Irreversible choices are stacking. Mercy can look weak, cruelty can look necessary, and either one can poison the settlement you still hope to reach.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T371 - ACT5 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T372 - ACT5 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Fund foreign logistics and hard escorts, reopen distant channels, and trade financial stability for operational tempo."
+  __choice
+__section
+
+section__
+  @title "T371 - ACT5 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-371.jpg"
+
+  "Near the godswood where Qarth envoys quarrel, incense and wet leaves mix with the smell of steel. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Catelyn Stark tests your posture in public while Arya Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Your officers are carrying losses they cannot replace. If you mishandle this moment, survivors obey out of fear and never trust again.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T372 - ACT5 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+
+  choice__
+    @target "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Purchase rapid support beyond Westeros, shift risk outward, and invite long-term political debt for short-term survival."
+  __choice
+__section
+
+section__
+  @title "T372 - ACT5 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-372.jpg"
+
+  "Beneath the Wall maps, old ink and frozen leather crack as officers crowd around your table. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Arya Stark tests your posture in public while Catelyn Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Now the cost is personal. Every new order names people, not just positions, and grief is starting to outrank discipline in camp decisions.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T373 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-373.jpg"
+
+  "In Castle Black halls, lamp smoke and boiled turnip cling to stone while claimants trade legal threats. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sansa Stark tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The war has moved from strategy to accounting for the dead. Families demand justice while commanders demand silence to keep lines intact.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T374 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-374.jpg"
+
+  "At Moat Cailin, bog wind carries peat rot through the gatehouse as scouts whisper of movement. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Sansa Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Irreversible choices are stacking. Mercy can look weak, cruelty can look necessary, and either one can poison the settlement you still hope to reach.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T376 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T375 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-375.jpg"
+
+  "Inside Oldtown archives, beeswax and sea damp cling to ledgers that no longer match the truth. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Catelyn Stark tests your posture in public while Arya Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Your officers are carrying losses they cannot replace. If you mishandle this moment, survivors obey out of fear and never trust again.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T376 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T377 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Purchase rapid support beyond Westeros, shift risk outward, and invite long-term political debt for short-term survival."
+  __choice
+__section
+
+section__
+  @title "T376 - ACT5 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-376.jpg"
+
+  "On Pyke rocks, salt spray and tar smoke coat your tongue while hostages stare across a rope line. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Arya Stark tests your posture in public while Catelyn Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Now the cost is personal. Every new order names people, not just positions, and grief is starting to outrank discipline in camp decisions.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T377 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T377 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-377.jpg"
+
+  "Outside Highgarden, crushed thyme and wet straw cannot hide the groan of siege engines. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sansa Stark tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The war has moved from strategy to accounting for the dead. Families demand justice while commanders demand silence to keep lines intact.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T379 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T378 - ACT5 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-378.jpg"
+
+  "In Sunspear cells, heat, rust, and blood sit heavy while a prisoner bargains for one more breath. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Sansa Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Irreversible choices are stacking. Mercy can look weak, cruelty can look necessary, and either one can poison the settlement you still hope to reach.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T379 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T380 - ACT5 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+
+  choice__
+    @target "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Fund foreign logistics and hard escorts, reopen distant channels, and trade financial stability for operational tempo."
+  __choice
+__section
+
+section__
+  @title "T379 - ACT5 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-379.jpg"
+
+  "At the Trident docks, brine and pitch smoke rise from chains bolted beside your treaty table. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Catelyn Stark tests your posture in public while Arya Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Your officers are carrying losses they cannot replace. If you mishandle this moment, survivors obey out of fear and never trust again.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T380 - ACT5 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T380 - ACT5 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-380.jpg"
+
+  "Under Riverrun rain, wet leather and cold iron fill the tent where oaths are being contested. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Arya Stark tests your posture in public while Catelyn Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Now the cost is personal. Every new order names people, not just positions, and grief is starting to outrank discipline in camp decisions.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T383 - ACT5 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Spend coin on Essosi couriers and dragon-backed deterrence, buying speed while draining treasury reserves."
+  __choice
+__section
+
+section__
+  @title "T381 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-381.jpg"
+
+  "Along the Kingsroad, sour ale and horse sweat hang over a ledger full of purchased silence. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sansa Stark tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The war has moved from strategy to accounting for the dead. Families demand justice while commanders demand silence to keep lines intact.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T383 - ACT5 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T382 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-382.jpg"
+
+  "Before the sept bell in the capital, raven feathers and hot wax litter the floor around forged orders. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Sansa Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Irreversible choices are stacking. Mercy can look weak, cruelty can look necessary, and either one can poison the settlement you still hope to reach.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T383 - ACT5 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T383 - ACT5 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-383.jpg"
+
+  "In Winterfell at night, pine smoke and snowmelt drift through a council chamber packed with wary bannermen. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Catelyn Stark tests your posture in public while Arya Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Your officers are carrying losses they cannot replace. If you mishandle this moment, survivors obey out of fear and never trust again.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T384 - ACT5 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-arc-sacrifice/frame-384.jpg"
+
+  "At the Twins, river mist and rotting rope surround toll tables where every number is a weapon. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Arya Stark tests your posture in public while Catelyn Stark studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Now the cost is personal. Every new order names people, not just positions, and grief is starting to outrank discipline in camp decisions.
+
+You can answer loss with formal justice and shared burden, or with private enforcement that keeps control while deepening resentment. Either path secures something now and burns something you cannot rebuild quickly."
+
+  choice__
+    @target "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T386 - ACT6 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section

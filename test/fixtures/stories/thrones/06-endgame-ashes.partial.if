@@ -1,0 +1,293 @@
+/* Thrones module: 06-endgame-ashes.partial.if */
+scene__
+  @name "ACT6: Last Ashes"
+  @first "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+  @sections "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast" "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell" "T423 - ACT6 - Winterfell Night Council before witnesses" "T424 - ACT6 - The Twins Debt Collection under wolf banners" "T425 - ACT6 - Harrenhal Torchlit Census at the rookery" "T426 - ACT6 - Dragonstone Blood Price at first light" "END-A: The Just Crown" "END-B: The Iron Tyrant" "END-C: The Hidden Kingmaker" "END-D: Exile Across the Narrow Sea" "END-E: The Long Night Unchecked" "END-F: Ashes of the Seven Kingdoms"
+__scene
+
+section__
+  @title "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-421.jpg"
+
+  "The keep on the Kingsroad stands hollow, its hall converted into a morgue ledger room. Wet ash clings to your cloak while Davos Seaworth reads supply shortfalls over the sound of shovels outside. Brienne of Tarth arrives with reports of looting by units who fought under three different legal banners and now answer to none.
+
+This is the first day after settlement and the realm already tests whether law still means anything once the fighting slows. Public accountability can rebuild trust in command and expose how many of your own officers profited from chaos. Private discipline can restore order quickly through fear while preserving the network of men you may still need alive. Either route chooses what justice costs in a ruined economy.
+
+Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The war is over on paper. The consequences are not."
+
+  choice__
+    @target "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Convene open postwar tribunals and force every banner captain to answer for road atrocities in public record."
+  __choice
+
+  choice__
+    @target "T423 - ACT6 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run sealed purges and private pardons, restoring order fast while preserving coercive leverage over survivors."
+  __choice
+__section
+
+section__
+  @title "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-422.jpg"
+
+  "At the dead quay below the Red Keep, orphaned squires sort rusted helms into salvage piles while funeral barges drift past on the tide. Arya Stark wants perpetrators named, not absorbed back into polite command. Jon Snow insists the frontier cannot survive another month if postwar politics keeps consuming northern levies.
+
+Your captains are deserting from confusion more than fear, waiting to see if reconstruction follows a known code or a private chain of revenge. A public legal reset can restore hierarchy and impose common obligations. A covert cleanup can remove threats in one night and leave everyone guessing who is safe, who is useful, and who disappears next. This is governance in the shadow of mass burial.
+
+Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Every recovery order now doubles as a verdict."
+
+  choice__
+    @target "T423 - ACT6 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a public reconstruction decree with enforceable command law, even if it incriminates loyal officers."
+  __choice
+
+  choice__
+    @target "T424 - ACT6 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Dismantle dissent through covert arrests and selective leaks, securing control through fear and uncertainty."
+  __choice
+__section
+
+section__
+  @title "T423 - ACT6 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-423.jpg"
+
+  "In a roofless sept near Winterfell, envoys kneel in cold mud where the altar used to stand. Jon Snow argues that northern defense cannot wait for southern reconciliation rituals. Arya reminds everyone that the people who burned this valley still hold offices under the new arrangement. Last envoys from minor houses hover at the edge, waiting to see whether duty or opportunism wins.
+
+Hostage politics survived the war and now infects reconstruction grants, grain routes, and command appointments. A public framework can force competing factions into one visible hierarchy at painful cost. A covert framework can keep your coalition technically intact while ensuring every appointment is treated as a hidden threat. This chapter decides whether peace is built on institutions or on managed paranoia.
+
+Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Winter does not care which story you prefer."
+
+  choice__
+    @target "T424 - ACT6 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish a single north-south recovery compact and accept immediate faction backlash to lock shared duties."
+  __choice
+
+  choice__
+    @target "T425 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Stabilize the coalition through private concessions and blackmail reserve files, preserving control over consent."
+  __choice
+__section
+
+section__
+  @title "T424 - ACT6 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-424.jpg"
+
+  "Along the Twins refugee road, carts are stacked axle to axle and the rain smells of rust, blood, and wet straw. Brienne of Tarth demands strict protection for displaced families moving through contested toll zones. Davos Seaworth points to the ledgers: if you waive every levy and escort every caravan, your treasury breaks before spring.
+
+Forged orders continue to circulate, rerouting aid columns toward houses with influence instead of villages with hunger. A public correction can restore confidence and expose which allies profit from fraud. A covert correction can crush the fraud ring quickly and make every remaining officer wonder whose turn is next. This is the price of ending a civil war without a clean victor.
+
+Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Mercy and solvency are now competing line items."
+
+  choice__
+    @target "T425 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce protected refugee corridors and audited toll suspensions, accepting elite anger for civilian legitimacy."
+  __choice
+
+  choice__
+    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Break the aid-fraud network through covert seizures and intimidation, prioritizing control over transparency."
+  __choice
+__section
+
+section__
+  @title "T425 - ACT6 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-425.jpg"
+
+  "Harrenhal's market is a skeleton of beams and ash where survivor bands line up with ration tokens and old grievances. Davos argues for strict publication of stocks, losses, and debt so no faction can claim favoritism. Brienne warns that if those numbers prove some banners were privileged during the war, reprisals may begin before sundown.
+
+Quartermasters already ration by predicted loyalty, turning recovery into another front line. A public census can create honest policy and immediate political shock. A covert system can smooth short-term governance while preserving corruption as statecraft. External financing can patch both routes for a season, then demand repayment in influence, ports, and legal carve-outs.
+
+Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. This is the final accounting before history fixes your name."
+
+  choice__
+    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Release full postwar census and ration data under witness, forcing recovery policy into accountable daylight."
+  __choice
+
+  choice__
+    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Classify the deepest losses and govern recovery through sealed quotas, preserving leverage over exposed houses."
+  __choice
+
+  choice__
+    @target "T426 - ACT6 - Dragonstone Blood Price at first light"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Inject Essosi credit into relief and logistics, buying time now while deepening strategic dependence."
+  __choice
+__section
+
+section__
+  @title "T426 - ACT6 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-426.jpg"
+
+  "Dragonstone's final war room is quiet except for rain on slate and the scratch of quills closing ledgers that can no longer be delayed. Arya Stark demands that justice mean something measurable after so much sanctioned cruelty. Jon Snow demands that whatever crown emerges must still be able to feed garrisons and answer the Wall. Outside, grave crews work by torchlight in ground too wet for clean burial.
+
+A divided banner coalition waits for one final signal before either accepting the settlement or returning to private war. The path you built through honor, fear, secrecy, and debt now collapses into outcomes no decree can fully control. Some endings require public legitimacy. Some require coercive dominance. Some reward invisible governance, exile, or catastrophic misprioritization. One remains if every constraint fails.
+
+Your ledger narrows to hard numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The age of decisions ends here. The age of consequences begins."
+
+  choice__
+    @target "END-A: The Just Crown"
+    @when ((honor >= ruthlessness) && ((north_trust + watch_trust) >= 14) && (war_readiness >= 12))
+    "Seal a lawful peace with audited grain guarantees, frontier funding, and enforceable public institutions."
+  __choice
+
+  choice__
+    @target "END-B: The Iron Tyrant"
+    @when ((ruthlessness >= honor + 2) && ((crown_trust + leverage) >= 15) && (dragon_factor < 8))
+    "Concentrate authority through fear, debt discipline, and permanent military hierarchy."
+  __choice
+
+  choice__
+    @target "END-C: The Hidden Kingmaker"
+    @when (((secrecy + leverage) >= 18) && (survival_clock >= 3))
+    "Govern from the shadows via logistics chokepoints, intelligence couriers, and deniable patronage networks."
+  __choice
+
+  choice__
+    @target "END-D: Exile Across the Narrow Sea"
+    @when ((essos_ties >= 10) && (dragon_factor >= 8))
+    "Withdraw across the Narrow Sea with fleet, treasury, and a curated remnant of loyal houses."
+  __choice
+
+  choice__
+    @target "END-E: The Long Night Unchecked"
+    @when ((watch_trust <= 3) && (war_readiness <= 8))
+    "Leave the northern threat underfunded while throne politics consume the final season of preparation."
+  __choice
+
+  choice__
+    @target "END-F: Ashes of the Seven Kingdoms"
+    "Impose total military settlement and accept that the Seven Kingdoms may survive only as ash and enclaves."
+  __choice
+__section
+
+section__
+  @title "END-A: The Just Crown"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-427.jpg"
+
+  "Peace does not arrive with cheering. It arrives with exhausted signatures, witnessed inventories, and penalties that actually trigger when a lord lies. You force rival councils to sit through the night until grain routes, levy ceilings, and frontier obligations are written into one enforceable order. No faction receives everything it wanted, but each receives enough structure to stop pretending chaos is policy.
+
+House Valehart becomes the hinge of a constrained crown. Watch garrisons are funded on schedule, northern petitions are heard in law instead of private favor, and reconstruction allocations are tracked in public accounts that even enemies can audit. You are called weak by zealots and ruthless by opportunists, which usually means the balance is close.
+
+Years later, bards still argue whether you were noble or merely efficient. The people who survived winter care less about your reputation than about the fact that the carts kept arriving."
+__section
+
+section__
+  @title "END-B: The Iron Tyrant"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-428.jpg"
+
+  "You forge order out of terror and call it necessity. Dissent contracts because dissenters vanish into night wagons, and every official learns that compliance is safer than competence. Revenue stabilizes. Roads clear under military escort. Commands execute with frightening precision because everyone understands the price of hesitation.
+
+The realm looks disciplined from the throne room. Up close it is brittle, transactional, and full of quiet scorekeeping. Houses kneel without loyalty, magistrates rule without legitimacy, and children grow up memorizing names they are not yet strong enough to avenge. Stability holds because fear is cheap and always in stock.
+
+House Valehart secures the crown and centralizes the state. Whether that state can survive the first weak successor is another matter."
+__section
+
+section__
+  @title "END-C: The Hidden Kingmaker"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-429.jpg"
+
+  "You refuse the obvious throne and keep the machinery behind it. Public rulers change banners, titles, and rhetoric while your couriers control grain timetables, arrest warrants, and debt relief windows. Claimants spend fortunes on ceremonies; you spend yours on routes, codebooks, and people who can be trusted to disappear.
+
+The system survives each visible regime because it is anchored in logistics rather than slogans. Whoever wants to govern must still pass through your warehouses, your informants, and your legal ambiguities. Enemies call it cowardice. Allies call it prudence. Both keep using the network because no alternative is as reliable.
+
+Official chronicles mention House Valehart at the margins. Unofficially, every army march and tax decree still waits on your nod."
+__section
+
+section__
+  @title "END-D: Exile Across the Narrow Sea"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-430.jpg"
+
+  "You choose distance over martyrdom and depart with ships, coin, and the few houses disciplined enough to survive exile. On the far side of the Narrow Sea, lineage matters less than delivery schedules, contract enforcement, and whether your captains can keep ports open during storms and sanctions. You adapt because adaptation is the only title that travels.
+
+From Essos, House Valehart becomes a maritime power: broker of emergency grain, lender to desperate princes, and owner of extraction routes for those who guessed wrong in Westeros. You trade sentiment for liquidity and discover that foreign pragmatists are easier to negotiate with than wounded cousins.
+
+The Seven Kingdoms still curse your name in court speeches. They still send discreet envoys when they need ships in a hurry."
+__section
+
+section__
+  @title "END-E: The Long Night Unchecked"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-431.jpg"
+
+  "You win succession, committees, and every procedural fight that seemed urgent in the moment. Meanwhile the Wall's warnings are discounted as negotiation tactics until patrols stop returning and supply roads harden under unnatural frost. By the time southern councils accept the scale of the threat, mobilization timetables have already failed.
+
+What follows is not dramatic betrayal but cumulative mispriority. Garrisons are understocked, signal lines break, and local commanders improvise with tools meant for civil war, not extinction. The Long Night does not need your enemies to cooperate; it advances through every delay politics created.
+
+House Valehart is remembered as brilliant at court calculus and catastrophically late to existential arithmetic."
+__section
+
+section__
+  @title "END-F: Ashes of the Seven Kingdoms"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-ashes/frame-432.jpg"
+
+  "You choose decisive force and obtain it. Final offensives torch granaries, bridges, and workshops faster than quartermasters can catalog the loss. Cities endure one more siege cycle, then collapse into hunger. Castles hold banners but not economies. Victory proclamations still circulate, but every proclamation governs less territory than the one before it.
+
+The crown survives as a symbol while the supply grid that made crowns meaningful dies underneath it. Former allies retreat into fortified enclaves, trading ash-caked grain for iron scrap and hostage guarantees. Road law becomes local custom at spearpoint.
+
+House Valehart persists in records, scattered heirs, and burned charters no one can fully enforce. The era closes not with coronation bells, but with smoke drifting over maps that no longer match reality."
+__section

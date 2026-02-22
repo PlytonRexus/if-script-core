@@ -1,0 +1,852 @@
+/* Thrones module: 03-act3-arc-varys-littlefinger.partial.if */
+scene__
+  @name "ACT3: Spiders and Coins"
+  @first "T217 - ACT3 - Highgarden Siege Promise in the throne shadow"
+  @sections "T217 - ACT3 - Highgarden Siege Promise in the throne shadow" "T218 - ACT3 - Sunspear Prison Confession with steel drawn" "T219 - ACT3 - The Trident Salt Pact by the harbor chain" "T220 - ACT3 - Riverrun Broken Oath under rain" "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast" "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell" "T223 - ACT3 - Winterfell Night Council before witnesses" "T224 - ACT3 - The Twins Debt Collection under wolf banners" "T225 - ACT3 - Harrenhal Torchlit Census at the rookery" "T226 - ACT3 - Dragonstone Blood Price at first light" "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals" "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries" "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T230 - ACT3 - Pentos Harbor Ambush in river fog" "T231 - ACT3 - Qarth Alliance Split near the godswood" "T232 - ACT3 - The Wall War Map against old law" "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky" "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse" "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors" "T236 - ACT3 - Pyke Hostage Exchange at the broken tower" "T237 - ACT3 - Highgarden Siege Promise in the throne shadow" "T238 - ACT3 - Sunspear Prison Confession with steel drawn" "T239 - ACT3 - The Trident Salt Pact by the harbor chain" "T240 - ACT3 - Riverrun Broken Oath under rain"
+__scene
+
+section__
+  @title "T217 - ACT3 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-217.jpg"
+
+  "Highgarden Siege Promise in the throne shadow throws you into a political economy built on blackmail, debts, and selective truth. Candle wax pools on cipher tables while perfume, ink, and cellar damp mingle in the hidden rooms below court. Whisperers, brokers, and compromised clerks wait for your signal, each loyal only while the compensation and protection hold. Supply shocks and trust fractures from Act Two have become exploitable markets, and every rival house is shopping.
+
+Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended. This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T218 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "File sworn testimony in open session, spend tactical flexibility, and secure lawful cover for the next operation."
+  __choice
+
+  choice__
+    @target "T219 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route pressure through cutouts and paid informers, spend secrecy and moral capital, and break opposition before sunrise."
+  __choice
+
+  choice__
+    @target "T220 - ACT3 - Riverrun Broken Oath under rain"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hire offshore carriers and mercenary intermediaries, pay in treasury now, and import pressure from outside the local deadlock."
+  __choice
+__section
+
+section__
+  @title "T218 - ACT3 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-218.jpg"
+
+  "Sunspear Prison Confession with steel drawn throws you into a contest between two masters who treat secrets like coin. In the quiet before dawn, you hear quills, coin clink, and the scrape of knives used to open sealed raven tubes. Varys offers reach through patience, Littlefinger offers momentum through debt, and both expect you to fund the risks they keep off their own names. The public promises that stabilized earlier fronts now require hidden enforcement, forged narratives, and costly silence.
+
+If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics. Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T219 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms in open court, spend reputation for legal clarity, and bind commanders to enforceable quotas before witnesses."
+  __choice
+
+  choice__
+    @target "T220 - ACT3 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use deniable arrests and forged correspondence, buy short-term control with long-term distrust, and isolate rival captains quietly."
+  __choice
+__section
+
+section__
+  @title "T219 - ACT3 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-219.jpg"
+
+  "The Trident Salt Pact by the harbor chain throws you into an arc defined by deniable operations and private leverage. Spiced wine and lamp smoke drift through the counting room where couriers arrive with ledgers wrapped in oilcloth. Every asset claims they can deliver deniable success; none volunteer to absorb failure when the operation surfaces. Act Two taught the realm to survive on emergency bargains, and this arc turns those bargains into permanent instruments of control.
+
+A legal move may lose the race; a deniable move may win the race and poison the finish line. If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T220 - ACT3 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+__section
+
+section__
+  @title "T220 - ACT3 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-220.jpg"
+
+  "Riverrun Broken Oath under rain throws you into a shadow market where information is bought, laundered, and weaponized. Rain taps slate roofs above your safehouse as scribes dry coded letters over braziers and burn the drafts. Bankers ask for collateral, spies ask for absolution, and no one in the room mistakes either request for honesty. What looked like temporary secrecy last act now decides who controls capital flows, rumors, and succession claims.
+
+This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time. A legal move may lose the race; a deniable move may win the race and poison the finish line.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+
+  choice__
+    @target "T223 - ACT3 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route the operation through Braavosi credit and offshore cutouts, spend wealth and autonomy, and gain deniable reach overnight."
+  __choice
+__section
+
+section__
+  @title "T221 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-221.jpg"
+
+  "The Kingsroad Blackmail Ledger after the feast throws you into a political economy built on blackmail, debts, and selective truth. Candle wax pools on cipher tables while perfume, ink, and cellar damp mingle in the hidden rooms below court. Whisperers, brokers, and compromised clerks wait for your signal, each loyal only while the compensation and protection hold. Supply shocks and trust fractures from Act Two have become exploitable markets, and every rival house is shopping.
+
+Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended. This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T223 - ACT3 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize a deniable sting through Littlefinger assets, spend secrecy and trust, and harvest leverage before the leak cycle turns."
+  __choice
+__section
+
+section__
+  @title "T222 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-222.jpg"
+
+  "The Red Keep Raven Intercept before the sept bell throws you into a contest between two masters who treat secrets like coin. In the quiet before dawn, you hear quills, coin clink, and the scrape of knives used to open sealed raven tubes. Varys offers reach through patience, Littlefinger offers momentum through debt, and both expect you to fund the risks they keep off their own names. The public promises that stabilized earlier fronts now require hidden enforcement, forged narratives, and costly silence.
+
+If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics. Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T223 - ACT3 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Expose the terms through audited ledgers, pay with operational surprise, and legitimize your move before rival counters."
+  __choice
+
+  choice__
+    @target "T224 - ACT3 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Let Varys run compartmented blackmail channels, pay in moral debt, and collapse enemy coordination without open attribution."
+  __choice
+__section
+
+section__
+  @title "T223 - ACT3 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-223.jpg"
+
+  "Winterfell Night Council before witnesses throws you into an arc defined by deniable operations and private leverage. Spiced wine and lamp smoke drift through the counting room where couriers arrive with ledgers wrapped in oilcloth. Every asset claims they can deliver deniable success; none volunteer to absorb failure when the operation surfaces. Act Two taught the realm to survive on emergency bargains, and this arc turns those bargains into permanent instruments of control.
+
+A legal move may lose the race; a deniable move may win the race and poison the finish line. If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T224 - ACT3 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "File sworn testimony in open session, spend tactical flexibility, and secure lawful cover for the next operation."
+  __choice
+
+  choice__
+    @target "T225 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route pressure through cutouts and paid informers, spend secrecy and moral capital, and break opposition before sunrise."
+  __choice
+__section
+
+section__
+  @title "T224 - ACT3 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-224.jpg"
+
+  "The Twins Debt Collection under wolf banners throws you into a shadow market where information is bought, laundered, and weaponized. Rain taps slate roofs above your safehouse as scribes dry coded letters over braziers and burn the drafts. Bankers ask for collateral, spies ask for absolution, and no one in the room mistakes either request for honesty. What looked like temporary secrecy last act now decides who controls capital flows, rumors, and succession claims.
+
+This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time. A legal move may lose the race; a deniable move may win the race and poison the finish line.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T225 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms in open court, spend reputation for legal clarity, and bind commanders to enforceable quotas before witnesses."
+  __choice
+
+  choice__
+    @target "T226 - ACT3 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use deniable arrests and forged correspondence, buy short-term control with long-term distrust, and isolate rival captains quietly."
+  __choice
+
+  choice__
+    @target "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Open external credit lines at punishing terms, buy time with liquidity, and shift battlefield tempo through foreign channels."
+  __choice
+__section
+
+section__
+  @title "T225 - ACT3 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-225.jpg"
+
+  "Harrenhal Torchlit Census at the rookery throws you into a political economy built on blackmail, debts, and selective truth. Candle wax pools on cipher tables while perfume, ink, and cellar damp mingle in the hidden rooms below court. Whisperers, brokers, and compromised clerks wait for your signal, each loyal only while the compensation and protection hold. Supply shocks and trust fractures from Act Two have become exploitable markets, and every rival house is shopping.
+
+Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended. This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T226 - ACT3 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+
+  choice__
+    @target "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring in distant partners to absorb immediate risk, spending wealth today to preserve command options tomorrow."
+  __choice
+__section
+
+section__
+  @title "T226 - ACT3 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-226.jpg"
+
+  "Dragonstone Blood Price at first light throws you into a contest between two masters who treat secrets like coin. In the quiet before dawn, you hear quills, coin clink, and the scrape of knives used to open sealed raven tubes. Varys offers reach through patience, Littlefinger offers momentum through debt, and both expect you to fund the risks they keep off their own names. The public promises that stabilized earlier fronts now require hidden enforcement, forged narratives, and costly silence.
+
+If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics. Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+__section
+
+section__
+  @title "T227 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-227.jpg"
+
+  "Blackwater Bay Sealed Bargain beneath lion seals throws you into an arc defined by deniable operations and private leverage. Spiced wine and lamp smoke drift through the counting room where couriers arrive with ledgers wrapped in oilcloth. Every asset claims they can deliver deniable success; none volunteer to absorb failure when the operation surfaces. Act Two taught the realm to survive on emergency bargains, and this arc turns those bargains into permanent instruments of control.
+
+A legal move may lose the race; a deniable move may win the race and poison the finish line. If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize a deniable sting through Littlefinger assets, spend secrecy and trust, and harvest leverage before the leak cycle turns."
+  __choice
+__section
+
+section__
+  @title "T228 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-228.jpg"
+
+  "The Dreadfort Border Muster in crowded galleries throws you into a shadow market where information is bought, laundered, and weaponized. Rain taps slate roofs above your safehouse as scribes dry coded letters over braziers and burn the drafts. Bankers ask for collateral, spies ask for absolution, and no one in the room mistakes either request for honesty. What looked like temporary secrecy last act now decides who controls capital flows, rumors, and succession claims.
+
+This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time. A legal move may lose the race; a deniable move may win the race and poison the finish line.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Expose the terms through audited ledgers, pay with operational surprise, and legitimize your move before rival counters."
+  __choice
+
+  choice__
+    @target "T230 - ACT3 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Let Varys run compartmented blackmail channels, pay in moral debt, and collapse enemy coordination without open attribution."
+  __choice
+__section
+
+section__
+  @title "T229 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-229.jpg"
+
+  "The Eyrie Crown Ultimatum by candle smoke throws you into a political economy built on blackmail, debts, and selective truth. Candle wax pools on cipher tables while perfume, ink, and cellar damp mingle in the hidden rooms below court. Whisperers, brokers, and compromised clerks wait for your signal, each loyal only while the compensation and protection hold. Supply shocks and trust fractures from Act Two have become exploitable markets, and every rival house is shopping.
+
+Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended. This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T230 - ACT3 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "File sworn testimony in open session, spend tactical flexibility, and secure lawful cover for the next operation."
+  __choice
+
+  choice__
+    @target "T231 - ACT3 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route pressure through cutouts and paid informers, spend secrecy and moral capital, and break opposition before sunrise."
+  __choice
+__section
+
+section__
+  @title "T230 - ACT3 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-230.jpg"
+
+  "Pentos Harbor Ambush in river fog throws you into a contest between two masters who treat secrets like coin. In the quiet before dawn, you hear quills, coin clink, and the scrape of knives used to open sealed raven tubes. Varys offers reach through patience, Littlefinger offers momentum through debt, and both expect you to fund the risks they keep off their own names. The public promises that stabilized earlier fronts now require hidden enforcement, forged narratives, and costly silence.
+
+If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics. Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T231 - ACT3 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms in open court, spend reputation for legal clarity, and bind commanders to enforceable quotas before witnesses."
+  __choice
+
+  choice__
+    @target "T232 - ACT3 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use deniable arrests and forged correspondence, buy short-term control with long-term distrust, and isolate rival captains quietly."
+  __choice
+
+  choice__
+    @target "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Open external credit lines at punishing terms, buy time with liquidity, and shift battlefield tempo through foreign channels."
+  __choice
+__section
+
+section__
+  @title "T231 - ACT3 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-231.jpg"
+
+  "Qarth Alliance Split near the godswood throws you into an arc defined by deniable operations and private leverage. Spiced wine and lamp smoke drift through the counting room where couriers arrive with ledgers wrapped in oilcloth. Every asset claims they can deliver deniable success; none volunteer to absorb failure when the operation surfaces. Act Two taught the realm to survive on emergency bargains, and this arc turns those bargains into permanent instruments of control.
+
+A legal move may lose the race; a deniable move may win the race and poison the finish line. If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T232 - ACT3 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+
+  choice__
+    @target "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring in distant partners to absorb immediate risk, spending wealth today to preserve command options tomorrow."
+  __choice
+__section
+
+section__
+  @title "T232 - ACT3 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-232.jpg"
+
+  "The Wall War Map against old law throws you into a shadow market where information is bought, laundered, and weaponized. Rain taps slate roofs above your safehouse as scribes dry coded letters over braziers and burn the drafts. Bankers ask for collateral, spies ask for absolution, and no one in the room mistakes either request for honesty. What looked like temporary secrecy last act now decides who controls capital flows, rumors, and succession claims.
+
+This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time. A legal move may lose the race; a deniable move may win the race and poison the finish line.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+__section
+
+section__
+  @title "T233 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-233.jpg"
+
+  "Castle Black Inheritance Claim under moonless sky throws you into a political economy built on blackmail, debts, and selective truth. Candle wax pools on cipher tables while perfume, ink, and cellar damp mingle in the hidden rooms below court. Whisperers, brokers, and compromised clerks wait for your signal, each loyal only while the compensation and protection hold. Supply shocks and trust fractures from Act Two have become exploitable markets, and every rival house is shopping.
+
+Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended. This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize a deniable sting through Littlefinger assets, spend secrecy and trust, and harvest leverage before the leak cycle turns."
+  __choice
+__section
+
+section__
+  @title "T234 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-234.jpg"
+
+  "Moat Cailin Whispered Warning at the gatehouse throws you into a contest between two masters who treat secrets like coin. In the quiet before dawn, you hear quills, coin clink, and the scrape of knives used to open sealed raven tubes. Varys offers reach through patience, Littlefinger offers momentum through debt, and both expect you to fund the risks they keep off their own names. The public promises that stabilized earlier fronts now require hidden enforcement, forged narratives, and costly silence.
+
+If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics. Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Expose the terms through audited ledgers, pay with operational surprise, and legitimize your move before rival counters."
+  __choice
+
+  choice__
+    @target "T236 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Let Varys run compartmented blackmail channels, pay in moral debt, and collapse enemy coordination without open attribution."
+  __choice
+__section
+
+section__
+  @title "T235 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-235.jpg"
+
+  "Oldtown Silent Betrayal behind closed doors throws you into an arc defined by deniable operations and private leverage. Spiced wine and lamp smoke drift through the counting room where couriers arrive with ledgers wrapped in oilcloth. Every asset claims they can deliver deniable success; none volunteer to absorb failure when the operation surfaces. Act Two taught the realm to survive on emergency bargains, and this arc turns those bargains into permanent instruments of control.
+
+A legal move may lose the race; a deniable move may win the race and poison the finish line. If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T236 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "File sworn testimony in open session, spend tactical flexibility, and secure lawful cover for the next operation."
+  __choice
+
+  choice__
+    @target "T237 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route pressure through cutouts and paid informers, spend secrecy and moral capital, and break opposition before sunrise."
+  __choice
+
+  choice__
+    @target "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hire offshore carriers and mercenary intermediaries, pay in treasury now, and import pressure from outside the local deadlock."
+  __choice
+__section
+
+section__
+  @title "T236 - ACT3 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-236.jpg"
+
+  "Pyke Hostage Exchange at the broken tower throws you into a shadow market where information is bought, laundered, and weaponized. Rain taps slate roofs above your safehouse as scribes dry coded letters over braziers and burn the drafts. Bankers ask for collateral, spies ask for absolution, and no one in the room mistakes either request for honesty. What looked like temporary secrecy last act now decides who controls capital flows, rumors, and succession claims.
+
+This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time. A legal move may lose the race; a deniable move may win the race and poison the finish line.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T237 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms in open court, spend reputation for legal clarity, and bind commanders to enforceable quotas before witnesses."
+  __choice
+
+  choice__
+    @target "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use deniable arrests and forged correspondence, buy short-term control with long-term distrust, and isolate rival captains quietly."
+  __choice
+__section
+
+section__
+  @title "T237 - ACT3 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-237.jpg"
+
+  "Highgarden Siege Promise in the throne shadow throws you into a political economy built on blackmail, debts, and selective truth. Candle wax pools on cipher tables while perfume, ink, and cellar damp mingle in the hidden rooms below court. Whisperers, brokers, and compromised clerks wait for your signal, each loyal only while the compensation and protection hold. Supply shocks and trust fractures from Act Two have become exploitable markets, and every rival house is shopping.
+
+Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended. This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T239 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+__section
+
+section__
+  @title "T238 - ACT3 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-238.jpg"
+
+  "Sunspear Prison Confession with steel drawn throws you into a contest between two masters who treat secrets like coin. In the quiet before dawn, you hear quills, coin clink, and the scrape of knives used to open sealed raven tubes. Varys offers reach through patience, Littlefinger offers momentum through debt, and both expect you to fund the risks they keep off their own names. The public promises that stabilized earlier fronts now require hidden enforcement, forged narratives, and costly silence.
+
+If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics. Every instruction here creates both leverage and exposure, and your enemies are waiting to buy whichever one you leave unattended.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T239 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T240 - ACT3 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+
+  choice__
+    @target "T241 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route the operation through Braavosi credit and offshore cutouts, spend wealth and autonomy, and gain deniable reach overnight."
+  __choice
+__section
+
+section__
+  @title "T239 - ACT3 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-239.jpg"
+
+  "The Trident Salt Pact by the harbor chain throws you into an arc defined by deniable operations and private leverage. Spiced wine and lamp smoke drift through the counting room where couriers arrive with ledgers wrapped in oilcloth. Every asset claims they can deliver deniable success; none volunteer to absorb failure when the operation surfaces. Act Two taught the realm to survive on emergency bargains, and this arc turns those bargains into permanent instruments of control.
+
+A legal move may lose the race; a deniable move may win the race and poison the finish line. If you starve the spy network, you fight blind; if you indulge it, you normalize methods that can be turned against you in endgame politics.
+
+By the time this order leaves your hand, the math is already running: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can hide fingerprints, not consequences."
+
+  choice__
+    @target "T240 - ACT3 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T241 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize a deniable sting through Littlefinger assets, spend secrecy and trust, and harvest leverage before the leak cycle turns."
+  __choice
+__section
+
+section__
+  @title "T240 - ACT3 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-arc-varys-littlefinger/frame-240.jpg"
+
+  "Riverrun Broken Oath under rain throws you into a shadow market where information is bought, laundered, and weaponized. Rain taps slate roofs above your safehouse as scribes dry coded letters over braziers and burn the drafts. Bankers ask for collateral, spies ask for absolution, and no one in the room mistakes either request for honesty. What looked like temporary secrecy last act now decides who controls capital flows, rumors, and succession claims.
+
+This chapter is blackmail economics in motion: open process protects legitimacy but leaks intent, while covert action captures initiative and compounds strategic debt that will mature at the worst possible time. A legal move may lose the race; a deniable move may win the race and poison the finish line.
+
+Your political balance sheet will still be judged by hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. In this arc, victory and compromise are often the same document with different signatures."
+
+  choice__
+    @target "T241 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Expose the terms through audited ledgers, pay with operational surprise, and legitimize your move before rival counters."
+  __choice
+
+  choice__
+    @target "T242 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Let Varys run compartmented blackmail channels, pay in moral debt, and collapse enemy coordination without open attribution."
+  __choice
+
+  choice__
+    @target "T243 - ACT4 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Outsource momentum to Essosi brokers, spend coin and future leverage, and force the board to move faster than your rivals can react."
+  __choice
+__section

@@ -1,0 +1,825 @@
+/* Thrones module: 03-act3-crownlands.partial.if */
+scene__
+  @name "ACT3: Crownlands Conspiracy"
+  @first "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T170 - ACT3 - Pentos Harbor Ambush in river fog" "T171 - ACT3 - Qarth Alliance Split near the godswood" "T172 - ACT3 - The Wall War Map against old law" "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky" "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse" "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors" "T176 - ACT3 - Pyke Hostage Exchange at the broken tower" "T177 - ACT3 - Highgarden Siege Promise in the throne shadow" "T178 - ACT3 - Sunspear Prison Confession with steel drawn" "T179 - ACT3 - The Trident Salt Pact by the harbor chain" "T180 - ACT3 - Riverrun Broken Oath under rain" "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast" "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell" "T183 - ACT3 - Winterfell Night Council before witnesses" "T184 - ACT3 - The Twins Debt Collection under wolf banners" "T185 - ACT3 - Harrenhal Torchlit Census at the rookery" "T186 - ACT3 - Dragonstone Blood Price at first light" "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals" "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries" "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke" "T190 - ACT3 - Pentos Harbor Ambush in river fog" "T191 - ACT3 - Qarth Alliance Split near the godswood" "T192 - ACT3 - The Wall War Map against old law"
+__scene
+
+section__
+  @title "T169 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-169.jpg"
+
+  "Mud and horse dung stew in the gate trench while smoke from pitch baskets stings your eyes. Riverlands refugees sleep under torn sailcloth against the city wall, and ravens from Castle Black still carry yesterday's warning: the Watch can hold the Wall, but not another month without grain. Cersei Lannister watches from the parapet with a bored smile, Joffrey Baratheon watches with naked hunger, and the street priests count how many hungry mouths stand between your oath and rebellion.
+
+Act Three begins as a problem of enforcement, not persuasion. Bread carts vanish before sunrise, Gold Cloaks sell exemptions by alley, and every lord who called himself neutral in Act Two now demands coin or hostages to keep his men inside the city line. If you rule in daylight, rivals can predict you. If you rule from shadows, allies start measuring the price of betrayal. Either way, the capital must be made governable before nightfall.
+
+The account in front of you is brutal: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. History has already opened its ledger; this choice decides what gets written first."
+
+  choice__
+    @target "T170 - ACT3 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read riot terms from the gatehouse steps, bind the Gold Cloaks to written law, and carry the blame in daylight."
+  __choice
+
+  choice__
+    @target "T171 - ACT3 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Pay butcher-guild informers to stage a convenient confession, then cash the panic into leverage over wavering houses."
+  __choice
+__section
+
+section__
+  @title "T170 - ACT3 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-170.jpg"
+
+  "Salt spray drifts off Blackwater Bay, mixing with fish blood and lamp oil along the chain tower. Harbor crews whisper that northern wagons were stripped before reaching Flea Bottom, and men who swore to your muster in Act Two now melt into alleys before dusk. Bronn leans on the quay rail like violence is a coin he can spend at will, while Varys tracks every dockmaster's glance for signs of revolt.
+
+City stability hangs on who controls arrivals: grain, rumor, and armed men. If captains believe decrees are theater, they will sell berth rights to whoever pays fastest and starve your districts by accident or design. If you crack down too hard, merchants will close their holds and call it weather delay while the crowd grows feral. The harbor is the kingdom's throat; today you either clear it or let someone else place a hand there.
+
+Your position compresses to numbers and hours: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. One decision now decides whether order arrives by law, fear, or foreign debt."
+
+  choice__
+    @target "T171 - ACT3 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Convene captains before the harbor chain, publish seizure law, and force every banner to declare itself in public."
+  __choice
+
+  choice__
+    @target "T172 - ACT3 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Let Varys route bribes through night stevedores, erase the paper trail, and break dock opposition quietly."
+  __choice
+
+  choice__
+    @target "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Charter fast Essosi hulls to escort grain upriver, buying immediate calm with expensive offshore obligations."
+  __choice
+__section
+
+section__
+  @title "T171 - ACT3 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-171.jpg"
+
+  "Wax gutters down the wall sconces in the godswood court while rain taps the elm leaves overhead. Creditors from Qarth and Gulltown crowd the benches with armed scribes, each claiming repayment priority for loans that kept your Act Two campaign moving. Varys presents ledgers with polite poison in every line, and Bronn keeps a hand near his dagger in case negotiation turns into collection.
+
+This is where blackmail economics meets crowd politics. If debt houses believe the city treasury is soft, they will fund rival claimants before midnight and call it prudent diversification. If you humiliate them publicly, they can freeze grain insurance, and your food riots become your fault by morning. The realm will read this hearing as proof that either law still exists in King's Landing or only private coercion does.
+
+You measure margin against collapse: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The wrong creditor leaves this chamber richer and the city poorer."
+
+  choice__
+    @target "T172 - ACT3 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold open debt hearings, trade speed for legitimacy, and make every lender swear terms before witnesses."
+  __choice
+
+  choice__
+    @target "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Circulate forged balance sheets to split the lending bloc, then collect private concessions while they accuse each other."
+  __choice
+__section
+
+section__
+  @title "T172 - ACT3 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-172.jpg"
+
+  "Copper dust hangs in the mint quarter and turns your tongue bitter while boys sprint raven tubes between counting houses. Joffrey wants punishments announced before supper, Cersei wants deniability if they fail, and dock guild envoys wait outside with seals ready for whichever story survives the hour. Three different copies of your last decree are already circulating, and only one carries your actual wording.
+
+Regime control now depends on information discipline. If your enemies can edit orders faster than you can enforce them, every patrol commander becomes a local king and every crowd judges law by rumor. A clean public record may cost you flexibility, but covert manipulation may poison trust in your own chain of command. This decision determines whether the Crownlands obey one center or fracture into profitable confusion.
+
+The numbers refuse sentiment: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not choosing comfort, only which cost reaches you first."
+
+  choice__
+    @target "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Seal tax and ration terms before the court in full view, accepting noble anger to steady the streets."
+  __choice
+
+  choice__
+    @target "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Release edited raven copies that paint rivals as hoarders, then let suspicion dismantle their coordination."
+  __choice
+__section
+
+section__
+  @title "T173 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-173.jpg"
+
+  "Braziers spit iron sparks along guild row where quartermasters haggle like slavers over sacks of flour. Court agents report northern caravans delayed by mud and raids, echoing the promises you made when the Wall pleaded for grain in Act Two. Cersei demands visible strength, Joffrey demands someone to blame, and every guildmaster waits to see whether your signatures still mean equal rationing or purchased favor.
+
+This node is about legitimacy through logistics. If rations follow oath and need, you keep hard allies but surrender political leverage at court. If rations follow intimidation, the city quiets quickly while resentment hardens into future revolt. Either course will define who believes your banners protect them and who begins storing knives for when your patrols tire.
+
+You calculate authority in shrinking margins: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. A ration mark on parchment now can decide a siege outcome months from now."
+
+  choice__
+    @target "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Honor the ration charter in full, ship equal grain northward, and accept weaker court leverage for visible fairness."
+  __choice
+
+  choice__
+    @target "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Threaten the grain masters' heirs in private and extract emergency carts without leaving a lawful trace."
+  __choice
+__section
+
+section__
+  @title "T174 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-174.jpg"
+
+  "At Moat Cailin gatehouse, wet cloaks steam in torchlight while petitioners pound the outer doors for protection. Word of a failed levy sweep has spread through three districts, and now rival banner captains demand proof that the regime can police its own streets. Bronn offers names for immediate arrests, Varys offers cleaner outcomes with dirtier methods, and septons chant over the noise to claim moral custody of the crowd.
+
+Crowd control politics punishes hesitation. A transparent crackdown can restore predictable order but exposes every mistake to witnesses and rival scribes. A covert removal campaign can quiet the streets by dawn while feeding whispers that you govern through kidnappers. Either approach buys control from one constituency and spends it with another, and sunrise will reveal which account you overdrew.
+
+Your mandate balances on diminishing reserves: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. Enforcement is coming either way; the question is whose name the city curses."
+
+  choice__
+    @target "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Post uniform arrest orders at every gate, let priests witness enforcement, and accept slower but lawful control."
+  __choice
+
+  choice__
+    @target "T176 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Send Bronn on deniable night raids against ringleaders, keeping your signature off every broken door."
+  __choice
+__section
+
+section__
+  @title "T175 - ACT3 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-175.jpg"
+
+  "Tar smoke and brine roll through dockside as neutral house envoys arrive under white ribbons and concealed mail. They watched you survive Act Two and now demand payment for not choosing your enemies. Varys tracks who speaks first, Bronn tracks who brought enough men to betray the meeting, and Gold Cloaks form a thin line between negotiation and riot.
+
+Neutrality in the Crownlands is now a commodity. If you lock these houses into public quota and patrol obligations, you gain predictable support but spend reputation and coin. If you buy betrayal in private, you can break one rival chain quickly while teaching every ally that loyalty is temporary and priced in secrets. A third path exists through foreign credit, but that debt arrives with foreign expectations and little mercy.
+
+Your strategic balance sheet narrows by the hour: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You can purchase calm tonight, but never without interest."
+
+  choice__
+    @target "T176 - ACT3 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold a dawn tribunal on the quay, bind neutral banners to sworn quotas, and spend prestige to secure visible order."
+  __choice
+
+  choice__
+    @target "T177 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Broker a midnight betrayal between rival houses, paying in secrets instead of silver to gain short-term control."
+  __choice
+
+  choice__
+    @target "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Open Essosi credit letters at punishing rates, flood markets with imported grain, and mortgage tomorrow for tonight."
+  __choice
+__section
+
+section__
+  @title "T176 - ACT3 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-176.jpg"
+
+  "Wax smoke curls along the city wall walk where missing helmets hang from pegs like accusations. Muster captains report deserters from three patrol districts, not because battle scares them, but because contradictory orders made them easy scapegoats. Joffrey demands immediate executions to set an example; Cersei wants recoverable assets, not martyrs. Moneylenders hover nearby, pricing what your command discipline is worth.
+
+Regime enforcement fails fastest when officers believe policy changes with every whisper. A transparent reckoning can restore confidence in your chain of command, though it exposes royal weakness in public. A covert pardon network can refill ranks quickly, but it blurs loyalty into contract violence and hands tomorrow's blackmail to today's survivors. What you choose here sets the operating code for every future crackdown.
+
+All choices cash out against the same reserve: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. The city will obey someone by dawn; decide whether it is your law or your fear."
+
+  choice__
+    @target "T177 - ACT3 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish muster rolls and casualty counts at sunrise, forcing commanders to answer in front of the ranks."
+  __choice
+
+  choice__
+    @target "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Offer deserter captains secret pardons through cutouts, then return them as deniable enforcers."
+  __choice
+__section
+
+section__
+  @title "T177 - ACT3 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-177.jpg"
+
+  "Highgarden Siege Promise in the throne shadow throws you into streets where every decree is tested before the ink dries. Rainwater and ash run through the gutters, and boiled barley stings the air from relief kettles near the gates. Varys counts who listens, Bronn counts who can be broken, and dock guild factors wait to see whether your word still carries penalties. After the Watch warnings and northern concessions from Act Two, the Crownlands now demand proof that sacrifice bought actual control.
+
+If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias. This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T179 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+__section
+
+section__
+  @title "T178 - ACT3 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-178.jpg"
+
+  "Sunspear Prison Confession with steel drawn throws you into a throne district held together by ledgers, fear, and bread carts. Mud, smoke, and sour wine cling to the stones while bells mark another night without full order. Cersei weighs deniability, Joffrey demands spectacle, and the Gold Cloaks look to you for the version of the law that will be enforced tonight. You carried the frontier emergency through Act Two, but now the same shortages return as city unrest and factional leverage.
+
+Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them. If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T179 - ACT3 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T180 - ACT3 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+__section
+
+section__
+  @title "T179 - ACT3 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-179.jpg"
+
+  "The Trident Salt Pact by the harbor chain throws you into a city where rumor outruns law by half a day. Wet wool, horse sweat, and lamp oil mix in the courtyards where petitioners queue behind shield walls. Merchants and minor lords crowd the gallery, each pretending loyalty while pricing your weakness by the hour. The promises made in Act Two still echo from Castle Black to the river roads, and every missed shipment turns into a political weapon in the capital.
+
+Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency. Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T180 - ACT3 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Task Varys with deniable purges of ringleaders, pay in secrecy and conscience, and retake districts before the bells."
+  __choice
+__section
+
+section__
+  @title "T180 - ACT3 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-180.jpg"
+
+  "Riverrun Broken Oath under rain throws you into a capital already cracking under ration lines and patrol fatigue. Sea wind carries brine, tar, and rot from Blackwater Bay while torch smoke hangs low over the alleys. Court clerks bring conflicting writs, septons demand visible justice, and street captains ask who will absorb the blood cost of compliance. Decisions that held the realm together in Act Two have arrived as unpaid invoices, and each faction expects to be paid first.
+
+This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow. Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the decree at the city gates, spend prestige to prove equal enforcement, and lock the Gold Cloaks to recorded law."
+  __choice
+
+  choice__
+    @target "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use Bronn and paid dock crews for night seizures, keep your seal off the violence, and reassert control by dawn."
+  __choice
+
+  choice__
+    @target "T183 - ACT3 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Outsource momentum to Essosi brokers, spend coin and future leverage, and force the board to move faster than your rivals can react."
+  __choice
+__section
+
+section__
+  @title "T181 - ACT3 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-181.jpg"
+
+  "The Kingsroad Blackmail Ledger after the feast throws you into streets where every decree is tested before the ink dries. Rainwater and ash run through the gutters, and boiled barley stings the air from relief kettles near the gates. Varys counts who listens, Bronn counts who can be broken, and dock guild factors wait to see whether your word still carries penalties. After the Watch warnings and northern concessions from Act Two, the Crownlands now demand proof that sacrifice bought actual control.
+
+If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias. This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold a public tribunal in the market square, absorb noble backlash, and stabilize the crowd with visible process."
+  __choice
+
+  choice__
+    @target "T183 - ACT3 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route pressure through cutouts and paid informers, spend secrecy and moral capital, and break opposition before sunrise."
+  __choice
+__section
+
+section__
+  @title "T182 - ACT3 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-182.jpg"
+
+  "The Red Keep Raven Intercept before the sept bell throws you into a throne district held together by ledgers, fear, and bread carts. Mud, smoke, and sour wine cling to the stones while bells mark another night without full order. Cersei weighs deniability, Joffrey demands spectacle, and the Gold Cloaks look to you for the version of the law that will be enforced tonight. You carried the frontier emergency through Act Two, but now the same shortages return as city unrest and factional leverage.
+
+Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them. If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T183 - ACT3 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms in open court, spend reputation for legal clarity, and bind commanders to enforceable quotas before witnesses."
+  __choice
+
+  choice__
+    @target "T184 - ACT3 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use deniable arrests and forged correspondence, buy short-term control with long-term distrust, and isolate rival captains quietly."
+  __choice
+
+  choice__
+    @target "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Open external credit lines at punishing terms, buy time with liquidity, and shift battlefield tempo through foreign channels."
+  __choice
+__section
+
+section__
+  @title "T183 - ACT3 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-183.jpg"
+
+  "Winterfell Night Council before witnesses throws you into a city where rumor outruns law by half a day. Wet wool, horse sweat, and lamp oil mix in the courtyards where petitioners queue behind shield walls. Merchants and minor lords crowd the gallery, each pretending loyalty while pricing your weakness by the hour. The promises made in Act Two still echo from Castle Black to the river roads, and every missed shipment turns into a political weapon in the capital.
+
+Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency. Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T184 - ACT3 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+__section
+
+section__
+  @title "T184 - ACT3 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-184.jpg"
+
+  "The Twins Debt Collection under wolf banners throws you into a capital already cracking under ration lines and patrol fatigue. Sea wind carries brine, tar, and rot from Blackwater Bay while torch smoke hangs low over the alleys. Court clerks bring conflicting writs, septons demand visible justice, and street captains ask who will absorb the blood cost of compliance. Decisions that held the realm together in Act Two have arrived as unpaid invoices, and each faction expects to be paid first.
+
+This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow. Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T186 - ACT3 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+__section
+
+section__
+  @title "T185 - ACT3 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-185.jpg"
+
+  "Harrenhal Torchlit Census at the rookery throws you into streets where every decree is tested before the ink dries. Rainwater and ash run through the gutters, and boiled barley stings the air from relief kettles near the gates. Varys counts who listens, Bronn counts who can be broken, and dock guild factors wait to see whether your word still carries penalties. After the Watch warnings and northern concessions from Act Two, the Crownlands now demand proof that sacrifice bought actual control.
+
+If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias. This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T186 - ACT3 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Task Varys with deniable purges of ringleaders, pay in secrecy and conscience, and retake districts before the bells."
+  __choice
+
+  choice__
+    @target "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring in foreign shipping syndicates to flood food lanes, pay in coin and leverage, and break the ration panic fast."
+  __choice
+__section
+
+section__
+  @title "T186 - ACT3 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-186.jpg"
+
+  "Dragonstone Blood Price at first light throws you into a throne district held together by ledgers, fear, and bread carts. Mud, smoke, and sour wine cling to the stones while bells mark another night without full order. Cersei weighs deniability, Joffrey demands spectacle, and the Gold Cloaks look to you for the version of the law that will be enforced tonight. You carried the frontier emergency through Act Two, but now the same shortages return as city unrest and factional leverage.
+
+Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them. If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the decree at the city gates, spend prestige to prove equal enforcement, and lock the Gold Cloaks to recorded law."
+  __choice
+
+  choice__
+    @target "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use Bronn and paid dock crews for night seizures, keep your seal off the violence, and reassert control by dawn."
+  __choice
+__section
+
+section__
+  @title "T187 - ACT3 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-187.jpg"
+
+  "Blackwater Bay Sealed Bargain beneath lion seals throws you into a city where rumor outruns law by half a day. Wet wool, horse sweat, and lamp oil mix in the courtyards where petitioners queue behind shield walls. Merchants and minor lords crowd the gallery, each pretending loyalty while pricing your weakness by the hour. The promises made in Act Two still echo from Castle Black to the river roads, and every missed shipment turns into a political weapon in the capital.
+
+Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency. Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold a public tribunal in the market square, absorb noble backlash, and stabilize the crowd with visible process."
+  __choice
+
+  choice__
+    @target "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route pressure through cutouts and paid informers, spend secrecy and moral capital, and break opposition before sunrise."
+  __choice
+__section
+
+section__
+  @title "T188 - ACT3 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-188.jpg"
+
+  "The Dreadfort Border Muster in crowded galleries throws you into a capital already cracking under ration lines and patrol fatigue. Sea wind carries brine, tar, and rot from Blackwater Bay while torch smoke hangs low over the alleys. Court clerks bring conflicting writs, septons demand visible justice, and street captains ask who will absorb the blood cost of compliance. Decisions that held the realm together in Act Two have arrived as unpaid invoices, and each faction expects to be paid first.
+
+This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow. Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms in open court, spend reputation for legal clarity, and bind commanders to enforceable quotas before witnesses."
+  __choice
+
+  choice__
+    @target "T190 - ACT3 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use deniable arrests and forged correspondence, buy short-term control with long-term distrust, and isolate rival captains quietly."
+  __choice
+__section
+
+section__
+  @title "T189 - ACT3 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-189.jpg"
+
+  "The Eyrie Crown Ultimatum by candle smoke throws you into streets where every decree is tested before the ink dries. Rainwater and ash run through the gutters, and boiled barley stings the air from relief kettles near the gates. Varys counts who listens, Bronn counts who can be broken, and dock guild factors wait to see whether your word still carries penalties. After the Watch warnings and northern concessions from Act Two, the Crownlands now demand proof that sacrifice bought actual control.
+
+If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias. This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T190 - ACT3 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the order under seal, accept immediate political heat, and force every allied banner to comply on record."
+  __choice
+
+  choice__
+    @target "T191 - ACT3 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a whisper campaign through compromised clerks, weaponize uncertainty, and extract concessions without public proceedings."
+  __choice
+
+  choice__
+    @target "T192 - ACT3 - The Wall War Map against old law"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring in distant partners to absorb immediate risk, spending wealth today to preserve command options tomorrow."
+  __choice
+__section
+
+section__
+  @title "T190 - ACT3 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-190.jpg"
+
+  "Pentos Harbor Ambush in river fog throws you into a throne district held together by ledgers, fear, and bread carts. Mud, smoke, and sour wine cling to the stones while bells mark another night without full order. Cersei weighs deniability, Joffrey demands spectacle, and the Gold Cloaks look to you for the version of the law that will be enforced tonight. You carried the frontier emergency through Act Two, but now the same shortages return as city unrest and factional leverage.
+
+Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them. If you over-correct with force, you risk coordinated backlash; if you delay for consensus, you surrender initiative to houses already preparing private militias.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T191 - ACT3 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call witnesses and fix duties in writing, paying in flexibility now to secure accountable control later."
+  __choice
+
+  choice__
+    @target "T192 - ACT3 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trade favors in private ledgers, coerce the weakest link first, and convert hidden fear into immediate leverage."
+  __choice
+
+  choice__
+    @target "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Contract Essosi grain escorts at harsh rates, spend treasury for immediate calm, and mortgage tomorrow for tonight."
+  __choice
+__section
+
+section__
+  @title "T191 - ACT3 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-191.jpg"
+
+  "Qarth Alliance Split near the godswood throws you into a city where rumor outruns law by half a day. Wet wool, horse sweat, and lamp oil mix in the courtyards where petitioners queue behind shield walls. Merchants and minor lords crowd the gallery, each pretending loyalty while pricing your weakness by the hour. The promises made in Act Two still echo from Castle Black to the river roads, and every missed shipment turns into a political weapon in the capital.
+
+Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency. Every order now carries two prices, one immediate and one deferred, and your rivals are betting you can only afford one of them.
+
+You can feel the margin narrowing in hard values: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. By dawn, the city will remember whichever method you chose, not the reason you chose it."
+
+  choice__
+    @target "T192 - ACT3 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce penalties in daylight, trade speed for legitimacy, and make your own name answerable with the rest."
+  __choice
+
+  choice__
+    @target "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Task Varys with deniable purges of ringleaders, pay in secrecy and conscience, and retake districts before the bells."
+  __choice
+__section
+
+section__
+  @title "T192 - ACT3 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/03-act3-crownlands/frame-192.jpg"
+
+  "The Wall War Map against old law throws you into a capital already cracking under ration lines and patrol fatigue. Sea wind carries brine, tar, and rot from Blackwater Bay while torch smoke hangs low over the alleys. Court clerks bring conflicting writs, septons demand visible justice, and street captains ask who will absorb the blood cost of compliance. Decisions that held the realm together in Act Two have arrived as unpaid invoices, and each faction expects to be paid first.
+
+This is regime enforcement in its ugliest form: if you choose transparent process, you spend time and prestige; if you choose hidden pressure, you gain speed while corroding trust in the same chain of command you need tomorrow. Crowd control politics leaves no neutral ground; public discipline stabilizes legitimacy but invites open challenge, while covert coercion quiets districts and teaches everyone that fear is the only currency.
+
+Your ledger is stripped to numbers: honor=${honor}, ruthlessness=${ruthlessness}, secrecy=${secrecy}, leverage=${leverage}, war_readiness=${war_readiness}, wealth=${wealth}, north_trust=${north_trust}, crown_trust=${crown_trust}, watch_trust=${watch_trust}, essos_ties=${essos_ties}, dragon_factor=${dragon_factor}, survival_clock=${survival_clock}. You are not deciding whether to pay, only who gets the first claim on your authority."
+
+  choice__
+    @target "T193 - ACT3 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the decree at the city gates, spend prestige to prove equal enforcement, and lock the Gold Cloaks to recorded law."
+  __choice
+
+  choice__
+    @target "T194 - ACT3 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use Bronn and paid dock crews for night seizures, keep your seal off the violence, and reassert control by dawn."
+  __choice
+__section

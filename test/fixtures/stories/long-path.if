@@ -1,6 +1,6 @@
 settings__
   @storyTitle "The Long Path: An Epic of the Waning Ring"
-  @startAt 1
+  @startAt "Prologue: The Quiet Hollow"
   @referrable false
 __settings
 

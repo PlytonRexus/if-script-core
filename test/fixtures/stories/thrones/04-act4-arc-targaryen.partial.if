@@ -1,0 +1,874 @@
+/* Thrones module: 04-act4-arc-targaryen.partial.if */
+scene__
+  @name "ACT4: Dragons and Pretenders"
+  @first "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke" "T290 - ACT4 - Pentos Harbor Ambush in river fog" "T291 - ACT4 - Qarth Alliance Split near the godswood" "T292 - ACT4 - The Wall War Map against old law" "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky" "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse" "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors" "T296 - ACT4 - Pyke Hostage Exchange at the broken tower" "T297 - ACT4 - Highgarden Siege Promise in the throne shadow" "T298 - ACT4 - Sunspear Prison Confession with steel drawn" "T299 - ACT4 - The Trident Salt Pact by the harbor chain" "T300 - ACT4 - Riverrun Broken Oath under rain" "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast" "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell" "T303 - ACT4 - Winterfell Night Council before witnesses" "T304 - ACT4 - The Twins Debt Collection under wolf banners" "T305 - ACT4 - Harrenhal Torchlit Census at the rookery" "T306 - ACT4 - Dragonstone Blood Price at first light" "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals" "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries" "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke" "T310 - ACT4 - Pentos Harbor Ambush in river fog" "T311 - ACT4 - Qarth Alliance Split near the godswood" "T312 - ACT4 - The Wall War Map against old law"
+__scene
+
+section__
+  @title "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-289.jpg"
+
+  "At a heat-hazed terrace, the air carries brass, ash, and hot stone while Daenerys Targaryen tests your posture in public and Jorah Mormont studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the eyrie crown ultimatum by candle smoke, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T290 - ACT4 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the eyrie crown ultimatum by candle smoke, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T291 - ACT4 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the eyrie crown ultimatum by candle smoke decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T290 - ACT4 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-290.jpg"
+
+  "At a storm-lit quay, the air carries tar, salt, and wet rope while Missandei tests your posture in public and Grey Worm studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on pentos harbor ambush in river fog, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T291 - ACT4 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around pentos harbor ambush in river fog, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T292 - ACT4 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the pentos harbor ambush in river fog decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for pentos harbor ambush in river fog, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T291 - ACT4 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-291.jpg"
+
+  "At a torch-crowded war tent, the air carries char, horse sweat, and lamp oil while Grey Worm tests your posture in public and Missandei studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on qarth alliance split near the godswood, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T292 - ACT4 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around qarth alliance split near the godswood, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the qarth alliance split near the godswood decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T292 - ACT4 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-292.jpg"
+
+  "At a wind-scoured rookery walk, the air carries wet vellum, smoke, and rain while Jorah Mormont tests your posture in public and Daenerys Targaryen studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the wall war map against old law, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the wall war map against old law, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the wall war map against old law decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T293 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-293.jpg"
+
+  "At a heat-hazed terrace, the air carries brass, ash, and hot stone while Daenerys Targaryen tests your posture in public and Jorah Mormont studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on castle black inheritance claim under moonless sky, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around castle black inheritance claim under moonless sky, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the castle black inheritance claim under moonless sky decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T294 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-294.jpg"
+
+  "At a storm-lit quay, the air carries tar, salt, and wet rope while Missandei tests your posture in public and Grey Worm studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on moat cailin whispered warning at the gatehouse, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around moat cailin whispered warning at the gatehouse, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T296 - ACT4 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the moat cailin whispered warning at the gatehouse decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for moat cailin whispered warning at the gatehouse, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T295 - ACT4 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-295.jpg"
+
+  "At a torch-crowded war tent, the air carries char, horse sweat, and lamp oil while Grey Worm tests your posture in public and Missandei studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on oldtown silent betrayal behind closed doors, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T296 - ACT4 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around oldtown silent betrayal behind closed doors, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the oldtown silent betrayal behind closed doors decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for oldtown silent betrayal behind closed doors, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T296 - ACT4 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-296.jpg"
+
+  "At a wind-scoured rookery walk, the air carries wet vellum, smoke, and rain while Jorah Mormont tests your posture in public and Daenerys Targaryen studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on pyke hostage exchange at the broken tower, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+The dragon question is still being framed: allies want deterrence, rivals want proof you can be constrained, and neutral houses want assurance that force will not replace law. A public process costs tempo but protects legitimacy; covert acceleration buys speed and plants the next crisis.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around pyke hostage exchange at the broken tower, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the pyke hostage exchange at the broken tower decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T297 - ACT4 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-297.jpg"
+
+  "At a heat-hazed terrace, the air carries brass, ash, and hot stone while Daenerys Targaryen tests your posture in public and Jorah Mormont studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on highgarden siege promise in the throne shadow, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around highgarden siege promise in the throne shadow, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T299 - ACT4 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the highgarden siege promise in the throne shadow decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T298 - ACT4 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-298.jpg"
+
+  "At a storm-lit quay, the air carries tar, salt, and wet rope while Missandei tests your posture in public and Grey Worm studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on sunspear prison confession with steel drawn, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T299 - ACT4 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around sunspear prison confession with steel drawn, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T300 - ACT4 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the sunspear prison confession with steel drawn decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T299 - ACT4 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-299.jpg"
+
+  "At a torch-crowded war tent, the air carries char, horse sweat, and lamp oil while Grey Worm tests your posture in public and Missandei studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the trident salt pact by the harbor chain, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T300 - ACT4 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the trident salt pact by the harbor chain, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the trident salt pact by the harbor chain decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T300 - ACT4 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-300.jpg"
+
+  "At a wind-scoured rookery walk, the air carries wet vellum, smoke, and rain while Jorah Mormont tests your posture in public and Daenerys Targaryen studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on riverrun broken oath under rain, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around riverrun broken oath under rain, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the riverrun broken oath under rain decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T303 - ACT4 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for riverrun broken oath under rain, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T301 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-301.jpg"
+
+  "At a heat-hazed terrace, the air carries brass, ash, and hot stone while Daenerys Targaryen tests your posture in public and Jorah Mormont studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the kingsroad blackmail ledger after the feast, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the kingsroad blackmail ledger after the feast, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T303 - ACT4 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the kingsroad blackmail ledger after the feast decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T304 - ACT4 - The Twins Debt Collection under wolf banners"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for the kingsroad blackmail ledger after the feast, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T302 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-302.jpg"
+
+  "At a storm-lit quay, the air carries tar, salt, and wet rope while Missandei tests your posture in public and Grey Worm studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the red keep raven intercept before the sept bell, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T303 - ACT4 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the red keep raven intercept before the sept bell, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T304 - ACT4 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the red keep raven intercept before the sept bell decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T303 - ACT4 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-303.jpg"
+
+  "At a torch-crowded war tent, the air carries char, horse sweat, and lamp oil while Grey Worm tests your posture in public and Missandei studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on winterfell night council before witnesses, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T304 - ACT4 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around winterfell night council before witnesses, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T305 - ACT4 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the winterfell night council before witnesses decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T304 - ACT4 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-304.jpg"
+
+  "At a wind-scoured rookery walk, the air carries wet vellum, smoke, and rain while Jorah Mormont tests your posture in public and Daenerys Targaryen studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the twins debt collection under wolf banners, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+By the middle of this arc, pretender propaganda, debt pressure, and battlefield logistics are entangled. Every hidden concession improves short-run control and worsens future trust. Every visible concession narrows your options and keeps your coalition governable.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T305 - ACT4 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the twins debt collection under wolf banners, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T306 - ACT4 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the twins debt collection under wolf banners decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T305 - ACT4 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-305.jpg"
+
+  "At a heat-hazed terrace, the air carries brass, ash, and hot stone while Daenerys Targaryen tests your posture in public and Jorah Mormont studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on harrenhal torchlit census at the rookery, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T306 - ACT4 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around harrenhal torchlit census at the rookery, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the harrenhal torchlit census at the rookery decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for harrenhal torchlit census at the rookery, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T306 - ACT4 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-306.jpg"
+
+  "At a storm-lit quay, the air carries tar, salt, and wet rope while Missandei tests your posture in public and Grey Worm studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on dragonstone blood price at first light, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around dragonstone blood price at first light, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the dragonstone blood price at first light decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T307 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-307.jpg"
+
+  "At a torch-crowded war tent, the air carries char, horse sweat, and lamp oil while Grey Worm tests your posture in public and Missandei studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on blackwater bay sealed bargain beneath lion seals, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around blackwater bay sealed bargain beneath lion seals, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the blackwater bay sealed bargain beneath lion seals decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T308 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-308.jpg"
+
+  "At a wind-scoured rookery walk, the air carries wet vellum, smoke, and rain while Jorah Mormont tests your posture in public and Daenerys Targaryen studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the dreadfort border muster in crowded galleries, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the dreadfort border muster in crowded galleries, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T310 - ACT4 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the dreadfort border muster in crowded galleries decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T311 - ACT4 - Qarth Alliance Split near the godswood"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for the dreadfort border muster in crowded galleries, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T309 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-309.jpg"
+
+  "At a heat-hazed terrace, the air carries brass, ash, and hot stone while Daenerys Targaryen tests your posture in public and Jorah Mormont studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the eyrie crown ultimatum by candle smoke, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T310 - ACT4 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the eyrie crown ultimatum by candle smoke, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T311 - ACT4 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the eyrie crown ultimatum by candle smoke decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T310 - ACT4 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-310.jpg"
+
+  "At a storm-lit quay, the air carries tar, salt, and wet rope while Missandei tests your posture in public and Grey Worm studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on pentos harbor ambush in river fog, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T311 - ACT4 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around pentos harbor ambush in river fog, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T312 - ACT4 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the pentos harbor ambush in river fog decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+
+  choice__
+    @target "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury on external escorts and specialist handlers for pentos harbor ambush in river fog, externalizing pressure at long-term dependency cost."
+  __choice
+__section
+
+section__
+  @title "T311 - ACT4 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-311.jpg"
+
+  "At a torch-crowded war tent, the air carries char, horse sweat, and lamp oil while Grey Worm tests your posture in public and Missandei studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on qarth alliance split near the godswood, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T312 - ACT4 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around qarth alliance split near the godswood, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the qarth alliance split near the godswood decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section
+
+section__
+  @title "T312 - ACT4 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-arc-targaryen/frame-312.jpg"
+
+  "At a wind-scoured rookery walk, the air carries wet vellum, smoke, and rain while Jorah Mormont tests your posture in public and Daenerys Targaryen studies each pause for weakness. Reports from Essos bargains and Iron Islands enforcement now converge on the wall war map against old law, and every faction is judging whether House Valehart can command dragon power without becoming captive to it.
+
+Act 4 is closing, and every earlier compromise now arrives as a bill. Dragon leverage can still create decisive momentum, but only if command coherence survives contact with fear, rumor, and scarcity. The choice is no longer clean victory versus clean conscience; it is survivable structure versus brittle dominance.
+
+Torchlight jumps across wet stone as messengers wait for sealed orders. What you decide here sets the political tone of the next council: either authority that can be audited, or authority that must be feared."
+
+  choice__
+    @target "T313 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed ruling around the wall war map against old law, accept immediate cost, and keep authority legible to allies and rivals alike."
+  __choice
+
+  choice__
+    @target "T314 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push the the wall war map against old law decision through covert pressure and selective favors, gaining tempo while increasing legitimacy risk."
+  __choice
+__section

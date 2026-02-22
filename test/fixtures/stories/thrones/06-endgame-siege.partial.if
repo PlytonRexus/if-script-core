@@ -1,0 +1,412 @@
+/* Thrones module: 06-endgame-siege.partial.if */
+scene__
+  @name "ACT6: Siege Lines"
+  @first "T397 - ACT6 - Highgarden Siege Promise in the throne shadow"
+  @sections "T397 - ACT6 - Highgarden Siege Promise in the throne shadow" "T398 - ACT6 - Sunspear Prison Confession with steel drawn" "T399 - ACT6 - The Trident Salt Pact by the harbor chain" "T400 - ACT6 - Riverrun Broken Oath under rain" "T401 - ACT6 - The Kingsroad Blackmail Ledger after the feast" "T402 - ACT6 - The Red Keep Raven Intercept before the sept bell" "T403 - ACT6 - Winterfell Night Council before witnesses" "T404 - ACT6 - The Twins Debt Collection under wolf banners" "T405 - ACT6 - Harrenhal Torchlit Census at the rookery" "T406 - ACT6 - Dragonstone Blood Price at first light" "T407 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals" "T408 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+__scene
+
+section__
+  @title "T397 - ACT6 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-397.jpg"
+
+  "From Highgarden's signal tower you can smell trampled grapes, blood, and wet rope from the counterweight engines below. The alliance terms you forged at Pyke have barely dried, and already banners are testing their loopholes. Jaime Lannister demands immediate assault discipline. Cersei demands proof that any restraint serves power rather than sentiment.
+
+This is where war becomes infrastructure math. Every breach attempt burns timber you cannot replace and men you cannot retrain before winter. If you impose public siege law, supply officers can plan, civilians may survive, and impatient lords accuse you of weakness. If you rule through fear and blackmail, walls may fall faster while granaries, wells, and roads are destroyed beyond recovery.
+
+Watchfires ripple across the fields like a second constellation. You are no longer choosing who wins the argument. You are choosing what remains standing after victory."
+
+  choice__
+    @target "T398 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a formal siege code before all commanders, prioritizing controlled assaults and protected supply corridors."
+  __choice
+
+  choice__
+    @target "T399 - ACT6 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Trigger deniable sabotage and coercive arrests to break resistance fast, accepting higher structural ruin."
+  __choice
+__section
+
+section__
+  @title "T398 - ACT6 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-398.jpg"
+
+  "Sunspear's prison granary is half rubble, and the air tastes of lime dust and old spice. A captured quartermaster confesses that three mercenary companies were paid to switch sides once your siege ladders committed. Sandor Clegane wants the confession nailed to the gate as warning. Arya Stark wants names verified before you execute the wrong men and seed a vendetta.
+
+Desertion has spread because soldiers think command is improvised and punishment is random. Public adjudication can restore discipline and reassure northern units already wary of southern bargains. Covert punishment can end the conspiracy in one night, but every hidden killing deepens paranoia inside your own ranks. In siege war, fear can hold a line for a day and shatter it the next.
+
+Outside, rain hisses on hot stones from yesterday's firepots. You need obedience before dawn, not another rumor."
+
+  choice__
+    @target "T399 - ACT6 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Try the captured quartermaster in a witnessed war hearing, binding all banners to one disciplinary standard."
+  __choice
+
+  choice__
+    @target "T400 - ACT6 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Extract names under seal and run targeted midnight removals, trading due process for rapid internal control."
+  __choice
+__section
+
+section__
+  @title "T399 - ACT6 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-399.jpg"
+
+  "At the Trident harbor chain, barrels of salt fish split in the mud while refugees crowd the seawall for ration marks. Arya Stark points to families already eating boiled leather. Sandor Clegane points to smugglers cutting private deals under your sentry towers. The same chain that keeps enemy ships out is choking your own supply flow.
+
+Hostage politics and food politics have merged: whichever district you feed first becomes tomorrow's loyal district. A public ration compact can prevent riots and preserve your legitimacy, but it locks you into painful priorities. A covert seizure campaign can refill military stores quickly while turning black-market captains into enemies with nothing left to lose. You can also spend heavily and pull emergency imports through Essos, buying time at steep strategic debt.
+
+Salt spray stings your eyes as another grain cart tips into the tide. Siege failure now will come from hunger before steel."
+
+  choice__
+    @target "T400 - ACT6 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Declare a public wartime ration charter with witnessed quotas, accepting backlash to prevent mass panic."
+  __choice
+
+  choice__
+    @target "T401 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Seize smuggler stockpiles under sealed orders and redirect food to the army through covert enforcement."
+  __choice
+
+  choice__
+    @target "T402 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Pay Essosi brokers for emergency grain convoys and escorts, trading treasury and autonomy for immediate relief."
+  __choice
+__section
+
+section__
+  @title "T400 - ACT6 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-400.jpg"
+
+  "Riverrun's outer wall is split open, and rain carries soot down the stones in black streaks. Cersei Lannister insists on immediate exploitation before defenders regroup. Jaime Lannister warns that storming now will collapse the inner culverts and flood the same roads your siege train depends on. Engineers shout over thunder while scribes fight to keep wet parchments legible.
+
+Forged ravens are already circulating claims that you authorized unrestricted pillage. If you answer publicly, you can restore command legitimacy and preserve what infrastructure remains. If you answer through covert pressure, you may drive momentum through the breach while binding your victory to fear, reprisals, and ruined transit routes. A foreign acceleration option can force tempo, but only by mortgaging future independence.
+
+Each hammer strike on the broken gate echoes through the courtyard like a countdown. What you choose here determines whether this campaign ends in consolidation or in ash."
+
+  choice__
+    @target "T401 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a witnessed breach protocol and lawful assault timetable, preserving roads and command legitimacy."
+  __choice
+
+  choice__
+    @target "T402 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Push a covert shock assault through selected captains, prioritizing speed over transparency and civilian trust."
+  __choice
+
+  choice__
+    @target "T403 - ACT6 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund foreign engineers and fast escorts to force the breach schedule, paying coin for tempo and deniability."
+  __choice
+__section
+
+section__
+  @title "T401 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-401.jpg"
+
+  "At the Kingsroad gatehouse, rain runs through arrow slits and hisses on the braziers. A seized blackmail ledger lies open on a barrel, naming captains who sold convoy routes, bridge timings, and hospital stores during the siege. Jaime wants public punishments before dawn to restore discipline. Cersei wants the names used quietly, one by one, until every wavering banner can be steered by fear.
+
+You no longer have the luxury of abstract justice. The road network feeding your armies is held together by damaged bridges, frightened quartermasters, and men who think betrayal might still pay. If you prosecute openly, you may repair legitimacy and trigger immediate defections. If you weaponize the ledger in secret, you keep tempo and poison the settlement to come.
+
+Charcoal marks on the wall track wagons lost this week. The count is high enough that one more mistake becomes famine, not inconvenience."
+
+  choice__
+    @target "T402 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the Kingsroad ledger before the host and convene open courts, trading speed for lawful accountability."
+  __choice
+
+  choice__
+    @target "T403 - ACT6 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Keep the ledger sealed and coerce implicated captains into service, buying compliance at the cost of future trust."
+  __choice
+__section
+
+section__
+  @title "T402 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-402.jpg"
+
+  "The Red Keep signal tower reeks of sweat, wet wool, and burning pitch. Intercepted ravens prove three commanders are circulating forged orders under your seal, redirecting rations away from wounded districts toward private stockpiles. Sandor wants the forgers hanged where everyone can see. Arya warns that if you miss one courier, the false chain of command survives and mutates.
+
+A fractured alliance can survive heavy losses; it cannot survive competing orders in a siege zone. Publicly reasserting authority will steady frightened companies and expose which houses refuse discipline. Breaking the network in secret can end the immediate sabotage faster, while leaving no shared story of what happened and why. Both paths cost blood. Only one can be called legitimate in daylight.
+
+Below the tower, smiths hammer bent helmets back into shape. You need soldiers to trust the next order enough to move when the horn sounds."
+
+  choice__
+    @target "T403 - ACT6 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the intercepted ravens in open muster and reissue command protocol under witnessed seals."
+  __choice
+
+  choice__
+    @target "T404 - ACT6 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run a covert courier purge and disinformation sweep, restoring control through deniable fear tactics."
+  __choice
+__section
+
+section__
+  @title "T403 - ACT6 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-403.jpg"
+
+  "Winterfell's war annex has become a grain court. Damp sacks line the walls, and exhausted envoys stand ankle-deep in chaff while arguing over distribution rights. Arya speaks for villages that fed your armies and now face empty bins. Sandor speaks for front-line companies who will mutiny if ration cuts hit again before the next assault.
+
+Neutral houses arrived at dawn offering fresh carts, mules, and labor in exchange for tax exemptions after the war. Accepting publicly can keep the supply chain alive and embed new legal debt into the settlement. Forcing quiet concessions can deliver immediate stores while teaching every bystander that logistics are controlled by threat, not policy. In a terminal siege, reputation becomes a supply commodity.
+
+You run your thumb across a tally board scored with knife marks for each lost wagon. There are no spare lines left."
+
+  choice__
+    @target "T404 - ACT6 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set a public winter ration compact with audited quotas, accepting political pain to preserve cohesion."
+  __choice
+
+  choice__
+    @target "T405 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Compel reluctant suppliers through sealed threats and side debts, protecting short-term throughput over trust."
+  __choice
+__section
+
+section__
+  @title "T404 - ACT6 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-404.jpg"
+
+  "At the Twins crossing, the river is jammed with wrecked ferries and bodies snagged against pilings. Cersei's envoys demand immediate toll rights for houses that backed your siege. Jaime counters that reopening private toll law now will strangle your own retreat lanes and bankrupt refugee convoys before winter closes. Civilians pack the far bank under torn banners, waiting for your ruling.
+
+Desertion reports show the same pattern everywhere: units abandon posts when they believe command protects elites first and soldiers last. If you impose public crossing law, you may keep roads open and provoke wealthy allies who expected private reward. If you settle the crossing through hidden force, traffic moves tonight and resentment calcifies into long-term insurgency along the river corridors.
+
+The bridge timbers groan with every overloaded cart. Control of this span is no longer tactical. It is constitutional."
+
+  choice__
+    @target "T405 - ACT6 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a public emergency crossing statute and suspend private toll claims, prioritizing open logistics."
+  __choice
+
+  choice__
+    @target "T406 - ACT6 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Broker a covert toll cartel with selected lords, securing compliance now through intimidation and favors."
+  __choice
+__section
+
+section__
+  @title "T405 - ACT6 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-405.jpg"
+
+  "Harrenhal's ruined ward has been turned into a census yard where scribes count survivors beside pyres that still smoke. Jaime wants transparent accounting to prove your coalition can govern after destruction. Cersei wants the numbers filtered, arguing that open casualty truth will collapse morale and invite opportunistic rebellions.
+
+Hostage exchanges, ration rights, and militia service all now depend on these figures. Publish them honestly and you gain moral authority at the price of immediate panic. Manipulate them and you can steer labor and grain with precision while rotting any claim to lawful settlement. A foreign relief option exists, but it deepens debt to partners who will demand policy concessions in peacetime.
+
+Ash settles on the wax tablets as fast as scribes can brush it away. Governance has become arithmetic under fire."
+
+  choice__
+    @target "T406 - ACT6 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the full siege census and ration liabilities, forcing recovery policy into open record."
+  __choice
+
+  choice__
+    @target "T407 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Classify the worst losses and redistribute burdens through secret quotas, preserving control over the narrative."
+  __choice
+
+  choice__
+    @target "T408 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Buy emergency grain and labor contracts from Essosi brokers to offset losses, paying coin for rapid stabilization."
+  __choice
+__section
+
+section__
+  @title "T406 - ACT6 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-406.jpg"
+
+  "Dragonstone's lower battery reeks of burned oil and wet slate. Sandor presents intercepted dispatches showing rival claimants planning simultaneous proclamations the moment your siege line slackens. Arya reports that courier edits already transformed yesterday's orders into calls for indiscriminate reprisals. The information war is now moving faster than your infantry.
+
+If you respond in public law, you can reassert command unity and tie battlefield conduct to written limits. If you answer through covert retaliation, you may silence saboteurs before they spread and train every commander to fear hidden punishment more than policy. A third route buys external lift capacity and couriers, accelerating tempo while binding your regime to offshore obligations.
+
+Lightning flashes across the bay and reveals ships loading in total silence. This is the hinge between siege command and succession command."
+
+  choice__
+    @target "T407 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Promulgate a formal siege-command ordinance with witnessed penalties, prioritizing legitimacy over surprise."
+  __choice
+
+  choice__
+    @target "T408 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize deniable reprisals against courier networks, crushing dissent quickly through covert coercion."
+  __choice
+
+  choice__
+    @target "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund fast foreign couriers and marine escorts, spending treasury to seize initiative before rivals consolidate."
+  __choice
+__section
+
+section__
+  @title "T407 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-407.jpg"
+
+  "At Blackwater Bay, the lion-sealed truce packet arrives with blood still on the cord. Arya says the offer buys time to consolidate hospitals and reopen mills. Sandor says it buys your enemies one quiet week to rearm behind polite language. Quartermasters meanwhile report that loyalist districts are now eating two thirds rations and blaming your command for every empty bowl.
+
+A visible legal settlement can preserve cohesion and keep crown institutions functioning into succession talks. A hidden counter-deal can fracture enemy command while pretending to negotiate in good faith, making later peace almost impossible. You can feel the act changing under your boots: this is no longer purely military theater, but pre-coronation positioning with siege weapons still firing.
+
+The bay smells of brine, tar, and funeral smoke. Whatever promise you sign tonight becomes evidence in the history everyone survives to write."
+
+  choice__
+    @target "T408 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sign and announce a monitored truce framework, accepting slower gains to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Feign truce compliance while funding covert defections in enemy ranks, prioritizing leverage over legitimacy."
+  __choice
+__section
+
+section__
+  @title "T408 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-siege/frame-408.jpg"
+
+  "The Dreadfort border galleries are packed with mercenary agents, wounded officers, and envoys counting your losses out loud. Cersei's bloc demands one final punitive campaign before settlement talks. Jaime's bloc argues that one more scorched advance will shatter bridges and depots needed to hold any crown afterward. A sellsword captain quietly offers his company's loyalty to whichever side pays first.
+
+You stand at the final siege node before throne calculus begins. Publicly prioritizing secured corridors and demobilization can preserve survivable governance while enraging those who still expect vengeance. Quietly authorizing deniable reprisals can satisfy hardliners and drag fresh blood-feuds into the succession phase. Either choice determines the political terrain of the next act more than the battlefield terrain behind you.
+
+Snow starts falling in wet clumps across the muster yard. The season has made its decision; now you make yours."
+
+  choice__
+    @target "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Order a public transition from punitive raids to secured corridors, preserving forces for succession settlement."
+  __choice
+
+  choice__
+    @target "T410 - ACT6 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sanction covert border reprisals to break rivals before negotiations, accepting long-tail retaliation risk."
+  __choice
+__section

@@ -413,8 +413,8 @@ choice__
 __choice
 ```
 
-`@input` choices require a non-empty value before selection.  
-Use `[[input]]` (or `{{input}}`) inside choice text to place the field inline wherever you want.  
+`@input` choices require a non-empty value before selection.
+Use `[[input]]` (or `{{input}}`) inside choice text to place the field inline wherever you want.
 If no placeholder token is present, the runtime appends the input field at the end of the choice text.
 
 **Action choice** - Perform an action when clicked:

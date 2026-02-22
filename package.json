@@ -32,11 +32,15 @@
     "test:check": "npm run test:cli:check",
     "test:save": "npm run test:runtime:save",
     "test:builtins": "npm run test:core:builtins",
-    "build":"cross-env NODE_ENV=production webpack --config config/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
     "fix": "npx standard --fix",
     "debug": "node tmp/test.mjs",
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-    "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js"
+    "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js",
+    "build:pages:thrones": "node scripts/build-thrones-pages.mjs",
+    "story:thrones:scaffold": "node test/harness/story-tools/generate-thrones-scaffold.mjs",
+    "story:thrones:map": "node test/harness/story-tools/build-thrones-branch-map.mjs",
+    "test:story:thrones": "node test/harness/story-tools/validate-thrones-graph.mjs"
   },
   "repository": {
     "type": "git",

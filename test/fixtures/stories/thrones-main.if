@@ -1,0 +1,72 @@
+settings__
+  @storyTitle "Thrones"
+  @startAt "T001 - ACT0 - Oath at Riverrun"
+  @maxIterations 20000
+  @maxCallDepth 2000
+  @theme "cinematic"
+  @presentationMode "cinematic"
+  @allowUndo true
+  @showTurn true
+  @animations true
+  @autoSave true
+  @statusBar honor true "Honor"
+  @statusBar ruthlessness true "Ruthlessness"
+  @statusBar secrecy true "Secrecy"
+  @statusBar leverage true "Leverage"
+  @statusBar war_readiness true "War Readiness"
+  @statusBar survival_clock true "Survival"
+__settings
+
+honor = 7
+ruthlessness = 4
+secrecy = 5
+leverage = 6
+war_readiness = 5
+wealth = 7
+north_trust = 6
+crown_trust = 5
+watch_trust = 4
+essos_ties = 3
+dragon_factor = 2
+survival_clock = 18
+house_name = "Valehart"
+player_title = "Heir of House Valehart"
+
+function__ clampStat(value, minValue, maxValue) {
+  if__ (value < minValue) {
+    return__ minValue
+  }
+  if__ (value > maxValue) {
+    return__ maxValue
+  }
+  return__ value
+}
+
+function__ pressureIndex() {
+  return__ (ruthlessness + secrecy + leverage + dragon_factor) - honor
+}
+
+function__ allianceIndex() {
+  return__ north_trust + crown_trust + watch_trust + essos_ties
+}
+
+import__"thrones/00-prologue-core.partial.if"__import
+import__"thrones/01-act1-kingsroad.partial.if"__import
+import__"thrones/01-act1-court.partial.if"__import
+import__"thrones/01-act1-arc-stark-lannister.partial.if"__import
+import__"thrones/02-act2-riverlands.partial.if"__import
+import__"thrones/02-act2-north.partial.if"__import
+import__"thrones/02-act2-arc-nightwatch.partial.if"__import
+import__"thrones/03-act3-crownlands.partial.if"__import
+import__"thrones/03-act3-stormlands.partial.if"__import
+import__"thrones/03-act3-arc-varys-littlefinger.partial.if"__import
+import__"thrones/04-act4-essos.partial.if"__import
+import__"thrones/04-act4-iron-islands.partial.if"__import
+import__"thrones/04-act4-arc-targaryen.partial.if"__import
+import__"thrones/05-act5-war-council.partial.if"__import
+import__"thrones/05-act5-battlefront.partial.if"__import
+import__"thrones/05-act5-arc-sacrifice.partial.if"__import
+import__"thrones/06-endgame-allegiances.partial.if"__import
+import__"thrones/06-endgame-siege.partial.if"__import
+import__"thrones/06-endgame-throne.partial.if"__import
+import__"thrones/06-endgame-ashes.partial.if"__import

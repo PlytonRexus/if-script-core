@@ -4,7 +4,7 @@ const BUILTIN_THEME_MANIFESTS = [
     name: 'Literary Default',
     version: '1.0.0',
     runtimeApi: '2.x',
-    entryCss: '/src/runtime/themes/literary-default.css',
+    entryCss: 'src/runtime/themes/literary-default.css',
     renderers: ['literary', 'cinematic'],
     tokens: {},
     features: {
@@ -18,7 +18,7 @@ const BUILTIN_THEME_MANIFESTS = [
     name: 'Cinematic',
     version: '1.0.0',
     runtimeApi: '2.x',
-    entryCss: '/src/runtime/themes/cinematic.css',
+    entryCss: 'src/runtime/themes/cinematic.css',
     renderers: ['cinematic', 'literary'],
     tokens: {},
     features: {

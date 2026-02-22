@@ -1,0 +1,810 @@
+/* Thrones module: 02-act2-riverlands.partial.if */
+scene__
+  @name "ACT2: Riverlands Burning"
+  @first "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @sections "T097 - ACT2 - Highgarden Siege Promise in the throne shadow" "T098 - ACT2 - Sunspear Prison Confession with steel drawn" "T099 - ACT2 - The Trident Salt Pact by the harbor chain" "T100 - ACT2 - Riverrun Broken Oath under rain" "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast" "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell" "T103 - ACT2 - Winterfell Night Council before witnesses" "T104 - ACT2 - The Twins Debt Collection under wolf banners" "T105 - ACT2 - Harrenhal Torchlit Census at the rookery" "T106 - ACT2 - Dragonstone Blood Price at first light" "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals" "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries" "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke" "T110 - ACT2 - Pentos Harbor Ambush in river fog" "T111 - ACT2 - Qarth Alliance Split near the godswood" "T112 - ACT2 - The Wall War Map against old law" "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky" "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse" "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors" "T116 - ACT2 - Pyke Hostage Exchange at the broken tower" "T117 - ACT2 - Highgarden Siege Promise in the throne shadow" "T118 - ACT2 - Sunspear Prison Confession with steel drawn" "T119 - ACT2 - The Trident Salt Pact by the harbor chain" "T120 - ACT2 - Riverrun Broken Oath under rain"
+__scene
+
+section__
+  @title "T097 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-097.jpg"
+
+  "The millstream outside Riverrun runs red with clay and ash where burned farms have collapsed into the water. In your war tent, Edmure Tully spreads casualty tallies beside a letter from Highgarden promising grain that still has not crossed the Mander. Sandor Clegane leans against a post and says plainly that promises do not feed children, only carts do.
+
+Civilian camps now outnumber trained spears along your route. If you ration by law, some villages survive and others riot. If you seize stores by force, you can keep the front supplied while turning every peasant track into an insurgent trail. The Riverlands are no longer a rear area; they are the battlefield that decides how long your banners stay upright.
+
+You hear millstones grinding where no grain remains to grind. The next order you sign will decide whether Valehart is remembered as a steward of a starving region or one more predator in armor."
+
+  choice__
+    @target "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish emergency ration law at Riverrun, assign shares by witness roll, and accept slower operations to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T099 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confiscate private granaries under sealed warrants at night, hide the shortfall, and buy time with fear and deniable coercion."
+  __choice
+__section
+
+section__
+  @title "T098 - ACT2 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-098.jpg"
+
+  "At a burial field outside Stoney Sept, a captured courier from Sunspear confesses under guard that raiders were paid to torch Riverlands storehouses and blame northern men. Arya Stark watches him without blinking, hand on dagger. Beric Dondarrion studies the same confession for who financed it, not who swung the torch.
+
+Desertion grows because your soldiers think command has no coherent enemy, only rumor and retaliation. Expose this confession and you may calm your own lines while provoking Dornish retaliation. Bury it, and the false narrative spreads another day through taverns, septs, and levy camps. Every hour of uncertainty costs food, discipline, and trust in your chain of command.
+
+Mud sucks at your boots while septas stack fresh shrouds nearby. You can choose clean process, quiet expedience, or foreign speed, but not a path without civilian cost."
+
+  choice__
+    @target "T099 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the confession before sworn captains, open a formal inquiry, and trade speed for credibility among exhausted troops."
+  __choice
+
+  choice__
+    @target "T100 - ACT2 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Interrogate the courier through covert handlers, extract financier names fast, and suppress the method to preserve control."
+  __choice
+
+  choice__
+    @target "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Pay an Essosi broker to verify the money trail offshore, burning coin for rapid proof with dangerous foreign entanglement."
+  __choice
+__section
+
+section__
+  @title "T099 - ACT2 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-099.jpg"
+
+  "Beneath a cracked sept ceiling on the Trident, merchants and ferrymen demand a salt compact before they release river barges to your armies. Beric says their demands are extortion dressed as neutrality. Arya points out that hungry camps have already started stealing from villages downstream, and theft will become slaughter within days.
+
+A salt pact could stabilize routes for civilians and troops alike, but only if enforced against houses that think agreements are optional. Refuse, and you keep your pride while disease spreads through camps eating unsalted meat. Accept privately skewed terms, and rival lords will accuse Valehart of profiting from famine. This is logistics as legitimacy: whoever controls salt now controls who lives through winter.
+
+The river stinks of algae and dead horses. You must choose whether the pact is a public law, a private weapon, or another hidden debt."
+
+  choice__
+    @target "T100 - ACT2 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Ratify a river-salt charter before clergy and captains, fixing rates in public and forcing compliance under visible law."
+  __choice
+
+  choice__
+    @target "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Cut secret exemptions for key bargemasters, secure priority shipments, and spend trust to gain immediate distribution leverage."
+  __choice
+__section
+
+section__
+  @title "T100 - ACT2 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-100.jpg"
+
+  "Rain hammers the timber walls of Riverrun while Edmure produces sworn testimony that two allied houses broke oath and diverted relief wagons to their private keeps. Sandor wants heads on pikes by supper. Your stewards want hearings, because half those houses still guard bridges your wounded must cross.
+
+Rumor outruns every raven now. If you act publicly, you may restore order but also expose just how fragile your coalition has become. If you settle this in shadow, supplies might move again tomorrow, yet every honest bannerman will wonder what oath means under Valehart command. In a collapsing region, trust is not virtue. It is transport capacity.
+
+Wet straw, horse blood, and lamp oil fill the hall as you decide whether broken oath is judged in the open, buried in fear, or outsourced to foreign pressure."
+
+  choice__
+    @target "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Convene a floodcourt at Riverrun, name oath-breakers publicly, and reassert lawful command despite short-term coalition strain."
+  __choice
+
+  choice__
+    @target "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use sealed confessions and private hostages to force compliance quietly, restoring flow fast while corroding public trust."
+  __choice
+
+  choice__
+    @target "T103 - ACT2 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Contract foreign convoy guards to bypass disloyal bridges, spending coin for speed and escalating outside influence inland."
+  __choice
+__section
+
+section__
+  @title "T101 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-101.jpg"
+
+  "In a leaking ferry hold, your scribes spread a blackmail ledger recovered from raiders who were paid by men wearing allied colors. Names, debts, affairs, and missing tribute are all there, enough dirt to discipline half the Riverlands if you choose to use it. Edmure warns that mass exposure could fracture every alliance left standing. Sandor says fracture is better than betrayal.
+
+Refugee caravans queue on both banks, waiting for escort orders you cannot issue until the command structure stops lying to itself. Publish the ledger and you gain moral clarity with immediate political fire. Keep it secret and wield it privately, and you preserve tactical control while normalizing coercion as governance.
+
+The ferry creaks under the weight of grain sacks and wounded men. This is not a question of innocence. It is a question of what kind of order you can enforce before winter closes the crossings."
+
+  choice__
+    @target "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Enter the ledger into open tribunal records, force sworn answers from implicated lords, and pay the instability cost up front."
+  __choice
+
+  choice__
+    @target "T103 - ACT2 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Keep the ledger classified, blackmail key offenders into obedience, and exchange long-term legitimacy for short-term control."
+  __choice
+__section
+
+section__
+  @title "T102 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-102.jpg"
+
+  "A raven from the Red Keep reaches your field command with orders stamped urgent: redirect Riverlands grain to royal garrisons near the capital, immediately. The same hour, your medics report fever spreading through displaced families who depend on those stores. Arya calls the order theft from the dying. Beric calls it a test of whether the Crown still sees the Riverlands as people or inventory.
+
+One banner house already threatens to break from your command if you obey King's Landing. Ignore the order and crown trust may collapse when you need warrants, coin, or legitimacy. Comply fully and villages that survived fire may die of hunger and flux before moon's turn.
+
+Rain drips through the mill roof onto the sealed letter. You cannot satisfy every oath now. You can only decide which institution you betray first and why."
+
+  choice__
+    @target "T103 - ACT2 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the crown order before assembled captains and execute a documented compromise, preserving lawful posture under protest."
+  __choice
+
+  choice__
+    @target "T104 - ACT2 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Delay compliance through forged routing notices, feed the capital partial shipments, and retain leverage through secrecy."
+  __choice
+__section
+
+section__
+  @title "T103 - ACT2 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-103.jpg"
+
+  "By torchlight in a shattered sept yard, a Winterfell council rider arrives with urgent terms: the North will keep supplying men only if Riverlands relief routes are secured for commonfolk first, armies second. Beric supports the demand as moral necessity. Arya says necessity is what starving children call survival.
+
+Neutral minor lords now demand guarantees before they loan carts, mules, or bridge crews. Promise too much publicly and you risk failing everyone at once. Hedge privately and you may keep operations moving while northern trust erodes, one quiet compromise at a time. In this phase of war, governance is not speeches. It is who gets bread before dawn.
+
+Snowmelt wind cuts through wet canvas as scribes wait on your seal. Whatever you promise here will be measured against corpses, not rhetoric."
+
+  choice__
+    @target "T104 - ACT2 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sign the Winterfell relief accord before witnesses, prioritize civilians by decree, and accept immediate military friction for trust."
+  __choice
+
+  choice__
+    @target "T105 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Offer northern envoys selective compliance in private, preserve flexibility now, and spend secrecy to avoid open rupture."
+  __choice
+__section
+
+section__
+  @title "T104 - ACT2 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-104.jpg"
+
+  "At the Twins, Frey stewards present a new toll list swollen with war surcharges: one fee for grain, one for wounded, one for every cart carrying refugees. Edmure calls it extortion of the desperate. Sandor points at the bridge towers and reminds everyone that outrage does not lower gates.
+
+Your own captains are cracking. Desertion has risen because men believe command cannot guarantee safe passage, only arguments about who is to blame. Pay publicly and you keep civilians moving at ruinous cost. Coerce privately and you might secure passage faster while proving every whisper about Valehart brutality true. Either route changes who will stand beside you in the next campaign.
+
+River mist coils around the pilings as bodies drift in the current below. The crossing is open for now. It will not stay that way once you answer."
+
+  choice__
+    @target "T105 - ACT2 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Challenge the Twins toll schedule in open witness court, negotiate lawful caps, and risk delay to defend public legitimacy."
+  __choice
+
+  choice__
+    @target "T106 - ACT2 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Detain key Frey factors off record, force a quiet passage concession, and trade reputation for immediate corridor control."
+  __choice
+__section
+
+section__
+  @title "T105 - ACT2 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-105.jpg"
+
+  "Back at Harrenhal, your torchlit census lists whole villages as 'displaced' instead of taxed, a polite word for families living in ditches beside burned orchards. Edmure wants those families folded into formal relief rolls so rival houses cannot deny they exist. Sandor says rolls do not stop steel, and armed men are already pulling children from lines to ransom them back.
+
+Hostage exchanges have replaced market days in half the Riverlands. Each delay means another body part in a courier satchel, another desperate lord willing to break oath for one more day with his heir alive. If you run this census publicly, you create accountability but reveal every weakness in your logistics. If you falsify the books to hide panic, you keep control now and plant the seeds of a larger revolt later.
+
+Ravens crowd the rafters as scribes wait for your seal. Counting people has become deciding who is protected and who is expendable."
+
+  choice__
+    @target "T106 - ACT2 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the Harrenhal relief census before sworn witnesses, lock hostage accounting into law, and accept the political fallout."
+  __choice
+
+  choice__
+    @target "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Maintain two census ledgers, conceal true hostage totals, and use selective disclosure to keep rival houses obedient."
+  __choice
+
+  choice__
+    @target "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Purchase Essosi mediators to broker urgent hostage releases, spending foreign coin channels to accelerate fragile deals."
+  __choice
+__section
+
+section__
+  @title "T106 - ACT2 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-106.jpg"
+
+  "A Dragonstone collector arrives by river skiff with a revised levy: blood-price now includes houses that sheltered refugees without prior warrant. Arya calls it cruelty wrapped in seal wax. Beric notes that refusal will be framed as rebellion by whichever faction wins the next week in the capital.
+
+Forged raven copies are already circulating, each with different totals, each engineered to make you look either weak or tyrannical. If you enforce the levy in daylight, you may stabilize rule of law while pushing civilians into starvation. If you skim or redirect collections in secret, you preserve lives today and risk total collapse of crown trust tomorrow.
+
+The ferry deck shudders beneath sacks of damp grain and wounded men. One order from you decides whether taxation remains government or becomes banditry with paperwork."
+
+  choice__
+    @target "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Enforce the Dragonstone levy by public writ, document exemptions in open record, and bear the unrest that follows."
+  __choice
+
+  choice__
+    @target "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Quietly under-collect from famine zones, hide the shortfall in transit ledgers, and trade legitimacy for immediate survival."
+  __choice
+__section
+
+section__
+  @title "T107 - ACT2 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-107.jpg"
+
+  "Blackwater agents return with a sealed bargain: they can reopen salt and lamp-oil shipments if Valehart grants priority docking to crown-affiliated merchants and 'forgets' several wartime seizures. Beric warns that signing rewards looters. Arya warns that without oil, the infirmary fires go dark before dawn.
+
+Your quartermasters are now allocating food and medicine by route security, which means politics decides who receives treatment first. Sign openly and you may keep the sick alive while appearing captured by crown money. Sign in secret and you keep tactical flexibility while giving every rival reason to call you a liar when terms leak.
+
+Storm wind rattles broken shutters as negotiators wait. This is less a trade pact than a choice about who controls the Riverlands' last functioning supply arteries."
+
+  choice__
+    @target "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table the Blackwater pact in open council, bind merchants to enforceable clauses, and absorb near-term disruption for legitimacy."
+  __choice
+
+  choice__
+    @target "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sign a hidden side-letter with Blackwater brokers, secure priority fuel and salt, and hold the secret as leverage."
+  __choice
+__section
+
+section__
+  @title "T108 - ACT2 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-108.jpg"
+
+  "Scouts report a Dreadfort muster drifting south under cover of refugee escorts, spears hidden beneath wool cloaks. Edmure wants to challenge them publicly before they cross deeper into Riverlands bridges. Sandor argues a public challenge only gives Bolton captains time to prepare legal excuses and sharper knives.
+
+A key banner house now demands proof you can keep the roads secure before they release their reserve grain. If you move by strict writ and herald, you preserve the appearance of order while risking surprise raids. If you stage covert strikes against suspected infiltrators, you may prevent slaughter and still be branded a butcher by sunset gossip.
+
+Rainwater pools in fresh graves while septas count new names. Frontier security and civilian confidence are now the same problem."
+
+  choice__
+    @target "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a formal border challenge under witness seal, force identified units to declare arms, and preserve lawful standing."
+  __choice
+
+  choice__
+    @target "T110 - ACT2 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Deploy covert riders to seize infiltrator guides before dawn, break the column quietly, and deny involvement publicly."
+  __choice
+__section
+
+section__
+  @title "T109 - ACT2 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-109.jpg"
+
+  "Arryn stewards send a candle-smoked ultimatum: mountain toll waivers continue only if Riverlands caravans accept new inspection rights by Vale gates. Edmure hears extortion. Sandor hears opportunity, because inspections can also become choke points against enemy couriers.
+
+Neutral houses hover, waiting to sell loyalty to whichever side guarantees safer passage this week. Accept the ultimatum publicly and you risk appearing subordinate to the Vale while preserving movement. Undermine it covertly and trade routes may freeze when frightened teamsters refuse the passes. Every wagon halted on paper is three villages hungry by nightfall.
+
+Wax drips on the map as your clerks wait. This decree will decide whether the Riverlands remain a corridor or fracture into armed toll islands."
+
+  choice__
+    @target "T110 - ACT2 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Contest the Eyrie terms in public correspondence, negotiate inspection limits on record, and absorb time loss for precedent."
+  __choice
+
+  choice__
+    @target "T111 - ACT2 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spread deniable rumors of forged Vale writs, force renegotiation through confusion, and gain leverage at trust's expense."
+  __choice
+__section
+
+section__
+  @title "T110 - ACT2 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-110.jpg"
+
+  "Near a fogged river quay, your scouts uncover a Pentoshi ambush contract offering coin for each Valehart convoy burned before moon's turn. Arya wants immediate executions of captured middlemen. Beric insists some are coerced ferrymasters who can still map the full network.
+
+Desertion climbs because your men believe raiders always know convoy timing. A public crackdown can restore confidence but may scare neutral boatmen into abandoning routes. A covert purge could dismantle the ambush ring faster while feeding rumors that Valehart disappears witnesses in the night. Either way, supply speed and political legitimacy are now tied to how you handle one wet dock and a handful of terrified prisoners.
+
+Lantern light shakes on black water as interrogators await instruction. Delay means another burned wagon by dawn."
+
+  choice__
+    @target "T111 - ACT2 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold an open quay inquest, sentence proven ambushers by law, and use visibility to steady convoy morale."
+  __choice
+
+  choice__
+    @target "T112 - ACT2 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run a covert sweep through bribed ferrymasters, dismantle the ambush chain quietly, and conceal methods to retain control."
+  __choice
+
+  choice__
+    @target "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hire rival Essosi captains as bounty hunters, spending foreign coin for rapid retaliation and deeper offshore dependence."
+  __choice
+__section
+
+section__
+  @title "T111 - ACT2 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-111.jpg"
+
+  "Qartheen financiers arrive with polished contracts offering bridge repair teams, salted stores, and advance coin in exchange for collateral rights over seized farmlands. Beric says taking the money keeps civilians alive this month. Arya says selling future harvests to foreigners is surrender with better handwriting.
+
+Refugee caravans choke both riverbanks, and hostage exchanges keep collapsing whenever one side runs out of food. Publicly accepting Qarth's terms may buy immediate stability but ignite backlash from houses already accusing you of foreign dependence. Refusing leaves you cleaner and poorer, with no guarantee the crossings hold through early frost.
+
+The ferry ropes groan under overloaded carts while scribes copy clauses by torchlight. Your signature decides whether survival is funded by sovereignty or mortgaged against it."
+
+  choice__
+    @target "T112 - ACT2 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit the Qartheen contract to open levy vote, distribute terms transparently, and bind allies to a visible collective gamble."
+  __choice
+
+  choice__
+    @target "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Create a private financing channel with Qarth, hide collateral concessions, and gain liquidity while risking future backlash."
+  __choice
+__section
+
+section__
+  @title "T112 - ACT2 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-112.jpg"
+
+  "A Wall dispatch reaches Riverlands command with maps marked in charcoal: raiding bands north of the Neck, garrisons underfed, watchtowers undermanned. Edmure argues the Riverlands cannot spare another cart. Sandor says if the Wall breaks, every argument about carts becomes a funeral list.
+
+Ravens carrying edited fragments of the dispatch are already circulating, each version crafted to support one faction's panic or denial. Publicly committing aid south of your own crisis may steady long-term alliances and cripple short-term readiness. Quietly filtering aid through covert channels preserves flexibility while making your intent appear opportunistic.
+
+Broken men warm their hands over damp fires outside your tent. The realm expects you to choose between nearby suffering and distant catastrophe, as if either can be ignored."
+
+  choice__
+    @target "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a formal aid decree under old law, allocate men and grain openly, and accept immediate Riverlands strain for strategic duty."
+  __choice
+
+  choice__
+    @target "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route support north through deniable intermediaries, preserve public reserves, and keep leverage by controlling information."
+  __choice
+
+  choice__
+    @target "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Pay foreign river crews to move emergency stores north by night, buying speed with coin and external dependency."
+  __choice
+__section
+
+section__
+  @title "T113 - ACT2 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-113.jpg"
+
+  "At moonless camp near the Green Fork, a Watch rider produces a legal claim that Castle Black convoys can seize any Riverlands grain marked for frontier defense. Edmure says the claim is real but politically lethal in famine conditions. Sandor says legal disputes are meaningless if starving militias start cutting carts open on the road.
+
+Your quartermasters now ration by route reliability, which means loyalty can be measured in sacks. Grant the claim publicly and you strengthen long-war survival while provoking near-term unrest. Contest it and you keep local peace for a week while weakening obligations the realm may need when winter fully sets in.
+
+The night smells of wet canvas and turned soil from fresh graves. Your ruling will decide whether duty to distant walls outranks bread in nearby hands."
+
+  choice__
+    @target "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Affirm the Castle Black claim in open decree, allocate guarded convoy shares, and protect lawful duty despite local anger."
+  __choice
+
+  choice__
+    @target "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Quietly narrow the claim through forged route exemptions, keep grain local, and retain leverage by controlling paperwork."
+  __choice
+__section
+
+section__
+  @title "T114 - ACT2 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-114.jpg"
+
+  "A Moat Cailin warning reaches your command: bridge pylons north of the Neck are being sabotaged by men posing as relief guards. Arya pushes for immediate public accusation. Beric urges restraint until names are certain, warning that one false claim could split the last cooperative houses.
+
+A major banner threatens to withdraw grain teams unless you prove who is behind the sabotage before dawn. Public process could hold the coalition together if evidence survives scrutiny. Covert retaliation could stop more sabotage tonight while handing rivals proof that Valehart governs through secret violence. In a starving theater, infrastructure is legitimacy.
+
+River mist crawls through the sept doors while engineers await escort orders. Every hour lost here fractures both roads and alliances."
+
+  choice__
+    @target "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a public sabotage inquiry, lock suspected crossings under witness guard, and prioritize legitimacy over immediate vengeance."
+  __choice
+
+  choice__
+    @target "T116 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Plant deniable blame among rival retainers, trigger internal purges, and regain route control through covert pressure."
+  __choice
+__section
+
+section__
+  @title "T115 - ACT2 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-115.jpg"
+
+  "An Oldtown courier arrives under false sigils and confesses that certain maester channels are selling your relief-route schedules to raiders for hard coin. Beric wants the network exposed at once. Arya insists any leak in daylight will scatter the brokers before you can close the trap.
+
+Neutral houses now demand payment before sharing their own scouts, citing repeated convoy hits as proof your command leaks like a cracked cask. A public purge could restore confidence if convictions are clear. A secret sweep could preserve momentum while deepening suspicion that legal process is theater. Either way, information security has become a food-security issue.
+
+Burned wheat and lamp smoke hang over the floodplain. The next dispatch you authorize determines whether trust is rebuilt in court or enforced in shadows."
+
+  choice__
+    @target "T116 - ACT2 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring the Oldtown leaks to open tribunal, compel testimony under oath, and rebuild trust through visible accountability."
+  __choice
+
+  choice__
+    @target "T117 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run covert arrests through loyal riders, close the leak chain quietly, and preserve tempo by sacrificing transparency."
+  __choice
+
+  choice__
+    @target "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Purchase Essosi cipher talent to harden convoy signaling overnight, trading coin and sovereignty for rapid security."
+  __choice
+__section
+
+section__
+  @title "T116 - ACT2 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-116.jpg"
+
+  "A Pyke intermediary demands exchange terms for river hostages seized in 'independent raids' the Ironborn refuse to officially acknowledge. Edmure wants a lawful exchange before witnesses. Sandor says paying reavers with coin or prisoners invites ten more kidnappings before harvest.
+
+Refugee escorts are deserting because they no longer trust command to protect noncombatants from capture. Public negotiations could steady morale if they succeed, yet failure in the open would shatter confidence. Covert recovery operations may free captives quickly while leaving your own men unsure which rules still apply.
+
+The ferry timbers creak under chained prisoners and trembling families. You can buy order through law or through fear, but not both without cost."
+
+  choice__
+    @target "T117 - ACT2 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Negotiate the Pyke exchange under open flags, bind terms by witness oath, and accept concession costs for lawful stability."
+  __choice
+
+  choice__
+    @target "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize a deniable raid to recover hostages and punish brokers, gaining speed while normalizing covert escalation."
+  __choice
+__section
+
+section__
+  @title "T117 - ACT2 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-117.jpg"
+
+  "Highgarden finally sends wagons, but only on condition their quartermasters supervise distribution and claim first share for allied cavalry. Edmure argues accepting helps everyone survive another fortnight. Sandor argues surrendering distribution control means surrendering political control of every town line.
+
+Hostage politics are now intertwined with food drops: captors release prisoners only if their villages receive grain priority. Open acceptance of Highgarden terms may reduce immediate deaths while branding Valehart as dependent and weak. Secretly rerouting cargo keeps your authority intact and may trigger Tyrell retaliation when shortages expose the diversion.
+
+Thunder rolls over smashed mills as both sides count barrels in the dark. These wagons carry bread, leverage, and the next round of accusations."
+
+  choice__
+    @target "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Accept Highgarden supervision in formal charter, publish allocation rules, and preserve civilian flow at political cost."
+  __choice
+
+  choice__
+    @target "T119 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Divert selected Highgarden loads through covert routes, retain distribution control, and prepare for retaliation when discovered."
+  __choice
+__section
+
+section__
+  @title "T118 - ACT2 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-118.jpg"
+
+  "Another Sunspear confession reaches camp, this one naming Riverlands notables who took Dornish coin to sabotage relief roads while denouncing foreign influence in public. Arya wants the names posted at every crossroads. Beric cautions that half the list may be bait designed to start civil reprisals.
+
+Edited versions of the confession are already in circulation, each one accusing a different faction. A public release can reclaim narrative control if evidence holds. A covert verification phase can prevent false purges but may look like a cover-up when hunger crowds the courts. In this climate, delayed truth can be as deadly as lies.
+
+Vigil lamps flicker over rows of marked graves. Your next move decides whether justice is immediate and risky, or careful and politically expensive."
+
+  choice__
+    @target "T119 - ACT2 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the confession under seal, convene immediate hearings, and risk faction shock to defend transparent justice."
+  __choice
+
+  choice__
+    @target "T120 - ACT2 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Verify the named traitors through covert watchers first, delay public action, and preserve control over escalation timing."
+  __choice
+__section
+
+section__
+  @title "T119 - ACT2 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-119.jpg"
+
+  "At Trident dock stores, salt quotas collapse after several tax riders are found dead with forged warrants pinned to their cloaks. Beric argues for a transparent crackdown before looting spreads. Arya argues the forgeries came from inside at least one allied keep, and public accusations without proof could detonate the coalition.
+
+Quartermasters now assign food by secured district, effectively turning policy into a map of who commands fear. If you respond in open court, you may restore trust while exposing just how compromised your apparatus is. If you settle accounts through covert blackmail, supplies may flow again tomorrow with legality reduced to a prop.
+
+River wind rattles stained sept glass while carts queue for salt. The Riverlands can survive hypocrisy for a season, but not disorder."
+
+  choice__
+    @target "T120 - ACT2 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Order a public tax-forgery tribunal, suspend suspect warrants, and rebuild legitimacy through visible legal force."
+  __choice
+
+  choice__
+    @target "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use recovered ledgers to blackmail complicit tax riders into compliance, restoring flow quietly at moral and political cost."
+  __choice
+
+  choice__
+    @target "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring in Essosi auditors and guarded convoys to stabilize salt flow fast, paying coin for speed and external oversight."
+  __choice
+__section
+
+section__
+  @title "T120 - ACT2 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/02-act2-riverlands/frame-120.jpg"
+
+  "Riverrun's floodplain is a sheet of mud and burned grain when a coalition of minor lords demands proof that Valehart can enforce one coherent ration policy across their lands. Edmure presses for a formal oath renewal at dawn. Sandor warns that one more public ceremony without immediate security will look like weakness dressed as law.
+
+Several houses threaten to fracture if you do not decide now between strict public allocation, covert coercion, or foreign-backed acceleration. Delay is no longer neutral; every postponed order becomes another village choosing its own militia and tolls. The act closes with no clean outcomes left, only clearer costs.
+
+You taste smoke, river salt, and rain as scribes set final orders. What you choose here determines how Act 2 hands its wounds to the Northward campaign."
+
+  choice__
+    @target "T121 - ACT2 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Renew the Riverrun ration oath in open assembly, lock all houses to enforceable quotas, and stake survival on public legitimacy."
+  __choice
+
+  choice__
+    @target "T122 - ACT2 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Broker secret compliance pacts with wavering lords overnight, preserve short-term control, and carry hidden debt into Act 2's next front."
+  __choice
+
+  choice__
+    @target "T123 - ACT2 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund emergency Essosi convoy escorts to force immediate delivery, accepting foreign leverage to prevent total route collapse."
+  __choice
+__section
