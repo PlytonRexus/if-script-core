@@ -13,12 +13,79 @@ async function preview (argv) {
   const port = argv.port || 3001
   const theme = argv.theme || 'parchment'
   const clients = new Set()
+  const fileWatchers = new Map()
+  let reloadTimer = null
+  const ifscript = new IFScript('STREAM')
+  await ifscript.init()
+
+  const normalizeWatchPath = (filePath) => {
+    if (!filePath || typeof filePath !== 'string') return null
+    let normalized = filePath
+    if (/^\/[A-Za-z]:\//.test(normalized)) normalized = normalized.slice(1)
+    return path.normalize(normalized)
+  }
+
+  const emitParsed = (parsed) => {
+    const payload = JSON.stringify(parsed)
+    for (const client of clients) {
+      client.write(`data: ${payload}\n\n`)
+    }
+  }
+
+  const emitError = (message) => {
+    for (const client of clients) {
+      client.write(`event: error\ndata: ${JSON.stringify(message)}\n\n`)
+    }
+  }
+
+  const syncFileWatchers = () => {
+    const watchedPaths = new Set([normalizeWatchPath(inputFile)])
+    const deps = ifscript.moduleLoader ? ifscript.moduleLoader.getCacheStats().paths : []
+    deps.forEach(dep => {
+      const normalized = normalizeWatchPath(dep)
+      if (normalized) watchedPaths.add(normalized)
+    })
+
+    for (const [watchedPath, watcher] of fileWatchers.entries()) {
+      if (!watchedPaths.has(watchedPath)) {
+        watcher.close()
+        fileWatchers.delete(watchedPath)
+      }
+    }
+
+    for (const watchedPath of watchedPaths.values()) {
+      if (fileWatchers.has(watchedPath)) continue
+      try {
+        const watcher = fs.watch(watchedPath, { persistent: false }, () => scheduleReload())
+        fileWatchers.set(watchedPath, watcher)
+      } catch (err) {
+        console.warn(`Preview watch error for ${watchedPath}: ${err.message}`)
+      }
+    }
+  }
 
   async function parseStory () {
     const content = await fs.promises.readFile(inputFile, 'utf-8')
-    const ifscript = new IFScript('STREAM')
-    await ifscript.init()
+    if (ifscript.moduleLoader) ifscript.moduleLoader.clearCache()
     return await ifscript.parse(content, inputFile)
+  }
+
+  async function reloadAndBroadcast () {
+    try {
+      const parsed = await parseStory()
+      syncFileWatchers()
+      emitParsed(parsed)
+    } catch (err) {
+      emitError(err.message)
+    }
+  }
+
+  function scheduleReload () {
+    if (reloadTimer) clearTimeout(reloadTimer)
+    reloadTimer = setTimeout(() => {
+      reloadTimer = null
+      reloadAndBroadcast()
+    }, 50)
   }
 
   const server = http.createServer(async (req, res) => {
@@ -87,20 +154,7 @@ async function preview (argv) {
     res.end(html)
   })
 
-  // Watch the story file for changes
-  fs.watch(inputFile, { persistent: false }, async () => {
-    try {
-      const parsed = await parseStory()
-      const payload = JSON.stringify(parsed)
-      for (const client of clients) {
-        client.write(`data: ${payload}\n\n`)
-      }
-    } catch (err) {
-      for (const client of clients) {
-        client.write(`event: error\ndata: ${JSON.stringify(err.message)}\n\n`)
-      }
-    }
-  })
+  syncFileWatchers()
 
   server.listen(port, '127.0.0.1', () => {
     const serverUrl = `http://localhost:${port}`
