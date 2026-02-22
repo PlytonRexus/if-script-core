@@ -46,6 +46,9 @@ class IFSectionView extends BaseHTMLElement {
           line-height: 1.7;
           font-size: clamp(17px, 2.2vw, 21px);
         }
+        if-choice-list {
+          font-size: clamp(16px, 2.2vw, 21px);
+        }
       </style>
       <article class="section" part="section">
         <h1 class="title" part="section-title">${title}</h1>

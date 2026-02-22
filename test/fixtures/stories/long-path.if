@@ -55,9 +55,9 @@ __section
 
 section__
   @title "3 — The Hollow Gate"
+  gold = gold + 5
 
   "At the gate a small figure presses a parcel into your hands — the handwriting is old-fashioned and cramped."
-  gold = gold + 5
   "You find 5 gold coins and a folded sketch of a mountain with a red mark on its face."
 
   choice__
