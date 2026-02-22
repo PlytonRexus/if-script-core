@@ -15,6 +15,9 @@ import {
 } from './test-utils.mjs'
 import SectionRef from '../src/models/SectionRef.mjs'
 import SceneRef from '../src/models/SceneRef.mjs'
+import Interpreter from '../src/interpreters/custom/Interpreter.mjs'
+import Run from '../src/interpreters/custom/Run.mjs'
+import State from '../src/interpreters/custom/State.mjs'
 
 // ===== Basic Features =====
 
@@ -592,6 +595,52 @@ __section`
   assert(operators.includes('!='), 'Should have inequality')
 }
 
+async function testUnaryOperatorsParse () {
+  const storyText = `section__
+  a = -10
+  b = !false
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+  const section = parsed.sections[0]
+  const assignments = section.text.filter(item => item.type === 'assign')
+
+  const unaryMinus = assignments.find(item => item.left.symbol === 'a')?.right
+  const unaryNot = assignments.find(item => item.left.symbol === 'b')?.right
+
+  assertDefined(unaryMinus, 'Unary minus assignment should exist')
+  assertDefined(unaryNot, 'Unary not assignment should exist')
+  assertEqual(unaryMinus.type, 'unary', 'Unary minus should parse as unary action')
+  assertEqual(unaryMinus.operator, '-', 'Unary minus operator should be "-"')
+  assertEqual(unaryNot.type, 'unary', 'Unary not should parse as unary action')
+  assertEqual(unaryNot.operator, '!', 'Unary not operator should be "!"')
+}
+
+async function testUnaryOperatorsRuntime () {
+  const storyText = `section__
+  a = -10
+  b = !false
+  c = !0
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText)
+  const section = parsed.sections[0]
+
+  const run = new Run(parsed, new State())
+  const interpreter = new Interpreter(run)
+  section.text
+    .filter(item => item.type === 'assign')
+    .forEach(item => interpreter.resolveAction(item, false, section))
+
+  assertEqual(run.state.variables.a, -10, 'Unary minus should evaluate to negative number')
+  assertEqual(run.state.variables.b, true, 'Unary !false should evaluate to true')
+  assertEqual(run.state.variables.c, true, 'Unary !0 should evaluate to true')
+}
+
 // ===== Test Existing Example Files =====
 
 async function testArraysExampleFile () {
@@ -696,6 +745,8 @@ export async function runRegressionTests () {
     { name: 'Operators: Boolean (&&, ||, !)', fn: testBooleanOperators },
     { name: 'Operators: Arithmetic (+, -, *, /, %)', fn: testArithmeticOperators },
     { name: 'Operators: Comparison (>, <, ==, !=)', fn: testComparisonOperators },
+    { name: 'Operators: Unary parse (-, !)', fn: testUnaryOperatorsParse },
+    { name: 'Operators: Unary runtime (-, !)', fn: testUnaryOperatorsRuntime },
     { name: 'Example files: arrays-test.if', fn: testArraysExampleFile },
     { name: 'Example files: loops-test.if', fn: testLoopsExampleFile },
     { name: 'Example files: functions-test.if', fn: testFunctionsExampleFile },

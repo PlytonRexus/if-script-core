@@ -546,6 +546,11 @@ class Interpreter {
         const left = this.resolveAction(action.left, false, section)
         const right = this.resolveAction(action.right, false, section)
         return this.utils.solveAction(action, left, right)
+      } else if (action.type === 'unary') {
+        const operand = this.resolveAction(action.left, false, section)
+        if (action.operator === '-') return -operand
+        if (action.operator === '!') return !operand
+        throw new InterpreterException(`Unsupported unary operator: ${action.operator}`)
       } else if (action.type === 'return') {
         // Return statement - handled in resolveLoop and callFunction
         return null
