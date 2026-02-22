@@ -72,7 +72,7 @@ ifs compile -i my-story.if -o story.json
 
 ### Current Syntax (v0.5.8+)
 
-Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls) · [Troubleshooting](#troubleshooting)
+Jump to: [Quick Reference](#quick-reference) · [Story Settings](#story-settings) · [Sections](#section-syntax) · [Choices](#choices) · [Conditionals](#conditionals) · [Arrays](#arrays) · [While Loops](#loops) · [Functions](#functions) · [Built-in Functions](#built-in-functions) · [Imports](#imports) · [Author Pitfalls](#author-pitfalls) · [Troubleshooting](#troubleshooting)
 
 ### [Quick Reference](#quick-reference)
 
@@ -553,6 +553,22 @@ function__ fibonacci(n) {
 fib10 = fibonacci(10)
 "Fibonacci(10) = ${fib10}"
 ```
+
+### [Built-in Functions](#built-in-functions)
+
+IF-Script includes builtin helper functions you can call like normal functions:
+```
+roll = randomInt(1, 6)
+today = formatDate(now())
+count = len(inventory)
+```
+
+Full reference (signatures, return types, examples, edge behavior):
+- [`docs/builtins.md`](docs/builtins.md)
+
+Name-resolution note:
+- Builtin names are resolved before user-defined functions.
+- Avoid naming custom functions like `len`, `range`, `randomInt`, etc. unless you intend to call the builtin.
 
 ### [Safety Limits](#safety-limits)
 
