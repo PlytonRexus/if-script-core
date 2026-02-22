@@ -189,6 +189,46 @@ async function testTrim () {
   assertEqual(BUILTINS.trim('  hello  '), 'hello', 'trim should remove edge whitespace')
 }
 
+async function testReplace () {
+  assertEqual(BUILTINS.replace('a-b-c', '-', ':'), 'a:b:c', 'replace should replace all matching segments')
+  assertEqual(BUILTINS.replace('hello', '', 'x'), 'hello', 'replace with empty search should keep original string')
+}
+
+async function testSlice () {
+  assertEqual(BUILTINS.slice('abcdef', 1, 4), 'bcd', 'slice should support start/end bounds')
+  assertEqual(BUILTINS.slice('abcdef', -2), 'ef', 'slice should support negative start indexes')
+}
+
+async function testStartsWith () {
+  assertEqual(BUILTINS.startsWith('veracruz', 'vera'), true, 'startsWith should detect matching prefixes')
+  assertEqual(BUILTINS.startsWith('veracruz', 'cruz'), false, 'startsWith should reject non-prefixes')
+}
+
+async function testEndsWith () {
+  assertEqual(BUILTINS.endsWith('veracruz', 'cruz'), true, 'endsWith should detect matching suffixes')
+  assertEqual(BUILTINS.endsWith('veracruz', 'vera'), false, 'endsWith should reject non-suffixes')
+}
+
+async function testCapitalize () {
+  assertEqual(BUILTINS.capitalize('reporter'), 'Reporter', 'capitalize should uppercase first character')
+  assertEqual(BUILTINS.capitalize(''), '', 'capitalize should preserve empty string')
+}
+
+async function testSlugify () {
+  assertEqual(BUILTINS.slugify('A Stranger in Veracruz'), 'a-stranger-in-veracruz', 'slugify should normalize words and separators')
+  assertEqual(BUILTINS.slugify('  value@@@with%%%noise  '), 'value-with-noise', 'slugify should strip unsupported characters')
+}
+
+async function testStripTags () {
+  assertEqual(BUILTINS.stripTags('x <b>bold</b> y'), 'x bold y', 'stripTags should remove HTML tags')
+  assertEqual(BUILTINS.stripTags('<script>alert(1)</script>safe'), ' safe', 'stripTags should remove script blocks')
+}
+
+async function testSanitize () {
+  assertEqual(BUILTINS.sanitize(' <b>Elena</b>\n\t '), 'Elena', 'sanitize should remove tags and collapse whitespace')
+  assertEqual(BUILTINS.sanitize('ok<script>alert(1)</script>done'), 'ok done', 'sanitize should remove script blocks')
+}
+
 async function testSplit () {
   assertArrayEqual(BUILTINS.split('a,b,c', ','), ['a', 'b', 'c'], 'split should tokenize string by separator')
 }
@@ -388,6 +428,14 @@ export async function runBuiltinsTests () {
     { name: 'upper(x)', fn: testUpper },
     { name: 'lower(x)', fn: testLower },
     { name: 'trim(x)', fn: testTrim },
+    { name: 'replace(x, search, replacement)', fn: testReplace },
+    { name: 'slice(x, start, end)', fn: testSlice },
+    { name: 'startsWith(x, prefix)', fn: testStartsWith },
+    { name: 'endsWith(x, suffix)', fn: testEndsWith },
+    { name: 'capitalize(x)', fn: testCapitalize },
+    { name: 'slugify(x)', fn: testSlugify },
+    { name: 'stripTags(x)', fn: testStripTags },
+    { name: 'sanitize(x)', fn: testSanitize },
     { name: 'split(x, sep)', fn: testSplit },
     { name: 'join(arr, sep)', fn: testJoin },
     { name: 'type(x)', fn: testType },

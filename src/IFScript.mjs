@@ -56,6 +56,11 @@ class IFScript {
     this.Interpreter = Interpreter.default
     this.Parser = Parser
   }
+
+  async createRuntime (options = {}) {
+    const RuntimeManager = await import('./runtime/session/RuntimeManager.mjs')
+    return new RuntimeManager.default(options)
+  }
 }
 
 export default IFScript

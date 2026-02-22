@@ -1,0 +1,14 @@
+{
+  "id": "cinematic",
+  "name": "Cinematic",
+  "version": "1.0.0",
+  "runtimeApi": "2.x",
+  "entryCss": "/src/runtime/themes/cinematic.css",
+  "renderers": ["cinematic", "literary"],
+  "tokens": {},
+  "features": {
+    "supportsBackdrop": true,
+    "supportsHighMotion": true
+  },
+  "author": "IF-Script"
+}

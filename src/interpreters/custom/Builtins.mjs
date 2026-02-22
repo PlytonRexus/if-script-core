@@ -17,6 +17,34 @@ function numberOrZero (value) {
   return Number.isFinite(n) ? n : 0
 }
 
+function toIntegerOrUndefined (value) {
+  if (value === undefined || value === null || value === '') return undefined
+  const n = Number(value)
+  if (!Number.isFinite(n) || Number.isNaN(n)) return undefined
+  return Math.trunc(n)
+}
+
+function stripTags (value) {
+  return String(value)
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]*>/g, '')
+}
+
+function sanitizeString (value) {
+  const withoutControls = String(value).replace(/[\u0000-\u001F\u007F]/g, '')
+  const withoutTags = stripTags(withoutControls)
+  return withoutTags.replace(/\s+/g, ' ').trim()
+}
+
+function slugifyString (value) {
+  const base = sanitizeString(value).toLowerCase()
+  const slug = base
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  return slug
+}
+
 function resetBuiltinState () {
   seededState = 1
 }
@@ -68,6 +96,28 @@ const BUILTINS = {
   upper: (x) => String(x).toUpperCase(),
   lower: (x) => String(x).toLowerCase(),
   trim: (x) => String(x).trim(),
+  replace: (x, search, replacement) => {
+    const source = String(x)
+    const searchText = String(search)
+    if (searchText === '') return source
+    return source.split(searchText).join(String(replacement === undefined ? '' : replacement))
+  },
+  slice: (x, start, end) => {
+    const source = String(x)
+    const from = toIntegerOrUndefined(start)
+    const to = toIntegerOrUndefined(end)
+    return source.slice(from === undefined ? 0 : from, to)
+  },
+  startsWith: (x, prefix) => String(x).startsWith(String(prefix)),
+  endsWith: (x, suffix) => String(x).endsWith(String(suffix)),
+  capitalize: (x) => {
+    const source = String(x)
+    if (source.length === 0) return ''
+    return source.charAt(0).toUpperCase() + source.slice(1)
+  },
+  slugify: (x) => slugifyString(x),
+  stripTags: (x) => stripTags(x),
+  sanitize: (x) => sanitizeString(x),
   split: (x, sep) => String(x).split(sep === undefined ? ',' : sep),
   join: (arr, sep) => Array.isArray(arr) ? arr.join(sep === undefined ? ',' : sep) : '',
 

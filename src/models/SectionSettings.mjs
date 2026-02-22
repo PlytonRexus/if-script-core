@@ -23,8 +23,26 @@ class SectionSettings extends Settings {
     }
 
     super(input)
-    this.timer = input.timer
-    this.title = input.title
+    if (typeof input.timer === 'number') {
+      this.timer = { timer: input.timer, target: null }
+    } else if (input.timer && typeof input.timer === 'object') {
+      this.timer = {
+        timer: typeof input.timer.timer === 'number' ? input.timer.timer : 0,
+        target: Object.prototype.hasOwnProperty.call(input.timer, 'target') ? input.timer.target : null
+      }
+    } else {
+      this.timer = { timer: 0, target: null }
+    }
+    this.title = input.title || ''
+    this.ambience = input.ambience || null
+    this.ambienceVolume = typeof input.ambienceVolume === 'number' ? input.ambienceVolume : 1
+    this.ambienceLoop = input.ambienceLoop !== undefined ? input.ambienceLoop : true
+    this.ambienceFadeInMs = typeof input.ambienceFadeInMs === 'number' ? input.ambienceFadeInMs : 0
+    this.ambienceFadeOutMs = typeof input.ambienceFadeOutMs === 'number' ? input.ambienceFadeOutMs : 0
+    this.sfx = Array.isArray(input.sfx) ? input.sfx : []
+    this.backdrop = input.backdrop || null
+    this.shot = input.shot || 'medium'
+    this.textPacing = input.textPacing || 'instant'
     this.variables = {}
   }
 

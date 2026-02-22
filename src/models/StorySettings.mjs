@@ -32,7 +32,8 @@ class StorySettings extends Settings {
       allowUndo,
       showTurn,
       animations,
-      autoSave
+      autoSave,
+      presentationMode
     } = this.input
     this.startAt = this.input.startAt !== undefined ? this.input.startAt : 0
     this.fullTimer = this.input.fullTimer || null
@@ -45,6 +46,9 @@ class StorySettings extends Settings {
     this.showTurn = showTurn !== undefined ? showTurn : true
     this.animations = animations !== undefined ? animations : true
     this.autoSave = autoSave !== undefined ? autoSave : false
+    this.presentationMode = typeof presentationMode === 'string' && presentationMode.trim() !== ''
+      ? presentationMode
+      : 'literary'
   }
 
   static fromJson(json) {

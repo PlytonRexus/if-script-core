@@ -52,6 +52,14 @@ Deterministic RNG notes:
 | `upper(x)` | uppercase `string` | `upper("abc") // "ABC"` |
 | `lower(x)` | lowercase `string` | `lower("ABC") // "abc"` |
 | `trim(x)` | trimmed `string` | `trim(" a ") // "a"` |
+| `replace(x, search, replacement)` | replaced `string` | `replace("a-b", "-", ":") // "a:b"` |
+| `slice(x, start, end?)` | sliced `string` | `slice("abcdef", 1, 4) // "bcd"` |
+| `startsWith(x, prefix)` | `boolean` | `startsWith("veracruz", "vera")` |
+| `endsWith(x, suffix)` | `boolean` | `endsWith("veracruz", "cruz")` |
+| `capitalize(x)` | capitalized `string` | `capitalize("reporter") // "Reporter"` |
+| `slugify(x)` | URL-safe slug `string` | `slugify("A Stranger in Veracruz") // "a-stranger-in-veracruz"` |
+| `stripTags(x)` | tag-stripped `string` | `stripTags("<b>name</b>") // "name"` |
+| `sanitize(x)` | cleaned single-line `string` | `sanitize(" <b>Elena</b> ") // "Elena"` |
 | `split(x, sep)` | `array<string>` | `split("a,b", ",") // ["a","b"]` |
 | `join(arr, sep)` | `string` | `join(["a","b"], "-") // "a-b"` |
 

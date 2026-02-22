@@ -59,7 +59,10 @@ class Choice {
         targetType,
         when,
         once,
-        disabledText
+        disabledText,
+        choiceSfx,
+        focusSfx,
+        choiceStyle
       } = json
       this.mode = mode
       this.text = text
@@ -74,13 +77,16 @@ class Choice {
       this.when = when || null
       this.once = once === true
       this.disabledText = typeof disabledText === 'string' ? disabledText : null
+      this.choiceSfx = typeof choiceSfx === 'string' ? choiceSfx : null
+      this.focusSfx = typeof focusSfx === 'string' ? focusSfx : null
+      this.choiceStyle = typeof choiceStyle === 'string' ? choiceStyle : 'default'
 
       this.actions = (this.actions || []).map(Action.fromJson)
       this.text = (this.text || []).map(reviveNode)
       this.when = reviveNode(this.when)
     } else {
       let { owner, target, text } = primary
-      let { variables, mode, choiceI, condition, actions, input, targetType, when, once, disabledText } = secondary
+      let { variables, mode, choiceI, condition, actions, input, targetType, when, once, disabledText, choiceSfx, focusSfx, choiceStyle } = secondary
       this.mode = mode
       this.text = text
       this.owner = owner
@@ -94,6 +100,9 @@ class Choice {
       this.when = when || null
       this.once = once === true
       this.disabledText = typeof disabledText === 'string' ? disabledText : null
+      this.choiceSfx = typeof choiceSfx === 'string' ? choiceSfx : null
+      this.focusSfx = typeof focusSfx === 'string' ? focusSfx : null
+      this.choiceStyle = typeof choiceStyle === 'string' ? choiceStyle : 'default'
     }
     // Object.assign(this, ...arguments)
   }

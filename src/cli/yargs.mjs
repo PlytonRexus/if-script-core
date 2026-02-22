@@ -52,7 +52,7 @@ yargsc.command({
   describe: 'Preview an IF-Script story in the browser with hot reload',
   builder: {
     'input-file': { alias: 'i', describe: 'Path to .if story file', type: 'string', demandOption: true },
-    theme: { alias: 't', describe: 'Theme name (default: parchment)', type: 'string', default: 'parchment' },
+    theme: { alias: 't', describe: 'Theme name (default: literary-default)', type: 'string', default: 'literary-default' },
     port: { alias: 'p', describe: 'Server port (default: 3001)', type: 'number', default: 3001 }
   },
   handler: (argv) => preview(argv)

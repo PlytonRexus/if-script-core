@@ -11,7 +11,7 @@ const vendorDir = path.resolve(srcDir, '../node_modules')
 async function preview (argv) {
   const inputFile = path.resolve(process.cwd(), argv.i)
   const port = argv.port || 3001
-  const theme = argv.theme || 'parchment'
+  const theme = argv.theme || 'literary-default'
   const clients = new Set()
   const fileWatchers = new Map()
   let reloadTimer = null
@@ -167,6 +167,7 @@ async function preview (argv) {
 }
 
 function buildHtml (story, theme, port) {
+  const runtimeTheme = (theme === 'cinematic' || theme === 'literary-default') ? theme : 'literary-default'
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -174,7 +175,6 @@ function buildHtml (story, theme, port) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${story.title || 'IF Preview'}</title>
   <script type="importmap">{"imports": {"showdown": "/vendor/showdown.js"}}</script>
-  <link rel="stylesheet" href="/src/themes/${theme}.css">
 </head>
 <body>
   <div id="root">
@@ -182,17 +182,21 @@ function buildHtml (story, theme, port) {
     <div id="if_r-exception-area"></div>
   </div>
   <script type="module">
-    import Interpreter from '/src/interpreters/custom/Interpreter.mjs'
+    import IFScript from '/src/IFScript.mjs'
     import Story from '/src/models/Story.mjs'
 
     const storyJson = ${JSON.stringify(story)}
-    const theme = ${JSON.stringify(theme)}
-    const interpreter = new Interpreter(null)
+    const theme = ${JSON.stringify(runtimeTheme)}
+    const ifScript = new IFScript('STREAM')
+    await ifScript.init()
+    const runtime = await ifScript.createRuntime({ debug: true })
+    runtime.mount('#if_r-output-area')
 
     function render (json) {
-      document.querySelector('#if_r-output-area').innerHTML = ''
       document.querySelector('#if_r-exception-area').innerHTML = ''
-      try { interpreter.loadStory(Story.fromJson(json), null, theme) } catch (err) {
+      try {
+        runtime.start(Story.fromJson(json), { theme, presentationMode: theme === 'cinematic' ? 'cinematic' : 'literary' })
+      } catch (err) {
         document.querySelector('#if_r-exception-area').innerHTML =
           '<code>' + err.message + '</code>'
       }

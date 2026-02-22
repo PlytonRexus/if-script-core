@@ -43,12 +43,12 @@ This starts a local HTTP server and opens the story in your browser. The browser
 | Flag | Alias | Default | Description |
 |------|-------|---------|-------------|
 | `--input-file` | `-i` | *(required)* | Path to `.if` story file |
-| `--theme` | `-t` | `parchment` | Theme name (`default`, `bricks`, `terminal`, `neon`, `parchment`, `contrast`, `dark`, `minimal`, `glass`) |
+| `--theme` | `-t` | `literary-default` | Runtime theme (`literary-default`, `cinematic`) |
 | `--port` | `-p` | `3001` | Local server port |
 
 **Example:**
 ```bash
-ifs preview -i my-story.if -t default -p 8080
+ifs preview -i my-story.if -t literary-default -p 8080
 ```
 
 Parse errors are displayed directly in the browser so you can fix them without leaving your editor.
@@ -109,9 +109,9 @@ Jump to: [Quick Reference](#quick-reference) · [Writer Mode](#writer-mode-minim
 
 | Context | Properties |
 |------|------|
-| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`, `@statusBar`, `@theme`, `@allowUndo`, `@showTurn`, `@animations`, `@autoSave` |
-| Scene | `@name`, `@first`, `@music`, `@sections` |
-| Section | `@title`, `@timer` |
+| Story settings | `@storyTitle`, `@startAt`, `@referrable`, `@fullTimer`, `@maxIterations`, `@maxCallDepth`, `@statusBar`, `@theme`, `@presentationMode`, `@allowUndo`, `@showTurn`, `@animations`, `@autoSave` |
+| Scene | `@name`, `@first`, `@music`, `@musicVolume`, `@musicLoop`, `@musicFadeInMs`, `@musicFadeOutMs`, `@sceneTransition`, `@sections` |
+| Section | `@title`, `@timer`, `@ambience`, `@ambienceVolume`, `@ambienceLoop`, `@ambienceFadeInMs`, `@ambienceFadeOutMs`, `@sfx`, `@backdrop`, `@shot`, `@textPacing` |
 | Choice | `@target`, `@targetType`, `@input`, `@action`, `@when`, `@once`, `@disabledText` |
 
 **Control flow + expressions**
@@ -175,9 +175,11 @@ const parsed = await ifScript.parse(myStoryText, '/stories/my-story.if')
 ```
 Pass a stable `filePath` whenever you use `import__...__import` so relative imports resolve correctly.
 
-4. Load into DOM with optional theme
+4. Create and start Runtime v2 (recommended)
 ```js
-ifScript.interpreter.loadStory(parsed, null, 'parchment')
+const runtime = await ifScript.createRuntime({ debug: false })
+runtime.mount('#if_r-output-area')
+runtime.start(parsed, { theme: 'literary-default' })
 ```
 
 *The indentation does not matter.*
@@ -239,6 +241,7 @@ Available settings:
 -   `@maxIterations` - Maximum iterations allowed in while loops (number, default: 10000)
 -   `@maxCallDepth` - Maximum function call depth for recursion (number, default: 1000)
 -   `@theme` - Preferred runtime theme when host/CLI does not override it (string)
+-   `@presentationMode` - Preferred runtime renderer mode: `"literary"` or `"cinematic"` (string, default: `"literary"`)
 -   `@allowUndo` - Enable/disable undo interaction in runtime UI (boolean, default: true)
 -   `@showTurn` - Show/hide turn counter in status area (boolean, default: true)
 -   `@animations` - Enable/disable runtime animations (boolean, default: true)
@@ -275,6 +278,11 @@ Properties:
 -   `@name` - Display name for the scene (string)
 -   `@first` - The first section ref in this scene (serial or title, optional)
 -   `@music` - URL to background music for this scene (string, optional)
+-   `@musicVolume` - Music channel volume from `0` to `1` (number, optional, default: `1`)
+-   `@musicLoop` - Loop scene music playback (boolean, optional, default: `true`)
+-   `@musicFadeInMs` - Fade-in duration in milliseconds (number, optional)
+-   `@musicFadeOutMs` - Fade-out duration in milliseconds (number, optional)
+-   `@sceneTransition` - Cinematic transition hint: `"cut"`, `"fade"`, `"dissolve"`, `"slide"` (string, optional)
 -   `@sections` - Space-separated list of section refs in this scene (serials and/or titles)
 
 Use scene names in choices when possible:
@@ -315,6 +323,15 @@ __section
 Properties:
 -   `@title` - The title of this section (string, optional)
 -   `@timer` - Countdown timer in seconds, followed by a target section ref (serial or title, e.g., `30 5` or `30 "Timeout"`)
+-   `@ambience` - URL to looping section ambience (string, optional)
+-   `@ambienceVolume` - Ambience volume from `0` to `1` (number, optional, default: `1`)
+-   `@ambienceLoop` - Loop ambience playback (boolean, optional, default: `true`)
+-   `@ambienceFadeInMs` - Ambience fade-in duration in milliseconds (number, optional)
+-   `@ambienceFadeOutMs` - Ambience fade-out duration in milliseconds (number, optional)
+-   `@sfx` - Section SFX URL. Repeat this property to queue multiple sounds in order (string, repeatable)
+-   `@backdrop` - Backdrop image/media URL hint for cinematic renderers (string, optional)
+-   `@shot` - Cinematic framing hint: `"wide"`, `"medium"`, `"close"`, `"extreme_close"` (string, optional)
+-   `@textPacing` - Text pacing hint: `"instant"`, `"typed"`, `"cinematic"` (string, optional)
 
 Sections can contain:
 -   Variable assignments
@@ -347,9 +364,13 @@ __choice
 choice__
   @target "After Name Entry"
   @input playerName
-  "Enter your name:"
+  "Enter your name [[input]]:"
 __choice
 ```
+
+`@input` choices require a non-empty value before selection.  
+Use `[[input]]` (or `{{input}}`) inside choice text to place the field inline wherever you want.  
+If no placeholder token is present, the runtime appends the input field at the end of the choice text.
 
 **Action choice** - Perform an action when clicked:
 ```
@@ -429,11 +450,14 @@ Arithmetic (in actions):
 Choice properties:
 -   `@target` - Where to navigate: section title/serial by default, or scene name/serial when `@targetType "scene"` is set (number or string)
 -   `@targetType` - Set to `"scene"` to navigate to a scene instead of a section (string, optional, default: `"section"`)
--   `@input` - Variable name to store user input (identifier, optional)
+-   `@input` - Variable name to store user input (identifier, optional). Selection requires a non-empty value.
 -   `@action` - Expression to execute when chosen. Add multiple lines for multiple actions. (expression, optional)
 -   `@when` - Expression gate for choice visibility/availability (expression, optional)
 -   `@once` - Consume the choice after it is selected once (boolean, optional, default: false)
 -   `@disabledText` - Disabled label shown when `@when` is false (string, optional)
+-   `@choiceSfx` - SFX URL played when choice is selected (string, optional)
+-   `@focusSfx` - SFX URL played when choice is focused/hovered (string, optional)
+-   `@choiceStyle` - Renderer style hint: `"default"`, `"primary"`, `"subtle"`, `"danger"` (string, optional)
 
 Targeting tips:
 -   Prefer string targets for readability and to avoid renumbering issues (`@target "Section Title"` or scene `@target "Scene Name"` with `@targetType "scene"`).
@@ -842,55 +866,6 @@ const ifScript = new IFScript({
 
 await ifScript.init()
 const story = await ifScript.parse(storyText, filePath)
-```
-
-#### Features
-
-✅ **Circular Dependency Detection** - Prevents infinite import loops
-```
-// a.if imports b.if, b.if imports a.if
-// Error: Circular import detected: a.if → b.if → a.if
-```
-
-✅ **Import Caching** - Files are loaded and parsed only once
-```
-// Both imports use the cached version
-import__"common.partial.if"__import
-import__"common.partial.if"__import
-```
-
-✅ **Nested Imports** - Imported files can import other files
-```
-// main.if
-import__"chapter1.partial.if"__import
-
-// chapter1.partial.if
-import__"scenes/intro.partial.if"__import
-```
-
-✅ **Browser Support** - Works in both Node.js and browsers
-```javascript
-// Option 1: Dynamic fetch (requires server)
-const ifScript = new IFScript({
-  browser: { baseUrl: 'https://example.com/stories/' }
-})
-
-// Option 2: Pre-bundled files (works offline)
-const ifScript = new IFScript({
-  browser: {
-    preloadedFiles: {
-      '/lib/file.if': '/* content here */'
-    },
-    allowFetch: false  // Disable dynamic fetching
-  }
-})
-```
-
-✅ **Clear Error Messages** - Detailed errors with file paths and line numbers
-```
-Import Error at 5:1
-  Import: "missing.if"
-  File not found: /path/to/missing.if (tried extensions: .if, .partial.if)
 ```
 
 #### Example Structure

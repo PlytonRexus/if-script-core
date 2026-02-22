@@ -2,6 +2,12 @@ import Choice from './Choice.mjs'
 import Token from './Token.mjs'
 import ConditionalBlock from './ConditionalBlock.mjs'
 import Action from './Action.mjs'
+import Loop from './Loop.mjs'
+import ArrayLiteral from './ArrayLiteral.mjs'
+import ArrayAccess from './ArrayAccess.mjs'
+import MemberAccess from './MemberAccess.mjs'
+import FunctionDef from './FunctionDef.mjs'
+import FunctionCall from './FunctionCall.mjs'
 import SectionSettings from './SectionSettings.mjs'
 
 /**
@@ -36,8 +42,21 @@ class Section {
           return Action.fromJson(t)
         } else if (t._class === 'Choice') {
           return Choice.fromJson(t)
+        } else if (t._class === 'Loop') {
+          return Loop.fromJson(t)
+        } else if (t._class === 'ArrayLiteral') {
+          return ArrayLiteral.fromJson(t)
+        } else if (t._class === 'ArrayAccess') {
+          return ArrayAccess.fromJson(t)
+        } else if (t._class === 'MemberAccess') {
+          return MemberAccess.fromJson(t)
+        } else if (t._class === 'FunctionDef') {
+          return FunctionDef.fromJson(t)
+        } else if (t._class === 'FunctionCall') {
+          return FunctionCall.fromJson(t)
         }
-      })
+        return t
+      }).filter(Boolean)
       this.settings = SectionSettings.fromJson(this.settings)
     } else {
       this.text = typeof text === 'string' ? text.trim() : text

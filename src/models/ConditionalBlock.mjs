@@ -9,11 +9,15 @@ class ConditionalBlock {
       input = json
     }
 
-    const { cond, then, ifBlock, elseBlock, elseStatement } = input
+    const { cond, then, ifBlock, elseBlock, elseStatement, else: elseExpression } = input
 
     this.cond = cond
     this.ifBlock = ifBlock || (then !== undefined ? [then] : [])
-    this.elseBlock = elseBlock || (elseStatement !== undefined ? [elseStatement] : null)
+    this.elseBlock = elseBlock || (
+      elseStatement !== undefined
+        ? [elseStatement]
+        : (elseExpression !== undefined ? [elseExpression] : null)
+    )
     this.else = this.elseBlock ? this.elseBlock[0] : undefined
 
   }

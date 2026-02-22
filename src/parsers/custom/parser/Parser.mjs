@@ -328,7 +328,13 @@ class Parser {
         if (component.name === 'statusBar') {
           this._applyStatusBarSetting(this.statusConfigTarget, component.value)
         } else {
-          section.settings[component.name] = component.value
+          if (component.name === 'sfx') {
+            const current = Array.isArray(section.settings.sfx) ? section.settings.sfx : []
+            const next = Array.isArray(component.value) ? component.value : [component.value]
+            section.settings.sfx = [...current, ...next]
+          } else {
+            section.settings[component.name] = component.value
+          }
           if (component.name === 'title') section.title = component.value
         }
       } else if (
@@ -394,7 +400,13 @@ class Parser {
         if (component.name === 'statusBar') {
           this._applyStatusBarSetting(this.statusConfigTarget, component.value)
         } else {
-          section.settings[component.name] = component.value
+          if (component.name === 'sfx') {
+            const current = Array.isArray(section.settings.sfx) ? section.settings.sfx : []
+            const next = Array.isArray(component.value) ? component.value : [component.value]
+            section.settings.sfx = [...current, ...next]
+          } else {
+            section.settings[component.name] = component.value
+          }
           if (component.name === 'title') section.title = component.value
         }
       } else if (
@@ -465,6 +477,9 @@ class Parser {
       when: null,
       once: false,
       disabledText: null,
+      choiceSfx: null,
+      focusSfx: null,
+      choiceStyle: 'default',
       targetType
     }
     const ownerTargetText = { owner: undefined, target: targetTok.symbol, text: [textTok] }
@@ -483,7 +498,10 @@ class Parser {
       input: null,
       when: null,
       once: false,
-      disabledText: null
+      disabledText: null,
+      choiceSfx: null,
+      focusSfx: null,
+      choiceStyle: 'default'
     }
     const ownerTargetText = { owner: undefined, target: undefined, text: [] }
 
@@ -508,6 +526,12 @@ class Parser {
           choice.once = component.value === true
         } else if (component.name === 'disabledText') {
           choice.disabledText = component.value
+        } else if (component.name === 'choiceSfx') {
+          choice.choiceSfx = component.value
+        } else if (component.name === 'focusSfx') {
+          choice.focusSfx = component.value
+        } else if (component.name === 'choiceStyle') {
+          choice.choiceStyle = component.value
         } else if (component.name === 'statusBar') {
           this._applyStatusBarSetting(this.statusConfigTarget, component.value)
         }
@@ -557,7 +581,13 @@ class Parser {
         if (prop.name === 'statusBar' && type === KW.SETTINGS_START) {
           this._applyStatusBarSetting(statusTarget, prop.value)
         } else {
-          settings[prop.name] = prop.value
+          if (prop.name === 'sfx') {
+            const current = Array.isArray(settings.sfx) ? settings.sfx : []
+            const next = Array.isArray(prop.value) ? prop.value : [prop.value]
+            settings.sfx = [...current, ...next]
+          } else {
+            settings[prop.name] = prop.value
+          }
         }
       } else this.unexpected()
 
@@ -604,6 +634,24 @@ class Parser {
     const limitToN = (n) => {
       if (result.size() > n - 1) this.unexpected()
       resultIsArray = true
+    }
+
+    const assignEnum = (tok, name, allowed) => {
+      assignIfValid(tok, TTS.STRING, (t) => {
+        if (!allowed.includes(t.symbol)) {
+          throw new Error(`Invalid value "${t.symbol}" for @${name}. Allowed: ${allowed.join(', ')}`)
+        }
+        return true
+      })
+    }
+
+    const assignUnitInterval = (tok, name) => {
+      assignIfValid(tok, TTS.NUMBER, (t) => {
+        if (typeof t.symbol !== 'number' || t.symbol < 0 || t.symbol > 1) {
+          throw new Error(`@${name} must be a number between 0 and 1`)
+        }
+        return true
+      })
     }
 
     const parsers = {
@@ -724,6 +772,11 @@ class Parser {
         name = 'theme'
         assignIfValid(tok, TTS.STRING)
       },
+      propPresentationMode: () => {
+        limitToOne()
+        name = 'presentationMode'
+        assignEnum(tok, 'presentationMode', ['literary', 'cinematic'])
+      },
       propAllowUndo: () => {
         limitToOne()
         name = 'allowUndo'
@@ -751,6 +804,95 @@ class Parser {
         if (isTokenFor(tok, TTS.BOOLEAN)) {
           result.push(this.utils.isTrue(tok))
         } else this.unexpected()
+      },
+      propSceneMusicVolume: () => {
+        limitToOne()
+        name = 'musicVolume'
+        assignUnitInterval(tok, 'musicVolume')
+      },
+      propSceneMusicLoop: () => {
+        limitToOne()
+        name = 'musicLoop'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propSceneMusicFadeInMs: () => {
+        limitToOne()
+        name = 'musicFadeInMs'
+        assignIfValid(tok, TTS.NUMBER)
+      },
+      propSceneMusicFadeOutMs: () => {
+        limitToOne()
+        name = 'musicFadeOutMs'
+        assignIfValid(tok, TTS.NUMBER)
+      },
+      propSceneTransition: () => {
+        limitToOne()
+        name = 'sceneTransition'
+        assignEnum(tok, 'sceneTransition', ['cut', 'fade', 'dissolve', 'slide'])
+      },
+      propSectionAmbience: () => {
+        limitToOne()
+        name = 'ambience'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propSectionAmbienceVolume: () => {
+        limitToOne()
+        name = 'ambienceVolume'
+        assignUnitInterval(tok, 'ambienceVolume')
+      },
+      propSectionAmbienceLoop: () => {
+        limitToOne()
+        name = 'ambienceLoop'
+        if (isTokenFor(tok, TTS.BOOLEAN)) {
+          result.push(this.utils.isTrue(tok))
+        } else this.unexpected()
+      },
+      propSectionAmbienceFadeInMs: () => {
+        limitToOne()
+        name = 'ambienceFadeInMs'
+        assignIfValid(tok, TTS.NUMBER)
+      },
+      propSectionAmbienceFadeOutMs: () => {
+        limitToOne()
+        name = 'ambienceFadeOutMs'
+        assignIfValid(tok, TTS.NUMBER)
+      },
+      propSectionSfx: () => {
+        limitToN(100000)
+        name = 'sfx'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propSectionBackdrop: () => {
+        limitToOne()
+        name = 'backdrop'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propSectionShot: () => {
+        limitToOne()
+        name = 'shot'
+        assignEnum(tok, 'shot', ['wide', 'medium', 'close', 'extreme_close'])
+      },
+      propSectionTextPacing: () => {
+        limitToOne()
+        name = 'textPacing'
+        assignEnum(tok, 'textPacing', ['instant', 'typed', 'cinematic'])
+      },
+      propChoiceSfx: () => {
+        limitToOne()
+        name = 'choiceSfx'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propFocusSfx: () => {
+        limitToOne()
+        name = 'focusSfx'
+        assignIfValid(tok, TTS.STRING)
+      },
+      propChoiceStyle: () => {
+        limitToOne()
+        name = 'choiceStyle'
+        assignEnum(tok, 'choiceStyle', ['default', 'primary', 'subtle', 'danger'])
       },
       propStatusBar: () => {
         limitToN(3)

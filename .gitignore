@@ -49,3 +49,6 @@ yarn-error.log*
 
 # Temporary files
 tmp/**
+
+out.json
+

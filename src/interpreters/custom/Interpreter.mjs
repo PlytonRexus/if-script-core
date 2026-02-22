@@ -717,8 +717,7 @@ class Interpreter {
         } else if (v instanceof FunctionCall || v instanceof MemberAccess || v instanceof ArrayAccess) {
           // Statement-level call (e.g. markVisited(1), arr.push(x)) — execute but don't add to text
           try {
-            const result = this.resolveAction(v, false, section)
-            if (result !== null && result !== undefined && result !== '') acc += result
+            this.resolveAction(v, false, section)
           } catch (e) { /* ignore errors from statement-level calls */ }
         } else if (v instanceof Action) {
           acc += this.resolveAction(v, false, section)
@@ -892,10 +891,34 @@ data-if_r-mode="${mode}" data-if_r-i="${i}">${choiceText}</div></div>`
     return truth
   }
 
-  replaceVars (str, variables) {
+  replaceVars (str, variables, section = this.run && this.run.state ? this.run.state.section : null) {
     Object.keys(variables)
       .forEach(v => (str = this.replaceOneVariable(str, v, variables[v])))
-    return str
+    return this.replaceFunctionCalls(str, section)
+  }
+
+  replaceFunctionCalls (str, section = this.run && this.run.state ? this.run.state.section : null) {
+    if (typeof str !== 'string') return str
+
+    const startedAt = Date.now()
+    let changed = true
+    let result = str
+
+    while (changed && Date.now() - startedAt < 10000) {
+      changed = false
+      result = result.replace(/\$\{([A-Za-z_][A-Za-z0-9_]*)\(\)\}/g, (match, fnName, index, source) => {
+        if (index > 0 && source[index - 1] === '\\') return match
+        try {
+          const value = this.callFunction({ name: fnName, args: [] }, section)
+          changed = true
+          return value === null || value === undefined ? '' : String(value)
+        } catch (err) {
+          return match
+        }
+      })
+    }
+
+    return result
   }
 
   replaceOneVariable (str, name, value) {
