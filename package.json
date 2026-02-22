@@ -38,6 +38,7 @@
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js",
     "build:pages:thrones": "node scripts/build-thrones-pages.mjs",
+    "publish:pages:thrones": "node scripts/publish-thrones-gh-pages-branch.mjs",
     "story:thrones:scaffold": "node test/harness/story-tools/generate-thrones-scaffold.mjs",
     "story:thrones:map": "node test/harness/story-tools/build-thrones-branch-map.mjs",
     "test:story:thrones": "node test/harness/story-tools/validate-thrones-graph.mjs"

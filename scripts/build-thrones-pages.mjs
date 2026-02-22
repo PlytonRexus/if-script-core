@@ -5,8 +5,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
-const tempDir = path.resolve(root, 'dist-pages-temp')
-const outputDir = path.resolve(root, 'gh-pages')
+const outputDir = path.resolve(root, 'dist')
 
 function run (command, args) {
   return new Promise((resolve, reject) => {
@@ -27,7 +26,6 @@ function run (command, args) {
 async function main () {
   await run(process.execPath, ['bin/index.mjs', 'check', '-i', 'test/fixtures/stories/thrones-main.if'])
   await run(process.execPath, ['test/harness/story-tools/validate-thrones-graph.mjs'])
-  await fs.rm(tempDir, { recursive: true, force: true })
   await run(process.execPath, ['node_modules/webpack/bin/webpack.js', '--config', 'config/webpack.pages.thrones.js'])
   await run(process.execPath, [
     'bin/index.mjs',
@@ -35,16 +33,12 @@ async function main () {
     '-i',
     'test/fixtures/stories/thrones-main.if',
     '-o',
-    'dist-pages-temp/thrones.json'
+    'dist/thrones.json'
   ])
 
-  await fs.rm(outputDir, { recursive: true, force: true })
-  await fs.mkdir(outputDir, { recursive: true })
-  await fs.cp(tempDir, outputDir, { recursive: true })
   await fs.writeFile(path.resolve(outputDir, '.nojekyll'), '', 'utf-8')
-  await fs.rm(tempDir, { recursive: true, force: true })
 
-  process.stdout.write('Staged Thrones Pages artifacts in gh-pages/\n')
+  process.stdout.write('Built Thrones Pages artifacts in dist/\n')
 }
 
 main().catch((error) => {

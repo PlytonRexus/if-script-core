@@ -82,6 +82,31 @@ Use JSON output for CI and tooling:
 ifs check -i my-story.if --json
 ```
 
+### Publishing Thrones To GitHub Pages (Branch Root)
+
+Build the publishable Thrones site into `dist/`:
+
+```bash
+npm run build:pages:thrones
+```
+
+Publish `dist/` as the root contents of the `gh-pages` branch:
+
+```bash
+npm run publish:pages:thrones
+```
+
+Optional environment overrides:
+
+```bash
+PAGES_REMOTE=origin PAGES_BRANCH=gh-pages npm run publish:pages:thrones
+```
+
+GitHub repository settings for this flow:
+- Pages source: `Deploy from a branch`
+- Branch: `gh-pages`
+- Folder: `/(root)`
+
 ---
 
 ### Current Syntax (v0.5.8+)
