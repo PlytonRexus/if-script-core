@@ -1,0 +1,8 @@
+section__
+  @title "Introduction"
+  "Introduction from nested import"
+  choice__
+    @target 1
+    "Start"
+  __choice
+__section

@@ -1,0 +1,637 @@
+settings__
+  @storyTitle "A Stranger in Veracruz"
+  @startAt "Midnight at the Docks"
+  @fullTimer 480 "Deadline Missed"
+  @maxIterations 20000
+  @maxCallDepth 2000
+  @theme "cinematic"
+  @presentationMode "cinematic"
+  @allowUndo true
+  @showTurn true
+  @animations true
+  @autoSave true
+  @statusBar leverage true "Leverage"
+  @statusBar heat true "Heat"
+  @statusBar evidenceCount true "Evidence"
+  @statusBar deadline true "Hours Left"
+__settings
+
+function__ addEvidence(item) {
+  if__ (contains(evidence, item) == false) {
+    evidence.push(item)
+  }
+  return__ evidence.length
+}
+
+function__ pressureScore() {
+  return__ clamp((leverage * 2) + evidence.length - heat, 0, 100)
+}
+
+function__ evidenceDigest() {
+  if__ (evidence.length == 0) {
+    return__ "no hard evidence yet"
+  }
+  return__ join(evidence, " | ")
+}
+
+function__ peakSignal(readings) {
+  i = 0
+  peak = 0
+  while__ (i < readings.length) {
+    value = readings[i]
+    i = i + 1
+    if__ (value < 20) {
+      continue__
+    }
+    if__ (value > peak) {
+      peak = value
+    }
+    if__ (peak >= 90) {
+      break__
+    }
+  }
+  return__ peak
+}
+
+scene__
+  @name "Act I: Harbor Night"
+  @first "Midnight at the Docks"
+  @sceneAmbience "/assets/audio/hedwig.mp3"
+  @sceneAmbienceVolume 0.35
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 1200
+  @sceneAmbienceFadeOutMs 800
+  @sceneTransition "fade"
+  @sections "Midnight at the Docks" "Inside the Envelope" "Morales Mezzanine"
+__scene
+
+scene__
+  @name "Act II: City of Echoes"
+  @first "City Grid Before Dawn"
+  @sceneAmbience "/assets/audio/hedwig.mp3"
+  @sceneAmbienceVolume 0.3
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 900
+  @sceneAmbienceFadeOutMs 700
+  @sceneTransition "dissolve"
+  @sections "City Grid Before Dawn" "Telegraph Office" "La Perla" "Cathedral Sacristy" "Tuesday Window"
+__scene
+
+scene__
+  @name "Act III: Tuesday Morning"
+  @first "Vargas's Office"
+  @sceneAmbience "https://example.com/audio/tuesday-morning-tension.mp3"
+  @sceneAmbienceVolume 0.4
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 700
+  @sceneAmbienceFadeOutMs 500
+  @sceneTransition "cut"
+  @sections "Vargas's Office" "Red-Line Dispatch" "Quiet Arrangement" "Compromised Exit" "Deadline Missed"
+__scene
+
+scene__
+  @name "Epilogue: Gulf Morning"
+  @first "Morning Ferry"
+  @sceneAmbience "https://example.com/audio/gulf-morning-light.mp3"
+  @sceneAmbienceVolume 0.28
+  @sceneAmbienceLoop true
+  @sceneAmbienceFadeInMs 1000
+  @sceneAmbienceFadeOutMs 1200
+  @sceneTransition "fade"
+  @sections "Morning Ferry" "New Assignment Wire"
+__scene
+
+/* 1 */
+section__
+  @title "Midnight at the Docks"
+  @ambience "https://example.com/audio/waves-and-chains.mp3"
+  @ambienceVolume 0.45
+  @ambienceLoop true
+  @ambienceFadeInMs 500
+  @ambienceFadeOutMs 250
+  @backdrop "https://example.com/img/veracruz-docks-night.jpg"
+  @shot "wide"
+  @textPacing "cinematic"
+  openingLines = ["Oil on black water", "Diesel in wet rope", "Salt and brass from a distant band"]
+  openingLine = randomChoice(openingLines)
+
+  playerName = ""
+  reporterName = "Correspondent"
+
+  hasEnvelope = false
+  fixerMet = false
+  fixerTrusted = false
+  sanctuaryOffered = false
+  storyFiled = false
+  dealAccepted = false
+  escapedUnderFire = false
+
+  leverage = 1
+  heat = 0
+  deadline = 6
+
+  evidence = []
+  evidenceCount = 0
+  ledgerSignals = []
+  signalPeak = 0
+
+  seedLocked = false
+  todayStamp = formatDate(now(), "/")
+
+  "_${openingLine}._
+
+  Veracruz is awake in all the wrong ways.
+
+  A man in a ruined white shirt reaches you at the gangway, presses something damp into your coat, and vanishes before your hand reaches his sleeve.
+
+  On the front of the envelope: _Tuesday. Do not trust the obvious man._"
+
+  choice__
+    @target "Inside the Envelope"
+    @input playerName
+    @action hasEnvelope = true
+    @action leverage = leverage + 1
+    @choiceSfx "https://example.com/audio/paper-slide.mp3"
+    @focusSfx "https://example.com/audio/tension-click.mp3"
+    @choiceStyle "primary"
+    "Give the dock runner a name [[input]] and take the envelope"
+  __choice
+
+  choice__
+    @target "Inside the Envelope"
+    @action hasEnvelope = true
+    @action heat = heat + 1
+    @choiceStyle "subtle"
+    "Take it without speaking and disappear into the crowd"
+  __choice
+__section
+
+/* 2 */
+section__
+  @title "Inside the Envelope"
+  @backdrop "https://example.com/img/malecon-doorway.jpg"
+  @shot "close"
+  @textPacing "typed"
+  if__ (trim(playerName) != "") {
+    reporterName = trim(playerName)
+  }
+
+  codedLine = upper("registry-12 / tuesday / 09:10")
+  evidenceCount = addEvidence("photograph marked with red X")
+
+  "In a doorway off the Malecon, you open the packet.
+
+  A photograph. A typed list of names. A card stamped _${codedLine}_.
+
+  _${reporterName},_ you tell yourself, _this is not rumor anymore._"
+
+  choice__
+    @target "Morales Mezzanine"
+    @action leverage = leverage + 1
+    @choiceStyle "primary"
+    "Go to Hotel Morales and find who already knows"
+  __choice
+
+  choice__
+    @targetType "scene"
+    @target "Act II: City of Echoes"
+    @action heat = heat + 1
+    @choiceStyle "default"
+    "Skip the hotel and start collecting corroboration"
+  __choice
+__section
+
+/* 3 */
+section__
+  @title "Morales Mezzanine"
+  @ambience "https://example.com/audio/hotel-fan-hum.mp3"
+  @ambienceVolume 0.32
+  @backdrop "https://example.com/img/hotel-morales-mezzanine.jpg"
+  @shot "medium"
+  fixerMet = true
+  aliases = split("Rodriguez,Ortega,No Name", ",")
+  fixerAlias = randomChoice(aliases)
+
+  "A man waits at the rail above the lobby, hands folded, expression neutral from practice.
+
+  'Call me ${fixerAlias},' he says. 'You were never supposed to receive that envelope. Now that you did, you have one dawn to decide whether this becomes a story or a funeral.'"
+
+  choice__
+    @target "City Grid Before Dawn"
+    @action fixerTrusted = true
+    @action leverage = leverage + 2
+    @action evidenceCount = addEvidence("fixer confirms Tuesday reception")
+    @choiceStyle "primary"
+    "Trust him and ask for one clean lead"
+  __choice
+
+  choice__
+    @target "City Grid Before Dawn"
+    @action heat = heat + 1
+    @choiceStyle "danger"
+    "Refuse his help and work alone"
+  __choice
+__section
+
+/* 4 */
+section__
+  @title "City Grid Before Dawn"
+  @ambience "https://example.com/audio/street-market-prep.mp3"
+  @ambienceVolume 0.36
+  @backdrop "https://example.com/img/veracruz-pre-dawn-grid.jpg"
+  @shot "wide"
+  @textPacing "typed"
+  deadline = max(deadline - 1, 0)
+
+  if__ (seedLocked == false) {
+    seedValue = setSeed(194601)
+    seedLocked = true
+  }
+
+  i = 0
+  ledgerSignals = []
+  while__ (i < 6) {
+    ledgerSignals.push(seededRandomInt(5, 99))
+    i = i + 1
+  }
+
+  signalPeak = peakSignal(ledgerSignals)
+  pressure = pressureScore()
+  digest = evidenceDigest()
+  if__ (pressure >= 60) then__ posture = "aggressive" else__ posture = "careful"
+
+  "Veracruz opens in layers: bakers first, then stevedores, then men pretending not to watch intersections.
+
+  Your ledger signal tape reads ${ledgerSignals}; peak channel noise is ${signalPeak}.
+
+  You are operating in a ${posture} posture. Evidence so far: ${evidenceDigest()}.
+
+  Hours before Tuesday reception: ${deadline}."
+
+  choice__
+    @target "Telegraph Office"
+    @once true
+    @choiceStyle "subtle"
+    "Interview the telegraph operator"
+  __choice
+
+  choice__
+    @target "La Perla"
+    @once true
+    @choiceStyle "subtle"
+    "Pull port gossip at La Perla"
+  __choice
+
+  choice__
+    @target "Cathedral Sacristy"
+    @once true
+    @choiceStyle "subtle"
+    "Check the cathedral ledger trail"
+  __choice
+
+  choice__
+    @target "Tuesday Window"
+    @choiceStyle "default"
+    "Lay every note on the table and map your entry"
+  __choice
+
+  choice__
+    @targetType "scene"
+    @target "Act III: Tuesday Morning"
+    @when evidenceCount >= 2 && deadline > 0
+    @disabledText "You need at least 2 hard pieces of evidence before facing Vargas."
+    @choiceStyle "primary"
+    "Call on Vargas before the city fully wakes"
+  __choice
+
+  choice__
+    @target "Quiet Arrangement"
+    @when pressure >= 35
+    @disabledText "You do not have enough leverage to bargain yet."
+    @choiceStyle "danger"
+    "Request a private audience and negotiate instead of exposing"
+  __choice
+__section
+
+/* 5 */
+section__
+  @title "Telegraph Office"
+  @timer 60 "Compromised Exit"
+  @timerOutcome "Time is running out..."
+  @backdrop "https://example.com/img/telegraph-counter.jpg"
+  @shot "close"
+  registryParts = split("dock-7,warehouse-3,registry-12", ",")
+  registryTag = upper(registryParts[2])
+  evidenceCount = addEvidence("telegraph carbon copy")
+  heat = heat + 1
+
+  "The operator keys your draft without blinking, then pauses only once at _${registryTag}_.
+
+  She does not ask your name. She only says, 'Tuesday is not for witnesses,' and hands you your carbon sheet."
+
+  choice__
+    @target "City Grid Before Dawn"
+    @action leverage = leverage + 1
+    @choiceStyle "default"
+    "Return to the street with the carbon copy"
+  __choice
+__section
+
+/* 6 */
+section__
+  @title "La Perla"
+  @backdrop "https://example.com/img/la-perla-bar.jpg"
+  @shot "medium"
+  rumorDeck = shuffle(["a black Buick at dawn", "customs manifests rewritten", "coffee for twelve every Tuesday", "a guard shift moved to 09:00"])
+  strongestRumor = rumorDeck[0]
+  dice = randomInt(1, 6)
+
+  if__ (dice >= 3) {
+    evidenceCount = addEvidence("port rumor corroborated")
+    leverage = leverage + 1
+    "The old foreign correspondent at the corner table gives you one clean line: _${strongestRumor}_.
+
+    It matches the list in your envelope too neatly to ignore."
+  } else__ {
+    heat = heat + 1
+    "No one gives you facts tonight. One man asks too many questions about you.
+
+    You leave before he finishes his drink."
+  }
+
+  choice__
+    @target "City Grid Before Dawn"
+    @choiceStyle "default"
+    "Move back into the street grid"
+  __choice
+__section
+
+/* 7 */
+section__
+  @title "Cathedral Sacristy"
+  @backdrop "https://example.com/img/cathedral-sacristy.jpg"
+  @shot "close"
+  sanctuaryOffered = true
+  witnesses = unique(["choirboy", "sacristan", "choirboy"])
+  witnessCount = len(witnesses)
+
+  if__ (witnessCount >= 2) {
+    evidenceCount = addEvidence("church shelter ledger")
+  }
+
+  "The priest offers water, silence, and exactly one warning: 'Power in this city is never where it says it is.'
+
+  In a side ledger you find references to temporary shelter assigned to two names from your list.
+
+  Distinct witnesses logged: ${witnessCount}."
+
+  choice__
+    @target "City Grid Before Dawn"
+    @action heat = max(heat - 1, 0)
+    @choiceStyle "default"
+    "Leave through the side door before dawn bells"
+  __choice
+__section
+
+/* 8 */
+section__
+  @title "Tuesday Window"
+  @backdrop "https://example.com/img/hotel-desk-notes.jpg"
+  @shot "extreme_close"
+  @textPacing "typed"
+  pressure = pressureScore()
+  digest = evidenceDigest()
+  if__ (pressure >= 70) then__ approach = "direct" else__ approach = "layered"
+
+  "You spread every note across the hotel desk: ${evidenceDigest()}.
+
+  Pressure index: ${pressure}. Recommended approach: ${approach}."
+
+  if__ (fixerTrusted == true) {
+    "A matchbook appears under your door with a pencil note: _say the date first_."
+  }
+
+  choice__
+    @targetType "scene"
+    @target "Act III: Tuesday Morning"
+    @when evidenceCount >= 2
+    @disabledText "You need one more verified lead before confrontation."
+    @choiceStyle "primary"
+    "Step into Tuesday morning and meet Vargas"
+  __choice
+
+  choice__
+    @target "City Grid Before Dawn"
+    @choiceStyle "subtle"
+    "Gather one more layer of evidence"
+  __choice
+
+  choice__
+    @target "Quiet Arrangement"
+    @when evidenceCount >= 1
+    @disabledText "You cannot bargain empty-handed."
+    @choiceStyle "danger"
+    "Set terms first and avoid open conflict"
+  __choice
+__section
+
+/* 9 */
+section__
+  @title "Vargas's Office"
+  @timer 45 "Compromised Exit"
+  @ambience "https://example.com/audio/office-fan-and-traffic.mp3"
+  @ambienceVolume 0.3
+  @backdrop "https://example.com/img/vargas-office.jpg"
+  @shot "medium"
+  @textPacing "cinematic"
+  meetingClock = formatTime(now())
+  pressure = pressureScore()
+  if__ (pressure >= 70) then__ meetingTone = "hard" else__ meetingTone = "measured"
+
+  "He is smaller than his photograph and more dangerous than his smile.
+
+  The wall clock reads ${meetingClock}. You open in a ${meetingTone} tone."
+
+  if__ (fixerTrusted == true) {
+    "You say the date first. Vargas's expression changes by one degree, which is enough."
+  }
+
+  choice__
+    @target "Red-Line Dispatch"
+    @when evidenceCount >= 2
+    @disabledText "Without corroboration, this is only accusation."
+    @action storyFiled = true
+    @action leverage = leverage + 1
+    @action heat = heat + 2
+    @choiceSfx "https://example.com/audio/typewriter-hit.mp3"
+    @focusSfx "https://example.com/audio/focus-tick.mp3"
+    @choiceStyle "primary"
+    "Put every name on the wire and publish"
+  __choice
+
+  choice__
+    @target "Quiet Arrangement"
+    @action dealAccepted = true
+    @action heat = max(heat - 1, 0)
+    @choiceStyle "danger"
+    "Take the private meeting and negotiate terms"
+  __choice
+
+  choice__
+    @target "Compromised Exit"
+    @action heat = heat + 3
+    @choiceStyle "subtle"
+    "Walk out before either of you says too much"
+  __choice
+__section
+
+/* 10 */
+section__
+  @title "Red-Line Dispatch"
+  @backdrop "https://example.com/img/typewriter-red-line.jpg"
+  @shot "close"
+  storyFiled = true
+  headlinePool = shuffle(["Twelve Names Before Noon", "Vargas Network Mapped in Veracruz", "Dock Envelope Breaks Tuesday Ring"])
+  headline = headlinePool[0]
+  frontPiece = evidence.pop()
+  evidence.push(frontPiece)
+  finalDigest = evidenceDigest()
+
+  "You draft on hotel stationery, then retype at speed in the telegraph office.
+
+  Headline slug: _${headline}_.
+
+  Lead support: ${frontPiece}. Full evidence line: ${finalDigest}."
+
+  choice__
+    @targetType "scene"
+    @target "Epilogue: Gulf Morning"
+    @choiceStyle "primary"
+    "Board the morning ferry before the response arrives"
+  __choice
+__section
+
+/* 11 */
+section__
+  @title "Quiet Arrangement"
+  @backdrop "https://example.com/img/quiet-office-coffee.jpg"
+  @shot "close"
+  dealAccepted = true
+  offerScale = seededRandomInt(30, 90)
+  offerDollars = offerScale * 100
+
+  "The deal is framed as logistics, not bribery: safe departure, protected route, and a future assignment door left unlocked.
+
+  Estimated value: ${offerDollars} dollars in favors and access."
+
+  if__ (storyFiled == true) {
+    "He realizes too late that the story is already moving over wire. The smile stays. Only the eyes change."
+  }
+
+  choice__
+    @target "New Assignment Wire"
+    @choiceStyle "danger"
+    "Take the arrangement and leave the file closed"
+  __choice
+
+  choice__
+    @target "Red-Line Dispatch"
+    @when evidenceCount >= 3
+    @disabledText "You need stronger proof before burning both sides."
+    @action dealAccepted = false
+    @action heat = heat + 2
+    @choiceStyle "primary"
+    "Break the deal at the last minute and publish anyway"
+  __choice
+
+  choice__
+    @target "Compromised Exit"
+    @choiceStyle "subtle"
+    "Neither trust nor publish - disappear"
+  __choice
+__section
+
+/* 12 */
+section__
+  @title "Compromised Exit"
+  @backdrop "https://example.com/img/alley-escape.jpg"
+  @shot "wide"
+  escapedUnderFire = true
+  heat = heat + 2
+
+  if__ (sanctuaryOffered == true) {
+    "A sacristy side door is left open exactly when you need it. You do not ask who arranged that mercy."
+  } else__ {
+    "You buy a bus ticket in cash and sit where no one can trap you against the window."
+  }
+
+  choice__
+    @targetType "scene"
+    @target "Epilogue: Gulf Morning"
+    @choiceStyle "default"
+    "Reach the coast before sunrise"
+  __choice
+__section
+
+/* 13 */
+section__
+  @title "Morning Ferry"
+  @backdrop "https://example.com/img/gulf-ferry-morning.jpg"
+  @shot "wide"
+  "At six in the morning the Gulf is all glare and distance.
+
+  Veracruz falls behind in pieces: cranes, dome, stone, then haze."
+
+  if__ (storyFiled == true) {
+    "Your dispatch is already in circulation. Whatever happens next in the city will happen in daylight."
+  }
+
+  if__ (dealAccepted == true) {
+    "You kept your promises selective and your conscience expensive. The city will survive you."
+  }
+
+  if__ (escapedUnderFire == true) {
+    "You leave without ceremony, alive and uncertain, which may be the best outcome available."
+  }
+
+  choice__
+    @target "Midnight at the Docks"
+    @choiceStyle "subtle"
+    "Begin again"
+  __choice
+__section
+
+/* 14 */
+section__
+  @title "New Assignment Wire"
+  @backdrop "https://example.com/img/newsroom-desk.jpg"
+  @shot "medium"
+  "Three weeks later, a cable waits on your desk: _new post approved, immediate travel, discretion expected_.
+
+  You read it twice. The story you did not file has weight anyway. It sits in your notebook like ballast."
+
+  choice__
+    @target "Midnight at the Docks"
+    @choiceStyle "subtle"
+    "Begin again"
+  __choice
+__section
+
+/* 15 */
+section__
+  @title "Deadline Missed"
+  @backdrop "https://example.com/img/empty-wire-desk.jpg"
+  @shot "close"
+  "By the time you move, Tuesday is over.
+
+  The list has already been acted on. Names vanish from doors, ledgers, and memory.
+
+  The envelope in your pocket is now only evidence that you were almost in time."
+
+  choice__
+    @target "Midnight at the Docks"
+    @choiceStyle "subtle"
+    "Begin again"
+  __choice
+__section
+

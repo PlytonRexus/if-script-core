@@ -1,4 +1,3 @@
-const path = require('path')
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 
@@ -7,7 +6,7 @@ const paths = require('./paths')
 
 module.exports = merge(base, {
   entry: {
-    main: './test/compiled-interpret.mjs'
+    main: './test/harness/web/compiled-interpret.mjs'
   },
   output: {
     path: paths.build,

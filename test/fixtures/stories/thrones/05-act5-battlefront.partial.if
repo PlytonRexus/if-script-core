@@ -1,0 +1,801 @@
+/* Thrones module: 05-act5-battlefront.partial.if */
+scene__
+  @name "ACT5: Field of Crows"
+  @first "T337 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @sections "T337 - ACT5 - Highgarden Siege Promise in the throne shadow" "T338 - ACT5 - Sunspear Prison Confession with steel drawn" "T339 - ACT5 - The Trident Salt Pact by the harbor chain" "T340 - ACT5 - Riverrun Broken Oath under rain" "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast" "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell" "T343 - ACT5 - Winterfell Night Council before witnesses" "T344 - ACT5 - The Twins Debt Collection under wolf banners" "T345 - ACT5 - Harrenhal Torchlit Census at the rookery" "T346 - ACT5 - Dragonstone Blood Price at first light" "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals" "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries" "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke" "T350 - ACT5 - Pentos Harbor Ambush in river fog" "T351 - ACT5 - Qarth Alliance Split near the godswood" "T352 - ACT5 - The Wall War Map against old law" "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky" "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse" "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors" "T356 - ACT5 - Pyke Hostage Exchange at the broken tower" "T357 - ACT5 - Highgarden Siege Promise in the throne shadow" "T358 - ACT5 - Sunspear Prison Confession with steel drawn" "T359 - ACT5 - The Trident Salt Pact by the harbor chain" "T360 - ACT5 - Riverrun Broken Oath under rain"
+__scene
+
+section__
+  @title "T337 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-337.jpg"
+
+  "Outside Highgarden, crushed thyme and wet straw cannot hide the groan of siege engines. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sandor Clegane tests your posture in public while Gendry studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent. The promises you made in the war council are now being measured in bodies at the front.
+
+Morale fractures are spreading faster than wounds heal. Units fight harder when they trust the next order will not waste them for politics.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T338 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T338 - ACT5 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-338.jpg"
+
+  "In Sunspear cells, heat, rust, and blood sit heavy while a prisoner bargains for one more breath. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Gendry tests your posture in public while Sandor Clegane studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent. Survivors from yesterday still carry those council promises like unpaid debt.
+
+Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes strategic suicide once soldiers believe survival depends on favoritism.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T340 - ACT5 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T339 - ACT5 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-339.jpg"
+
+  "At the Trident docks, brine and pitch smoke rise from chains bolted beside your treaty table. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Jaime Lannister tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+You can hold ground with blood, but you cannot hold coalition confidence if casualty burdens look engineered instead of shared.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T340 - ACT5 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T340 - ACT5 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-340.jpg"
+
+  "Under Riverrun rain, wet leather and cold iron fill the tent where oaths are being contested. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Jaime Lannister studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The field is eating men faster than replacement lines can march. Attrition is no longer abstract; it is visible in empty shield ranks before noon.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T343 - ACT5 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Spend coin on Essosi couriers and dragon-backed deterrence, buying speed while draining treasury reserves."
+  __choice
+__section
+
+section__
+  @title "T341 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-341.jpg"
+
+  "Along the Kingsroad, sour ale and horse sweat hang over a ledger full of purchased silence. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sandor Clegane tests your posture in public while Gendry studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Morale fractures are spreading faster than wounds heal. Units fight harder when they trust the next order will not waste them for politics.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T343 - ACT5 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T342 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-342.jpg"
+
+  "Before the sept bell in the capital, raven feathers and hot wax litter the floor around forged orders. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Gendry tests your posture in public while Sandor Clegane studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes strategic suicide once soldiers believe survival depends on favoritism.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T343 - ACT5 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T344 - ACT5 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T343 - ACT5 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-343.jpg"
+
+  "In Winterfell at night, pine smoke and snowmelt drift through a council chamber packed with wary bannermen. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Jaime Lannister tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+You can hold ground with blood, but you cannot hold coalition confidence if casualty burdens look engineered instead of shared.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T344 - ACT5 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T345 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+
+  choice__
+    @target "T346 - ACT5 - Dragonstone Blood Price at first light"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Purchase rapid support beyond Westeros, shift risk outward, and invite long-term political debt for short-term survival."
+  __choice
+__section
+
+section__
+  @title "T344 - ACT5 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-344.jpg"
+
+  "At the Twins, river mist and rotting rope surround toll tables where every number is a weapon. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Jaime Lannister studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The field is eating men faster than replacement lines can march. Attrition is no longer abstract; it is visible in empty shield ranks before noon.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T345 - ACT5 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T346 - ACT5 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T345 - ACT5 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-345.jpg"
+
+  "In Harrenhal torchlight, ash and damp stone sharpen the smell of ink as casualty numbers are counted. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sandor Clegane tests your posture in public while Gendry studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Morale fractures are spreading faster than wounds heal. Units fight harder when they trust the next order will not waste them for politics.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T346 - ACT5 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Outsource pressure to offshore partners, accelerate deployments, and accept escalating dependence on external force."
+  __choice
+__section
+
+section__
+  @title "T346 - ACT5 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-346.jpg"
+
+  "On Dragonstone at first light, sulfur sea mist curls over black rock where envoys demand costly terms. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Gendry tests your posture in public while Sandor Clegane studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes strategic suicide once soldiers believe survival depends on favoritism.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T347 - ACT5 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-347.jpg"
+
+  "Across Blackwater Bay, tar, fish rot, and lamp smoke drift over sealed contracts and guarded cargo. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Jaime Lannister tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+You can hold ground with blood, but you cannot hold coalition confidence if casualty burdens look engineered instead of shared.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T348 - ACT5 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-348.jpg"
+
+  "At the Dreadfort galleries, wet fur and old blood cling to banners as border captains wait on you. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Jaime Lannister studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The field is eating men faster than replacement lines can march. Attrition is no longer abstract; it is visible in empty shield ranks before noon.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T350 - ACT5 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T349 - ACT5 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-349.jpg"
+
+  "At the Eyrie, thin mountain air tastes of candle wax and frost while heralds wait for your ruling. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sandor Clegane tests your posture in public while Gendry studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Morale fractures are spreading faster than wounds heal. Units fight harder when they trust the next order will not waste them for politics.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T350 - ACT5 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T351 - ACT5 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T350 - ACT5 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-350.jpg"
+
+  "At Pentos harbor, river fog stings your eyes and muffles the chain-rattle of hidden ships. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Gendry tests your posture in public while Sandor Clegane studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes strategic suicide once soldiers believe survival depends on favoritism. If you pause now, tired soldiers will invent their own command logic.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T351 - ACT5 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T352 - ACT5 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Fund foreign logistics and hard escorts, reopen distant channels, and trade financial stability for operational tempo."
+  __choice
+__section
+
+section__
+  @title "T351 - ACT5 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-351.jpg"
+
+  "Near the godswood where Qarth envoys quarrel, incense and wet leaves mix with the smell of steel. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Jaime Lannister tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+You can hold ground with blood, but you cannot hold coalition confidence if casualty burdens look engineered instead of shared.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T352 - ACT5 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T352 - ACT5 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-352.jpg"
+
+  "Beneath the Wall maps, old ink and frozen leather crack as officers crowd around your table. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Jaime Lannister studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The field is eating men faster than replacement lines can march. Attrition is no longer abstract; it is visible in empty shield ranks before noon.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+__section
+
+section__
+  @title "T353 - ACT5 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-353.jpg"
+
+  "In Castle Black halls, lamp smoke and boiled turnip cling to stone while claimants trade legal threats. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sandor Clegane tests your posture in public while Gendry studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Morale fractures are spreading faster than wounds heal. Units fight harder when they trust the next order will not waste them for politics.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T354 - ACT5 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-354.jpg"
+
+  "At Moat Cailin, bog wind carries peat rot through the gatehouse as scouts whisper of movement. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Gendry tests your posture in public while Sandor Clegane studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes strategic suicide once soldiers believe survival depends on favoritism. A single contradictory signal here can unravel two days of discipline.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T356 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T355 - ACT5 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-355.jpg"
+
+  "Inside Oldtown archives, beeswax and sea damp cling to ledgers that no longer match the truth. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Jaime Lannister tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+You can hold ground with blood, but you cannot hold coalition confidence if casualty burdens look engineered instead of shared.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T356 - ACT5 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T357 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Purchase rapid support beyond Westeros, shift risk outward, and invite long-term political debt for short-term survival."
+  __choice
+__section
+
+section__
+  @title "T356 - ACT5 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-356.jpg"
+
+  "On Pyke rocks, salt spray and tar smoke coat your tongue while hostages stare across a rope line. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Jaime Lannister studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The field is eating men faster than replacement lines can march. Attrition is no longer abstract; it is visible in empty shield ranks before noon.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T357 - ACT5 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the order in open council, publish penalties, and spend reputation to stabilize lawful compliance."
+  __choice
+
+  choice__
+    @target "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Suppress the full record, pressure the weakest brokers quietly, and convert fear into immediate operational control."
+  __choice
+__section
+
+section__
+  @title "T357 - ACT5 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-357.jpg"
+
+  "Outside Highgarden, crushed thyme and wet straw cannot hide the groan of siege engines. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Sandor Clegane tests your posture in public while Gendry studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Morale fractures are spreading faster than wounds heal. Units fight harder when they trust the next order will not waste them for politics.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the plan by written oath, let rivals contest it publicly, and secure long-term trust over speed."
+  __choice
+
+  choice__
+    @target "T359 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run split instructions through deniable couriers, isolate rivals from their allies, and keep leverage off the books."
+  __choice
+
+  choice__
+    @target "T360 - ACT5 - Riverrun Broken Oath under rain"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Outsource pressure to offshore partners, accelerate deployments, and accept escalating dependence on external force."
+  __choice
+__section
+
+section__
+  @title "T358 - ACT5 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-358.jpg"
+
+  "In Sunspear cells, heat, rust, and blood sit heavy while a prisoner bargains for one more breath. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Gendry tests your posture in public while Sandor Clegane studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+Tactical sacrifice is unavoidable now, but indiscriminate sacrifice becomes strategic suicide once soldiers believe survival depends on favoritism.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T359 - ACT5 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Call captains into formal hearing, fix responsibility in record, and pay the time cost to restore legitimacy."
+  __choice
+
+  choice__
+    @target "T360 - ACT5 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Make examples in shadow, leak only what serves your position, and lock compliance through controlled uncertainty."
+  __choice
+__section
+
+section__
+  @title "T359 - ACT5 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-359.jpg"
+
+  "At the Trident docks, brine and pitch smoke rise from chains bolted beside your treaty table. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Jaime Lannister tests your posture in public while Brienne of Tarth studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+You can hold ground with blood, but you cannot hold coalition confidence if casualty burdens look engineered instead of shared.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T360 - ACT5 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set one public standard for all houses, enforce it by decree, and accept short-term outrage for durable cohesion."
+  __choice
+
+  choice__
+    @target "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Turn hidden debts into blackmail leverage, compel cooperation without hearings, and preserve tempo at moral cost."
+  __choice
+__section
+
+section__
+  @title "T360 - ACT5 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/05-act5-battlefront/frame-360.jpg"
+
+  "Under Riverrun rain, wet leather and cold iron fill the tent where oaths are being contested. House Valehart now sits at the hinge of three theaters, and your ruling here will redirect riders, stores, and hostages before dawn. Brienne of Tarth tests your posture in public while Jaime Lannister studies your pauses for weakness, and every scribe in the room is already drafting competing versions of your intent.
+
+The field is eating men faster than replacement lines can march. Attrition is no longer abstract; it is visible in empty shield ranks before noon.
+
+You can distribute sacrifice transparently and risk slower action, or force outcomes through hidden pressure and keep momentum at the cost of trust. The next move will decide whether fear or discipline carries your front."
+
+  choice__
+    @target "T361 - ACT5 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue terms before witnesses, accept the delay, and bind every banner to one enforceable line of command."
+  __choice
+
+  choice__
+    @target "T362 - ACT5 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Summon key holdouts in private, trade threats for obedience, and move before dissent hardens into mutiny."
+  __choice
+
+  choice__
+    @target "T363 - ACT5 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Spend coin on Essosi couriers and dragon-backed deterrence, buying speed while draining treasury reserves."
+  __choice
+__section

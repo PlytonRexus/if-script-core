@@ -2,7 +2,6 @@ import Stream from './Stream.mjs'
 import Token from '../../../models/Token.mjs'
 import Validator from './Validator.mjs'
 import TokenTypes from '../../../constants/custom/tokenTypes.mjs'
-import { grammar } from '../../../constants/regex/regexGrammar.mjs'
 import Keywords from '../../../constants/custom/keywords.mjs'
 
 class TokenStream extends Stream {
@@ -11,30 +10,36 @@ class TokenStream extends Stream {
    */
   constructor (input) {
     super(input)
-    this.removeComments()
     this.current = null
     this.validator = new Validator()
     this.id = 0
     this.lastToken = null
-    this.nextToken = null
+    this.buffer = []
   }
 
   /**
    * @returns {Token}
    */
   peek () {
-    return this.current // || (this.current = this.readNext())
+    return this.peekAhead(0)
+  }
+
+  /**
+   * Peek with lookahead offset.
+   * @param {number} offset
+   * @returns {Token|null}
+   */
+  peekAhead (offset = 0) {
+    this.fillBuffer(offset + 1)
+    return this.buffer[offset] || null
   }
 
   /**
    * @returns {Token}
    */
   next () {
-    // const tok = this.current
-    // this.current = null
-    // return tok || (this.readNext())
-    this.current = this.nextToken || this.readNext()
-    if (!this.eof()) this.nextToken = this.readNext()
+    this.fillBuffer(1)
+    this.current = this.buffer.shift() || null
     return this.current
   }
 
@@ -42,7 +47,7 @@ class TokenStream extends Stream {
    * @returns {boolean|*}
    */
   eof () {
-    return this.input.eof()
+    return this.buffer.length === 0 && this.input.eof()
   }
 
   except (message) {
@@ -53,7 +58,15 @@ class TokenStream extends Stream {
    * @returns {Token}
    */
   preview () {
-    return this.nextToken
+    return this.peek()
+  }
+
+  fillBuffer (minLength) {
+    while (this.buffer.length < minLength) {
+      const next = this.readNext()
+      if (!next) break
+      this.buffer.push(next)
+    }
   }
 
   getTokenInstance (type, symbol) {
@@ -67,9 +80,53 @@ class TokenStream extends Stream {
     return this.lastToken
   }
 
-  removeComments () {
-    const { comment } = grammar
-    this.input.input = this.input.input.replace(comment, '').replace(/>>/g, '').replace(/<</g, '')
+  matchesAhead (pattern) {
+    for (let i = 0; i < pattern.length; i++) {
+      if (this.input.input.charAt(this.input.pos + i) !== pattern[i]) {
+        return false
+      }
+    }
+    return true
+  }
+
+  skipLineComment () {
+    this.input.next() // /
+    this.input.next() // /
+    while (!this.input.eof() && this.input.peek() !== '\n') {
+      this.input.next()
+    }
+  }
+
+  skipBlockComment () {
+    this.input.next() // /
+    this.input.next() // *
+    while (!this.input.eof()) {
+      if (this.matchesAhead('*/')) {
+        this.input.next()
+        this.input.next()
+        break
+      }
+      this.input.next()
+    }
+  }
+
+  skipIgnored () {
+    while (!this.eof()) {
+      this.readWhile(this.validator.isWhiteSpace)
+      if (this.input.eof()) return
+
+      if (this.matchesAhead('//')) {
+        this.skipLineComment()
+        continue
+      }
+
+      if (this.matchesAhead('/*')) {
+        this.skipBlockComment()
+        continue
+      }
+
+      break
+    }
   }
 
   readString () {
@@ -136,6 +193,18 @@ class TokenStream extends Stream {
         return TokenTypes.BOOLEAN
       case Keywords.FALSE:
         return TokenTypes.BOOLEAN
+      case Keywords.WHILE_START:
+      case Keywords.WHILE_END:
+        return TokenTypes.LOOP_KW
+      case Keywords.BREAK:
+        return TokenTypes.BREAK_KW
+      case Keywords.CONTINUE:
+        return TokenTypes.CONTINUE_KW
+      case Keywords.FUNCTION_START:
+      case Keywords.FUNCTION_END:
+        return TokenTypes.FUNCTION_KW
+      case Keywords.RETURN:
+        return TokenTypes.RETURN_KW
     }
 
     if (propName.includes('PROP')) { return TokenTypes.PROPERTY_KW }
@@ -157,7 +226,7 @@ class TokenStream extends Stream {
   }
 
   readNext () {
-    this.readWhile(this.validator.isWhiteSpace)
+    this.skipIgnored()
     if (this.input.eof()) return null
     const ch = this.input.peek()
     if (ch === '"') return this.readString()

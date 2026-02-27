@@ -18,14 +18,24 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'IF | Web',
-      template: path.resolve(__dirname, '../test/index.html'), // template file
+      template: path.resolve(__dirname, '../test/harness/web/index.html'), // template file
       filename: 'index.html', // output file,
       chunks: ['main']
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'test/**/*', to: path.resolve(paths.build, '')
+          from: 'test/harness/web/**/*',
+          to: path.resolve(paths.build, '')
+        },
+        {
+          from: 'test/fixtures/**/*',
+          to: path.resolve(paths.build, '')
+        },
+        {
+          from: 'assets/**/*',
+          to: path.resolve(paths.build, ''),
+          noErrorOnMissing: true
         }
       ]
     }),
@@ -65,9 +75,9 @@ module.exports = {
       '@': paths.src
     },
     fallback: {
-      path: require.resolve("path-browserify"),
+      path: require.resolve('path-browserify'),
       fs: false
-    },
+    }
   }
 
 }

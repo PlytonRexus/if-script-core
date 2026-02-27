@@ -1,0 +1,842 @@
+/* Thrones module: 01-act1-court.partial.if */
+scene__
+  @name "ACT1: Red Keep Intrigue"
+  @first "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T050 - ACT1 - Pentos Harbor Ambush in river fog" "T051 - ACT1 - Qarth Alliance Split near the godswood" "T052 - ACT1 - The Wall War Map against old law" "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T056 - ACT1 - Pyke Hostage Exchange at the broken tower" "T057 - ACT1 - Highgarden Siege Promise in the throne shadow" "T058 - ACT1 - Sunspear Prison Confession with steel drawn" "T059 - ACT1 - The Trident Salt Pact by the harbor chain" "T060 - ACT1 - Riverrun Broken Oath under rain" "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast" "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell" "T063 - ACT1 - Winterfell Night Council before witnesses" "T064 - ACT1 - The Twins Debt Collection under wolf banners" "T065 - ACT1 - Harrenhal Torchlit Census at the rookery" "T066 - ACT1 - Dragonstone Blood Price at first light" "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals" "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries" "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T070 - ACT1 - Pentos Harbor Ambush in river fog" "T071 - ACT1 - Qarth Alliance Split near the godswood" "T072 - ACT1 - The Wall War Map against old law"
+__scene
+
+section__
+  @title "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-049.jpg"
+
+  "In a shuttered council room, ink pools beside half-burned dispatches while guards listen through the oak door. Varys urges immediate action on a legal ultimatum designed to strip toll and route control, while Grand Maester Pycelle measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T050 - ACT1 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table a legal ultimatum designed to strip toll and route control in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T051 - ACT1 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a legal ultimatum designed to strip toll and route control through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+
+  choice__
+    @target "T052 - ACT1 - The Wall War Map against old law"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend coin and offshore contacts to accelerate a legal ultimatum designed to strip toll and route control, buying speed at the cost of deeper external influence in court affairs."
+  __choice
+__section
+
+section__
+  @title "T050 - ACT1 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-050.jpg"
+
+  "Goldcloaks hold the gallery while clerks pass sealed folders hand to hand under stained-glass saints. Cersei Lannister urges immediate action on proof of dockside sabotage tied to court patrons, while Tyrion Lannister measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T051 - ACT1 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table proof of dockside sabotage tied to court patrons in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T052 - ACT1 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve proof of dockside sabotage tied to court patrons through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+
+  choice__
+    @target "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend coin and offshore contacts to accelerate proof of dockside sabotage tied to court patrons, buying speed at the cost of deeper external influence in court affairs."
+  __choice
+__section
+
+section__
+  @title "T051 - ACT1 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-051.jpg"
+
+  "From Maegor's steps, harbor wind carries tar and rot into a chamber where every whisper has a buyer. Grand Maester Pycelle urges immediate action on foreign credit offers that split the small council bloc, while Varys measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T052 - ACT1 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table foreign credit offers that split the small council bloc in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve foreign credit offers that split the small council bloc through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T052 - ACT1 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-052.jpg"
+
+  "Perfume, wax smoke, and damp stone mix in the Red Keep corridors as petitioners crowd beneath painted lions. Tyrion Lannister urges immediate action on frontier obligations that capital factions treat as negotiable, while Cersei Lannister measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table frontier obligations that capital factions treat as negotiable in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve frontier obligations that capital factions treat as negotiable through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T053 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-053.jpg"
+
+  "In a shuttered council room, ink pools beside half-burned dispatches while guards listen through the oak door. Varys urges immediate action on a claim dispute that can be weaponized in succession politics, while Grand Maester Pycelle measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table a claim dispute that can be weaponized in succession politics in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a claim dispute that can be weaponized in succession politics through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T054 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-054.jpg"
+
+  "Goldcloaks hold the gallery while clerks pass sealed folders hand to hand under stained-glass saints. Cersei Lannister urges immediate action on chokepoint reports that change force-allocation arguments, while Tyrion Lannister measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table chokepoint reports that change force-allocation arguments in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T056 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve chokepoint reports that change force-allocation arguments through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T055 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-055.jpg"
+
+  "From Maegor's steps, harbor wind carries tar and rot into a chamber where every whisper has a buyer. Grand Maester Pycelle urges immediate action on evidence of information leaks through learned networks, while Varys measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T056 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table evidence of information leaks through learned networks in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T057 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve evidence of information leaks through learned networks through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+
+  choice__
+    @target "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend coin and offshore contacts to accelerate evidence of information leaks through learned networks, buying speed at the cost of deeper external influence in court affairs."
+  __choice
+__section
+
+section__
+  @title "T056 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-056.jpg"
+
+  "Perfume, wax smoke, and damp stone mix in the Red Keep corridors as petitioners crowd beneath painted lions. Tyrion Lannister urges immediate action on hostage terms that can be spun as weakness or pragmatism, while Cersei Lannister measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T057 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table hostage terms that can be spun as weakness or pragmatism in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve hostage terms that can be spun as weakness or pragmatism through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+
+  choice__
+    @target "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend coin and offshore contacts to accelerate hostage terms that can be spun as weakness or pragmatism, buying speed at the cost of deeper external influence in court affairs."
+  __choice
+__section
+
+section__
+  @title "T057 - ACT1 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-057.jpg"
+
+  "In a shuttered council room, ink pools beside half-burned dispatches while guards listen through the oak door. Varys urges immediate action on relief pledges tied to influence over command structure, while Grand Maester Pycelle measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table relief pledges tied to influence over command structure in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve relief pledges tied to influence over command structure through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T058 - ACT1 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-058.jpg"
+
+  "Goldcloaks hold the gallery while clerks pass sealed folders hand to hand under stained-glass saints. Cersei Lannister urges immediate action on a confession that can trigger factional purges, while Tyrion Lannister measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table a confession that can trigger factional purges in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T060 - ACT1 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a confession that can trigger factional purges through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T059 - ACT1 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-059.jpg"
+
+  "From Maegor's steps, harbor wind carries tar and rot into a chamber where every whisper has a buyer. Grand Maester Pycelle urges immediate action on supply and tariff terms that decide urban stability, while Varys measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T060 - ACT1 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table supply and tariff terms that decide urban stability in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve supply and tariff terms that decide urban stability through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+__section
+
+section__
+  @title "T060 - ACT1 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-060.jpg"
+
+  "Perfume, wax smoke, and damp stone mix in the Red Keep corridors as petitioners crowd beneath painted lions. Tyrion Lannister urges immediate action on a broken-oath file with direct implications for crown legitimacy, while Cersei Lannister measures whether your hesitation can be framed as disloyalty by supper.
+
+Capital politics rewards timing over sincerity. If you move publicly, you gain procedural legitimacy and surrender surprise. If you move through closed channels, you can seize initiative while feeding the narrative that Valehart governs by deniable coercion. Either choice changes who trusts your next decree and who begins quietly funding your replacement.
+
+This is not debate for its own sake. In King's Landing, information control is force projection with better tailoring."
+
+  choice__
+    @target "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Table a broken-oath file with direct implications for crown legitimacy in open council, bind statements to record, and absorb short-term friction for lawful authority."
+  __choice
+
+  choice__
+    @target "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a broken-oath file with direct implications for crown legitimacy through private intermediaries and sealed concessions, gaining initiative while increasing blackmail exposure."
+  __choice
+
+  choice__
+    @target "T063 - ACT1 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend coin and offshore contacts to accelerate a broken-oath file with direct implications for crown legitimacy, buying speed at the cost of deeper external influence in court affairs."
+  __choice
+__section
+
+section__
+  @title "T061 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-061.jpg"
+
+  "In a narrow records chamber, wax seals pile beside wine cups and knives laid too close to legal briefs. Varys insists you resolve a blackmail ledger that can reorder court alliances before rivals can define it first, while Grand Maester Pycelle studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit a blackmail ledger that can reorder court alliances to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T063 - ACT1 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a blackmail ledger that can reorder court alliances through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T062 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-062.jpg"
+
+  "The throne shadow stretches over tiled floors while scribes whisper names they would not speak aloud in daylight. Cersei Lannister insists you resolve a raven intercept proving divergence between decree and intent before rivals can define it first, while Tyrion Lannister studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T063 - ACT1 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit a raven intercept proving divergence between decree and intent to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T064 - ACT1 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a raven intercept proving divergence between decree and intent through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T063 - ACT1 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-063.jpg"
+
+  "Outside the sept bell, ravens wheel above battlements as goldcloaks trade rumors for favors. Grand Maester Pycelle insists you resolve a northern demand for enforceable guarantees from the capital before rivals can define it first, while Varys studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T064 - ACT1 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit a northern demand for enforceable guarantees from the capital to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T065 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a northern demand for enforceable guarantees from the capital through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+
+  choice__
+    @target "T066 - ACT1 - Dragonstone Blood Price at first light"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use treasury and foreign intermediaries to force momentum on a northern demand for enforceable guarantees from the capital, gaining tempo while inviting external claims on court decisions."
+  __choice
+__section
+
+section__
+  @title "T064 - ACT1 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-064.jpg"
+
+  "Candle smoke clings to velvet hangings as heralds queue with petitions no one intends to answer cleanly. Tyrion Lannister insists you resolve crossing extortion that undermines royal claims of order before rivals can define it first, while Cersei Lannister studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T065 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit crossing extortion that undermines royal claims of order to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T066 - ACT1 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle crossing extortion that undermines royal claims of order through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T065 - ACT1 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-065.jpg"
+
+  "In a narrow records chamber, wax seals pile beside wine cups and knives laid too close to legal briefs. Varys insists you resolve audit records that can expose manipulated levies before rivals can define it first, while Grand Maester Pycelle studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T066 - ACT1 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit audit records that can expose manipulated levies to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle audit records that can expose manipulated levies through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+
+  choice__
+    @target "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use treasury and foreign intermediaries to force momentum on audit records that can expose manipulated levies, gaining tempo while inviting external claims on court decisions."
+  __choice
+__section
+
+section__
+  @title "T066 - ACT1 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-066.jpg"
+
+  "The throne shadow stretches over tiled floors while scribes whisper names they would not speak aloud in daylight. Cersei Lannister insists you resolve a blood-price demand with legal teeth and political poison before rivals can define it first, while Tyrion Lannister studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit a blood-price demand with legal teeth and political poison to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a blood-price demand with legal teeth and political poison through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T067 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-067.jpg"
+
+  "Outside the sept bell, ravens wheel above battlements as goldcloaks trade rumors for favors. Grand Maester Pycelle insists you resolve a sealed procurement contract with hidden concessions before rivals can define it first, while Varys studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit a sealed procurement contract with hidden concessions to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a sealed procurement contract with hidden concessions through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T068 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-068.jpg"
+
+  "Candle smoke clings to velvet hangings as heralds queue with petitions no one intends to answer cleanly. Tyrion Lannister insists you resolve intelligence of northern force posture used as court leverage before rivals can define it first, while Cersei Lannister studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit intelligence of northern force posture used as court leverage to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T070 - ACT1 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle intelligence of northern force posture used as court leverage through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T069 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-069.jpg"
+
+  "In a narrow records chamber, wax seals pile beside wine cups and knives laid too close to legal briefs. Varys insists you resolve a legal ultimatum designed to strip toll and route control before rivals can define it first, while Grand Maester Pycelle studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T070 - ACT1 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit a legal ultimatum designed to strip toll and route control to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T071 - ACT1 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a legal ultimatum designed to strip toll and route control through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T070 - ACT1 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-070.jpg"
+
+  "The throne shadow stretches over tiled floors while scribes whisper names they would not speak aloud in daylight. Cersei Lannister insists you resolve proof of dockside sabotage tied to court patrons before rivals can define it first, while Tyrion Lannister studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T071 - ACT1 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit proof of dockside sabotage tied to court patrons to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T072 - ACT1 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle proof of dockside sabotage tied to court patrons through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+
+  choice__
+    @target "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use treasury and foreign intermediaries to force momentum on proof of dockside sabotage tied to court patrons, gaining tempo while inviting external claims on court decisions."
+  __choice
+__section
+
+section__
+  @title "T071 - ACT1 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-071.jpg"
+
+  "Outside the sept bell, ravens wheel above battlements as goldcloaks trade rumors for favors. Grand Maester Pycelle insists you resolve foreign credit offers that split the small council bloc before rivals can define it first, while Varys studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T072 - ACT1 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit foreign credit offers that split the small council bloc to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle foreign credit offers that split the small council bloc through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section
+
+section__
+  @title "T072 - ACT1 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-court/frame-072.jpg"
+
+  "Candle smoke clings to velvet hangings as heralds queue with petitions no one intends to answer cleanly. Tyrion Lannister insists you resolve frontier obligations that capital factions treat as negotiable before rivals can define it first, while Cersei Lannister studies your pauses for leverage that can be converted into patronage by nightfall.
+
+By this stage of Act 1, court memory is weaponized: each earlier concession is now cited as precedent against you. Public adjudication can protect legitimacy and expose your coalition seams. Covert adjudication can preserve maneuver but strengthens the argument that law in the capital is merely theater over coercion.
+
+What happens in this chamber will be retold at ten tables by dawn, each version designed to move coin, votes, and knives."
+
+  choice__
+    @target "T073 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit frontier obligations that capital factions treat as negotiable to formal hearing, bind testimony on record, and accept political drag to preserve institutional credibility."
+  __choice
+
+  choice__
+    @target "T074 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle frontier obligations that capital factions treat as negotiable through back-channel leverage and selective disclosure, buying control now while compounding future blackmail risk."
+  __choice
+__section

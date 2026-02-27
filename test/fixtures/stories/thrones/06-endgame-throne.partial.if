@@ -1,0 +1,424 @@
+/* Thrones module: 06-endgame-throne.partial.if */
+scene__
+  @name "ACT6: Throne Calculus"
+  @first "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+  @sections "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke" "T410 - ACT6 - Pentos Harbor Ambush in river fog" "T411 - ACT6 - Qarth Alliance Split near the godswood" "T412 - ACT6 - The Wall War Map against old law" "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky" "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse" "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors" "T416 - ACT6 - Pyke Hostage Exchange at the broken tower" "T417 - ACT6 - Highgarden Siege Promise in the throne shadow" "T418 - ACT6 - Sunspear Prison Confession with steel drawn" "T419 - ACT6 - The Trident Salt Pact by the harbor chain" "T420 - ACT6 - Riverrun Broken Oath under rain"
+__scene
+
+section__
+  @title "T409 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-409.jpg"
+
+  "The Eyrie map chamber is colder than the battlefields you just left. Wax smoke curls above casualty ledgers while scribes sharpen fresh quills for a war that now happens in signatures instead of charges. Tyrion Lannister insists the realm needs an explicit succession framework before another banner defects. Daenerys watches in silence, measuring whether your law serves order or merely cloaks fear.
+
+Neutral lords no longer ask who won the sieges. They ask who can guarantee roads, courts, and grain convoys through winter. A public settlement can bind rivals to visible obligations and expose every concession as weakness. A covert settlement can secure immediate obedience through debt, hostages, and blackmail while sowing the very resentments that end dynasties.
+
+Outside, high winds rattle the shutters like dice in a cup. The first decree of the new order will decide what sort of throne can survive the second decree."
+
+  choice__
+    @target "T410 - ACT6 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Convene a witnessed succession court and bind claimants to written constitutional terms before the realm."
+  __choice
+
+  choice__
+    @target "T411 - ACT6 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Build a private patronage bloc through hostages, debt notes, and deniable leverage over key electors."
+  __choice
+__section
+
+section__
+  @title "T410 - ACT6 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-410.jpg"
+
+  "On the Iron Throne dais, hammered metal still smells of blood and lamp oil. Sansa Stark demands enforceable limits on crown requisitions before the north commits another winter levy. Varys brings reports that captains are abandoning garrisons because no one trusts which proclamations are real. Claimant houses crowd the galleries, ready to call any delay proof of illegitimacy.
+
+Succession is now an operational problem as much as a moral one. If command law is public and legible, armies hold formation and rivals gain material to contest each clause. If command law is private and coercive, you can move faster while teaching every officer to obey fear over institutions. A third path can import outside guarantors and money, but at the price of sovereignty.
+
+The throne room echoes with boots, steel, and whispered arithmetic. Every party here is counting what your settlement will cost them before they decide whether to honor it."
+
+  choice__
+    @target "T411 - ACT6 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read a formal command charter before assembled houses, forcing military loyalty into public law."
+  __choice
+
+  choice__
+    @target "T412 - ACT6 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Whip support through sealed bargains and private kompromat, securing votes before opposition can organize."
+  __choice
+
+  choice__
+    @target "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Buy Pentoshi credit and neutral guarantors to force a rapid settlement, trading coin for outside influence."
+  __choice
+__section
+
+section__
+  @title "T411 - ACT6 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-411.jpg"
+
+  "In the king's solar, foreign envoys from Qarth and Pentos wait beside hostages who are supposed to guarantee their contracts. Varys warns that each envoy has already promised different terms to different claimants. Sansa points out the obvious: if foreign guarantees become the true source of legitimacy, every Westerosi oath becomes negotiable credit.
+
+You can formalize these alliances in open record and force outside actors to accept scrutiny. That stabilizes commerce while exposing how dependent the crown has become on external lenders and shipping houses. Or you can keep the terms fragmented and secret, preserving tactical flexibility while ensuring the next succession crisis begins with financial blackmail and disputed obligations.
+
+Rain strikes the casement glass in hard bursts. Somewhere below, a hostage child is crying, and no one in this room pretends not to hear it."
+
+  choice__
+    @target "T412 - ACT6 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish one foreign-alliance register and enforce identical terms across houses, accepting immediate backlash."
+  __choice
+
+  choice__
+    @target "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Maintain parallel secret deals with rival envoys, preserving leverage now and banking future coercion."
+  __choice
+__section
+
+section__
+  @title "T412 - ACT6 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-412.jpg"
+
+  "The White Sword Tower smells of oiled steel and wet parchment. Daenerys presses for a decisive settlement that discourages rebellion through unmistakable strength. Tyrion argues that if crown policy ignores the Wall again, no throne settlement matters because the realm it governs may not survive the season. Crown guards pass altered raven copies from hand to hand, each with different claims of what you already decided.
+
+This is the fault line between spectacle and survival. A public frontier compact can yoke succession legitimacy to northern defense and make southern elites pay visible costs. A covert pressure campaign can move supplies faster by bypassing debate, while convincing half the realm that governance now means manipulated terror. Either path defines what authority will look like under the next crown.
+
+The map table is pinned with black stones for dead keeps and white stones for those still holding. There are fewer white stones every week."
+
+  choice__
+    @target "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bind the new succession deal to a witnessed Wall-defense compact with mandatory grain and troop quotas."
+  __choice
+
+  choice__
+    @target "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use intelligence files to coerce obstructing lords and redirect resources through deniable command channels."
+  __choice
+__section
+
+section__
+  @title "T413 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-413.jpg"
+
+  "Castle Black's inheritance gallery is crowded with faith delegates, quartermasters, and survivors who carried the war on their backs. Tyrion presents a draft charter for command inheritance if northern lords fall. Daenerys questions whether concessions to distant garrisons will hollow the capital at the moment of coronation. Grain clerks have already begun rationing by political reliability, and everyone sees it.
+
+Granting northern guarantees in open law can stabilize military confidence while reducing your bargaining room with southern claimants. Quietly extracting concessions from weaker factions can protect central control, but it transforms every promise into suspected extortion. You can also buy outside logistics support and force a temporary solution, though every foreign convoy arrives with policy strings attached.
+
+Snow presses against the leaded windows, muting the hall. The people gathered here have heard too many promises and buried too many men to accept another vague one."
+
+  choice__
+    @target "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Ratify northern inheritance guarantees in public charter, paying central leverage to secure frontier trust."
+  __choice
+
+  choice__
+    @target "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Force a private concession from vulnerable claimants and lock command rights through sealed coercive terms."
+  __choice
+
+  choice__
+    @target "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Finance external transport and deterrence contracts to enforce settlement terms through foreign capacity."
+  __choice
+__section
+
+section__
+  @title "T414 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-414.jpg"
+
+  "At Moat Cailin, rain drums on slate while messengers crowd the gatehouse with contradictory oaths from the same banner houses. Sansa insists that only an open reckoning can end the rumor war before coronation. Varys quietly shows you names of officers paid to stage defections if settlement terms become too restrictive. The line between intelligence and provocation is now almost invisible.
+
+One faction threatens to break by sunrise unless you prove who actually commands the crossings. A public process can reestablish shared rules and embarrass allies you still need. A covert manipulation can collapse the dissent network overnight while validating every fear that the new regime is built on hidden knives. Both options move you forward. Neither leaves everyone loyal.
+
+Mud from a hundred boots has turned the floor black. These are the last hours where allegiance can still be negotiated instead of imposed."
+
+  choice__
+    @target "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold an open gatehouse hearing and revalidate command seals, risking elite outrage to restore public trust."
+  __choice
+
+  choice__
+    @target "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Seed controlled rumors and flip key conspirators in secret, converting uncertainty into direct coercive leverage."
+  __choice
+__section
+
+section__
+  @title "T415 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-415.jpg"
+
+  "Oldtown's sealed records chamber smells of ink, mold, and sea wind. Varys lays out correspondence proving maesters, guilds, and sept officials have each drafted different legal justifications for who should rule. Sansa notes that if every faction can quote a different precedent, the first coronation decree will be challenged before the crown cools.
+
+Neutral houses now wait to commit grain and coin until they see whether your settlement is rule-bound or merely expedient. A public legal settlement can establish coherent legitimacy and strip you of private bargaining tools. A covert settlement can buy immediate compliance through secret guarantees and make every future dispute a blackmail market. You can also use foreign financing to enforce outcomes quickly, at the cost of domestic credibility.
+
+The bells of Oldtown carry through the shutters in slow intervals. Each one sounds like a deadline the realm can no longer postpone."
+
+  choice__
+    @target "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish a unified legal basis for succession and bind crown, faith, and guild powers to the same code."
+  __choice
+
+  choice__
+    @target "T417 - ACT6 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle claims through sealed concessions and selective amnesties, preserving leverage over every signatory."
+  __choice
+
+  choice__
+    @target "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Purchase fast liquidity and private guarantees from Essosi backers to force immediate settlement compliance."
+  __choice
+__section
+
+section__
+  @title "T416 - ACT6 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-416.jpg"
+
+  "At Pyke's broken tower, surf smashes the rocks below and sprays salt across your treaty table. Daenerys demands a hard line against houses still testing your authority by withholding hostages. Tyrion counters that another round of exemplary brutality may win the week and destroy the coalition needed to survive winter. Foreign envoys in the gallery are already pricing which claimants might replace you.
+
+Desertion reports from western garrisons show the same pattern: officers flee when succession terms seem reversible. A public hostage settlement can signal institutional finality and stop the drift. A covert settlement can neutralize immediate threats through disappearances and deniable swaps, but it converts every ally into a potential revenge plot. This is where your method becomes your regime.
+
+Salt has blurred half the signatures on yesterday's draft. The sea is erasing indecision faster than your scribes can rewrite it."
+
+  choice__
+    @target "T417 - ACT6 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Complete a witnessed hostage settlement and publish final command obligations for all claimant houses."
+  __choice
+
+  choice__
+    @target "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Execute a covert hostage reshuffle and intimidation campaign, securing obedience through fear and secrecy."
+  __choice
+__section
+
+section__
+  @title "T417 - ACT6 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-417.jpg"
+
+  "Highgarden's throne shadow falls across a hall still stacked with siege ladders and wounded men. Tyrion argues for ratifying a broad settlement before another harvest fails. Daenerys argues that compromise without deterrence invites immediate rebellion. The crown guard commanders are less philosophical: they need to know whose orders outrank whose by sunrise.
+
+Hostage dynamics have hardened into succession leverage. A lawful ratification can stabilize the command structure and lock in explicit responsibilities for reconstruction. A covert ratification can keep dissident houses dependent on your secrets, while ensuring peace remains performative and reversible. Every concession you sign here will be cited in either coronation oaths or war crimes accusations.
+
+The room smells of polished steel and drying blood. No one present believes there will be another neutral meeting after tonight."
+
+  choice__
+    @target "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Ratify the succession compact in open assembly, compelling public compliance from every major faction."
+  __choice
+
+  choice__
+    @target "T419 - ACT6 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Finalize rule through hidden debt chains and kompromat files, preserving leverage over formal legality."
+  __choice
+__section
+
+section__
+  @title "T418 - ACT6 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-418.jpg"
+
+  "In Sunspear's prison gallery, a captured intermediary confesses to coordinating forged decrees between rival councils. Sansa demands the confession be tested before witnesses so no side can dismiss it as theater. Varys warns that if the network is not broken before the coronation, every order you issue in the first month can be spoofed and weaponized.
+
+This is the final intelligence bottleneck before the settlement closes. Public adjudication can restore trust in records and permanently shame powerful accomplices. Quiet resolution can remove the network faster and keep fragile allies from bolting, while guaranteeing that conspiracy becomes your default administrative tool. Either choice will be remembered as the true constitution beneath the one you sign.
+
+Dust motes drift through angled light onto shackles bolted in the floor. The room is built to hold bodies, but tonight it is holding the future of your paperwork."
+
+  choice__
+    @target "T419 - ACT6 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the conspiracy confession to open inquiry and codify evidentiary rules for crown decrees."
+  __choice
+
+  choice__
+    @target "T420 - ACT6 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Silence the network through sealed removals and controlled leaks, prioritizing control over due process."
+  __choice
+__section
+
+section__
+  @title "T419 - ACT6 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-419.jpg"
+
+  "At the Trident treaty chamber, salt-stained maps are pinned beside ledgers of burned mills and surviving granaries. Varys presents one final list of houses that will sign only if given exemptions. Sansa presents another list of villages that will starve if those exemptions stand. Quartermasters are already rationing by expected loyalty, and everyone in the room knows the game.
+
+This is the last pact before terminal reckoning. A public oath can harden legitimacy and expose how much pain the settlement asks of ordinary households. A covert arrangement can keep elite coalitions intact and leave the countryside to absorb the hidden cost. The decision is no longer about whether conflict ends. It is about who is forced to pay for the ending.
+
+Wax cools in the signet bowls while thunder rolls upriver. If this pact is crooked, the next act begins with funerals instead of governance."
+
+  choice__
+    @target "T420 - ACT6 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sign a transparent Trident recovery pact with enforceable public obligations and audited grain commitments."
+  __choice
+
+  choice__
+    @target "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Lock recovery through private quotas and coercive side letters, preserving elite alignment through secrecy."
+  __choice
+__section
+
+section__
+  @title "T420 - ACT6 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-throne/frame-420.jpg"
+
+  "Riverrun's oath hall is crowded with claimants who swore against each other a season ago and now pretend they always expected compromise. Daenerys demands decisive closure before rivals regroup. Tyrion warns that forced closure without credible administration will produce civil collapse faster than open war did. One banner house announces it will walk unless you prove tonight that settlement terms are enforceable.
+
+This is the final fork before the reckoning of ashes. You can impose a witnessed public settlement and carry the political burden in plain view. You can steer outcomes through covert pressure and enter the endgame with stronger leverage and weaker legitimacy. Or you can buy speed from outside partners, preserving options while deepening strategic debt that will shape every ending.
+
+Rain beats on the river stones like distant drums. By dawn, the realm will know whether it has inherited a government, a racket, or a countdown."
+
+  choice__
+    @target "T421 - ACT6 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Conclude the succession in open oath-court with recorded enforcement terms, staking authority on visible law."
+  __choice
+
+  choice__
+    @target "T422 - ACT6 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 2, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Close the chamber and secure the throne through deniable coercion, entering the endgame with hidden fractures."
+  __choice
+
+  choice__
+    @target "T423 - ACT6 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 2, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend heavily on Essosi leverage to lock rapid compliance, trading long-term autonomy for immediate control."
+  __choice
+__section

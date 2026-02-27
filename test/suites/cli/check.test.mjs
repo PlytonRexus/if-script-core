@@ -1,0 +1,363 @@
+import { writeFile, unlink } from 'fs/promises'
+import path from 'path'
+import { spawnSync } from 'child_process'
+import { fileURLToPath, pathToFileURL } from 'url'
+import check from '../../../src/cli/check.mjs'
+import {
+  assert,
+  assertEqual,
+  runTestSuite
+} from '../../support/test-utils.mjs'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const repoRoot = path.resolve(__dirname, '../../..')
+const cliEntry = path.join(repoRoot, 'bin/index.mjs')
+
+async function withTempStory (content, fn) {
+  const tempPath = path.join(repoRoot, `tmp-check-${Date.now()}-${Math.floor(Math.random() * 10000)}.if`)
+  await writeFile(tempPath, content, 'utf-8')
+  try {
+    return await fn(tempPath)
+  } finally {
+    await unlink(tempPath).catch(() => {})
+  }
+}
+
+function parseCheckArgs (args) {
+  let inputFile = null
+  let asJson = false
+  let profile = 'default'
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i]
+    if (arg === '-i' || arg === '--input-file') {
+      inputFile = args[i + 1]
+      i++
+      continue
+    }
+    if (arg === '--json') {
+      asJson = true
+      continue
+    }
+    if (arg === '--profile') {
+      profile = args[i + 1]
+      i++
+    }
+  }
+
+  return {
+    i: inputFile,
+    'input-file': inputFile,
+    json: asJson,
+    profile
+  }
+}
+
+async function runCheckInProcess (args) {
+  const chunks = []
+  const originalWrite = process.stdout.write.bind(process.stdout)
+  const originalExitCode = process.exitCode
+
+  process.exitCode = undefined
+  process.stdout.write = (chunk, encoding, cb) => {
+    if (typeof chunk === 'string') {
+      chunks.push(chunk)
+    } else if (chunk !== undefined && chunk !== null) {
+      const enc = typeof encoding === 'string' ? encoding : 'utf-8'
+      chunks.push(Buffer.from(chunk).toString(enc))
+    }
+    if (typeof encoding === 'function') encoding()
+    if (typeof cb === 'function') cb()
+    return true
+  }
+
+  try {
+    await check(parseCheckArgs(args))
+    return {
+      status: process.exitCode ?? 0,
+      signal: null,
+      error: null,
+      stdout: chunks.join(''),
+      stderr: ''
+    }
+  } finally {
+    process.stdout.write = originalWrite
+    process.exitCode = originalExitCode
+  }
+}
+
+async function runCheck (args) {
+  const result = spawnSync(process.execPath, [cliEntry, 'check', ...args], {
+    cwd: repoRoot,
+    encoding: 'utf-8'
+  })
+
+  if (result && result.error && (result.error.code === 'EPERM' || result.error.code === 'EACCES')) {
+    return runCheckInProcess(args)
+  }
+
+  return result
+}
+
+async function runCheckJson (storyPath, extraArgs = []) {
+  const result = await runCheck(['-i', storyPath, '--json', ...extraArgs])
+  const payload = JSON.parse(result.stdout)
+  return { result, payload }
+}
+
+function hasCode (payload, code) {
+  return payload.diagnostics.some(d => d.code === code)
+}
+
+async function testCheckNoDiagnosticsExitZero () {
+  const content = `section__
+  @title "Start"
+  choice__
+    @target "End"
+    "Go"
+  __choice
+__section
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const result = await runCheck(['-i', storyPath])
+    assertEqual(result.status, 0, 'check should exit 0 when no errors exist')
+    assert(result.stdout.includes('Summary:'), 'check should print summary')
+  })
+}
+
+async function testCheckUnresolvedTargetExitOne () {
+  const content = `section__
+  @title "Start"
+  choice__
+    @target "Missing"
+    "Go"
+  __choice
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const result = await runCheck(['-i', storyPath])
+    assertEqual(result.status, 1, 'check should exit 1 when errors exist')
+    assert(result.stdout.includes('CHOICE_TARGET_UNRESOLVED'), 'should report unresolved target diagnostic code')
+  })
+}
+
+async function testCheckJsonOutputShape () {
+  const content = `section__
+  @title "Start"
+  choice__
+    @target "Missing"
+    "Go"
+  __choice
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const result = await runCheck(['-i', storyPath, '--json'])
+    assertEqual(result.status, 1, 'json mode should still exit 1 for errors')
+    const payload = JSON.parse(result.stdout)
+    assert(payload.summary, 'json output should include summary')
+    assert(Array.isArray(payload.diagnostics), 'json output should include diagnostics array')
+    assert(payload.diagnostics.length > 0, 'json output should include at least one diagnostic')
+  })
+}
+
+async function testCheckStartAtUnresolved () {
+  const content = `settings__
+  @startAt "Missing Section"
+__settings
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'startAt unresolved should fail check')
+    assert(hasCode(payload, 'START_AT_UNRESOLVED'), 'should emit START_AT_UNRESOLVED')
+  })
+}
+
+async function testCheckFullTimerTargetUnresolved () {
+  const content = `settings__
+  @fullTimer 30 "Missing Timeout"
+__settings
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'fullTimer unresolved should fail check')
+    assert(hasCode(payload, 'FULL_TIMER_TARGET_UNRESOLVED'), 'should emit FULL_TIMER_TARGET_UNRESOLVED')
+  })
+}
+
+async function testCheckSectionTimerTargetUnresolved () {
+  const content = `section__
+  @title "Start"
+  @timer 10 "Missing Timeout"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'section timer unresolved should fail check')
+    assert(hasCode(payload, 'SECTION_TIMER_TARGET_UNRESOLVED'), 'should emit SECTION_TIMER_TARGET_UNRESOLVED')
+  })
+}
+
+async function testCheckSceneFirstUnresolved () {
+  const content = `scene__
+  @name "Chapter 1"
+  @first "Missing Start"
+__scene
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'scene first unresolved should fail check')
+    assert(hasCode(payload, 'SCENE_FIRST_UNRESOLVED'), 'should emit SCENE_FIRST_UNRESOLVED')
+  })
+}
+
+async function testCheckDuplicateFunctionNameWarningOnly () {
+  const content = `function__ helper(a) {
+  return__ a
+}
+
+function__ helper(b) {
+  return__ b + 1
+}
+
+section__
+  @title "Start"
+  x = helper(2)
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath)
+    assertEqual(result.status, 0, 'duplicate function name should warn but not fail check')
+    assert(hasCode(payload, 'DUPLICATE_FUNCTION_NAME'), 'should emit DUPLICATE_FUNCTION_NAME')
+    assertEqual(payload.summary.errors, 0, 'warning-only case should have zero errors')
+  })
+}
+
+async function testCheckDeprecatedSceneMusicPropertyFailsParse () {
+  const content = `scene__
+  @name "Old"
+  @music "theme.mp3"
+__scene
+
+section__
+  @title "Start"
+  "Hello"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath)
+    assertEqual(result.status, 1, 'deprecated @music should fail check via parse error')
+    assert(hasCode(payload, 'PARSE_OR_IMPORT_ERROR'), 'should emit PARSE_OR_IMPORT_ERROR for deprecated property')
+    assert(
+      payload.diagnostics.some(d => String(d.message || '').includes('Property @music is deprecated')),
+      'diagnostic message should explain @music deprecation'
+    )
+  })
+}
+
+async function testCheckKindleAnyWarnsButPasses () {
+  const content = `settings__
+  @fullTimer 30 "End"
+  @autoSave true
+  @theme "cinematic"
+__settings
+
+section__
+  @title "Start"
+  @timer 10 "End"
+  @backdrop "https://example.com/bg.jpg"
+  choice__
+    @target "End"
+    @when flag == true
+    @action flag = true
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any'])
+    assertEqual(result.status, 0, 'kindle-any profile should warn but not fail')
+    assert(hasCode(payload, 'KINDLE_DROPPED_TIMER'), 'should emit KINDLE_DROPPED_TIMER warning')
+    assert(hasCode(payload, 'KINDLE_DROPPED_MEDIA'), 'should emit KINDLE_DROPPED_MEDIA warning')
+    assert(hasCode(payload, 'KINDLE_APPROX_CHOICE_GUARDS'), 'should emit KINDLE_APPROX_CHOICE_GUARDS warning')
+    assert(hasCode(payload, 'KINDLE_APPROX_CHOICE_ACTIONS'), 'should emit KINDLE_APPROX_CHOICE_ACTIONS warning')
+    assertEqual(payload.summary.errors, 0, 'kindle-any warning profile should keep error count at 0')
+  })
+}
+
+async function testCheckKindleStrictFailsOnSameIssues () {
+  const content = `settings__
+  @fullTimer 30 "End"
+  @autoSave true
+__settings
+
+section__
+  @title "Start"
+  @timer 10 "End"
+  choice__
+    @target "End"
+    @when flag == true
+    @action flag = true
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  await withTempStory(content, async (storyPath) => {
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-strict'])
+    assertEqual(result.status, 1, 'kindle-strict should fail when Kindle-incompatible features exist')
+    assert(hasCode(payload, 'KINDLE_DROPPED_TIMER'), 'should emit KINDLE_DROPPED_TIMER as error')
+    assert(payload.summary.errors > 0, 'kindle-strict should report error count')
+  })
+}
+
+export async function runCheckTests () {
+  return runTestSuite('CLI Check Command Tests', [
+    { name: 'check exits 0 with no diagnostics', fn: testCheckNoDiagnosticsExitZero },
+    { name: 'check exits 1 with unresolved target', fn: testCheckUnresolvedTargetExitOne },
+    { name: 'check --json output shape', fn: testCheckJsonOutputShape },
+    { name: 'check startAt unresolved', fn: testCheckStartAtUnresolved },
+    { name: 'check fullTimer target unresolved', fn: testCheckFullTimerTargetUnresolved },
+    { name: 'check section timer target unresolved', fn: testCheckSectionTimerTargetUnresolved },
+    { name: 'check scene first unresolved', fn: testCheckSceneFirstUnresolved },
+    { name: 'check duplicate function name warning', fn: testCheckDuplicateFunctionNameWarningOnly },
+    { name: 'check deprecated @music parse failure', fn: testCheckDeprecatedSceneMusicPropertyFailsParse },
+    { name: 'check kindle-any warnings', fn: testCheckKindleAnyWarnsButPasses },
+    { name: 'check kindle-strict errors', fn: testCheckKindleStrictFailsOnSameIssues }
+  ])
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runCheckTests().then(passed => {
+    process.exit(passed ? 0 : 1)
+  })
+}

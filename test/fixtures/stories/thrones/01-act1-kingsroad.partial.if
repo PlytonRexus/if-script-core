@@ -1,0 +1,832 @@
+/* Thrones module: 01-act1-kingsroad.partial.if */
+scene__
+  @name "ACT1: Kingsroad Fractures"
+  @first "T025 - ACT1 - Harrenhal Torchlit Census at the rookery"
+  @sections "T025 - ACT1 - Harrenhal Torchlit Census at the rookery" "T026 - ACT1 - Dragonstone Blood Price at first light" "T027 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals" "T028 - ACT1 - The Dreadfort Border Muster in crowded galleries" "T029 - ACT1 - The Eyrie Crown Ultimatum by candle smoke" "T030 - ACT1 - Pentos Harbor Ambush in river fog" "T031 - ACT1 - Qarth Alliance Split near the godswood" "T032 - ACT1 - The Wall War Map against old law" "T033 - ACT1 - Castle Black Inheritance Claim under moonless sky" "T034 - ACT1 - Moat Cailin Whispered Warning at the gatehouse" "T035 - ACT1 - Oldtown Silent Betrayal behind closed doors" "T036 - ACT1 - Pyke Hostage Exchange at the broken tower" "T037 - ACT1 - Highgarden Siege Promise in the throne shadow" "T038 - ACT1 - Sunspear Prison Confession with steel drawn" "T039 - ACT1 - The Trident Salt Pact by the harbor chain" "T040 - ACT1 - Riverrun Broken Oath under rain" "T041 - ACT1 - The Kingsroad Blackmail Ledger after the feast" "T042 - ACT1 - The Red Keep Raven Intercept before the sept bell" "T043 - ACT1 - Winterfell Night Council before witnesses" "T044 - ACT1 - The Twins Debt Collection under wolf banners" "T045 - ACT1 - Harrenhal Torchlit Census at the rookery" "T046 - ACT1 - Dragonstone Blood Price at first light" "T047 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals" "T048 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+__scene
+
+section__
+  @title "T025 - ACT1 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-025.jpg"
+
+  "The rookery at Harrenhal stinks of wet parchment and raven droppings while your quartermasters unroll census sheets across a splintered table. Villages along the kingsroad have emptied carts into your convoy, and every sack is now disputed by three banners. Jory Cassel insists on counting in front of sworn witnesses; Yoren keeps glancing at the gate, where riders from lesser houses wait to see if you are fair or merely slower than other thieves.
+
+Roadside politics has become arithmetic with knives. If you publish honest numbers, several allies will learn they were promised grain that does not exist. If you hide shortages, the first hungry company will mutiny and call your house faithless. You feel the floor tremble each time another wagon enters the yard, another burden you can either govern or lose.
+
+Before dawn, the rolls must be sealed and riders dispatched. The choice is not whether someone pays. The choice is whether the payment is made in reputation, coin, or blood."
+
+  choice__
+    @target "T026 - ACT1 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the Harrenhal rolls before every banner, lock quotas in writing, and accept the public blame when supplies run short."
+  __choice
+
+  choice__
+    @target "T027 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Keep the true census private, issue altered copies to rival camps, and turn information fraud into immediate leverage."
+  __choice
+
+  choice__
+    @target "T028 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Pay Essosi riders to move high-value hostages tonight, trading treasury for speed and deniable pressure on the road."
+  __choice
+__section
+
+section__
+  @title "T026 - ACT1 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-026.jpg"
+
+  "At first light on Dragonstone quay, a royal clerk reads names from a blood-price ledger while chained debtors kneel in salt spray. The demand is legal by old crown decree: each house must surrender either silver, heirs, or swords to cover war losses near Blackwater. Sandor Clegane watches the crowd for panic; Jaime Lannister watches you for hesitation.
+
+Your captains whisper that the levy is impossible at full rate. Pay it openly and small houses may riot before noon. Soften it in private and every witness will assume Valehart has chosen favorites. Either way, deserters on the kingsroad are listening for weakness they can sell to the highest bidder.
+
+The gulls scream over the harbor as scribes wait for your seal. Once this collection starts, no rider in your convoy will believe the war is distant anymore."
+
+  choice__
+    @target "T027 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce the blood-price in open assembly, collect by written measure, and preserve legitimacy even if tempers break."
+  __choice
+
+  choice__
+    @target "T028 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Let enforcers collect at night from selected houses, shield your core allies, and bank fear as private leverage."
+  __choice
+__section
+
+section__
+  @title "T027 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-027.jpg"
+
+  "You meet Blackwater factors beneath lion-stamped wax seals in a riverside storehouse that smells of tar, fish oil, and hidden steel. They offer grain convoys and bolt crates in exchange for tariff immunity and a quiet promise that Valehart riders will ignore certain nighttime cargos. Jaime calls it practical statecraft. Sandor calls it paying thieves so they can rob you later.
+
+Hostages from two river houses are part of the bargain, listed as collateral in tiny script at the bottom of the contract. Sign publicly and you gain supplies but invite accusations of collusion. Stall for cleaner terms and hungry outriders may begin taking what they need from villages under your protection.
+
+The tide pushes against the pilings as ink dries on blank lines. This is the kind of deal that keeps armies alive and reputations diseased."
+
+  choice__
+    @target "T028 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bring the Blackwater contract before witnesses, expose every clause, and force both merchants and nobles into accountable terms."
+  __choice
+
+  choice__
+    @target "T029 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sign a hidden rider with the factors, conceal the hostage terms, and weaponize the secret against rivals who protest."
+  __choice
+__section
+
+section__
+  @title "T028 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-028.jpg"
+
+  "Rain turns the Dreadfort border field into black paste while Bolton spears stand in perfect rows beyond bowshot. Their captain claims the muster is defensive, yet his scouts already measured your wells and bridge timbers. Yoren wants immediate concessions to avoid a slaughter. Jory wants written terms and hostages before a single friendly step toward their line.
+
+Ravens from nearby keeps carry contradictory rumors, each crafted to make your side look cornered. If you hesitate, bannermen may break formation and bargain for themselves. If you charge first, you hand rivals proof that Valehart prefers force over law. This is not a battle yet, but everyone is arranging stories for when it becomes one.
+
+Smoke from wet campfires crawls along the ground as both armies wait for your signal. Whatever you choose here will define who controls movement on the kingsroad this week."
+
+  choice__
+    @target "T029 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Send heralds under truce, recite border obligations aloud, and accept the slower road to keep northern trust intact."
+  __choice
+
+  choice__
+    @target "T030 - ACT1 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Seize a Bolton courier quietly, extract route intel, and coerce a concession before sunrise without public attribution."
+  __choice
+
+  choice__
+    @target "T031 - ACT1 - Qarth Alliance Split near the godswood"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hire foreign sellsails to strike Bolton river barges, spending coin for a fast external shock that escalates the frontier."
+  __choice
+__section
+
+section__
+  @title "T029 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-029.jpg"
+
+  "An Arryn messenger reaches your camp beneath the Eyrie falcon and delivers an ultimatum written in flawless legal language. Either Valehart guarantees mountain-road security for crown couriers, or your toll rights are suspended by decree. The parchment smells of lavender wax and cold contempt. Behind him, Lannister outriders watch to see whether you bend.
+
+Your quartermasters are already rationing grain by priority. Lose those toll revenues and half your convoy goes unpaid within a fortnight. Defy the ultimatum and Arryn riders may close the passes before your wounded can return north. Jory argues the law can be fought in public. Yoren argues law is only a banner over force.
+
+The hills vanish into fog while your scribes sharpen quills. Once you answer, every neutral lord on the kingsroad will know whether your signature still carries weight."
+
+  choice__
+    @target "T030 - ACT1 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Contest the Eyrie demand in open record, preserve lawful precedent, and absorb the political delay that follows."
+  __choice
+
+  choice__
+    @target "T031 - ACT1 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bribe Arryn clerks to leak draft rulings, undercut the ultimatum quietly, and convert uncertainty into negotiating leverage."
+  __choice
+__section
+
+section__
+  @title "T030 - ACT1 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-030.jpg"
+
+  "Fog rolls over the Pentos-facing docks while your outriders drag a bloodied smuggler from a grain skiff. The ambush was precise: two wagons burned, one hostage missing, and your convoy route now common tavern gossip from Maidenpool to the capital. Jaime demands a swift hanging to restore order. Sandor recommends questioning the crew first and hanging whoever lies second.
+
+One river house threatens to withdraw men by sunrise unless you prove control. A public response could steady allies, but it also reveals what you know and what you do not. A private purge may recover the hostage faster, yet rumors of secret killings will spread before your riders can deny them.
+
+Tar smoke and sea-salt cling to your cloak as the tide turns. Whoever controls this harbor controls how quickly your promises become reality."
+
+  choice__
+    @target "T031 - ACT1 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Hold a dockside tribunal before the banners, punish named culprits lawfully, and reassert visible command of the route."
+  __choice
+
+  choice__
+    @target "T032 - ACT1 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run a covert interrogation ring through trusted serjeants, extract names fast, and strike the smuggling network off the books."
+  __choice
+
+  choice__
+    @target "T033 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund a Pentoshi bounty fleet to chase the kidnappers offshore, spending silver for speed and risky external muscle."
+  __choice
+__section
+
+section__
+  @title "T031 - ACT1 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-031.jpg"
+
+  "In a roadside godswood, delegates from Qarth lay out three offers at once: coin advances for your grain contracts, loaned guards for your hostages, and a clause granting first claim on captured plunder. The incense they burn cannot hide the smell of wet leather and horse fear from your own camp nearby. Jaime sees useful liquidity. Sandor sees foreign hands around your throat.
+
+Neutral houses now demand payment up front before they commit riders, citing your recent dock losses as proof that promises are cheap. Accept Qartheen backing publicly and northern allies may call you bought. Reject it and your convoy may stall for lack of ready coin before the next river crossing.
+
+The shrine candles gutter in wind from the trees. You need money, speed, and credibility, and this contract offers only two at a time."
+
+  choice__
+    @target "T032 - ACT1 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Put the Qartheen proposal to open vote among sworn houses, share the gains and risks publicly, and anchor legitimacy."
+  __choice
+
+  choice__
+    @target "T033 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Sign a side compact with Qarth in secret, redirect funds through cutouts, and gain short-term leverage at reputational cost."
+  __choice
+__section
+
+section__
+  @title "T032 - ACT1 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-032.jpg"
+
+  "At a rain-soaked ford, your stewards pin fresh maps from Castle Black to a wagon wall while Night's Watch couriers report missing supply trains. The old law says southron houses owe men, steel, and grain when the Wall calls. The new reality says every cart sent north is one less cart protecting your own roads. Yoren wants to delay and survive this month. Jory says delay is how realms die in winter.
+
+Goldcloak messengers from the capital insist frontier panic is exaggerated. Watch veterans at your fire tell a different story with frostbitten hands and empty ration sacks. If you commit openly, you lose flexibility in the southern struggle. If you stonewall, you gain time now and enemies later when the debt is remembered.
+
+Cold water slaps at your boots as the ford rises. This decision will outlive the current campaign."
+
+  choice__
+    @target "T033 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a public Wall order under seal, commit men and grain by statute, and accept immediate strain to preserve lawful duty."
+  __choice
+
+  choice__
+    @target "T034 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Route aid through covert intermediaries, keep your public commitments minimal, and use selective disclosure to retain leverage."
+  __choice
+__section
+
+section__
+  @title "T033 - ACT1 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-033.jpg"
+
+  "In a rain-soaked gate camp, lantern light shakes over maps pinned with broken arrows and route markers. Jaime Lannister presses you to resolve a legal claim over command and supply authority in view of watching banners, while Sandor Clegane tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T034 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present a legal claim over command and supply authority before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T035 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a legal claim over command and supply authority through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+__section
+
+section__
+  @title "T034 - ACT1 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-034.jpg"
+
+  "Raven wings beat above a crowded staging post where every cart-master demands priority and protection. Yoren presses you to resolve chokepoint sabotage reports from the Neck in view of watching banners, while Jory Cassel tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T035 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present chokepoint sabotage reports from the Neck before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T036 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve chokepoint sabotage reports from the Neck through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+__section
+
+section__
+  @title "T035 - ACT1 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-035.jpg"
+
+  "Mud churns under wagon wheels at a kingsroad camp, and wet canvas reeks of horse sweat, tallow, and rain. Sandor Clegane presses you to resolve intelligence leaks sold through learned channels in view of watching banners, while Jaime Lannister tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T036 - ACT1 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present intelligence leaks sold through learned channels before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T037 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve intelligence leaks sold through learned channels through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+
+  choice__
+    @target "T038 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit coin and outside channels to accelerate intelligence leaks sold through learned channels, buying speed now at the cost of deeper external leverage."
+  __choice
+__section
+
+section__
+  @title "T036 - ACT1 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-036.jpg"
+
+  "At a torchlit ford, current slaps pilings while clerks shout over oxen and steel rings on harness chains. Jory Cassel presses you to resolve hostage terms brokered through raiders in view of watching banners, while Yoren tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T037 - ACT1 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present hostage terms brokered through raiders before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T038 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve hostage terms brokered through raiders through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+__section
+
+section__
+  @title "T037 - ACT1 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-037.jpg"
+
+  "Cold wind drives smoke through a roadside yard where scouts, hostages, and quartermasters wait on your seal. Jaime Lannister presses you to resolve a relief promise carrying command conditions in view of watching banners, while Sandor Clegane tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T038 - ACT1 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present a relief promise carrying command conditions before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T039 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a relief promise carrying command conditions through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+__section
+
+section__
+  @title "T038 - ACT1 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-038.jpg"
+
+  "In a rain-soaked gate camp, lantern light shakes over maps pinned with broken arrows and route markers. Yoren presses you to resolve a confession that could fracture your coalition in view of watching banners, while Jory Cassel tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T039 - ACT1 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present a confession that could fracture your coalition before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T040 - ACT1 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a confession that could fracture your coalition through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+__section
+
+section__
+  @title "T039 - ACT1 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-039.jpg"
+
+  "Raven wings beat above a crowded staging post where every cart-master demands priority and protection. Sandor Clegane presses you to resolve salt-control terms that decide winter endurance in view of watching banners, while Jaime Lannister tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T040 - ACT1 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present salt-control terms that decide winter endurance before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T041 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve salt-control terms that decide winter endurance through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+__section
+
+section__
+  @title "T040 - ACT1 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-040.jpg"
+
+  "Mud churns under wagon wheels at a kingsroad camp, and wet canvas reeks of horse sweat, tallow, and rain. Jory Cassel presses you to resolve a broken-oath crisis at a critical supply crossing in view of watching banners, while Yoren tracks every pause for weakness that can be sold before dawn.
+
+Roadside command has become coercive logistics: every lawful delay costs tempo, every hidden shortcut corrodes trust. If you move publicly, allies can verify terms but rivals gain time to obstruct. If you move covertly, you may keep convoys alive now and inherit a coalition that believes your oaths are instruments, not commitments.
+
+No one asks whether someone will pay; they ask who pays first in coin, blood, reputation, or control. Your next order sets the pattern for every rider who leaves this road tonight."
+
+  choice__
+    @target "T041 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Present a broken-oath crisis at a critical supply crossing before sworn witnesses, lock terms in written record, and accept immediate friction to preserve legitimacy."
+  __choice
+
+  choice__
+    @target "T042 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve a broken-oath crisis at a critical supply crossing through sealed orders and deniable pressure, gaining short-term control while spending long-term trust."
+  __choice
+
+  choice__
+    @target "T043 - ACT1 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Commit coin and outside channels to accelerate a broken-oath crisis at a critical supply crossing, buying speed now at the cost of deeper external leverage."
+  __choice
+__section
+
+section__
+  @title "T041 - ACT1 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-041.jpg"
+
+  "A roadside stockade reeks of wet straw and lamp oil as escorts argue over which convoy moves first. Jaime Lannister wants an immediate ruling on a blackmail ledger tying allies to theft, while Sandor Clegane watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T042 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate a blackmail ledger tying allies to theft in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T043 - ACT1 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a blackmail ledger tying allies to theft through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+__section
+
+section__
+  @title "T042 - ACT1 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-042.jpg"
+
+  "Under torch flare and blowing ash, riders queue for sealed orders at a post already short on grain. Yoren wants an immediate ruling on a crown order that collides with road reality, while Jory Cassel watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T043 - ACT1 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate a crown order that collides with road reality in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T044 - ACT1 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a crown order that collides with road reality through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+
+  choice__
+    @target "T045 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and external contacts to force tempo on a crown order that collides with road reality, trading autonomy for rapid movement."
+  __choice
+__section
+
+section__
+  @title "T043 - ACT1 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-043.jpg"
+
+  "At a battered causeway, water hammers the timbers and every delay leaves another cart exposed. Sandor Clegane wants an immediate ruling on a northern demand for enforceable support, while Jaime Lannister watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T044 - ACT1 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate a northern demand for enforceable support in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T045 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a northern demand for enforceable support through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+__section
+
+section__
+  @title "T044 - ACT1 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-044.jpg"
+
+  "Night rain turns the kingsroad ditch to black slurry while ox teams strain against overloaded wagons. Jory Cassel wants an immediate ruling on crossing toll extortion throttling movement, while Yoren watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T045 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate crossing toll extortion throttling movement in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T046 - ACT1 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle crossing toll extortion throttling movement through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+__section
+
+section__
+  @title "T045 - ACT1 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-045.jpg"
+
+  "A roadside stockade reeks of wet straw and lamp oil as escorts argue over which convoy moves first. Jaime Lannister wants an immediate ruling on the route census that decides who gets escorts and grain, while Sandor Clegane watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T046 - ACT1 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate the route census that decides who gets escorts and grain in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T047 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle the route census that decides who gets escorts and grain through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+
+  choice__
+    @target "T048 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 2, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury and external contacts to force tempo on the route census that decides who gets escorts and grain, trading autonomy for rapid movement."
+  __choice
+__section
+
+section__
+  @title "T046 - ACT1 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-046.jpg"
+
+  "Under torch flare and blowing ash, riders queue for sealed orders at a post already short on grain. Yoren wants an immediate ruling on a blood-price demand tied to wartime losses, while Jory Cassel watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T047 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate a blood-price demand tied to wartime losses in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T048 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a blood-price demand tied to wartime losses through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+__section
+
+section__
+  @title "T047 - ACT1 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-047.jpg"
+
+  "At a battered causeway, water hammers the timbers and every delay leaves another cart exposed. Sandor Clegane wants an immediate ruling on a sealed supply deal with political strings attached, while Jaime Lannister watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T048 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate a sealed supply deal with political strings attached in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a sealed supply deal with political strings attached through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+__section
+
+section__
+  @title "T048 - ACT1 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/01-act1-kingsroad/frame-048.jpg"
+
+  "Night rain turns the kingsroad ditch to black slurry while ox teams strain against overloaded wagons. Jory Cassel wants an immediate ruling on a frontier muster testing your convoy security, while Yoren watches for any hesitation that can be turned into leverage before first light.
+
+Road pressure is now cumulative: each compromise from earlier crossings has narrowed your options and emboldened houses that read delay as weakness. Public process can stabilize legitimacy but slows movement. Covert process can preserve tempo but deepens the belief that your word and your method are separate things.
+
+Every campfire along this route is waiting for a signal about who governs the road and who merely survives it."
+
+  choice__
+    @target "T049 - ACT1 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adjudicate a frontier muster testing your convoy security in open record, bind witnesses to the ruling, and accept immediate operational drag for public authority."
+  __choice
+
+  choice__
+    @target "T050 - ACT1 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle a frontier muster testing your convoy security through covert pressure and sealed concessions, preserving initiative while increasing future blowback."
+  __choice
+__section

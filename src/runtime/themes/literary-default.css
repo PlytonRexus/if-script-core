@@ -1,0 +1,30 @@
+html {
+  background: #efe3cf;
+}
+
+:root {
+  --if-surface: #efe3cf;
+  --if-text: #261c14;
+  --if-title-text: #2d2016;
+  --if-body-text: #30251b;
+  --if-status-bg: #e8dbc5;
+  --if-status-text: #2f2418;
+  --if-status-border: #b8a587;
+  --if-choice-bg: #f5ede0;
+  --if-choice-bg-hover: #fef9f0;
+  --if-choice-border: #b8a587;
+  --if-choice-text: #2f2417;
+  --if-menu-bg: #f5ecdc;
+  --if-menu-text: #2b2219;
+  --if-menu-border: #c1ae8f;
+  --if-menu-button-bg: #fff8ea;
+  --if-menu-button-border: #b8a487;
+  --if-save-bg: #fef6e8;
+  --if-save-border: #c8b698;
+  --if-save-slot-border: #c3b18f;
+  --if-save-button-bg: #fffaf0;
+  --if-save-button-border: #b9a989;
+  --if-focus: #2f6f98;
+  --if-font-display: "Cormorant Garamond", "Garamond", serif;
+  --if-font-body: "Alegreya", "Georgia", serif;
+}

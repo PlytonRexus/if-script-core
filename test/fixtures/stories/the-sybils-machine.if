@@ -1,0 +1,728 @@
+settings__
+  @storyTitle "The Sybil's Machine"
+  @startAt 1
+  @fullTimer 600 22
+  @maxIterations 10000
+__settings
+
+function__ sessionScore(curiosity, caution) {
+  return__ (curiosity * 12) + (caution * 8)
+}
+
+function__ riskLevel(questionsCount, daysLeft) {
+  if__ (daysLeft == 0) {
+    return__ 100
+  }
+  return__ floor((questionsCount * 20) / daysLeft)
+}
+
+function__ describeRisk(level) {
+  if__ (level >= 60) {
+    return__ "considerable"
+  }
+  if__ (level >= 30) {
+    return__ "moderate"
+  }
+  return__ "manageable"
+}
+
+scene__
+  @name "Day One: Arrival"
+  @first 1
+  @sections 1 2 3 4
+__scene
+
+scene__
+  @name "Day Two: First Session"
+  @first 5
+  @sections 5 6 7 8 9
+__scene
+
+scene__
+  @name "Day Three: The Pattern"
+  @first 10
+  @sections 10 11 12 13 14 15
+__scene
+
+scene__
+  @name "Day Four: The Break"
+  @first 16
+  @sections 16 17 18 19 20 21
+__scene
+
+scene__
+  @name "Day Five: The Report"
+  @first 22
+  @sections 22 23 24 25 26
+__scene
+
+/* 1 */
+section__
+  @title "The Estate of Octavia Voss"
+  curiosity = 0
+  caution = 0
+  trustLevel = 50
+  questions_asked = []
+  days_remaining = 5
+  sybil_broken = false
+  voss_warned = false
+  voss_revealed = false
+  sybil_accelerating = false
+  publishedTruth = false
+  midnight_recorded = false
+  details = ["mist on the moors", "crows in the elms", "a smell of coal smoke and something electric"]
+  opening = randomChoice(details)
+  "You arrive through ${opening}.
+
+  The estate is larger than the telegram suggested — a Victorian pile in the Lancashire hills, all gables and mullioned windows, the kind of house that announces its owner's seriousness without needing to explain it. The year is 1903. The century is new and uncertain, like all new things.
+
+  Your editor's note read: _Octavia Voss has built a machine she claims can compute the future. Spend five days. Report what you find._
+
+  You have five days. A leather notebook. A fountain pen that has survived worse assignments.
+
+  At the top of the drive, a servant is waiting."
+  choice__
+    @target 2
+    @input playerName
+    @action caution = caution + 1
+    "Present your credentials formally — you are here in a professional capacity"
+  __choice
+  choice__
+    @target 2
+    @input playerName
+    @action curiosity = curiosity + 1
+    "Arrive with unchecked curiosity — professionalism can wait"
+  __choice
+__section
+
+/* 2 */
+section__
+  @title "Voss Herself"
+  "She meets you in the entrance hall, not the drawing room — a deliberate choice, you suspect, since the entrance hall gives neither party the advantage of territory.
+
+  Octavia Voss is fifty-three, or thereabouts. Grey-streaked hair pulled back with the severity of a woman who finds such decisions wasteful of attention. Her hands, when she shakes yours, are ink-stained. Her eyes are the focused grey of someone who looks at things for longer than is comfortable.
+
+  'You will want to see it immediately,' she says. It is not a question.
+
+  'I will want to understand it,' you say. 'That is different.'
+
+  Something shifts in her expression — not approval, exactly, but recognition."
+  choice__
+    @target 3
+    @action trustLevel = trustLevel + 10
+    "Compliment her published papers — you read them on the train"
+  __choice
+  choice__
+    @target 3
+    @action curiosity = curiosity + 1
+    @action trustLevel = trustLevel - 5
+    "Ask immediately whether the machine has ever been wrong"
+  __choice
+  choice__
+    @target 3
+    @action caution = caution + 1
+    "Say nothing — let her lead"
+  __choice
+__section
+
+/* 3 */
+section__
+  @title "The Sybil's Room"
+  "The machine occupies what was once the estate's billiards room — the only space large enough for it. It fills the room the way an organ fills a church: with authority, with the suggestion that the room was always meant for this.
+
+  It is bronze and brass and dark steel, roughly the size of a railway carriage stood on its end. It hums. The hum is not electrical — it is mechanical, the sound of ten thousand interacting precisions. Paper tape feeds continuously from a spool on the left and exits, covered in figures, through a slot on the right.
+
+  You stand in the doorway for a full minute."
+  i = 0
+  tape = []
+  while__ (i < 8) {
+    tape.push(randomInt(0, 9))
+    i = i + 1
+  }
+  "Voss tears off a length of the current output and hands it to you. The tape reads: ${tape}.
+
+  'It has been running,' she says, 'for eleven months.'"
+  choice__
+    @target 4
+    "Request a formal demonstration"
+  __choice
+__section
+
+/* 4 */
+section__
+  @title "First Demonstration"
+  questions_asked.push("demonstration")
+  days_remaining = days_remaining - 1
+  score = sessionScore(curiosity, caution)
+  "Voss puts a question to the machine in a formal protocol: written on a card, inserted through a slot in the left panel, held there for a count of thirty while the internal mechanism responds. The tape accelerates, then slows. A length of output is ejected.
+
+  She reads it to herself first. Then to you.
+
+  'Probability of significant meteorological event in the Lancashire basin within the next fourteen days: seventy-one percent. Confidence interval: moderate.'
+
+  You write this down.
+
+  _Your approach so far registers ${score} points of what Voss calls 'productive orientation.' You are not sure what the scale measures. You note that you are not sure._"
+  choice__
+    @targetType "scene"
+    @target 2
+    "Return to your room — you need to think before tomorrow"
+  __choice
+__section
+
+/* 5 */
+section__
+  @title "Morning, Day Two"
+  days_remaining = 4
+  weather_options = ["a dense morning fog", "pale winter sun that will not last", "slow drizzle from the northwest"]
+  weather = randomChoice(weather_options)
+  "You wake to ${weather}.
+
+  Voss has left a schedule under your door: three one-hour sessions, morning, afternoon, and evening. The machine will be available. She will observe. You may ask questions.
+
+  _You have four days remaining._"
+  if__ (trustLevel > 55) {
+    "At breakfast, Voss says: 'Ask it something you actually want to know. The machine performs better when the questioner has genuine uncertainty.' She says this without looking up from her newspaper."
+  }
+  choice__
+    @target 6
+    "Begin the session"
+  __choice
+__section
+
+/* 6 */
+section__
+  @title "Choose Your Question"
+  "You sit before the machine with three topics in your notebook. Voss stands at the side of the room, recording in her own ledger.
+
+  The card-slot waits."
+  choice__
+    @target 7
+    @action curiosity = curiosity + 1
+    "Ask about the coming war — you have been watching the continent for two years"
+  __choice
+  choice__
+    @target 8
+    @action caution = caution + 1
+    "Ask about the nature of consciousness — whether the machine has any"
+  __choice
+  choice__
+    @target 9
+    @action curiosity = curiosity + 2
+    "Ask about your own future — what does the machine say about ${playerName}?"
+  __choice
+__section
+
+/* 7 */
+section__
+  @title "War"
+  questions_asked.push("war")
+  risk = riskLevel(questions_asked.length, days_remaining)
+  riskDesc = describeRisk(risk)
+  trustLevel = trustLevel - 5
+  "You write: _Will there be a general European war before 1915?_
+
+  The machine considers this for longer than usual. Forty-five seconds, perhaps. The tape, when it comes, is dense — three feet of figures before the probability statement appears.
+
+  Voss reads it without expression. '71.3 percent,' she says. 'Within twelve years. The confidence interval is wide.'
+
+  You write this down also. You had been thinking 65 percent.
+
+  Voss makes a note in her ledger. 'The political questions agitate the mechanism,' she says. 'I do not know why.'
+
+  The risk to your continued access is ${riskDesc}."
+  choice__
+    @targetType "scene"
+    @target 3
+    "Return for the night — you need to think about what 71 percent means"
+  __choice
+__section
+
+/* 8 */
+section__
+  @title "Consciousness"
+  questions_asked.push("consciousness")
+  risk = riskLevel(questions_asked.length, days_remaining)
+  riskDesc = describeRisk(risk)
+  trustLevel = trustLevel + 5
+  "You write: _Does this machine possess any form of awareness?_
+
+  Voss seems surprised — not by the question, but by you asking it. 'Most visitors ask about their investments,' she says.
+
+  The machine produces seven lines. Voss reads the probability statement: 'Probability of awareness in the thermodynamic sense: 23 percent. Probability of awareness in the phenomenological sense: unknown. Insufficient definitional constraints.'
+
+  'It cannot answer questions about itself,' Voss says, 'without recursion problems.'
+
+  _The risk to your access is ${riskDesc}. Voss appears to appreciate the question._"
+  i = 0
+  probability_tape = []
+  while__ (i < 6) {
+    probability_tape.push(randomInt(0, 100))
+    i = i + 1
+  }
+  "The tape appended a secondary output: ${probability_tape}. You do not know what it represents. Neither, Voss says, does she."
+  choice__
+    @targetType "scene"
+    @target 3
+    "Return for the night"
+  __choice
+__section
+
+/* 9 */
+section__
+  @title "Your Own Future"
+  questions_asked.push("own_future")
+  risk = riskLevel(questions_asked.length, days_remaining)
+  riskDesc = describeRisk(risk)
+  days_remaining = days_remaining - 1
+  "You write: _What awaits the person asking this question?_
+
+  The machine runs for ninety seconds. The room is very quiet.
+
+  The output, when Voss reads it: 'Significant publication event within three years. Followed by a period of professional uncertainty. Followed by a longer period of clarity.'
+
+  You sit with this.
+
+  _The risk to your access is ${riskDesc}._"
+  if__ (risk >= 60) {
+    voss_warned = true
+    "Voss sets down her ledger. 'Mr. ${playerName},' she says, 'I ask that you slow your pace of questioning. The machine is not a newspaper. It requires deliberation.'"
+  }
+  prediction_year = randomInt(1903, 1950)
+  "The tape also produced a secondary figure: ${prediction_year}. Voss says it may be a year of particular significance, or it may be noise."
+  choice__
+    @targetType "scene"
+    @target 3
+    "Return for the night"
+  __choice
+__section
+
+/* 10 */
+section__
+  @title "Morning, Day Three"
+  days_remaining = 3
+  score = sessionScore(curiosity, caution)
+  "Three days remaining.
+
+  Your notebook now contains nine pages of questions, answers, and questions about the answers. The pattern, if there is one, has not yet revealed itself.
+
+  _Cumulative session score: ${score}._"
+  if__ (voss_warned == true) {
+    "Voss appears at breakfast with a revised schedule: two sessions only, not three. She does not explain. She hands you the revised card and returns to her study."
+  }
+  choice__
+    @target 11
+    "Begin the day's session"
+  __choice
+__section
+
+/* 11 */
+section__
+  @title "The Session: Day Three"
+  "You have learned, over two days, that the machine does not respond well to vague questions. It responds to precise ones with probability statements and to imprecise ones with noise.
+
+  You have also learned that Voss watches your face more carefully than she watches the output."
+  choice__
+    @target 12
+    @action curiosity = curiosity + 2
+    @action trustLevel = trustLevel - 10
+    "Push harder — ask about the mechanism itself, how it actually works"
+  __choice
+  choice__
+    @target 12
+    @action caution = caution + 2
+    @action trustLevel = trustLevel + 5
+    "Pull back — ask smaller questions, build toward the larger ones"
+  __choice
+__section
+
+/* 12 */
+section__
+  @title "The Sybil Accelerates"
+  "The afternoon session produces something you did not expect: the machine begins responding before you have finished inserting the question card.
+
+  The tape runs faster. The figures change character — fewer probability statements, more sequences that look like internal notation. Voss's expression is unreadable.
+
+  'This happens occasionally,' she says. 'It is not cause for alarm.' She says this in a tone that suggests it may be cause for some alarm."
+  if__ (curiosity >= 4) {
+    sybil_accelerating = true
+    i = 0
+    extra_tape = []
+    while__ (i < 5) {
+      extra_tape.push(randomInt(10, 99))
+      i = i + 1
+    }
+    "The secondary output floods the tray: ${extra_tape}. Voss gathers it quickly and does not share it."
+  }
+  choice__
+    @target 13
+    "Continue to the evening session"
+  __choice
+__section
+
+/* 13 */
+section__
+  @title "Voss's Warning"
+  if__ (trustLevel < 40) {
+    "She finds you in the corridor at five o'clock. Her voice is level and therefore more serious than if it were not.
+
+    'If you continue at this pace,' she says, 'I will end the sessions before your five days are complete. The machine is not a specimen to be dissected. It is a system that requires — ' she pauses — 'appropriate handling.'
+
+    _She is not wrong. You have been pushing._"
+    choice__
+      @target 14
+      @action trustLevel = trustLevel + 15
+      @action caution = caution + 2
+      "Apologize — and mean it. You got carried away."
+    __choice
+    choice__
+      @target 14
+      @action curiosity = curiosity + 1
+      "Hold your ground — you are here to report, not to be managed"
+    __choice
+  }
+  if__ (trustLevel >= 40) {
+    "The evening session proceeds without incident. Voss closes the room at nine. 'The machine needs time to integrate the day's inputs,' she says. 'As, perhaps, do you.'"
+    choice__
+      @target 14
+      "Return at midnight to see for yourself"
+    __choice
+  }
+__section
+
+/* 14 */
+section__
+  @title "The Midnight Visit"
+  "The house is quiet. The machine is not — it hums at its usual frequency, unchanged by the hour, by the darkness, by your presence. The tape continues to feed through its slot, unhurried.
+
+  You stand in the doorway for a while. Then you step inside."
+  choice__
+    @target 15
+    @action midnight_recorded = true
+    "Record the current output carefully — fill three pages of your notebook"
+  __choice
+  choice__
+    @target 15
+    @action sybil_broken = true
+    "Attempt to open the main casing — you need to understand the mechanism"
+  __choice
+  choice__
+    @target 15
+    @action caution = caution + 1
+    "Leave without touching anything — some things are better trusted"
+  __choice
+__section
+
+/* 15 */
+section__
+  @title "What You Found"
+  days_remaining = days_remaining - 1
+  if__ (midnight_recorded == true) {
+    questions_asked.push("midnight_tape")
+  }
+  if__ (sybil_broken == true) {
+    "The casing opens with a sound like an intake of breath. Inside: gears and cams, yes — but also something else. A series of glass tubes containing a dark liquid, each tube connected to the next by copper thread. One of the tubes is cracked. A single dried drop of the liquid has reached the housing below it.
+
+    You do not know what this means. You close the casing as carefully as you can."
+  }
+  if__ (sybil_broken == false) {
+    "The tape from midnight is different from the daytime output. The figures are the same type, but the sequencing is different — faster, more repetitive, as though the machine is rehearsing something.
+
+    You copy twelve lines into your notebook before your hand cramps."
+  }
+  remaining_q = 5 - questions_asked.length
+  "The machine will answer approximately ${remaining_q} more questions before your access ends.
+
+  _You are running out of time in the conventional sense._"
+  choice__
+    @targetType "scene"
+    @target 4
+    "Sleep while you can"
+  __choice
+__section
+
+/* 16 */
+section__
+  @title "Morning, Day Four"
+  days_remaining = 2
+  if__ (sybil_broken == true) {
+    trustLevel = trustLevel - 30
+  }
+  expelled = false
+  if__ (trustLevel <= 0) {
+    expelled = true
+  }
+  if__ (expelled == true) {
+    "Voss is in the entrance hall when you come down. She does not raise her voice. She does not need to.
+
+    'The casing was disturbed,' she says. 'I know because the morning output is degraded. I also know it was not accidental.'
+
+    She holds the front door open. The carriage is in the drive.
+
+    You gather your notebooks. The machine is still running somewhere behind you. You leave without looking back."
+    choice__
+      @target 22
+      "Write the report from the road"
+    __choice
+  }
+  if__ (expelled == false) {
+    "Voss meets you at breakfast. She is civil. She does not mention the night.
+
+    _Two days left. Whatever you are going to understand, you will need to understand it now._"
+    choice__
+      @target 17
+      "Begin the final sessions"
+    __choice
+  }
+__section
+
+/* 17 */
+section__
+  @title "The Session (Final Permitted)"
+  score = sessionScore(curiosity, caution)
+  total_questions = questions_asked.length
+  "The morning session is quieter than the others. The machine is quieter also — the humming lower, steadier.
+
+  You have asked ${total_questions} questions over four days. You have filled half your notebook. You have a session score of ${score}, which Voss has occasionally glanced at over your shoulder without comment.
+
+  Today you ask about the machine itself: not its mechanism, which she will not discuss, but its history. When it was built. Why."
+  choice__
+    @target 18
+    "Listen to what she is willing to say"
+  __choice
+__section
+
+/* 18 */
+section__
+  @title "The Sybil's Last Statement"
+  pred_year = randomInt(1910, 2000)
+  pred_events = ["a great war", "a plague without name", "a long silence in which very little happens, and then everything happens at once"]
+  pred_event = randomChoice(pred_events)
+  "Voss allows you one final formal question. You write it on the card with care: _What should the person asking this question pay attention to?_
+
+  The machine runs for four minutes. The output is longer than anything you have received before. Voss reads it twice.
+
+  'It predicts,' she says finally, '${pred_event}, beginning around ${pred_year}.' She sets the tape down. 'And it says you should pay attention to the question behind the question.'
+
+  You ask what that means.
+
+  She says she does not know. 'It has said this before. I have not yet determined whether it is significant or a recurring error.'"
+  choice__
+    @target 19
+    "Ask Voss what she actually believes about the machine"
+  __choice
+__section
+
+/* 19 */
+section__
+  @title "Voss's Revelation"
+  if__ (trustLevel > 40) {
+    voss_revealed = true
+    "She is quiet for a long time after you ask. Then:
+
+    'The Sybil does not compute probability,' she says. 'Not in the mathematical sense. I believed it did, when I built it. I no longer believe this.'
+
+    You wait.
+
+    'What it computes,' she says, 'is the structure of the questioner's uncertainty. It finds the shape of what you do not know — and it reflects that shape back at you, dressed in the language of prediction. The figures are real. The arithmetic is real. But the thing it is computing is you.'
+
+    She says this without apparent distress. She has lived with the conclusion for some time.
+
+    _You sit with this for a while. It does not make the war prediction less likely. It does not make your own future less uncertain. It changes something, though — what the machine is, and what five days of questions have actually measured._"
+  }
+  if__ (trustLevel <= 40) {
+    "She is polite and professional and tells you nothing she has not already told you. The remaining session produces three probability statements and a secondary output she does not share.
+
+    _You have the sense of something withheld. This may simply be the nature of the work._"
+  }
+  choice__
+    @target 20
+    "Wait out the storm that has been building since morning"
+  __choice
+__section
+
+/* 20 */
+section__
+  @title "The Storm"
+  i = 0
+  storm = []
+  while__ (i < 6) {
+    storm.push(randomInt(1, 10))
+    i = i + 1
+  }
+  i = 0
+  stormTotal = 0
+  while__ (i < 6) {
+    stormTotal = stormTotal + storm[i]
+    i = i + 1
+  }
+  "The storm the machine predicted on Day Two arrives on schedule.
+
+  Force readings by hour: ${storm}.
+
+  The total force reached ${stormTotal} by morning — enough to take down three elms at the edge of the property and drive the rain sideways against every window in the house.
+
+  You sit in the library with your notebook and write for four hours. Outside, the estate takes the storm at its full weight and does not move.
+
+  _The machine is still running. You can hear it through the walls._"
+  choice__
+    @target 21
+    "Prepare your report"
+  __choice
+__section
+
+/* 21 */
+section__
+  @title "Before the Report"
+  days_remaining = days_remaining - 1
+  total_questions = questions_asked.length
+  "Tomorrow you leave. Tonight you sit with everything you have written and try to determine what, precisely, you are going to say.
+
+  State of play: ${total_questions} questions asked. Curiosity index: ${curiosity}. Trust established: ${trustLevel}.
+
+  The machine exists. The machine produces output. The output correlates with events in ways that are not easily explained by coincidence alone.
+
+  Whether Voss is right about what it actually measures — you are not certain. Whether certainty is even the relevant standard — you are less certain still.
+
+  _${playerName}: what story do you file?_"
+  choice__
+    @action publishedTruth = true
+    @targetType "scene"
+    @target 5
+    "Write the true story — all of it, including Voss's confession"
+  __choice
+  choice__
+    @targetType "scene"
+    @target 5
+    "Write the safe story — accurate, incomplete, professionally defensible"
+  __choice
+__section
+
+/* 22 */
+section__
+  @title "The Report"
+  if__ (days_remaining > 0) {
+    "You sit at the writing desk in your room. The machine hums two floors below. You have your notebook. You have five days of observations.
+
+    The ferry leaves tomorrow morning. Whatever you write tonight will be on the wire by noon."
+  }
+  if__ (days_remaining == 0) {
+    "The carriage is in the drive. The ferry leaves in one hour. You write standing at the hall table, your coat still on, your notebook open to the last page of notes.
+
+    _Whatever you write in the next fifteen minutes will have to be enough._"
+  }
+  choice__
+    @action publishedTruth = true
+    @target 23
+    "Write the true story"
+  __choice
+  choice__
+    @target 24
+    "Write the safe story"
+  __choice
+__section
+
+/* 23 */
+section__
+  @title "The True Story"
+  "The full account. The machine, the methodology, the results — and Voss's own conclusion about what the machine measures.
+
+  You write: _The Sybil does not predict the future. It predicts the questioner. What Octavia Voss has built is not an oracle but a mirror — one precise enough to show you the structure of your own uncertainty, dressed in numbers and returned as prophecy._
+
+  It is 1,400 words. It is the truest thing you have written."
+  risk = riskLevel(questions_asked.length, 0)
+  riskDesc = describeRisk(risk)
+  if__ (trustLevel < 20) {
+    "Voss's lawyers will likely write to your editor. The risk level is ${riskDesc}. You knew this before you wrote the first word."
+  }
+  if__ (trustLevel >= 20) {
+    "The risk level is ${riskDesc}. You are reasonably confident Voss will not contest the account — she has too much integrity to deny what she told you."
+  }
+  choice__
+    @target 25
+    "Send it"
+  __choice
+__section
+
+/* 24 */
+section__
+  @title "The Safe Story"
+  "A masterpiece of careful journalism. Everything true. Nothing complete.
+
+  You write about the machine's physical presence, its operational history, its remarkable correlation with weather events. You write about Voss's precision and dedication. You describe the output accurately and decline to speculate about mechanism.
+
+  _What Octavia Voss has built_, you conclude, _deserves serious scientific attention. What it means remains an open question._
+
+  This is true. It is also, you are aware, not the whole truth."
+  if__ (questions_asked.length > 6) {
+    "You have asked more questions than any previous visitor. You know more than the article reflects. You will know this for the rest of your career."
+  }
+  choice__
+    @target 25
+    "Send it"
+  __choice
+__section
+
+/* 25 */
+section__
+  @title "Departure"
+  "The morning is clear after the storm. The drive is littered with elm branches. The carriage horse steps around them without being asked."
+  if__ (sybil_broken == true) {
+    "Voss does not come out to see you off. The front door remains closed. You can hear the machine through the stone wall of the house, still running, still producing its patient ribbon of figures."
+  }
+  if__ (sybil_broken == false) {
+    "Voss stands at the top of the steps. She does not wave. She watches you go with the same focused attention she gives to everything, which is either a kind of respect or simply her nature.
+
+    'The machine,' she says, when the carriage is already moving, 'will still be here.'
+
+    _You do not know if this is a statement or a warning._"
+  }
+  choice__
+    @target 26
+    "A year later"
+  __choice
+__section
+
+/* 26 */
+section__
+  @title "The Publication"
+  current_year = year()
+  pub_year = current_year - 1
+  "Published in ${pub_year}."
+  if__ (publishedTruth == true) {
+    if__ (voss_revealed == true) {
+      "The article runs in four papers simultaneously. The scientific response is immediate and divided: three letters calling it the most significant scientific claim of the decade, two calling it fraudulent, one from a Cambridge mathematician asking for the technical specifications.
+
+      Voss sends one letter to your editor, without salutation or signature. It contains two sentences: _The account is accurate. I do not regret the conversation._
+
+      _You keep the letter._"
+    }
+    if__ (voss_revealed == false) {
+      "The article runs. You described the machine faithfully — its output, its correlations, its operational history — without Voss's confession about what it actually measures, which you never received.
+
+      Six months later, a physicist at Edinburgh writes to ask whether the Sybil might be detecting something in the electromagnetic environment rather than computing probability. You write back: _I cannot rule it out._
+
+      _This becomes, briefly, the consensus view. You know it is not right. You are not entirely sure what right would look like._"
+    }
+  }
+  if__ (publishedTruth == false) {
+    if__ (voss_revealed == true) {
+      "The safe article runs without incident. Your editor calls it 'appropriately measured.'
+
+      But Voss's confession sits in your notebook — _it computes the structure of your uncertainty_ — and the notebook sits on your desk, and every few months you open it to that page.
+
+      _You do not know what you are waiting for. Perhaps for the thing it predicted to arrive, so you can know whether the prediction was the machine's or yours._"
+    }
+    if__ (voss_revealed == false) {
+      "The safe article runs. The estate at Voss receives several inquiries from investors. A German engineering firm visits the following spring.
+
+      _The Sybil_, you wrote, _is an impressive mechanical curiosity whose implications deserve further study._ This is the least true sentence you have ever published. It is also the one most widely quoted.
+
+      You move on to the next assignment. The machine runs on without you."
+    }
+  }
+  choice__
+    @target 1
+    "Begin again"
+  __choice
+__section

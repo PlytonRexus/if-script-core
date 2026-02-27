@@ -1,0 +1,343 @@
+/* ===============================
+   SCENE: ENDGAME THRESHOLD
+   =============================== */
+
+scene__
+  @name "Endgame Threshold"
+  @first 196
+  @sections 196 197 198
+__scene
+
+section__
+  @title "The Moment Before"
+
+  markVisited(196)
+
+  "Time stretches."
+  ""
+  "The castle groans."
+  ""
+  "The wand waits."
+
+  choice__
+    @targetType "scene"
+    @target 15
+    "Burn the castle"
+  __choice
+
+  choice__
+    @targetType "scene"
+    @target 16
+    "Bind the wand forever"
+  __choice
+
+  choice__
+    @targetType "scene"
+    @target 17
+    "Erase yourself"
+  __choice
+__section
+
+/* ===============================
+   ENDING ONE: THE BURNING
+   =============================== */
+
+scene__
+  @name "Ending: The Burning Castle"
+  @first 197
+  @sections 197 198 199 200 201 202 203 204 205
+__scene
+
+section__
+  @title "Ignition"
+
+  markVisited(197)
+
+  "You do not hesitate."
+  ""
+  "Ash floods outward."
+
+  choice__
+    @target 198
+    "Finish it"
+  __choice
+__section
+
+section__
+  @title "Stone Meets Fire"
+
+  markVisited(198)
+
+  "The castle fights back."
+  ""
+  "For the first time—it loses."
+
+  choice__
+    @target 199
+    "Stand your ground"
+  __choice
+__section
+
+section__
+  @title "Evacuation"
+
+  markVisited(199)
+
+  if__ (loyalty >= 3) {
+    "You guide students out."
+  } else__ {
+    "You do not look back."
+  }
+
+  choice__
+    @target 200
+    "Let it burn"
+  __choice
+__section
+
+section__
+  @title "Collapse"
+
+  markVisited(200)
+
+  "Towers fall."
+  ""
+  "Centuries end."
+
+  choice__
+    @target 201
+    "Watch"
+  __choice
+__section
+
+section__
+  @title "Ashen Silence"
+
+  markVisited(201)
+
+  "The wand cools."
+  ""
+  "It is satisfied."
+
+  choice__
+    @target 202
+    "Walk away"
+  __choice
+__section
+
+section__
+  @title "Epilogue: A World Without the Castle"
+
+  markVisited(202)
+
+  "Hogwarts becomes a warning."
+  ""
+  "Magic scatters."
+  ""
+  "Children learn elsewhere."
+
+  if__ (wisdom >= 4) {
+    "You teach restraint."
+  } else__ {
+    "You vanish."
+  }
+
+  choice__
+    @target 205
+    "End"
+  __choice
+__section
+
+/* ===============================
+   ENDING TWO: THE BINDING
+   =============================== */
+
+scene__
+  @name "Ending: The Bound Wand"
+  @first 206
+  @sections 206 207 208 209 210 211 212 213 214
+__scene
+
+section__
+  @title "The Circle Drawn"
+
+  markVisited(206)
+
+  "Runes carve themselves into stone."
+  ""
+  "The wand resists."
+
+  choice__
+    @target 207
+    "Force compliance"
+  __choice
+__section
+
+section__
+  @title "Screaming Ash"
+
+  markVisited(207)
+  courage = courage - 1
+
+  "The wand fights."
+  ""
+  "You hold."
+
+  choice__
+    @target 208
+    "Seal it"
+  __choice
+__section
+
+section__
+  @title "Imprisonment"
+
+  markVisited(208)
+
+  "Ash freezes."
+  ""
+  "The castle exhales."
+
+  choice__
+    @target 209
+    "Accept authority"
+  __choice
+__section
+
+section__
+  @title "Aftermath"
+
+  markVisited(209)
+
+  "Order returns."
+  ""
+  "Fear lingers."
+
+  choice__
+    @target 210
+    "Rule quietly"
+  __choice
+__section
+
+section__
+  @title "Years Pass"
+
+  markVisited(210)
+
+  "The school functions."
+  ""
+  "Something is missing."
+
+  choice__
+    @target 211
+    "Reflect"
+  __choice
+__section
+
+section__
+  @title "Epilogue: The Warden"
+
+  markVisited(211)
+
+  if__ (wisdom >= 4) {
+    "You are remembered as necessary."
+  } else__ {
+    "You are remembered as cruel."
+  }
+
+  "The wand never speaks again."
+
+  choice__
+    @target 214
+    "End"
+  __choice
+__section
+
+/* ===============================
+   ENDING THREE: SELF-ERASURE
+   =============================== */
+
+scene__
+  @name "Ending: The Forgotten One"
+  @first 215
+  @sections 215 216 217 218 219 220 221
+__scene
+
+section__
+  @title "The Final Offering"
+
+  markVisited(215)
+
+  "The wand understands."
+  ""
+  "The castle pauses."
+
+  choice__
+    @target 216
+    "Erase yourself"
+  __choice
+__section
+
+section__
+  @title "Unwriting"
+
+  markVisited(216)
+
+  "Your name loosens."
+  ""
+  "Your face blurs."
+
+  choice__
+    @target 217
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "Balance Restored"
+
+  markVisited(217)
+
+  "Ash settles."
+  ""
+  "Stone heals."
+
+  choice__
+    @target 218
+    "Fade"
+  __choice
+__section
+
+section__
+  @title "Epilogue: The Myth"
+
+  markVisited(218)
+
+  "Students feel safer."
+  ""
+  "No one knows why."
+
+  if__ (loyalty >= 3) {
+    "One person dreams of you."
+  }
+
+  choice__
+    @target 221
+    "End"
+  __choice
+__section
+
+/* ===============================
+   FINAL SECTION
+   =============================== */
+
+section__
+  @title "The End"
+
+  "This story is complete."
+  ""
+  "Some endings saved the world."
+  "Some only delayed it."
+  ""
+  "*None were free.*"
+__section

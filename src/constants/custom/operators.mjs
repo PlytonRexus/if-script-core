@@ -8,6 +8,8 @@ const Operators = {
   GEQUAL: '>=',
   EQUAL: '==',
   NOT_EQUAL: '!=',
+  ARROW: '->',
+  FAT_ARROW: '=>',
   ADDITION: '+',
   SUBTRACTION: '-',
   MULTIPLICATION: '*',

@@ -1,0 +1,810 @@
+/* Thrones module: 04-act4-iron-islands.partial.if */
+scene__
+  @name "ACT4: Salt and Iron"
+  @first "T265 - ACT4 - Harrenhal Torchlit Census at the rookery"
+  @sections "T265 - ACT4 - Harrenhal Torchlit Census at the rookery" "T266 - ACT4 - Dragonstone Blood Price at first light" "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals" "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries" "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke" "T270 - ACT4 - Pentos Harbor Ambush in river fog" "T271 - ACT4 - Qarth Alliance Split near the godswood" "T272 - ACT4 - The Wall War Map against old law" "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky" "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse" "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors" "T276 - ACT4 - Pyke Hostage Exchange at the broken tower" "T277 - ACT4 - Highgarden Siege Promise in the throne shadow" "T278 - ACT4 - Sunspear Prison Confession with steel drawn" "T279 - ACT4 - The Trident Salt Pact by the harbor chain" "T280 - ACT4 - Riverrun Broken Oath under rain" "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast" "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell" "T283 - ACT4 - Winterfell Night Council before witnesses" "T284 - ACT4 - The Twins Debt Collection under wolf banners" "T285 - ACT4 - Harrenhal Torchlit Census at the rookery" "T286 - ACT4 - Dragonstone Blood Price at first light" "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals" "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+__scene
+
+section__
+  @title "T265 - ACT4 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-265.jpg"
+
+  "Wind knifes across Pyke bridge and turns sea spray into cold grit on your face as Yara Greyjoy presents a roster of ships available for hire. Balon studies you from behind driftwood pillars, saying nothing while captains shout over one another about targets, shares, and hostages. Your Essosi contracts bought grain and escorts; now the question is whether those lifelines survive the Ironborn appetite for plunder.
+
+Neutrality is over. If your sea lanes are not protected by force, they are invitations. Yet force has a price structure of its own: each concession to raider custom teaches your allies that Valehart tolerates maritime extortion when convenient. Public terms can impose accountability on brutal men. Hidden terms can deliver faster obedience and leave a deeper rot.
+
+Kelp, tar, and wet wool fill the bridge. You are not choosing whether to engage the islands. You are choosing how much of their logic you are willing to import into your rule."
+
+  choice__
+    @target "T266 - ACT4 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set raiding limits and escort duties before sworn captains, accepting slower consensus to secure enforceable sea discipline"
+  __choice
+
+  choice__
+    @target "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue private letters of marque to favored crews, buying immediate control while hiding coercive concessions"
+  __choice
+
+  choice__
+    @target "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Pay for foreign hulls and dragon-linked scouting, externalizing maritime pressure before Ironborn terms harden"
+  __choice
+__section
+
+section__
+  @title "T266 - ACT4 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-266.jpg"
+
+  "In a smoke-black longhall, Theon calls for negotiated shares while Victarion demands blood payment for two ships lost guarding your grain convoy. Thralls keep their eyes down as arguments sharpen into hand-on-axe silence. If the captains walk out split, your logistics net tears along faction lines before the next tide.
+
+This is command coherence under raider law. A public compensation formula could keep crews predictable and give you paper to enforce later. A private intimidation campaign could bind dissenting captains overnight, but fear contracts must be renewed with fresh examples. You can also bypass the dispute with outside hulls, though every imported deckhand is an insult to island pride.
+
+Hemp smoke stings your throat while tally stones click on a war table. What you pay at first light determines whether Ironborn service feels like alliance or occupation."
+
+  choice__
+    @target "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Adopt a witnessed blood-price schedule for lost hulls, paying openly to preserve predictable chain of command"
+  __choice
+
+  choice__
+    @target "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Threaten holdout captains through night visits and seized kin, restoring order quickly while deepening fear rule"
+  __choice
+
+  choice__
+    @target "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Cover losses with foreign-chartered escorts, preserving tempo while signaling distrust of Ironborn loyalty"
+  __choice
+__section
+
+section__
+  @title "T267 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-267.jpg"
+
+  "At the saltwife market, shipwright clans present contracts stamped with lion wax taken from captured Blackwater couriers. Victarion wants to honor them as spoils law. Theon warns those seals are bait, and any public adoption ties Valehart to stolen legitimacy. Meanwhile two hostage families wait under guard, each convinced your signature will decide who drowns at dusk.
+
+Delay is lethal here. Public adjudication can keep your reputation aligned with process even when outcomes hurt. Covert manipulation can free preferred hostages and secure faster compliance, but once clans discover edited terms, they will assume every future bargain is similarly trapped. The Iron Islands remember humiliation longer than debt.
+
+Fish scales glitter in torchlight like coins on black cloth. This bargain is not just about Blackwater seals. It is about whether your maritime law is real or theatrical."
+
+  choice__
+    @target "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Submit the lion-seal dispute to open clan adjudication, absorbing delay to preserve legitimate maritime process"
+  __choice
+
+  choice__
+    @target "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Rewrite the seized terms in secret and trade selective releases, gaining hostages now while inviting future vendetta"
+  __choice
+__section
+
+section__
+  @title "T268 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-268.jpg"
+
+  "Crowded galleries above Pyke's drill yard roar as Balon demands immediate commitment for a northern coastal strike tied to your Dreadfort intelligence. Yara counters that raiders sent without disciplined supply return as deserters with loot and no chain of command. Rumor already claims Valehart promised mutually exclusive targets to competing captains.
+
+If you publish muster quotas and route assignments in open hearing, you may stop the rumor spiral and hold operational coherence. If you settle rival claims by threat and private reward, raids launch faster but every omitted captain becomes a future saboteur. The islands reward boldness, but they also punish inconsistency with spectacular betrayal.
+
+The gallery boards tremble under boots while gulls scream over the surf below. Today is less about where your fleet sails than whether it sails under one authority."
+
+  choice__
+    @target "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Post muster quotas and target priorities in public view, sacrificing flexibility to restore coherent command structure"
+  __choice
+
+  choice__
+    @target "T270 - ACT4 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Resolve captain disputes through private threats and favors, gaining launch speed while seeding internal fracture"
+  __choice
+__section
+
+section__
+  @title "T269 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-269.jpg"
+
+  "On a coal-smoked dock chapel, salt priests read a written ultimatum from the Eyrie demanding safe passage for Vale merchants or formal reprisal against Ironborn raids. Yara sees opportunity in controlled piracy backed by deniable restitution. Balon sees weakness in any concession to mountain lords who cannot defend their own beaches.
+
+Rations are already being allocated by perceived loyalty, and this dispute will harden those lines. Public arbitration could protect broader coalition legitimacy and keep supply math predictable. A covert hostage-and-ransom scheme could satisfy both sides temporarily while creating records that destroy you if exposed. In island politics, everyone claims to respect strength; most are really watching for inconsistency.
+
+Charcoal flakes drift down like black snow as priests await your instruction. The policy you choose here will be repeated by captains who care only about precedent."
+
+  choice__
+    @target "T270 - ACT4 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Arbitrate the Eyrie dispute before priests and captains, accepting visible compromises to preserve enforceable legitimacy"
+  __choice
+
+  choice__
+    @target "T271 - ACT4 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Stage a deniable ransom arrangement through cutouts, securing short-term peace while multiplying blackmail exposure"
+  __choice
+__section
+
+section__
+  @title "T270 - ACT4 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-270.jpg"
+
+  "Fog from the eastern lanes hides three returning hulls and one missing flagship, and suddenly every captain on Pyke has a theory about who sold your route to Pentos raiders. Theon urges immediate public inquiry to keep crews from turning on each other. Victarion proposes retaliatory strikes tonight, before fear calcifies into mutiny.
+
+You need discipline without paralysis. A visible convoy code can reduce panic and reassure merchants that Valehart still commands its own fleet. Secret reprisals may restore deterrence faster, but they also make casualty accounting unverifiable, feeding the same rumor economy that caused this crisis. If coin holds, you can hire outside force and compress the timeline at the cost of dependence.
+
+Fog beads on your gloves while lookouts ring warning bells from the sea tower. Every bell asks the same question: will your response build order or simply spread terror."
+
+  choice__
+    @target "T271 - ACT4 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Impose a public convoy code with audited route logs, trading secrecy for confidence and enforceable discipline"
+  __choice
+
+  choice__
+    @target "T272 - ACT4 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run covert counter-raids through deniable crews, regaining deterrence quickly while obscuring accountability"
+  __choice
+
+  choice__
+    @target "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Contract foreign corsair escorts at premium rates, externalizing violence to stabilize lanes before morale breaks"
+  __choice
+__section
+
+section__
+  @title "T271 - ACT4 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-271.jpg"
+
+  "Qartheen factors financing your island convoys split into rival blocs overnight, each accusing the other of feeding prices to your enemies. Victarion wants one bloc purged and its collateral seized. Theon argues that forcing both sides into a visible settlement keeps coin flowing and avoids another blood feud layered onto your naval crisis.
+
+No captain will wait for perfect certainty. If you broker terms publicly, you preserve a framework that neutral crews can still trust. If you back one bloc in secret, you gain leverage and immediate liquidity while ensuring the losing side funds retaliation through every port it can reach. This is alliance maintenance under open predation.
+
+Wet rope hangs from beams and drips onto loan tablets. What looks like a financing dispute is really a referendum on whether Valehart can keep partners aligned without permanent coercion."
+
+  choice__
+    @target "T272 - ACT4 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Force both Qartheen blocs into open settlement terms, sacrificing speed to preserve a stable funding architecture"
+  __choice
+
+  choice__
+    @target "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Secretly bankroll one bloc against the other, securing immediate leverage while guaranteeing durable reprisal networks"
+  __choice
+__section
+
+section__
+  @title "T272 - ACT4 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-272.jpg"
+
+  "A courier from the Wall arrives mud-streaked and exhausted, carrying a map that marks collapsing frontier depots and requests immediate sea transport for oil, iron, and grain. Balon calls the request a northern problem and wants those hulls reserved for richer raids. Yara says ignoring the frontier now buys a harder war later when panic reaches every port.
+
+Desertion rumors have already spread through your mixed crews. A public commitment to Watch support can reinforce your image as a ruler with strategic horizon beyond plunder. A covert diversion of supplies to preferred raider fleets keeps tactical momentum but signals that existential threats are negotiable if profit is high enough. Once that signal is sent, it is hard to retract.
+
+Cold rain starts over the market roofs while shipwrights wait for your loading orders. The map from the Wall is thin parchment, but the decision it demands is heavy."
+
+  choice__
+    @target "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Allocate ships to the Wall through declared charter orders, accepting near-term raid losses to uphold strategic obligations"
+  __choice
+
+  choice__
+    @target "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Divert frontier cargo through covert captain favors, preserving local leverage while risking catastrophic legitimacy loss"
+  __choice
+__section
+
+section__
+  @title "T273 - ACT4 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-273.jpg"
+
+  "A northern claimant arrives on Pyke under truce flag, carrying papers that transfer rights over captured Castle Black stores if Valehart recognizes his inheritance claim. Yara sees a lawful route to stable resupply. Balon sees an outsider trying to buy Ironborn policy with ink and old seals. Around them, raider captains ask only whether accepting the claim pays in grain, steel, or hostages.
+
+Hostage pressure tightens by the hour. If you honor the claim in public hearing, you gain a defensible chain of title and risk immediate backlash from crews who expected plunder without constraints. If you crush the claimant quietly and redistribute the stores, discipline might hold through the week, but every northern ally will mark Valehart signatures as conditional theater.
+
+Rain taps the tower shutters while clerks hold quills over wet parchment. This ruling determines whether your logistics run on recognisable law or on whichever blade is nearest."
+
+  choice__
+    @target "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Recognize the inheritance claim in open hearing, accepting short-term friction to preserve lawful supply legitimacy"
+  __choice
+
+  choice__
+    @target "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Remove the claimant through deniable coercion, securing immediate stores while rupturing trust with northern partners"
+  __choice
+
+  choice__
+    @target "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
+    @when ((wealth + essos_ties + dragon_factor) >= 10)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Buy emergency replacement cargo from offshore brokers, externalizing risk while dodging the legal dispute entirely"
+  __choice
+__section
+
+section__
+  @title "T274 - ACT4 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-274.jpg"
+
+  "A whispered warning from Moat Cailin reaches you by smugglers' skiff: causeway patrols have been bribed to misdirect your northbound cargo into raider waters. Theon argues for immediate public route changes before panic spreads. Victarion prefers to leak false routes and slaughter whoever takes the bait, then present the bodies as deterrence.
+
+Information drift is now a tactical weapon. A transparent correction can reestablish command coherence and reassure nervous allies that Valehart still controls its routes. A covert trap might destroy your immediate enemies but confirms every rumor that your orders are a game of hidden knives. Either approach consumes scarce time on a clock already running short.
+
+Coal smoke from tide braziers mixes with kelp stink on the dock. One set of route orders goes out tonight, and every captain will treat it as the new standard."
+
+  choice__
+    @target "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish corrected northern routes with witness seals, accepting exposed logistics to restore institutional trust"
+  __choice
+
+  choice__
+    @target "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Circulate decoy routes through covert channels, trading transparency for a fast and deniable purge of traitors"
+  __choice
+__section
+
+section__
+  @title "T275 - ACT4 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-275.jpg"
+
+  "A sealed packet from Oldtown reveals that one of your own chartmasters sold harbor depth tables to rival captains for a chest of silver and safe passage papers. Victarion demands immediate execution on the bridge as a lesson. Theon warns that summary violence will satisfy the crowd and leave the spy network intact.
+
+Quartermasters already ration by loyalty, and this betrayal gives every underfed crew a story about favoritism. A public tribunal can surface accomplices and keep your command language legible. A hidden sweep can seize suspects before they run, but once men disappear without record, your own officers will begin writing contingencies against you.
+
+Spray lashes the railing while the accused kneels with shackled wrists, staring at your banner instead of your face. How you punish betrayal here will define the discipline culture of every ship still under Valehart colors."
+
+  choice__
+    @target "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Try the chartmaster in open maritime court, paying time for legitimacy and wider network exposure"
+  __choice
+
+  choice__
+    @target "T277 - ACT4 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Launch a covert round-up through night seizures, gaining immediate control while normalizing opaque coercion"
+  __choice
+
+  choice__
+    @target "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund outside counterintelligence brokers to trace leaks rapidly, externalizing cleanup at steep strategic cost"
+  __choice
+__section
+
+section__
+  @title "T276 - ACT4 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-276.jpg"
+
+  "At the broken tower yard, three hostage lines face each other under spearpoint while Balon demands that Valehart surrender leverage first to prove trust. Yara counters that exchanges without simultaneous guarantees are invitations to treachery. The crowd of captains is loud, armed, and one spark from turning negotiation into massacre.
+
+A public sequence with witnesses could keep this exchange enforceable and reduce cascading blood feuds. A covert preload of hidden archers and cutthroat contingencies might secure your side if betrayal comes, but if discovered before handover it confirms every claim that Valehart bargains in bad faith. Either way, the next tide carries word of how you handled Pyke.
+
+Rainwater runs down cracked stones and pools around shackled ankles. You must choose between visible constraint and private insurance in full view of men who respect neither."
+
+  choice__
+    @target "T277 - ACT4 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Conduct a strictly witnessed sequential exchange, accepting vulnerability to establish enforceable hostage protocol"
+  __choice
+
+  choice__
+    @target "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Layer the exchange with hidden coercive safeguards, maximizing immediate control while risking explosive mistrust"
+  __choice
+__section
+
+section__
+  @title "T277 - ACT4 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-277.jpg"
+
+  "Reach envoys offer bounty contracts for raids that cripple Highgarden's rivals, with payment in grain and sailcloth your fleet desperately needs. Yara wants the contracts formalized so captains know exactly which targets are lawful. Balon prefers ambiguous language that lets crews harvest whatever they can seize under the same banner.
+
+Neutral captains are watching for one thing: whether Valehart policy protects them from retaliatory justice after the money is spent. A public target doctrine can preserve coalition coherence even if payouts shrink. A covert interpretation regime can maximize short-term extraction while guaranteeing future diplomatic blowback when burned villages start naming your signet in testimony.
+
+Rust flakes from anchor chains onto the contract table like brown snow. This promise to Highgarden is really a decision about the legal shape of sanctioned violence."
+
+  choice__
+    @target "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish precise raid limits and target rules before all crews, reducing immediate gains to preserve strategic legitimacy"
+  __choice
+
+  choice__
+    @target "T279 - ACT4 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Maintain deliberately vague private raid permissions, boosting extraction now while multiplying future liability"
+  __choice
+__section
+
+section__
+  @title "T278 - ACT4 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-278.jpg"
+
+  "A prisoner taken off Sunspear trade lanes confesses that several of your escort captains were paid to delay response during recent ambushes. Theon argues for open confrontation and immediate reassignment of command. Victarion says hesitation will look weak and pushes for quiet executions before dawn.
+
+Desertion is already feeding on uncertainty. Public process could restore clarity and reassure loyal crews that advancement is not tied to hidden patrons. Secret punishments may stop current leaks faster, but they also create a fleet culture where everyone assumes accusations are political tools. You can retain speed with covert force, or retain legitimacy with slower proof, not both at once.
+
+The prisoner trembles in chain shadow while gulls cry over the surf. Your decision tells every captain whether truth in Valehart service is documented, purchased, or feared."
+
+  choice__
+    @target "T279 - ACT4 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confront implicated captains in open muster, accepting disruption to reassert lawful and legible command standards"
+  __choice
+
+  choice__
+    @target "T280 - ACT4 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Extract names in secret and purge quietly, restoring short-term control while corroding trust in due process"
+  __choice
+__section
+
+section__
+  @title "T279 - ACT4 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-279.jpg"
+
+  "At the chain harbor, priests and captains gather to codify a Trident salt pact meant to stop indiscriminate raiding of allied grain routes. Victarion demands broad exemptions for prize-taking. Theon insists exemptions are exactly how every previous pact collapsed. Behind them, hostage kin line the quay and count how many clauses might keep their families alive.
+
+If you sign strict public terms, you may protect strategic corridors and reduce revenge cycles that bleed your manpower. If you keep loopholes in private codicils, captains stay happy now and coalition partners prepare lawsuits, sanctions, and retaliatory strikes. The pact is not ceremonial; it is the operating system for your fleet as winter closes.
+
+Salt wind snaps the banners while clerks hold molten wax over waiting seals. Whatever language you choose here will be quoted in every port court and every tavern brawl."
+
+  choice__
+    @target "T280 - ACT4 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Seal a strict public Trident salt pact, limiting opportunistic plunder to protect long-term coalition durability"
+  __choice
+
+  choice__
+    @target "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Embed private exemptions for favored crews, preserving short-term loyalty while inviting strategic retaliation"
+  __choice
+__section
+
+section__
+  @title "T280 - ACT4 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-280.jpg"
+
+  "A storm breaks over Pyke as ravens confirm a Riverrun oath partner has defaulted on promised harbor fees and hired raiders to cover the shortfall. Balon calls for immediate punitive seizure and public hanging. Yara warns that indiscriminate retaliation will collapse the fragile pact network you spent this act building.
+
+Information edits spread faster than truth in bad weather. A documented legal response could hold your wider coalition together even if the culprit escapes the first strike. A covert extraction and reprisal might deliver swift justice, but it also writes another chapter in the same hidden-war playbook that keeps generating these crises. You can trade speed for legitimacy, or legitimacy for speed.
+
+Rain rattles on shields stacked by the bridge and turns torch smoke into greasy streaks. This ruling closes the middle movement of Act 4 and determines what kind of fleet enters the next escalation."
+
+  choice__
+    @target "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Answer the Riverrun breach through formal maritime censure and witness-backed penalties, preserving systemic legitimacy"
+  __choice
+
+  choice__
+    @target "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Settle the breach through covert seizure and deniable reprisal, restoring tempo while deepening shadow-governance costs"
+  __choice
+
+  choice__
+    @target "T283 - ACT4 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Fund outside enforcement flotillas to execute penalties fast, externalizing coercion at long-term strategic expense"
+  __choice
+__section
+
+section__
+  @title "T281 - ACT4 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-281.jpg"
+
+  "The reaver quartermasters lay out a blackmail ledger proving at least five captains have been billing Valehart for escorts they never sailed. Yara wants names read aloud before the full hall and restitution seized in daylight. Balon warns that humiliating veteran raiders publicly could fracture the fleet when you still need every hull.
+
+Rations are already short, and false accounting turns scarcity into mutiny fuel. A public correction campaign could restore enough trust for orderly provisioning. A secret arrangement with the worst offenders might keep ships in line through intimidation, but it teaches every crew that fraud is negotiable if your knives are sharp enough. The ledger is numbers, but the consequences are political memory.
+
+Hemp smoke clings to your cloak while thralls watch for the first captain named. This is a decision about whether discipline here is written, whispered, or bought."
+
+  choice__
+    @target "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the fraud ledger before assembled crews and enforce visible penalties, sacrificing speed to rebuild command legitimacy"
+  __choice
+
+  choice__
+    @target "T283 - ACT4 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Cut private immunity deals with key offenders, preserving short-term cohesion while normalizing hidden corruption"
+  __choice
+__section
+
+section__
+  @title "T282 - ACT4 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-282.jpg"
+
+  "Intercepted raven packets from King's Landing describe your island policy as indistinguishable from piracy-for-hire and invite rival houses to outbid you for Ironborn service. Theon insists you counter publicly before the accusation hardens into shared truth. Victarion says truth never mattered on these waters and pushes for retaliatory seizures against any ship carrying crown correspondence.
+
+One choice prioritizes narrative legitimacy, the other deterrence through fear. Public correction could preserve ties with cautious allies and keep neutral ports open. Covert retaliation can disrupt enemy planning quickly, but once mail ships start vanishing, every court blames Valehart first and asks questions later. Communication warfare is now as material as grain.
+
+Rust and fish oil stain the message table while scribes compare wax seals for forgery. Your response here determines whether people trust your words or only your reach."
+
+  choice__
+    @target "T283 - ACT4 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a public counter-dispatch with verifiable ledgers and witnesses, accepting short-term embarrassment to restore trust"
+  __choice
+
+  choice__
+    @target "T284 - ACT4 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Disrupt hostile raven traffic through covert captures and bribes, regaining initiative while escalating deniable war"
+  __choice
+__section
+
+section__
+  @title "T283 - ACT4 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-283.jpg"
+
+  "Winterfell's night council sends hard terms: if Ironborn raids keep touching northern grain, your alliance is suspended regardless of promises already paid for. Victarion calls the warning predictable posturing. Theon points out that northern withdrawal would strand half your logistics on hostile coasts and turn every current pact into scrap.
+
+There is no neutral lane left. A public recommitment to northern protection can stabilize allied planning and reduce retaliatory spirals. A private coercion strategy against troublesome captains may keep raid tempo high while pretending compliance, but once exposed it will confirm every northern fear about Valehart double-dealing. The cost of duplicity rises each time you use it.
+
+Sea wind whistles through arrow slits as your messengers wait for sealed orders. This reply decides whether the North sees a partner or a temporary necessity."
+
+  choice__
+    @target "T284 - ACT4 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Reaffirm northern protections in witnessed council terms, spending leverage now to preserve alliance credibility"
+  __choice
+
+  choice__
+    @target "T285 - ACT4 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Force compliance through private threats to raider chiefs, holding tempo while eroding trust with northern partners"
+  __choice
+__section
+
+section__
+  @title "T284 - ACT4 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-284.jpg"
+
+  "Agents from the Twins demand emergency toll settlements on every cargo that moved under your salt pact, citing clauses no one remembers signing. Balon wants the collectors drowned as extortionists. Yara argues that some claims are valid and denying all of them turns your fleet into declared debtors in half the river ports.
+
+Desertion reports worsen whenever wages look uncertain. A public debt audit could separate predatory claims from legitimate ones and keep your treasury math believable. A covert payoff-and-threat strategy can silence claimants faster, but it commits Valehart to permanent off-book spending and emboldens every future extortionist who thinks you'll pay to avoid scrutiny.
+
+Water slaps stone pilings beneath the dock while toll sheets flap in wet wind. Tonight you choose whether debt pressure is resolved in law, in fear, or in expensive ambiguity."
+
+  choice__
+    @target "T285 - ACT4 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Audit and settle Twins claims through open accounting, accepting friction now to protect long-term fiscal legitimacy"
+  __choice
+
+  choice__
+    @target "T286 - ACT4 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle claimants through covert payments and intimidation, restoring short-term calm while expanding hidden liabilities"
+  __choice
+__section
+
+section__
+  @title "T285 - ACT4 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-285.jpg"
+
+  "A fresh census of hulls and crew strength reveals the hidden cost of weeks of coercive maritime politics: too many wounded oarsmen, too few trustworthy officers, and three captains holding hostages they were never authorized to take. Yara says the numbers demand consolidation and reduced raiding scope. Balon insists shrinking operations now invites every rival to test your weakness.
+
+Hostage politics are no longer abstract; they are consuming manpower and legitimacy at the same time. A public consolidation order can preserve the fleet core for the next act. Secretly rewarding aggressive captains may keep outward momentum while locking you into a cycle where each success depends on one more unacceptable concession.
+
+The bridge planks shudder beneath marching boots as clerks call out losses. Census figures do not care about pride, only sustainability."
+
+  choice__
+    @target "T286 - ACT4 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish the fleet census and enforce a visible consolidation plan, sacrificing prestige to protect operational durability"
+  __choice
+
+  choice__
+    @target "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Conceal attrition and privately reward high-loss captains, preserving pressure now while accelerating structural decay"
+  __choice
+
+  choice__
+    @target "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Subsidize depleted crews with external mercenary oars, externalizing manpower risk to maintain tempo"
+  __choice
+__section
+
+section__
+  @title "T286 - ACT4 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-286.jpg"
+
+  "Before dawn, watchers report smoke trails offshore and rumors that Dragonstone-aligned crews are offering protection contracts to the same ports you tax. Theon urges a public nonaggression framework to avoid fighting both rivals and weather. Victarion demands preemptive strikes to prove no dragon banner will dictate terms in Iron waters.
+
+Raven edits and deliberate leaks have already blurred reality enough that overreaction is its own trap. A public deconfliction order can protect trade and buy clarity. Covert escalation through deniable raids may win immediate fear advantage and accelerate broader war with actors far stronger than your current fleet can absorb.
+
+The longhall braziers spit resin as first light leaks under the doors. Whatever you declare at dawn becomes the baseline for how dragon power is treated in your maritime strategy."
+
+  choice__
+    @target "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Set public engagement limits with Dragonstone fleets, accepting constrained options to prevent uncontrolled escalation"
+  __choice
+
+  choice__
+    @target "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Authorize deniable preemptive strikes against suspected dragon-aligned ships, seizing initiative while raising existential risk"
+  __choice
+__section
+
+section__
+  @title "T287 - ACT4 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-287.jpg"
+
+  "The final island bargain opens in a salt market turned war chancery, where lion-sealed brokers offer short-term fuel and bolts if you prioritize their convoys above northern and Watch obligations. Victarion wants the deal; he can enforce it with steel. Theon says choosing lion coin now will detonate the coalition architecture you have spent the act trying to stabilize.
+
+This is an end-of-module pressure point: whichever side gets priority sets expectations for Act 4's final movement. A public balancing order can preserve multi-front viability at lower immediate profit. A covert preference structure can keep the fleet paid through next week while ensuring every excluded ally plans revenge. If treasury allows, outsourcing the gap buys time but reduces sovereign control.
+
+Market gutters run with fish blood and rainwater while seals wait on hot wax. One signature decides who still believes your hierarchy of obligations."
+
+  choice__
+    @target "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish a balanced convoy priority order under witness, sacrificing short-term gain to preserve coalition coherence"
+  __choice
+
+  choice__
+    @target "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Favor lion convoys through concealed directives, buying immediate liquidity while provoking systemic backlash"
+  __choice
+
+  choice__
+    @target "T290 - ACT4 - Pentos Harbor Ambush in river fog"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bridge the shortfall with external financing and escorts, externalizing immediate pressure at strategic dependency cost"
+  __choice
+__section
+
+section__
+  @title "T288 - ACT4 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/04-act4-iron-islands/frame-288.jpg"
+
+  "Crowded galleries on the sea tower roar as Balon demands one decisive northern strike to prove Ironborn primacy before dragon politics engulf the coast. Yara argues the fleet needs disciplined redeployment, not spectacle, if Valehart wants to survive the next phase. Your officers stare between them, waiting to see whether command this act ends in consolidation or escalation.
+
+The ultimatum is simple and brutal: choose legible structure and preserve governability, or choose coercive acceleration and gamble that fear outpaces fatigue. A public, bounded order can carry credibility into the Targaryen arc. A covert push through intimidation can force movement now, but it does so with crews already stretched thin and suspicious of every sealed message.
+
+Sea spray lashes the windows while horns call shift change below. This is the hinge between maritime coercion politics and dragon-era risk, and your final island decision will follow you into both."
+
+  choice__
+    @target "T289 - ACT4 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a bounded public redeployment order, prioritizing coherent command over maximal short-term intimidation"
+  __choice
+
+  choice__
+    @target "T290 - ACT4 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 2, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Drive a covert high-tempo strike plan through threats and deniable orders, maximizing pressure while compounding trust collapse"
+  __choice
+__section

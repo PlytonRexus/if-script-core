@@ -1,20 +1,19 @@
 import Section from './Section.mjs'
 import Scene from './Scene.mjs'
 import StorySettings from './StorySettings.mjs'
+import SectionRef from './SectionRef.mjs'
+import SceneRef from './SceneRef.mjs'
 /**
  * @author Mihir Jichkar
  * @description Each story is composed of Sections and Passages
  * @class Story
  */
 class Story {
-
-  _class = 'Story'
-
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
 
@@ -32,19 +31,19 @@ class Story {
    * @returns {Story} story instance
    */
   constructor (name, { sections, passages, scenes }, settings, { globals, stats }, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'Story'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       Object.assign(this, json)
       this.sections = this.sections.map(s => Section.fromJson(s))
       this.scenes = this.scenes.map(s => Scene.fromJson(s))
       this.settings = StorySettings.fromJson(this.settings)
-
     } else {
       this.name = name.trim()
       this.sections = sections || []
       this.passages = passages || []
       this.scenes = scenes || []
+      this.functions = []
       this.settings = settings
       this.variables = {}
       if (globals) {
@@ -57,11 +56,18 @@ class Story {
     }
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new Story({}, {}, {}, {}, json)
   }
 
-  findSection (serial) {
+  findSection (sectionRef) {
+    const ref = SectionRef.from(sectionRef)
+    if (!ref) return this.sections[0]
+    if (ref.kind === 'title') return this.findSectionByTitle(ref.value)
+    return this.findSectionBySerial(ref.value)
+  }
+
+  findSectionBySerial (serial) {
     let index = this.sections.findIndex(section => section.serial === serial)
 
     if (index === -1) {
@@ -71,7 +77,23 @@ class Story {
     return this.sections[index]
   }
 
-  findScene (serial) {
+  findSectionByTitle (title) {
+    const section = this.sections.find(s => s.settings && s.settings.title === title)
+    if (!section) {
+      console.warn('No section titled "' + title + '" found. Reverting to first section.')
+      return this.sections[0]
+    }
+    return section
+  }
+
+  findScene (sceneRef) {
+    const ref = SceneRef.from(sceneRef)
+    if (!ref) return this.scenes[0]
+    if (ref.kind === 'name') return this.findSceneByName(ref.value)
+    return this.findSceneBySerial(ref.value)
+  }
+
+  findSceneBySerial (serial) {
     let index = this.scenes.findIndex(scene => scene.serial === serial)
 
     if (index === -1) {
@@ -79,6 +101,15 @@ class Story {
       index = 0
     }
     return this.scenes[index]
+  }
+
+  findSceneByName (name) {
+    const scene = this.scenes.find(s => s.name === name)
+    if (!scene) {
+      console.warn('No scene named "' + name + '" found. Reverting to first scene.')
+      return this.scenes[0]
+    }
+    return scene
   }
 
   findPassage (serial) {
@@ -91,7 +122,6 @@ class Story {
 
     return this.passages[index]
   }
-
 }
 
 export default Story

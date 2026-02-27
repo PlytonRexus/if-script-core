@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Import Test - IF-Script</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #1e1e1e;
+      color: #d4d4d4;
+    }
+    h1 {
+      color: #4ec9b0;
+    }
+    .test-section {
+      background: #252526;
+      border-left: 3px solid #007acc;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .test-section h2 {
+      margin-top: 0;
+      color: #4fc1ff;
+    }
+    .success {
+      color: #4ec9b0;
+    }
+    .error {
+      color: #f48771;
+    }
+    .info {
+      color: #dcdcaa;
+    }
+    pre {
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: inherit;
+      margin: 5px;
+    }
+    button:hover {
+      background: #005a9e;
+    }
+    #story {
+      margin-top: 20px;
+      padding: 20px;
+      background: #252526;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>IF-Script Browser Import System Test</h1>
+
+  <div class="test-section">
+    <h2>Test 1: Preloaded Files (Bundled Content)</h2>
+    <button onclick="testPreloadedFiles()">Run Test</button>
+    <pre id="test1-output">Click "Run Test" to start...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 2: Dynamic Fetch</h2>
+    <button onclick="testDynamicFetch()">Run Test</button>
+    <pre id="test2-output">Click "Run Test" to start...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 3: Import with Aliases</h2>
+    <button onclick="testAliases()">Run Test</button>
+    <pre id="test3-output">Click "Run Test" to start...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Story Output</h2>
+    <div id="story"></div>
+  </div>
+
+  <script type="module">
+    import IFScript from '../../../src/IFScript.mjs'
+
+    // Make test functions global
+    window.testPreloadedFiles = async function() {
+      const output = document.getElementById('test1-output')
+      output.textContent = 'Running test...\n'
+
+      try {
+        // Create IFScript with preloaded files
+        const ifScript = new IFScript({
+          browser: {
+            preloadedFiles: {
+              '/lib/section2.partial.if': `/* 2 */
+{ This is a preloaded section from a "library" }
+  >> Go to section 1 -> 1
+  >> Go to section 3 -> 3
+`
+            },
+            allowFetch: false // Only use preloaded files
+          }
+        })
+        await ifScript.init()
+
+        const story = `
+@settings
+  @title "Preloaded Import Test"
+
+import__"/lib/section2.partial.if"__import
+
+/* 1 */
+{ Welcome to the main story! }
+  >> Visit section 2 -> 2
+
+/* 3 */
+{ You reached section 3 }
+`
+
+        const parsed = await ifScript.parse(story, 'inline-story.if')
+
+        output.innerHTML = `<span class="success">✓ Test Passed!</span>\n`
+        output.innerHTML += `<span class="info">Sections found: ${parsed.sections.length}</span>\n`
+        output.innerHTML += `<span class="info">Cache size: ${ifScript.moduleLoader.getCacheStats().size}</span>\n`
+        output.innerHTML += `\nParsed story:\n${JSON.stringify(parsed, null, 2)}`
+
+        const runtime = await ifScript.createRuntime()
+        runtime.mount('#story')
+        runtime.start(parsed, { theme: 'literary-default', resume: false })
+      } catch (error) {
+        output.innerHTML = `<span class="error">✗ Test Failed!</span>\n${error.message}\n`
+        if (error.cause) {
+          output.innerHTML += `Caused by: ${error.cause.message}\n`
+        }
+        console.error(error)
+      }
+    }
+
+    window.testDynamicFetch = async function() {
+      const output = document.getElementById('test2-output')
+      output.textContent = 'Running test...\n'
+
+      try {
+        // Create IFScript with dynamic fetch enabled
+        const ifScript = new IFScript({
+          browser: {
+            baseUrl: window.location.origin + '/test/fixtures/stories/',
+            allowFetch: true
+          }
+        })
+        await ifScript.init()
+
+        const story = `
+@settings
+  @title "Dynamic Fetch Test"
+
+import__"section2.partial.if"__import
+
+/* 1 */
+{ Main story with dynamic import }
+`
+
+        const parsed = await ifScript.parse(story, 'inline-story.if')
+
+        output.innerHTML = `<span class="success">✓ Test Passed!</span>\n`
+        output.innerHTML += `<span class="info">Sections found: ${parsed.sections.length}</span>\n`
+        output.innerHTML += `<span class="info">Dynamically fetched and parsed successfully!</span>\n`
+        output.innerHTML += `\nParsed story:\n${JSON.stringify(parsed, null, 2)}`
+      } catch (error) {
+        output.innerHTML = `<span class="error">✗ Test Failed!</span>\n${error.message}\n`
+        output.innerHTML += `\n<span class="info">Note: This test requires a local server to work (CORS policy)</span>`
+        console.error(error)
+      }
+    }
+
+    window.testAliases = async function() {
+      const output = document.getElementById('test3-output')
+      output.textContent = 'Running test...\n'
+
+      try {
+        // Create IFScript with path aliases
+        const ifScript = new IFScript({
+          paths: {
+            aliases: {
+              '@lib': '/library',
+              '@components': '/components'
+            }
+          },
+          browser: {
+            preloadedFiles: {
+              '/library/intro.partial.if': `/* 0 */
+{ Library intro section }
+  >> Start -> 1
+`,
+              '/components/menu.partial.if': `/* 99 */
+{ Menu section }
+  >> Back to start -> 0
+`
+            },
+            allowFetch: false
+          }
+        })
+        await ifScript.init()
+
+        const story = `
+@settings
+  @title "Path Alias Test"
+
+import__"@lib/intro.partial.if"__import
+import__"@components/menu.partial.if"__import
+
+/* 1 */
+{ Main content }
+  >> Menu -> 99
+`
+
+        const parsed = await ifScript.parse(story, 'inline-story.if')
+
+        output.innerHTML = `<span class="success">✓ Test Passed!</span>\n`
+        output.innerHTML += `<span class="info">Sections found: ${parsed.sections.length}</span>\n`
+        output.innerHTML += `<span class="info">Both aliases resolved correctly!</span>\n`
+        output.innerHTML += `\nCache stats:\n`
+        const cacheStats = ifScript.moduleLoader.getCacheStats()
+        output.innerHTML += `  Size: ${cacheStats.size}\n`
+        output.innerHTML += `  Paths: ${cacheStats.paths.join(', ')}\n`
+      } catch (error) {
+        output.innerHTML = `<span class="error">✗ Test Failed!</span>\n${error.message}\n`
+        if (error.cause) {
+          output.innerHTML += `Caused by: ${error.cause.message}\n`
+        }
+        console.error(error)
+      }
+    }
+
+    // Auto-run first test on load
+    console.log('Browser import test page loaded')
+    console.log('Click the buttons to run individual tests')
+  </script>
+</body>
+</html>
+

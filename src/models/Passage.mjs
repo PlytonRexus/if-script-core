@@ -5,9 +5,6 @@
  * @extends {Section}
  */
 class Passage {
-
-  _class = 'Passage'
-
   /**
    * Creates an instance of Passage.
    * @param {string} title Title of the Passage
@@ -15,6 +12,7 @@ class Passage {
    * @memberof Passage
    */
   constructor (title, text) {
+    this._class = 'Passage'
     Object.assign(this, ...arguments)
   }
 
@@ -22,10 +20,9 @@ class Passage {
     return 'Passage'
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
-
 }
 
 export default Passage

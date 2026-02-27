@@ -1,0 +1,408 @@
+/* Thrones module: 06-endgame-allegiances.partial.if */
+scene__
+  @name "ACT6: Allegiance Reckoning"
+  @first "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+  @sections "T385 - ACT6 - Harrenhal Torchlit Census at the rookery" "T386 - ACT6 - Dragonstone Blood Price at first light" "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals" "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries" "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke" "T390 - ACT6 - Pentos Harbor Ambush in river fog" "T391 - ACT6 - Qarth Alliance Split near the godswood" "T392 - ACT6 - The Wall War Map against old law" "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky" "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse" "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors" "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+__scene
+
+section__
+  @title "T385 - ACT6 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-385.jpg"
+
+  "Harrenhal's rookery still reeks of wet ash from the war-council fires you set in Act Five. Half-burned casualty rolls lie under stone weights while ravens hammer their beaks against the bars. Varys stands near the arrow slit like a patient creditor. Tyrion Lannister reads every face at your table, counting who came armed and who came hungry.
+
+This is no longer about winning fields. It is about deciding which banners survive winter under your protection and which are left outside the granaries. If you proclaim terms in the open, you may steady the realm but lose deniable leverage. If you deal in sealed promises, you can lock in obedience now and inherit resentment later. Neutral houses are already selling passage rights by the hour.
+
+Wax drips across maps of the Trident while your quartermaster whispers that grain trains can cover two fronts, not three. Whatever oath you issue tonight becomes the architecture of the next kingdom."
+
+  choice__
+    @target "T386 - ACT6 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the casualty ledger and alliance terms before witnesses, then bind every lord to public obligation."
+  __choice
+
+  choice__
+    @target "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Bar the chamber doors, swap pardons for hostages, and secure compliance through private debt."
+  __choice
+
+  choice__
+    @target "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Hire Pentoshi carriers for emergency grain and sellsails, trading coin now for foreign leverage later."
+  __choice
+__section
+
+section__
+  @title "T386 - ACT6 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-386.jpg"
+
+  "Dragonstone's vault air tastes of salt, mold, and old fear. Iron rings in the wall hold the chain of a former claimant, and someone has scratched new tally marks beside it. Robb Stark wants your guarantee that northern levies will not be bled for a southern coronation. Davos Seaworth wants shipping priorities written in ink before dawn tides turn.
+
+Your garrisons are exhausted after the sacrifice campaigns, and captains now desert from uncertainty more than danger. A clear ruling on succession can restore marching order by morning. A shadow bargain can buy time, but if exposed it fractures both north and coast at once. Every hour of delay sends another raven carrying a different rumor of who truly commands House Valehart.
+
+Outside, chains slap the sea wall in hard rhythm. You can hear the storm before you see it, and so can everyone waiting on your signature."
+
+  choice__
+    @target "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a written succession ruling in open court, forcing every captain to obey one lawful chain of command."
+  __choice
+
+  choice__
+    @target "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Broker a sealed hostage exchange and hidden command pact, gaining speed now at the price of future trust."
+  __choice
+__section
+
+section__
+  @title "T387 - ACT6 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-387.jpg"
+
+  "Blackwater Bay is a sheet of black steel under sleet, and the harbor chain groans whenever the tide surges. In the raven court above the docks, Davos spreads shipping manifests beside Robb Stark's demand for northern priority on food convoys. The hostage households crowding the gallery do not argue policy; they ask whose child returns alive this week.
+
+You can settle this publicly and make convoy law visible to every house. That strengthens legitimacy but locks you into promises you may not be able to feed. Or you can squeeze leverage from private ledgers, releasing hostages in the order that buys the most obedience. That keeps control in your hands and places a blade at the throat of every alliance.
+
+Tar smoke rolls in through the shutters while bells count the watch. One mistake here does not lose an argument. It loses the road network that keeps your armies from eating each other."
+
+  choice__
+    @target "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish a convoy charter with hostage release clauses, accepting visible limits to keep coalition law intact."
+  __choice
+
+  choice__
+    @target "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Circulate selective ledgers in secret, splitting rival captains and buying obedience through blackmail debt."
+  __choice
+__section
+
+section__
+  @title "T388 - ACT6 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-388.jpg"
+
+  "At the Dreadfort border gate, torch smoke mixes with wet wool and horse piss as envoys queue beneath flayed banners. Tyrion speaks of enforceable law. Varys speaks of survivable outcomes. The Night's Watch courier beside them speaks only once, warning that if this corridor closes, northern grain and dragonglass both stop moving before the next moon.
+
+Rumors have outrun your ravens all week. Rivals are already quoting forged drafts of your orders to justify border seizures. If you answer in public, you can reset authority and expose false decrees. If you answer through pressure and fear, you may break the forgery network quickly but teach every house that terror governs more than law.
+
+Snowmelt runs red-brown down the ditch from butchered pack mules. This gate is ugly, crowded, and strategically decisive. Whoever controls it writes the opening line of winter."
+
+  choice__
+    @target "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Confirm the border guarantees before assembled envoys, spending political leverage to restore lawful transit."
+  __choice
+
+  choice__
+    @target "T390 - ACT6 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Seize the suspected forgers quietly and coerce confessions, ending the rumor war through fear and secrecy."
+  __choice
+__section
+
+section__
+  @title "T389 - ACT6 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-389.jpg"
+
+  "At the Eyrie, wind screams through the Moon Door tower and snuffs half the candles on the treaty table. Varys slides you a list of lords demanding grain immunity. Tyrion slides you a shorter list of lords who can actually enforce what they sign. The delegates below are less interested in justice than in whether their storehouses survive the next fortnight.
+
+Your quartermasters have started rationing by banner reliability, and everyone knows it. A public settlement could legitimize hard cuts and keep the capital from calling you a thief. A covert settlement could preserve your leverage over weak houses but turn hunger into rebellion if discovered. Either path determines which districts still answer your banners when snows deepen.
+
+You taste vinegar and cold stone as another messenger arrives with a broken seal. The realm no longer waits for consensus. It waits for command."
+
+  choice__
+    @target "T390 - ACT6 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Announce a transparent grain hierarchy and sign it before the court, accepting blame for every hard allotment."
+  __choice
+
+  choice__
+    @target "T391 - ACT6 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Use quiet inducements and targeted leaks to fracture opponents, turning uncertainty into direct leverage."
+  __choice
+__section
+
+section__
+  @title "T390 - ACT6 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-390.jpg"
+
+  "Pentos harbor is gray with dawn fog and floating wreckage from last month's blockade. Robb Stark arrives furious that southern coin still buys ships faster than northern oaths. Davos Seaworth arrives practical, reminding you that ships without paid crews become drifting coffins. Between them stands a divided banner house threatening to defect before sunrise unless you settle command rights now.
+
+Public clarity would steady frightened captains and stop three competing rumor lines. Covert maneuver would let you cut out disloyal officers before they can sabotage the harbor chain. A third option remains expensive but fast: reopen Essosi channels and project force through merchants and sellsails while local factions argue over honor.
+
+The fog tastes of salt and lamp oil. On the outer pier, men are already loading grain under crossbows. Your next order decides whether those crates feed allies or enemies."
+
+  choice__
+    @target "T391 - ACT6 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Convene the captains on the quay and issue one public command charter, trading flexibility for immediate legitimacy."
+  __choice
+
+  choice__
+    @target "T392 - ACT6 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Cut a midnight command deal with key officers, sacrificing transparency to neutralize rivals before dawn."
+  __choice
+
+  choice__
+    @target "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Fund fast Essosi charters and hired escorts, spending treasury to impose order from outside the local feud."
+  __choice
+__section
+
+section__
+  @title "T391 - ACT6 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-391.jpg"
+
+  "In the godswood outside Qarth's trading enclave, cedar smoke from foreign braziers cuts through the smell of thawing earth. Davos brings contracts from neutral merchants who want immunity before they finance anyone. Robb brings names of northern houses ready to quit your coalition if those same merchants gain protected status.
+
+This split is the price of surviving too long. Everyone agrees you are useful; no one agrees what you should be allowed to become. A public settlement can force both camps to accept one framework and reveal who refuses lawful constraint. A hidden settlement can buy temporary cohesion by paying different prices to different factions, then praying the accounts never leak.
+
+A raven startles from the weirwood and drops black feathers into the mud at your feet. Even silence feels like a vote now."
+
+  choice__
+    @target "T392 - ACT6 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Publish one alliance code for north and merchants alike, accepting immediate backlash to secure clear loyalties."
+  __choice
+
+  choice__
+    @target "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run dual promises through back channels, preserving unity now while stockpiling blackmail for the fallout."
+  __choice
+__section
+
+section__
+  @title "T392 - ACT6 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-392.jpg"
+
+  "The war map chamber at the Wall is colder than reason. Frost rims the table edges, and old vows are carved into the beams above your head. Tyrion argues that legitimacy wins the south. Varys argues that survivability wins everything. The Watch delegates do not care which theory prevails; they need men, glass, and grain before the first dead patrol comes back.
+
+Desertions have climbed because no one believes the coalition can fight court war and northern war at once. If you answer publicly, you can force the realm to acknowledge the existential threat and commit visible resources. If you answer through covert pressure, you can strip rivals of influence and redirect supplies without another public fracture. A foreign acceleration route remains possible, but it will bind future sovereignty to outside creditors.
+
+Your gloves stick briefly to the frozen map pins when you move them. The old law says the Wall protects the realm. Tonight, you decide whether the realm still protects the Wall."
+
+  choice__
+    @target "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Issue a formal Wall compact before witnesses, compelling southern and northern houses to fund frontier defense."
+  __choice
+
+  choice__
+    @target "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Deploy intelligence files against obstructing lords, redirecting men and stores through deniable coercion."
+  __choice
+
+  choice__
+    @target "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Purchase emergency escorts and supply caravans from Essosi brokers, trading treasury and autonomy for speed."
+  __choice
+__section
+
+section__
+  @title "T393 - ACT6 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-393.jpg"
+
+  "Castle Black's inheritance chamber is cut into ice-dark stone and lit by sputtering tallow that smells like burnt fat. The Watch envoys demand clarity on who controls abandoned keeps, supply tunnels, and levy rights now that half the old line commanders are dead. Varys watches the envoys. Tyrion watches you. Both are measuring whether House Valehart will govern by charter or by intimidation.
+
+Every unanswered claim becomes a recruitment tool for rival banners. If you settle command succession in open record, you may lose room to maneuver but keep the northern coalition intact. If you settle it in secret with selected captains, you can enforce obedience fast and invite accusations of usurpation by moonrise. Men at the Wall obey certainty long before they trust kindness.
+
+Frost climbs the iron hinges while ravens claw at the shutters. This decision decides who can issue lawful orders when the snows close the roads."
+
+  choice__
+    @target "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Ratify a public command succession before the Watch and banner lords, accepting limits to keep legitimacy intact."
+  __choice
+
+  choice__
+    @target "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Broker a private inheritance pact with key captains, trading transparency for immediate enforceable control."
+  __choice
+__section
+
+section__
+  @title "T394 - ACT6 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-394.jpg"
+
+  "Rain needles through the broken slats of Moat Cailin's gatehouse, carrying the stink of mud, mold, and fever. Robb Stark arrives with intercepted ravens proving someone inside your coalition has been rewriting orders in your name. Davos Seaworth has the practical problem: three supply columns are halted because no captain trusts the latest seal.
+
+By sundown, either the forgery ring is exposed or the entire crossing fractures into private militias. A public inquiry can restore chain of command and humiliate powerful allies. A covert counterstroke can purge traitors quietly, but if one witness survives, you look exactly like the conspirators you condemn. This is what final alignments cost: not speeches, but credibility at chokepoints.
+
+Water drips through the arrow loop onto your map of the Neck. Each drop blurs another route you may need before winter closes in."
+
+  choice__
+    @target "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Read the forged raven chain at the gatehouse tribunal and reissue orders under witnessed seals."
+  __choice
+
+  choice__
+    @target "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Plant false routes, draw the forgers into a controlled trap, and crush the ring without open proceedings."
+  __choice
+__section
+
+section__
+  @title "T395 - ACT6 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-395.jpg"
+
+  "Oldtown's archive chamber smells of lamp oil, sea salt, and damp vellum. Behind closed doors, a conclave clerk presents letters proving that one of your trusted intermediaries has been selling convoy schedules to competing claimants. Davos wants immediate arrests before word spreads. Robb wants names made public so no one can bury the betrayal as clerical error.
+
+Your ration lists already favor loyal banners, and everyone feels it. If you prosecute openly, you risk detonating fragile alliances just before siege season. If you bury the treason behind private settlements, you keep the coalition moving and teach every survivor that loyalty can be purchased after treachery. A third path exists: buy speed from Essos and outrun the scandal, at the cost of deeper foreign dependency.
+
+Outside the shuttered windows, bells call the harbor watch. You can hear war preparations in every toll."
+
+  choice__
+    @target "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Open a public tribunal on the Oldtown letters, punishing traitors in daylight to restore institutional trust."
+  __choice
+
+  choice__
+    @target "T397 - ACT6 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Cut sealed immunity deals with implicated houses, preserving coalition function through controlled silence."
+  __choice
+
+  choice__
+    @target "T398 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    "Purchase Essosi shipping credit and covert couriers, spending treasury to bypass compromised mainland routes."
+  __choice
+__section
+
+section__
+  @title "T396 - ACT6 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/06-endgame-allegiances/frame-396.jpg"
+
+  "At Pyke's broken tower, sea spray coats the stones and the chains of exchanged hostages clang in the wind. Tyrion brings final terms from southern claimants. Varys brings a list of captains likely to defect once the first siege engines move. The Ironborn negotiators care about neither story; they care which prisoners leave alive and which ports remain open.
+
+This is the last alignment node before open terminal conflict. If you lock terms in public, your coalition enters siege season with clear authority and fewer excuses. If you resolve it through secret swaps and private debt, you can remove immediate threats and carry hidden fractures into the coming battles. Either way, dawn ends the era of reversible choices.
+
+Wave foam blows across the table and blots the ink on one hostage roster. The tower bell rings once. Siege lines are already being drawn."
+
+  choice__
+    @target "T397 - ACT6 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 2, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Complete the hostage exchange before witnesses and publish final allegiance terms for all coalition captains."
+  __choice
+
+  choice__
+    @target "T398 - ACT6 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action leverage = clampStat(leverage + 2, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Run a covert prisoner swap with bribes and threats, securing short-term obedience before the sieges begin."
+  __choice
+__section

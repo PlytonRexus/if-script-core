@@ -10,11 +10,11 @@ import IFScript from './src/IFScript.mjs'
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory()
-  } else if (!!root) {
+  } else if (root) {
     // Browser globals (root is window)
     root.IF = factory()
   }
-})(typeof self !== 'undefined' ? self : this, async function () {
+})(typeof globalThis !== 'undefined' ? globalThis : this, async function () {
   return IFScript
 })
 

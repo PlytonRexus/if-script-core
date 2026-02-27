@@ -1,0 +1,10 @@
+import__"./intro.partial.if"__import
+
+section__
+  @title "Chapter 1"
+  "Chapter 1 content"
+  choice__
+    @target 1
+    "Back"
+  __choice
+__section

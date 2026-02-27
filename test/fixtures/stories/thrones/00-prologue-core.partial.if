@@ -1,0 +1,863 @@
+/* Thrones module: 00-prologue-core.partial.if */
+scene__
+  @name "ACT0: Oaths on the Trident"
+  @first "T001 - ACT0 - Oath at Riverrun"
+  @sections "T001 - ACT0 - Oath at Riverrun" "T002 - ACT0 - The Red Keep Raven Intercept before the sept bell" "T003 - ACT0 - Winterfell Night Council before witnesses" "T004 - ACT0 - The Twins Debt Collection under wolf banners" "T005 - ACT0 - Harrenhal Torchlit Census at the rookery" "T006 - ACT0 - Dragonstone Blood Price at first light" "T007 - ACT0 - Blackwater Bay Sealed Bargain beneath lion seals" "T008 - ACT0 - The Dreadfort Border Muster in crowded galleries" "T009 - ACT0 - The Eyrie Crown Ultimatum by candle smoke" "T010 - ACT0 - Pentos Harbor Ambush in river fog" "T011 - ACT0 - Qarth Alliance Split near the godswood" "T012 - ACT0 - The Wall War Map against old law" "T013 - ACT0 - Castle Black Inheritance Claim under moonless sky" "T014 - ACT0 - Moat Cailin Whispered Warning at the gatehouse" "T015 - ACT0 - Oldtown Silent Betrayal behind closed doors" "T016 - ACT0 - Pyke Hostage Exchange at the broken tower" "T017 - ACT0 - Highgarden Siege Promise in the throne shadow" "T018 - ACT0 - Sunspear Prison Confession with steel drawn" "T019 - ACT0 - The Trident Salt Pact by the harbor chain" "T020 - ACT0 - Riverrun Broken Oath under rain" "T021 - ACT0 - The Kingsroad Blackmail Ledger after the feast" "T022 - ACT0 - The Red Keep Raven Intercept before the sept bell" "T023 - ACT0 - Winterfell Night Council before witnesses" "T024 - ACT0 - The Twins Debt Collection under wolf banners"
+__scene
+
+section__
+  @title "T001 - ACT0 - Oath at Riverrun"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-001.jpg"
+
+  "Rain threads through the arches of Riverrun and turns the courtyard straw dark as old blood. You kneel before your house banners with your palm on a chipped river-stone while Ser Brynden Tully watches for hesitation and Catelyn Stark watches for ambition. The oath you are asked to swear is simple in wording and ruinous in consequence: House Valehart must feed troops, host envoys, and choose a side before the realm chooses for you.
+
+If you swear too broadly, you become a granary for every army that passes. If you swear too narrowly, your neighbors mark you as faithless before the first campaign even starts. Ravens are already waiting in the rookery, and each one carries a different version of what you are supposed to promise.
+
+You taste wet iron in the air and understand the shape of this war. It will not begin with trumpets. It will begin with accounting. Honor can steady your allies, secrecy can buy you room, and survival will shrink every day you delay."
+
+  choice__
+    @target "T002 - ACT0 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Riverrun oath into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T003 - ACT0 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Riverrun oath behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T002 - ACT0 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-002.jpg"
+
+  "The rookery steps are slick with river mist when your courier intercepts a sealed message bearing the red wax of the capital. The parchment is short, polite, and poisonous: the Crown requests immediate loyalty from House Valehart while quietly implying that refusal will be treated as rebellion. Varys has left a margin note in a different hand, one sentence long, warning that official letters and actual intent are no longer the same thing.
+
+Your captains want clarity, but the letter offers only leverage games. If you read it aloud, northern allies will suspect capitulation to King's Landing. If you hide it, court agents will claim you are plotting treason. Either way, your choice changes who trusts your next command.
+
+Below, stable boys shovel mud while knights argue over who owns the road to the next ford. That is the true state of the realm: every man demanding certainty while standing knee-deep in sludge."
+
+  choice__
+    @target "T003 - ACT0 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the crown letter into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T004 - ACT0 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the crown letter behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T003 - ACT0 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-003.jpg"
+
+  "The winter envoy arrives at dusk with frozen mud still on his boots and a private request from Winterfell: commit grain and riders before the southern courts can buy your neutrality. He speaks plainly, the way northmen do when they think rhetoric is a tax on courage. Behind him, your own bannermen whisper that open alignment with the Starks means open war with houses who can bankrupt you without drawing a sword.
+
+You host the council in a chamber that smells of damp wool and rushlight smoke. Maps are spread, routes are argued, and every promise is measured against the number of carts you can actually move. The question is not whether war is coming. The question is whether Valehart enters it as a partner, a broker, or prey.
+
+By the time the candles gutter, your scribes have three draft orders and no safe draft. The first choice of the campaign is never glorious; it is logistical and permanent."
+
+  choice__
+    @target "T004 - ACT0 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the winter commitment into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T005 - ACT0 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the winter commitment behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T004 - ACT0 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-004.jpg"
+
+  "At the Twins crossing, Lord Frey's stewards produce a fee schedule that reads like extortion wrapped in legal language. Passage, they say, can be purchased in silver, hostages, or political commitments recorded before witnesses. Your quartermaster does the math out loud and falls silent halfway through; paying every demand would leave your granaries empty before the snows.
+
+The Freys smell weakness like dogs smell rain. They do not ask what is just, only what can be extracted while every rival is desperate. If you yield publicly, other houses will copy the tactic. If you refuse and force the ford, you begin the war by burning a bridge you may need in spring.
+
+A piper plays somewhere in the outer yard while bodies float against the pilings below. The music is jaunty. The river is not."
+
+  choice__
+    @target "T005 - ACT0 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the crossing toll dispute into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T006 - ACT0 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the crossing toll dispute behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T005 - ACT0 - Harrenhal Torchlit Census at the rookery"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-005.jpg"
+
+  "Harrenhal's broken towers throw long shadows over a census line of frightened villagers, press-ganged smiths, and tired levy boys with borrowed spears. You ride the perimeter with a wax tablet while your steward marks who can fight, who can carry, and who can still plant winter barley if left alive. The smell is ash, horse dung, and wet stone warmed by grudging sun.
+
+Numbers reveal what banners hide. Two nearby lords inflated troop counts to secure your grain allotments. One captain has been selling rations to smugglers at night. A third has moved hostages without permission. None of these crimes are dramatic, but together they can starve your front before the enemy draws near.
+
+You can punish publicly and restore discipline, or conceal the fraud and preserve a fragile coalition. Both routes cost blood, trust, and time."
+
+  choice__
+    @target "T006 - ACT0 - Dragonstone Blood Price at first light"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Harrenhal levy fraud into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T007 - ACT0 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Harrenhal levy fraud behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T008 - ACT0 - The Dreadfort Border Muster in crowded galleries"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the Harrenhal levy fraud through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T006 - ACT0 - Dragonstone Blood Price at first light"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-006.jpg"
+
+  "A fast galley from Dragonstone reaches your docks before dawn, its hull painted in storm-black pitch and its crew too disciplined to gossip. The letter within claims lawful succession on ancient grounds and demands that houses of the Trident declare their position before moon's turn. The messenger offers a hard smile and says neutrality will be interpreted as sabotage.
+
+Your advisors split instantly. One argues that law matters only when armies enforce it. Another argues that legitimacy is the only currency that survives winter famine. A third, quieter voice notes that declaring too early could make Valehart the first target of whichever claimant fails first.
+
+Outside, rain hammers the quay and makes every torch flare sideways. You can feel the realm narrowing into rival absolutes, each one asking for total loyalty and promising only conditional mercy."
+
+  choice__
+    @target "T007 - ACT0 - Blackwater Bay Sealed Bargain beneath lion seals"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Dragonstone demand into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T008 - ACT0 - The Dreadfort Border Muster in crowded galleries"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Dragonstone demand behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T007 - ACT0 - Blackwater Bay Sealed Bargain beneath lion seals"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-007.jpg"
+
+  "Blackwater merchants anchor under false flags and request private audience at midnight, claiming they can secure salt beef, arrows, and lamp oil if Valehart grants tariff exemptions and safe conduct. Their ledgers are immaculate, their accents carefully mixed, and their bodyguards unmistakably Lannister-trained. The air reeks of tar and old fish.
+
+This is not trade in the peaceful sense; it is wartime procurement with deniable teeth. Accepting their terms could keep your troops fed for three crucial weeks. Rejecting them may preserve political purity while forcing your soldiers to eat oat mash and hope. If word spreads, northern allies may call it collusion and crown agents may call it insufficient gratitude.
+
+You run a thumb over the seal ring in your pocket and remember that clean hands are easiest to maintain before the first siege begins."
+
+  choice__
+    @target "T008 - ACT0 - The Dreadfort Border Muster in crowded galleries"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Blackwater contract into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T009 - ACT0 - The Eyrie Crown Ultimatum by candle smoke"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Blackwater contract behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T010 - ACT0 - Pentos Harbor Ambush in river fog"
+    @when ((wealth + essos_ties + dragon_factor) >= 9)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the Blackwater contract through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T008 - ACT0 - The Dreadfort Border Muster in crowded galleries"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-008.jpg"
+
+  "Scouts return from the Dreadfort road with split lips, two dead horses, and a warning carved into one of your own mileposts. Bolton men are moving in disciplined columns while denying any hostile intent. Their outriders map wells, mills, and ferry points as if they already own the district. Snowmelt and pine pitch cling to their cloaks, and to the fear they leave behind.
+
+Your northern contacts insist these movements are routine. Your own riders insist routine patrols do not carry spare chains. If you report the threat publicly, you may trigger panic and opportunistic raids. If you stay quiet, you grant your rival the initiative and pretend blindness is prudence.
+
+A war can be lost months before its first formal battle. Usually by the side that mistook reconnaissance for rumor."
+
+  choice__
+    @target "T009 - ACT0 - The Eyrie Crown Ultimatum by candle smoke"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Dreadfort movements into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T010 - ACT0 - Pentos Harbor Ambush in river fog"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Dreadfort movements behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T009 - ACT0 - The Eyrie Crown Ultimatum by candle smoke"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-009.jpg"
+
+  "The Eyrie's falcon seal arrives with a demand disguised as a diplomatic clarification: House Valehart must either guarantee mountain road security for Arryn couriers or surrender claim to certain toll rights in perpetuity. The parchment smells faintly of lavender and contempt.
+
+Your legal master can contest the claim, but doing so in open court will take weeks you do not have. Yielding secures temporary peace with one neighbor while advertising weakness to five others. Worse, whichever clause you sign today will be quoted back at you during every future negotiation where coin or hostages change hands.
+
+In the counting room, your treasurer stacks silver by candlelight and tells you there is enough money for one bold mistake. He does not specify which one."
+
+  choice__
+    @target "T010 - ACT0 - Pentos Harbor Ambush in river fog"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Eyrie ultimatum into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T011 - ACT0 - Qarth Alliance Split near the godswood"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Eyrie ultimatum behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T010 - ACT0 - Pentos Harbor Ambush in river fog"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-010.jpg"
+
+  "A Pentoshi factor offers you a back-channel fleet agreement at the river mouth: fast hulls, neutral captains, and off-book manifests that can move people or grain before rival lords realize routes have shifted. He speaks in polished courtesy while his bodyguards scan exits, not etiquette. Salt wind carries the smell of citrus peel and bilge water into the tent.
+
+Foreign help buys speed, but speed bought abroad always carries a second invoice. If you accept, you gain mobility and deniability at the cost of deeper Essosi obligations. If you refuse, you remain cleaner politically but slower operationally, and slow houses become memorial names.
+
+Your scribes mark the proposal beside casualty estimates and winter stores. Every line item has become strategic doctrine. Even the harbor does politics now."
+
+  choice__
+    @target "T011 - ACT0 - Qarth Alliance Split near the godswood"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Pentoshi channel into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T012 - ACT0 - The Wall War Map against old law"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Pentoshi channel behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T013 - ACT0 - Castle Black Inheritance Claim under moonless sky"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the Pentoshi channel through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T011 - ACT0 - Qarth Alliance Split near the godswood"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-011.jpg"
+
+  "A broker from Qarth sends terms through three intermediaries and one mutilated courier, proving both reach and cruelty before you even read the offer. He proposes credit, armored escorts, and intelligence on crown shipments in exchange for future monopoly rights on river tolls. The ink smells of myrrh and the threat smells of certainty.
+
+No Westerosi banner will publicly praise such a bargain, yet many privately survive on worse. If Valehart accepts, rivals will accuse you of selling sovereignty. If Valehart declines, the same rivals may buy the deal themselves and claim moral superiority after the fact.
+
+You realize the war has expanded beyond castles and bloodlines. It now includes markets, insurers, smugglers, and men who can bankrupt a lord from another continent."
+
+  choice__
+    @target "T012 - ACT0 - The Wall War Map against old law"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Qarth broker deal into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T013 - ACT0 - Castle Black Inheritance Claim under moonless sky"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Qarth broker deal behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T012 - ACT0 - The Wall War Map against old law"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-012.jpg"
+
+  "At Castle Black's ledger table, a ranger map arrives marked with fresh charcoal circles where villages have gone silent. The Lord Commander's request is direct: steel, grain, and sworn men now, not after your southern disputes settle. The map edges are stiff with frost; your fingers ache just holding it.
+
+In any other season, southern councils would call this peripheral. In this season, every delay north becomes compound risk south. Funding the Watch may save lives you will never meet and anger allies who think every cart must serve immediate battlefield needs. Ignoring the warning may preserve short-term momentum while storing catastrophe in the future.
+
+You hear crows in the rafters and think of all the messages that arrived too late because someone wanted one more week of political comfort."
+
+  choice__
+    @target "T013 - ACT0 - Castle Black Inheritance Claim under moonless sky"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Wall warning into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T014 - ACT0 - Moat Cailin Whispered Warning at the gatehouse"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Wall warning behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T013 - ACT0 - Castle Black Inheritance Claim under moonless sky"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-013.jpg"
+
+  "A legal petition reaches you from a black brother claiming blood-right inheritance through a line that intersects with minor Valehart holdings. The claim is absurd on first reading and dangerous on second: if recognized, it creates precedent for rivals to weaponize succession law against your estate while pretending to honor the Night's Watch.
+
+Your jurists can shred the petition in public hearing. They can also quietly settle and avoid a feud with men you need on the Wall. Either path has audience costs. The first paints you as ruthless to the desperate; the second paints you as pliable to the ambitious.
+
+The chamber smells of old vellum and seal wax, and every witness waits to learn whether House Valehart values strict law, useful compromise, or whichever choice hurts least this month."
+
+  choice__
+    @target "T014 - ACT0 - Moat Cailin Whispered Warning at the gatehouse"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the inheritance petition into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T015 - ACT0 - Oldtown Silent Betrayal behind closed doors"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the inheritance petition behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T014 - ACT0 - Moat Cailin Whispered Warning at the gatehouse"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-014.jpg"
+
+  "Moat Cailin sends a whisper, not a letter. One of your signal riders arrives alone, mud-caked, feverish, and unwilling to speak above a murmur. He reports road sabotage, missing couriers, and false patrol markers designed to funnel supply wagons into ambush ground. The gatehouse brazier spits pine resin while he talks.
+
+If the report is true, your logistics spine is already under attack. If false, reacting aggressively might expose your own routes and make you look unstable to allies deciding where to commit men. The worst option is half-action: enough movement to alarm everyone, not enough to secure anything.
+
+You dispatch healers, then stand over the map until dawn tracing distances with your thumb. In war, uncertainty is rarely empty. It is usually occupied by someone else's plan."
+
+  choice__
+    @target "T015 - ACT0 - Oldtown Silent Betrayal behind closed doors"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Moat Cailin report into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T016 - ACT0 - Pyke Hostage Exchange at the broken tower"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Moat Cailin report behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T017 - ACT0 - Highgarden Siege Promise in the throne shadow"
+    @when ((wealth + essos_ties + dragon_factor) >= 11)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the Moat Cailin report through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T015 - ACT0 - Oldtown Silent Betrayal behind closed doors"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-015.jpg"
+
+  "A packet from Oldtown arrives under trusted seals and fails every quiet authenticity check your maester can perform. Someone inside the citadel is altering copies before they leave the city, which means policy, law, and lineage records can now be manipulated at source. The room smells of lamp smoke and wet parchment.
+
+This is betrayal of infrastructure, not personality. If you announce it, you fracture confidence in every document your coalition depends on. If you conceal it, forged rulings may already be guiding armies toward ruin. Your advisors speak in careful euphemism, as if naming the threat too clearly might make it legal.
+
+You order duplicate archives, separate courier chains, and witness verification for critical decrees. It is tedious, expensive, and unheroic. It may also be the only reason your house survives the next round of lies."
+
+  choice__
+    @target "T016 - ACT0 - Pyke Hostage Exchange at the broken tower"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Oldtown forgery threat into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T017 - ACT0 - Highgarden Siege Promise in the throne shadow"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Oldtown forgery threat behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T018 - ACT0 - Sunspear Prison Confession with steel drawn"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the Oldtown forgery threat through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T016 - ACT0 - Pyke Hostage Exchange at the broken tower"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-016.jpg"
+
+  "At Pyke's sea-cut bridge, ironborn negotiators propose a hostage exchange conducted under ritual forms that guarantee dignity but not safety. They offer two Valehart cousins in return for a captured reaver captain and written passage rights through your eastern quay. Sea spray turns the stones slick as soap and every hand rests near a hilt.
+
+Accepting secures family and buys temporary maritime quiet. Refusing preserves leverage and risks retaliation raids you cannot fully defend while inland commitments drain manpower. Even success carries venom: ironborn memory converts concessions into future claims the moment your guard drops.
+
+One of your cousins, gaunt but standing, meets your gaze across the gap and gives the smallest possible nod. You suddenly hate strategy for requiring this kind of arithmetic."
+
+  choice__
+    @target "T017 - ACT0 - Highgarden Siege Promise in the throne shadow"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Pyke exchange into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T018 - ACT0 - Sunspear Prison Confession with steel drawn"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Pyke exchange behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T017 - ACT0 - Highgarden Siege Promise in the throne shadow"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-017.jpg"
+
+  "Highgarden's emissary arrives in silk too fine for campaign roads and offers a siege support pact tied to marriage language no one pretends is romantic. In return for grain and engineers, Valehart must back specific succession outcomes when the southern council convenes. Honeyed wine and rose oil fail to mask the scent of transaction.
+
+The offer is brilliant, coercive, and probably necessary. Refuse, and you may fight winter with empty stores. Accept, and your house becomes partly collateral in a future throne settlement you may not control. Your stewards already know which keeps can hold without new supplies. The list is shorter than anyone says aloud.
+
+A good alliance in peacetime is a handshake. In wartime it is a mortgage written in blood and witnessed by accountants."
+
+  choice__
+    @target "T018 - ACT0 - Sunspear Prison Confession with steel drawn"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Highgarden pact into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T019 - ACT0 - The Trident Salt Pact by the harbor chain"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Highgarden pact behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T018 - ACT0 - Sunspear Prison Confession with steel drawn"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-018.jpg"
+
+  "In Sunspear's guest crypt, a captive confessor trades names for water: couriers paid by three competing factions, a planned poisoning at a neutral feast, and a ledger hidden under a false chapel floor. He speaks with split lips and desperate precision. The chamber smells of damp stone, orange peel, and old incense.
+
+If the confession is true, exposing it now could prevent a massacre and collapse two alliances at once. If planted, acting on it could frame Valehart as a butcher of guests and oathbreakers. Torture has made lies and truth wear the same face, and you must still issue orders before sunrise.
+
+You record every name, every place, and every contradiction. In this war, intelligence is never clean. It is merely timely or late."
+
+  choice__
+    @target "T019 - ACT0 - The Trident Salt Pact by the harbor chain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Sunspear confession into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T020 - ACT0 - Riverrun Broken Oath under rain"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Sunspear confession behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T019 - ACT0 - The Trident Salt Pact by the harbor chain"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-019.jpg"
+
+  "Salt merchants on the Trident propose a convoy pact: they will prioritize Valehart shipments and deny credit to your declared enemies if you freeze river tariffs for one season and guarantee armed escorts. The docks stink of brine, wet hemp, and fear disguised as commerce.
+
+It is not glorious, but wars are won by kitchens before cavalry. Secure the pact and your armies can march fed while rivals scavenge. Reject it and keep fiscal autonomy, but watch your supply chain become a bidding war between men who never bleed at the front.
+
+Your marshal taps the map where three routes converge and says the same sentence twice: no food, no campaign. You sign nothing yet. You know signatures can be deadlier than steel when everyone is hungry."
+
+  choice__
+    @target "T020 - ACT0 - Riverrun Broken Oath under rain"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Trident convoy pact into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T021 - ACT0 - The Kingsroad Blackmail Ledger after the feast"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Trident convoy pact behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T020 - ACT0 - Riverrun Broken Oath under rain"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-020.jpg"
+
+  "Back at Riverrun, rain drums on slate as witnesses gather to test whether House Valehart has already broken the first oath it swore three days ago. A minor clause on levy timing has become a major accusation, conveniently amplified by rivals who profit from procedural scandal. The hall smells of wet cloaks and courtroom nerves.
+
+You can concede technical fault and preserve coalition momentum, or contest the charge and risk weeks of paralysis while clerks fight over phrasing. Either decision writes precedent. Every house watching this hearing plans to weaponize whichever standard survives.
+
+You look at the carved trout above the dais and remember that rivers punish hesitation. Move too slowly and the current chooses for you. Move too fast and you hit stone."
+
+  choice__
+    @target "T021 - ACT0 - The Kingsroad Blackmail Ledger after the feast"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the broken-oath hearing into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T022 - ACT0 - The Red Keep Raven Intercept before the sept bell"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the broken-oath hearing behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T023 - ACT0 - Winterfell Night Council before witnesses"
+    @when ((wealth + essos_ties + dragon_factor) >= 7)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the broken-oath hearing through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T021 - ACT0 - The Kingsroad Blackmail Ledger after the feast"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-021.jpg"
+
+  "A blackmail ledger appears at a roadside feast, passed hand to hand beneath platters of roast boar as if it were another serving knife. Names in the book include men currently swearing loyalty in your hall, plus two of your own creditors. Candle smoke and spiced fat cling to every page.
+
+Reveal it publicly and you may shatter enemy confidence, but also expose how compromised your coalition already is. Keep it private and you gain leverage for targeted pressure while allowing corruption to keep breathing under your banner. There is no clean use for a dirty ledger, only more and less controlled detonation.
+
+Your spymaster asks whether Valehart wants justice, stability, or dominance. You answer honestly: survival first. He nods like he expected something worse."
+
+  choice__
+    @target "T022 - ACT0 - The Red Keep Raven Intercept before the sept bell"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the blackmail ledger into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T023 - ACT0 - Winterfell Night Council before witnesses"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the blackmail ledger behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+
+  choice__
+    @target "T024 - ACT0 - The Twins Debt Collection under wolf banners"
+    @when ((wealth + essos_ties + dragon_factor) >= 8)
+    @action wealth = clampStat(wealth - 1, 0, 30)
+    @action watch_trust = clampStat(watch_trust + 1, 0, 30)
+    @action essos_ties = clampStat(essos_ties + 1, 0, 30)
+    @action dragon_factor = clampStat(dragon_factor + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Spend treasury to reroute the blackmail ledger through outside channels before rivals react"
+  __choice
+__section
+
+section__
+  @title "T022 - ACT0 - The Red Keep Raven Intercept before the sept bell"
+  @textPacing "cinematic"
+  @shot "medium"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-022.jpg"
+
+  "A second raven from King's Landing arrives with a seal that passes casual inspection and fails close inspection. Someone is running a forgery channel that relies on speed and panic, counting on houses to obey before verification catches up. The note orders immediate prisoner transfer and threatens sanctions for delay.
+
+If you comply too fast, you legitimize forged command. If you refuse too loudly, genuine crown officers may brand you insubordinate. The safe path is slow verification, but slow is dangerous when rival lords weaponize urgency as morality.
+
+You order witness countersignatures and split courier routes, then prepare for outrage from every faction that benefits from confusion. In this phase of the war, procedural rigor is not bureaucracy. It is armor."
+
+  choice__
+    @target "T023 - ACT0 - Winterfell Night Council before witnesses"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the forged raven order into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T024 - ACT0 - The Twins Debt Collection under wolf banners"
+    @when ((secrecy + leverage) >= 7)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the forged raven order behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T023 - ACT0 - Winterfell Night Council before witnesses"
+  @textPacing "cinematic"
+  @shot "close"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-023.jpg"
+
+  "The winter council reconvenes in a drafty watch hall where every lord arrives with fewer courtesies and more armed cousins. Reports from roads, docks, and keeps now contradict each other by design, and no one trusts a map unless they drew it themselves. Snowmelt drips from cloaks onto campaign parchments while tempers rise.
+
+Tonight's decision is directional: will Valehart anchor to northern war aims, continue triangulating between claimants, or prioritize reserve capacity for the crisis beyond the Wall. Each route builds one alliance and weakens another. Neutrality is still discussed, but no longer believed.
+
+When your turn comes, the room goes silent enough to hear the brazier pop. They are not listening for eloquence. They are listening for which debts you are willing to inherit."
+
+  choice__
+    @target "T024 - ACT0 - The Twins Debt Collection under wolf banners"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the winter council alignment into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T025 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the winter council alignment behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section
+
+section__
+  @title "T024 - ACT0 - The Twins Debt Collection under wolf banners"
+  @textPacing "cinematic"
+  @shot "wide"
+  @backdrop "https://example.com/thrones/00-prologue-core/frame-024.jpg"
+
+  "At the Twins again, debt collectors arrive with notarized claims stacked higher than their swords: transport arrears, escort penalties, emergency toll surcharges, and compensation for damages nobody can prove. It is legal predation timed to coincide with your most vulnerable logistics window. Rain stings like needles across the bridgeworks.
+
+Pay in full and your campaign enters Act One underfunded. Refuse in full and the crossing closes just as hostile riders mass upstream. Partial payment buys days, not trust. Someone in this negotiation believes Valehart will blink first because family houses always do when supply lines choke.
+
+You lean over the ledger, circle three clauses, and signal your guard captain to move closer. The prologue ends here: with numbers, weather, and men who mistake patience for surrender."
+
+  choice__
+    @target "T025 - ACT1 - Harrenhal Torchlit Census at the rookery"
+    @action honor = clampStat(honor + 1, 0, 30)
+    @action north_trust = clampStat(north_trust + 1, 0, 30)
+    @action war_readiness = clampStat(war_readiness + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Take the Twins debt crisis into open court, bind witnesses, and carry the lawful burden publicly"
+  __choice
+
+  choice__
+    @target "T026 - ACT1 - Dragonstone Blood Price at first light"
+    @when ((secrecy + leverage) >= 5)
+    @action ruthlessness = clampStat(ruthlessness + 1, 0, 30)
+    @action secrecy = clampStat(secrecy + 1, 0, 30)
+    @action crown_trust = clampStat(crown_trust + 1, 0, 30)
+    @action leverage = clampStat(leverage + 1, 0, 30)
+    @action survival_clock = clampStat(survival_clock - 1, 0, 30)
+    "Handle the Twins debt crisis behind closed doors, buy silence, and weaponize the uncertainty"
+  __choice
+__section

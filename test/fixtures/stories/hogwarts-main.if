@@ -1,0 +1,78 @@
+/* ==========================================
+   MAIN FILE
+   The Ashen Wand
+   ========================================== */
+
+/*
+  This file:
+  - Defines global variables
+  - Sets starting stats
+  - Imports all story parts in order
+*/
+
+/* ---------- GLOBAL VARIABLES ---------- */
+
+loyalty = 0
+wisdom  = 0
+courage = 0
+
+/* Memory / flags */
+met_archivist = false
+touched_ashen_wand = false
+heard_castle_voice = false
+
+/* ---------- GAME START ---------- */
+
+scene__
+  @name "Start"
+  @first 1
+  @sections 1
+__scene
+
+section__
+  @title "Welcome"
+
+  "This is an interactive fiction."
+  ""
+  "Your choices will be remembered."
+  ""
+  "Some endings will cost you."
+
+  choice__
+    @targetType "scene"
+    @target 1
+    "Begin"
+  __choice
+__section
+
+/* ---------- IMPORTS ---------- */
+
+/*
+  IMPORTANT:
+  - Import order does NOT control flow
+  - It only ensures sections exist
+*/
+
+import__ "hogwarts-1.partial.if" __import
+import__ "hogwarts-2.partial.if" __import
+import__ "hogwarts-3.partial.if" __import
+import__ "hogwarts-4.partial.if" __import
+import__ "hogwarts-5.partial.if" __import
+import__ "hogwarts-6.partial.if" __import
+import__ "hogwarts-7.partial.if" __import
+
+/* ---------- SAFETY NET ---------- */
+
+section__
+  @title "Missing Section"
+
+  "You have reached a section that was not meant to be reached."
+  ""
+  "This is likely a broken link."
+
+  choice__
+    @targetType "scene"
+    @target 1
+    "Restart"
+  __choice
+__section

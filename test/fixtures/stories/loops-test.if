@@ -1,0 +1,64 @@
+settings__
+  @storyTitle "Loop Test"
+  @startAt 1
+__settings
+
+section__
+  @title "While Loop Tests"
+
+  "Testing basic while loop"
+  counter = 0
+  result = 0
+  while__ (counter < 5) {
+    result = result + counter
+    counter = counter + 1
+  }
+  "Sum of 0 to 4: ${result}"
+
+  "Testing while loop with break"
+  i = 0
+  sum = 0
+  while__ (i < 100) {
+    if__ (i == 10) {
+      break__
+    }
+    sum = sum + i
+    i = i + 1
+  }
+  "Sum stopped at i=10: ${sum}"
+
+  "Testing while loop with continue"
+  j = 0
+  evenSum = 0
+  while__ (j < 10) {
+    j = j + 1
+    if__ (j % 2 == 1) {
+      continue__
+    }
+    evenSum = evenSum + j
+  }
+  "Sum of even numbers 2-10: ${evenSum}"
+
+  "Testing nested loops"
+  outer = 0
+  product = 1
+  while__ (outer < 3) {
+    inner = 0
+    while__ (inner < 2) {
+      product = product * 2
+      inner = inner + 1
+    }
+    outer = outer + 1
+  }
+  "Product from nested loops: ${product}"
+
+  choice__
+    "Continue"
+    @target 2
+  __choice
+__section
+
+section__
+  @title "Test Complete"
+  "All loop tests passed!"
+__section

@@ -7,20 +7,42 @@
   },
   "main": "index.mjs",
   "scripts": {
-    "test": "standard",
+    "lint": "npx standard",
+    "test": "node test/runners/run-all-tests.mjs",
     "test:pkg": "cross-env NODE_ENV=development webpack serve --config config/webpack.pkg.js",
-    "test:interpret": "node test/interpret.mjs",
-    "test:compile": "node test/compile.mjs",
-    "test:parse": "node test/parse.mjs",
-    "compile": "npm run compile:section npm run compile:scene && npm run compile:settings",
-    "compile:section": "nearleyc src/parsers/nearley/grammar/section.ne -o dist/grammar/section.grammar.js",
-    "compile:scene": "nearleyc src/parsers/nearley/grammar/scene.ne -o dist/grammar/scene.grammar.js",
-    "compile:settings": "nearleyc src/parsers/nearley/grammar/settings.ne -o dist/grammar/settings.grammar.js",
+    "test:core:turing": "node test/suites/core/turing.test.mjs",
+    "test:core:safety": "node test/suites/core/safety-limits.test.mjs",
+    "test:core:regression": "node test/suites/core/regression.test.mjs",
+    "test:core:edge": "node test/suites/core/edge-cases.test.mjs",
+    "test:core:performance": "node test/suites/core/performance.test.mjs",
+    "test:core:errors": "node test/suites/core/error-messages.test.mjs",
+    "test:core:builtins": "node test/suites/core/builtins.test.mjs",
+    "test:runtime:v2": "node test/suites/runtime/runtime-v2.test.mjs",
+    "test:runtime:save": "node test/suites/runtime/save-resume.test.mjs",
+    "test:runtime:audio": "node test/suites/runtime/audio-adapter.test.mjs",
+    "test:cli:check": "node test/suites/cli/check.test.mjs",
+    "test:cli:compile": "node test/suites/cli/compile.test.mjs",
+    "test:integration:import": "node test/suites/integration/import.test.mjs",
+    "test:harness:parse": "node test/harness/web/parse.mjs",
+    "test:harness:compile": "node test/harness/web/compile.mjs",
+    "test:harness:interpret": "node test/harness/web/interpret.mjs",
+    "test:interpret": "npm run test:harness:interpret",
+    "test:compile": "npm run test:harness:compile",
+    "test:parse": "npm run test:harness:parse",
+    "test:import": "npm run test:integration:import",
+    "test:check": "npm run test:cli:check",
+    "test:save": "npm run test:runtime:save",
+    "test:builtins": "npm run test:core:builtins",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
-    "fix": "standard --fix",
-    "debug": "node tmp/test.mjs",
+    "fix": "npx standard --fix",
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-    "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js"
+    "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js",
+    "build:pages:thrones": "node scripts/build-thrones-pages.mjs",
+    "build:pages:thrones:kindle": "node scripts/build-thrones-kindle-pages.mjs",
+    "publish:pages:thrones": "node scripts/publish-thrones-gh-pages-branch.mjs",
+    "story:thrones:scaffold": "node test/harness/story-tools/generate-thrones-scaffold.mjs",
+    "story:thrones:map": "node test/harness/story-tools/build-thrones-branch-map.mjs",
+    "test:story:thrones": "node test/harness/story-tools/validate-thrones-graph.mjs"
   },
   "repository": {
     "type": "git",
@@ -43,7 +65,6 @@
   "homepage": "https://github.com/PlytonRexus/if-script-core#readme",
   "dependencies": {
     "fs": "^0.0.1-security",
-    "nearley": "^2.20.1",
     "showdown": "^1.9.1",
     "yargs": "^17.2.1"
   },
@@ -76,7 +97,12 @@
       "dist/**"
     ],
     "globals": [
-      "localStorage"
+      "localStorage",
+      "fetch",
+      "HTMLElement",
+      "CustomEvent",
+      "customElements",
+      "Audio"
     ]
   }
 }

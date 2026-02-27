@@ -1,0 +1,1464 @@
+settings__
+@storyTitle "The Ember-Ring: A Long Road"
+@startAt 1
+@referrable false
+__settings
+
+scene__
+@name "Shirelands"
+@first 1
+@sections 1 2 3 4 5 6 7 8 9 10
+__scene
+
+scene__
+@name "The Long Road"
+@first 11
+@sections 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+__scene
+
+scene__
+@name "The Deep Ways"
+@first 31
+@sections 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+__scene
+
+scene__
+@name "The Fallen City"
+@first 51
+@sections 51 52 53 54 55 56 57 58 59 60
+__scene
+
+scene__
+@name "Shadowmarch"
+@first 61
+@sections 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80
+__scene
+
+scene__
+@name "The Last Path"
+@first 81
+@sections 81 82 83 84 85 86 87 88 89 90
+__scene
+
+scene__
+@name "Endings"
+@first 91
+@sections 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120
+__scene
+
+/* Initial variables */
+section__
+@title "Prologue — A Quiet Time"
+
+playerName = "Eldan"
+ringFound = false
+ringName = ""
+companion = ""
+courage = 50
+corruption = 0
+gold = 5
+hasSword = false
+allies = []
+pathMarked = false
+
+"The hills of the Shirelands breathe slow and green. Stories sit in the hedgerows like sleeping birds."
+"You are ${playerName}, a small presence in a wide world. A letter arrived yesterday, the ink smudged with a warning. A strange ember slipped like a secret into your pocket."
+
+choice__
+@target 2
+@input playerName
+"Tell me your name (or press continue with ${playerName}):"
+__choice
+
+choice__
+@target 3
+"Pocket the letter and walk toward the village green."
+__choice
+__section
+
+section__
+@title "The Green With a Secret"
+
+"The letter's words are simple: *Watch the fire. Keep to your feet.* You can feel a weight in your coat; your fingers find something round and warm."
+
+choice__
+@target 4
+@action ringFound = true; ringName = "Ember-Ring"; corruption = corruption + 1
+"Examine the warm thing (it glows faintly)."
+__choice
+
+choice__
+@target 5
+"Ignore it for now and visit the market."
+__choice
+__section
+
+section__
+@title "Market and Rumours"
+
+"At market you hear a traveller whisper of a grey rider and a city of yellow ash. The world seems to tilt in the telling."
+
+choice__
+@target 6
+@action companion = "Ranger"; allies.push("Ranger")
+"Seek out the Ranger — a lean person with a map."
+__choice
+
+choice__
+@target 7
+@action companion = "Loresinger"; allies.push("Loresinger")
+"Find the Loresinger by the fountain, who hums old star-songs."
+__choice
+
+choice__
+@target 8
+@action companion = "Stonehand"; allies.push("Stonehand")
+"Visit the Stonehand at the smithy — strength and blunt honesty."
+__choice
+__section
+
+section__
+@title "The Ember's Name"
+
+if__ (ringFound == true) {
+"The Ember-Ring hums softly in your palm. It promises a brightness and a terrible warmth."
+} else__ {
+"There is nothing in your hand but the memory of warmth."
+}
+
+choice__
+@target 9
+@action hasSword = true; gold = gold - 3
+"Buy a cheap blade at the smithy (-3 gold)."
+__choice
+
+choice__
+@target 10
+"Leave the market and go home to pack."
+__choice
+__section
+
+section__
+@title "A Blade and a Bargain"
+
+if__ (gold < 0) {
+"You cannot afford it. The smith laughs and slams the counter shut."
+choice__
+@target 10
+"Leave empty-handed."
+**choice
+} else** {
+"You leave with a blunt sword. It fits your hand like a promise."
+choice__
+@target 10
+"Pack and leave at dawn."
+__choice
+}
+__section
+
+section__
+@title "The Letter Again"
+
+"Night sits like a slow animal. The letter's last line curls: *If it calls, you must bring it to the Deep Forge.*"
+
+choice__
+@target 11
+@action pathMarked = true
+"Set out at first light toward the Deep Forge."
+__choice
+
+choice__
+@target 12
+"Stay one more day and ask the Loresinger about the Deep Forge."
+__choice
+__section
+
+section__
+@title "The Loresinger's Tale"
+
+"The Loresinger speaks of an ember-ring made to bind and to break. Their voice makes the room small and hushed."
+
+choice__
+@target 11
+@action corruption = corruption + 1
+"Leave with heavy knowledge."
+__choice
+
+choice__
+@target 13
+"Ask more questions (linger)."
+__choice
+__section
+
+section__
+@title "Linger in the Light"
+
+"As you linger, you learn a map piece: a river bends like a sleeping wolf and the road beneath it comes to a forgotten gate."
+
+choice__
+@target 11
+"Take the map and set out."
+__choice
+__section
+
+/* The Long Road begins */
+section__
+@title "Dawn — The Road Opens"
+
+"Dawn finds you at the lane's edge. Your companion — ${companion} — joins you, boots soft on the grass. The road ahead breathes into hills and thinned forests."
+
+choice__
+@target 14
+"Follow the main road."
+__choice
+
+choice__
+@target 15
+"Slip to a smaller path by the river."
+__choice
+__section
+
+section__
+@title "Main Road — A Wagon Passes"
+
+"A merchant's wagon clatters by, laden with jars. The driver warns of black banners seen at dusk."
+
+choice__
+@target 16
+@action courage = courage + 5
+"Trade for news and press onward."
+__choice
+
+choice__
+@target 17
+"Ignore the warnings and speed up."
+__choice
+__section
+
+section__
+@title "River Path — Quiet"
+
+"The river sings truthlessly. A small boat tied to a post rocks. You can hide and rest."
+
+choice__
+@target 18
+@action gold = gold + 2
+"Search the banks; find some coin (+2 gold)."
+__choice
+
+choice__
+@target 19
+"Rest a while and continue."
+__choice
+__section
+
+section__
+@title "At the Ford"
+
+"The ford looks shallow, but you catch shapes moving on the far bank—riders perhaps."
+
+choice__
+@target 20
+@action corruption = corruption + 2
+"Sneak across, clutching the Ember-Ring close if you have it."
+__choice
+
+choice__
+@target 21
+"Wait and watch the riders pass."
+__choice
+__section
+
+section__
+@title "If They Pass"
+
+"They pass: cloaked, silent, like smoke on legs. One pauses and turns its head as if listening."
+
+choice__
+@target 22
+@action courage = courage - 5
+"A chill passes through you; move on quickly."
+__choice
+
+choice__
+@target 23
+@action corruption = corruption + 3
+"The rider's glance lingers. You feel your name slipping."
+__choice
+__section
+
+section__
+@title "A Storm Gathering"
+
+"Clouds pile like dark linen. The road forks. The map from the Loresinger points left; memory urges right."
+
+choice__
+@target 24
+"Take the left — the map's way."
+__choice
+
+choice__
+@target 25
+"Take the right — trust your feet."
+__choice
+__section
+
+section__
+@title "The Left — A Broken Gate"
+
+"The gate is half fallen. Moss climbs its stones. Inside you see the path to the Deep Forge—a whistle of heat far off."
+
+choice__
+@target 26
+@action pathMarked = true
+"Enter the ruins to search for signs."
+__choice
+
+choice__
+@target 27
+"Skirt the outside and call out."
+__choice
+__section
+
+section__
+@title "The Right — An Old Hermit"
+
+"An old hermit tends a brazier. He offers bread if you answer a riddle."
+
+choice__
+@target 28
+@action courage = courage + 2; gold = gold - 1
+"Trade your coin for a meal and an old story (-1 gold)."
+__choice
+
+choice__
+@target 29
+"Decline and push onward."
+__choice
+__section
+
+section__
+@title "Ruins — A Spark"
+
+if__ (ringFound == true) {
+"Within the ruins a circle of cold iron reacts with the Ember-Ring. A hidden door sighs open."
+choice__
+@target 30
+@action corruption = corruption + 5
+"Step toward the door."
+**choice
+} else** {
+"The ruins are empty but for old echoes. Nothing answers you."
+choice__
+@target 29
+"Leave the ruins and rejoin the road."
+__choice
+}
+__section
+
+section__
+@title "Brazier Stories"
+
+"The hermit tells of the Deep Forge where rings are made and unmade. He warns, 'A ring that longs will hollow its bearer.'"
+
+choice__
+@target 30
+"Head to the Forge with the hermit's blessing."
+__choice
+__section
+
+section__
+@title "Down the Hidden Door"
+
+"The door closes like a secret behind you. Stairs descend into iron and old song. The Ember-Ring pulses, and your name tastes different."
+
+choice__
+@target 31
+"Descend into the Deep Ways."
+__choice
+__section
+
+/* Deep Ways */
+section__
+@title "Into Stone — Deep Ways"
+
+"The world contracts to the scent of damp stone. You feel the gravity of a thousand spent forges."
+
+choice__
+@target 32
+"Light a torch and press on."
+__choice
+
+choice__
+@target 33
+"Move silently in case you are not alone."
+__choice
+__section
+
+section__
+@title "Torchlight — Old Hammermarks"
+
+"Hammermarks tell of hands long gone. A chest sits wedged among the stones."
+
+choice__
+@target 34
+@action gold = gold + 10
+"Prise it open (find 10 gold)."
+__choice
+
+choice__
+@target 35
+"Leave it; treasure can be a snare."
+__choice
+__section
+
+section__
+@title "Silent Steps"
+
+"You hear a far chant, a voice threaded with iron. It speaks a name you do not know but which makes the Ember-Ring stir."
+
+choice__
+@target 36
+@action corruption = corruption + 4
+"Answer the chant."
+__choice
+
+choice__
+@target 37
+"Cover your ears and run."
+__choice
+__section
+
+section__
+@title "A Hidden Hoard"
+
+"Inside the chest are old coins and a small, sturdy blade. It feels like it was waiting."
+
+choice__
+@target 38
+@action hasSword = true; gold = gold + 2
+"Take the blade and coin (+2 gold)."
+__choice
+
+choice__
+@target 35
+"Take nothing and move on."
+__choice
+__section
+
+section__
+@title "The Chant's Answer"
+
+"The voice replies with a rustle of pages and a name: *Ashen Lord.* The name tastes like iron and smoke."
+
+choice__
+@target 39
+"Mark the name and continue deeper."
+__choice
+__section
+
+section__
+@title "Running — A Narrow Escape"
+
+"You find a cascade of water that leads you to a side passage. For a while you forget the Ember-Ring's hum."
+
+choice__
+@target 40
+"Follow the water."
+__choice
+__section
+
+section__
+@title "A Map Fragment"
+
+"Behind a loose stone you find a map fragment showing a path beneath a river—an old way to the Fallen City."
+
+choice__
+@target 41
+@action pathMarked = true
+"Take the fragment."
+__choice
+
+choice__
+@target 40
+"Ignore it and press on."
+__choice
+__section
+
+section__
+@title "A Cold Chamber"
+
+"In a chamber of iron you see a forge long cold. There, a pedestal waits for a ring."
+
+if__ (ringFound == true) {
+"The Ember-Ring throbs like a heartbeat. The pedestal seems to draw it."
+choice__
+@target 42
+@action corruption = corruption + 10
+"Place the ring on the pedestal."
+__choice
+
+```
+choice__
+  @target 43
+  "Resist the pull and carry on."
+__choice
+```
+
+} else__ {
+"The pedestal is empty, but heat stains are clear. Someone came here to make or unmake."
+choice__
+@target 43
+"Move on."
+__choice
+}
+__section
+
+section__
+@title "Placed — A Price"
+
+"As you place the ring it surges. Visions like quick sparks—crowds, crowns, a city of ash—flash. When you snap the ring away, a fissure runs across the stone under your feet."
+
+choice__
+@target 44
+"Flee the chamber."
+__choice
+__section
+
+section__
+@title "Resisted — A Whisper"
+
+"A whisper follows you: *You might have given so much.* Your fingers feel cold without the ring near them."
+
+choice__
+@target 44
+"Keep walking, heedless."
+__choice
+__section
+
+section__
+@title "By the Underground River"
+
+"The underground river is black and loudly sure. A small boat rests in a cleft."
+
+choice__
+@target 45
+"Use the boat to cross."
+__choice
+
+choice__
+@target 46
+"Swim the river (dangerous)."
+__choice
+__section
+
+section__
+@title "Boat — Across and Quiet"
+
+"You cross slowly. On the far bank, a rusted gate stands, and beyond it the Fallen City's spires scrape the low roof of the world."
+
+choice__
+@target 47
+"Approach the Fallen City."
+__choice
+__section
+
+section__
+@title "Swim — A Fight"
+
+"The current bites. You fight, and nearly lose the ring when something claws your ankle. You drag yourself out, breathless and changed."
+
+choice__
+@target 47
+@action corruption = corruption + 5; courage = courage - 3
+"Soaked, you press to the city."
+__choice
+__section
+
+section__
+@title "At the Fallen Gate"
+
+"The city's gate is jagged, like a wound. Shadows live in its teeth. Somewhere beyond, a bell tolls once every hour."
+
+choice__
+@target 48
+"Enter through the main gate."
+__choice
+
+choice__
+@target 49
+"Find a side entrance."
+__choice
+__section
+
+section__
+@title "Main Gate — A Watcher"
+
+"A watcher made of rust and old armor leans against the gate. It does not ask for a password. It asks for a name."
+
+choice__
+@target 50
+@input playerName
+"Speak your name to the watcher:"
+__choice
+
+choice__
+@target 51
+"Try to slip past when it dozes."
+__choice
+__section
+
+section__
+@title "Side Entrance — Silent Steps"
+
+"You slip through a collapsed aqueduct and find an inner street that smells of coal and lost things."
+
+choice__
+@target 52
+"Move carefully toward the bell tower."
+__choice
+__section
+
+/* The Fallen City scenes */
+section__
+@title "Inner Street — Market of Shadows"
+
+"Shadows trade whispers here like they were coins. A figure in green offers you a chance: take the Ember-Ring to the forges, or keep it and seek power."
+
+if__ (ringFound == true) {
+choice__
+@target 53
+@action corruption = corruption - 5
+"Hand the ring to the green figure (trust and hope)."
+__choice
+
+```
+choice__
+  @target 54
+  @action corruption = corruption + 10
+  "Refuse and keep the ring (fear and craving)."
+__choice
+```
+
+} else__ {
+"You have nothing they want. The green one vanishes like a thought."
+choice__
+@target 54
+"Continue inward."
+__choice
+}
+__section
+
+section__
+@title "The Green One's Choice"
+
+"If you gave the ring away, you feel a peace like the end of a long cough. If you kept it, the green one's eyes nearly go out, but you feel a strength like a new callus."
+
+if__ (ringFound == true) {
+if__ (corruption <= 5) {
+"Your heart feels light as you walk toward the tower of the bell."
+choice__
+@target 55
+"Climb toward the bell tower."
+**choice
+} else** {
+"You carry a weight that draws many eyes. The bell tower's shadow seems to seek you."
+choice__
+@target 56
+"Push to the tower despite the eyes."
+**choice
+}
+} else** {
+choice__
+@target 56
+"Move toward the bell tower."
+__choice
+}
+__section
+
+section__
+@title "Bell Tower — A Toll"
+
+"The bell rings with each step closer, and you feel the city's memory pressing outward."
+
+choice__
+@target 57
+"Climb to the bell room."
+__choice
+
+choice__
+@target 58
+"Explore the houses below for allies."
+__choice
+__section
+
+section__
+@title "Bell Room — An Old Script"
+
+"In the bell room you find a scrawl: *Break the Ember where fire first sang.* A skylight overlooks a distant mountain crowned with steam."
+
+choice__
+@target 59
+@action pathMarked = true
+"Set course for the smoking peak."
+__choice
+
+choice__
+@target 60
+"Double back to gather more company."
+__choice
+__section
+
+section__
+@title "Houses — Strange Allies"
+
+"In the houses you find others: a veteran from a distant watch, a servant of an old order, and a child who keeps a small mirror."
+
+choice__
+@target 61
+@action allies.push("Veteran"); allies.push("Servant"); allies.push("Child"); courage = courage + 5
+"Recruit them to your company."
+__choice
+
+choice__
+@target 61
+"Leave and continue alone."
+__choice
+__section
+
+/* Shadowmarch */
+section__
+@title "Crossing the Wastes"
+
+"The road to the smoking peak crosses a waste of grey rock. Scattered bones make a map of sorrow. As you walk, the Ember-Ring grows warm and eager."
+
+choice__
+@target 62
+"Walk openly and fast."
+__choice
+
+choice__
+@target 63
+"Move by the cover of night."
+__choice
+__section
+
+section__
+@title "Open March — A Thunder of Wing"
+
+"Wings beat overhead. Shadow-forms pass, listening for the ember's call. Your courage is tested."
+
+choice__
+@target 64
+@action courage = courage + 10
+"Stand and face them, shout a challenge."
+__choice
+
+choice__
+@target 65
+@action corruption = corruption + 5
+"Hide the ring deeper in your coat and run."
+__choice
+__section
+
+section__
+@title "Night March — A Quiet Theft"
+
+"Under night the wasteland seems less cruel. You slip past a watching group, but something takes a step in your shadow and whispers your name."
+
+choice__
+@target 66
+"Hush it with song."
+__choice
+
+choice__
+@target 67
+@action corruption = corruption + 3
+"Feed it a thought you would rather not own."
+__choice
+__section
+
+section__
+@title "A Stand — Steel and Light"
+
+"You meet them: shapes in old steel. The Ranger at your side draws a long bow; the Loresinger hums a note that brightens your sword."
+
+choice__
+@target 68
+@action courage = courage + 5; corruption = corruption + 1
+"Fight with them."
+__choice
+
+choice__
+@target 69
+"Surrender and bargain."
+__choice
+__section
+
+section__
+@title "Run — The Chase"
+
+"You run. The land stretches like a field of knives. For a while the Ember-Ring seems like a small, hot secret you could forget—but the riders do not forget."
+
+choice__
+@target 70
+"Head to a ruined watchtower for refuge."
+__choice
+__section
+
+section__
+@title "Song — A Calm"
+
+"Your song soothes the shadow that followed. It leaves as if repelled by truth."
+
+choice__
+@target 68
+"Join the fight refreshed."
+__choice
+__section
+
+section__
+@title "Bargain — A Price Named"
+
+"You try to bargain. The riders laugh as a bell tolls somewhere. 'Bring us the Ember or your friends,' they say."
+
+choice__
+@target 71
+@action corruption = corruption + 10
+"Promise them a lie to save your friends."
+__choice
+
+choice__
+@target 72
+"Refuse and stand by your companions."
+__choice
+__section
+
+section__
+@title "Watchtower — High Ground"
+
+"From the watchtower you see the smoking mountain like a black tooth. Fires ring its crown."
+
+choice__
+@target 73
+"Rest, plan, and continue at first light."
+__choice
+
+choice__
+@target 74
+"Signal to any allies you recruited."
+__choice
+__section
+
+section__
+@title "The Riders' Demand"
+
+if__ (corruption >= 20) {
+"The lie you told spreads like shadow. It changes the look in your allies' eyes."
+choice__
+@target 75
+"Push on despite the cost."
+**choice
+} else** {
+"Your refusal steels your companions. They rally nearer."
+choice__
+@target 76
+"Gather strength and press to the mountain."
+__choice
+}
+__section
+
+section__
+@title "Gathering — Old Oaths"
+
+"By morning your small company swears old oaths. The Veteran tells you of a route that skirts the mountain's east, along an ancient pipe."
+
+choice__
+@target 77
+"Take the Veteran's route."
+__choice
+
+choice__
+@target 78
+"Blaze your own trail toward the forge."
+__choice
+__section
+
+section__
+@title "Pipe Route — A Narrow Pass"
+
+"The pipe-route is cramped and quiet, but booby-trapped by time. You navigate with the Loresinger's notes."
+
+choice__
+@target 79
+"Move slowly, watch every step."
+__choice
+
+choice__
+@target 80
+@action courage = courage - 5
+"Rush—the quicker the less likely to be trapped."
+__choice
+__section
+
+/* The Last Path scenes */
+section__
+@title "The Smelting Ridge"
+
+"The ridge breathes sulphur. Heat scars the sky. At the ridge's head you see a furnace whose mouth is a black sun."
+
+choice__
+@target 81
+"Approach the furnace's rim."
+__choice
+
+choice__
+@target 82
+"Search the gullies for a safer path."
+__choice
+__section
+
+section__
+@title "Rim of the Furnace"
+
+"The Ember-Ring sings like an answered bell. The forges remember all rings ever made."
+
+if__ (ringFound == true) {
+choice__
+@target 83
+@action corruption = corruption + 20
+"Step onto the rim and speak a name used by no one else."
+__choice
+
+```
+choice__
+  @target 84
+  "Look for a way to lower the Ember into the fire without stepping into it."
+__choice
+```
+
+} else__ {
+"You see tools and the mark of the old forgemasters. The rim is empty yet terrible."
+choice__
+@target 84
+"Search for the masterwork."
+__choice
+}
+__section
+
+section__
+@title "Gullies — Hidden Path"
+
+"A narrow path winds down where coals fall like slow rain. The Veteran remarks that only those hardened by grief can take it."
+
+choice__
+@target 85
+"Take the hidden path."
+__choice
+
+choice__
+@target 86
+"Return to the rim, face the black sun."
+__choice
+__section
+
+section__
+@title "On the Rim — A Name Spoken"
+
+"You whisper a name into the heat. The ring answers with visions: crowns crumbling, friends stilled, a throne of embers."
+
+choice__
+@target 87
+"Take the ring and leap into the fire—end it."
+__choice
+
+choice__
+@target 88
+"Draw back; perhaps there is another way."
+__choice
+__section
+
+section__
+@title "Lowering the Ember"
+
+"You fashion a chain from old tools. With careful hands you lower the Ember-Ring toward the heart of the furnace."
+
+choice__
+@target 89
+@action corruption = corruption - 15; ringFound = false; ringName = ""
+"Let it fall and watch the fire drink it."
+__choice
+
+choice__
+@target 90
+@action corruption = corruption + 10
+"Withdraw the Ember at the last moment—fear keeps you."
+__choice
+__section
+
+section__
+@title "Hidden Path — The Sacrifice"
+
+"The hidden path brings you to a small antechamber where old forgemasters wrote names in ash."
+
+choice__
+@target 91
+"Write your name and the Ember's name together, then burn the paper in your palm as a vow."
+__choice
+
+choice__
+@target 92
+"Walk on; vows are luxuries when fire waits."
+__choice
+__section
+
+section__
+@title "Leap — A Sudden End"
+
+"You leap. Fire takes you as if you were a moth who had learned how to fly the wrong way. The story narrows."
+
+choice__
+@target 93
+"—"
+__choice
+__section
+
+section__
+@title "Recoil — A Second Chance"
+
+"You pull back. The Ember grows colder at your hesitation. Around you, shouts: someone has noticed your attempt."
+
+choice__
+@target 94
+"Prepare to fight for the Ember."
+__choice
+
+choice__
+@target 95
+"Run with it—perhaps you can hide again."
+__choice
+__section
+
+section__
+@title "Letting It Fall — The World Breathes"
+
+"You let the Ember-Ring fall. It is sucked into the heart of the furnace with a scream of bright ash. A silence comes down like rain."
+
+choice__
+@target 96
+"Feel the change as the ember's weight lifts."
+__choice
+__section
+
+section__
+@title "Withdrawn — A Curse and a Burden"
+
+"Withdrawing the Ember brings a howl. The mountain's old wards shudder, and from below a deep voice says, 'You will carry what you choose.'"
+
+choice__
+@target 97
+"Accept the curse and wear it like armor."
+__choice
+
+choice__
+@target 98
+"Seek a wiser hand to take it from you."
+__choice
+__section
+
+section__
+@title "Vow in Ash"
+
+"You write names and burn them. The ash smells like memory. Something loosens in your heart; perhaps a small freedom has been bought."
+
+choice__
+@target 96
+"Return to the rim and watch the fire."
+__choice
+__section
+
+section__
+@title "March of the Watchers"
+
+"Whether you burned the paper or leapt or fled, the watchers come—armies of rust and shadow marching with a single purpose."
+
+choice__
+@target 99
+"Stand and meet them as one."
+__choice
+
+choice__
+@target 100
+"Slip away through a forgotten sewer."
+__choice
+__section
+
+section__
+@title "Stand — A Last Defense"
+
+"You hold fast. Your companions form a ring about you. The battle is narrow and terrible, and some faces fall under the ash-sky."
+
+if__ (courage >= 60) {
+choice__
+@target 101
+"You push through with ferocity; the watchers break."
+**choice
+} else** {
+choice__
+@target 102
+"You fight bravely, but the line cracks."
+__choice
+}
+__section
+
+section__
+@title "Sewer — A Hidden Escape"
+
+"In the sewer the air tastes like salt and old stories. The city coughs behind you, and a new horizon opens like a promise."
+
+choice__
+@target 103
+"Follow the sewer to a distant shore."
+__choice
+__section
+
+section__
+@title "Victory — The Breaking"
+
+"Against the watchers you find a reserve of tired strength. The Ember's influence wanes as allies hold one another. The watchers fall and rust into the road."
+
+choice__
+@target 104
+"Tend the wounded and speak your name aloud."
+__choice
+__section
+
+section__
+@title "Crack — A Cost"
+
+"The line cracks. You fall into a dream of iron and hunger. When you wake, part of your company is gone."
+
+choice__
+@target 105
+"Mourn and keep moving."
+__choice
+__section
+
+/* Endings and final choices */
+section__
+@title "Shores — A Quiet Morning"
+
+"You stand where water meets black sand. The mountain smolders far behind. The Ember-Ring is gone or heavy in your pocket, depending on choices made."
+
+if__ (ringFound == false) {
+"There is a strange lightness to your step. The wind carries no whisper of a hidden throne."
+} else__ {
+"The Ember-Ring hums still. Its presence is a weight your bones remember."
+}
+
+choice__
+@target 106
+"Return home to the Shirelands and try to be small again."
+__choice
+
+choice__
+@target 107
+"Walk into the world and offer help where it is needed."
+__choice
+__section
+
+section__
+@title "Tend the Wounded"
+
+"You wash blood from hands that once helped you. Your companions still live because you chose to stay."
+
+choice__
+@target 108
+"Settle near the shore and heal."
+__choice
+
+choice__
+@target 109
+"Press onward to find what other fires remain."
+__choice
+__section
+
+section__
+@title "Mourn — A Hard Lesson"
+
+"Loss teaches you a kind of patience. You carry names like small stones in your pocket."
+
+choice__
+@target 110
+"Use your loss as a lantern, not a shackle."
+__choice
+
+choice__
+@target 111
+"Hide away—let the world forget your name."
+__choice
+__section
+
+section__
+@title "Home — The Slow Returning"
+
+"Back in the Shirelands the hedgerows seem unchanged; the people sip tea and tell easy tales. But when you reach for a coin or a sleeping child's hand, you know nothing is quite the same."
+
+choice__
+@target 112
+"Live plainly; tell your story to no one."
+__choice
+
+choice__
+@target 113
+"Teach the young how to keep their feet steady."
+__choice
+__section
+
+section__
+@title "Out in the World — A New Road"
+
+"You travel to towns that once burned, carrying help or counsel. People remember and look to you as one who chose."
+
+choice__
+@target 114
+"Found a small guild to help refugees."
+__choice
+
+choice__
+@target 115
+"Seek the old scholars to learn more of embers and rings."
+__choice
+__section
+
+section__
+@title "Settle — Peaceful Ending"
+
+"You build a quiet life by the shore, planting roots among survivors. Your days are soft; your nights sometimes haunted by the cold hum that used to be a ring."
+
+choice__
+@target 116
+"Live out your days, content."
+__choice
+__section
+
+section__
+@title "Press On — The Unfinished Road"
+
+"You continue: there are still forges, and other ember-things. Your journey becomes a life of walking and decision."
+
+choice__
+@target 117
+"Become a walker between places, a steady hand."
+__choice
+__section
+
+section__
+@title "Use Loss as Lantern"
+
+"Your grief lights your choices. You act to prevent others from losing what you lost."
+
+choice__
+@target 114
+"Join those who rebuild."
+__choice
+__section
+
+section__
+@title "Hide — A Quiet Decay"
+
+"You hide, and the world forgets you, as you wished. But forgetting is a slow, dull sorrow."
+
+choice__
+@target 116
+"Live quietly, letting the world close its doors."
+__choice
+__section
+
+section__
+@title "Guild Founder"
+
+"Your guild grows from a handful of tents to a steady hall. Children learn to mend bones and sew courage."
+
+choice__
+@target 118
+"Name the guild and set down a charter."
+__choice
+__section
+
+section__
+@title "Scholar's Road"
+
+"Among dusty books you learn of many embers: small, faint and dangerous. You become part of a slow watch."
+
+choice__
+@target 119
+"Record what you learned for those who will need it."
+__choice
+__section
+
+section__
+@title "End — Simple Life"
+
+"Years pass. You tend a garden and sometimes dream of a grey rider's glance. Those dreams fade; your hands grow steady."
+
+choice__
+@target 120
+"Close your story with a simple pen stroke."
+__choice
+__section
+
+section__
+@title "Walker — The Quiet Road"
+
+"You become a remembered name along the roads: a hand that helped, a voice that warned. You never again felt the Ember's pulse."
+
+choice__
+@target 120
+"Your final scene: a path receding into light."
+__choice
+__section
+
+section__
+@title "Guild — A Charter"
+
+"You write rules that value small kindnesses and stern courage. The charter is read to apprentices; it keeps the worst at bay."
+
+choice__
+@target 120
+"Pass on the charter and step back."
+__choice
+__section
+
+section__
+@title "Record — Memory for Others"
+
+"The scholar in you writes the Ember's tale cleanly. You leave it in a sealed codex, to be read when necessary."
+
+choice__
+@target 120
+"Seal the codex and send it to the vaults."
+__choice
+__section
+
+section__
+@title "Final Line"
+
+"The road does not end so much as fork into many quieter trails. You chose a way—burned, fought, or resisted—and the world remembers in small, durable ways."
+
+if__ (corruption >= 30) {
+"There is a sadness in the epilogue: power leaves marks even when they are hidden."
+} else__ {
+"There is a lightness in the epilogue: what was nearly lost was sometimes saved by thin, brave hands."
+}
+
+"Thank you for walking this long road."
+
+choice__
+@target 1
+"Restart the tale."
+__choice
+
+choice__
+@target 120
+"End here."
+__choice
+__section
+
+/* Minimal epilog sections to complete 120 sections numbering */
+section__
+@title "Epilogue — The Map"
+"A map hangs in a tavern, lines inked by hands who remember you. Some mention you kindly; some do not."
+choice__
+@target 120
+"Fold the map and keep walking."
+__choice
+__section
+
+section__
+@title "Epilogue — The Bell"
+"In a distant town a bell tolls once for those who gave and once for those who could not."
+choice__
+@target 120
+"Listen and go on."
+__choice
+__section
+
+section__
+@title "Epilogue — The Child"
+"A child looks at you with old eyes and asks if it's true a ring could change a person. You smile, remembering the price paid."
+choice__
+@target 120
+"Teach them a small truth and move on."
+__choice
+__section
+
+section__
+@title "Epilogue — The Veteran"
+"The Veteran keeps a scar as a reminder of what standing together can do."
+choice__
+@target 120
+"Share a drink and keep telling that story."
+__choice
+__section
+
+section__
+@title "Epilogue — The Smith"
+"In the smithy the blade you bought is used to cut bread and to build plows; it does ordinary good."
+choice__
+@target 120
+"Lay down your tools at day's end."
+__choice
+__section
+
+section__
+@title "Epilogue — The Loresinger"
+"The Loresinger's songs still soften the edges of a hard day; you hum one, and the world eases."
+choice__
+@target 120
+"Hum and keep walking."
+__choice
+__section
+
+section__
+@title "Epilogue — The Stonehand"
+"Stonehand keeps the old stones steady. You rest upon one and breathe."
+choice__
+@target 120
+"Breathe and sleep."
+__choice
+__section
+
+section__
+@title "Epilogue — The Sea"
+"Waves keep time with a patience older than kings. You watch them, and in the watching you feel small and whole."
+choice__
+@target 120
+"Let the horizon hold you for a while."
+__choice
+__section
+
+section__
+@title "Epilogue — The Codex"
+"In a vault sealed with quiet, the codex on embers waits for future hands that need warning more than wonder."
+choice__
+@target 120
+"Leave it there."
+__choice
+__section
+
+section__
+@title "Epilogue — The End"
+"This, finally, is one of many endings. The road will always have more feet upon it. That is how stories live."
+choice__
+@target 1
+"Begin again."
+__choice
+
+choice__
+@target 120
+"Close the book."
+__choice
+__section
+
+/* End of file */

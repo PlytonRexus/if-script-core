@@ -1,9 +1,11 @@
 import BaseException from './BaseException.mjs'
 
 class InterpreterException extends BaseException {
-  constructor (message) {
+  constructor (message, hint = null) {
     super()
-    this.message = message
+    this.rawMessage = message
+    this.hint = hint
+    this.message = hint ? `${message}\nHint: ${hint}` : message
     this.type = 'Interpreter exception'
   }
 

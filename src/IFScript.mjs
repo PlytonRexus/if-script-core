@@ -1,44 +1,62 @@
-import versions from './constants/versions.mjs'
-import { IF as terp } from './interpreters/regex-nearley/if_r-terp.mjs'
-
 class IFScript {
   /**
-   * @param {string|{parser, interpreter}} opts
+   * @param {Object} config - Configuration for the parser (paths, browser settings, etc.)
    */
-  constructor (opts) {
-    if (typeof opts === 'string') {
-      this.version = opts || versions.EARLY
-    } else {
-      this.parser = opts.parser
-      this.interpreter = opts.interpreter
-    }
+  constructor (config = {}) {
+    this.config = config
   }
 
   async init () {
-    if (this.version === versions.LEGACY) {
-      this.generateDeliveryObject(await import('./parsers/regex/parser-regex.mjs'), terp)
-    } else if (this.version === versions.EARLY) {
-      this.generateDeliveryObject(await import('./parsers/nearley/if-parser.mjs'), terp)
-    } else if (this.version === versions.STREAM) {
-      const Parser = await import('./parsers/custom/parser/Parser.mjs')
-      const Interpreter = await import('./interpreters/custom/Interpreter.mjs')
-      // console.log(Interpreter)
-      this.parse = Parser.default.parseText
-      this.interpreter = new Interpreter.default()
-      this.Interpreter = Interpreter.default
-      this.Parser = Parser
+    const { default: InputStream } = await import('./parsers/custom/stream/InputStream.mjs')
+    const { default: TokenStream } = await import('./parsers/custom/stream/TokenStream.mjs')
+    const { default: Parser } = await import('./parsers/custom/parser/Parser.mjs')
+    const { default: ModuleLoader } = await import('./parsers/custom/loader/ModuleLoader.mjs')
+    const { default: PathResolver } = await import('./parsers/custom/loader/PathResolver.mjs')
+
+    // Determine environment and create file adapter
+    let fileAdapter
+    // Check for Node.js environment (works in both CommonJS and ESM)
+    const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
+    if (isNode) {
+      const { default: NodeFileAdapter } = await import('./parsers/custom/loader/NodeFileAdapter.mjs')
+      fileAdapter = new NodeFileAdapter(this.config?.node || {})
+    } else {
+      const { default: BrowserFileAdapter } = await import('./parsers/custom/loader/BrowserFileAdapter.mjs')
+      fileAdapter = new BrowserFileAdapter(this.config?.browser || {})
     }
+
+    // Create path resolver
+    const pathResolver = new PathResolver(this.config?.paths || {})
+
+    // Create parser factory
+    const parserFactory = (tokenStream, loader) => {
+      return new Parser(tokenStream, loader)
+    }
+
+    // Create module loader
+    const moduleLoader = new ModuleLoader(
+      fileAdapter,
+      pathResolver,
+      parserFactory,
+      this.config?.loader || {}
+    )
+
+    this.moduleLoader = moduleLoader
+
+    // Update parse method to use module loader
+    this.parse = async (text, filePath = '<inline>') => {
+      const is = new InputStream(text)
+      is.currentFile = filePath
+      const ts = new TokenStream(is)
+      return await new Parser(ts, moduleLoader).parseStory()
+    }
+
+    this.Parser = Parser
   }
 
-  generateDeliveryObject (parser, terp) {
-    this.parser = parser
-    this.interpreter = terp
-    this.methods = terp.methods
-    this.story = terp.story
-    this.grammar = terp.grammar
-    this.state = terp.state
-    this.DEBUG = terp.DEBUG
-    this.dom = terp.dom
+  async createRuntime (options = {}) {
+    const { default: RuntimeManager } = await import('./runtime/session/RuntimeManager.mjs')
+    return new RuntimeManager(options)
   }
 }
 

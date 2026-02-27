@@ -1,0 +1,72 @@
+settings__
+  @storyTitle "Function Test"
+  @startAt 1
+__settings
+
+function__ add(a, b) {
+  return__ a + b
+}
+
+function__ factorial(n) {
+  if__ (n <= 1) {
+    return__ 1
+  }
+  return__ n * factorial(n - 1)
+}
+
+function__ fibonacci(n) {
+  if__ (n <= 1) {
+    return__ n
+  }
+  return__ fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+function__ makeArray(size) {
+  arr = []
+  i = 0
+  while__ (i < size) {
+    arr.push(i * 2)
+    i = i + 1
+  }
+  return__ arr
+}
+
+section__
+  @title "Function Tests"
+
+  "Testing simple function call"
+  sum = add(5, 3)
+  "add(5, 3) = ${sum}"
+
+  "Testing factorial (recursive)"
+  fact5 = factorial(5)
+  "factorial(5) = ${fact5}"
+
+  "Testing fibonacci (recursive)"
+  fib7 = fibonacci(7)
+  "fibonacci(7) = ${fib7}"
+
+  "Testing function returning array"
+  doubleArray = makeArray(5)
+  "makeArray(5) = ${doubleArray}"
+
+  "Testing nested function calls"
+  result = add(factorial(3), fibonacci(5))
+  "add(factorial(3), fibonacci(5)) = ${result}"
+
+  "Testing multiple arguments"
+  x = 10
+  y = 20
+  z = add(x, y)
+  "add(${x}, ${y}) = ${z}"
+
+  choice__
+    "Continue"
+    @target 2
+  __choice
+__section
+
+section__
+  @title "Test Complete"
+  "All function tests passed!"
+__section

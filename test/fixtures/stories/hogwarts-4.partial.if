@@ -1,0 +1,447 @@
+/* ===============================
+   SCENE: FRACTURED DAYS
+   =============================== */
+
+scene__
+  @name "Fractured Days"
+  @first 106
+  @sections 106 107 108 109 110 111 112 113 114 115
+__scene
+
+section__
+  @title "Names Slip Away"
+
+  markVisited(106)
+
+  "You forget a classmate’s name."
+  ""
+  "Then another."
+  ""
+  "The ash is hungry."
+
+  choice__
+    @target 107
+    "Fight the loss"
+  __choice
+
+  choice__
+    @target 108
+    "Let it happen"
+  __choice
+__section
+
+section__
+  @title "Resistance Hurts"
+
+  markVisited(107)
+  courage = courage + 1
+  wisdom = wisdom - 1
+
+  "Pain spikes behind your eyes."
+  ""
+  "*Payment delayed,* whispers the wand."
+
+  choice__
+    @target 109
+    "Endure"
+  __choice
+__section
+
+section__
+  @title "Acceptance Is Easier"
+
+  markVisited(108)
+  loyalty = loyalty - 1
+
+  "The forgetting smooths out."
+  ""
+  "That scares you more."
+
+  choice__
+    @target 109
+    "Continue"
+  __choice
+__section
+
+section__
+  @title "Professors Notice"
+
+  markVisited(109)
+
+  "A teacher pauses mid-lecture."
+  ""
+  "*Are you quite well?*"
+
+  choice__
+    @target 110
+    "Lie"
+  __choice
+
+  choice__
+    @target 111
+    "Ask for help"
+  __choice
+__section
+
+section__
+  @title "Convincing Deceit"
+
+  markVisited(110)
+  cunning = cunning + 1
+
+  "They accept your answer."
+  ""
+  "You feel smaller."
+
+  choice__
+    @target 112
+    "Leave quickly"
+  __choice
+__section
+
+section__
+  @title "A Warning Given"
+
+  markVisited(111)
+  wisdom = wisdom + 1
+
+  "*The castle does not forgive imbalance,* they say."
+
+  choice__
+    @target 112
+    "Nod"
+  __choice
+__section
+
+section__
+  @title "Corridors Close"
+
+  markVisited(112)
+
+  "Paths you knew vanish."
+
+  choice__
+    @target 113
+    "Force a new route"
+  __choice
+
+  choice__
+    @target 114
+    "Follow the ash"
+  __choice
+__section
+
+section__
+  @title "Blunt Will"
+
+  markVisited(113)
+  courage = courage + 1
+
+  "Walls bruise."
+  ""
+  "So do you."
+
+  choice__
+    @target 115
+    "Keep going"
+  __choice
+__section
+
+section__
+  @title "Ash-Guided"
+
+  markVisited(114)
+
+  "The wand pulls."
+  ""
+  "The castle resists."
+
+  choice__
+    @target 115
+    "Submit"
+  __choice
+__section
+
+section__
+  @title "Summons"
+
+  markVisited(115)
+
+  "The floor drops away."
+  ""
+  "*The Trial begins.*"
+
+  choice__
+    @targetType "scene"
+    @target 10
+    "Fall"
+  __choice
+__section
+
+/* ===============================
+   SCENE: THE CASTLE'S TRIAL
+   =============================== */
+
+scene__
+  @name "The Castle's Trial"
+  @first 116
+  @sections 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130
+__scene
+
+section__
+  @title "The Court of Stone"
+
+  markVisited(116)
+
+  "No judges."
+  ""
+  "Only walls."
+
+  choice__
+    @target 117
+    "Demand charges"
+  __choice
+
+  choice__
+    @target 118
+    "Remain silent"
+  __choice
+__section
+
+section__
+  @title "Accusation"
+
+  markVisited(117)
+
+  "*You carry imbalance,* the stone intones."
+
+  choice__
+    @target 119
+    "Argue"
+  __choice
+__section
+
+section__
+  @title "Measured Silence"
+
+  markVisited(118)
+  wisdom = wisdom + 1
+
+  "*You listen,* the walls approve."
+
+  choice__
+    @target 119
+    "Wait"
+  __choice
+__section
+
+section__
+  @title "The Charges"
+
+  markVisited(119)
+
+  "- Memory theft"
+  "- Unauthorized binding"
+  "- Ash propagation"
+
+  choice__
+    @target 120
+    "Accept guilt"
+  __choice
+
+  choice__
+    @target 121
+    "Deny all"
+  __choice
+__section
+
+section__
+  @title "Confession"
+
+  markVisited(120)
+  loyalty = loyalty + 1
+
+  "The walls warm."
+  ""
+  "*Truth stabilizes.*"
+
+  choice__
+    @target 122
+    "Await sentence"
+  __choice
+__section
+
+section__
+  @title "Defiance"
+
+  markVisited(121)
+  courage = courage + 2
+
+  "Cracks spread."
+  ""
+  "*Defiance destabilizes.*"
+
+  choice__
+    @target 122
+    "Brace"
+  __choice
+__section
+
+section__
+  @title "The Price Offered"
+
+  markVisited(122)
+
+  "*Balance may be restored,* the castle says."
+  ""
+  "*Choose your loss.*"
+
+  choice__
+    @target 123
+    "Lose a memory"
+  __choice
+
+  choice__
+    @target 124
+    "Lose the wand"
+  __choice
+
+  choice__
+    @target 125
+    "Lose a bond"
+  __choice
+__section
+
+section__
+  @title "Memory Forfeit"
+
+  markVisited(123)
+  wisdom = wisdom - 3
+
+  inventory.push("memory void")
+
+  "A cherished moment dissolves."
+
+  choice__
+    @target 126
+    "Endure"
+  __choice
+__section
+
+section__
+  @title "Wand Severed"
+
+  markVisited(124)
+  courage = courage - 2
+
+  inventory.pop()
+
+  "Ash screams."
+  ""
+  "So do you."
+
+  choice__
+    @target 126
+    "Collapse"
+  __choice
+__section
+
+section__
+  @title "Bond Broken"
+
+  markVisited(125)
+  loyalty = loyalty - 3
+
+  "A face fades."
+  ""
+  "You are alone."
+
+  choice__
+    @target 126
+    "Stand"
+  __choice
+__section
+
+section__
+  @title "Judgment Rendered"
+
+  markVisited(126)
+
+  "*Balance restored,* the castle lies."
+
+  choice__
+    @target 127
+    "Return"
+  __choice
+__section
+
+section__
+  @title "After the Trial"
+
+  markVisited(127)
+
+  "Students avoid you."
+  ""
+  "Doors hesitate."
+
+  choice__
+    @target 128
+    "Seek allies"
+  __choice
+
+  choice__
+    @target 129
+    "Embrace isolation"
+  __choice
+__section
+
+section__
+  @title "Few Remain"
+
+  markVisited(128)
+
+  "One person stays."
+  ""
+  "*You survived the Trial,* they whisper."
+
+  inventory.push("last ally")
+
+  choice__
+    @target 130
+    "Ask for help"
+  __choice
+__section
+
+section__
+  @title "Alone with Ash"
+
+  markVisited(129)
+  cunning = cunning + 2
+
+  "You trust only yourself now."
+
+  choice__
+    @target 130
+    "Move on"
+  __choice
+__section
+
+section__
+  @title "End of Part Four"
+
+  markVisited(130)
+
+  "The castle has judged you."
+  ""
+  "The wand remembers."
+  ""
+  "You do not."
+  ""
+  "**Stats:**"
+  "- Courage: ${courage}"
+  "- Wisdom: ${wisdom}"
+  "- Cunning: ${cunning}"
+  "- Loyalty: ${loyalty}"
+  ""
+  "*Balance is a myth.*"
+__section
