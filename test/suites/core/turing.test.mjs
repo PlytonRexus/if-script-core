@@ -10,7 +10,6 @@ import { pathToFileURL } from 'url'
 import {
   assert,
   assertEqual,
-  assertArrayEqual,
   assertDefined,
   runTestSuite
 } from '../../support/test-utils.mjs'
@@ -642,5 +641,3 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     process.exit(passed ? 0 : 1)
   })
 }
-
-

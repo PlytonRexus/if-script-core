@@ -31,8 +31,17 @@ function stripTags (value) {
     .replace(/<[^>]*>/g, '')
 }
 
+function stripControlChars (value) {
+  return Array.from(String(value))
+    .filter(ch => {
+      const code = ch.charCodeAt(0)
+      return code >= 32 && code !== 127
+    })
+    .join('')
+}
+
 function sanitizeString (value) {
-  const withoutControls = String(value).replace(/[\u0000-\u001F\u007F]/g, '')
+  const withoutControls = stripControlChars(value)
   const withoutTags = stripTags(withoutControls)
   return withoutTags.replace(/\s+/g, ' ').trim()
 }

@@ -34,7 +34,6 @@
     "test:builtins": "npm run test:core:builtins",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
     "fix": "npx standard --fix",
-    "debug": "node tmp/test.mjs",
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "start:compiled": "cross-env NODE_ENV=development webpack serve --config config/webpack.compiled.js",
     "build:pages:thrones": "node scripts/build-thrones-pages.mjs",
@@ -96,7 +95,12 @@
       "dist/**"
     ],
     "globals": [
-      "localStorage"
+      "localStorage",
+      "fetch",
+      "HTMLElement",
+      "CustomEvent",
+      "customElements",
+      "Audio"
     ]
   }
 }

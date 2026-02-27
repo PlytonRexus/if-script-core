@@ -272,8 +272,12 @@ function backdropFor (id, module) {
   return `https://example.com/thrones/${slug}/frame-${String(id).padStart(3, '0')}.jpg`
 }
 
-function pick(list, seed) {
+function pick (list, seed) {
   return list[seed % list.length]
+}
+
+function templateVar (name) {
+  return '$' + `{${name}}`
 }
 
 function sectionNarrative (section, module) {
@@ -285,7 +289,6 @@ function sectionNarrative (section, module) {
   }
 
   const profile = profileForModule(module)
-  const localIndex = section.id - module.startId
   const location = pick(profile.locations, section.id)
   const sensory = pick(profile.sensory, section.id * 2)
   const faction = pick(profile.factions, section.id * 3)
@@ -297,7 +300,7 @@ function sectionNarrative (section, module) {
 
   const paragraph2 = `The conflict in this chapter is ${profile.tone}: one move taken cleanly may cost influence tomorrow, while one hidden bargain can rot your coalition from inside. ${consequence} If you overreach, your enemies will call you reckless. If you hesitate, your allies will call you dead weight. Either way, this is the point where polite politics ends and enforceable power begins.`
 
-  const paragraph3 = `Your ledger narrows to hard numbers: honor=${'${honor}'}, ruthlessness=${'${ruthlessness}'}, secrecy=${'${secrecy}'}, leverage=${'${leverage}'}, war_readiness=${'${war_readiness}'}, wealth=${'${wealth}'}, north_trust=${'${north_trust}'}, crown_trust=${'${crown_trust}'}, watch_trust=${'${watch_trust}'}, essos_ties=${'${essos_ties}'}, dragon_factor=${'${dragon_factor}'}, survival_clock=${'${survival_clock}'}. You can still choose what kind of ruler-history remembers, but not whether history is already recording you.`
+  const paragraph3 = `Your ledger narrows to hard numbers: honor=${templateVar('honor')}, ruthlessness=${templateVar('ruthlessness')}, secrecy=${templateVar('secrecy')}, leverage=${templateVar('leverage')}, war_readiness=${templateVar('war_readiness')}, wealth=${templateVar('wealth')}, north_trust=${templateVar('north_trust')}, crown_trust=${templateVar('crown_trust')}, watch_trust=${templateVar('watch_trust')}, essos_ties=${templateVar('essos_ties')}, dragon_factor=${templateVar('dragon_factor')}, survival_clock=${templateVar('survival_clock')}. You can still choose what kind of ruler-history remembers, but not whether history is already recording you.`
 
   const text = `${paragraph1}\n\n${paragraph2}\n\n${paragraph3}`
   const words = sectionWordCountHint(text)

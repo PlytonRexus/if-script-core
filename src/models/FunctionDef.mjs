@@ -1,11 +1,8 @@
 class FunctionDef {
-
-  _class = 'FunctionDef'
-
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'FunctionDef'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
@@ -27,7 +24,6 @@ class FunctionDef {
   set type (_type) {
     this._class = _type
   }
-
 }
 
 export default FunctionDef

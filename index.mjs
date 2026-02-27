@@ -14,7 +14,7 @@ import IFScript from './src/IFScript.mjs'
     // Browser globals (root is window)
     root.IF = factory()
   }
-})(typeof self !== 'undefined' ? self : this, async function () {
+})(typeof globalThis !== 'undefined' ? globalThis : this, async function () {
   return IFScript
 })
 

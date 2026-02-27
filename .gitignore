@@ -1,14 +1,9 @@
-todo.html
-assets/grammar-archive
-assets/help.html
-js/if-highlighter.js
-file.html
-
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
 /auth.json
+.idea/
 
 # testing
 /coverage
@@ -26,6 +21,7 @@ file.html
 config/.env
 
 npm-debug.log*
+pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
@@ -55,3 +51,4 @@ out.json
 dist-pages-temp/**
 
 gh-pages/**
+dist/**

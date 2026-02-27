@@ -275,6 +275,7 @@ __section
 async function testRuntimeInterpolatesFunctionTemplatesInStoryText () {
   const ifScript = new IFScript(versions.STREAM)
   await ifScript.init()
+  const evidenceDigestTemplate = '$' + '{evidenceDigest()}'
 
   const storyText = await fs.readFile(
     new URL('../../fixtures/stories/a-stranger-in-veracruz.if', import.meta.url),
@@ -289,7 +290,7 @@ async function testRuntimeInterpolatesFunctionTemplatesInStoryText () {
 
     const cityText = String(view.section.bodyText || '')
     assert(
-      !cityText.includes('${evidenceDigest()}'),
+      !cityText.includes(evidenceDigestTemplate),
       'function placeholders should interpolate in section text'
     )
     assert(
@@ -300,7 +301,7 @@ async function testRuntimeInterpolatesFunctionTemplatesInStoryText () {
     view = runtime.selectChoice({ choiceIndex: 4 })
     const tableText = String(view.section.bodyText || '')
     assert(
-      !tableText.includes('${evidenceDigest()}'),
+      !tableText.includes(evidenceDigestTemplate),
       'function placeholders should interpolate in Tuesday Window section text'
     )
     assert(
@@ -496,4 +497,3 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       process.exit(1)
     })
 }
-

@@ -13,9 +13,6 @@ import FunctionCall from './FunctionCall.mjs'
  * @class Choice
  */
 class Choice {
-
-  _class = 'Choice'
-
   /**
    * Creates an instance of Choice.
    * @param {Section} owner Section.serial where this Choice resides
@@ -31,6 +28,7 @@ class Choice {
    * @memberof Choice
    */
   constructor (primary, secondary, json) {
+    this._class = 'Choice'
     const reviveNode = (node) => {
       if (!node || typeof node !== 'object') return node
       if (node._class === 'Token') return Token.fromJson(node)
@@ -44,9 +42,9 @@ class Choice {
       return node
     }
 
-    if (!!json) {
+    if (json) {
       if (typeof json === 'string') json = JSON.parse(json)
-      let {
+      const {
         owner,
         target,
         text,
@@ -85,8 +83,8 @@ class Choice {
       this.text = (this.text || []).map(reviveNode)
       this.when = reviveNode(this.when)
     } else {
-      let { owner, target, text } = primary
-      let { variables, mode, choiceI, condition, actions, input, targetType, when, once, disabledText, choiceSfx, focusSfx, choiceStyle } = secondary
+      const { owner, target, text } = primary
+      const { variables, mode, choiceI, condition, actions, input, targetType, when, once, disabledText, choiceSfx, focusSfx, choiceStyle } = secondary
       this.mode = mode
       this.text = text
       this.owner = owner
@@ -107,18 +105,17 @@ class Choice {
     // Object.assign(this, ...arguments)
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new Choice({}, {}, json)
   }
 
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
-
 }
 
 export default Choice

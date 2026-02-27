@@ -1,11 +1,8 @@
 class MemberAccess {
-
-  _class = 'MemberAccess'
-
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'MemberAccess'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
@@ -27,7 +24,6 @@ class MemberAccess {
   set type (_type) {
     this._class = _type
   }
-
 }
 
 export default MemberAccess

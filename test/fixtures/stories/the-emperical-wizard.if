@@ -16,49 +16,49 @@ __settings
 
 scene__
   @name "Prologue"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=prologue"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=prologue"
   @first "Prologue: What Harry Knows"
   @sections "Prologue: What Harry Knows"
 __scene
 
 scene__
   @name "Act One: The Train"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=act-one"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=act-one"
   @first "N01 - Compartment of Strangers"
   @sections "N01 - Compartment of Strangers" "N02-A - The Open Invitation" "N02-B - The Selective Invitation" "N02-C - The Neutral Play" "N03 - What the Prefect Says" "N04-A - The Social Investment" "N04-B - The Observation"
 __scene
 
 scene__
   @name "Act Two: The Castle"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=act-two"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=act-two"
   @first "N05 - The Hat"
   @sections "N05 - The Hat" "N06-Ravenclaw - The Eagle's Tower" "N06-Slytherin - The Dungeon" "N06-Gryffindor - The Tower" "N07 - The Anomaly"
 __scene
 
 scene__
   @name "Act Three: The Investigation"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=act-three"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=act-three"
   @first "N08-A - The Solo Pursuit"
   @sections "N08-A - The Solo Pursuit" "N08-B - The Ally" "N08-C - The Direct Approach" "N09 - Quirrell Encounter" "N10-A - The Willing Student" "N10-B - The Silence" "N10-C - The Gambit"
 __scene
 
 scene__
   @name "Act Four: The Stone"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=act-four"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=act-four"
   @first "N11 - The Discovery"
   @sections "N11 - The Discovery" "N12 - Dumbledore" "N13-A - The Partnership" "N13-B - The Deal" "N13-C - The Unilateral Decision" "N14 - The Plan"
 __scene
 
 scene__
   @name "Act Five: The Mirror"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=act-five"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=act-five"
   @first "N15-Alone - Down Alone"
   @sections "N15-Alone - Down Alone" "N15-Together - Down With an Ally" "N15-Trigger - The Careful Move" "N16 - The Mirror" "N17-Truth - Sharing the Hypothesis" "N17-Partial - The Careful Truth" "N17-Lie - The False Hypothesis" "N17-Mirror - What the Mirror Shows" "N18-A - Conversation" "N18-B - Negotiation" "N19 - The Confrontation"
 __scene
 
 scene__
   @name "Endings"
-  @sceneAmbience "/tmp/hedwig.mp3?scene=endings"
+  @sceneAmbience "/assets/audio/hedwig.mp3?scene=endings"
   @first "Ending A - The Instrument"
   @sections "Ending A - The Instrument" "Ending B - The Ally" "Ending C - The Sacrifice" "Ending D - The Transformation" "Ending E - The Escape" "Ending F - The Dark Compromise" "Ending G - The Loop"
 __scene
@@ -865,3 +865,4 @@ section__
     "Restart"
   __choice
 __section
+

@@ -1,6 +1,4 @@
 class SectionRef {
-  _class = 'SectionRef'
-
   get type () {
     return this._class
   }
@@ -10,7 +8,8 @@ class SectionRef {
   }
 
   constructor (value, kind, json) {
-    if (!!json) {
+    this._class = 'SectionRef'
+    if (json) {
       if (typeof json === 'string') json = JSON.parse(json)
       value = json.value
       kind = json.kind

@@ -1,14 +1,11 @@
 import Settings from './Settings.mjs'
 
 class StorySettings extends Settings {
-
-  _class = 'StorySettings'
-
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
 
@@ -27,13 +24,13 @@ class StorySettings extends Settings {
    * }} input
    */
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
     super(input)
+    this._class = 'StorySettings'
     const {
       referrable,
       name,
@@ -76,7 +73,7 @@ class StorySettings extends Settings {
       : 'literary'
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new StorySettings({}, json)
   }
 }

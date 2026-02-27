@@ -1,12 +1,9 @@
 class Settings {
-
-  _class = 'Settings'
-
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
 
@@ -14,19 +11,18 @@ class Settings {
    * @param {{ startAt:number, fullTimer:number }} input
    */
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'Settings'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       this.input = json.input
     } else {
       this.input = input
     }
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new Settings({}, json)
   }
-
 }
 
 export default Settings

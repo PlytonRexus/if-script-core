@@ -56,7 +56,7 @@ function__ peakSignal(readings) {
 scene__
   @name "Act I: Harbor Night"
   @first "Midnight at the Docks"
-  @sceneAmbience "/tmp/hedwig.mp3"
+  @sceneAmbience "/assets/audio/hedwig.mp3"
   @sceneAmbienceVolume 0.35
   @sceneAmbienceLoop true
   @sceneAmbienceFadeInMs 1200
@@ -68,7 +68,7 @@ __scene
 scene__
   @name "Act II: City of Echoes"
   @first "City Grid Before Dawn"
-  @sceneAmbience "/tmp/hedwig.mp3"
+  @sceneAmbience "/assets/audio/hedwig.mp3"
   @sceneAmbienceVolume 0.3
   @sceneAmbienceLoop true
   @sceneAmbienceFadeInMs 900
@@ -634,3 +634,4 @@ section__
     "Begin again"
   __choice
 __section
+

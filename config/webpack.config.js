@@ -33,11 +33,7 @@ module.exports = {
           to: path.resolve(paths.build, '')
         },
         {
-          from: 'test/assets/**/*',
-          to: path.resolve(paths.build, '')
-        },
-        {
-          from: 'tmp/**/*.mp3',
+          from: 'assets/**/*',
           to: path.resolve(paths.build, ''),
           noErrorOnMissing: true
         }

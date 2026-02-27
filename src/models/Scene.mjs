@@ -1,14 +1,11 @@
 import ParsingException from '../exceptions/ParsingException.mjs'
 
 class Scene {
-
-  _class = 'Scene'
-
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
 
@@ -18,9 +15,9 @@ class Scene {
    * @param {string} name
    */
   constructor (sections, { first, name }, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-        json = JSON.parse(json)
+    this._class = 'Scene'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       Object.assign(this, json)
       this.sections = json.sections || []
       this.first = json.first || this.sections[0]
@@ -52,7 +49,7 @@ class Scene {
     this.sceneTransition = 'cut'
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new Scene([], {}, json)
   }
 }

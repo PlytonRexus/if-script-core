@@ -92,7 +92,12 @@ class EngineRuntime {
   }
 
   sanitizeInputValue (value) {
-    const strippedControls = String(value == null ? '' : value).replace(/[\u0000-\u001F\u007F]/g, '')
+    const strippedControls = Array.from(String(value == null ? '' : value))
+      .filter(ch => {
+        const code = ch.charCodeAt(0)
+        return code >= 32 && code !== 127
+      })
+      .join('')
     const withoutInlineBlocks = strippedControls
       .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, ' ')
       .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')

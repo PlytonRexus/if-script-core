@@ -4,8 +4,6 @@
  * @class ModuleRecord
  */
 class ModuleRecord {
-  _class = 'ModuleRecord'
-
   /**
    * Creates an instance of ModuleRecord.
    * @param {Object} params - Module parameters
@@ -17,6 +15,7 @@ class ModuleRecord {
    * @memberof ModuleRecord
    */
   constructor (params, json) {
+    this._class = 'ModuleRecord'
     if (json) {
       if (typeof json === 'string') json = JSON.parse(json)
       const { path, content, parsed, dependencies, timestamp, status, error } = json

@@ -1,11 +1,8 @@
 class ArrayLiteral {
-
-  _class = 'ArrayLiteral'
-
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'ArrayLiteral'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
@@ -25,7 +22,6 @@ class ArrayLiteral {
   set type (_type) {
     this._class = _type
   }
-
 }
 
 export default ArrayLiteral

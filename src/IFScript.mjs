@@ -7,34 +7,34 @@ class IFScript {
   }
 
   async init () {
-    const InputStream = await import('./parsers/custom/stream/InputStream.mjs')
-    const TokenStream = await import('./parsers/custom/stream/TokenStream.mjs')
-    const Parser = await import('./parsers/custom/parser/Parser.mjs')
-    const ModuleLoader = await import('./parsers/custom/loader/ModuleLoader.mjs')
-    const PathResolver = await import('./parsers/custom/loader/PathResolver.mjs')
+    const { default: InputStream } = await import('./parsers/custom/stream/InputStream.mjs')
+    const { default: TokenStream } = await import('./parsers/custom/stream/TokenStream.mjs')
+    const { default: Parser } = await import('./parsers/custom/parser/Parser.mjs')
+    const { default: ModuleLoader } = await import('./parsers/custom/loader/ModuleLoader.mjs')
+    const { default: PathResolver } = await import('./parsers/custom/loader/PathResolver.mjs')
 
     // Determine environment and create file adapter
     let fileAdapter
     // Check for Node.js environment (works in both CommonJS and ESM)
     const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null
     if (isNode) {
-      const NodeFileAdapter = await import('./parsers/custom/loader/NodeFileAdapter.mjs')
-      fileAdapter = new NodeFileAdapter.default(this.config?.node || {})
+      const { default: NodeFileAdapter } = await import('./parsers/custom/loader/NodeFileAdapter.mjs')
+      fileAdapter = new NodeFileAdapter(this.config?.node || {})
     } else {
-      const BrowserFileAdapter = await import('./parsers/custom/loader/BrowserFileAdapter.mjs')
-      fileAdapter = new BrowserFileAdapter.default(this.config?.browser || {})
+      const { default: BrowserFileAdapter } = await import('./parsers/custom/loader/BrowserFileAdapter.mjs')
+      fileAdapter = new BrowserFileAdapter(this.config?.browser || {})
     }
 
     // Create path resolver
-    const pathResolver = new PathResolver.default(this.config?.paths || {})
+    const pathResolver = new PathResolver(this.config?.paths || {})
 
     // Create parser factory
     const parserFactory = (tokenStream, loader) => {
-      return new Parser.default(tokenStream, loader)
+      return new Parser(tokenStream, loader)
     }
 
     // Create module loader
-    const moduleLoader = new ModuleLoader.default(
+    const moduleLoader = new ModuleLoader(
       fileAdapter,
       pathResolver,
       parserFactory,
@@ -45,18 +45,18 @@ class IFScript {
 
     // Update parse method to use module loader
     this.parse = async (text, filePath = '<inline>') => {
-      const is = new InputStream.default(text)
+      const is = new InputStream(text)
       is.currentFile = filePath
-      const ts = new TokenStream.default(is)
-      return await new Parser.default(ts, moduleLoader).parseStory()
+      const ts = new TokenStream(is)
+      return await new Parser(ts, moduleLoader).parseStory()
     }
 
     this.Parser = Parser
   }
 
   async createRuntime (options = {}) {
-    const RuntimeManager = await import('./runtime/session/RuntimeManager.mjs')
-    return new RuntimeManager.default(options)
+    const { default: RuntimeManager } = await import('./runtime/session/RuntimeManager.mjs')
+    return new RuntimeManager(options)
   }
 }
 

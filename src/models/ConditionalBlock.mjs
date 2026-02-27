@@ -1,11 +1,8 @@
 class ConditionalBlock {
-
-  _class = 'ConditionalBlock'
-
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'ConditionalBlock'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
@@ -19,21 +16,19 @@ class ConditionalBlock {
         : (elseExpression !== undefined ? [elseExpression] : null)
     )
     this.else = this.elseBlock ? this.elseBlock[0] : undefined
-
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new ConditionalBlock({}, json)
   }
 
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
-
 }
 
 export default ConditionalBlock

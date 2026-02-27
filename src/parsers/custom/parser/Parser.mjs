@@ -422,7 +422,6 @@ class Parser {
       ) {
         section.text.push(component)
       }
-
     }
 
     throw new ParsingException(

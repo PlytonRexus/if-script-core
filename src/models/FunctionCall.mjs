@@ -1,11 +1,8 @@
 class FunctionCall {
-
-  _class = 'FunctionCall'
-
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'FunctionCall'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
@@ -26,7 +23,6 @@ class FunctionCall {
   set type (_type) {
     this._class = _type
   }
-
 }
 
 export default FunctionCall

@@ -1,14 +1,11 @@
 import Settings from './Settings.mjs'
 
 class SectionSettings extends Settings {
-
-  _class = 'SectionSettings'
-
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
 
@@ -16,13 +13,13 @@ class SectionSettings extends Settings {
    * @param { { timer:number, timerOutcome:string, title:string|Array } } input
    */
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
     super(input)
+    this._class = 'SectionSettings'
     if (typeof input.timer === 'number') {
       this.timer = { timer: input.timer, target: null }
     } else if (input.timer && typeof input.timer === 'object') {
@@ -49,10 +46,9 @@ class SectionSettings extends Settings {
     this.variables = {}
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new SectionSettings({}, json)
   }
-
 }
 
 export default SectionSettings

@@ -16,9 +16,6 @@ import SectionSettings from './SectionSettings.mjs'
  * @class Section
  */
 class Section {
-
-  _class = 'Section'
-
   /**
    * Creates an instance of Section.
    * @param {string|array<string|ConditionalBlock|Token>} text HTML formatted text content of the Section
@@ -28,9 +25,9 @@ class Section {
    * @memberof Section
    */
   constructor (text, choices, serial, settings, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'Section'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       Object.assign(this, json)
       this.choices = this.choices.map(c => Choice.fromJson(c))
       this.text = (this.text || []).map(t => {
@@ -67,8 +64,7 @@ class Section {
     }
   }
 
-
-  static fromJson(json) {
+  static fromJson (json) {
     return new Section({}, {}, {}, {}, json)
   }
 
@@ -89,10 +85,9 @@ class Section {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
-
 }
 
 export default Section

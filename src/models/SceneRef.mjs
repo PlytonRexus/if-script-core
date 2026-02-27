@@ -1,6 +1,4 @@
 class SceneRef {
-  _class = 'SceneRef'
-
   get type () {
     return this._class
   }
@@ -10,7 +8,8 @@ class SceneRef {
   }
 
   constructor (value, kind, json) {
-    if (!!json) {
+    this._class = 'SceneRef'
+    if (json) {
       if (typeof json === 'string') json = JSON.parse(json)
       value = json.value
       kind = json.kind

@@ -1,11 +1,8 @@
 class Loop {
-
-  _class = 'Loop'
-
   constructor (input, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'Loop'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       input = json
     }
 
@@ -27,7 +24,6 @@ class Loop {
   set type (_type) {
     this._class = _type
   }
-
 }
 
 export default Loop

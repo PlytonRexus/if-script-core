@@ -171,7 +171,7 @@ async function preview (argv) {
     }
 
     // Serve static project files (audio, images, compiled JSON, etc.)
-    // so story-relative paths like "tmp/foo.mp3" work in preview mode.
+    // so story-relative paths like "assets/audio/foo.mp3" work in preview mode.
     const staticPath = resolveUnderRoot(url.pathname, projectRoot)
     if (staticPath) {
       try {

@@ -1,7 +1,6 @@
 import AudioAdapter from '../../../src/runtime/session/AudioAdapter.mjs'
 import { pathToFileURL } from 'url'
 import {
-  assert,
   assertEqual,
   runTestSuite
 } from '../../support/test-utils.mjs'
@@ -159,4 +158,3 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       process.exit(1)
     })
 }
-

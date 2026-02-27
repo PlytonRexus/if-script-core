@@ -135,7 +135,6 @@ async function runAllTests () {
   results.forEach(r => {
     const status = r.passed ? '✓' : '✗'
     const badge = r.critical ? '[CRITICAL]' : '[OPTIONAL]'
-    const color = r.passed ? '' : ''
     console.log(`  ${status} ${badge} ${r.name}`)
   })
 

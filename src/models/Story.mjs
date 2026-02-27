@@ -9,14 +9,11 @@ import SceneRef from './SceneRef.mjs'
  * @class Story
  */
 class Story {
-
-  _class = 'Story'
-
-  get type() {
+  get type () {
     return this._class
   }
 
-  set type(_type) {
+  set type (_type) {
     this._class = _type
   }
 
@@ -34,14 +31,13 @@ class Story {
    * @returns {Story} story instance
    */
   constructor (name, { sections, passages, scenes }, settings, { globals, stats }, json) {
-    if (!!json) {
-      if (typeof json === 'string')
-      json = JSON.parse(json)
+    this._class = 'Story'
+    if (json) {
+      if (typeof json === 'string') { json = JSON.parse(json) }
       Object.assign(this, json)
       this.sections = this.sections.map(s => Section.fromJson(s))
       this.scenes = this.scenes.map(s => Scene.fromJson(s))
       this.settings = StorySettings.fromJson(this.settings)
-
     } else {
       this.name = name.trim()
       this.sections = sections || []
@@ -60,7 +56,7 @@ class Story {
     }
   }
 
-  static fromJson(json) {
+  static fromJson (json) {
     return new Story({}, {}, {}, {}, json)
   }
 
@@ -126,7 +122,6 @@ class Story {
 
     return this.passages[index]
   }
-
 }
 
 export default Story

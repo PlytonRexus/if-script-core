@@ -4,8 +4,6 @@
  * @class ImportStatement
  */
 class ImportStatement {
-  _class = 'ImportStatement'
-
   /**
    * Creates an instance of ImportStatement.
    * @param {Object} params - Import parameters
@@ -17,6 +15,7 @@ class ImportStatement {
    * @memberof ImportStatement
    */
   constructor (params, json) {
+    this._class = 'ImportStatement'
     if (json) {
       if (typeof json === 'string') json = JSON.parse(json)
       const { path, resolvedPath, line, col, id, module } = json

@@ -2,6 +2,7 @@ import { writeFile, unlink } from 'fs/promises'
 import path from 'path'
 import { spawnSync } from 'child_process'
 import { fileURLToPath, pathToFileURL } from 'url'
+import check from '../../../src/cli/check.mjs'
 import {
   assert,
   assertEqual,
@@ -22,15 +23,77 @@ async function withTempStory (content, fn) {
   }
 }
 
-function runCheck (args) {
-  return spawnSync(process.execPath, [cliEntry, 'check', ...args], {
+function parseCheckArgs (args) {
+  let inputFile = null
+  let asJson = false
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i]
+    if (arg === '-i' || arg === '--input-file') {
+      inputFile = args[i + 1]
+      i++
+      continue
+    }
+    if (arg === '--json') {
+      asJson = true
+    }
+  }
+
+  return {
+    i: inputFile,
+    'input-file': inputFile,
+    json: asJson
+  }
+}
+
+async function runCheckInProcess (args) {
+  const chunks = []
+  const originalWrite = process.stdout.write.bind(process.stdout)
+  const originalExitCode = process.exitCode
+
+  process.exitCode = undefined
+  process.stdout.write = (chunk, encoding, cb) => {
+    if (typeof chunk === 'string') {
+      chunks.push(chunk)
+    } else if (chunk !== undefined && chunk !== null) {
+      const enc = typeof encoding === 'string' ? encoding : 'utf-8'
+      chunks.push(Buffer.from(chunk).toString(enc))
+    }
+    if (typeof encoding === 'function') encoding()
+    if (typeof cb === 'function') cb()
+    return true
+  }
+
+  try {
+    await check(parseCheckArgs(args))
+    return {
+      status: process.exitCode ?? 0,
+      signal: null,
+      error: null,
+      stdout: chunks.join(''),
+      stderr: ''
+    }
+  } finally {
+    process.stdout.write = originalWrite
+    process.exitCode = originalExitCode
+  }
+}
+
+async function runCheck (args) {
+  const result = spawnSync(process.execPath, [cliEntry, 'check', ...args], {
     cwd: repoRoot,
     encoding: 'utf-8'
   })
+
+  if (result && result.error && (result.error.code === 'EPERM' || result.error.code === 'EACCES')) {
+    return runCheckInProcess(args)
+  }
+
+  return result
 }
 
-function runCheckJson (storyPath) {
-  const result = runCheck(['-i', storyPath, '--json'])
+async function runCheckJson (storyPath) {
+  const result = await runCheck(['-i', storyPath, '--json'])
   const payload = JSON.parse(result.stdout)
   return { result, payload }
 }
@@ -54,7 +117,7 @@ section__
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const result = runCheck(['-i', storyPath])
+    const result = await runCheck(['-i', storyPath])
     assertEqual(result.status, 0, 'check should exit 0 when no errors exist')
     assert(result.stdout.includes('Summary:'), 'check should print summary')
   })
@@ -70,7 +133,7 @@ async function testCheckUnresolvedTargetExitOne () {
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const result = runCheck(['-i', storyPath])
+    const result = await runCheck(['-i', storyPath])
     assertEqual(result.status, 1, 'check should exit 1 when errors exist')
     assert(result.stdout.includes('CHOICE_TARGET_UNRESOLVED'), 'should report unresolved target diagnostic code')
   })
@@ -86,7 +149,7 @@ async function testCheckJsonOutputShape () {
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const result = runCheck(['-i', storyPath, '--json'])
+    const result = await runCheck(['-i', storyPath, '--json'])
     assertEqual(result.status, 1, 'json mode should still exit 1 for errors')
     const payload = JSON.parse(result.stdout)
     assert(payload.summary, 'json output should include summary')
@@ -106,7 +169,7 @@ section__
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = runCheckJson(storyPath)
+    const { result, payload } = await runCheckJson(storyPath)
     assertEqual(result.status, 1, 'startAt unresolved should fail check')
     assert(hasCode(payload, 'START_AT_UNRESOLVED'), 'should emit START_AT_UNRESOLVED')
   })
@@ -123,7 +186,7 @@ section__
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = runCheckJson(storyPath)
+    const { result, payload } = await runCheckJson(storyPath)
     assertEqual(result.status, 1, 'fullTimer unresolved should fail check')
     assert(hasCode(payload, 'FULL_TIMER_TARGET_UNRESOLVED'), 'should emit FULL_TIMER_TARGET_UNRESOLVED')
   })
@@ -137,7 +200,7 @@ async function testCheckSectionTimerTargetUnresolved () {
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = runCheckJson(storyPath)
+    const { result, payload } = await runCheckJson(storyPath)
     assertEqual(result.status, 1, 'section timer unresolved should fail check')
     assert(hasCode(payload, 'SECTION_TIMER_TARGET_UNRESOLVED'), 'should emit SECTION_TIMER_TARGET_UNRESOLVED')
   })
@@ -155,7 +218,7 @@ section__
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = runCheckJson(storyPath)
+    const { result, payload } = await runCheckJson(storyPath)
     assertEqual(result.status, 1, 'scene first unresolved should fail check')
     assert(hasCode(payload, 'SCENE_FIRST_UNRESOLVED'), 'should emit SCENE_FIRST_UNRESOLVED')
   })
@@ -176,7 +239,7 @@ section__
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = runCheckJson(storyPath)
+    const { result, payload } = await runCheckJson(storyPath)
     assertEqual(result.status, 0, 'duplicate function name should warn but not fail check')
     assert(hasCode(payload, 'DUPLICATE_FUNCTION_NAME'), 'should emit DUPLICATE_FUNCTION_NAME')
     assertEqual(payload.summary.errors, 0, 'warning-only case should have zero errors')
@@ -195,7 +258,7 @@ section__
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = runCheckJson(storyPath)
+    const { result, payload } = await runCheckJson(storyPath)
     assertEqual(result.status, 1, 'deprecated @music should fail check via parse error')
     assert(hasCode(payload, 'PARSE_OR_IMPORT_ERROR'), 'should emit PARSE_OR_IMPORT_ERROR for deprecated property')
     assert(
@@ -224,4 +287,3 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     process.exit(passed ? 0 : 1)
   })
 }
-

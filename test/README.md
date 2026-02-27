@@ -7,7 +7,7 @@ This directory is organized by intent:
 - `test/support`: shared helpers (`runTestSuite`, assertions, timers)
 - `test/fixtures`: `.if` fixtures, import fixtures, compiled JSON, and story source modules
 - `test/harness`: browser/manual harness scripts and debug helpers
-- `test/assets`: test-only static assets
+- `assets`: canonical static assets used by test fixtures and local harness builds
 
 ## Canonical Scripts
 

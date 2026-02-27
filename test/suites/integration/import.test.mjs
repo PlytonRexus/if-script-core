@@ -77,7 +77,7 @@ section__
 __section
 `
 
-    const parsed = await ifScript.parse(story, 'test/test-story.if')
+    await ifScript.parse(story, 'test/test-story.if')
 
     // Check cache size - should only load once
     const cacheStats = ifScript.moduleLoader.getCacheStats()
@@ -240,4 +240,3 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     process.exit(1)
   })
 }
-

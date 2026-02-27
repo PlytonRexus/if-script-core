@@ -1,5 +1,9 @@
 # IF-SCRIPT
 
+[![CI Push](https://github.com/PlytonRexus/if-script-core/actions/workflows/ci-push.yml/badge.svg)](https://github.com/PlytonRexus/if-script-core/actions/workflows/ci-push.yml)
+[![PR Validation](https://github.com/PlytonRexus/if-script-core/actions/workflows/ci-pr.yml/badge.svg)](https://github.com/PlytonRexus/if-script-core/actions/workflows/ci-pr.yml)
+[![Deploy gh-pages](https://github.com/PlytonRexus/if-script-core/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/PlytonRexus/if-script-core/actions/workflows/deploy-gh-pages.yml)
+
 ### Find available issues [here](https://github.com/PlytonRexus/if-script/issues)
 
 An extremely simple syntax for writing interactive fiction that can be embedded in any website.
@@ -52,6 +56,7 @@ ifs preview -i my-story.if -t literary-default -p 8080
 ```
 
 Parse errors are displayed directly in the browser so you can fix them without leaving your editor.
+Project-local static media for preview/build workflows should live under `assets/` (for example `assets/audio/hedwig.mp3`).
 
 ### Compiling
 
