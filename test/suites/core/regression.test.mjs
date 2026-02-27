@@ -828,6 +828,35 @@ __section`
   assertEqual(choice.target, 'Chapter One', 'Writer scene target should preserve scene name')
 }
 
+async function testSectionSourceMetadataParse () {
+  const sourcePath = '/workspace/source-meta.if'
+  const storyText = `section "Writer Section"
+  "Hello"
+  -> "Go" => "Legacy Section"
+end
+
+section__
+  @title "Legacy Section"
+  "Done"
+__section`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const parsed = await ifScript.parse(storyText, sourcePath)
+
+  const writerSource = parsed.sections[0].source
+  const legacySource = parsed.sections[1].source
+  assertDefined(writerSource, 'Writer section should expose source metadata')
+  assertDefined(legacySource, 'Legacy section should expose source metadata')
+  assertEqual(writerSource.file, sourcePath, 'Writer source file should match parsed file')
+  assertEqual(legacySource.file, sourcePath, 'Legacy source file should match parsed file')
+  assertEqual(writerSource.mode, 'writer', 'Writer section source should indicate writer mode')
+  assertEqual(legacySource.mode, 'legacy', 'Legacy section source should indicate legacy mode')
+  assert(typeof writerSource.line === 'number' && writerSource.line > 0, 'Writer section source line should be tracked')
+  assert(typeof legacySource.line === 'number' && legacySource.line > 0, 'Legacy section source line should be tracked')
+  assert(!Object.keys(parsed.sections[0]).includes('source'), 'Source metadata should remain non-enumerable')
+}
+
 // ===== Test Existing Example Files =====
 
 async function testArraysExampleFile () {
@@ -942,6 +971,7 @@ export async function runRegressionTests () {
     { name: 'Settings: theme/undo/turn/animations/autosave parse', fn: testStoryUxSettingsParse },
     { name: 'Writer mode: section + arrow choice', fn: testWriterModeMinimalSectionParse },
     { name: 'Writer mode: scene arrow target', fn: testWriterModeSceneTargetParse },
+    { name: 'Section source metadata: writer + legacy', fn: testSectionSourceMetadataParse },
     { name: 'Example files: arrays-test.if', fn: testArraysExampleFile },
     { name: 'Example files: loops-test.if', fn: testLoopsExampleFile },
     { name: 'Example files: functions-test.if', fn: testFunctionsExampleFile },

@@ -278,7 +278,7 @@ async function testRuntimeInterpolatesFunctionTemplatesInStoryText () {
   const evidenceDigestTemplate = '$' + '{evidenceDigest()}'
 
   const storyText = await fs.readFile(
-    new URL('../../fixtures/stories/a-stranger-in-veracruz.if', import.meta.url),
+    new URL('../../fixtures/stories/stranger/a-stranger-in-veracruz.if', import.meta.url),
     'utf8'
   )
   const story = await ifScript.parse(storyText, 'a-stranger-in-veracruz.if')
@@ -473,6 +473,109 @@ __section
   }
 }
 
+async function testRuntimeSeedsInitialVariablesAtStart () {
+  const storyText = `
+settings__
+  @storyTitle "Seed variables"
+  @startAt "Entry"
+__settings
+
+section__
+  @title "Entry"
+  "Name: \${player}"
+  choice__
+    @target "Preview"
+    "Go"
+  __choice
+__section
+
+section__
+  @title "Preview"
+  "Name: \${player}; hp=\${hp}"
+  choice__
+    @target "Entry"
+    "Back"
+  __choice
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-seed-start.if')
+  const runtime = await ifScript.createRuntime()
+
+  try {
+    const view = runtime.start(story, {
+      startAt: 'Preview',
+      resume: false,
+      initialVariables: {
+        player: 'Elena',
+        hp: 7,
+        flags: ['dock'],
+        profile: { city: 'Veracruz' },
+        turn: 99
+      }
+    })
+
+    assert(view && view.section && view.section.serial === 1, 'runtime should honor startAt when previewing a section')
+    assert(String(view.section.bodyText || '').includes('Name: Elena; hp=7'), 'seeded variables should be rendered in section body')
+    assertEqual(runtime.engine.run.state.variables.player, 'Elena', 'seeded string variable should be set')
+    assertEqual(runtime.engine.run.state.variables.hp, 7, 'seeded number variable should be set')
+    assertEqual(runtime.engine.run.state.variables.flags[0], 'dock', 'seeded array variable should be set')
+    assertEqual(runtime.engine.run.state.variables.profile.city, 'Veracruz', 'seeded object variable should be set')
+    assertEqual(runtime.engine.run.state.variables.turn, 0, 'turn should stay runtime-managed')
+  } finally {
+    runtime.destroy()
+  }
+}
+
+async function testRuntimeRestartPreservesSectionPreviewBootOptions () {
+  const storyText = `
+settings__
+  @storyTitle "Restart preserves preview"
+  @startAt "Default"
+__settings
+
+section__
+  @title "Default"
+  "Default start"
+  choice__
+    @target "Preview"
+    "Go"
+  __choice
+__section
+
+section__
+  @title "Preview"
+  "Preview name: \${player}"
+  choice__
+    @target "Default"
+    "Back"
+  __choice
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-restart-preview.if')
+  const runtime = await ifScript.createRuntime()
+
+  try {
+    runtime.start(story, {
+      startAt: 'Preview',
+      resume: false,
+      initialVariables: { player: 'Ariadne' }
+    })
+    runtime.engine.run.state.variables.player = 'Mutated'
+    const restarted = runtime.restart()
+
+    assert(restarted && restarted.section && restarted.section.serial === 1, 'restart should keep explicit preview startAt')
+    assert(String(restarted.section.bodyText || '').includes('Ariadne'), 'restart should reapply initial variables')
+    assertEqual(runtime.engine.run.state.variables.player, 'Ariadne', 'restart should reset seeded variable values')
+    assertEqual(runtime.engine.run.state.variables.turn, 0, 'restart should keep turn runtime-managed')
+  } finally {
+    runtime.destroy()
+  }
+}
+
 export async function runRuntimeV2Tests () {
   return runTestSuite('Runtime v2 / Metadata Tests', [
     { name: 'createRuntime factory', fn: testCreateRuntimeFactory },
@@ -485,7 +588,9 @@ export async function runRuntimeV2Tests () {
     { name: 'interpolate function templates in example story text', fn: testRuntimeInterpolatesFunctionTemplatesInStoryText },
     { name: 'prevent statement call value leaks in body text', fn: testStatementFunctionCallsDoNotLeakIntoNarrativeText },
     { name: 'expose active timer metadata in view model', fn: testRuntimeExposesActiveTimerMetadataInViewModel },
-    { name: 'resolve scene music for title-based scene refs', fn: testSceneMusicResolvesTitleBasedSceneRefs }
+    { name: 'resolve scene music for title-based scene refs', fn: testSceneMusicResolvesTitleBasedSceneRefs },
+    { name: 'seed initialVariables at start', fn: testRuntimeSeedsInitialVariablesAtStart },
+    { name: 'preserve preview boot options on restart', fn: testRuntimeRestartPreservesSectionPreviewBootOptions }
   ])
 }
 

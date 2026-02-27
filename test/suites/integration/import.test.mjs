@@ -138,7 +138,7 @@ __section
 async function testPathResolution () {
   console.log('Test 4: Path Resolution')
   try {
-    const ifScript = new IFScript(versions.STREAM, {
+    const ifScript = new IFScript({
       paths: {
         aliases: {
           '@imports': 'test/fixtures/imports'
@@ -211,6 +211,55 @@ __section
   }
 }
 
+// Test 6: Imported sections retain source metadata
+async function testImportedSectionSourceMetadata () {
+  console.log('Test 6: Imported Section Source Metadata')
+  try {
+    const ifScript = new IFScript(versions.STREAM)
+    await ifScript.init()
+
+    const story = `
+settings__
+  @storyTitle "Source Metadata Test"
+  @startAt 1
+__settings
+
+import__"./fixtures/imports/common.partial.if"__import
+
+section__
+  @title "Main Section"
+  "Main story section"
+__section
+`
+
+    const parsed = await ifScript.parse(story, 'test/test-story.if')
+    const imported = parsed.sections.find(section => section.settings && section.settings.title === 'Common Section 2')
+    const local = parsed.sections.find(section => section.settings && section.settings.title === 'Main Section')
+
+    if (!imported || !imported.source || !local || !local.source) {
+      console.log('✗ Missing source metadata on parsed sections\n')
+      return false
+    }
+
+    if (imported.source.file !== 'test/fixtures/imports/common.partial.if') {
+      console.log(`✗ Imported source file mismatch: ${imported.source.file}\n`)
+      return false
+    }
+
+    if (local.source.file !== 'test/test-story.if') {
+      console.log(`✗ Local source file mismatch: ${local.source.file}\n`)
+      return false
+    }
+
+    console.log('✓ Imported/local section source metadata resolved correctly\n')
+    return true
+  } catch (error) {
+    console.error('✗ Imported source metadata test failed:', error.message)
+    console.log()
+    return false
+  }
+}
+
 // Run all tests
 async function runTests () {
   const results = []
@@ -220,6 +269,7 @@ async function runTests () {
   results.push(await testFileNotFound())
   results.push(await testPathResolution())
   results.push(await testNestedImports())
+  results.push(await testImportedSectionSourceMetadata())
 
   const passed = results.filter(r => r).length
   const total = results.length

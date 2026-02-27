@@ -159,6 +159,28 @@ class EngineRuntime {
     }
   }
 
+  cloneSerializableValue (value) {
+    try {
+      return JSON.parse(JSON.stringify(value))
+    } catch (err) {
+      return undefined
+    }
+  }
+
+  sanitizeInitialVariables (initialVariables) {
+    if (!initialVariables || typeof initialVariables !== 'object' || Array.isArray(initialVariables)) {
+      return {}
+    }
+
+    const out = {}
+    Object.keys(initialVariables).forEach(key => {
+      if (key === 'turn') return
+      const cloned = this.cloneSerializableValue(initialVariables[key])
+      if (cloned !== undefined) out[key] = cloned
+    })
+    return out
+  }
+
   start (story, options = {}) {
     if (!(story instanceof Story)) {
       story = Story.fromJson(story)
@@ -170,12 +192,21 @@ class EngineRuntime {
     const run = new Run(story, new State(), null, options.runOptions || {})
     this.run = run
     this.run.story = story
+    const startAt = options.startAt !== undefined ? options.startAt : story.settings.startAt
+    const initialVariables = this.sanitizeInitialVariables(options.initialVariables)
+    this.engineState.startOptions = {
+      startAt,
+      initialVariables
+    }
     this.engineState.runtimeOptions = this.resolveRuntimeOptions(story, run, options)
     this.run.theme = this.engineState.runtimeOptions.theme
     this.engineState.storyFingerprint = EngineSerializer.computeStoryFingerprint(story)
     resetBuiltinState()
 
     this.resetVariables()
+    Object.keys(initialVariables).forEach(key => {
+      this.run.state.variables[key] = initialVariables[key]
+    })
     this.run.state.onceConsumed = {}
     this.run.state.oldOnceConsumed = {}
     this.clearTimers()
@@ -183,7 +214,6 @@ class EngineRuntime {
     if (story.settings && story.settings.maxIterations) this.MAX_ITERATIONS = story.settings.maxIterations
     if (story.settings && story.settings.maxCallDepth) this.MAX_CALL_DEPTH = story.settings.maxCallDepth
 
-    const startAt = options.startAt !== undefined ? options.startAt : story.settings.startAt
     this.setState({
       section: startAt !== undefined ? startAt : 0,
       turn: 0
@@ -858,9 +888,13 @@ class EngineRuntime {
 
   restart () {
     if (!this.run || !this.run.story) return null
+    const startOptions = this.engineState.startOptions || {}
+    const hasInitialVariables = Object.keys(startOptions.initialVariables || {}).length > 0
     return this.start(this.run.story, {
       ...this.engineState.runtimeOptions,
-      runOptions: this.run.options
+      runOptions: this.run.options,
+      ...(startOptions.startAt !== undefined ? { startAt: startOptions.startAt } : {}),
+      ...(hasInitialVariables ? { initialVariables: startOptions.initialVariables } : {})
     })
   }
 
