@@ -17,6 +17,7 @@ class EngineState {
       full: null
     }
     this.storyFingerprint = null
+    this.startOptions = {}
     this.traceCounter = 0
   }
 }

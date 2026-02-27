@@ -148,6 +148,23 @@ class Parser {
     return tok && tok.type === TTS.OPERATOR && tok.symbol === Operators.ARROW
   }
 
+  attachSectionSource (section, token, mode) {
+    if (!section || !token) return
+    const source = {
+      file: this.currentFile || '<inline>',
+      line: typeof token.line === 'number' ? token.line : null,
+      col: typeof token.col === 'number' ? token.col : null,
+      mode: mode === 'writer' ? 'writer' : 'legacy'
+    }
+
+    Object.defineProperty(section, 'source', {
+      value: source,
+      configurable: true,
+      writable: true,
+      enumerable: false
+    })
+  }
+
   parseExpression () {
     return this.maybeBinary(this.parseAtom(...arguments), 0)
   }
@@ -298,6 +315,7 @@ class Parser {
     const settings = new SectionSettings({ timer: 0, title: '' })
     const section = new Section([], [], this.counts.sectionNumber++, settings)
     tok = this.skipSectionStart()
+    this.attachSectionSource(section, tok, 'legacy')
 
     let choiceCounter = 1
     while (tok && !this.utils.isSectionEnd(tok, tok.symbol)) {
@@ -369,6 +387,7 @@ class Parser {
     const settings = new SectionSettings({ timer: 0, title: titleTok.symbol })
     const section = new Section([], [], this.counts.sectionNumber++, settings)
     section.title = titleTok.symbol
+    this.attachSectionSource(section, sectionToken, 'writer')
 
     let choiceCounter = 1
     while (!this.input.eof()) {
