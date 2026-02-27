@@ -2,6 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import IFScript from '../../index.mjs'
 import BUILTINS from '../interpreters/custom/Builtins.mjs'
+import {
+  DEFAULT_PROFILE,
+  KINDLE_STRICT_PROFILE,
+  analyzeKindleCompatibility,
+  isKnownProfile
+} from './kindle-profile.mjs'
 
 function makeDiagnostic (severity, code, message, {
   file = null,
@@ -283,16 +289,26 @@ async function check (argv) {
   const inputArg = argv.i || argv['input-file']
   const inputPath = path.resolve(cwd, inputArg)
   const asJson = argv.json === true
+  const profile = String(argv.profile || DEFAULT_PROFILE)
 
   try {
+    if (!isKnownProfile(profile)) {
+      const supported = [DEFAULT_PROFILE, 'kindle-any', KINDLE_STRICT_PROFILE]
+      throw new Error(`Unsupported profile "${profile}". Supported profiles: ${supported.join(', ')}`)
+    }
+
     const content = await fs.promises.readFile(inputPath, 'utf-8')
     const ifscript = new IFScript('STREAM')
     await ifscript.init()
     const parsed = await ifscript.parse(content, inputPath)
     const diagnostics = analyzeStory(parsed, inputPath)
+    if (profile !== DEFAULT_PROFILE) {
+      const kindleAnalysis = analyzeKindleCompatibility(parsed, inputPath, profile)
+      diagnostics.push(...kindleAnalysis.diagnostics)
+    }
     const errors = diagnostics.filter(d => d.severity === 'error').length
     const warnings = diagnostics.filter(d => d.severity === 'warning').length
-    const payload = { summary: { errors, warnings }, diagnostics }
+    const payload = { summary: { errors, warnings }, profile, diagnostics }
 
     if (asJson) {
       process.stdout.write(JSON.stringify(payload, null, 2) + '\n')

@@ -66,12 +66,22 @@ Once your story is ready, compile it to JSON for distribution or embedding:
 ifs compile -i my-story.if -o story.json
 ```
 
+Compile to Kindle-compatible static HTML pages:
+
+```bash
+ifs compile -i my-story.if --target kindle-html --output-dir dist/kindle
+```
+
 **Options:**
 
 | Flag | Alias | Default | Description |
 |------|-------|---------|-------------|
 | `--input-file` | `-i` | *(required)* | Path to `.if` story file |
 | `--output-file` | `-o` | `out.json` | Path for the compiled JSON output |
+| `--target` | | `json` | Compile target: `json` or `kindle-html` |
+| `--profile` | | `default` (`json`), `kindle-any` (`kindle-html`) | Compile profile (`default`, `kindle-any`, `kindle-strict`) |
+| `--output-dir` | | *(required for `kindle-html`)* | Output directory for static Kindle HTML pages |
+| `--report-file` | | `<output-dir>/kindle-report.json` | Optional Kindle compile report output path |
 
 ### Checking (Static Diagnostics)
 
@@ -87,12 +97,25 @@ Use JSON output for CI and tooling:
 ifs check -i my-story.if --json
 ```
 
+Run Kindle compatibility checks:
+
+```bash
+ifs check -i my-story.if --profile kindle-any
+ifs check -i my-story.if --profile kindle-strict --json
+```
+
 ### Publishing Thrones To GitHub Pages (Branch Root)
 
 Build the publishable Thrones site into `dist/`:
 
 ```bash
 npm run build:pages:thrones
+```
+
+Build Kindle static pages for Thrones into `dist/kindle/`:
+
+```bash
+npm run build:pages:thrones:kindle
 ```
 
 Publish `dist/` as the root contents of the `gh-pages` branch:

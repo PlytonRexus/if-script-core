@@ -33,11 +33,31 @@ yargsc.command({
       describe: 'Optional. The name of the output file. Default is out.json',
       type: 'string',
       demandOption: false
+    },
+    target: {
+      describe: 'Compile output target',
+      choices: ['json', 'kindle-html'],
+      default: 'json'
+    },
+    profile: {
+      describe: 'Compile profile (kindle-any, kindle-strict for kindle target)',
+      choices: ['default', 'kindle-any', 'kindle-strict'],
+      default: 'default'
+    },
+    'output-dir': {
+      describe: 'Output directory (required for kindle-html target)',
+      type: 'string',
+      demandOption: false
+    },
+    'report-file': {
+      describe: 'Optional report file path for kindle-html target',
+      type: 'string',
+      demandOption: false
     }
   },
   handler: function (argv) {
     process.stdout.write('Compiling... ')
-    compile(argv)
+    return compile(argv)
   }
 })
 
@@ -57,7 +77,12 @@ yargsc.command({
   describe: 'Run static diagnostics for an IF-Script story',
   builder: {
     'input-file': { alias: 'i', describe: 'Path to .if story file', type: 'string', demandOption: true },
-    json: { describe: 'Emit diagnostics as JSON', type: 'boolean', default: false }
+    json: { describe: 'Emit diagnostics as JSON', type: 'boolean', default: false },
+    profile: {
+      describe: 'Diagnostics profile',
+      choices: ['default', 'kindle-any', 'kindle-strict'],
+      default: 'default'
+    }
   },
   handler: (argv) => check(argv)
 })

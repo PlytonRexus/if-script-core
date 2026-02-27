@@ -12,6 +12,7 @@ import { runEdgeCaseTests } from '../suites/core/edge-cases.test.mjs'
 import { runPerformanceTests } from '../suites/core/performance.test.mjs'
 import { runErrorMessageTests } from '../suites/core/error-messages.test.mjs'
 import { runCheckTests } from '../suites/cli/check.test.mjs'
+import { runCompileTests } from '../suites/cli/compile.test.mjs'
 import { runSaveResumeTests } from '../suites/runtime/save-resume.test.mjs'
 import { runRuntimeV2Tests } from '../suites/runtime/runtime-v2.test.mjs'
 import { runAudioAdapterTests } from '../suites/runtime/audio-adapter.test.mjs'
@@ -69,6 +70,12 @@ async function runAllTests () {
       name: 'CLI Check Command',
       description: 'Static diagnostics command',
       fn: runCheckTests,
+      critical: false
+    },
+    {
+      name: 'CLI Compile Command',
+      description: 'Compile target/profile behavior',
+      fn: runCompileTests,
       critical: false
     },
     {
