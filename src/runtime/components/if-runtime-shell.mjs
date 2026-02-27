@@ -130,23 +130,29 @@ class IFRuntimeShell extends BaseHTMLElement {
       <style>
         :host {
           display: block;
-          min-height: 100vh;
+          width: 100%;
+          min-height: 100%;
           background: var(--if-surface, #f4ead8);
           color: var(--if-text, #2b2118);
-          padding: clamp(14px, 2vw, 24px);
+          padding: clamp(10px, 2vw, 24px);
           box-sizing: border-box;
+          container-type: inline-size;
         }
         .shell {
+          width: 100%;
           max-width: 860px;
           margin: 0 auto;
           display: grid;
           gap: 14px;
         }
         .top {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr);
+          align-items: start;
           gap: 10px;
+        }
+        if-status-bar {
+          min-width: 0;
         }
         .menu-toggle {
           border: 1px solid var(--if-menu-button-border, #b9a989);
@@ -155,6 +161,7 @@ class IFRuntimeShell extends BaseHTMLElement {
           border-radius: 8px;
           padding: 6px 10px;
           cursor: pointer;
+          min-height: 36px;
         }
         .timer-ribbon {
           position: fixed;
@@ -208,6 +215,25 @@ class IFRuntimeShell extends BaseHTMLElement {
           0% { opacity: 0.45; }
           50% { opacity: 0.95; }
           100% { opacity: 0.45; }
+        }
+        @container (max-width: 720px) {
+          .top {
+            grid-template-columns: 1fr;
+          }
+          .menu-toggle {
+            width: 100%;
+          }
+          .shell {
+            gap: 10px;
+          }
+        }
+        @container (max-width: 480px) {
+          :host {
+            padding: 8px;
+          }
+          .menu-toggle {
+            padding: 8px 10px;
+          }
         }
       </style>
       <div id="timer-ribbon-mount"></div>

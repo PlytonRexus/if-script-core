@@ -6,6 +6,9 @@
     "ifs": "./bin/index.mjs"
   },
   "main": "index.mjs",
+  "browser": {
+    "./src/parsers/custom/loader/NodeFileAdapter.mjs": "./src/parsers/custom/loader/BrowserFileAdapter.mjs"
+  },
   "files": [
     "bin/",
     "src/",
