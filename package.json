@@ -6,6 +6,13 @@
     "ifs": "./bin/index.mjs"
   },
   "main": "index.mjs",
+  "files": [
+    "bin/",
+    "src/",
+    "index.mjs",
+    "README.md",
+    "CONTRIBUTING.md"
+  ],
   "scripts": {
     "lint": "npx standard",
     "test": "node test/runners/run-all-tests.mjs",
