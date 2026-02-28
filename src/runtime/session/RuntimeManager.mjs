@@ -22,7 +22,11 @@ const FORWARDED_EVENTS = [
   'choice_consumed',
   'save_written',
   'save_loaded',
-  'error_raised'
+  'error_raised',
+  'audio_state_changed',
+  'audio_channel_event',
+  'timer_state_changed',
+  'scene_resolved'
 ]
 
 class RuntimeManager {
@@ -30,7 +34,10 @@ class RuntimeManager {
     this.options = options
     this.engine = new EngineRuntime(null, { debug: options.debug === true })
     this.storage = new StorageAdapter(options.storage || null)
-    this.audio = new AudioAdapter({ debug: options.debug === true })
+    this.audio = new AudioAdapter({
+      debug: options.debug === true,
+      onEvent: (eventName, payload) => this.handleAudioEvent(eventName, payload)
+    })
     this.themeRegistry = new ThemeRegistry()
     this.target = null
     this.renderer = null
@@ -88,6 +95,30 @@ class RuntimeManager {
       } catch (err) {
         // Ignore observer errors.
       }
+    }
+  }
+
+  getDebugSnapshot () {
+    const engineDebug = typeof this.engine.getDebugSnapshot === 'function'
+      ? this.engine.getDebugSnapshot()
+      : null
+    const currentSection = this.lastRendered && this.lastRendered.section ? this.lastRendered.section : null
+    return {
+      engine: engineDebug,
+      audio: {
+        ui: this.audio.getUiState(),
+        channels: this.audio.getState()
+      },
+      renderer: this.renderer ? this.renderer.name : null,
+      activeTheme: this.activeTheme,
+      section: currentSection
+        ? {
+            serial: currentSection.serial,
+            title: currentSection.titleText || null,
+            choiceCount: Array.isArray(currentSection.choices) ? currentSection.choices.length : 0
+          }
+        : null,
+      timeline: this.eventTimeline.getAll()
     }
   }
 
@@ -418,15 +449,25 @@ class RuntimeManager {
 
     this.emit(eventName, payload)
 
-    if (this.debugPanel) {
-      const model = {
-        event: eventName,
-        payload,
-        state: this.stateInspector.summarize(this.engine),
-        timeline: this.eventTimeline.getAll().slice(-20)
-      }
-      this.debugPanel.render(model)
+    this.renderDebugPanel(eventName, payload)
+  }
+
+  handleAudioEvent (eventName, payload) {
+    this.eventTimeline.push(eventName, payload)
+    this.emit(eventName, payload)
+    this.renderDebugPanel(eventName, payload)
+  }
+
+  renderDebugPanel (eventName, payload) {
+    if (!this.debugPanel) return
+    const model = {
+      event: eventName,
+      payload,
+      state: this.stateInspector.summarize(this.engine),
+      snapshot: this.getDebugSnapshot(),
+      timeline: this.eventTimeline.getAll().slice(-20)
     }
+    this.debugPanel.render(model)
   }
 
   destroy () {

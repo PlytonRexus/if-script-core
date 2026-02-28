@@ -633,10 +633,22 @@ class EngineRuntime {
       this.engineState.sectionTimerHandle = null
       this.engineState.timers.section = null
       this.emit('timer_stopped', { timerType: 'section' })
+      this.emit('timer_state_changed', {
+        timerType: 'section',
+        state: 'stopped',
+        reason: 'reconfigured',
+        activeTimers: this.getActiveTimersView()
+      })
     }
 
     if (!timerConfig || typeof timerConfig.timer !== 'number' || timerConfig.timer <= 0 || timerConfig.target === null || timerConfig.target === undefined) {
       this.engineState.timers.section = null
+      this.emit('timer_state_changed', {
+        timerType: 'section',
+        state: 'idle',
+        reason: 'no_timer',
+        activeTimers: this.getActiveTimersView()
+      })
       return
     }
     const durationMs = timerConfig.timer * 1000
@@ -663,10 +675,25 @@ class EngineRuntime {
       deadlineAt: startedAt + durationMs,
       outcomeText
     })
+    this.emit('timer_state_changed', {
+      timerType: 'section',
+      state: 'running',
+      target: timerConfig.target,
+      startedAt,
+      deadlineAt: startedAt + durationMs,
+      outcomeText,
+      activeTimers: this.getActiveTimersView()
+    })
     this.engineState.sectionTimerHandle = setTimeout(() => {
       this.engineState.sectionTimerHandle = null
       this.engineState.timers.section = null
       this.emit('timer_elapsed', { timerType: 'section', target: timerConfig.target })
+      this.emit('timer_state_changed', {
+        timerType: 'section',
+        state: 'elapsed',
+        target: timerConfig.target,
+        activeTimers: this.getActiveTimersView()
+      })
       this.switchSection(timerConfig.target)
     }, durationMs)
   }
@@ -677,9 +704,21 @@ class EngineRuntime {
       this.engineState.fullTimerHandle = null
       this.engineState.timers.full = null
       this.emit('timer_stopped', { timerType: 'full' })
+      this.emit('timer_state_changed', {
+        timerType: 'full',
+        state: 'stopped',
+        reason: 'reconfigured',
+        activeTimers: this.getActiveTimersView()
+      })
     }
     if (typeof seconds !== 'number' || seconds <= 0 || target === undefined || target === null) {
       this.engineState.timers.full = null
+      this.emit('timer_state_changed', {
+        timerType: 'full',
+        state: 'idle',
+        reason: 'no_timer',
+        activeTimers: this.getActiveTimersView()
+      })
       return
     }
     const durationMs = seconds * 1000
@@ -706,10 +745,25 @@ class EngineRuntime {
       deadlineAt: startedAt + durationMs,
       outcomeText
     })
+    this.emit('timer_state_changed', {
+      timerType: 'full',
+      state: 'running',
+      target,
+      startedAt,
+      deadlineAt: startedAt + durationMs,
+      outcomeText,
+      activeTimers: this.getActiveTimersView()
+    })
     this.engineState.fullTimerHandle = setTimeout(() => {
       this.engineState.fullTimerHandle = null
       this.engineState.timers.full = null
       this.emit('timer_elapsed', { timerType: 'full', target })
+      this.emit('timer_state_changed', {
+        timerType: 'full',
+        state: 'elapsed',
+        target,
+        activeTimers: this.getActiveTimersView()
+      })
       this.switchSection(target)
     }, durationMs)
   }
@@ -720,11 +774,21 @@ class EngineRuntime {
       this.engineState.sectionTimerHandle = null
     }
     this.engineState.timers.section = null
+    this.emit('timer_state_changed', {
+      timerType: 'section',
+      state: 'cleared',
+      activeTimers: this.getActiveTimersView()
+    })
     if (this.engineState.fullTimerHandle) {
       clearTimeout(this.engineState.fullTimerHandle)
       this.engineState.fullTimerHandle = null
     }
     this.engineState.timers.full = null
+    this.emit('timer_state_changed', {
+      timerType: 'full',
+      state: 'cleared',
+      activeTimers: this.getActiveTimersView()
+    })
   }
 
   setupUndo () {
@@ -812,11 +876,15 @@ class EngineRuntime {
 
   syncSceneForSection (sectionSerial) {
     const scene = (this.run.story.scenes || []).find(s => this.sceneIncludesSection(s, sectionSerial))
-    if (!scene) return
-    this.run.state.scene = scene
-    this.emit('scene_changed', {
-      scene: this.createSceneEventPayload(scene)
+    const payload = this.createSceneEventPayload(scene)
+    this.run.state.scene = scene || null
+    this.emit('scene_resolved', {
+      sectionSerial,
+      scene: payload,
+      matched: Boolean(scene)
     })
+    if (!scene) return
+    this.emit('scene_changed', { scene: payload })
   }
 
   switchSection (targetSec, isUndo = false) {
@@ -960,6 +1028,27 @@ class EngineRuntime {
       stats: this.getStatsView(),
       timers: this.getActiveTimersView(),
       turn: this.run && this.run.state ? this.run.state.turn : 0
+    }
+  }
+
+  getDebugSnapshot () {
+    const scene = this.run && this.run.state ? this.run.state.scene : null
+    const section = this.run && this.run.state ? this.run.state.section : null
+    return {
+      runtimeOptions: { ...this.engineState.runtimeOptions },
+      section: section
+        ? {
+            serial: section.serial,
+            title: section.settings ? section.settings.title : null
+          }
+        : null,
+      scene: scene ? this.createSceneEventPayload(scene) : null,
+      timers: {
+        active: this.getActiveTimersView(),
+        full: this.engineState.timers.full ? { ...this.engineState.timers.full } : null,
+        section: this.engineState.timers.section ? { ...this.engineState.timers.section } : null
+      },
+      variables: this.run && this.run.state ? { ...this.run.state.variables } : {}
     }
   }
 
