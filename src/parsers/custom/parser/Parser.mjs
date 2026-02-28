@@ -154,11 +154,44 @@ class Parser {
       file: this.currentFile || '<inline>',
       line: typeof token.line === 'number' ? token.line : null,
       col: typeof token.col === 'number' ? token.col : null,
-      mode: mode === 'writer' ? 'writer' : 'legacy'
+      mode: mode === 'writer' ? 'writer' : 'legacy',
+      block: 'section'
     }
 
     Object.defineProperty(section, 'source', {
       value: source,
+      configurable: true,
+      writable: true,
+      enumerable: false
+    })
+  }
+
+  attachSceneSource (scene, token) {
+    if (!scene || !token) return
+    Object.defineProperty(scene, 'source', {
+      value: {
+        file: this.currentFile || '<inline>',
+        line: typeof token.line === 'number' ? token.line : null,
+        col: typeof token.col === 'number' ? token.col : null,
+        mode: 'legacy',
+        block: 'scene'
+      },
+      configurable: true,
+      writable: true,
+      enumerable: false
+    })
+  }
+
+  attachChoiceSource (choice, token, mode = 'legacy') {
+    if (!choice || !token) return
+    Object.defineProperty(choice, 'source', {
+      value: {
+        file: this.currentFile || '<inline>',
+        line: typeof token.line === 'number' ? token.line : null,
+        col: typeof token.col === 'number' ? token.col : null,
+        mode: mode === 'writer' ? 'writer' : 'legacy',
+        block: 'choice'
+      },
       configurable: true,
       writable: true,
       enumerable: false
@@ -501,10 +534,13 @@ class Parser {
       targetType
     }
     const ownerTargetText = { owner: undefined, target: targetTok.symbol, text: [textTok] }
-    return new Choice(ownerTargetText, props)
+    const choice = new Choice(ownerTargetText, props)
+    this.attachChoiceSource(choice, arrowTok, 'writer')
+    return choice
   }
 
   parseChoice () {
+    const startToken = this.input.peek()
     this.skipChoiceStart()
     let tok = this.input.peek()
     const props = {
@@ -570,6 +606,7 @@ class Parser {
       if (!(component instanceof ConditionalBlock)) tok = this.input.next()
     }
 
+    this.attachChoiceSource(choice, startToken, 'legacy')
     return choice
   }
 
@@ -1030,11 +1067,13 @@ class Parser {
   }
 
   parseScene () {
+    const sceneToken = this.input.peek()
     this.skipOtherKeyword(KW.SCENE_START)
 
     const { isTokenFor } = this.utils
     const scene = new Scene([], { first: 0, name: '' })
     scene.serial = this.counts.sceneNumber++
+    this.attachSceneSource(scene, sceneToken)
 
     while (!isTokenFor(this.input.peek(), TTS.OTHER_KW, KW.SCENE_END)) {
       this.skipNewLine()

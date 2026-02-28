@@ -1,3 +1,5 @@
+import { getAuthoringSchema as resolveAuthoringSchema } from './authoring/authoringSchema.mjs'
+
 class IFScript {
   /**
    * @param {Object} config - Configuration for the parser (paths, browser settings, etc.)
@@ -57,6 +59,14 @@ class IFScript {
   async createRuntime (options = {}) {
     const { default: RuntimeManager } = await import('./runtime/session/RuntimeManager.mjs')
     return new RuntimeManager(options)
+  }
+
+  getAuthoringSchema () {
+    return resolveAuthoringSchema()
+  }
+
+  static getAuthoringSchema () {
+    return resolveAuthoringSchema()
   }
 }
 

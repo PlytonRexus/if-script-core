@@ -1,6 +1,7 @@
 class AudioAdapter {
   constructor (options = {}) {
     this.debug = options.debug === true
+    this.onEvent = typeof options.onEvent === 'function' ? options.onEvent : null
     this.enabled = true
     this.paused = false
     this.activeSfx = new Set()
@@ -13,6 +14,18 @@ class AudioAdapter {
       storyAmbienceUrl: null,
       sceneMusicUrl: null,
       ambienceUrl: null
+    }
+  }
+
+  emitDebug (eventName, payload = {}) {
+    if (!this.onEvent) return
+    try {
+      this.onEvent(eventName, {
+        timestamp: Date.now(),
+        ...payload
+      })
+    } catch (err) {
+      // Ignore observer errors.
     }
   }
 
@@ -52,9 +65,19 @@ class AudioAdapter {
     if (!audio || audio._ifDebugBound) return
     audio.addEventListener('play', () => {
       this.logDebug(`${channelName} start`, this.getAudioUrl(audio))
+      this.emitDebug('audio_channel_event', {
+        channel: channelName,
+        event: 'start',
+        url: this.getAudioUrl(audio)
+      })
     })
     audio.addEventListener('ended', () => {
       this.logDebug(`${channelName} end`, this.getAudioUrl(audio))
+      this.emitDebug('audio_channel_event', {
+        channel: channelName,
+        event: 'ended',
+        url: this.getAudioUrl(audio)
+      })
       this.handleNaturalChannelEnd(channelName, audio)
     })
     audio._ifDebugBound = true
@@ -66,6 +89,11 @@ class AudioAdapter {
     if (playResult && typeof playResult.catch === 'function') {
       playResult.catch((err) => {
         this.logDebug(`${channelName} play blocked`, err && err.message ? err.message : String(err || 'unknown'))
+        this.emitDebug('audio_channel_event', {
+          channel: channelName,
+          event: 'play_blocked',
+          message: err && err.message ? err.message : String(err || 'unknown')
+        })
       })
     }
   }
@@ -147,6 +175,11 @@ class AudioAdapter {
     if (Object.prototype.hasOwnProperty.call(state, 'paused')) {
       this.paused = state.paused === true
     }
+    this.emitDebug('audio_state_changed', {
+      reason: 'state_restored',
+      state: this.getUiState(),
+      channels: this.getState()
+    })
   }
 
   setEnabled (enabled) {
@@ -154,9 +187,19 @@ class AudioAdapter {
     if (!this.enabled) {
       this.pauseChannels()
       this.stopSfx()
+      this.emitDebug('audio_state_changed', {
+        reason: 'set_enabled_false',
+        state: this.getUiState(),
+        channels: this.getState()
+      })
       return
     }
     if (!this.paused) this.resumePlayback()
+    this.emitDebug('audio_state_changed', {
+      reason: 'set_enabled_true',
+      state: this.getUiState(),
+      channels: this.getState()
+    })
   }
 
   hasStoryAmbience () {
@@ -233,6 +276,10 @@ class AudioAdapter {
       if (previousUrl) this.logDebug('storyAmbience end', this.normalizeDebugUrl(previousUrl))
       audio.pause()
       this.lastState.storyAmbienceUrl = null
+      this.emitDebug('audio_channel_event', {
+        channel: 'storyAmbience',
+        event: 'cleared'
+      })
       this.syncBackgroundPlayback()
       return
     }
@@ -241,6 +288,11 @@ class AudioAdapter {
       if (previousUrl) this.logDebug('storyAmbience end (source change)', this.normalizeDebugUrl(previousUrl))
       audio.src = url
       this.lastState.storyAmbienceUrl = url
+      this.emitDebug('audio_channel_event', {
+        channel: 'storyAmbience',
+        event: 'source_changed',
+        url: this.normalizeDebugUrl(url)
+      })
     }
     audio.loop = storySettings.storyAmbienceLoop !== undefined ? storySettings.storyAmbienceLoop : true
     audio.volume = typeof storySettings.storyAmbienceVolume === 'number' ? storySettings.storyAmbienceVolume : 1
@@ -257,6 +309,10 @@ class AudioAdapter {
       if (previousUrl) this.logDebug('sceneMusic end', this.normalizeDebugUrl(previousUrl))
       audio.pause()
       this.lastState.sceneMusicUrl = null
+      this.emitDebug('audio_channel_event', {
+        channel: 'sceneMusic',
+        event: 'cleared'
+      })
       this.syncBackgroundPlayback()
       return
     }
@@ -264,6 +320,11 @@ class AudioAdapter {
       if (previousUrl) this.logDebug('sceneMusic end (source change)', this.normalizeDebugUrl(previousUrl))
       audio.src = url
       this.lastState.sceneMusicUrl = url
+      this.emitDebug('audio_channel_event', {
+        channel: 'sceneMusic',
+        event: 'source_changed',
+        url: this.normalizeDebugUrl(url)
+      })
     }
     audio.loop = scene.musicLoop !== undefined ? scene.musicLoop : true
     audio.volume = typeof scene.musicVolume === 'number' ? scene.musicVolume : 1
@@ -280,6 +341,10 @@ class AudioAdapter {
       if (previousUrl) this.logDebug('ambience end', this.normalizeDebugUrl(previousUrl))
       audio.pause()
       this.lastState.ambienceUrl = null
+      this.emitDebug('audio_channel_event', {
+        channel: 'ambience',
+        event: 'cleared'
+      })
       this.syncBackgroundPlayback()
       return
     }
@@ -287,6 +352,11 @@ class AudioAdapter {
       if (previousUrl) this.logDebug('ambience end (source change)', this.normalizeDebugUrl(previousUrl))
       audio.src = url
       this.lastState.ambienceUrl = url
+      this.emitDebug('audio_channel_event', {
+        channel: 'ambience',
+        event: 'source_changed',
+        url: this.normalizeDebugUrl(url)
+      })
     }
     audio.loop = sectionSettings.ambienceLoop !== undefined ? sectionSettings.ambienceLoop : true
     audio.volume = typeof sectionSettings.ambienceVolume === 'number' ? sectionSettings.ambienceVolume : 1
@@ -330,6 +400,11 @@ class AudioAdapter {
     this.paused = true
     this.pauseChannels()
     this.stopSfx({ reset: false })
+    this.emitDebug('audio_state_changed', {
+      reason: 'paused',
+      state: this.getUiState(),
+      channels: this.getState()
+    })
   }
 
   resumePlayback () {
@@ -337,6 +412,11 @@ class AudioAdapter {
     if (!this.enabled) return
     this.syncBackgroundPlayback()
     this.resumeSfx()
+    this.emitDebug('audio_state_changed', {
+      reason: 'resumed',
+      state: this.getUiState(),
+      channels: this.getState()
+    })
   }
 
   resume () {
@@ -374,6 +454,11 @@ class AudioAdapter {
     this.stopSfx({ reset: true })
     if (clearState) this.clearChannels()
     if (resetPaused) this.paused = false
+    this.emitDebug('audio_state_changed', {
+      reason: 'stop_all',
+      state: this.getUiState(),
+      channels: this.getState()
+    })
   }
 }
 
