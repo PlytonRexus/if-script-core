@@ -5,6 +5,27 @@ const AUTHORING_SCHEMA = {
       title: 'Story',
       properties: [
         {
+          keyword: '@storyTitle',
+          field: 'name',
+          type: 'string',
+          defaultValue: null,
+          description: 'Story title used by runtime renderers.'
+        },
+        {
+          keyword: '@startAt',
+          field: 'startAt',
+          type: 'sectionTarget',
+          defaultValue: 0,
+          description: 'Initial section ref when runtime starts.'
+        },
+        {
+          keyword: '@referrable',
+          field: 'referrable',
+          type: 'boolean',
+          defaultValue: false,
+          description: 'Keep previous sections visible while advancing.'
+        },
+        {
           keyword: '@fullTimer',
           field: 'fullTimer',
           type: 'timerTarget',
@@ -64,6 +85,27 @@ const AUTHORING_SCHEMA = {
           description: 'Preferred runtime presentation mode.'
         },
         {
+          keyword: '@maxIterations',
+          field: 'maxIterations',
+          type: 'number',
+          defaultValue: 10000,
+          description: 'Maximum loop iterations before runtime aborts.'
+        },
+        {
+          keyword: '@maxCallDepth',
+          field: 'maxCallDepth',
+          type: 'number',
+          defaultValue: 1000,
+          description: 'Maximum function recursion/call depth.'
+        },
+        {
+          keyword: '@theme',
+          field: 'theme',
+          type: 'string',
+          defaultValue: 'literary-default',
+          description: 'Runtime theme preset.'
+        },
+        {
           keyword: '@allowUndo',
           field: 'allowUndo',
           type: 'boolean',
@@ -76,6 +118,13 @@ const AUTHORING_SCHEMA = {
           type: 'boolean',
           defaultValue: true,
           description: 'Enable runtime animations.'
+        },
+        {
+          keyword: '@showTurn',
+          field: 'showTurn',
+          type: 'boolean',
+          defaultValue: false,
+          description: 'Show turn counter in runtime UI.'
         },
         {
           keyword: '@autoSave',
@@ -256,6 +305,13 @@ const AUTHORING_SCHEMA = {
       title: 'Choice',
       properties: [
         {
+          keyword: '@input',
+          field: 'input',
+          type: 'variableName',
+          defaultValue: null,
+          description: 'Capture player input into the named variable.'
+        },
+        {
           keyword: '@targetType',
           field: 'targetType',
           type: 'enum',
@@ -269,6 +325,35 @@ const AUTHORING_SCHEMA = {
           type: 'targetRef',
           defaultValue: null,
           description: 'Target section/scene ref.'
+        },
+        {
+          keyword: '@action',
+          field: 'actions',
+          type: 'expression',
+          repeatable: true,
+          defaultValue: [],
+          description: 'Expression(s) executed when the choice is selected.'
+        },
+        {
+          keyword: '@when',
+          field: 'when',
+          type: 'expression',
+          defaultValue: null,
+          description: 'Conditional gate for visibility/availability.'
+        },
+        {
+          keyword: '@once',
+          field: 'once',
+          type: 'boolean',
+          defaultValue: false,
+          description: 'Consume this choice after first selection.'
+        },
+        {
+          keyword: '@disabledText',
+          field: 'disabledText',
+          type: 'string',
+          defaultValue: null,
+          description: 'Disabled row text when @when is false.'
         },
         {
           keyword: '@choiceSfx',

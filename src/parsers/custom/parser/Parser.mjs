@@ -35,13 +35,16 @@ class Parser {
    * @param {TokenStream} input
    * @param {ModuleLoader} moduleLoader - Optional module loader for handling imports
    */
-  constructor (input, moduleLoader = null) {
+  constructor (input, moduleLoader = null, metadataOptions = {}) {
     this.input = input
     this.utils = new ParserUtils()
     this.counts = { sectionNumber: 1, sceneNumber: 1, choiceNumber: 1 }
     this.moduleLoader = moduleLoader
     this.currentFile = input.input?.currentFile || '<inline>'
     this.statusConfigTarget = null
+    this.metadataOptions = {
+      includeSourceRange: metadataOptions?.includeSourceRange !== false
+    }
   }
 
   static async parseText (text) {
@@ -50,17 +53,17 @@ class Parser {
   }
 
   skipPunctuation (ch) {
-    if (this.utils.isPunctuation(this.input.peek(), ch)) this.input.next()
+    if (this.utils.isPunctuation(this.input.peek(), ch)) return this.input.next()
     else this.except('Expecting punctuation: "' + ch + '"')
   }
 
   skipPropertyKeyword (kw) {
-    if (this.utils.isPropertyKeyword(this.input.peek(), kw)) this.input.next()
+    if (this.utils.isPropertyKeyword(this.input.peek(), kw)) return this.input.next()
     else this.except('Expecting property: "' + kw + '"')
   }
 
   skipOtherKeyword (kw) {
-    if (this.utils.isOtherKeyword(this.input.peek(), kw)) this.input.next()
+    if (this.utils.isOtherKeyword(this.input.peek(), kw)) return this.input.next()
     else this.except('Expecting keyword: "' + kw + '"')
   }
 
@@ -70,7 +73,7 @@ class Parser {
   }
 
   skipChoiceStart () {
-    if (this.utils.isChoiceStart(this.input.peek())) this.input.next()
+    if (this.utils.isChoiceStart(this.input.peek())) return this.input.next()
     else this.except('Expecting choice starter')
   }
 
@@ -80,12 +83,13 @@ class Parser {
   }
 
   skipOperator (op) {
-    if (this.utils.isOperator(this.input.peek(), op)) this.input.next()
+    if (this.utils.isOperator(this.input.peek(), op)) return this.input.next()
     else this.except('Expecting operator: "' + op + '"')
   }
 
   skipConditionalToken (kw) {
-    if (this.utils.isConditionalKeyword(this.input.peek(), kw)) { this.input.next() } else this.except('Expecting conditional keyword: "' + kw + '"')
+    if (this.utils.isConditionalKeyword(this.input.peek(), kw)) return this.input.next()
+    else this.except('Expecting conditional keyword: "' + kw + '"')
   }
 
   unexpected () {
@@ -148,54 +152,87 @@ class Parser {
     return tok && tok.type === TTS.OPERATOR && tok.symbol === Operators.ARROW
   }
 
-  attachSectionSource (section, token, mode) {
-    if (!section || !token) return
+  _assignNonEnumerable (target, key, value) {
+    if (!target || typeof target !== 'object') return
+    if (Object.prototype.hasOwnProperty.call(target, key)) {
+      target[key] = value
+      return
+    }
+    Object.defineProperty(target, key, {
+      value,
+      configurable: true,
+      writable: true,
+      enumerable: false
+    })
+  }
+
+  _buildSourceRange (startToken, endToken) {
+    const start = startToken || endToken || null
+    const end = endToken || startToken || null
+    return {
+      file: this.currentFile || '<inline>',
+      startLine: typeof start?.line === 'number' ? start.line : null,
+      startCol: typeof start?.col === 'number' ? start.col : null,
+      endLine: typeof end?.line === 'number' ? end.line : null,
+      endCol: typeof end?.col === 'number' ? end.col : null
+    }
+  }
+
+  _attachNodeSource (node, startToken, mode, block, endToken = null) {
+    if (!node || !startToken) return
     const source = {
       file: this.currentFile || '<inline>',
-      line: typeof token.line === 'number' ? token.line : null,
-      col: typeof token.col === 'number' ? token.col : null,
+      line: typeof startToken?.line === 'number' ? startToken.line : null,
+      col: typeof startToken?.col === 'number' ? startToken.col : null,
       mode: mode === 'writer' ? 'writer' : 'legacy',
-      block: 'section'
+      block
     }
+    this._assignNonEnumerable(node, 'source', source)
+    if (this.metadataOptions.includeSourceRange) {
+      this._assignNonEnumerable(node, 'sourceRange', this._buildSourceRange(startToken, endToken || startToken))
+    }
+  }
 
-    Object.defineProperty(section, 'source', {
-      value: source,
-      configurable: true,
-      writable: true,
-      enumerable: false
+  _updateNodeSourceEnd (node, endToken) {
+    if (!node || !endToken || !this.metadataOptions.includeSourceRange) return
+    const source = node.source
+    const fallbackStart = {
+      line: typeof source?.line === 'number' ? source.line : null,
+      col: typeof source?.col === 'number' ? source.col : null
+    }
+    const startToken = {
+      line: fallbackStart.line,
+      col: fallbackStart.col
+    }
+    const existing = node.sourceRange && typeof node.sourceRange === 'object'
+      ? node.sourceRange
+      : null
+    const resolvedStart = existing
+      ? { line: existing.startLine, col: existing.startCol }
+      : startToken
+    this._assignNonEnumerable(node, 'sourceRange', {
+      file: this.currentFile || '<inline>',
+      startLine: typeof resolvedStart?.line === 'number' ? resolvedStart.line : null,
+      startCol: typeof resolvedStart?.col === 'number' ? resolvedStart.col : null,
+      endLine: typeof endToken?.line === 'number' ? endToken.line : null,
+      endCol: typeof endToken?.col === 'number' ? endToken.col : null
     })
   }
 
-  attachSceneSource (scene, token) {
-    if (!scene || !token) return
-    Object.defineProperty(scene, 'source', {
-      value: {
-        file: this.currentFile || '<inline>',
-        line: typeof token.line === 'number' ? token.line : null,
-        col: typeof token.col === 'number' ? token.col : null,
-        mode: 'legacy',
-        block: 'scene'
-      },
-      configurable: true,
-      writable: true,
-      enumerable: false
-    })
+  attachSectionSource (section, token, mode, endToken = null) {
+    this._attachNodeSource(section, token, mode, 'section', endToken)
   }
 
-  attachChoiceSource (choice, token, mode = 'legacy') {
-    if (!choice || !token) return
-    Object.defineProperty(choice, 'source', {
-      value: {
-        file: this.currentFile || '<inline>',
-        line: typeof token.line === 'number' ? token.line : null,
-        col: typeof token.col === 'number' ? token.col : null,
-        mode: mode === 'writer' ? 'writer' : 'legacy',
-        block: 'choice'
-      },
-      configurable: true,
-      writable: true,
-      enumerable: false
-    })
+  attachSceneSource (scene, token, endToken = null) {
+    this._attachNodeSource(scene, token, 'legacy', 'scene', endToken)
+  }
+
+  attachChoiceSource (choice, token, mode = 'legacy', endToken = null) {
+    this._attachNodeSource(choice, token, mode, 'choice', endToken)
+  }
+
+  attachLogicSource (node, token, block, endToken = null) {
+    this._attachNodeSource(node, token, 'legacy', block, endToken)
   }
 
   parseExpression () {
@@ -216,6 +253,7 @@ class Parser {
           left,
           this.maybeBinary(immediateRight, currentPrecedence)
         )
+        this.attachLogicSource(action, tok, 'action', tok)
         return this.maybeBinary(action, givenPrecedence)
       }
     }
@@ -281,7 +319,7 @@ class Parser {
   }
 
   parseConditionalBlock () {
-    this.skipConditionalToken(KW.IF_BLOCK_START)
+    const startToken = this.skipConditionalToken(KW.IF_BLOCK_START)
     const cond = this.parseExpression()
     if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_OPEN)) {
       this.skipConditionalToken(KW.THEN)
@@ -301,6 +339,7 @@ class Parser {
         // }
         this.input.next()
       }
+      this.attachLogicSource(ret, startToken, 'conditional', this.input.current || startToken)
       return ret
     } else if (this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_OPEN)) {
       this.input.next()
@@ -339,6 +378,7 @@ class Parser {
           ret.elseBlock = [elseExpr]
         }
       }
+      this.attachLogicSource(ret, startToken, 'conditional', this.input.current || this.input.peek() || startToken)
       return ret
     }
   }
@@ -405,6 +445,8 @@ class Parser {
       if (!(component instanceof ConditionalBlock)) tok = this.input.next()
     }
 
+    const endToken = this.utils.isSectionEnd(this.input.peek()) ? this.input.peek() : tok
+    this._updateNodeSourceEnd(section, endToken || tok)
     return section
   }
 
@@ -428,6 +470,7 @@ class Parser {
       const tok = this.input.peek()
       if (!tok) break
       if (this._isWriterSectionEndToken(tok)) {
+        this._updateNodeSourceEnd(section, tok)
         return section
       }
 
@@ -535,7 +578,7 @@ class Parser {
     }
     const ownerTargetText = { owner: undefined, target: targetTok.symbol, text: [textTok] }
     const choice = new Choice(ownerTargetText, props)
-    this.attachChoiceSource(choice, arrowTok, 'writer')
+    this.attachChoiceSource(choice, arrowTok, 'writer', targetTok)
     return choice
   }
 
@@ -606,7 +649,8 @@ class Parser {
       if (!(component instanceof ConditionalBlock)) tok = this.input.next()
     }
 
-    this.attachChoiceSource(choice, startToken, 'legacy')
+    const endToken = this.utils.isTokenFor(this.input.peek(), TTS.CHOICE_END) ? this.input.peek() : tok
+    this.attachChoiceSource(choice, startToken, 'legacy', endToken || startToken)
     return choice
   }
 
@@ -1084,6 +1128,8 @@ class Parser {
       } else this.unexpected()
       if (isTokenFor(this.input.peek(), TTS.OTHER_KW, KW.SCENE_END)) break
     }
+    const endToken = this.utils.isTokenFor(this.input.peek(), TTS.OTHER_KW, KW.SCENE_END) ? this.input.peek() : sceneToken
+    this._updateNodeSourceEnd(scene, endToken)
     return scene
   }
 
@@ -1111,9 +1157,11 @@ class Parser {
     if (this.utils.isOperator(this.input.peek())) {
       const sym = this.input.peek().symbol
       if (sym === '-' || sym === '!') {
-        this.input.next()
+        const unaryTok = this.input.next()
         const operand = this.parseAtom()
-        return new Action('unary', sym, operand, null)
+        const action = new Action('unary', sym, operand, null)
+        this.attachLogicSource(action, unaryTok, 'action', unaryTok)
+        return action
       }
     }
 
@@ -1190,7 +1238,7 @@ class Parser {
   }
 
   parseWhileLoop () {
-    this.input.next()
+    const loopToken = this.input.next()
     this.skipPunctuation(Punctuations.PARENTHESIS_OPEN)
     const condition = this.parseExpression()
     this.skipPunctuation(Punctuations.PARENTHESIS_CLOSE)
@@ -1205,12 +1253,14 @@ class Parser {
       body.push(this.parseExpression())
       this.skipNewLine()
     }
-    this.skipPunctuation(Punctuations.BRACE_CLOSE)
-    return new Loop({ loopType: 'while', condition, body })
+    const endToken = this.skipPunctuation(Punctuations.BRACE_CLOSE)
+    const loop = new Loop({ loopType: 'while', condition, body })
+    this.attachLogicSource(loop, loopToken, 'loop', endToken || loopToken)
+    return loop
   }
 
   parseFunctionDef () {
-    this.input.next()
+    const fnToken = this.input.next()
     const nameTok = this.input.peek()
     if (nameTok.type !== TTS.VARIABLE) {
       this.except('Expected function name')
@@ -1246,8 +1296,10 @@ class Parser {
       body.push(this.parseExpression())
       this.skipNewLine()
     }
-    this.skipPunctuation(Punctuations.BRACE_CLOSE)
-    return new FunctionDef({ name, params, body })
+    const endToken = this.skipPunctuation(Punctuations.BRACE_CLOSE)
+    const fn = new FunctionDef({ name, params, body })
+    this.attachLogicSource(fn, fnToken, 'function', endToken || fnToken)
+    return fn
   }
 
   parseBreakStatement () {
@@ -1263,14 +1315,16 @@ class Parser {
   }
 
   parseReturnStatement () {
-    this.input.next()
+    const returnTok = this.input.next()
     this.skipNewLine()
     let value = null
     if (!this.utils.isPunctuation(this.input.peek(), Punctuations.BRACE_CLOSE) &&
         this.input.peek().type !== TTS.NEWLINE_CHAR) {
       value = this.parseExpression()
     }
-    return new Action('return', null, value, null)
+    const action = new Action('return', null, value, null)
+    this.attachLogicSource(action, returnTok, 'action', returnTok)
+    return action
   }
 
   /**
