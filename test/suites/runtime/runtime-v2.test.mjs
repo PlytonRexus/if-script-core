@@ -278,7 +278,7 @@ async function testRuntimeInterpolatesFunctionTemplatesInStoryText () {
   const evidenceDigestTemplate = '$' + '{evidenceDigest()}'
 
   const storyText = await fs.readFile(
-    new URL('../../fixtures/stories/a-stranger-in-veracruz.if', import.meta.url),
+    new URL('../../fixtures/stories/stranger/a-stranger-in-veracruz.if', import.meta.url),
     'utf8'
   )
   const story = await ifScript.parse(storyText, 'a-stranger-in-veracruz.if')
@@ -473,6 +473,220 @@ __section
   }
 }
 
+async function testRuntimeSeedsInitialVariablesAtStart () {
+  const storyText = `
+settings__
+  @storyTitle "Seed variables"
+  @startAt "Entry"
+__settings
+
+section__
+  @title "Entry"
+  "Name: \${player}"
+  choice__
+    @target "Preview"
+    "Go"
+  __choice
+__section
+
+section__
+  @title "Preview"
+  "Name: \${player}; hp=\${hp}"
+  choice__
+    @target "Entry"
+    "Back"
+  __choice
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-seed-start.if')
+  const runtime = await ifScript.createRuntime()
+
+  try {
+    const view = runtime.start(story, {
+      startAt: 'Preview',
+      resume: false,
+      initialVariables: {
+        player: 'Elena',
+        hp: 7,
+        flags: ['dock'],
+        profile: { city: 'Veracruz' },
+        turn: 99
+      }
+    })
+
+    assert(view && view.section && view.section.serial === 1, 'runtime should honor startAt when previewing a section')
+    assert(String(view.section.bodyText || '').includes('Name: Elena; hp=7'), 'seeded variables should be rendered in section body')
+    assertEqual(runtime.engine.run.state.variables.player, 'Elena', 'seeded string variable should be set')
+    assertEqual(runtime.engine.run.state.variables.hp, 7, 'seeded number variable should be set')
+    assertEqual(runtime.engine.run.state.variables.flags[0], 'dock', 'seeded array variable should be set')
+    assertEqual(runtime.engine.run.state.variables.profile.city, 'Veracruz', 'seeded object variable should be set')
+    assertEqual(runtime.engine.run.state.variables.turn, 0, 'turn should stay runtime-managed')
+  } finally {
+    runtime.destroy()
+  }
+}
+
+async function testRuntimeRestartPreservesSectionPreviewBootOptions () {
+  const storyText = `
+settings__
+  @storyTitle "Restart preserves preview"
+  @startAt "Default"
+__settings
+
+section__
+  @title "Default"
+  "Default start"
+  choice__
+    @target "Preview"
+    "Go"
+  __choice
+__section
+
+section__
+  @title "Preview"
+  "Preview name: \${player}"
+  choice__
+    @target "Default"
+    "Back"
+  __choice
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-restart-preview.if')
+  const runtime = await ifScript.createRuntime()
+
+  try {
+    runtime.start(story, {
+      startAt: 'Preview',
+      resume: false,
+      initialVariables: { player: 'Ariadne' }
+    })
+    runtime.engine.run.state.variables.player = 'Mutated'
+    const restarted = runtime.restart()
+
+    assert(restarted && restarted.section && restarted.section.serial === 1, 'restart should keep explicit preview startAt')
+    assert(String(restarted.section.bodyText || '').includes('Ariadne'), 'restart should reapply initial variables')
+    assertEqual(runtime.engine.run.state.variables.player, 'Ariadne', 'restart should reset seeded variable values')
+    assertEqual(runtime.engine.run.state.variables.turn, 0, 'restart should keep turn runtime-managed')
+  } finally {
+    runtime.destroy()
+  }
+}
+
+async function testAuthoringSchemaApiSurface () {
+  const staticSchema = IFScript.getAuthoringSchema()
+  assert(staticSchema && staticSchema.contexts, 'IFScript.getAuthoringSchema should return schema object')
+  assert(Array.isArray(staticSchema.contexts.story.properties), 'story schema should include properties')
+  assert(
+    staticSchema.contexts.scene.properties.some(prop => prop.keyword === '@sceneTransition'),
+    'scene schema should include @sceneTransition'
+  )
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const instanceSchema = ifScript.getAuthoringSchema()
+  assertEqual(instanceSchema.version, staticSchema.version, 'instance schema should match static schema version')
+  assert(
+    instanceSchema.contexts.section.properties.some(prop => prop.keyword === '@textPacing'),
+    'section schema should expose cinematic properties'
+  )
+}
+
+async function testParserEmitsSceneAndChoiceSourceMetadata () {
+  const storyText = `
+scene__
+  @name "Intro Scene"
+  @first "Start"
+  @sections "Start"
+__scene
+
+section__
+  @title "Start"
+  choice__
+    @target "Start"
+    "Loop"
+  __choice
+__section
+`
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-source-metadata.if')
+
+  const scene = story.scenes[0]
+  assert(scene && scene.source, 'scene source metadata should be present')
+  assertEqual(scene.source.file, 'runtime-v2-source-metadata.if', 'scene source should include source file')
+  assert(typeof scene.source.line === 'number' && scene.source.line > 0, 'scene source should include line number')
+
+  const choice = story.sections[0] && story.sections[0].choices ? story.sections[0].choices[0] : null
+  assert(choice && choice.source, 'choice source metadata should be present')
+  assertEqual(choice.source.mode, 'legacy', 'legacy choice should report legacy source mode')
+  assertEqual(choice.source.file, 'runtime-v2-source-metadata.if', 'choice source should include source file')
+}
+
+async function testRuntimeExposesDebugSnapshotAndEvents () {
+  const storyText = `
+settings__
+  @storyTitle "Runtime debug"
+  @startAt "Start"
+  @fullTimer 25 "Start"
+__settings
+
+scene__
+  @name "Opening"
+  @first "Start"
+  @sections "Start"
+__scene
+
+section__
+  @title "Start"
+  @timer 10 "Start"
+  "Tick"
+  choice__
+    @target "Start"
+    "Loop"
+  __choice
+__section
+`
+
+  const ifScript = new IFScript(versions.STREAM)
+  await ifScript.init()
+  const story = await ifScript.parse(storyText, 'runtime-v2-debug-snapshot.if')
+  const runtime = await ifScript.createRuntime()
+
+  const seenEvents = {
+    timerState: 0,
+    sceneResolved: 0
+  }
+
+  const unsubscribeTimer = runtime.on('timer_state_changed', () => {
+    seenEvents.timerState += 1
+  })
+  const unsubscribeScene = runtime.on('scene_resolved', () => {
+    seenEvents.sceneResolved += 1
+  })
+
+  try {
+    runtime.start(story, { resume: false })
+    const snapshot = runtime.getDebugSnapshot()
+    assert(snapshot && snapshot.engine, 'runtime.getDebugSnapshot should include engine payload')
+    assert(Array.isArray(snapshot.timeline), 'runtime.getDebugSnapshot should include timeline entries')
+    assert(snapshot.engine.scene && snapshot.engine.scene.name === 'Opening', 'debug snapshot should include resolved scene')
+    assert(
+      snapshot.engine.timers && Array.isArray(snapshot.engine.timers.active) && snapshot.engine.timers.active.length >= 1,
+      'debug snapshot should include active timers'
+    )
+    assert(seenEvents.timerState > 0, 'runtime should emit timer_state_changed events')
+    assert(seenEvents.sceneResolved > 0, 'runtime should emit scene_resolved events')
+  } finally {
+    if (typeof unsubscribeTimer === 'function') unsubscribeTimer()
+    if (typeof unsubscribeScene === 'function') unsubscribeScene()
+    runtime.destroy()
+  }
+}
+
 export async function runRuntimeV2Tests () {
   return runTestSuite('Runtime v2 / Metadata Tests', [
     { name: 'createRuntime factory', fn: testCreateRuntimeFactory },
@@ -485,7 +699,12 @@ export async function runRuntimeV2Tests () {
     { name: 'interpolate function templates in example story text', fn: testRuntimeInterpolatesFunctionTemplatesInStoryText },
     { name: 'prevent statement call value leaks in body text', fn: testStatementFunctionCallsDoNotLeakIntoNarrativeText },
     { name: 'expose active timer metadata in view model', fn: testRuntimeExposesActiveTimerMetadataInViewModel },
-    { name: 'resolve scene music for title-based scene refs', fn: testSceneMusicResolvesTitleBasedSceneRefs }
+    { name: 'resolve scene music for title-based scene refs', fn: testSceneMusicResolvesTitleBasedSceneRefs },
+    { name: 'seed initialVariables at start', fn: testRuntimeSeedsInitialVariablesAtStart },
+    { name: 'preserve preview boot options on restart', fn: testRuntimeRestartPreservesSectionPreviewBootOptions },
+    { name: 'expose authoring schema API', fn: testAuthoringSchemaApiSurface },
+    { name: 'emit parser source metadata for scene and choice blocks', fn: testParserEmitsSceneAndChoiceSourceMetadata },
+    { name: 'expose runtime debug snapshot and scene/timer events', fn: testRuntimeExposesDebugSnapshotAndEvents }
   ])
 }
 

@@ -48,6 +48,7 @@ class IFSectionView extends BaseHTMLElement {
         }
         if-choice-list {
           font-size: clamp(16px, 2.2vw, 21px);
+          font-family: var(--if-font-body, "Alegreya", serif);
         }
       </style>
       <article class="section" part="section">

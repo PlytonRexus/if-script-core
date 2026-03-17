@@ -1,11 +1,21 @@
 {
   "name": "if-script-core",
-  "version": "0.5.8",
+  "version": "0.6.1",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
   "bin": {
     "ifs": "./bin/index.mjs"
   },
   "main": "index.mjs",
+  "browser": {
+    "./src/parsers/custom/loader/NodeFileAdapter.mjs": "./src/parsers/custom/loader/BrowserFileAdapter.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "index.mjs",
+    "README.md",
+    "CONTRIBUTING.md"
+  ],
   "scripts": {
     "lint": "npx standard",
     "test": "node test/runners/run-all-tests.mjs",

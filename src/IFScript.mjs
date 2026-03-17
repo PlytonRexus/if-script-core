@@ -1,3 +1,6 @@
+import { getAuthoringSchema as resolveAuthoringSchema } from './authoring/authoringSchema.mjs'
+import { getLegacyAuthoringEmitters } from './authoring/legacyEmitters.mjs'
+
 class IFScript {
   /**
    * @param {Object} config - Configuration for the parser (paths, browser settings, etc.)
@@ -30,7 +33,7 @@ class IFScript {
 
     // Create parser factory
     const parserFactory = (tokenStream, loader) => {
-      return new Parser(tokenStream, loader)
+      return new Parser(tokenStream, loader, this.config?.parseMetadata || {})
     }
 
     // Create module loader
@@ -44,11 +47,14 @@ class IFScript {
     this.moduleLoader = moduleLoader
 
     // Update parse method to use module loader
-    this.parse = async (text, filePath = '<inline>') => {
+    this.parse = async (text, filePath = '<inline>', parseMetadata = null) => {
       const is = new InputStream(text)
       is.currentFile = filePath
       const ts = new TokenStream(is)
-      return await new Parser(ts, moduleLoader).parseStory()
+      const metadataOptions = parseMetadata && typeof parseMetadata === 'object'
+        ? { ...this.config?.parseMetadata, ...parseMetadata }
+        : (this.config?.parseMetadata || {})
+      return await new Parser(ts, moduleLoader, metadataOptions).parseStory()
     }
 
     this.Parser = Parser
@@ -57,6 +63,22 @@ class IFScript {
   async createRuntime (options = {}) {
     const { default: RuntimeManager } = await import('./runtime/session/RuntimeManager.mjs')
     return new RuntimeManager(options)
+  }
+
+  getAuthoringSchema () {
+    return resolveAuthoringSchema()
+  }
+
+  static getAuthoringSchema () {
+    return resolveAuthoringSchema()
+  }
+
+  getAuthoringEmitters () {
+    return getLegacyAuthoringEmitters()
+  }
+
+  static getAuthoringEmitters () {
+    return getLegacyAuthoringEmitters()
   }
 }
 
