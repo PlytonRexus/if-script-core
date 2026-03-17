@@ -53,6 +53,26 @@ yargsc.command({
       describe: 'Optional report file path for kindle-html target',
       type: 'string',
       demandOption: false
+    },
+    'kindle-config': {
+      describe: 'Path to Kindle export config JSON',
+      type: 'string',
+      demandOption: false
+    },
+    package: {
+      describe: 'Optional packaging mode for kindle-html target',
+      choices: ['none', 'mobi'],
+      default: 'none'
+    },
+    converter: {
+      describe: 'Kindle packaging converter',
+      choices: ['auto', 'kindlepreviewer', 'calibre', 'html-to-mobi', 'mobi-zipper', 'none'],
+      default: 'auto'
+    },
+    'mobi-output-file': {
+      describe: 'Optional .mobi output path when --package mobi is used',
+      type: 'string',
+      demandOption: false
     }
   },
   handler: function (argv) {
@@ -82,6 +102,11 @@ yargsc.command({
       describe: 'Diagnostics profile',
       choices: ['default', 'kindle-any', 'kindle-strict'],
       default: 'default'
+    },
+    'kindle-config': {
+      describe: 'Path to Kindle export config JSON',
+      type: 'string',
+      demandOption: false
     }
   },
   handler: (argv) => check(argv)

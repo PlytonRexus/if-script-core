@@ -5,9 +5,10 @@ import BUILTINS from '../interpreters/custom/Builtins.mjs'
 import {
   DEFAULT_PROFILE,
   KINDLE_STRICT_PROFILE,
-  analyzeKindleCompatibility,
   isKnownProfile
 } from './kindle-profile.mjs'
+import compileKindle from './compile-kindle.mjs'
+import { loadKindleConfig } from './kindle-config.mjs'
 
 function makeDiagnostic (severity, code, message, {
   file = null,
@@ -290,6 +291,7 @@ async function check (argv) {
   const inputPath = path.resolve(cwd, inputArg)
   const asJson = argv.json === true
   const profile = String(argv.profile || DEFAULT_PROFILE)
+  const kindleConfigArg = argv['kindle-config']
 
   try {
     if (!isKnownProfile(profile)) {
@@ -303,8 +305,36 @@ async function check (argv) {
     const parsed = await ifscript.parse(content, inputPath)
     const diagnostics = analyzeStory(parsed, inputPath)
     if (profile !== DEFAULT_PROFILE) {
-      const kindleAnalysis = analyzeKindleCompatibility(parsed, inputPath, profile)
-      diagnostics.push(...kindleAnalysis.diagnostics)
+      let kindleConfig = null
+      if (kindleConfigArg) {
+        try {
+          kindleConfig = await loadKindleConfig(kindleConfigArg, cwd)
+        } catch (error) {
+          diagnostics.push(makeDiagnostic('error', error.code || 'KINDLE_CONFIG_INVALID', error.message, {
+            file: error.file || inputPath,
+            hint: error.hint || null
+          }))
+        }
+      }
+
+      if (!diagnostics.some(d => d.severity === 'error' && d.code === 'KINDLE_CONFIG_INVALID')) {
+        const kindleCheck = await compileKindle({
+          story: parsed,
+          inputPath,
+          outputDir: path.resolve(cwd, '.ifscript-kindle-check'),
+          reportFile: null,
+          profile,
+          kindleConfig,
+          dryRun: true
+        })
+        const seen = new Set(diagnostics.map(d => `${d.severity}|${d.code}|${d.message}`))
+        kindleCheck.diagnostics.forEach((diagnostic) => {
+          const key = `${diagnostic.severity}|${diagnostic.code}|${diagnostic.message}`
+          if (seen.has(key)) return
+          seen.add(key)
+          diagnostics.push(diagnostic)
+        })
+      }
     }
     const errors = diagnostics.filter(d => d.severity === 'error').length
     const warnings = diagnostics.filter(d => d.severity === 'warning').length
