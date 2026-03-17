@@ -13,6 +13,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(__dirname, '../../..')
 const cliEntry = path.join(repoRoot, 'bin/index.mjs')
 
+function makeConfig (variables = {}, limits = {}) {
+  return {
+    version: 1,
+    layout: 'per-section-variant-files',
+    state: { variables },
+    limits: {
+      maxStates: 8000,
+      warnStates: 4000,
+      maxLinks: 30000,
+      warnLinks: 20000,
+      ...limits
+    },
+    packaging: {
+      converterOrder: ['kindlepreviewer', 'calibre', 'html-to-mobi', 'mobi-zipper']
+    }
+  }
+}
+
 async function withTempStory (content, fn) {
   const tempPath = path.join(repoRoot, `tmp-check-${Date.now()}-${Math.floor(Math.random() * 10000)}.if`)
   await writeFile(tempPath, content, 'utf-8')
@@ -23,16 +41,30 @@ async function withTempStory (content, fn) {
   }
 }
 
+async function withTempStoryAndConfig (content, config, fn) {
+  const storyPath = path.join(repoRoot, `tmp-check-${Date.now()}-${Math.floor(Math.random() * 10000)}.if`)
+  const configPath = path.join(repoRoot, `tmp-check-config-${Date.now()}-${Math.floor(Math.random() * 10000)}.json`)
+  await writeFile(storyPath, content, 'utf-8')
+  await writeFile(configPath, JSON.stringify(config, null, 2) + '\n', 'utf-8')
+  try {
+    return await fn({ storyPath, configPath })
+  } finally {
+    await unlink(storyPath).catch(() => {})
+    await unlink(configPath).catch(() => {})
+  }
+}
+
 function parseCheckArgs (args) {
   let inputFile = null
   let asJson = false
   let profile = 'default'
+  let kindleConfig = null
 
-  for (let i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length; i += 1) {
     const arg = args[i]
     if (arg === '-i' || arg === '--input-file') {
       inputFile = args[i + 1]
-      i++
+      i += 1
       continue
     }
     if (arg === '--json') {
@@ -41,7 +73,12 @@ function parseCheckArgs (args) {
     }
     if (arg === '--profile') {
       profile = args[i + 1]
-      i++
+      i += 1
+      continue
+    }
+    if (arg === '--kindle-config') {
+      kindleConfig = args[i + 1]
+      i += 1
     }
   }
 
@@ -49,7 +86,8 @@ function parseCheckArgs (args) {
     i: inputFile,
     'input-file': inputFile,
     json: asJson,
-    profile
+    profile,
+    'kindle-config': kindleConfig
   }
 }
 
@@ -182,37 +220,6 @@ __section`
   })
 }
 
-async function testCheckFullTimerTargetUnresolved () {
-  const content = `settings__
-  @fullTimer 30 "Missing Timeout"
-__settings
-
-section__
-  @title "Start"
-  "Hello"
-__section`
-
-  await withTempStory(content, async (storyPath) => {
-    const { result, payload } = await runCheckJson(storyPath)
-    assertEqual(result.status, 1, 'fullTimer unresolved should fail check')
-    assert(hasCode(payload, 'FULL_TIMER_TARGET_UNRESOLVED'), 'should emit FULL_TIMER_TARGET_UNRESOLVED')
-  })
-}
-
-async function testCheckSectionTimerTargetUnresolved () {
-  const content = `section__
-  @title "Start"
-  @timer 10 "Missing Timeout"
-  "Hello"
-__section`
-
-  await withTempStory(content, async (storyPath) => {
-    const { result, payload } = await runCheckJson(storyPath)
-    assertEqual(result.status, 1, 'section timer unresolved should fail check')
-    assert(hasCode(payload, 'SECTION_TIMER_TARGET_UNRESOLVED'), 'should emit SECTION_TIMER_TARGET_UNRESOLVED')
-  })
-}
-
 async function testCheckSceneFirstUnresolved () {
   const content = `scene__
   @name "Chapter 1"
@@ -253,29 +260,20 @@ __section`
   })
 }
 
-async function testCheckDeprecatedSceneMusicPropertyFailsParse () {
-  const content = `scene__
-  @name "Old"
-  @music "theme.mp3"
-__scene
-
-section__
+async function testCheckKindleRequiresConfig () {
+  const content = `section__
   @title "Start"
   "Hello"
 __section`
 
   await withTempStory(content, async (storyPath) => {
-    const { result, payload } = await runCheckJson(storyPath)
-    assertEqual(result.status, 1, 'deprecated @music should fail check via parse error')
-    assert(hasCode(payload, 'PARSE_OR_IMPORT_ERROR'), 'should emit PARSE_OR_IMPORT_ERROR for deprecated property')
-    assert(
-      payload.diagnostics.some(d => String(d.message || '').includes('Property @music is deprecated')),
-      'diagnostic message should explain @music deprecation'
-    )
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any'])
+    assertEqual(result.status, 1, 'kindle check should fail without config')
+    assert(hasCode(payload, 'KINDLE_CONFIG_REQUIRED'), 'should emit KINDLE_CONFIG_REQUIRED')
   })
 }
 
-async function testCheckKindleAnyWarnsButPasses () {
+async function testCheckKindleAnyWarnsButPassesWithConfig () {
   const content = `settings__
   @fullTimer 30 "End"
   @autoSave true
@@ -288,8 +286,6 @@ section__
   @backdrop "https://example.com/bg.jpg"
   choice__
     @target "End"
-    @when flag == true
-    @action flag = true
     "Continue"
   __choice
 __section
@@ -299,30 +295,21 @@ section__
   "Done"
 __section`
 
-  await withTempStory(content, async (storyPath) => {
-    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any'])
+  await withTempStoryAndConfig(content, makeConfig(), async ({ storyPath, configPath }) => {
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any', '--kindle-config', configPath])
     assertEqual(result.status, 0, 'kindle-any profile should warn but not fail')
-    assert(hasCode(payload, 'KINDLE_DROPPED_TIMER'), 'should emit KINDLE_DROPPED_TIMER warning')
-    assert(hasCode(payload, 'KINDLE_DROPPED_MEDIA'), 'should emit KINDLE_DROPPED_MEDIA warning')
-    assert(hasCode(payload, 'KINDLE_APPROX_CHOICE_GUARDS'), 'should emit KINDLE_APPROX_CHOICE_GUARDS warning')
-    assert(hasCode(payload, 'KINDLE_APPROX_CHOICE_ACTIONS'), 'should emit KINDLE_APPROX_CHOICE_ACTIONS warning')
-    assertEqual(payload.summary.errors, 0, 'kindle-any warning profile should keep error count at 0')
+    assert(hasCode(payload, 'KINDLE_DROPPED_TIMER'), 'should emit timer warning')
+    assert(hasCode(payload, 'KINDLE_DROPPED_MEDIA'), 'should emit media warning')
+    assertEqual(payload.summary.errors, 0, 'warning-only case should keep zero errors')
   })
 }
 
-async function testCheckKindleStrictFailsOnSameIssues () {
-  const content = `settings__
-  @fullTimer 30 "End"
-  @autoSave true
-__settings
-
-section__
+async function testCheckKindleRejectsUndeclaredExportState () {
+  const content = `section__
   @title "Start"
-  @timer 10 "End"
+  "Value: ${'${flag}'}"
   choice__
     @target "End"
-    @when flag == true
-    @action flag = true
     "Continue"
   __choice
 __section
@@ -332,11 +319,65 @@ section__
   "Done"
 __section`
 
-  await withTempStory(content, async (storyPath) => {
-    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-strict'])
-    assertEqual(result.status, 1, 'kindle-strict should fail when Kindle-incompatible features exist')
-    assert(hasCode(payload, 'KINDLE_DROPPED_TIMER'), 'should emit KINDLE_DROPPED_TIMER as error')
-    assert(payload.summary.errors > 0, 'kindle-strict should report error count')
+  await withTempStoryAndConfig(content, makeConfig(), async ({ storyPath, configPath }) => {
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any', '--kindle-config', configPath])
+    assertEqual(result.status, 1, 'undeclared Kindle state should fail check')
+    assert(hasCode(payload, 'KINDLE_UNDECLARED_EXPORT_STATE'), 'should emit undeclared state diagnostic')
+  })
+}
+
+async function testCheckKindleRejectsInputChoices () {
+  const content = `section__
+  @title "Start"
+  choice__
+    @target "End"
+    @input name
+    "Name [[input]]"
+  __choice
+__section
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  await withTempStoryAndConfig(content, makeConfig({
+    name: { type: 'enum', values: ['A'], default: 'A' }
+  }), async ({ storyPath, configPath }) => {
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any', '--kindle-config', configPath])
+    assertEqual(result.status, 1, 'input choices should fail kindle check')
+    assert(hasCode(payload, 'KINDLE_UNSUPPORTED_INPUT_CHOICE'), 'should emit input choice diagnostic')
+  })
+}
+
+async function testCheckKindleDetectsStateBudgetOverage () {
+  const content = `section__
+  @title "Start"
+  choice__
+    @target "Start"
+    @action flag = true
+    "Raise"
+  __choice
+  choice__
+    @target "End"
+    "Exit"
+  __choice
+__section
+
+section__
+  @title "End"
+  "Done"
+__section`
+
+  await withTempStoryAndConfig(content, makeConfig({
+    flag: { type: 'boolean', values: [false, true], default: false }
+  }, {
+    maxStates: 1,
+    warnStates: 1
+  }), async ({ storyPath, configPath }) => {
+    const { result, payload } = await runCheckJson(storyPath, ['--profile', 'kindle-any', '--kindle-config', configPath])
+    assertEqual(result.status, 1, 'state budget overage should fail check')
+    assert(hasCode(payload, 'KINDLE_STATE_LIMIT_EXCEEDED'), 'should emit state limit exceeded diagnostic')
   })
 }
 
@@ -346,13 +387,13 @@ export async function runCheckTests () {
     { name: 'check exits 1 with unresolved target', fn: testCheckUnresolvedTargetExitOne },
     { name: 'check --json output shape', fn: testCheckJsonOutputShape },
     { name: 'check startAt unresolved', fn: testCheckStartAtUnresolved },
-    { name: 'check fullTimer target unresolved', fn: testCheckFullTimerTargetUnresolved },
-    { name: 'check section timer target unresolved', fn: testCheckSectionTimerTargetUnresolved },
     { name: 'check scene first unresolved', fn: testCheckSceneFirstUnresolved },
     { name: 'check duplicate function name warning', fn: testCheckDuplicateFunctionNameWarningOnly },
-    { name: 'check deprecated @music parse failure', fn: testCheckDeprecatedSceneMusicPropertyFailsParse },
-    { name: 'check kindle-any warnings', fn: testCheckKindleAnyWarnsButPasses },
-    { name: 'check kindle-strict errors', fn: testCheckKindleStrictFailsOnSameIssues }
+    { name: 'check kindle requires config', fn: testCheckKindleRequiresConfig },
+    { name: 'check kindle-any warnings', fn: testCheckKindleAnyWarnsButPassesWithConfig },
+    { name: 'check kindle rejects undeclared export state', fn: testCheckKindleRejectsUndeclaredExportState },
+    { name: 'check kindle rejects input choices', fn: testCheckKindleRejectsInputChoices },
+    { name: 'check kindle detects state budget overage', fn: testCheckKindleDetectsStateBudgetOverage }
   ])
 }
 

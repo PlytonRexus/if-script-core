@@ -8,6 +8,7 @@ import {
   KINDLE_PROFILES,
   isKindleProfile
 } from './kindle-profile.mjs'
+import { loadKindleConfig } from './kindle-config.mjs'
 
 const TARGET_JSON = 'json'
 const TARGET_KINDLE_HTML = 'kindle-html'
@@ -21,6 +22,10 @@ async function compile (argv) {
   let profileArg = String(argv.profile || DEFAULT_PROFILE)
   const outputDirArg = argv['output-dir']
   const reportFileArg = argv['report-file']
+  const kindleConfigArg = argv['kindle-config']
+  const packageArg = String(argv.package || 'none')
+  const mobiOutputArg = argv['mobi-output-file']
+  const converterArg = String(argv.converter || 'auto')
 
   const inputPath = path.resolve(cwd, inputArg)
   if (!SUPPORTED_TARGETS.includes(targetArg)) {
@@ -38,6 +43,9 @@ async function compile (argv) {
     }
     if (!outputDirArg) {
       throw new Error('Kindle compile target requires --output-dir.')
+    }
+    if (!kindleConfigArg) {
+      throw new Error('Kindle compile target requires --kindle-config.')
     }
   }
 
@@ -60,18 +68,28 @@ async function compile (argv) {
   const reportFile = reportFileArg
     ? path.resolve(cwd, reportFileArg)
     : path.resolve(outputDir, 'kindle-report.json')
+  const kindleConfig = await loadKindleConfig(kindleConfigArg, cwd)
+  const mobiOutputFile = mobiOutputArg
+    ? path.resolve(cwd, mobiOutputArg)
+    : path.resolve(outputDir, `${path.basename(inputPath, path.extname(inputPath))}.mobi`)
 
   const result = await compileKindle({
     story: parsed,
     inputPath,
     outputDir,
     reportFile,
-    profile: profileArg
+    profile: profileArg,
+    kindleConfig,
+    packageMode: packageArg,
+    converter: converterArg,
+    mobiOutputFile
   })
 
   console.log('Done.')
   console.log('Compiled Kindle HTML to', result.outputDir)
   console.log('Kindle report written to', result.reportFile)
+  console.log('Kindle OPF written to', result.opfFile)
+  console.log('Kindle NCX written to', result.ncxFile)
 }
 
 export default compile
