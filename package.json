@@ -3,7 +3,7 @@
   "version": "0.7.0",
   "description": "An extremely simple syntax for writing interactive fiction that can be embedded in any website.",
   "bin": {
-    "ifs": "./bin/index.mjs"
+    "ifs": "bin/index.mjs"
   },
   "main": "index.mjs",
   "browser": {
