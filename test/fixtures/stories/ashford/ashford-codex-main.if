@@ -170,8 +170,8 @@ import__"ashford-codex/03-ch12-midwinter.partial.if"__import
 import__"ashford-codex/03-ch13-hearts-hexes.partial.if"__import
 
 /* Phase 6 */
-/* import__"ashford-codex/04-ch14-weapon-revealed.partial.if"__import */
-/* import__"ashford-codex/04-ch15-betrayal.partial.if"__import */
+import__"ashford-codex/04-ch14-weapon-revealed.partial.if"__import
+import__"ashford-codex/04-ch15-betrayal.partial.if"__import
 
 /* Phase 7 */
 /* import__"ashford-codex/04-ch16-tower-a.partial.if"__import */

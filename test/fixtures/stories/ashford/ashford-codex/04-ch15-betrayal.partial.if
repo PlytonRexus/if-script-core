@@ -1,0 +1,1429 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 15
+   04-ch15-betrayal.partial.if
+
+   Chapter 15: Betrayal and Choices
+   Cabinet status opening. THE Mirror-Key decision (ending gates).
+   Track-dependent confrontation arcs. Spy subplot final echo.
+   Avery rescue arc. Pre-tower tension. Last romance moment.
+
+   Flags set: key_given_order (possibly), key_given_dumbledore (possibly),
+   mirror_destroyed (possibly), key_hidden_again (possibly),
+   mirror_voldemort (possibly)
+
+   All five ending conditions now calculable via canReachEndingN().
+
+   Section range: A656–A710
+   ============================================================ */
+
+scene__
+  @name "CH15: Betrayal and Choices"
+  @first "A656-CH15-Betrayal-Opens"
+  @sceneTransition "dissolve"
+  @sections "A656-CH15-Betrayal-Opens" "A657-CH15-Cabinet-Status" "A658-CH15-Cabinet-Sabotaged" "A659-CH15-Cabinet-Ready" "A660-CH15-Cabinet-Convergence" "A661-CH15-Key-Retrieval" "A662-CH15-Key-Status" "A663-CH15-Key-Decision" "A664-CH15-Key-Order" "A665-CH15-Key-Dumbledore" "A666-CH15-Key-Destroy" "A667-CH15-Key-Hide" "A668-CH15-Key-Voldemort" "A669-CH15-Key-Convergence" "A670-CH15-Key-Weight" "A671-CH15-Confrontation-Hub" "A672-CH15-Order-Mission" "A673-CH15-Order-Mission-B" "A674-CH15-Dark-Witness" "A675-CH15-Dark-Witness-B" "A676-CH15-Solo-Action" "A677-CH15-Solo-Action-B" "A678-CH15-Confrontation-Convergence" "A679-CH15-Confrontation-Buffer" "A680-CH15-Confrontation-Buffer-B" "A681-CH15-Spy-Echo-Hub" "A682-CH15-Spy-Exposed-Echo" "A683-CH15-Spy-Leveraged-Echo" "A684-CH15-Spy-Protected-Echo" "A685-CH15-Spy-Unknown-Echo" "A686-CH15-Spy-Echo-Convergence" "A687-CH15-Avery-Hub" "A688-CH15-Avery-Patronus" "A689-CH15-Avery-Hope" "A690-CH15-Avery-Unknown" "A691-CH15-Avery-Convergence" "A692-CH15-Avery-Buffer" "A693-CH15-Tension-Opens" "A694-CH15-Dark-Magic-Walls" "A695-CH15-Students-Unaware" "A696-CH15-Staff-Knowing" "A697-CH15-Night-Approaches" "A698-CH15-Last-Meal" "A699-CH15-Corridors" "A700-CH15-Something-Coming" "A701-CH15-Romance-Last-Hub" "A702-CH15-Romance-Last-Scene" "A703-CH15-Romance-Last-Words" "A704-CH15-No-Romance-Last" "A705-CH15-Romance-Convergence" "A706-CH15-End-State" "A707-CH15-Chapter-Close" "A708-CH15-Night-Falls" "A709-CH15-Buffer" "A710-CH15-To-Ch16"
+__scene
+
+
+/* ── 15a: CABINET STATUS OPENING (A656–A662) ── */
+
+section__
+  @title "A656-CH15-Betrayal-Opens"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The last morning becomes the last day."
+
+  "June's final week. The Great Hall at breakfast — the enchanted ceiling showing a sky of perfect, cloudless blue, the specific mockery of beautiful weather on a day that will end in darkness."
+
+  "You eat breakfast. Or you don't. The toast tastes like nothing. The coffee tastes like everything — the specific sharpness of caffeine when the body is running on adrenaline and the mind is running on countdown."
+
+  "The first question of the day: the cabinet."
+
+  choice__
+    @target "A657-CH15-Cabinet-Status"
+    "The cabinet."
+  __choice
+__section
+
+
+section__
+  @title "A657-CH15-Cabinet-Status"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Vanishing Cabinet in the Room of Hidden Things. Draco's project. The passage between Hogwarts and Borgin and Burkes — the door through which Death Eaters will enter the castle."
+
+  "Its status depends on what you did."
+
+  if__ (cabinet_sabotaged == true) {
+    choice__
+      @target "A658-CH15-Cabinet-Sabotaged"
+      "The cabinet is broken."
+    __choice
+  }
+
+  if__ (cabinet_sabotaged == false) {
+    choice__
+      @target "A659-CH15-Cabinet-Ready"
+      "The cabinet is ready."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A658-CH15-Cabinet-Sabotaged"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The cabinet is broken. Your sabotage — the runic displacement, the three-degree deviation, the subtle flaw that looks like natural degradation — holds."
+
+  "You know this because Draco is: furious. You can see it in the corridors — the pale face now flushed with panic, the frantic movement between the seventh floor and the library and the seventh floor again. He's trying to diagnose the failure. He's running out of time."
+
+  "The Death Eater timeline has slipped. The connection that should have opened tonight will not open tonight. Draco has days — maybe a week — to find and repair the flaw before his handler demands results."
+
+  "Days. Extra days. Time that Dumbledore needs, that the castle needs, that the Order needs."
+
+  "But the extra days are: finite. Draco will find the flaw eventually, or his handler will send someone who can. The sabotage bought time. It did not buy safety."
+
+  "And Draco will suffer for the delay. The Dark Lord does not tolerate failure. The punishment will fall on Narcissa Malfoy — the mother Draco is trying to protect."
+
+  "Your sabotage is: strategically sound and morally corrosive."
+
+  choice__
+    @target "A660-CH15-Cabinet-Convergence"
+    "The time is: borrowed."
+  __choice
+__section
+
+
+section__
+  @title "A659-CH15-Cabinet-Ready"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The cabinet is ready. Draco confirmed it yesterday — or you inferred it from his behaviour, the specific stillness that replaced the frantic activity. He's stopped working on it. He's stopped going to the seventh floor."
+
+  "The mechanism is complete. The connection between the Hogwarts cabinet and the Borgin and Burkes cabinet is: stable. When Draco activates it — when he opens the doors and speaks the incantation — Death Eaters will step from Knockturn Alley into the Room of Hidden Things."
+
+  "Into Hogwarts."
+
+  "The activation could come tonight. It could come in an hour. It could come at any moment — the specific vulnerability of a castle that has already been breached, the breach just waiting to be opened."
+
+  if__ (draco_betrayed == true) {
+    "Dumbledore knows. You told him. The headmaster has had time to prepare — though you don't know what preparation looks like when the threat is a cabinet inside your own walls."
+  }
+
+  if__ (draco_stayed_with == true) {
+    "Draco told you it was ready. He chose to warn you — the specific trust of someone who has decided that your knowledge of his failure is: acceptable. Maybe even necessary."
+  }
+
+  choice__
+    @target "A660-CH15-Cabinet-Convergence"
+    "The breach is: imminent."
+  __choice
+__section
+
+
+section__
+  @title "A660-CH15-Cabinet-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The cabinet — sabotaged or ready, delayed or imminent — is one half of the evening's equation."
+
+  "The other half: the Mirror-key."
+
+  "Before tonight ends, the key must find its final resting place. The decision you've been carrying since December — take it, hide it, give it away, destroy it — resolves now."
+
+  choice__
+    @target "A661-CH15-Key-Retrieval"
+    "The key."
+  __choice
+__section
+
+
+section__
+  @title "A661-CH15-Key-Retrieval"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (mirror_key_held == true) {
+    "The key is in your pocket. The obsidian shard — three inches of black glass and gold-leaf, the weight negligible, the significance: incalculable. It has been on your person since you took it from the Room in December."
+
+    "The resonance hums. Low, steady, calibrated to your intent. The key knows what you're feeling. The key has always known."
+  }
+
+  if__ (mirror_key_held == false) {
+    "The key is in the Room. You left it there — in the chest, in the Room of Hidden Things, surrounded by a thousand years of objects that people wanted to forget."
+
+    "But you can't leave it there tonight. When the cabinet opens — if it opens — Death Eaters will enter through the Room. If they find the key—"
+
+    "You go. After hours. The seventh floor. Three passes before the wall. Hidden things. The door appears."
+
+    "The key is where you left it. The resonance greets you — the specific hum of recognition, the shard vibrating at the frequency of your proximity."
+
+    "You take it. Put it in your pocket."
+
+    mirror_key_held = true
+  }
+
+  choice__
+    @target "A662-CH15-Key-Status"
+    "You have the key."
+  __choice
+__section
+
+
+section__
+  @title "A662-CH15-Key-Status"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The Mirror-key. The fragment of the Resonance Mirror. The object that Voldemort has been seeking across Europe — the object he believes will allow him to kill many simultaneously."
+
+  "He's wrong. The Mirror amplifies sacrifice, not violence. You know this. He doesn't."
+
+  "His ignorance is: a temporary shield. Eventually he'll learn the truth — through research, through interrogation, through the specific inevitability of a powerful wizard pursuing an obsession. When he learns, his strategy will change. But the key will still matter — because someone, someday, might be capable of the sacrifice the Mirror demands."
+
+  "The key's disposition is: the most consequential choice you will make."
+
+  choice__
+    @target "A663-CH15-Key-Decision"
+    "Decide."
+  __choice
+__section
+
+
+/* ── 15b: MIRROR-KEY DECISION (A663–A670) ── */
+
+section__
+  @title "A663-CH15-Key-Decision"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The key in your hand. The shard warm against your palm. The resonance reading your intent — the intent you're about to finalise."
+
+  "Five options. Each one closes doors and opens others. Each one determines what kind of ending this story can have."
+
+  choice__
+    @target "A664-CH15-Key-Order"
+    @when order_member == true
+    @disabledText "Only Order members have the network to safely transfer the key. Requires Order membership."
+    @action morality = adj(morality, 15)
+    @action courage = adj(courage, 10)
+    @action key_given_order = true
+    "Give the key to the Order. Asha's network can relay it to adult members outside Hogwarts. The key leaves the castle, leaves your hands, becomes the Order's responsibility."
+  __choice
+
+  choice__
+    @target "A665-CH15-Key-Dumbledore"
+    @when dumbledore_trusted == true
+    @disabledText "Dumbledore must already know about the key. Requires having shared with Dumbledore previously."
+    @action morality = adj(morality, 20)
+    @action courage = adj(courage, 10)
+    @action key_given_dumbledore = true
+    "Give the key to Dumbledore directly. The headmaster — if he's in the castle tonight — is the most powerful wizard available. The key in his hands is: the safest possible outcome."
+  __choice
+
+  choice__
+    @target "A666-CH15-Key-Destroy"
+    @when knowledge >= 75 && dark_arts_practiced == true
+    @disabledText "Destroying the key requires Knowledge >= 75 and experience with Dark Arts. Fiendfyre is the only method that works."
+    @action knowledge = adj(knowledge, 10)
+    @action morality = adj(morality, -10)
+    "Destroy the key. Fiendfyre — the cursed fire that consumes almost anything. Dark magic. Dangerous, nearly uncontrollable. But the key cannot be destroyed by conventional means, and Fiendfyre is: unconventional."
+  __choice
+
+  choice__
+    @target "A667-CH15-Key-Hide"
+    @action cunning = adj(cunning, 8)
+    @action key_hidden_again = true
+    "Hide the key again. Not in the Room — the Room is compromised. Somewhere else. Somewhere that requires your specific knowledge to find. The key disappears into the castle's thousand-year accumulation of secrets."
+  __choice
+
+  choice__
+    @target "A668-CH15-Key-Voldemort"
+    @when morality <= 40
+    @disabledText "Only those who have walked far enough into darkness would consider this. Requires Morality <= 40."
+    @action morality = adj(morality, -20)
+    @action cunning = adj(cunning, 5)
+    @action mirror_voldemort = true
+    "Give the key to Voldemort's agents. The Death Eaters in the castle — when they arrive — are looking for the key. You could give it to them. Let them take it to the Dark Lord. Let him discover for himself that it doesn't work the way he thinks."
+  __choice
+__section
+
+
+section__
+  @title "A664-CH15-Key-Order"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Order."
+
+  "You find Asha between classes. The exchange is: wordless. The shard in your hand, held low, transferred in the corridor outside the Charms classroom in the three-second window between one group of students leaving and the next arriving."
+
+  "Asha takes it. Her fingers close around the obsidian. The resonance shifts — you feel it even as it leaves your hand, the key recalibrating to a new holder. Asha's intent is: fierce protection. The key responds to this. The hum deepens."
+
+  "'I'll have it out of the castle by tonight,' she says. 'Kingsley's relay. Three handoffs before it reaches the primary safe house. Untraceable.'"
+
+  "'The key amplifies sacrifice,' you tell her. 'Not violence. Voldemort can't use it. But someone could.'"
+
+  "Asha's expression doesn't change. The information lands and is processed and filed — the specific efficiency of someone who has been training for this moment since they were fifteen."
+
+  "'Good,' she says. 'Then we make sure no one has to.'"
+
+  "The key is gone. Out of your hands, out of your responsibility, into the Order's infrastructure. The weight in your pocket is: absent. The weight in your chest is: lighter."
+
+  choice__
+    @target "A669-CH15-Key-Convergence"
+    "The key is: the Order's."
+  __choice
+__section
+
+
+section__
+  @title "A665-CH15-Key-Dumbledore"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Dumbledore."
+
+  "He's in his office. The fact that he's present today — of all days — feels deliberate. As though he knew you would come. As though the chess game he's been playing all year included this piece, this move, this moment."
+
+  "You place the shard on his desk. The same desk, the same position — between the silver instrument and the stack of parchment."
+
+  "Dumbledore picks it up. The resonance responds to him differently than it responded to you — deeper, more complex, the vibration of an object reading intent that is vast and layered and very, very old."
+
+  "'You know what it does,' you say."
+
+  "'I know what it does.' His voice is: quiet. 'Sacrifice. The amplification of genuine sacrifice. Your parent — Avery — told me enough that I began to understand. Now I understand completely.'"
+
+  "He holds the shard up to the window light. The obsidian is: opaque, absorbing light rather than transmitting it. But in Dumbledore's hand, for a moment, you think you see something inside — a depth, a complexity, the specific interior geography of an artefact that has been reading intent for centuries."
+
+  "'I will keep it safe,' he says. 'And when the time comes — when the war demands it — I will ensure it is used correctly. Or not at all.'"
+
+  "The specific emphasis on 'not at all.' As though he has already considered the sacrifice it would require and has: decided."
+
+  choice__
+    @target "A669-CH15-Key-Convergence"
+    "The key is: Dumbledore's."
+  __choice
+__section
+
+
+section__
+  @title "A666-CH15-Key-Destroy"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Fiendfyre."
+
+  "Dark magic. The darkest fire — cursed flame that consumes magical objects, that burns through enchantment, that destroys what cannot otherwise be destroyed. The fire that has a mind of its own and a will that resists the caster's control."
+
+  "You know the incantation. You learned it from Avery's field notes — the classified Auror training manual that your parent kept in the charmed box alongside the journal. The pronunciation, the wand movement, the intent required. Dark intent. The specific willingness to unmake something that exists."
+
+  "You find a place. The edge of the Forbidden Forest, after midnight. Far enough from the castle that the fire won't spread. Far enough from the trees that you have: options."
+
+  "The shard on the ground. Three feet of clear space."
+
+  "You cast."
+
+  "The Fiendfyre erupts. Not fire — the idea of fire given malicious life. Serpents and chimera shapes writhing in the flames. The heat is: immediate. The control is: precarious."
+
+  if__ (knowledge >= 80) {
+    "Your knowledge holds. The fire obeys — barely, grudgingly, the specific reluctant compliance of Dark magic being wielded by someone who understands it theoretically but has not lived inside it. The fire engulfs the shard."
+
+    "The obsidian resists. Ten seconds. Twenty. The gold-leaf frame fragment melts first — running like tears down the shard's surface. Then the obsidian cracks. A single fracture, then a web of fractures, then: dissolution. The shard breaks apart under the Fiendfyre's assault."
+
+    "The resonance screams. Not audibly — in the bone, in the sternum, the specific frequency of an artefact being unmade. The key's centuries of accumulated intent — all the sacrifice it has witnessed, all the genuine giving-up it has amplified — releases in a burst that feels like grief."
+
+    "The fire dies. You control it — just barely, the flames withdrawing into the wand tip like a serpent returning to its handler. The ground where the shard sat is: scorched. Black glass fragments. No resonance. No hum."
+
+    "The Mirror-key is: destroyed."
+
+    mirror_destroyed = true
+  }
+
+  if__ (knowledge < 80) {
+    "Your knowledge holds — barely. The fire obeys reluctantly, the flames licking toward the treeline, the shapes in the fire testing your control. You direct them toward the shard."
+
+    "The obsidian resists. The gold-leaf melts. The shard cracks. But it doesn't fully dissolve — the Fiendfyre, constrained by your imperfect control, doesn't sustain the necessary temperature long enough."
+
+    "You pull the fire back before it escapes. The ground is scorched. The shard is: damaged. Cracked, diminished, the resonance weakened but not eliminated."
+
+    "Partial destruction. The key is broken but not gone. The Mirror could still be partially functional — reduced, unpredictable, dangerous in ways the original wasn't."
+
+    "You pocket the remnants. What's left is: a problem rather than a weapon."
+
+    mirror_destroyed = false
+    morality = adj(morality, -5)
+  }
+
+  choice__
+    @target "A669-CH15-Key-Convergence"
+    "The fire dies."
+  __choice
+__section
+
+
+section__
+  @title "A667-CH15-Key-Hide"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You hide it."
+
+  "Not in the Room of Requirement — the Room is compromised, the cabinet making it a corridor for Death Eaters. Not in the common room or the dormitory or the library — too many eyes, too many possibilities for discovery."
+
+  "You hide it in the castle's bones. The specific knowledge you've accumulated over six years — the passages, the hollows, the places that don't appear on any map, not even the Marauder's Map — gives you options."
+
+  "Behind a loose stone in the third-floor corridor. Left-hand wall. Seventeen stones from the corner, four up from the floor. The stone is held in place by a charm you design yourself — a unique key, tied to your specific magical signature, that no one else can replicate."
+
+  "The shard goes in. The stone goes back. The charm seals."
+
+  "The key is: hidden. In a castle that has a thousand years of hidden things, one more secret is: invisible."
+
+  "The risk is: you. If something happens to you — if you die, if you flee, if you forget — the key stays in the wall forever. An artefact of immense power, bricked up, waiting for a castle that might stand another thousand years."
+
+  "You can live with this. The key in the wall is: safer than the key in anyone's hands. Even yours."
+
+  choice__
+    @target "A669-CH15-Key-Convergence"
+    "The key is: hidden."
+  __choice
+__section
+
+
+section__
+  @title "A668-CH15-Key-Voldemort"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You give it to them."
+
+  "The decision is: cold. Calculated. The specific logic of someone who has walked far enough into darkness that the light-side arguments — protect it, destroy it, give it to the good guys — sound like the rationalisations of people who don't understand how wars are won."
+
+  "Wars are won by letting your enemy have what they want and watching them choke on it."
+
+  "Voldemort wants the Mirror-key. He believes it amplifies killing intent. He's wrong — it amplifies sacrifice, the one thing he cannot give. Giving him the key is: giving him a weapon that will fail. The failure will cost him time, resources, credibility. The Death Eaters who see the Mirror fail will: doubt."
+
+  "That's the calculation. Doubt as a weapon. Failure as sabotage."
+
+  "You leave the shard in a dead drop — the enchanted parchment system the dark network uses. By morning, it will be in a Death Eater's hands. By the following week, it will reach Voldemort."
+
+  "The cost of this calculation: if you're wrong about the sacrifice function, Voldemort has a weapon of mass murder. If you're right but someone in his circle IS capable of sacrifice — a follower, a lover, a mother protecting her child — the Mirror might work after all."
+
+  "The cost of this calculation is: other people's lives, weighed against strategic advantage."
+
+  "You make the trade."
+
+  morality = adj(morality, -5)
+
+  choice__
+    @target "A669-CH15-Key-Convergence"
+    "The key is: Voldemort's."
+  __choice
+__section
+
+
+section__
+  @title "A669-CH15-Key-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Mirror-key decision is: made."
+
+  if__ (key_given_order == true) {
+    "The key is with the Order. Asha's relay will have it outside Hogwarts within hours. Secure. Protected. Out of Voldemort's reach."
+  }
+
+  if__ (key_given_dumbledore == true) {
+    "The key is with Dumbledore. The headmaster — who knew more than he admitted, who waited for you to come to him — holds the most dangerous object in the wizarding world."
+  }
+
+  if__ (mirror_destroyed == true) {
+    "The key is destroyed. Fiendfyre did what conventional magic couldn't. The resonance is silent. The Mirror-key — the object that Avery nearly died for, that you spent six months investigating — no longer exists."
+  }
+
+  if__ (key_hidden_again == true) {
+    "The key is hidden. In the castle's walls, behind your personal charm, in a place that requires your specific knowledge and your specific magic to find. Hidden until someone decides to retrieve it."
+  }
+
+  if__ (mirror_voldemort == true) {
+    "The key is in Voldemort's pipeline. Dead drop to courier to handler to the Dark Lord himself. By the time he holds it — by the time he discovers that it doesn't do what he thinks — people may have died because of your calculation."
+  }
+
+  "The decision is: irreversible. What comes next is shaped by it."
+
+  choice__
+    @target "A670-CH15-Key-Weight"
+    "What comes next."
+  __choice
+__section
+
+
+section__
+  @title "A670-CH15-Key-Weight"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The afternoon of the last day. The key decided. The cabinet decided. The journal complete. All the threads you've been weaving for nine months — Avery, the Mirror, Draco, the spy, the allegiance, the romance — are in their final positions."
+
+  "Three more movements before nightfall."
+
+  "The confrontation. The echo. The farewell."
+
+  choice__
+    @target "A671-CH15-Confrontation-Hub"
+    "The confrontation."
+  __choice
+__section
+
+
+/* ── 15c: CONFRONTATION ARCS (A671–A680) ── */
+
+section__
+  @title "A671-CH15-Confrontation-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The confrontation arc. Your allegiance track determines what happens next — the role you play, the people you face, the position you hold when the castle breaks."
+
+  if__ (allegiance_track == "order") {
+    choice__
+      @target "A672-CH15-Order-Mission"
+      "The Order's mission."
+    __choice
+  }
+
+  if__ (allegiance_track == "dark") {
+    choice__
+      @target "A674-CH15-Dark-Witness"
+      "The dark witness."
+    __choice
+  }
+
+  if__ (allegiance_track == "solo") {
+    choice__
+      @target "A676-CH15-Solo-Action"
+      "The solo action."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A672-CH15-Order-Mission"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Order has given you a role. The seventh floor — the corridor outside the Room of Requirement. Your post. Your position when the Death Eaters come through."
+
+  "Asha's final briefing was: clear. Hold the corridor. Delay anyone who exits the Room. Send a Patronus if the cabinet opens. Buy time for the adult Order members to reach the upper floors."
+
+  "You are seventeen years old. You have been assigned to hold a corridor against Death Eaters."
+
+  "The absurdity of this is: lost in the urgency."
+
+  "You prepare. Defensive charms reviewed. Shield charm practised. The Patronus charm — for messaging, not combat — ready."
+
+  courage = adj(courage, 8)
+  morality = adj(morality, 5)
+
+  choice__
+    @target "A673-CH15-Order-Mission-B"
+    "Hold the line."
+  __choice
+__section
+
+
+section__
+  @title "A673-CH15-Order-Mission-B"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The preparation is: physical and mental. The defensive charms, the route to the nearest escape stairwell, the location of the nearest portrait that can carry a message to McGonagall."
+
+  "And the mental preparation. The acceptance — there it is again, the fifth cipher's emotional key — that tonight might go badly. That holding a corridor against adults who have killed before is not a survivable assignment by any normal standard."
+
+  "But the Order doesn't assign people to die. The assignment is: delay, not engage. Warn, not fight. The difference is slim but real."
+
+  if__ (key_given_order == true) {
+    "The key is already gone. Asha's relay extracted it hours ago. Whatever happens in the Room tonight, the Mirror-key won't be there."
+
+    "This is: a relief. The corridor you're holding has no prize to defend. The Death Eaters will come through expecting to find a castle unprepared. They will find: you. And the delay you represent."
+  }
+
+  rel_order = adjRel(rel_order, 5)
+
+  choice__
+    @target "A678-CH15-Confrontation-Convergence"
+    "Prepared."
+  __choice
+__section
+
+
+section__
+  @title "A674-CH15-Dark-Witness"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The dark network's instruction is: stay clear. When the signal comes — the Dark Mark, the screaming — stay in the dungeons. Stay with the Slytherins who know. Let the adults handle the castle."
+
+  "Your role in the dark network tonight is: witness. Not participant. The Death Eaters don't need a sixth-year student in their operation. They need the door opened and the path cleared. Draco provides both."
+
+  "But witness is: a role with weight. You will see what happens. You will know who came through and what they did. The intelligence you gather tonight — faces, names, methods — is currency that will be valuable to whoever wins."
+
+  cunning = adj(cunning, 8)
+
+  choice__
+    @target "A675-CH15-Dark-Witness-B"
+    "Witness."
+  __choice
+__section
+
+
+section__
+  @title "A675-CH15-Dark-Witness-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The calculation of the dark witness: be present, be invisible, be recording."
+
+  "You position yourself near the dungeons — close enough to the Slytherin common room to be plausibly obedient, close enough to the main corridors to see what moves through the castle when the doors open."
+
+  if__ (mirror_voldemort == true) {
+    "The key is already in the pipeline. When the Death Eaters come through tonight, they'll be carrying information: that the key has been acquired, that the mission's secondary objective is complete. Draco's mother is: slightly safer."
+
+    "Your calculation — Voldemort's failure as strategic sabotage — will play out over the coming weeks. Tonight is: the beginning."
+  }
+
+  if__ (dark_arts_practiced == true) {
+    "The Dark Arts you've learned — the hexes, the curses — sit in your wand hand like a second vocabulary. Available. Ready. The difference between a witness and a participant is: the decision to use them."
+  }
+
+  choice__
+    @target "A678-CH15-Confrontation-Convergence"
+    "Ready to watch."
+  __choice
+__section
+
+
+section__
+  @title "A676-CH15-Solo-Action"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Solo. No assignment. No handler. No position except the one you choose."
+
+  "The solo path tonight is: pure calculation. Where to be, when to be there, what to do when the castle breaks. No one tells you. No one covers you. No one knows your plan except you."
+
+  "You've mapped the castle's pressure points. The corridors that matter — the seventh floor (cabinet exit), the Astronomy Tower (Dumbledore's likely return route), the Great Hall (student evacuation), the dungeon corridor (Snape's territory)."
+
+  knowledge = adj(knowledge, 5)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A677-CH15-Solo-Action-B"
+    "Choose your position."
+  __choice
+__section
+
+
+section__
+  @title "A677-CH15-Solo-Action-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo calculation. You will position yourself at the intersection of the third-floor corridor — equidistant from the seventh floor and the ground floor, with routes to both the Tower and the dungeons. The central node. Maximum information, maximum flexibility."
+
+  "Your assets: the journal (decoded, useless in combat but proof of everything), your wand, the knowledge you've accumulated, the specific advantage of someone who knows what's happening while others are still processing the first alarm."
+
+  if__ (key_hidden_again == true) {
+    "The key is hidden. In the wall. Safe. Even if you die tonight, the key stays hidden — and that's: acceptable. The solo path's logic is cold: if you're gone, the key is bricked up forever. No one uses it. No one misuses it. The problem solved by the specific solution of: inaccessibility."
+  }
+
+  "No allies. No handler. No safety net."
+
+  "The freedom is: the point."
+
+  choice__
+    @target "A678-CH15-Confrontation-Convergence"
+    "The calculation is: complete."
+  __choice
+__section
+
+
+section__
+  @title "A678-CH15-Confrontation-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Position chosen. Role established. The confrontation arc — Order defender, Dark witness, Solo operator — locked."
+
+  "The afternoon continues. The sun moves. The shadows lengthen."
+
+  "Two more movements."
+
+  choice__
+    @target "A679-CH15-Confrontation-Buffer"
+    "The echo."
+  __choice
+__section
+
+
+section__
+  @title "A679-CH15-Confrontation-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The echo. The reverberation of an earlier choice — the spy subplot, which concluded in Chapter 13 but whose consequences continue to ripple."
+
+  choice__
+    @target "A680-CH15-Confrontation-Buffer-B"
+    "The spy's echo."
+  __choice
+__section
+
+
+section__
+  @title "A680-CH15-Confrontation-Buffer-B"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Before the spy's echo: a breath. The story pausing between confrontation and consequence."
+
+  choice__
+    @target "A681-CH15-Spy-Echo-Hub"
+    "The consequences."
+  __choice
+__section
+
+
+/* ── 15d: SPY SUBPLOT FINAL ECHO (A681–A686) ── */
+
+section__
+  @title "A681-CH15-Spy-Echo-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy. The information leak that you discovered, investigated, and resolved — or didn't — over the past months. The consequence of your choice echoes through the castle's final day."
+
+  if__ (spy_exposed == true) {
+    choice__
+      @target "A682-CH15-Spy-Exposed-Echo"
+      "The exposed spy's fate."
+    __choice
+  }
+
+  if__ (spy_leveraged == true) {
+    choice__
+      @target "A683-CH15-Spy-Leveraged-Echo"
+      "The leveraged spy's yield."
+    __choice
+  }
+
+  if__ (spy_protected == true) {
+    choice__
+      @target "A684-CH15-Spy-Protected-Echo"
+      "The protected spy's crisis."
+    __choice
+  }
+
+  if__ (spy_exposed == false && spy_leveraged == false && spy_protected == false) {
+    choice__
+      @target "A685-CH15-Spy-Unknown-Echo"
+      "The unresolved spy."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A682-CH15-Spy-Exposed-Echo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The exposed spy. You identified them, named them, handed the evidence to the Order or to McGonagall. The spy was: removed. Quietly. No trial, no public scandal — the wartime efficiency of institutions that prioritise security over justice."
+
+  "The spy is gone from Hogwarts. Sent home under a story about family illness. The information leak is: sealed."
+
+  "But the echo: the spy had contacts. The information they passed — about the Order youth network, about Asha's group, about the journal — is already in Death Eater hands. The exposure stopped the flow. It didn't undo the damage."
+
+  "Tonight, when the Death Eaters come through the cabinet, they will know more about the castle's defences than they should. That knowledge came from: the spy you exposed too late."
+
+  choice__
+    @target "A686-CH15-Spy-Echo-Convergence"
+    "The damage is: done."
+  __choice
+__section
+
+
+section__
+  @title "A683-CH15-Spy-Leveraged-Echo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The leveraged spy. You identified them and — instead of exposing them — turned them. Blackmail and counter-intelligence. The spy became your double agent, feeding false information back to the Death Eater network while passing real intelligence to you."
+
+  "The yield has been: significant. Through the spy, you've learned Death Eater staging points, communication protocols, and the timing of Draco's deadline. Information the Order couldn't have obtained any other way."
+
+  "But tonight the spy faces a crisis. When the Death Eaters enter the castle, the spy's handler will be among them. The handler will expect a report. The spy will have to choose — maintain the cover and risk discovery, or break and run."
+
+  "You've given the spy instructions: when the signal comes, join the evacuation. Disappear into the crowd of panicking students. Let the cover burn."
+
+  "Whether they'll follow your instructions is: uncertain."
+
+  choice__
+    @target "A686-CH15-Spy-Echo-Convergence"
+    "The spy's choice is: theirs."
+  __choice
+__section
+
+
+section__
+  @title "A684-CH15-Spy-Protected-Echo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The protected spy. You discovered them and chose to shield them — from the Order, from McGonagall, from consequences. The moral cost was: high. The spy continued to pass information, and you let it happen because the alternative — exposing a classmate, destroying their life — felt like a violence you couldn't commit."
+
+  "The protection was: a choice about what kind of person you are. Not a strategic choice. An identity choice."
+
+  "Tonight, the spy is still in the castle. Still compromised. Still passing information through channels you've been monitoring but not disrupting. When the Death Eaters arrive, the spy's intelligence will have contributed to their preparation."
+
+  "People may be hurt because you chose mercy over security."
+
+  "You carry this. It doesn't get lighter."
+
+  morality = adj(morality, -3)
+
+  choice__
+    @target "A686-CH15-Spy-Echo-Convergence"
+    "The cost of mercy."
+  __choice
+__section
+
+
+section__
+  @title "A685-CH15-Spy-Unknown-Echo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The spy you never identified. The information leak that you detected but couldn't trace, couldn't expose, couldn't resolve. The spy is still in the castle — still passing information, still invisible."
+
+  "The unresolved spy is: a loose thread. The specific vulnerability of a problem that was never solved. You know there's a leak. You don't know who. You don't know how much they've passed. You don't know whether they'll act tonight."
+
+  "The uncertainty is: the worst kind of intelligence failure. Not wrong information — missing information. The gap in your picture that could contain anything."
+
+  "Tonight, when the Death Eaters enter, they may know things they shouldn't because of the spy you couldn't find."
+
+  choice__
+    @target "A686-CH15-Spy-Echo-Convergence"
+    "The unknown. The worst kind."
+  __choice
+__section
+
+
+section__
+  @title "A686-CH15-Spy-Echo-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy's echo — exposed, leveraged, protected, or unresolved — adds its weight to the evening's calculus."
+
+  "One more echo before the tension."
+
+  choice__
+    @target "A687-CH15-Avery-Hub"
+    "Avery."
+  __choice
+__section
+
+
+/* ── 15e: AVERY RESCUE ARC (A687–A692) ── */
+
+section__
+  @title "A687-CH15-Avery-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Avery. Your parent. The thread that started this — the disappeared Auror, the charmed box, the journal, the cipher."
+
+  if__ (avery_alive == true && rescue_planned == true) {
+    "Avery is alive. You know this — the Patronus reply, the voice you hadn't heard in nine months, the three sentences that carried more weight than the entire journal."
+
+    "'Stay safe. Stay at Hogwarts. When the war allows it, I will find you.'"
+
+    choice__
+      @target "A688-CH15-Avery-Patronus"
+      "The Patronus exchange."
+    __choice
+  }
+
+  if__ (avery_alive == true && rescue_planned == false) {
+    "Avery is alive. You decoded the coordinates. You know they survived. But you haven't reached out — the Patronus unsent, the rescue unplanned, the knowledge sitting in your chest like a stone."
+
+    choice__
+      @target "A689-CH15-Avery-Hope"
+      "The hope you're carrying."
+    __choice
+  }
+
+  if__ (avery_alive == false) {
+    choice__
+      @target "A690-CH15-Avery-Unknown"
+      "The unknown."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A688-CH15-Avery-Patronus"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Patronus exchange sits in your memory like a pressed flower — fragile, preserved, the specific shape of a moment you can't return to."
+
+  "Avery is alive. Avery is proud. Avery said: don't come."
+
+  "You're not going to obey. Not because you're disobedient — because the war is coming to Hogwarts tonight, and when it's over, the world will be different. The Ministry. The Order. The safe houses. Everything will reorganise around whatever happens at the Tower."
+
+  "And in that reorganisation — in the chaos that follows the Death Eaters' entry and whatever Dumbledore is planning — there will be an opening. A window. A moment when someone with decoded coordinates and a very good reason to travel to Montenegro could: go."
+
+  "Not tonight. But soon."
+
+  "The rescue is: deferred. Not abandoned. The distinction matters to you — and to the Patronus you'll send when this is over."
+
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A691-CH15-Avery-Convergence"
+    "After tonight."
+  __choice
+__section
+
+
+section__
+  @title "A689-CH15-Avery-Hope"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Hope without action. The coordinates decoded but unused. The Patronus uncast. The parent alive but unreached."
+
+  "You tell yourself: tonight. After tonight, when the acute crisis passes, you'll send the Patronus. You'll reach out. You'll begin the rescue — or the contact, or the process of learning whether rescue is possible."
+
+  "The hope is: a weight. Not the crushing weight of grief but the hovering weight of possibility. The specific pressure of knowing you could act and choosing to wait."
+
+  "You wait because the timing is wrong. You wait because Hogwarts needs you tonight. You wait because the rescue requires resources you don't have and conditions that don't exist."
+
+  "You wait because waiting is easier than failing."
+
+  choice__
+    @target "A691-CH15-Avery-Convergence"
+    "After tonight."
+  __choice
+__section
+
+
+section__
+  @title "A690-CH15-Avery-Unknown"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The unknown. Avery's fate — alive, dead, imprisoned, free — remains unresolved. The journal's coordinates were never fully decoded. The confirmation never came."
+
+  "The unknown has become: familiar. Nine months of not knowing. The specific endurance of ambiguity — not grief, not hope, something in between that has no name and no resolution."
+
+  "Tonight, when the castle breaks, you'll carry this. The unnamed weight. The parent-shaped absence. The question that doesn't close."
+
+  "Some people fight for answers. Some people fight because fighting is: what you do when the answers won't come."
+
+  choice__
+    @target "A691-CH15-Avery-Convergence"
+    "You fight."
+  __choice
+__section
+
+
+section__
+  @title "A691-CH15-Avery-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Avery thread — contacted, hoped for, or unknown — settles into its position. Not resolved. Not closed. The parent's story continues beyond the borders of yours."
+
+  "The echoes complete. The spy. The parent. The reverberations of choices made months ago, still resonating."
+
+  choice__
+    @target "A692-CH15-Avery-Buffer"
+    "The tension."
+  __choice
+__section
+
+
+section__
+  @title "A692-CH15-Avery-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The last movement of the chapter. The pre-tower tension. The castle preparing for something no one can name and everyone can feel."
+
+  choice__
+    @target "A693-CH15-Tension-Opens"
+    "The castle."
+  __choice
+__section
+
+
+/* ── 15f: PRE-TOWER TENSION (A693–A700) ── */
+
+section__
+  @title "A693-CH15-Tension-Opens"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Evening. The light begins its long summer fade — from gold to amber to the specific grey-blue of a Scottish twilight that lasts for hours. The castle in the in-between light. Not quite day. Not quite dark."
+
+  "The tension is: physical. In the stones. In the portraits, who have stopped their usual commerce between frames and now watch from fixed positions, painted eyes following movement in the corridors. In the suits of armour that McGonagall repositioned — still, watchful, the metal gleaming in the twilight."
+
+  "The students feel it. Not as knowledge — most of them don't know what's coming. As: instinct. The primate instinct for danger that operates below conscious thought. The instinct that says: something is wrong."
+
+  choice__
+    @target "A694-CH15-Dark-Magic-Walls"
+    "Something is wrong."
+  __choice
+__section
+
+
+section__
+  @title "A694-CH15-Dark-Magic-Walls"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The castle's walls feel different. Not structurally — the stones are the same. But the magical field that permeates Hogwarts — the accumulated enchantment of a thousand years, the wards, the protections, the specific magical atmosphere that makes the castle feel alive — is: shifting."
+
+  "Dark magic is bleeding in. Through the cabinet. Through the connection that Draco built — or that you sabotaged, the sabotage now contested by the sheer pressure of what's pushing against it. The Death Eaters are: gathering. On the other side of the cabinet's door, in Borgin and Burkes, assembling."
+
+  "You can feel their intent. Not individually — collectively. The massed malevolence of people who have come to kill, pressing against the castle's wards like water against a dam."
+
+  "The wards hold. For now."
+
+  choice__
+    @target "A695-CH15-Students-Unaware"
+    "The students."
+  __choice
+__section
+
+
+section__
+  @title "A695-CH15-Students-Unaware"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The students. The hundreds of children — first-years to seventh-years, Muggle-born to pure-blood, frightened and oblivious and impossibly young — who are sitting in their common rooms tonight without knowing what's above them."
+
+  "A group of third-years play Exploding Snap in the Great Hall. A fifth-year couple argues in the corridor outside the library. A first-year cries in the bathroom — homesick, probably, the normal tears of a child who is eleven and far from home."
+
+  "None of them know about the cabinet. None of them know about the key. None of them know that the castle they trust — the place their parents sent them to be safe — is about to become a battlefield."
+
+  "The knowledge you carry — the specific burden of knowing what others don't — is: isolating. You walk among them and you are not one of them. You haven't been one of them since September, since the journal, since the moment you opened a charmed box and found your parent's most dangerous secret."
+
+  choice__
+    @target "A696-CH15-Staff-Knowing"
+    "The staff."
+  __choice
+__section
+
+
+section__
+  @title "A696-CH15-Staff-Knowing"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The staff know. Not all of them — not the full picture — but enough to prepare."
+
+  "McGonagall patrols the corridors with a wand in her hand and a expression that suggests she would welcome a reason to use it. Flitwick has been seen reinforcing the charms on the main entrance. Sprout checked the greenhouses' defensive wards twice."
+
+  "Snape is absent. No one comments on this — Snape's absences are too common to remark on. But his absence tonight is: different. Purposeful. The specific absence of someone who has somewhere to be."
+
+  if__ (snape_bargain == true) {
+    "You think about the bargain. The information exchange. The way Snape looked at you in the corridor — the warning. Whatever Snape is doing tonight, the bargain is: active. He has information you need. You have information he needs."
+
+    "The exchange hasn't happened. Perhaps tonight it will."
+  }
+
+  "Hagrid is in his hut. The lights are on. Fang barks once, twice, then falls silent."
+
+  choice__
+    @target "A697-CH15-Night-Approaches"
+    "Night approaches."
+  __choice
+__section
+
+
+section__
+  @title "A697-CH15-Night-Approaches"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Nine PM. The sun is a thin band of gold on the western horizon. The lake reflects the fading sky — dark water, dark trees, the Forbidden Forest becoming a solid black wall against the twilight."
+
+  "Inside: corridor patrols begin. Prefects usher younger students toward common rooms. The routine of curfew — which tonight feels less like routine and more like: preparation."
+
+  "You are in your position. Or moving toward your position. The specific readiness of someone who has been expecting this night for months."
+
+  choice__
+    @target "A698-CH15-Last-Meal"
+    "The last meal."
+  __choice
+__section
+
+
+section__
+  @title "A698-CH15-Last-Meal"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You eat. Or you try. The Great Hall at dinner — the final meal of term, technically, though the formal feast was supposed to be tomorrow. The house-elves have produced something generous: roast chicken, treacle tart, the specific comfort foods of an institution that feeds children and knows that comfort is: necessary."
+
+  "You sit at your house table. The faces around you are: familiar. Six years of proximity. The people you've lived with, studied with, competed against, defended."
+
+  "Some of them will be hurt tonight. The statistical probability — Death Eaters in a castle full of children — guarantees it."
+
+  "You eat the treacle tart. It tastes like: the end of something."
+
+  choice__
+    @target "A699-CH15-Corridors"
+    "The corridors."
+  __choice
+__section
+
+
+section__
+  @title "A699-CH15-Corridors"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "After dinner. The corridors. You walk them — not toward your position yet, not with purpose. A last walk through a castle that might be different tomorrow."
+
+  "The moving staircases operate on their ancient schedules, indifferent to the human drama below. The portraits watch you pass — Sir Cadogan offers a salute, the Fat Lady looks concerned, a landscape painting of a Scottish glen seems to glow with the same twilight that fills the real windows."
+
+  "You pass the spot where you first decoded the journal. The classroom where Snape tested you. The corridor where you first spoke to your romance — or where you first chose solitude."
+
+  "The castle is: a map of your year. Every corridor holds a memory. Every door opens onto a scene you lived through."
+
+  "Tomorrow it will be: a battlefield. Or the site of one."
+
+  choice__
+    @target "A700-CH15-Something-Coming"
+    "Something is coming."
+  __choice
+__section
+
+
+section__
+  @title "A700-CH15-Something-Coming"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Ten PM. The sky outside is: dark. The midsummer twilight has finally surrendered to night — the stars visible, the grounds quiet, the Forbidden Forest a wall of darkness against the deeper dark of the sky."
+
+  "Something is coming."
+
+  "Not a feeling. Not instinct. Knowledge. The specific certainty of someone who has decoded a dead parent's journal, tracked a spy, sabotaged or ignored a Vanishing Cabinet, given away or hidden or destroyed the most dangerous artefact in the wizarding world, and now stands in a castle that is about to be invaded."
+
+  "Something is coming. You know what it is. You've been preparing for it since September."
+
+  "The only question remaining is: what you do when it arrives."
+
+  "But before the something — one more moment. The last quiet moment."
+
+  choice__
+    @target "A701-CH15-Romance-Last-Hub"
+    "The last quiet moment."
+  __choice
+__section
+
+
+/* ── 15g: LAST ROMANCE MOMENT (A701–A705) ── */
+
+section__
+  @title "A701-CH15-Romance-Last-Hub"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_consummated == true) {
+    "One more moment. The person you chose. The person who chose you. The last exchange before everything changes."
+
+    choice__
+      @target "A702-CH15-Romance-Last-Scene"
+      "Find them."
+    __choice
+  }
+
+  if__ (romance_consummated == false) {
+    choice__
+      @target "A704-CH15-No-Romance-Last"
+      "The quiet moment is: yours alone."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A702-CH15-Romance-Last-Scene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "elara") {
+    "Elara. In the library — where else. But this time she's not reading. She's sitting at her table, hands flat on the wood, staring at nothing. The analytical mind — the mind that processes everything — has encountered something it can't process."
+
+    "'Something's happening tonight,' she says when you sit down. Not a question."
+
+    "'Yes.'"
+
+    "'I can feel it. The wards. The magic. It's — shifting.'"
+
+    "Ravenclaw intuition. She can feel the dark magic pressing against the castle's protections."
+
+    rel_elara = adjRel(rel_elara, 10)
+  }
+
+  if__ (romance_active == "marcus") {
+    "Marcus. In the corridor outside the dungeons. He's changed — his uniform is different, more practical. He's dressed for movement, not display. The Slytherin aesthetic abandoned for function."
+
+    "'They're coming through tonight,' he says. His voice is flat. The Calloway control. 'My family's contacts confirmed it. The cabinet. The Mark. The whole thing.'"
+
+    "'How long.'"
+
+    "'Hours.'"
+
+    rel_marcus = adjRel(rel_marcus, 10)
+  }
+
+  if__ (romance_active == "jade") {
+    "Jade. In the Gryffindor common room — or just outside it, in the corridor, because you may not share a house and the common rooms are: sealed tonight."
+
+    "She's in her Quidditch practice robes. Not because she's been practising — because they're the clothes she moves best in. The captain's instinct: prepare for action."
+
+    "'My brother sent a Patronus,' she says. 'One word. Tonight.'"
+
+    rel_jade = adjRel(rel_jade, 10)
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian. In the corridor near the greenhouses. He's carrying a plant — a small pot, something he's been growing all year. He holds it like something precious."
+
+    "'I've been thinking,' he says. 'About what you told me. The Mirror. The sacrifice.' He looks at the plant. 'I've been growing this since October. A Venomous Tentacula seedling. It took six months to get it to this stage. If I stop caring for it, it dies in a week.'"
+
+    "'Sebastian—'"
+
+    "'I'm not going to stop caring for it. That's not the point. The point is — some things require sustained attention. Daily attention. The opposite of sacrifice. The opposite of one grand gesture. Just — showing up. Every day. Watering the plant.'"
+
+    rel_sebastian = adjRel(rel_sebastian, 10)
+  }
+
+  choice__
+    @target "A703-CH15-Romance-Last-Words"
+    "The last words."
+  __choice
+__section
+
+
+section__
+  @title "A703-CH15-Romance-Last-Words"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The last words before the night begins. Not the last words ever — you refuse to allow this to be the last words ever. But the last words of this specific version of the world, the version where Hogwarts is intact and the war hasn't arrived at the gates."
+
+  if__ (romance_active == "elara") {
+    "'Come back to the table,' she says. The same words as yesterday. The repetition is: the point."
+
+    "'I will.'"
+
+    "'Promise me. Not the brave promise. The real promise.'"
+
+    "'I promise to come back to the table.'"
+  }
+
+  if__ (romance_active == "marcus") {
+    "'After,' he says. 'Whatever happens. After.'"
+
+    "'After.'"
+
+    "He touches your hand. Once. Brief. The Slytherin version of a declaration — minimal, precise, sufficient."
+  }
+
+  if__ (romance_active == "jade") {
+    "'Don't be stupid-brave,' she says. Her voice cracks on the word 'stupid.' 'Be the smart kind. The kind that comes back.'"
+
+    "'The kind that comes back.'"
+
+    "'Promise me.'"
+
+    "'I promise.'"
+
+    "She kisses you. The kiss is: fierce, brief, the specific intensity of someone who is not saying goodbye."
+  }
+
+  if__ (romance_active == "sebastian") {
+    "'The greenhouse,' he says. 'After. I'll be in the greenhouse.'"
+
+    "'The greenhouse.'"
+
+    "'Every day. Watering the plant. Until you come back.'"
+
+    "The simplicity of this is: devastating. No grand gestures. No dramatic declarations. Just a greenhouse, a plant, and a person who will be there."
+  }
+
+  choice__
+    @target "A705-CH15-Romance-Convergence"
+    "The last quiet moment ends."
+  __choice
+__section
+
+
+section__
+  @title "A704-CH15-No-Romance-Last"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "No one to find. No last exchange. The solitude that has been your companion — by choice or circumstance — holds through the final evening."
+
+  "You stand in a corridor. Alone. The castle breathing around you — the wards, the stones, the accumulated magic of a thousand years. The corridor is empty. The torches flicker. The specific quality of being alone in a large building at night: the sense that the building is watching."
+
+  "You think about what's coming. Not with fear — you've been afraid before and this doesn't feel like fear. With: readiness. The specific emotion of someone who has spent nine months preparing for a moment that has finally arrived."
+
+  "You're ready."
+
+  "Not ready enough. Never ready enough. But ready."
+
+  choice__
+    @target "A705-CH15-Romance-Convergence"
+    "Ready."
+  __choice
+__section
+
+
+section__
+  @title "A705-CH15-Romance-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The romance — the last word, the last touch, the last promise, or the solitude — settles."
+
+  "Chapter 15 converges. All threads in final position. All choices made."
+
+  choice__
+    @target "A706-CH15-End-State"
+    "The night begins."
+  __choice
+__section
+
+
+/* ── 15h: CHAPTER END (A706–A710) ── */
+
+section__
+  @title "A706-CH15-End-State"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Chapter 15. Betrayal and Choices."
+
+  "The betrayal: the cabinet. The passage through the castle's walls that Draco built and you confronted — helped, sabotaged, reported, ignored, or witnessed. The betrayal that comes from within, that uses the castle's own architecture against it."
+
+  "The choices: the key. Given, hidden, destroyed, or surrendered. The choice that determines how this story can end — which doors remain open, which close, which lock forever."
+
+  "The chapter where the ending gates activate. The accumulation of nine months of decisions — house, romance, allegiance, morality, courage, knowledge, cunning, empathy — resolving into the specific combination of flags that will determine which of the five endings you can reach."
+
+  "You don't know the endings yet. You don't know the gates. But the story knows."
+
+  choice__
+    @target "A707-CH15-Chapter-Close"
+    "The story knows."
+  __choice
+__section
+
+
+section__
+  @title "A707-CH15-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Eleven PM. The castle is quiet. The corridors empty. The prefects have finished their rounds. The common rooms are sealed. The students are in bed — or pretending to be, the older ones lying awake with the same instinct that keeps you awake. The primate knowledge that the predator is close."
+
+  "Dumbledore is absent. His office is dark. The gargoyle guards an empty stairwell."
+
+  "You are in your position. The position your allegiance assigned — seventh floor, dungeons, third-floor intersection, or bed. The position you chose."
+
+  "The night is: ready."
+
+  choice__
+    @target "A708-CH15-Night-Falls"
+    "Night falls."
+  __choice
+__section
+
+
+section__
+  @title "A708-CH15-Night-Falls"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Night falls. The final night. The night that will split the story into before and after."
+
+  "Before: Hogwarts was a school. Imperfect, political, occasionally dangerous — but a school. A place where children learned magic and fell in love and complained about homework and grew up in the specific shelter of an institution that had been protecting children for a thousand years."
+
+  "After: Hogwarts will be something else. A symbol. A battlefield. A place where someone died and the world changed."
+
+  "The night falls. You breathe. You wait."
+
+  "Chapter 16 begins at midnight."
+
+  choice__
+    @target "A709-CH15-Buffer"
+    "Midnight."
+  __choice
+__section
+
+
+section__
+  @title "A709-CH15-Buffer"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Midnight. The castle holds. The wards strain. The cabinet waits — ready or broken, the door about to open or already compromised."
+
+  "You are: seventeen years old. You have decoded your parent's journal. You have found, held, and decided the fate of the most dangerous artefact in the wizarding world. You have built alliances and broken confidences and fallen in love or chosen solitude. You have been brave and cunning and empathetic and knowledgeable in varying proportions, and every choice has led to this corridor, this moment, this night."
+
+  "The Astronomy Tower rises above you. Dark against the darker sky."
+
+  choice__
+    @target "A710-CH15-To-Ch16"
+    "The Tower."
+  __choice
+__section
+
+
+section__
+  @title "A710-CH15-To-Ch16"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The Dark Mark appears."
+
+  "Green. Skull and serpent. Burning in the sky above the Astronomy Tower like a wound in the night."
+
+  "It begins."
+
+  "Chapter 16: The Astronomy Tower."
+
+  choice__
+    @target "A711-CH16-Tower-Opens"
+    "Turn the page."
+  __choice
+__section
