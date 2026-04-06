@@ -1,0 +1,1546 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 13
+   03-ch13-hearts-hexes.partial.if
+
+   Chapter 13: Hearts and Hexes
+   Spy subplot conclusion. Luna's revelation.
+   Romance Phase 3 — commitment or fracture.
+   Allegiance track scene. Chapter close.
+
+   Flags set: elara_secret_known, marcus_defection,
+   romance_consummated (possibly), luna_told_mirror_function
+
+   Section range: A546–A595
+   ============================================================ */
+
+scene__
+  @name "CH13: Hearts and Hexes"
+  @first "A546-CH13-Hearts-Hexes-Opens"
+  @sceneTransition "dissolve"
+  @sections "A546-CH13-Hearts-Hexes-Opens" "A547-CH13-Spy-Hub" "A548-CH13-Spy-Exposed-Scene" "A549-CH13-Spy-Leveraged-Scene" "A550-CH13-Spy-Protected-Scene" "A551-CH13-Spy-Unknown-Scene" "A552-CH13-Asha-Hurt" "A553-CH13-Asha-Response" "A554-CH13-Spy-Convergence" "A555-CH13-Luna-Hub" "A556-CH13-Luna-Dinner" "A557-CH13-Luna-Ask" "A558-CH13-Luna-Listen" "A559-CH13-Luna-Dismiss" "A560-CH13-Luna-Convergence" "A561-CH13-Romance-Phase3-Hub" "A562-CH13-Elara-Phase3" "A563-CH13-Elara-Phase3-Choice" "A564-CH13-Elara-Anger" "A565-CH13-Elara-Understand" "A566-CH13-Elara-Kiss" "A567-CH13-Marcus-Phase3" "A568-CH13-Marcus-Phase3-Choice" "A569-CH13-Marcus-Stand" "A570-CH13-Marcus-Hide" "A571-CH13-Marcus-Sacrifice" "A572-CH13-Jade-Phase3" "A573-CH13-Jade-Phase3-Choice" "A574-CH13-Jade-Let-Go" "A575-CH13-Jade-Stay" "A576-CH13-Jade-Third-Way" "A577-CH13-Sebastian-Phase3" "A578-CH13-Sebastian-Phase3-Choice" "A579-CH13-Sebastian-Clean" "A580-CH13-Sebastian-Lie" "A581-CH13-Sebastian-Push-Away" "A582-CH13-No-Romance-Phase3" "A583-CH13-Romance-Phase3-Convergence" "A584-CH13-Track-Hub" "A585-CH13-Order-Assignment" "A586-CH13-Order-Assignment-B" "A587-CH13-Dark-Acceleration" "A588-CH13-Dark-Acceleration-B" "A589-CH13-Solo-Forward" "A590-CH13-Solo-Forward-B" "A591-CH13-Track-Convergence" "A592-CH13-End-State" "A593-CH13-Chapter-Close" "A594-CH13-Buffer" "A595-CH13-To-Ch14"
+__scene
+
+
+/* ── 13a: SPY SUBPLOT CONCLUSION (A546–A554) ── */
+
+section__
+  @title "A546-CH13-Hearts-Hexes-Opens"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "June. The last full week of term. The castle in its end-of-year state — half exam-exhausted, half summer-anticipatory, wholly unprepared for what is coming."
+
+  "Three threads to resolve. Three kinds of unfinished business."
+
+  "The spy. The heart. The hex."
+
+  choice__
+    @target "A547-CH13-Spy-Hub"
+    "The spy first."
+  __choice
+__section
+
+
+section__
+  @title "A547-CH13-Spy-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy subplot. The consequences of what you did in Chapter 10 — exposed, confronted, leveraged, protected, or left uninvestigated — have been running in the background. Now they surface."
+
+  if__ (spy_exposed == true) {
+    choice__
+      @target "A548-CH13-Spy-Exposed-Scene"
+      "The exposed spy's aftermath."
+    __choice
+  }
+
+  if__ (spy_leveraged == true) {
+    choice__
+      @target "A549-CH13-Spy-Leveraged-Scene"
+      "The leveraged channel's yield."
+    __choice
+  }
+
+  if__ (spy_protected == true) {
+    choice__
+      @target "A550-CH13-Spy-Protected-Scene"
+      "The protected spy's crisis."
+    __choice
+  }
+
+  if__ (spy_known == false && spy_confronted == false) {
+    choice__
+      @target "A551-CH13-Spy-Unknown-Scene"
+      "The unknown spy strikes."
+    __choice
+  }
+
+  if__ (spy_confronted == true && spy_leveraged == false && spy_protected == false && spy_exposed == false) {
+    choice__
+      @target "A551-CH13-Spy-Unknown-Scene"
+      "The confronted-but-unresolved spy."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A548-CH13-Spy-Exposed-Scene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The spy was exposed. The leak closed. The institutional machinery handled the aftermath — monitoring, family assessment, the specific bureaucratic process that turns a crisis into a procedure."
+
+  "The consequence of clean resolution: the intelligence pipeline is secure. The Order's communications — if you're on the Order track — are reliable. The castle's internal information isn't bleeding outward anymore."
+
+  "You see the spy in the corridor. Once. The specific sighting of two people who know something about each other that creates a gravitational distortion in the normal flow of passing."
+
+  "They look at you. The expression is: complicated. Not hatred — you didn't destroy them; the authorities handled it with the protection-first approach that Dumbledore or McGonagall mandated. But not gratitude either. The specific expression of someone whose secret was discovered and whose agency was removed."
+
+  "They pass. The corridor normalises."
+
+  "The spy subplot is closed. The closure is: clean. Perhaps too clean for the moral complexity the situation deserved."
+
+  choice__
+    @target "A554-CH13-Spy-Convergence"
+    "The spy is handled."
+  __choice
+__section
+
+
+section__
+  @title "A549-CH13-Spy-Leveraged-Scene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The leveraged channel has been producing: disinformation. The spy sends the letters you write. The Death Eaters receive intelligence that is plausible and wrong — wrong timelines, wrong patrol routes, wrong assessments of the castle's readiness."
+
+  "The yield is: significant. The operational picture on the Dark side is corrupted. When the Death Eaters come through the cabinet — and they will — they will expect things that aren't true."
+
+  "But the spy finds you. In the corridor. Late."
+
+  "'They're suspicious,' they say. The voice is flat. The voice of someone who has been acting under your control for weeks and has reached the specific exhaustion of sustained deception."
+
+  "'The last letter — the timeline I gave them — someone checked it against another source. The information didn't match. They've asked me to — confirm. To provide something verifiable. Something they can cross-reference.'"
+
+  "'So provide it.'"
+
+  "'The verifiable information they want is: the current location of the artefact they're seeking. The Mirror-key.'"
+
+  "The channel is compromised. The spy's usefulness has a limit, and the limit is here."
+
+  "You tell them nothing about the key. The channel goes silent. The disinformation campaign ends — not with a dramatic failure, but with the quiet exhaustion of a mechanism that was always temporary."
+
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A554-CH13-Spy-Convergence"
+    "The channel closes."
+  __choice
+__section
+
+
+section__
+  @title "A550-CH13-Spy-Protected-Scene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The protected spy. The child you shielded from exposure. The letters stopped. The excuse — 'investigation tightened, can't risk it' — bought time."
+
+  "The time has run out."
+
+  "Asha is targeted."
+
+  if__ (allegiance_track == "order") {
+    "You hear about it through the coin — the emergency frequency, the burn that means *now*. Asha has been hit by a curse in an empty corridor on the fourth floor. Not lethal. But precise. The kind of curse that says *I know who you are and I can reach you.*"
+
+    "The spy — or the spy's handlers, acting on intelligence the spy provided before the letters stopped — has struck at the Order network's operational hub."
+  }
+
+  if__ (allegiance_track != "order") {
+    "You hear about it through the castle's informal network — the whispered chain of students who saw someone carried to the Hospital Wing, who heard the professors' urgent voices, who noticed that Asha Mehta, the seventh-year who runs the Charms study group, is missing from dinner."
+  }
+
+  "The curse wasn't fatal. But it was pointed. The spy's handlers, deprived of their intelligence channel, have escalated from information gathering to direct action."
+
+  "The cost of protection: you shielded the spy, but you didn't neutralise the threat. The handlers adapted. And Asha paid the price."
+
+  empathy = adj(empathy, 5)
+  morality = adj(morality, -5)
+
+  choice__
+    @target "A552-CH13-Asha-Hurt"
+    "Asha."
+  __choice
+__section
+
+
+section__
+  @title "A551-CH13-Spy-Unknown-Scene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The spy was never identified. Never confronted. Never leveraged or protected. The intelligence pipeline has been flowing uninterrupted since October — eight months of information bleeding from the castle to the Death Eaters."
+
+  "The consequence of inaction: the enemy has a complete picture. They know the Order youth network's structure — because the spy observed it. They know the castle's patrol schedules — because the spy walked them. They know about the Mirror-key investigation — because the spy noticed your movements and reported them."
+
+  "How much they know about *you* specifically is: uncertain. But the leak has been operating for eight months. The probability that your investigation has been compromised is: high."
+
+  "Asha is targeted. A curse in an empty corridor. Not fatal — demonstrative. The kind of attack that says *we know you, we can reach you, your network is transparent to us.*"
+
+  "The cost of not investigating: the spy operated freely. The information flowed. And now the enemy is acting on intelligence that you could have stopped."
+
+  choice__
+    @target "A552-CH13-Asha-Hurt"
+    "Asha."
+  __choice
+__section
+
+
+section__
+  @title "A552-CH13-Asha-Hurt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Hospital Wing. Asha on a bed. Madam Pomfrey working with the specific urgency of someone who has seen too many curse injuries this year and is running low on the professional detachment that makes the work bearable."
+
+  "Asha is conscious. The curse hit her left arm — a Stinging Hex variant, modified for tissue damage. Not Dark magic, technically. But close enough that the distinction is academic."
+
+  if__ (allegiance_track == "order") {
+    "'Ashford,' she says when she sees you. The voice is tight with pain but functional. 'The network is compromised. Someone hit me with precise targeting — they knew my route, my timing, the corridor I use between the third-floor classroom and the kitchens.'"
+
+    "'The spy?'"
+
+    "'Probably. Or the spy's handlers. Either way — the intelligence they had was current. Not weeks old. Recent.'"
+
+    rel_order = adjRel(rel_order, 10)
+  }
+
+  if__ (allegiance_track != "order") {
+    "She sees you. Recognises you — the sixth-year who has been adjacent to the youth network all year without fully joining."
+
+    "'Ashford. You're here.'"
+
+    "'I heard.'"
+
+    "'From whom?'"
+
+    "'Everyone. The castle talks.'"
+
+    "She manages a nod. The nod of someone who is in pain but is evaluating you even through the pain."
+  }
+
+  choice__
+    @target "A553-CH13-Asha-Response"
+    "Respond."
+  __choice
+__section
+
+
+section__
+  @title "A553-CH13-Asha-Response"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Three responses to Asha's situation."
+
+  choice__
+    @target "A554-CH13-Spy-Convergence"
+    @action courage = adj(courage, 8)
+    @action knowledge = adj(knowledge, 5)
+    "Investigate the attack. The curse's origin — the corridor, the timing, the specific spell used — contains information. Track it. Find the thread. The investigator's response."
+  __choice
+
+  choice__
+    @target "A554-CH13-Spy-Convergence"
+    @action empathy = adj(empathy, 8)
+    @action rel_mcgonagall = adjRel(rel_mcgonagall, 5)
+    "Get her help. Proper help. Not just Pomfrey — McGonagall. Report the attack formally. Force the institution to respond with the full weight of its authority."
+  __choice
+
+  choice__
+    @target "A554-CH13-Spy-Convergence"
+    @when allegiance_track == "order"
+    @disabledText "Only Order members have the authority and trust to take over network operations."
+    @action courage = adj(courage, 10)
+    @action cunning = adj(cunning, 5)
+    @action rel_order = adjRel(rel_order, 15)
+    "Take over the network temporarily. Asha is incapacitated. Someone needs to coordinate the Order youth network's operations in the critical days ahead. You have the intelligence. You have the contacts. You have the coin."
+  __choice
+__section
+
+
+section__
+  @title "A554-CH13-Spy-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy subplot reaches its Chapter 13 resolution. The leak's consequences have surfaced — Asha's injury, the network's compromise, the enemy's operational advantage."
+
+  "Whatever you did in Chapter 10 — expose, leverage, protect, or nothing — the consequences have played out. The spy subplot is structurally closed, even if the spy themselves remains a presence in the castle."
+
+  "What remains: the revelation. The heart. And the hex that gives this chapter its name."
+
+  choice__
+    @target "A555-CH13-Luna-Hub"
+    "Luna."
+  __choice
+__section
+
+
+/* ── 13b: LUNA'S REVELATION (A555–A560) ── */
+
+section__
+  @title "A555-CH13-Luna-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Luna Lovegood. The conversation you didn't know you needed."
+
+  "It happens at dinner. The Great Hall. The specific ambient noise of two hundred students eating and talking and existing in the shared space of a school that is — unbeknownst to most of them — days away from crisis."
+
+  "Luna sits down across from you. Uninvited, as always. Her presence at mealtimes follows no discernible pattern — she appears, she observes, she says things that seem unrelated to anything and turn out to be related to everything."
+
+  "'The Mirror,' she says."
+
+  "Not a preamble. Not a question. Just the word."
+
+  choice__
+    @target "A556-CH13-Luna-Dinner"
+    "Luna knows."
+  __choice
+__section
+
+
+section__
+  @title "A556-CH13-Luna-Dinner"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'The Resonance Mirror,' Luna says, as though discussing a Herbology assignment. 'My mother studied it. Before she died. She was a spell inventor — experimental charms. The Mirror was one of her research subjects.'"
+
+  "The information lands with a quality you don't expect: familiarity. Of course Luna's mother studied the Mirror. Of course the connections between your investigation and the people around you extend further than you realised. The story's web is: intricate."
+
+  "'Your mother,' you say."
+
+  "'Pandora Lovegood. She died when I was nine. A spell went wrong — her own spell. She was trying to — well, she was trying to do something with intent-based amplification. The same principle the Mirror uses. She wanted to scale it. Make it portable. The experiment failed and the failure was—'"
+
+  "Luna stops. The rare pause. The place where even Luna's unusual equanimity touches something that hurts."
+
+  "'—was fatal. But her notes survived. And her notes say something about the Mirror that I don't think anyone else knows.'"
+
+  "Three responses."
+
+  choice__
+    @target "A557-CH13-Luna-Ask"
+    @action rel_luna = adjRel(rel_luna, 20)
+    @action knowledge = adj(knowledge, 10)
+    "Ask directly. 'What do the notes say, Luna?'"
+  __choice
+
+  choice__
+    @target "A558-CH13-Luna-Listen"
+    @action empathy = adj(empathy, 8)
+    @action knowledge = adj(knowledge, 8)
+    "Just listen. Don't push. Let Luna give what she's willing to give, at the pace she's willing to give it."
+  __choice
+
+  choice__
+    @target "A559-CH13-Luna-Dismiss"
+    "Dismiss it. Luna's mother's research is tangential. You have the journal. You have the key. You don't need another thread."
+  __choice
+__section
+
+
+section__
+  @title "A557-CH13-Luna-Ask"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "'What do the notes say, Luna.'"
+
+  "She looks at you. The look is: the specific evaluation of someone who is deciding whether to trust. Luna trusts easily in most contexts — but this context is her mother, and her mother is the one subject where Luna's usual openness meets a boundary."
+
+  "She decides. The decision is visible — the slight nod, the settling of the shoulders, the moment where the evaluation ends and the disclosure begins."
+
+  "'The Mirror doesn't amplify intent,' she says. 'That's close, but it's not right. The Mirror amplifies *resonance*. Resonance is what happens when two intents align — when the person holding the key and the person being protected share the same purpose. It's not one person's power scaled up. It's two people's connection made physical.'"
+
+  "'Two people.'"
+
+  "'The holder and the subject. The protector and the protected. The sacrificer and the person for whom the sacrifice is made. The Mirror requires a *relationship*. Not a soul. Not a will. A bond.'"
+
+  "The revelation. The missing piece. The journal said intent. But Luna's mother's research says: *resonance*. Two people. A bond. The key doesn't amplify individual power — it amplifies the connection between people."
+
+  "'That's why Voldemort can't use it,' you say."
+
+  "'He has no resonance,' Luna agrees. 'He has power. He has intent. He has no one he would genuinely sacrifice for. And without that — the key is inert. A pretty rock.'"
+
+  luna_told_mirror_function = true
+
+  choice__
+    @target "A560-CH13-Luna-Convergence"
+    "The missing piece."
+  __choice
+__section
+
+
+section__
+  @title "A558-CH13-Luna-Listen"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You listen. Luna talks."
+
+  "Not in her usual oblique style — directly. The directness of someone who is sharing something personal and has decided that the most respectful way to honour their mother's work is to present it clearly."
+
+  "'My mother's notes say the Mirror doesn't work through individual power. It works through resonance — the alignment between two people's purposes. The holder of the key and the person being protected. The relationship between them is the fuel. Not the key, not the mirror, not the magic. The relationship.'"
+
+  "She picks at her food. The specific, absent eating of someone who is thinking about things more important than dinner."
+
+  "'My mother was trying to build a smaller version. A charm that could do what the Mirror does without the physical artefact. She thought if she could isolate the resonance principle, she could create protective magic that worked through love rather than through power.'"
+
+  "'And the experiment—'"
+
+  "'The experiment proved she was right. The charm worked. For eleven seconds. And then the power required to maintain it—' Luna looks at the ceiling. 'The resonance was real. The cost was too high for one person to sustain alone.'"
+
+  "The Mirror distributes the cost. The mirror frame — the original mirror, of which the key is a fragment — was designed to make the resonance sustainable. Without it, the magic is real but fatal."
+
+  "Luna's mother proved the principle and died proving it."
+
+  luna_told_mirror_function = true
+
+  choice__
+    @target "A560-CH13-Luna-Convergence"
+    "Luna's mother."
+  __choice
+__section
+
+
+section__
+  @title "A559-CH13-Luna-Dismiss"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You dismiss it. Politely — or as politely as dismissal allows. Luna's mother's research is: interesting. But you have the journal. You have the key. The investigation doesn't need another voice."
+
+  "'Thank you, Luna, but I have what I need.'"
+
+  "She looks at you. The expression is: the specific, gentle disappointment of someone who offered something valuable and watched it be refused."
+
+  "'All right,' she says. She stands. She picks up her bag — the one covered in Dirigible Plum pins and Spectrespecs advertisements."
+
+  "'But if you change your mind — the notes are in Ravenclaw Tower. Third shelf from the window. Behind the copy of *Theoretical Enchantments* that no one ever reads because the title is boring.'"
+
+  "She leaves."
+
+  "The information she would have given you — the resonance principle, the relationship fuel, the reason Voldemort can't use the key — remains ungiven. You'll proceed without it. The investigation is: slightly narrower for the absence."
+
+  choice__
+    @target "A560-CH13-Luna-Convergence"
+    "Luna leaves."
+  __choice
+__section
+
+
+section__
+  @title "A560-CH13-Luna-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Luna's contribution — given or refused — marks the last piece of the Mirror-key puzzle that can be assembled before the climax."
+
+  if__ (luna_told_mirror_function == true) {
+    "The picture is complete: the Mirror-key amplifies resonance — the bond between people, not individual power. Voldemort cannot use it. Someone with a genuine bond — a parent and child, lovers, friends — could. The key is: a relationship made physical."
+  }
+
+  if__ (luna_told_mirror_function == false) {
+    "The picture is: incomplete. You know the key amplifies intent. But without Luna's insight, you're missing the deeper mechanism — the relational component, the resonance. The key will work differently than you expect."
+  }
+
+  "What remains: the heart of the chapter. The romance's peak. The moment where hearts and hexes collide."
+
+  choice__
+    @target "A561-CH13-Romance-Phase3-Hub"
+    "The heart."
+  __choice
+__section
+
+
+/* ── 13c: ROMANCE PHASE 3 — COMMITMENT OR FRACTURE (A561–A583) ── */
+
+section__
+  @title "A561-CH13-Romance-Phase3-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Romance Phase 3. The peak. The moment the story has been building toward since the first spark in Chapter 4 — the point where the relationship either commits or fractures."
+
+  "Commitment: the romance deepens to its emotional peak. The person you've let in becomes the person you can't imagine the next chapters without. `romance_consummated` — not physical, but emotional. The full weight of two people choosing each other in wartime."
+
+  "Fracture: the romance breaks. The weight of the investigation, the lies, the danger — it becomes too much. The person walks away. Or you push them away. The relationship doesn't survive what you're asking it to carry."
+
+  if__ (romance_active == "elara") {
+    choice__
+      @target "A562-CH13-Elara-Phase3"
+      "Elara. The secret."
+    __choice
+  }
+
+  if__ (romance_active == "marcus") {
+    choice__
+      @target "A567-CH13-Marcus-Phase3"
+      "Marcus. The defection."
+    __choice
+  }
+
+  if__ (romance_active == "jade") {
+    choice__
+      @target "A572-CH13-Jade-Phase3"
+      "Jade. The mission."
+    __choice
+  }
+
+  if__ (romance_active == "sebastian") {
+    choice__
+      @target "A577-CH13-Sebastian-Phase3"
+      "Sebastian. The truth."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    choice__
+      @target "A582-CH13-No-Romance-Phase3"
+      "No romance. The solitary peak."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A562-CH13-Elara-Phase3"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara. The Restricted Section alcove. The window over the lake. The place that has become their geography — the specific location where the relationship exists most fully."
+
+  "She's waiting. Not reading. Waiting. The distinction is: significant. Elara always reads. Elara always has a book. Tonight: no book. Just her hands on the table and her eyes on the door and the expression of someone who has decided to say something that will change everything."
+
+  "'I have to tell you something,' she says."
+
+  "'Go ahead.'"
+
+  "'My father. You know my family name — Voss. My grandmother was the researcher. Pandora Lovegood cited her work. The academic lineage is: legitimate.'"
+
+  "She pauses. The pause of someone gathering the specific kind of courage that has nothing to do with physical bravery."
+
+  "'My father is — passing information. To the Death Eaters. Not voluntarily. Under duress. Someone has leverage on him — my mother's health, a debt, something I've never fully understood. He's been — an informant. Since before I came to Hogwarts.'"
+
+  "The secret. Elara's secret. The one that has been present in every conversation, every touch, every shared silence since September."
+
+  "'I've been protecting him,' she says. 'Lying to everyone. To the school, to my friends, to you. The research connection — my family's Mirror study — I've been hiding that too, because if anyone traces the academic lineage from the Mirror to the Voss family to my father, they find the informant connection and then—'"
+
+  "She can't finish."
+
+  elara_secret_known = true
+
+  choice__
+    @target "A563-CH13-Elara-Phase3-Choice"
+    "She told you."
+  __choice
+__section
+
+
+section__
+  @title "A563-CH13-Elara-Phase3-Choice"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Elara's secret. Her father. A Death Eater informant. The family whose Mirror research connects to your investigation. The lies she's been carrying."
+
+  "Three responses. Each determines the romance's trajectory."
+
+  choice__
+    @target "A564-CH13-Elara-Anger"
+    @action courage = adj(courage, 8)
+    @action morality = adj(morality, 10)
+    @action rel_elara = adjRel(rel_elara, -20)
+    "Anger. 'You lied to me. About everything. Your family is connected to the thing I've been investigating and you — you hid it.' The righteous response. The response that exposes the father, helps the Order, and destroys the relationship."
+  __choice
+
+  choice__
+    @target "A565-CH13-Elara-Understand"
+    @action empathy = adj(empathy, 10)
+    @action morality = adj(morality, -15)
+    @action rel_elara = adjRel(rel_elara, 25)
+    "Understand. 'You were protecting your father. I understand protection — it's what this entire investigation has been about. Avery. Your father. The same mechanism. The same love.' The response that protects the father, preserves the relationship, and costs morality."
+  __choice
+
+  choice__
+    @target "A566-CH13-Elara-Kiss"
+    @when rel_elara >= 80
+    @disabledText "Requires a deep bond with Elara (relationship >= 80) — the third way demands genuine trust."
+    @action empathy = adj(empathy, 12)
+    @action knowledge = adj(knowledge, 8)
+    @action morality = adj(morality, 5)
+    @action rel_elara = adjRel(rel_elara, 30)
+    "The third way. 'Your father is being coerced. My parent was investigating the source of that coercion. The solution isn't exposing him or hiding him — it's finding the leverage and removing it. Together.' The response that treats the problem as solvable."
+  __choice
+__section
+
+
+section__
+  @title "A564-CH13-Elara-Anger"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The anger. It rises clean and righteous and it destroys the room."
+
+  "'You *lied*,' you say. 'Your family. The Voss research. The Mirror connection. You've been sitting across from me in this library for six months, watching me decode my parent's journal, and you knew — you *knew* — that your family was connected to the very artefact Avery was investigating.'"
+
+  "'I was protecting—'"
+
+  "'Your father. A Death Eater informant. While I was looking for my parent who disappeared because of the information people like your father pass along. The intelligence that compromises Aurors. The intelligence that gets people—'"
+
+  "You stop. Because the next word is *killed* and the word is too close to the truth."
+
+  "Elara's face has gone: still. The specific stillness of someone who expected this reaction, prepared for this reaction, and is experiencing this reaction as a confirmation of the fear that kept her silent."
+
+  "'I'm sorry,' she says."
+
+  "'Sorry doesn't—'"
+
+  "'I know. Sorry doesn't. Nothing I say does. The lie was — the lie was all I had. And I chose the lie over losing you. And now I've lost you anyway.'"
+
+  "The romance fractures. The intellectual partners, the slow-burn confession, the hand that stayed on yours for longer than three seconds — it breaks on the specific fault line of competing loyalties."
+
+  "She leaves. The alcove is empty. The window still shows the lake."
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "She's gone."
+  __choice
+__section
+
+
+section__
+  @title "A565-CH13-Elara-Understand"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Understanding. The choice to see her father's situation through the lens of your own — Avery's child protecting Avery's legacy; Elara's daughter protecting Elara's father. The same architecture of family loyalty, applied to opposite sides of the same war."
+
+  "'I understand,' you say."
+
+  "'You—'"
+
+  "'My parent went missing protecting an artefact. Your father is passing information to protect his family. We're both — we're both trapped in systems that use the people we love as leverage. I can't condemn your father for doing what anyone would do.'"
+
+  "The moral cost: you are choosing to protect a Death Eater informant. The information Elara's father passes may have contributed to people being hurt. The protection is: morally expensive."
+
+  "But Elara's face — the transition from braced devastation to tentative, disbelieving hope — is: a thing worth paying for."
+
+  "'You're not angry,' she says."
+
+  "'I'm terrified. And I'm in love with you. And those two things are going to have to coexist because I'm not willing to lose either of them.'"
+
+  "The word *love* has been approaching since February. It lands now, in the Restricted Section alcove, with the window over the lake catching the last of the June light."
+
+  "She reaches across the table."
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "The word lands."
+  __choice
+__section
+
+
+section__
+  @title "A566-CH13-Elara-Kiss"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The third way. The Ashford speciality — the refusal to accept binary choices, the insistence on a path that preserves rather than destroys."
+
+  "'Your father is being coerced,' you say. 'Someone has leverage on him. A debt, a threat, your mother's health — something. The leverage is the problem, not your father.'"
+
+  "'I know that. But knowing the leverage is the problem and removing the leverage are—'"
+
+  "'Different things. I know. But I've been investigating a network of coercion for six months. The same mechanisms that threaten your father threaten Draco's mother. The same people who leveraged the spy leverage your family. It's the same system. And systems can be disrupted.'"
+
+  "She looks at you. The analytical mind — the mind that processes through patterns — is working. You can see it: the recalculation, the reorganisation of the problem from *my father's impossible situation* to *a system with vulnerabilities that can be identified and exploited.*"
+
+  "'You're suggesting we investigate the leverage,' she says."
+
+  "'I'm suggesting we do what we do best. Together. You have the academic lineage. I have the field investigation. Your family's Mirror research and my parent's journal — they're the same thread. We follow it together and we find the leverage and we remove it.'"
+
+  "She stands. Comes around the table. And — for the first time, the first real time, not the hand-on-yours or the three-seconds-of-contact — she kisses you."
+
+  "The kiss is: analytical and fierce and specific and honest and everything you expected from Elara Voss and several things you didn't."
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "The third way."
+  __choice
+__section
+
+
+section__
+  @title "A567-CH13-Marcus-Phase3"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus. Not the corridor tonight. The shore of the lake. Late. The kind of location that Marcus would never normally choose — open, exposed, visible. He chose it because what he has to say requires the psychological space that walls don't provide."
+
+  "'The letter,' he says. 'The one I sent to the Order contact. The defection letter.'"
+
+  "'They responded?'"
+
+  "'They responded. The contact is — cautious. Obviously. A Slytherin sixth-year from a known Death Eater family claiming to want out? The suspicion is: reasonable.'"
+
+  "He turns a stone over in his hand. The specific, restless motion of someone whose body needs to do something while their mind does something harder."
+
+  "'They want proof. Something that demonstrates my sincerity. Intelligence about the Death Eater network — names, operations, the kind of information that a genuine defector would provide and a plant wouldn't.'"
+
+  "'And you have it.'"
+
+  "'I have it. My family's dinner table conversations for the last six years. The names of the people who visit. The operations my father mentions when he thinks I'm not listening. I have enough to burn every Death Eater contact my family has maintained since the first war.'"
+
+  "He looks at the lake."
+
+  "'The problem is: providing that information burns my family too. My mother. My younger sister. The protection that comes with being *inside* the network — gone. If the Death Eaters learn I've turned informant, the reprisal won't be against me. It'll be against them.'"
+
+  "The same lever. Always the same lever. Family."
+
+  choice__
+    @target "A568-CH13-Marcus-Phase3-Choice"
+    "Marcus's choice."
+  __choice
+__section
+
+
+section__
+  @title "A568-CH13-Marcus-Phase3-Choice"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Marcus. Between defection and family. Three responses."
+
+  choice__
+    @target "A569-CH13-Marcus-Stand"
+    @when courage >= 70
+    @disabledText "Requires Courage >= 70 — standing with Marcus means standing against the full weight of the Death Eater network."
+    @action courage = adj(courage, 10)
+    @action rel_marcus = adjRel(rel_marcus, 25)
+    @action marcus_defection = true
+    "Stand with him. 'Provide the intelligence. I'll help protect your family — the Order has safe houses, relocation protocols. The defection isn't betrayal of your mother and sister. It's rescuing them from a network that uses them as leverage.' Commit to Marcus. Fully."
+  __choice
+
+  choice__
+    @target "A570-CH13-Marcus-Hide"
+    @when cunning >= 65
+    @disabledText "Requires Cunning >= 65 — the disappearance needs careful planning."
+    @action cunning = adj(cunning, 10)
+    @action rel_marcus = adjRel(rel_marcus, 20)
+    @action marcus_defection = true
+    "Help him disappear. 'Don't defect formally. Vanish. I can help you build a false trail — the investigation skills I've developed work for concealment as well as discovery. Your family won't be targeted if no one knows you've left.'"
+  __choice
+
+  choice__
+    @target "A571-CH13-Marcus-Sacrifice"
+    @action morality = adj(morality, -20)
+    @action rel_marcus = adjRel(rel_marcus, -30)
+    "Sacrifice his location. The intelligence Marcus can provide is: valuable. Too valuable to let personal feelings compromise. If the Order receives his family's network details — with or without Marcus's consent — the war effort benefits. The relationship doesn't survive this choice."
+  __choice
+__section
+
+
+section__
+  @title "A569-CH13-Marcus-Stand"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You stand with him."
+
+  "'Together,' you say. 'The defection. The family protection. All of it. I'm not going to watch you do this alone.'"
+
+  "Marcus looks at you. The look is: the specific, raw expression of someone who has been carrying the weight of an impossible decision and has just been told they don't have to carry it alone."
+
+  "'You understand what this means,' he says. 'If the Death Eaters find out you helped me — if they connect you to the defection—'"
+
+  "'Then they add me to the list of people who stood against them. The list is already long. One more name doesn't change the war.'"
+
+  "'It changes mine.'"
+
+  "He puts the stone down. Reaches for your hand. The touch is: different from the corridor. Not stolen. Deliberate. The specific, physical commitment of someone who has decided to stand somewhere and is inviting you to stand beside them."
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "Standing."
+  __choice
+__section
+
+
+section__
+  @title "A570-CH13-Marcus-Hide"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You help him plan the disappearance. The investigation skills — the cipher, the false trails, the understanding of how information moves and can be misdirected — applied to a new purpose: making Marcus Calloway invisible."
+
+  "'Not a defection,' you say. 'A vanishing. The Death Eater network can't retaliate against a family whose son simply — stopped being findable. No betrayal, no intelligence leak. Just absence.'"
+
+  "'My family will worry.'"
+
+  "'Your family will be safe. The worry is temporary. The safety is — if we do this right — permanent.'"
+
+  "The plan takes shape. Marcus's cunning and yours, combined. The specific, parallel intelligence of two Slytherin-adjacent minds working the same problem from different angles."
+
+  "When the plan is done, he looks at you."
+
+  "'You're saving me,' he says."
+
+  "'I'm helping you save yourself. The distinction matters.'"
+
+  "'Not to me it doesn't.'"
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "The plan holds."
+  __choice
+__section
+
+
+section__
+  @title "A571-CH13-Marcus-Sacrifice"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You sacrifice him."
+
+  "Not directly — not crudely. You take the information Marcus gave you — his family's contacts, the dinner-table names, the network details — and you route it. Through channels that lead to the Order's adult membership without Marcus's knowledge. Without his consent."
+
+  "The intelligence is: valuable. The Order gains a comprehensive picture of the Calloway family's Death Eater connections. The war effort benefits. People may be saved by the information you've provided."
+
+  "Marcus finds out. He's clever enough to trace the leak — the specific details he shared with you and no one else, appearing in the Order's operational responses."
+
+  "He finds you. The corridor. The bad torchlight."
+
+  "'You used me,' he says. The voice is flat. Not angry — past anger. The specific, dead calm of someone who has been betrayed by the person they trusted most."
+
+  "'The intelligence was too important to—'"
+
+  "'Don't. Don't tell me the reasoning. I know the reasoning. I taught you the reasoning. The reasoning is: correct. And it destroyed everything.'"
+
+  "He walks away. The corridor is empty."
+
+  "The romance fractures. Irreparably."
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "He's gone."
+  __choice
+__section
+
+
+section__
+  @title "A572-CH13-Jade-Phase3"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Jade. The Quidditch pitch. For the last time this year — the Cup has been played, the season over, and the pitch has the specific, empty quality of a place that has been full of purpose and is now waiting for next year."
+
+  "She's sitting on the lowest bench. No broom. The broom is in her locker. The specific symbolism of a Quidditch captain without her broom is: heavy."
+
+  "'My sibling's mission,' she says. 'The Order one. The one I've been telling you about.'"
+
+  "'What happened.'"
+
+  "'They've asked me to join it. Not my sibling — someone further up the chain. An older Order member who assessed my skills — flying, physical courage, the specific kind of operational capacity that Quidditch develops — and decided I'd be useful.'"
+
+  "She's been selected. For a dangerous Order-adjacent mission. The mission her sibling is already on. The one that takes people out of Hogwarts and into the war's operational theatre."
+
+  "'It's dangerous,' she says. Not a question. She knows."
+
+  "'When.'"
+
+  "'After term ends. Two weeks from now. I leave with my sibling and I don't come back until — until it's done or it isn't.'"
+
+  choice__
+    @target "A573-CH13-Jade-Phase3-Choice"
+    "Jade's mission."
+  __choice
+__section
+
+
+section__
+  @title "A573-CH13-Jade-Phase3-Choice"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Jade. The mission. Three responses."
+
+  choice__
+    @target "A574-CH13-Jade-Let-Go"
+    @action courage = adj(courage, 8)
+    @action empathy = adj(empathy, 8)
+    @action rel_jade = adjRel(rel_jade, 15)
+    "Let her go. 'You're a fighter. You've been a fighter since I met you. If this is where the fighting takes you, then — go. I'll be here when you come back.' The loving release. She goes into danger with your blessing."
+  __choice
+
+  choice__
+    @target "A575-CH13-Jade-Stay"
+    @action empathy = adj(empathy, 10)
+    @action rel_jade = adjRel(rel_jade, 10)
+    "Convince her to stay. 'The mission will have other people. Hogwarts needs you. I need you. Stay. Please.' The protective request. She resents it now — but Chapter 16 may validate the choice."
+  __choice
+
+  choice__
+    @target "A576-CH13-Jade-Third-Way"
+    @when knowledge >= 65
+    @disabledText "Requires Knowledge >= 65 — finding a compromise that satisfies both the mission's needs and your concern requires tactical creativity."
+    @action knowledge = adj(knowledge, 8)
+    @action cunning = adj(cunning, 5)
+    @action rel_jade = adjRel(rel_jade, 20)
+    "Find a third way. 'What if you contribute to the mission from here? Your skills — the flying, the reconnaissance — work from the castle too. I can help you build a support operation that feeds intelligence to your sibling without you leaving.'"
+  __choice
+__section
+
+
+section__
+  @title "A574-CH13-Jade-Let-Go"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You let her go."
+
+  "The words are: the hardest you've said this year. Harder than the allegiance choice. Harder than the lies. The specific difficulty of telling someone you love that you support their decision to walk into danger."
+
+  "'I'll be here,' you say. 'When you come back. Here. This pitch. This bench. I'll be here.'"
+
+  "She looks at you. The Gryffindor directness — the quality that makes Jade Okafor feel like the most honest person in any room — is: fully present."
+
+  "'You'd better be,' she says."
+
+  "And then she kisses you. On the Quidditch pitch. Under the stands. With the specific ferocity of someone who is about to do something brave and needs to know that the bravery has a destination to return to."
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "She goes."
+  __choice
+__section
+
+
+section__
+  @title "A575-CH13-Jade-Stay"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You ask her to stay."
+
+  "'Jade. Please. The mission will have other people — your sibling's already there, the Order has trained operatives. They don't need a sixth-year student. They're using you because you're brave and available, not because you're irreplaceable.'"
+
+  "Her expression changes. The specific shift of someone who is hearing something they didn't want to hear from the person they most wanted to hear it from."
+
+  "'You're asking me not to fight.'"
+
+  "'I'm asking you to be alive. At the end of this. I'm asking you to choose the version of events where I don't spend the rest of my life remembering that I could have asked you to stay and didn't.'"
+
+  "She's quiet for a long time. The Quidditch pitch. The empty stands. The specific silence of a place that usually contains noise."
+
+  "'I'll stay,' she says. 'For now. But you should know — this isn't forgiveness. This is — deferral. I'm staying because you asked, and I'm angry that you asked, and the anger and the staying are going to coexist for a while.'"
+
+  "'I can live with that.'"
+
+  "'You'd better.'"
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "She stays."
+  __choice
+__section
+
+
+section__
+  @title "A576-CH13-Jade-Third-Way"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The third way. The Ashford compromise."
+
+  "'What if you don't leave and you don't stay?'"
+
+  "She looks at you with the specific expression of someone who has been presented with a logical impossibility by a person they trust to resolve logical impossibilities."
+
+  "'Explain.'"
+
+  "'A support operation. From the castle. Your flying skills — reconnaissance, message delivery, the kind of fast-response capability that the Order's ground operations need but can't easily access. You stay at Hogwarts but you're *active*. Contributing. Not sitting out the war — running a complementary operation that makes your sibling's mission more effective without putting you in the direct line.'"
+
+  "The idea is: tactical. The kind of thinking that Ravenclaw analysis and Gryffindor courage produce when combined."
+
+  "Jade considers it. The captain's mind — the mind that assembles a team and deploys it strategically — engages."
+
+  "'That could work,' she says. 'If the mission leadership agrees. If the logistics hold.'"
+
+  "'I'll help you build it. The investigation skills transfer.'"
+
+  "She smiles. The smile is: rare and genuine and worth the entire investigation."
+
+  "'You and your third ways,' she says."
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "The third way holds."
+  __choice
+__section
+
+
+section__
+  @title "A577-CH13-Sebastian-Phase3"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Sebastian. The common room. Late. The fire almost out. The room empty except for the two of you and the residual warmth."
+
+  "He's not making tea. Sebastian Thorne is not making tea. The absence of the ritual is: alarming. The blue cup with the chipped handle is on the shelf. Not in his hands."
+
+  "'I know what you've been doing,' he says."
+
+  "Not the gentle concern of Chapter 11. Not the quiet noticing of Chapter 12. Something different. The specific, tired honesty of someone who has been carrying their own weight alongside yours and has reached the point where the carrying requires acknowledgment."
+
+  "'I know about the key. I know about the Room. I know about the journal — not the contents, not the cipher, but the fact that it exists and that you've been decoding it and that the decoding has changed you. I know about the allegiance. I don't know which side but I know there is a side.'"
+
+  "'How.'"
+
+  "'Because I pay attention. Because I watch you. Because the person I fell in love with has been disappearing into someone I don't recognise and I've been trying to understand the disappearance instead of fighting it and the understanding has produced — a picture.'"
+
+  "He sits down. Without tea. The absence of tea is its own statement."
+
+  "'I need you to decide something,' he says. 'Not about the investigation. About me. About us. About whether this thing we have is — real enough to survive what you're becoming.'"
+
+  choice__
+    @target "A578-CH13-Sebastian-Phase3-Choice"
+    "Sebastian asks."
+  __choice
+__section
+
+
+section__
+  @title "A578-CH13-Sebastian-Phase3-Choice"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Sebastian. The ask. Three responses."
+
+  choice__
+    @target "A579-CH13-Sebastian-Clean"
+    @action empathy = adj(empathy, 12)
+    @action morality = adj(morality, 10)
+    @action rel_sebastian = adjRel(rel_sebastian, 30)
+    "Come clean. Everything. The journal, the key, the Room, the allegiance, the dark arts — if practised — the lies, the weight, all of it. Give Sebastian the full picture and let him choose whether to stay in it."
+  __choice
+
+  choice__
+    @target "A580-CH13-Sebastian-Lie"
+    @action cunning = adj(cunning, 5)
+    @action rel_sebastian = adjRel(rel_sebastian, -20)
+    "Keep lying. 'You're imagining things. The disappearances are study sessions. The changes are — stress. End of year.' The lie that both of you know is a lie."
+  __choice
+
+  choice__
+    @target "A581-CH13-Sebastian-Push-Away"
+    @when empathy >= 75
+    @disabledText "Requires Empathy >= 75 — pushing Sebastian away to protect him requires genuine understanding of what you're giving up."
+    @action empathy = adj(empathy, 10)
+    @action courage = adj(courage, 8)
+    @action rel_sebastian = adjRel(rel_sebastian, 15)
+    "Push him away. To protect him. 'You're right. About all of it. And because you're right — because what I'm becoming is dangerous — the safest thing for you is to not be near me when it arrives.' The most painful form of love."
+  __choice
+__section
+
+
+section__
+  @title "A579-CH13-Sebastian-Clean"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You come clean."
+
+  "Everything. From the beginning. Avery's journal. The cipher. The Mirror-key. The Room of Hidden Things. The allegiance. The spy. Draco. Snape. The operation that is days away. The war that is about to enter the castle."
+
+  "Sebastian listens. He sits in the chair — the Hufflepuff common room chair, the one near the fire, the one that has held him through a year of waiting and watching and worrying — and he listens."
+
+  "He doesn't interrupt. He doesn't react visibly to the dangerous parts. He doesn't flinch at the mention of dark arts or the moral compromises or the weight of what you've been carrying."
+
+  "When you're done, the room is quiet. The fire has gone completely out."
+
+  "'Thank you,' he says."
+
+  "'You're not angry.'"
+
+  "'I'm — a lot of things. Angry is in there. But mostly I'm — relieved. Because the picture you just gave me is: terrible. And also: real. And real is better than the shadows I've been trying to interpret for six months.'"
+
+  "He stands. Goes to the shelf. Gets the blue cup with the chipped handle. Makes tea."
+
+  "The return of the ritual is: the answer."
+
+  "'I'm staying,' he says, pouring. 'You knew I'd stay. You knew before you told me. That's why you told me — because you knew that the telling wouldn't push me away. And you were right. It won't.'"
+
+  "'Sebastian—'"
+
+  "'Drink your tea. And then come back tomorrow night and drink more tea. And the night after that. Whatever happens — the cabinet, the war, the key — you come back here and you drink tea and you let me be the person who isn't part of the investigation. The person who is just — here.'"
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "Tea."
+  __choice
+__section
+
+
+section__
+  @title "A580-CH13-Sebastian-Lie"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You lie. The lie is: transparent. Both of you know it. The specific humiliation of a lie that fails to convince either the teller or the audience."
+
+  "'Study sessions,' you say."
+
+  "Sebastian looks at you. The look is: grief. Not anger — Sebastian doesn't do anger the way other people do anger. He does grief. The quiet, comprehensive grief of someone who is losing something they can't fight for because the person they're losing is choosing to be lost."
+
+  "'Okay,' he says."
+
+  "The okay is: hollow. The acceptance of someone who has been told that the person they love doesn't trust them enough to share the truth. The specific, devastating okay of a Hufflepuff whose fundamental value — loyalty, presence, staying — has been declined."
+
+  "He makes tea. One cup. His. Not yours."
+
+  "The romance fractures. Not in a dramatic break — in a slow withdrawal. Sebastian doesn't leave. Sebastian stays. But the staying changes quality — from chosen to obligatory, from warm to dutiful, from the thing he wants to the thing he can't stop doing because stopping would require a confrontation he's not equipped to initiate."
+
+  "The relationship survives Chapter 16 in technical terms. In emotional terms, it's already over."
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "One cup."
+  __choice
+__section
+
+
+section__
+  @title "A581-CH13-Sebastian-Push-Away"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You push him away."
+
+  "'You're right,' you say. 'About everything. The key, the Room, the investigation — all of it. And because you're right — because what's coming is dangerous and real and close — the safest thing for you is distance.'"
+
+  "'I don't want safe. I want you.'"
+
+  "'I know. And I want you. And because I want you, I can't let you be near me when this arrives. The people who are coming — the things I've done — the person I'm becoming in order to survive this — you deserve better than standing next to that.'"
+
+  "Sebastian's face: the specific expression of someone who is being pushed away by someone they love and understands — because empathy is his native language, the way it's yours — that the pushing is itself an act of love."
+
+  "'You're an idiot,' he says. But the words are gentle."
+
+  "'I know.'"
+
+  "'And when it's over — when whatever this is resolves — I'll be here. In this room. With the blue cup. And you'll come back and we'll pretend this conversation didn't happen and we'll start again.'"
+
+  "'That's very Hufflepuff of you.'"
+
+  "'That's very *me* of me. The house has nothing to do with it.'"
+
+  "The push-away preserves the relationship — frozen, suspended, painful but intact. Sebastian becomes the Chapter 16 anchor — the person waiting in the common room, the reason to come back, the destination that the investigation's endgame requires."
+
+  romance_consummated = true
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "He waits."
+  __choice
+__section
+
+
+section__
+  @title "A582-CH13-No-Romance-Phase3"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "No romance. The chapter's emotional peak — the commitment or fracture that the romance paths experience — takes a different form for someone who chose the investigation over connection."
+
+  "The peak is: solitary. And solitary peaks have their own view."
+
+  "You stand on the Astronomy Tower. Late. The castle below. The grounds silver under the moon. The Forbidden Forest dark at the margins."
+
+  "The investigation has consumed everything. The journal, the key, the allegiance, the spy, the cabinet — the architecture of the story has been built by your hands, alone, without the structural support of another person's presence."
+
+  "The view from the solitary peak is: comprehensive. You see everything. The Order's movements. Draco's deterioration. The Death Eaters' approach. The castle's preparation."
+
+  "The cost of the comprehensive view is: no one to share it with."
+
+  "You stand on the tower. The wind is cold. The loneliness is: chosen."
+
+  knowledge = adj(knowledge, 5)
+  cunning = adj(cunning, 3)
+
+  choice__
+    @target "A583-CH13-Romance-Phase3-Convergence"
+    "The solitary peak."
+  __choice
+__section
+
+
+section__
+  @title "A583-CH13-Romance-Phase3-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Romance Phase 3 resolves. Committed, fractured, or solitary. The emotional architecture of the story's final act is determined."
+
+  if__ (romance_consummated == true) {
+    "The romance is: consummated. Not physically — emotionally. Two people who have looked at the full weight of what the other person carries and decided that the carrying is worth the person. The bond is: real. Tested. Load-bearing."
+  }
+
+  if__ (romance_consummated == false && romance_active != "") {
+    "The romance is: fractured. The weight was too much. The lies, or the truth, or the distance — something broke. The person is still in the castle, still breathing, still existing in your peripheral vision. But the connection is: severed."
+  }
+
+  "What remains: the allegiance track's operational scene. The chapter's close. The transition to Act 4."
+
+  choice__
+    @target "A584-CH13-Track-Hub"
+    "The track."
+  __choice
+__section
+
+
+/* ── 13d: ALLEGIANCE TRACK SCENE (A584–A591) ── */
+
+section__
+  @title "A584-CH13-Track-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The allegiance track. The final operational scene before the climax chapters. What happens here sets the protagonist's position when the cabinet opens."
+
+  if__ (allegiance_track == "order") {
+    choice__
+      @target "A585-CH13-Order-Assignment"
+      "The Order's assignment."
+    __choice
+  }
+
+  if__ (allegiance_track == "dark") {
+    choice__
+      @target "A587-CH13-Dark-Acceleration"
+      "The dark timeline."
+    __choice
+  }
+
+  if__ (allegiance_track == "solo") {
+    choice__
+      @target "A589-CH13-Solo-Forward"
+      "The solo endgame."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A585-CH13-Order-Assignment"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Asha. Recovered from the curse — or recovering; the arm still stiff, the movements careful. But operational. The network's coordinator doesn't stop coordinating because of a hex."
+
+  "The meeting: the abandoned classroom. Emergency frequency. Full network."
+
+  "'This is it,' she says. 'Dumbledore leaves tonight. We don't know when he returns. The cabinet will open during his absence — that's the intelligence assessment, high confidence. When it opens, Death Eaters enter the castle.'"
+
+  "She draws on the whiteboard. The castle's layout. Entry points. Defensive positions."
+
+  "'Your assignment: the seventh floor. You know it better than anyone in the network. You know the Room. You know Draco's patterns. When the cabinet opens, you are the network's eyes and ears on the most critical floor.'"
+
+  courage = adj(courage, 8)
+  rel_order = adjRel(rel_order, 10)
+
+  choice__
+    @target "A586-CH13-Order-Assignment-B"
+    "The assignment."
+  __choice
+__section
+
+
+section__
+  @title "A586-CH13-Order-Assignment-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'One more thing,' Asha says. 'The key. If you have it — wherever it is — it cannot fall into Death Eater hands. If the seventh floor becomes contested, your primary objective is the key's security. Not the fighting. Not the defence. The key.'"
+
+  "She looks at you."
+
+  "'I know what I'm asking. I'm asking you to prioritise an object over people. Over students who might be in the corridors. Over colleagues who might need help. I'm asking you to make the calculation that the key's strategic value outweighs the immediate tactical situation.'"
+
+  "'I know the calculation.'"
+
+  "'Then you know it's the worst kind of correct.'"
+
+  "The Order track: a dangerous assignment. The seventh floor. The key. The calculation."
+
+  choice__
+    @target "A591-CH13-Track-Convergence"
+    "Assignment accepted."
+  __choice
+__section
+
+
+section__
+  @title "A587-CH13-Dark-Acceleration"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Draco. The corridor. For what might be the last time in this corridor's function as a meeting place."
+
+  "'Tonight,' he says. 'Or tomorrow. The instruction is: imminent. Dumbledore leaves and when he returns—'"
+
+  "He can't finish. The specific inability to say the words *when he returns, we kill him* — the sentence that has been the shadow underneath every corridor conversation since October."
+
+  "'The key,' he says. 'The artefact. Do you have it.'"
+
+  "The question he asked in Chapter 11. The question you've been deferring. The question that is now: urgent."
+
+  choice__
+    @target "A588-CH13-Dark-Acceleration-B"
+    "The question."
+  __choice
+__section
+
+
+section__
+  @title "A588-CH13-Dark-Acceleration-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You don't answer the question. Not yet. Not here."
+
+  "'When the cabinet opens,' you say. 'What happens to you.'"
+
+  "'I go to the Tower. I face Dumbledore. I—' He stops. Swallows. '—I do what I was told to do. Or I don't. And if I don't, someone else will.'"
+
+  "'Snape.'"
+
+  "The name lands. Draco flinches."
+
+  "'Snape made an Unbreakable Vow,' he says. 'To my mother. To protect me. To — complete the task if I can't. I found out in February. The Vow is: binding. If I fail, Snape is magically obligated to succeed.'"
+
+  "The Unbreakable Vow. Snape's Vow. The structural piece that explains Snape's behaviour — the concern, the corridor conversations, the bargain he made with you. Snape isn't just protecting Draco. He's bound to complete Draco's task if Draco fails."
+
+  "The dark track has yielded this final piece of intelligence. The cost of the intelligence is: standing in a corridor with someone who is about to walk toward the worst thing he's ever been asked to do."
+
+  morality = adj(morality, -5)
+  knowledge = adj(knowledge, 8)
+  rel_draco = adjRel(rel_draco, 5)
+
+  choice__
+    @target "A591-CH13-Track-Convergence"
+    "The Vow."
+  __choice
+__section
+
+
+section__
+  @title "A589-CH13-Solo-Forward"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo endgame. The plan's final configuration."
+
+  "You know what's coming: the cabinet. The Death Eaters. Dumbledore's absence. The assault — not on the castle, but on Dumbledore specifically, through the castle."
+
+  "You know who: Draco, the mechanism. Snape, the failsafe. Death Eaters, the force."
+
+  "You know when: tonight or tomorrow."
+
+  "You know what you have: the key (held or located). The journal (four sections decoded). The full intelligence picture. No backup."
+
+  "The solo plan's final version:"
+
+  "When the cabinet opens, you move to the seventh floor. If the key is in the Room, you retrieve it during the chaos. If the key is on your person, you secure it — hide it, deliver it, or hold it, depending on what the moment requires."
+
+  "You do not fight alongside the Order. You do not assist Draco's operation. You operate independently, in the space between the two sides, using the intelligence advantage that six months of solo investigation has built."
+
+  "The plan is: cold. Clear. Alone."
+
+  cunning = adj(cunning, 8)
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A590-CH13-Solo-Forward-B"
+    "The plan locks."
+  __choice
+__section
+
+
+section__
+  @title "A590-CH13-Solo-Forward-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "One variable the solo plan hasn't fully accounted for: the key's nature."
+
+  if__ (luna_told_mirror_function == true) {
+    "Luna's revelation: the key amplifies *resonance*, not individual intent. The bond between people. The connection."
+
+    "For the solo investigator — the person who chose to work alone, to answer to no one, to build the intelligence picture without institutional support — this is: a problem. The key's power requires a relationship. A bond. The solo path, by definition, has minimised those bonds."
+
+    "The key may not work for you. Not because you lack intent. Because you lack resonance."
+
+    "The irony is: the most informed investigator in the castle may be the least equipped to use the thing they've spent six months finding."
+  }
+
+  if__ (luna_told_mirror_function == false) {
+    "The key amplifies intent. Your intent is: protect the castle. Find Avery. Survive."
+
+    "Whether those intents are sufficient — whether the key responds to strategic purpose the same way it responds to emotional connection — is: unknown. A variable you can't resolve until the moment arrives."
+  }
+
+  choice__
+    @target "A591-CH13-Track-Convergence"
+    "The variable noted."
+  __choice
+__section
+
+
+section__
+  @title "A591-CH13-Track-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "All three tracks converge for the final time before the climax."
+
+  "Order: assignment received. Seventh floor. Key security. The calculation."
+
+  "Dark: the timeline confirmed. Tonight or tomorrow. Snape's Vow revealed. Draco approaching the edge."
+
+  "Solo: the plan locked. Cold. Clear. The resonance variable unresolved."
+
+  "All paths share the same destination: the night when the cabinet opens and the castle's six-year peace ends."
+
+  choice__
+    @target "A592-CH13-End-State"
+    "State of play."
+  __choice
+__section
+
+
+/* ── 13e: CHAPTER CLOSE (A592–A595) ── */
+
+section__
+  @title "A592-CH13-End-State"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "End of Chapter 13. State of play:"
+
+  "The spy: resolved. Exposed, leveraged, protected, or still active. Asha's injury — the cost of incomplete resolution."
+
+  if__ (luna_told_mirror_function == true) {
+    "The Mirror-key: fully understood. Resonance-based. Requires a bond. Voldemort cannot use it."
+  }
+
+  if__ (luna_told_mirror_function == false) {
+    "The Mirror-key: partially understood. Intent-based. The deeper mechanism — unknown."
+  }
+
+  if__ (romance_consummated == true) {
+    "The romance: consummated. Emotionally committed. The bond — if the key's resonance theory is true — may be the most important thing you've built this year."
+  }
+
+  if__ (romance_consummated == false && romance_active != "") {
+    "The romance: fractured. The connection broken. Whatever the key requires, the bond that would have powered it is: gone."
+  }
+
+  "The timeline: imminent. The cabinet. The Death Eaters. Dumbledore's departure."
+
+  "Four sections of the journal decoded. One remaining — the fifth. Avery's coordinates. Avery's location. Avery's survival or death."
+
+  "The final decode happens next. Chapter 14: The Weapon Revealed."
+
+  choice__
+    @target "A593-CH13-Chapter-Close"
+    "Chapter 13 closes."
+  __choice
+__section
+
+
+section__
+  @title "A593-CH13-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Chapter 13. Hearts and Hexes. The chapter where the heart of the story — the emotional connections, the romance, the bonds between people — collided with the hexes — the spy's consequence, the war's approach, the violence that is coming."
+
+  "Hearts: tested. Committed or fractured. The person you let in has seen you fully, or has been denied the full picture. The relationship endures or doesn't."
+
+  "Hexes: approaching. The cabinet. The Death Eaters. The curse that hit Asha. The Unbreakable Vow that binds Snape. The dark magic that has been building in the castle's walls all year."
+
+  "The title is: both. The story is both. Love and violence using the same stage, the same characters, the same limited time."
+
+  choice__
+    @target "A594-CH13-Buffer"
+    "Forward."
+  __choice
+__section
+
+
+section__
+  @title "A594-CH13-Buffer"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The last night before Act 4. The castle sleeps — or pretends to. The students who don't know what's coming dream the ordinary dreams of people whose world is about to change. The students who do know — Draco, you, Asha's network, the staff who've been briefed — lie awake."
+
+  "The weapon will be revealed. The betrayal will arrive. The tower will be climbed."
+
+  "But first: one more day. One more morning. One more set of exams that don't matter anymore. One more meal in the Great Hall with people who will remember this week for the rest of their lives."
+
+  choice__
+    @target "A595-CH13-To-Ch14"
+    "Act 4."
+  __choice
+__section
+
+
+section__
+  @title "A595-CH13-To-Ch14"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The castle waits. The key waits. The cabinet waits. Draco waits. You wait."
+
+  "The waiting is: almost over."
+
+  "Chapter 14: The Weapon Revealed."
+
+  choice__
+    @target "A596-CH14-Weapon-Opens"
+    "Turn the page."
+  __choice
+__section

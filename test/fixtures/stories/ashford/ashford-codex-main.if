@@ -165,9 +165,9 @@ import__"ashford-codex/02-ch09-parents-trail.partial.if"__import
 import__"ashford-codex/03-ch10-allegiances.partial.if"__import
 
 /* Phase 5 */
-/* import__"ashford-codex/03-ch11-secret.partial.if"__import */
-/* import__"ashford-codex/03-ch12-midwinter.partial.if"__import */
-/* import__"ashford-codex/03-ch13-hearts-hexes.partial.if"__import */
+import__"ashford-codex/03-ch11-secret.partial.if"__import
+import__"ashford-codex/03-ch12-midwinter.partial.if"__import
+import__"ashford-codex/03-ch13-hearts-hexes.partial.if"__import
 
 /* Phase 6 */
 /* import__"ashford-codex/04-ch14-weapon-revealed.partial.if"__import */
