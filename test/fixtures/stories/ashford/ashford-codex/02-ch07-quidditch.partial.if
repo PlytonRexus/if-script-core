@@ -1,0 +1,1160 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 7
+   02-ch07-quidditch.partial.if
+
+   Chapter 7: Quidditch and Quandaries
+   Quidditch trials. The Order youth network invitation.
+   Asha Mehta and the Astronomy Tower.
+   Second journal section decoded. journal_decoded = 2.
+
+   Section range: A241–A280
+   ============================================================ */
+
+scene__
+  @name "CH07: Quidditch and Quandaries"
+  @first "A241-CH07-Quidditch-Hub"
+  @sceneTransition "cut"
+  @sections "A241-CH07-Quidditch-Hub" "A242-CH07-Playing-Track" "A243-CH07-Spectating-Track" "A244-CH07-Order-Sigil-Arrives" "A245-CH07-Order-Choices" "A246-CH07-Accept-Order" "A247-CH07-Investigate-Message" "A248-CH07-Decline-Order" "A249-CH07-Bring-Someone" "A250-CH07-Astronomy-Tower-Asha" "A251-CH07-Ask-About-Avery" "A252-CH07-Ask-About-Spy" "A253-CH07-Offer-Journal" "A254-CH07-Commit-Nothing" "A255-CH07-Second-Decode-Attempt" "A256-CH07-Decode-Pressure" "A257-CH07-Decode-Breakthrough" "A258-CH07-Object-At-Hogwarts" "A259-CH07-Decode-Implications" "A260-CH07-Journal-Decoded-2" "A261-CH07-Quidditch-Game" "A262-CH07-The-Match" "A263-CH07-Match-Moment" "A264-CH07-After-Match" "A265-CH07-Match-Convergence" "A266-CH07-Romance-Beat-Hub" "A267-CH07-Romance-Elara-Moment" "A268-CH07-Romance-Marcus-Moment" "A269-CH07-Romance-Jade-Sebastian" "A270-CH07-Romance-Convergence" "A271-CH07-Draco-At-Match" "A272-CH07-Draco-Watching" "A273-CH07-Draco-Observation" "A274-CH07-Draco-Buffer" "A275-CH07-Draco-Convergence" "A276-CH07-End-Ch7-A" "A277-CH07-End-Ch7-B" "A278-CH07-February-Atmosphere" "A279-CH07-Chapter-Close" "A280-CH07-To-Ch8"
+__scene
+
+
+/* ── 7a: QUIDDITCH (A241–A243) ── */
+
+section__
+  @title "A241-CH07-Quidditch-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Late January. On the same Saturday that Neville Longbottom is carrying something unusual in his bag, the Quidditch season has arrived at its first full match of the year — and the morning before it, there's still a roster spot open in the reserves."
+
+  "The trials were in October, which you attended with varying degrees of commitment depending on what else was happening. Whether you tried out then or not, the match is today, and the question is where you are for it."
+
+  choice__
+    @target "A242-CH07-Playing-Track"
+    @when courage >= 50
+    @disabledText "Requires Courage ≥ 50 — you'd need to be the kind of person who plays rather than watches."
+    "You're playing. Or you're in the reserves. Either way, you're on the pitch."
+  __choice
+
+  choice__
+    @target "A243-CH07-Spectating-Track"
+    "You're in the stands. Watching is its own kind of useful."
+  __choice
+__section
+
+
+section__
+  @title "A242-CH07-Playing-Track"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The pitch from the air is a different place than the pitch from the stands. You know this — you've known it since first year — but every time you're back on a broom you remember it again: the specific wideness of the sky, the way the game resolves into geometry and wind and the position of seven other people relative to yourself."
+
+  "The match is against a rival house. The quality of the opposition is solid — not the best year in recent memory, but better than last year's equivalent. Your own team's communication is good; people who've played together for more than one season develop a shorthand that doesn't require shouting."
+
+  if__ (house == "gryffindor") {
+    "Jade is captain and plays the way she captains: with a clarity of purpose that doesn't get muddied by the crowd's noise or the opposition's tactics. You've been watching her practise all term. Playing beside her, in actual match conditions, is different — she sees the pitch three moves ahead and positions people to be where they need to be before they know they need to be there."
+
+    house_rep = adj(house_rep, 5)
+    rel_jade = adjRel(rel_jade, 10)
+  }
+
+  if__ (house != "gryffindor") {
+    house_rep = adj(house_rep, 5)
+    "Your house team plays well. The specifics of who does what in what weather under what crowd pressure — these are the details that make a match memorable and that become difficult to retain once the match is over. What you remember is the feeling of it: cold and fast and committed."
+  }
+
+  "You land. Your hands are cold. You won or you lost. The crowd disperses either way."
+
+  choice__
+    @target "A244-CH07-Order-Sigil-Arrives"
+    @action courage = adj(courage, 5)
+    "Off the pitch. Neville is waiting."
+  __choice
+__section
+
+
+section__
+  @title "A243-CH07-Spectating-Track"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The stands from above the pitch are a different place than the stands at ground level. This is something only Quidditch players know directly and everyone else knows academically: at ground level, you see the crowd and the noise and the general chaos. From the pitch level on a broom, you see the stands as a continuous solid band of colour and sound."
+
+  "From the stands, you see the pitch."
+
+  "Which has things in it that the players are too busy to notice."
+
+  "Specifically: near the south goal posts, obscured by the angle of the broom-play, two students who aren't supposed to be on the pitch are standing and talking with the compressed urgency of people who came to the match because it was the only place they could reasonably be without being noticed."
+
+  "You can't hear them. You can see the body language. One of them is handling something — passing something small between them."
+
+  "You note the section of the stands they're sitting in relative to those students. You watch for the next twenty minutes with the specific quality of peripheral observation that doesn't look like watching."
+
+  "The match resolves. You walk toward the exits with the information filed."
+
+  choice__
+    @target "A244-CH07-Order-Sigil-Arrives"
+    @action cunning = adj(cunning, 5)
+    "Neville is nearby."
+  __choice
+__section
+
+
+/* ── 7b: ORDER INVITATION (A244–A254) ── */
+
+section__
+  @title "A244-CH07-Order-Sigil-Arrives"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Neville finds you in the post-match crowd."
+
+  "He has the specific expression of someone who has been carrying something for a while and is relieved to be delivering it. He's also doing the thing people do when they're anxious: standing slightly closer than normal while looking in a direction that isn't you, as if proximity is achievable but eye contact is too committed."
+
+  "'Something for you,' he says. He hands you a folded piece of parchment. Not the standard school paper — heavier, with a faint silver shimmer that isn't decoration. 'From someone who wanted you to have it.' He doesn't say who. He starts walking away immediately, which is the communication style of someone who has been told: *don't be seen handing this over.*"
+
+  "You open it."
+
+  "Inside: a small circular symbol — a wand enclosed in a ring of leaves — and below it, in handwriting you don't recognise: *Wednesday. Astronomy Tower. After eleven. Come alone. — A*"
+
+  "The symbol is a sigil. You've seen it once before, in a pamphlet Avery had in their home office that you weren't supposed to look at. It belongs to the Order of the Phoenix's youth network — the unofficial auxiliary that operates outside the main Order structure."
+
+  "Someone from that network has found you."
+
+  choice__
+    @target "A245-CH07-Order-Choices"
+    "What do you do."
+  __choice
+__section
+
+
+section__
+  @title "A245-CH07-Order-Choices"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The parchment is in your hand. The crowd from the match is moving around you. Neville is already twenty yards away and accelerating."
+
+  "You have until Wednesday to decide."
+
+  choice__
+    @target "A246-CH07-Accept-Order"
+    @action courage = adj(courage, 8)
+    @action empathy = adj(empathy, 5)
+    @action morality = adj(morality, 10)
+    "Accept. Wednesday, Astronomy Tower, after eleven. You came to Hogwarts with Avery's journal and a dead Auror's investigation. If the Order's youth network can be useful to that, you want to know."
+  __choice
+
+  choice__
+    @target "A247-CH07-Investigate-Message"
+    @when cunning >= 55
+    @disabledText "Requires Cunning ≥ 55 to trace the message's origin before committing."
+    @action cunning = adj(cunning, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Investigate the message first. Neville delivered it, but Neville isn't the source. Find the source before you go anywhere alone at eleven o'clock to meet a stranger with a sigil."
+  __choice
+
+  choice__
+    @target "A248-CH07-Decline-Order"
+    @action cunning = adj(cunning, 5)
+    @action morality = adj(morality, -3)
+    "Decline. For now. An invitation to meet alone at night, from an anonymous source, with a sigil you recognise only because of Avery's home office — that's not enough information to act on. File it and wait."
+  __choice
+
+  choice__
+    @target "A249-CH07-Bring-Someone"
+    @when rel_hermione >= 50 || rel_harry >= 50
+    @disabledText "Requires a strong enough relationship with Hermione or Harry — someone who understands enough of the context to be trusted with this."
+    @action courage = adj(courage, 5)
+    @action empathy = adj(empathy, 8)
+    "Bring someone. The invitation says *alone* but that's an instruction from a stranger. A trusted person as backup changes the risk calculation without necessarily violating the spirit of the request."
+  __choice
+__section
+
+
+section__
+  @title "A246-CH07-Accept-Order"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  order_member = true
+
+  "Wednesday. You go."
+
+  "The Astronomy Tower at eleven-fifteen is cold in the specific way of high places in February — not wet cold, but the dry crystalline cold of altitude and open sky. The stars over Scotland are visible at this hour with the particular clarity that requires both cold air and darkness to achieve."
+
+  "You get to the top of the stairs to find someone already there. A girl — sixth year, from Ravenclaw, a face you've seen in the corridors without ever having attached a name to. Dark hair, dark eyes, the posture of someone who has been waiting for you with the patience of a person who expected you to come."
+
+  "'Asha Mehta,' she says. Not introducing herself in the social sense — identifying herself in the operational sense. 'You're Ashford. Avery's kid.'"
+
+  "It's not a question."
+
+  "'I've been authorised to extend membership to the Hogwarts auxiliary,* she says. 'The Order knows about your parent's investigation. We've been monitoring it from the outside. We think there's a way we can help each other.'"
+
+  "You sit down on the observatory railing. The cold is considerable."
+
+  "'Tell me what that looks like,' you say."
+
+  choice__
+    @target "A250-CH07-Astronomy-Tower-Asha"
+    "She tells you."
+  __choice
+__section
+
+
+section__
+  @title "A247-CH07-Investigate-Message"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You don't go to the Astronomy Tower on Wednesday."
+
+  "Instead, you spend Tuesday tracking the message back through Neville. Not confrontationally — you find him in the Herbology corridor and tell him simply that you need to know who gave it to him before you respond to it."
+
+  "He's quiet for a moment. Then: 'Hannah Abbott. She said someone gave it to her to pass to me to pass to you.' Hannah Abbott: Hufflepuff, solid and trustworthy, not someone you'd expect in a message chain unless she'd been specifically asked."
+
+  "Hannah, when you find her, tells you the message came from a seventh-year Ravenclaw prefect. The prefect, when you approach her with the same simple directness, tells you her name is Asha Mehta and she knows you were going to trace it back to her."
+
+  "'You're more thorough than I expected,' Asha says, with something that might be approval. 'That's good, actually. The network needs thorough people.'"
+
+  "Wednesday, Astronomy Tower, after eleven. You go."
+
+  order_member = true
+
+  choice__
+    @target "A250-CH07-Astronomy-Tower-Asha"
+    @action cunning = adj(cunning, 3)
+    "Asha is waiting."
+  __choice
+__section
+
+
+section__
+  @title "A248-CH07-Decline-Order"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You don't go."
+
+  "You send Neville back with a message — not written, just verbal: *Not yet. I'll reach out when I'm ready.*"
+
+  "Neville delivers it with the expression of someone who isn't sure they understood the assignment but is committed to their part of it. Whether it arrives intact is uncertain."
+
+  "The decision sits with you. The Order's youth network is exactly the kind of resource that could be useful — people with connections to the main Order, with access to operational intelligence, with the ability to move information in ways that unofficial individual investigators can't. Avery would have had contacts in that network."
+
+  "But *come alone at night to meet a stranger* remains an instruction from an unknown party. The caution is valid."
+
+  "If they're real and legitimate, they'll send another message. If they don't, the message was the test and you passed it by not being impulsive."
+
+  "You watch Neville walk away and then go back to your cipher notebook."
+
+  choice__
+    @target "A255-CH07-Second-Decode-Attempt"
+    @action cunning = adj(cunning, 3)
+    "The journal. Back to the journal."
+  __choice
+__section
+
+
+section__
+  @title "A249-CH07-Bring-Someone"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You bring Hermione. Or Harry. The choice depends on who is closer to the full picture of what you're investigating."
+
+  if__ (rel_hermione >= 50) {
+    "Hermione processes the sigil recognition, the network name, the delivery method, in approximately the same time you took to explain it — which is to say she's already forming a plan before you've finished the sentence."
+
+    "'I know what the auxiliary is,' she says. 'It's real. I've been trying to find a contact point for months.' She doesn't explain why without being asked, and you don't ask. 'I'll come with you. As backup, not as a participant — I'll stay at the base of the Tower unless something goes wrong.'"
+
+    rel_hermione = adjRel(rel_hermione, 8)
+  }
+
+  if__ (rel_hermione < 50 && rel_harry >= 50) {
+    "Harry processes the sigil and the invitation with the focused attention of someone who has been adjacent to the Order's operations his whole life. 'I know about the auxiliary,' he says. 'Dumbledore mentioned it once. It's real.' A pause. 'I can't come with you — whoever A is will probably know me and that changes the meeting. But I'll be at the bottom of the Tower.'"
+
+    rel_harry = adjRel(rel_harry, 8)
+  }
+
+  "Wednesday. You go. With backup at the base of the Astronomy Tower."
+
+  order_member = true
+
+  choice__
+    @target "A250-CH07-Astronomy-Tower-Asha"
+    @action courage = adj(courage, 3)
+    "Asha is waiting."
+  __choice
+__section
+
+
+/* ── ASTRONOMY TOWER / ASHA (A250–A254) ── */
+
+section__
+  @title "A250-CH07-Astronomy-Tower-Asha"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  @when order_member == true
+
+  "Asha Mehta is small and precise and has the kind of stillness that isn't passivity but the opposite of it — someone whose body language is fully under control because they've decided what information to give off and what to keep internal."
+
+  "She's been at Hogwarts for two years and you've seen her without registering her, which is either her skill or your inattention or both."
+
+  "She explains the network in the direct operational style of someone who has delivered this brief before: the Hogwarts auxiliary has seven members, connected to Order contacts outside the school, operating under three principles — no information shared without need-to-know, no independent action without network consultation, no names volunteered unnecessarily."
+
+  "'Your parent,* she says, 'was known to the Order's contact in Edinburgh. Avery sent a message four months ago — before the disappearance — that included your name and the phrase *if the child asks, help.* We've been waiting for you to ask.'"
+
+  "Avery set this up. Avery knew the network existed and left a signal in it."
+
+  "You have things you want to know."
+
+  choice__
+    @target "A251-CH07-Ask-About-Avery"
+    @action empathy = adj(empathy, 8)
+    @action knowledge = adj(knowledge, 5)
+    @action rel_order = adjRel(rel_order, 15)
+    "Ask about Avery. What does the network know that you don't."
+  __choice
+
+  choice__
+    @target "A252-CH07-Ask-About-Spy"
+    @action cunning = adj(cunning, 8)
+    @action rel_order = adjRel(rel_order, 10)
+    "Ask about the spy in the school. You know there's someone in Hogwarts feeding information out. The Order might know who."
+  __choice
+
+  choice__
+    @target "A253-CH07-Offer-Journal"
+    @when journal_decoded >= 1
+    @disabledText "You'd need to have decoded at least one section of the journal first."
+    @action knowledge = adj(knowledge, 8)
+    @action courage = adj(courage, 5)
+    @action rel_order = adjRel(rel_order, 20)
+    "Offer the journal. Or what you've decoded from it. If they're connected to Avery's network, the Montenegro coordinates might matter to someone in the Order."
+  __choice
+
+  choice__
+    @target "A254-CH07-Commit-Nothing"
+    @action cunning = adj(cunning, 8)
+    "Commit to nothing yet. Listen to everything. Give away as little as possible on the first meeting."
+  __choice
+__section
+
+
+section__
+  @title "A251-CH07-Ask-About-Avery"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Asha listens to the question — what does the network know about Avery — with the specific attention of someone deciding what they can and can't share."
+
+  "'What I can tell you,' she says, 'is that Avery was investigating an artifact recovery that was classified at a level above standard Auror clearance. The Ministry classification was pushed by an individual named Thicknesse — which the Order considers significant because Thicknesse has been placing his own people in key positions since early spring.'"
+
+  "'We believe the classification was used to shut down the investigation, not to protect it.'"
+
+  "She pauses. 'We also believe Avery is alive. The contact in Edinburgh received a signal from a dead drop in Split — Croatian coast, not Montenegro directly — six weeks ago. A pre-agreed signal meaning *continuing, do not extract.*'"
+
+  "Avery is alive. Continuing. Has not asked to be extracted."
+
+  "You hold this for a moment. *Continuing.* Still investigating. Still choosing this."
+
+  "'What was the artifact Avery was investigating,* you ask, though you already know."
+
+  "'The Resonance Mirror,' she says. 'We know what it is. We know what it does. We've been trying to find it for three years.'"
+
+  choice__
+    @target "A255-CH07-Second-Decode-Attempt"
+    @action empathy = adj(empathy, 5)
+    "Give her the coordinates from section one. Montenegro. She needs them."
+  __choice
+__section
+
+
+section__
+  @title "A252-CH07-Ask-About-Spy"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'There's someone in this school feeding information out,' you say. 'I've had two threatening notes and the letter investigation narrowed to a shortlist but no confirmed name. Does the network know who.'"
+
+  "Asha's expression does something careful. 'We know there's an information leak at Hogwarts. We don't know the source — we've been assuming it's a staff member, but the notes you're describing suggest a student.'"
+
+  "She thinks for a moment. 'The threatening notes — did they specifically reference the journal, or just indicate knowledge of what you're investigating.'"
+
+  "'Specifically the journal. *Stop reading the green journal.*'"
+
+  "She nods slowly. 'A staff member wouldn't necessarily have access to your private bag. A student would.' A pause. 'This is useful. We'll cross-reference against the network's information about Hogwarts contacts in the Death Eater student network. Give me two weeks.'"
+
+  "Two weeks. It's not a name, but it's a process with a timeline."
+
+  "'One more thing,' she says. 'If you identify the spy before we do — don't act alone. Bring it to me first.'"
+
+  "You tell her: you'll consider it."
+
+  choice__
+    @target "A255-CH07-Second-Decode-Attempt"
+    @action cunning = adj(cunning, 5)
+    "Two weeks. Back to the cipher."
+  __choice
+__section
+
+
+section__
+  @title "A253-CH07-Offer-Journal"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You tell her about section one. Not by showing her the journal — not yet — but by reciting the two sentences: *Object located. Montenegro. Trust: L. only.*"
+
+  "She goes very still."
+
+  "'Montenegro,' she says. 'Specifically.''"
+
+  "'That's the journal's first decoded section.'"
+
+  "She's quiet for a moment that has weight in it — not processing, exactly, but acknowledging. 'We have an asset in the region. Not active — a contact who did fieldwork in that area during the first war. They'd know the geography.'"
+
+  "'If you share the full coordinates when you decode them,* she says, *I can route that to our Montenegro contact. The Order has been trying to locate the Mirror for three years without a starting point. If Avery's journal has coordinates—'"
+
+  "'I'll share them when I have them,* you tell her. 'Section two isn't decoded yet.'"
+
+  "She nods. 'Then decode it. That's the priority. Everything else — the spy, the Vanishing Cabinet, all of it — waits for those coordinates.'"
+
+  "She says *the Vanishing Cabinet* with the casualness of someone who already knows it exists. Which means the network has been watching the seventh floor too."
+
+  choice__
+    @target "A255-CH07-Second-Decode-Attempt"
+    @action knowledge = adj(knowledge, 5)
+    "Back to work. Section two."
+  __choice
+__section
+
+
+section__
+  @title "A254-CH07-Commit-Nothing"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You listen. You ask two or three questions that are precise enough to suggest you're engaged but that give away nothing you haven't already decided to give away."
+
+  "Asha explains the network structure, the principles, the connection to the Order. She mentions Avery's signal — the pre-agreed message left in Split — which confirms the alive status without your having to ask for it directly."
+
+  "She doesn't push you for information. She's professional enough to understand that a first meeting with someone who has been operating independently is a listening meeting, not an exchange meeting. The exchange happens when trust is established."
+
+  "You leave the Astronomy Tower with: the network's structure, Asha's name, the knowledge that Avery set this up for you, and confirmation that Avery sent a signal six weeks ago meaning *continuing.*"
+
+  "You committed to nothing. You shared nothing."
+
+  "And yet you walked away with more than you came with, which is the correct result for a first operational meeting."
+
+  choice__
+    @target "A255-CH07-Second-Decode-Attempt"
+    @action cunning = adj(cunning, 5)
+    "Back to the cipher."
+  __choice
+__section
+
+
+/* ── 7c: SECOND JOURNAL DECODE (A255–A260) ── */
+
+section__
+  @title "A255-CH07-Second-Decode-Attempt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Astronomy Tower conversation has given you something. Not section two's content — but context for it."
+
+  "Asha confirmed: the Order has been looking for the Mirror for three years without coordinates. Avery's investigation got close enough to be silenced. The signal from Split — *continuing, do not extract* — was sent six weeks ago."
+
+  "Six weeks ago, Avery was still active in the field. Moving. Whatever happened between the first section of the journal and the second — whatever changed Avery's emotional register — happened in the specific window of a field investigation that was getting too close to something."
+
+  "You open the journal to section two."
+
+  "This time you don't approach it academically. You approach it the way Marcus described — with the same quality of attention the text was written in. Urgency. The urgency of someone who has found something important and doesn't know how much time they have to record it."
+
+  "You hold that. The urgency of very little time and something critical to say."
+
+  "The text begins to breathe."
+
+  choice__
+    @target "A256-CH07-Decode-Pressure"
+    "Keep going."
+  __choice
+__section
+
+
+section__
+  @title "A256-CH07-Decode-Pressure"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The sensation is difficult to describe later. In the moment, it's like arriving somewhere you've been before from a different direction — the landscape is the same but the angle changes everything."
+
+  "The anchor symbols fall into their function. Not as punctuation exactly — as *beats*. The emotional beats of someone writing fast and afraid and trying to be precise anyway. Between each beat, content."
+
+  "The first phrase resolves: not in a flash but in increments, the way a word on the tip of the tongue becomes available when you stop pushing for it and wait."
+
+  "*Key-object identified. Hogwarts — Room of—*"
+
+  "And then the second anchor cluster. A beat. Avery stopped here and composed and then continued."
+
+  "*—Hidden Things.*"
+
+  "You put the pen down."
+
+  "The Mirror-key — the obsidian shard, the object that activates the Resonance Mirror — is at Hogwarts. In the Room of Hidden Things."
+
+  "The same room where Draco Malfoy has been repairing the Vanishing Cabinet."
+
+  choice__
+    @target "A257-CH07-Decode-Breakthrough"
+    @action knowledge = adj(knowledge, 5)
+    "Keep reading."
+  __choice
+__section
+
+
+section__
+  @title "A257-CH07-Decode-Breakthrough"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You keep reading."
+
+  "Section two continues. The phrases come in clusters as the emotional key stabilises — not easily, not cleanly, but with the gathering momentum of something that was always going to arrive once you found the right approach."
+
+  "*Key-object identified. Hogwarts — Room of Hidden Things. Specific location: high shelf, east wall, obsidian shard [symbol cluster: surrounded by old mirrors].*"
+
+  "Then:"
+
+  "*Mirror cannot function without key. Key activation requires: direct physical contact + spoken intent. Do not attempt solo. Requires two.*"
+
+  "Then a long anchor cluster — three beats, which is the longest pause in the section. Avery composing. Or Avery afraid."
+
+  "*They know it's there. Move it before they do.*"
+
+  "The section ends."
+
+  "You sit in the library, in the late morning of a Saturday in February, and look at what you've decoded."
+
+  choice__
+    @target "A258-CH07-Object-At-Hogwarts"
+    @action knowledge = adj(knowledge, 8)
+    "Process this."
+  __choice
+__section
+
+
+section__
+  @title "A258-CH07-Object-At-Hogwarts"
+  @textPacing "cinematic"
+  @shot "close"
+
+  journal_decoded = 2
+
+  "Here is what section two of the journal tells you:"
+
+  "The Mirror-key — the object that activates the Resonance Mirror — is an obsidian shard. It's been in the Room of Hidden Things at Hogwarts, on the east wall, for an unknown period of time. Avery found it somehow — in the classification record, in the 1947 Adriatic study, through a source you don't yet know."
+
+  "It activates the Mirror by physical contact and spoken intent. It requires two people."
+
+  "And as of Avery's second journal entry: someone connected to Voldemort's network knows it's there. *Move it before they do.*"
+
+  "The Vanishing Cabinet is in the Room of Hidden Things. Draco Malfoy has been repairing it all term. Draco told you — or didn't — that the Mirror is known to his network."
+
+  "The Room of Hidden Things contains both the Vanishing Cabinet and the Mirror-key."
+
+  "Two assets, one room, one opponent who is nearly finished building a passage into it from outside."
+
+  choice__
+    @target "A259-CH07-Decode-Implications"
+    "Think."
+  __choice
+__section
+
+
+section__
+  @title "A259-CH07-Decode-Implications"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You think."
+
+  "If Voldemort's network knows the Mirror-key is in the Room of Hidden Things, the Vanishing Cabinet isn't just an entry route into Hogwarts for Death Eaters. It's specifically an entry route to the room that contains the key."
+
+  "Which means Draco's task isn't general infiltration. It's targeted retrieval."
+
+  "The obsidian shard — the Mirror-key — is the object that is supposed to come through the passage when the cabinet is complete."
+
+  "And the Mirror itself is somewhere in Montenegro, presumably to be activated once the key is in the right hands."
+
+  "The whole thing resolves into a shape you've been circling for months: Voldemort wants the Mirror. The Mirror requires the key. The key is at Hogwarts. The passage is how he plans to get it out."
+
+  "And Avery found all of this and wrote it down in a grief-charmed cipher in a field journal with a dead man's trigger, and left it in your trunk."
+
+  "*Move it before they do.*"
+
+  choice__
+    @target "A260-CH07-Journal-Decoded-2"
+    "Decide what to do."
+  __choice
+__section
+
+
+section__
+  @title "A260-CH07-Journal-Decoded-2"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "You close the journal. You close the notebook. You sit for a long time in the library with your hands flat on the table."
+
+  "The shape of the situation is now clear enough to plan with. Not act — you don't have enough for action yet — but plan."
+
+  "The Mirror-key is in the Room of Hidden Things. The Vanishing Cabinet is in the Room of Hidden Things. The cabinet is almost complete. If it's completed before you move the key, the key becomes accessible to whoever comes through the passage."
+
+  "You need to find the key. Move it. Or destroy it. Or give it to the Order. The journal says *move it before they do* — which is instruction, not option."
+
+  "The questions that remain: how to find the specific key in a room the size of a cathedral filled with decades of hidden objects. How to move it without triggering consequences. Who to bring, because section two says it requires two people."
+
+  "And when. Because the cabinet is almost done."
+
+  "The window is narrow. February is moving fast."
+
+  choice__
+    @target "A261-CH07-Quidditch-Game"
+    "One thing at a time. The match, first."
+  __choice
+__section
+
+
+/* ── 7d: QUIDDITCH GAME (A261–A265) ── */
+
+section__
+  @title "A261-CH07-Quidditch-Game"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The Quidditch match happens the following weekend. The schedule was set in September and the match happens regardless of everything else — the school's institutional rhythm doesn't pause for private investigations."
+
+  "You go to the match. You sit in the stands or you play, depending on what the early-chapter decision produced. The match itself is: cold, loud, competitive, the specific collective focus of two hundred students whose attention has been given permission to be entirely in the present tense for ninety minutes."
+
+  "There's something to be said for that. The present tense, occupied fully, is a holiday from everything that exists in the past and the future."
+
+  choice__
+    @target "A262-CH07-The-Match"
+    "Watch."
+  __choice
+__section
+
+
+section__
+  @title "A262-CH07-The-Match"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The match unfolds in the way Quidditch always does: the first fifteen minutes of feeling out the opposition, then the escalating pace as both teams find their rhythm, then the sustained intensity of a game that refuses to resolve cleanly."
+
+  "The Seekers are tracking the Snitch somewhere above the main play. The Chasers are running patterns you recognise from watching practice. The crowd noise has the specific quality of a crowd that is genuinely uncertain — not behind one team out of loyalty but genuinely unsure who is going to win, which is the most honest crowd there is."
+
+  "You're watching the pitch, or you're in it, or both in the layered way that observation works when you have more than one thing you're paying attention to."
+
+  "The game runs long. Then the Snitch is caught. The match resolves."
+
+  choice__
+    @target "A263-CH07-Match-Moment"
+    "Something catches your attention."
+  __choice
+__section
+
+
+section__
+  @title "A263-CH07-Match-Moment"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "In the moment after the catch — when the crowd is still in the transition between watching and responding, the specific suspended second before the noise — you see something."
+
+  "At the south end of the stands, near the exit. Two people, not watching the match. They have been watching each other, and now one of them is looking at you."
+
+  "Not the aggressive watching of someone who wants you to notice. The specific, careful watching of someone who is tracking a variable and has just had the variable look back at them."
+
+  "They look away immediately. They're leaving before the crowd disperses."
+
+  "You note the exit they take and file it alongside the other observations you've been maintaining. One of them is on your shortlist for the threatening letter. The other you don't recognise."
+
+  "The crowd erupts around you. The match is over."
+
+  choice__
+    @target "A264-CH07-After-Match"
+    @action cunning = adj(cunning, 5)
+    "Follow the exits with your eyes."
+  __choice
+__section
+
+
+section__
+  @title "A264-CH07-After-Match"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "After the match, the stands empty in the usual pattern — the core fans first, then the casuals, then the people who were there for reasons other than the match."
+
+  "You move against the current slightly, finding the south exit and the route those two took. By the time you get there it's empty. Whatever they were doing, it's done."
+
+  "But you have a clearer read on the shortlist now. One of those two was familiar in a specific way — the body language, the way they held themselves in a crowd. The same quality as the measuring look in the library, several weeks ago."
+
+  "The shortlist is down to two. Or one, with a companion."
+
+  "You write it in the observation log when you get back to the common room. Then you put the notebook away and go to dinner."
+
+  choice__
+    @target "A265-CH07-Match-Convergence"
+    "Dinner."
+  __choice
+__section
+
+
+section__
+  @title "A265-CH07-Match-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Quidditch match, the second journal section, the Astronomy Tower meeting — three things in one week, each significant, each adding to the weight of what you're carrying."
+
+  "You're moving through the castle with the specific quality of someone who has too many active threads and needs to decide which ones to pull and in what order."
+
+  "The priority list, revised after this week: the Mirror-key in the Room of Hidden Things. The Vanishing Cabinet, almost complete. The spy, narrowed but unconfirmed. The Order network, established and waiting. L., still a theory."
+
+  "And February running faster than you'd like."
+
+  choice__
+    @target "A266-CH07-Romance-Beat-Hub"
+    "Someone is waiting."
+  __choice
+__section
+
+
+/* ── 7e: ROMANCE BEAT (A266–A270) ── */
+
+section__
+  @title "A266-CH07-Romance-Beat-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Saturday evening. The match is over. The second journal section is decoded and you've been carrying it since morning."
+
+  "The common room has the specific post-match energy of a space that has been emptying and filling all day and has now settled into the quieter end of the evening — people who came back from the pitch to warm up, people who went to the library and have now come back, people who have decided that the evening belongs to being comfortable rather than productive."
+
+  if__ (romance_active != "") {
+    "There is someone here, or somewhere you know they'd be, and you find you want to be near them for a reason that has nothing to do with the investigation and everything to do with the weight of what you've been carrying alone all week."
+
+    choice__
+      @target "A267-CH07-Romance-Elara-Moment"
+      @when romance_active == "elara"
+      "Find Elara."
+    __choice
+
+    choice__
+      @target "A268-CH07-Romance-Marcus-Moment"
+      @when romance_active == "marcus"
+      "Find Marcus."
+    __choice
+
+    choice__
+      @target "A269-CH07-Romance-Jade-Sebastian"
+      @when romance_active == "jade" || romance_active == "sebastian"
+      "Find them."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    "There is no one you're thinking of in that way. Which is its own kind of clean — you're not managing someone else's emotions alongside your own."
+
+    "You sit by the fire with your notebook and think about the Room of Hidden Things and the window that's closing."
+
+    choice__
+      @target "A270-CH07-Romance-Convergence"
+      @action cunning = adj(cunning, 3)
+      "Think through the options."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A267-CH07-Romance-Elara-Moment"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara is in the Ravenclaw study room, which is where she goes when she wants quiet rather than the common room's ambient social pressure. She's working — always working, the specific focused energy of someone for whom intellectual engagement isn't effort but rest."
+
+  "She looks up when you come in. She reads something in your face — not the journal directly, but the weight of having decoded something important and not knowing yet what to do with it."
+
+  "'Something happened,' she says. Not a question."
+
+  "'Second section of the cipher,' you tell her. 'I got it.'"
+
+  "She puts down her quill. 'Tell me the structure, not the content,' she says. 'I don't need to know what it says. But I can help you think about what it means.'"
+
+  "Which is exactly the right offer. You tell her the structure. She asks three questions — about the cipher's relationship between sections, about the emotional key shift you described, about the time pressure you mentioned — and by the time you've finished answering them you've already begun to see the problem differently."
+
+  "'You're not stuck on the code,' she says. 'You're stuck on the sequence. What has to happen first before the next thing can happen.' She looks at you. 'That's not a cipher problem. That's a planning problem.'"
+
+  "She's right. Of course she is."
+
+  choice__
+    @target "A270-CH07-Romance-Convergence"
+    @action rel_elara = adjRel(rel_elara, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Thank her. Go plan."
+  __choice
+__section
+
+
+section__
+  @title "A268-CH07-Romance-Marcus-Moment"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus is in the library, in the section on Advanced Charms Theory that most sixth-years don't touch yet. He's reading with the focused unhappiness of someone who needs to understand something that isn't interesting them on any level except necessity."
+
+  "He looks up when you sit across from him. 'You decoded section two,' he says."
+
+  "You ask how he knows."
+
+  "'You look like someone who just decoded section two,* he says. 'There's a specific quality to it.'"
+
+  "You tell him the broad structure — the Mirror-key, the location, the time pressure. Not all of it. Enough."
+
+  "He's quiet for a moment. Then: 'The Room of Hidden Things is accessible without pacing three times in front of a wall. There's a secondary entry that most people don't know — a passage behind the tapestry on the eighth floor. I used it in fourth year to hide something I didn't want found.'"
+
+  "He tells you this with the flatness of someone volunteering information that costs them something in terms of privacy and has decided it's worth the cost."
+
+  "A secondary entry to the Room of Hidden Things is not nothing. It's something."
+
+  "'Why are you telling me this,' you ask."
+
+  "'Because the Mirror existing and being findable is worse than the Mirror being lost,* he says. 'I'd rather it not be found.'"
+
+  choice__
+    @target "A270-CH07-Romance-Convergence"
+    @action rel_marcus = adjRel(rel_marcus, 10)
+    @action knowledge = adj(knowledge, 8)
+    "File the secondary entry. Thank him."
+  __choice
+__section
+
+
+section__
+  @title "A269-CH07-Romance-Jade-Sebastian"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "jade") {
+    "Jade finds you before you find her — she has the specific social sonar of someone who is good at being where people need her to be."
+
+    "'Come walk,' she says. Not the pitch — the grounds, outside, in the cold that February makes specific and unignorable."
+
+    "You walk. The castle above you, the lake beyond the grounds, the specific dark of a February evening that isn't quite night but isn't quite dusk either."
+
+    "She doesn't ask what happened. She talks about the match, about something funny that occurred in the Gryffindor changing rooms, about a letter she got from her sibling in the field that she's still processing. She's giving you space to think by filling it with things that don't require your attention."
+
+    "Eventually she says: 'You're carrying something big tonight. Is it the thing with your parent or a different thing.'"
+
+    "'Both,' you tell her. 'They might be the same thing.'"
+
+    "She nods. 'Okay.' And then: 'I'm here. That's all.'"
+
+    "It's enough. It's more than enough."
+
+    rel_jade = adjRel(rel_jade, 10)
+    empathy = adj(empathy, 5)
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian is in the Hufflepuff common room, at his usual table near the window, and he looks up when you come in with the expression of someone who has been waiting for you without making that into something you owe him."
+
+    "'You decoded something,' he says."
+
+    "'Second section,' you tell him. 'It's not good news but it's better than not knowing.'"
+
+    "He absorbs this. Then: 'Are you safe. Right now, tonight.'"
+
+    "'Yes.'"
+
+    "'Okay.' He moves his bag off the chair beside him. 'Sit down then.'"
+
+    "You sit. He doesn't ask for the details. He makes tea in the Hufflepuff way — which is to say with a kettle that appears to be kept under the table and a collection of bags that takes him thirty seconds to navigate. He hands you a cup."
+
+    "'The thing about *not good news but better than not knowing,*' he says, after a while. 'Is that it requires acting on the information. Which is scarier than the not knowing, in a different way.'"
+
+    "'Yes,' you tell him."
+
+    "'You'll act on it correctly,' he says. 'I've seen how you think about things.'"
+
+    "He says it with the particular simplicity of someone who states a conviction rather than offering comfort."
+
+    rel_sebastian = adjRel(rel_sebastian, 10)
+    empathy = adj(empathy, 5)
+  }
+
+  choice__
+    @target "A270-CH07-Romance-Convergence"
+    "Later, walking back."
+  __choice
+__section
+
+
+section__
+  @title "A270-CH07-Romance-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The evening ends. Whatever the conversation was — long or short, information-bearing or simply present — you carry something from it that you didn't have before."
+
+  "Not the answer to the planning problem. The other thing: the knowledge that the week's weight is distributable. That carrying it alone is a choice, not a requirement."
+
+  "You go to bed with the second section of the journal decoded, the key's location known, the window narrowing, and one person in the castle who makes the narrowing window feel slightly less like a countdown and slightly more like a problem that has been witnessed."
+
+  "That is not nothing."
+
+  choice__
+    @target "A271-CH07-Draco-At-Match"
+    "One more thing to file."
+  __choice
+__section
+
+
+/* ── 7f: DRACO AT THE MATCH (A271–A275) ── */
+
+section__
+  @title "A271-CH07-Draco-At-Match"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You saw Draco at the match. Not playing — watching. Standing at the edge of the Slytherin section with his arms at his sides and his gaze fixed somewhere that wasn't the pitch."
+
+  "You've been tracking his observation patterns all term. Usually he watches people the way he does everything else: with the compressed, calculated attention of someone doing multiple simultaneous assessments. At the match he wasn't doing that."
+
+  "He was watching the pitch. Just watching. The specific quality of someone who is briefly allowed to be in the present tense — who has put down everything they're carrying for ninety minutes because the crowd gives them permission to."
+
+  "He looked, for those ninety minutes, like a seventeen-year-old watching a Quidditch match."
+
+  "Not like someone building a passage for Death Eaters. Not like someone whose task is almost complete."
+
+  "Just a student."
+
+  choice__
+    @target "A272-CH07-Draco-Watching"
+    "Consider that."
+  __choice
+__section
+
+
+section__
+  @title "A272-CH07-Draco-Watching"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The person who designed Draco Malfoy's mission — who assigned it to him under threat, who put the weight of his family on one side of the scale and his ability to refuse on the other — chose specifically a seventeen-year-old student."
+
+  "Not an adult. Not someone who had the fully-formed capacity to process the ethical implications of what they were being asked to do. A teenager, with the specific combination of loyalty and pride and fear that teenagers have, in a school that was supposed to be a safe place."
+
+  "You think about this while watching Draco watch the match, and you think about the Vanishing Cabinet, and you think about the Mirror-key in the Room of Hidden Things."
+
+  "He doesn't know about the key. You're nearly certain of that. His mission is the cabinet. The key is someone else's problem, farther down the chain."
+
+  "He's been given the worst possible role: almost enough information to understand what he's building, not enough to understand the full scope of what it's for."
+
+  choice__
+    @target "A273-CH07-Draco-Observation"
+    "Watch him leave."
+  __choice
+__section
+
+
+section__
+  @title "A273-CH07-Draco-Observation"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "After the match he leaves alone. Not with Crabbe and Goyle — he's been separating himself from them gradually all term — and not with Pansy, with whom he appears to have reached a kind of painful understanding that requires distance."
+
+  "He goes back toward the castle. You watch him from across the pitch. He moves slowly, which is unusual for him. The specific slow walk of someone who knows that arriving at the next thing means arriving at the thing after that, and the thing after that is hard."
+
+  "You've decoded section two. You know where the Mirror-key is. You know the cabinet is almost done."
+
+  "Draco Malfoy is going to finish his task and then face whatever comes after it. Whatever was promised or threatened — the thing that depends on his family's safety — resolves when the cabinet opens."
+
+  "And you're going to find the Mirror-key before that happens."
+
+  "Or try."
+
+  choice__
+    @target "A274-CH07-Draco-Buffer"
+    "Turn back toward the castle."
+  __choice
+__section
+
+
+section__
+  @title "A274-CH07-Draco-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The pitch empties. The cold settles back in now that the crowd has gone. The scarlet and gold and emerald of house colours disperses toward the doors."
+
+  "You stand for a moment in the empty stands."
+
+  "The investigation, as of now, has a shape: two things in the Room of Hidden Things, one of which must be moved and one of which must be either stopped or redirected. A spy in the school who is closing in on your work. An Order network that is now aware of the cipher's contents."
+
+  "Two things you haven't told anyone yet: the Mirror-key's specific location. The secondary entry to the Room, if Marcus gave it to you."
+
+  "Two things that need to happen before the cabinet completes: find the key, move it."
+
+  "One partner you probably need: the journal said *requires two.*"
+
+  choice__
+    @target "A275-CH07-Draco-Convergence"
+    "Walk back."
+  __choice
+__section
+
+
+section__
+  @title "A275-CH07-Draco-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Back to the castle. The investigation has a clear next step for the first time since October."
+
+  "Find the Mirror-key. Move it."
+
+  "Everything else — the spy, the Vanishing Cabinet, L., Asha's network, the full content of sections three through five of the journal — is secondary to that priority."
+
+  "Avery wrote: *Move it before they do.*"
+
+  "The window is February into March. Possibly shorter."
+
+  "You walk back toward the castle doors with the specific quality of someone who has a plan even if they don't have all the pieces yet. Which is different from the quality of someone who has no plan at all."
+
+  "Better. Worse. Both, depending on the moment."
+
+  choice__
+    @target "A276-CH07-End-Ch7-A"
+    "February."
+  __choice
+__section
+
+
+/* ── END CHAPTER SEVEN (A276–A280) ── */
+
+section__
+  @title "A276-CH07-End-Ch7-A"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of Chapter 7. Here is the landscape."
+
+  "The journal: two sections decoded. The Mirror-key is an obsidian shard in the Room of Hidden Things, east wall, surrounded by old mirrors. Section three will tell you more, and you know now to approach it with the urgency Avery had when writing it."
+
+  "The Order: Asha Mehta, Astronomy Tower, operating with knowledge of the Mirror and the Vanishing Cabinet and possibly the key. You are now connected to the network, or have declined to connect, or have connected with conditions."
+
+  "The Vanishing Cabinet: almost complete. Draco's timeline is compressing."
+
+  "The spy: shortlisted but unconfirmed. Watching you at the match from the south exit."
+
+  "The romance: a person who makes the weight distributable. Not lighter, exactly. Distributable."
+
+  "L.: still a theory."
+
+  choice__
+    @target "A277-CH07-End-Ch7-B"
+    "One more week."
+  __choice
+__section
+
+
+section__
+  @title "A277-CH07-End-Ch7-B"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The last week of February. The specific quality of this point in the school year: the first assessment season has passed, the second is being announced, and the whole building has the slightly ground-down energy of people who have been in full operation for five months."
+
+  "DADA with Snape: he's been watching you differently for the last week. Not with the assessment quality — with something closer to the recognition he uses for students who have surprised him in some specific way he hasn't announced. You don't know what you did. You keep doing your work."
+
+  "Potions: Harry's half-blood prince advantage continues. You've been watching his textbook since October. The margins are dense and specific — not casual annotation but someone's working notes, developed over years."
+
+  "Library: forty-seven pages of cipher analysis, two decoded sections, a third section waiting. The anchor intervals in section three are longer than in section two — a different emotional register again."
+
+  "The castle: cold, late February, the specific quality of a building that has survived many Februaries and is not concerned about this one."
+
+  choice__
+    @target "A278-CH07-February-Atmosphere"
+    "Hold on."
+  __choice
+__section
+
+
+section__
+  @title "A278-CH07-February-Atmosphere"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Late February. Scotland is making its usual argument for winter's continuation despite the calendar's claims to the contrary. The grounds are partly thawed in a way that makes them look more tired than the full freeze did — the specific indecision of the season not quite ending."
+
+  "The castle responds to February the way it always does: by being exactly as it is. Stone and fire and centuries of inhabited magic. The portraits do their portrait things. The staircases reroute themselves at three in the morning for reasons no one has formally documented. The ghosts move through the halls with the specific familiarity of people for whom the place has been home longer than almost anything else they remember."
+
+  "You've adapted to the castle's rhythms in the way that long-term residents do: not by understanding them but by moving with them. Third-floor corridor on Tuesdays is always faster. The library's east wing has better light from noon to three. The Astronomy Tower is coldest between nine and eleven but warmest just before midnight for reasons no one can explain."
+
+  "You know this school. You've been investigating it all term. And somewhere in its Room of Hidden Things, on an east wall shelf surrounded by old mirrors, is an obsidian shard that the most dangerous dark wizard alive wants."
+
+  choice__
+    @target "A279-CH07-Chapter-Close"
+    "March approaches."
+  __choice
+__section
+
+
+section__
+  @title "A279-CH07-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of Chapter 7. The chapter that began with a Quidditch match and a message from a stranger and ended with the clearest picture you've had yet of what's happening and what needs to happen next."
+
+  "The journal speaks in sections. Section one: location and contact. Section two: key-object and urgency. Section three: still locked, but approaching."
+
+  "The investigation has moved from *what is this* to *what do I do with what I know.* That's a different kind of problem. Harder in some ways. More actionable in others."
+
+  "You have a month. Maybe less."
+
+  "The room. The key. The window."
+
+  "And Draco Malfoy, finishing the last repairs on a cabinet that will change everything once it opens."
+
+  choice__
+    @target "A280-CH07-To-Ch8"
+    "Chapter Eight."
+  __choice
+__section
+
+
+section__
+  @title "A280-CH07-To-Ch8"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "February becomes March."
+
+  "Slughorn sends another invitation."
+
+  choice__
+    @target "A281-CH08-Slug-Club-Setup"
+    "The party. Everything happens at the party."
+  __choice
+__section

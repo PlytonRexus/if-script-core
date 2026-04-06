@@ -1,0 +1,2056 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 10
+   03-ch10-allegiances.partial.if
+
+   Chapter 10: Allegiances
+   THE MAJOR BRANCH POINT. The story's structural spine.
+   Three-way opening based on prior flags.
+   Allegiance locks: Order / Dark / Solo.
+   Spy subplot resolution.
+   Track-specific development.
+
+   allegiance_track set ("order"|"dark"|"solo").
+   spy_character set. spy_exposed / spy_confronted /
+   spy_leveraged / spy_protected (possibly).
+   order_member confirmed. dark_network_access (possibly).
+
+   Section range: A381–A450
+   ============================================================ */
+
+scene__
+  @name "CH10: Allegiances"
+  @first "A381-CH10-Allegiances-Hub"
+  @sceneTransition "dissolve"
+  @sections "A381-CH10-Allegiances-Hub" "A382-CH10-Order-Opening" "A383-CH10-Draco-Opening" "A384-CH10-Neutral-Opening" "A385-CH10-The-Choice" "A386-CH10-Choose-Order" "A387-CH10-Choose-Dark" "A388-CH10-Choose-Solo" "A389-CH10-Lock-Buffer" "A390-CH10-Tracks-Diverge" "A391-CH10-Order-Briefing" "A392-CH10-Order-Network" "A393-CH10-Order-Assignment" "A394-CH10-Order-Risk" "A395-CH10-Order-Acceptance" "A396-CH10-Order-Doubt" "A397-CH10-Order-Buffer" "A398-CH10-Order-Convergence" "A399-CH10-Dark-Summons" "A400-CH10-Dark-Task" "A401-CH10-Dark-Cabinet-Scope" "A402-CH10-Dark-Moral-Cost" "A403-CH10-Dark-Comply" "A404-CH10-Dark-Resist" "A405-CH10-Dark-Buffer" "A406-CH10-Dark-Convergence" "A407-CH10-Solo-Library" "A408-CH10-Solo-Fragments" "A409-CH10-Solo-Order-Intel" "A410-CH10-Solo-Dark-Intel" "A411-CH10-Solo-Synthesis" "A412-CH10-Solo-Advantage" "A413-CH10-Solo-Buffer" "A414-CH10-Solo-Convergence" "A415-CH10-Track-Convergence" "A416-CH10-Spy-Hub" "A417-CH10-Spy-No-Investigation" "A418-CH10-Spy-Canary-Sings" "A419-CH10-Spy-Identity-Reveal" "A420-CH10-Spy-Confrontation" "A421-CH10-Spy-Expose-Dumbledore" "A422-CH10-Spy-Expose-McGonagall" "A423-CH10-Spy-Confront-Direct" "A424-CH10-Spy-Leverage" "A425-CH10-Spy-Protect" "A426-CH10-Spy-Aftermath-Expose" "A427-CH10-Spy-Aftermath-Confront" "A428-CH10-Spy-Aftermath-Leverage" "A429-CH10-Spy-Aftermath-Protect" "A430-CH10-Spy-Convergence" "A431-CH10-Track-Dev-Hub" "A432-CH10-Order-Task" "A433-CH10-Order-Task-Result" "A434-CH10-Dark-Revelation" "A435-CH10-Dark-Revelation-Weight" "A436-CH10-Solo-Mirror-Piece" "A437-CH10-Solo-Mirror-Insight" "A438-CH10-Dev-Convergence" "A439-CH10-World-Changed" "A440-CH10-Draco-Corridor" "A441-CH10-Romance-Beat-Hub" "A442-CH10-Romance-Elara" "A443-CH10-Romance-Marcus" "A444-CH10-Romance-Jade-Seb" "A445-CH10-Romance-No" "A446-CH10-Romance-Convergence" "A447-CH10-End-State" "A448-CH10-Chapter-Close" "A449-CH10-Buffer" "A450-CH10-To-Ch11"
+__scene
+
+
+/* ── 10a: THREE-WAY OPENING (A381–A384) ── */
+
+section__
+  @title "A381-CH10-Allegiances-Hub"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "May. The term's final weeks. The corridors have the specific energy of a building that knows something is about to happen but doesn't know what — the institutional equivalent of holding your breath."
+
+  "And this morning, the breath catches."
+
+  "Something arrives. Not a letter, not an owl, not one of the usual channels. Something more direct. More urgent. The kind of communication that means the person sending it has decided that the usual channels are no longer sufficient."
+
+  if__ (order_member == true && morality >= 55) {
+    choice__
+      @target "A382-CH10-Order-Opening"
+      "Asha's signal — the coin in your pocket burns hot."
+    __choice
+  }
+
+  if__ (draco_helped == true && morality <= 45) {
+    choice__
+      @target "A383-CH10-Draco-Opening"
+      "Draco finds you. His face says everything his mouth hasn't."
+    __choice
+  }
+
+  if__ ((order_member == false || morality < 55) && (draco_helped == false || morality > 45)) {
+    choice__
+      @target "A384-CH10-Neutral-Opening"
+      "No one comes. The crossroads is yours alone."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A382-CH10-Order-Opening"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Protean-charmed coin in your pocket — the one Asha gave you in October, the one that has buzzed twice before with meeting locations — burns hotter than it ever has. Not the mild warmth of a routine check-in. Heat. Urgency. The charm's way of saying: *now.*"
+
+  "The message on the coin's rim: *Astronomy Tower. Midnight. Full network. Bring what you know.*"
+
+  "Full network. Asha has never called a full network meeting before. The youth network has been operating in cells — you've met Asha, and Asha coordinates, but the full group has never assembled in one place. The security risk was too high."
+
+  "Until now. Whatever changed, it was enough to override the security concern."
+
+  "You go."
+
+  "The Astronomy Tower at midnight: six students. You know three of them from peripheral encounters — the Ravenclaw seventh-year who helped with the Patronus research, the Hufflepuff prefect who passed messages through the kitchens, the Gryffindor fifth-year whose older sister is a full Order member."
+
+  "Asha stands at the centre. Her face has the particular quality of someone who has received intelligence that changes the operational picture."
+
+  "'Something's coming,' she says. 'Weeks, not months. The adults are mobilising. Dumbledore has given instructions to specific staff members — we don't know all of them, but McGonagall and Flitwick are moving with purpose. The castle is being prepared for something.'"
+
+  "'What.'"
+
+  "'We don't know. But we know it's soon. And we know that whatever Draco Malfoy has been doing on the seventh floor all year — it's almost done.'"
+
+  rel_order = adjRel(rel_order, 15)
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A385-CH10-The-Choice"
+    "The intelligence lands."
+  __choice
+__section
+
+
+section__
+  @title "A383-CH10-Draco-Opening"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Draco finds you in the corridor between Potions and the Great Hall — the one with the bad torchlight, the one that has become a geography of private conversations over the course of this year."
+
+  "He looks worse than he has at any point since September. The thin face has gone past thin into something approaching translucent. The shadows under his eyes have their own shadows. His hands, which have been steady all year — the specific steadiness of someone who is holding themselves together through discipline — are shaking."
+
+  "'It works,' he says."
+
+  "No preamble. No context. Just the two words that change everything."
+
+  "'The cabinet. It works. I tested it last night. An apple — I sent an apple through and it came back. Whole. Not damaged. The passage is open.'"
+
+  "He's not looking at you. He's looking at the wall behind you, at a point approximately six inches above your head, in the way that people look when they're saying something that terrifies them."
+
+  "'It works and I don't know what to do with it working. I built this thing because I was told to build it and now it's built and the people who told me to build it are going to come through it and I—'"
+
+  "He stops."
+
+  "'I need to know whose side you're on,' he says. 'Not eventually. Now.'"
+
+  rel_draco = adjRel(rel_draco, 10)
+  morality = adj(morality, -5)
+
+  choice__
+    @target "A385-CH10-The-Choice"
+    "He's asking."
+  __choice
+__section
+
+
+section__
+  @title "A384-CH10-Neutral-Opening"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "No coin burns in your pocket. No pale-faced Slytherin finds you in a corridor. The world doesn't deliver a dramatic catalyst — it gives you something worse: clarity."
+
+  "You're sitting in the library. Late. The investigation's documents are spread in front of you — the journal, the cipher notebook, the map coordinates, the timeline of Draco's movements, the spy's trail, the letters from Avery's study. All of it."
+
+  "And looking at it all together — the full picture, every piece laid out on the table like a puzzle that's been assembled by someone who didn't know they were assembling it — you see the shape."
+
+  "The shape is: you are between two sides. You have information that both sides want. You have relationships that both sides could use. You have spent six months building an intelligence picture that is more complete than anything the Order youth network has, and more nuanced than anything Draco's handlers possess."
+
+  "You are the point where two circles overlap. And the overlap is about to become a choice."
+
+  "Because the cabinet is almost done. The spy is almost identified. The journal has two more sections. The Mirror-key is still in the Room of Hidden Things. And Avery is alive — or isn't — and the rescue plan exists — or doesn't — and the war is coming to Hogwarts."
+
+  "All of it, converging. And you, in the middle, with the specific freedom and burden of someone who has not yet committed to a side."
+
+  "The question that has been approaching since September is here."
+
+  "Whose side are you on."
+
+  choice__
+    @target "A385-CH10-The-Choice"
+    "Choose."
+  __choice
+__section
+
+
+/* ── 10b: THE ALLEGIANCE LOCK (A385–A390) ── */
+
+section__
+  @title "A385-CH10-The-Choice"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "This is the choice."
+
+  "Not a choice between good and evil — the war isn't that simple, and neither are you. A choice between methods. Between which kind of compromise you can live with. Between the people you trust and the people who trust you."
+
+  "The Order: moral clarity at the cost of operational freedom. You report to Asha. Asha reports upward. Your intelligence becomes institutional intelligence. You gain backup, lose autonomy. The light side of the war, with all the constraints that implies."
+
+  "Draco's path: tactical advantage at the cost of moral ground. You help someone who is building a passage for Death Eaters into Hogwarts. The reasoning — that helping Draco means controlling the passage, that complicity is a form of influence — is sound. It is also the kind of reasoning that dark wizards use to justify the first step."
+
+  "Solo: the loneliest option and the most intellectually honest. You answer to no one. You use what you know for your own purposes — to find Avery, to protect the Mirror-key, to survive. No backup. No compromise. No one to blame if it goes wrong."
+
+  "Three paths. You've been walking the line between them all year."
+
+  "The line ends here."
+
+  choice__
+    @target "A386-CH10-Choose-Order"
+    @when morality >= 45
+    @disabledText "Your moral standing is too compromised for the Order to trust you fully. Requires Light/Dark >= 45."
+    @action allegiance_track = "order"
+    @action order_member = true
+    @action courage = adj(courage, 5)
+    @action morality = adj(morality, 15)
+    "The Order. You believe in something larger than yourself. You believe the war requires coordination, sacrifice, and the willingness to subordinate personal objectives to collective survival. You believe that Dumbledore — absent as he is — has a plan, and that plan is worth trusting."
+  __choice
+
+  choice__
+    @target "A387-CH10-Choose-Dark"
+    @when draco_helped == true || morality <= 55
+    @disabledText "You have no connection to Draco's world. Requires having helped Draco or Light/Dark <= 55."
+    @action allegiance_track = "dark"
+    @action dark_network_access = true
+    @action draco_helped = true
+    @action cunning = adj(cunning, 5)
+    @action morality = adj(morality, -15)
+    "Draco's side. Not Voldemort's — Draco's. There's a difference, and the difference matters. You help him because the alternative is abandoning someone who asked for help when they had no one else to ask. The moral cost is real. You pay it."
+  __choice
+
+  choice__
+    @target "A388-CH10-Choose-Solo"
+    @action allegiance_track = "solo"
+    @action cunning = adj(cunning, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Neither. You work alone. The investigation is yours — the journal, the Mirror-key, Avery, the spy. You built this intelligence picture without institutional support and you'll resolve it without institutional interference. No handlers. No obligations. Just the work."
+  __choice
+__section
+
+
+section__
+  @title "A386-CH10-Choose-Order"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The choice is made. The Order."
+
+  "The coin burns in your pocket — not the Protean charm this time, but the symbolic weight of the object itself. A piece of metal that connects you to a network of people who have decided that the war requires them to do something, even if that something is dangerous and uncertain and likely to end badly for some of them."
+
+  "You find Asha. You tell her: everything. The journal. The Mirror-key. The spy. The cabinet. Avery."
+
+  "She listens. She doesn't interrupt. She takes notes in a shorthand you don't recognise — Order protocol, probably, the kind of notation that self-destructs after twenty-four hours."
+
+  "'You should have told us sooner,' she says when you're done."
+
+  "'I wasn't sure I trusted you enough.'"
+
+  "'And now you are.'"
+
+  "'Now I've decided that trust is a choice, not a certainty. And I'm choosing.'"
+
+  "She nods. The nod has the specific quality of someone who understands that trust as a choice is actually more reliable than trust as a feeling."
+
+  "'Welcome to the network. Properly. Not the check-in meetings and the coin warming up on Tuesdays. The real network. The one that operates.'"
+
+  rel_order = adjRel(rel_order, 15)
+
+  choice__
+    @target "A389-CH10-Lock-Buffer"
+    "You're in."
+  __choice
+__section
+
+
+section__
+  @title "A387-CH10-Choose-Dark"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The choice is made. Draco's side."
+
+  "You find him in the corridor — the same corridor, the same bad torchlight, the geography that has defined this relationship since October. He's waiting. He knew you'd come."
+
+  "'You're sure,' he says. Not asking permission. Checking structural integrity."
+
+  "'I'm sure that you need help. I'm sure that the alternative is you doing this alone and failing or succeeding in ways that are worse. I'm sure that if someone is going to be involved in what happens when that cabinet opens, I'd rather it be me than no one.'"
+
+  "He looks at you for a long time. The look has the specific quality of someone who has been expecting rejection and received something else — not acceptance, exactly, but participation. The offer to stand in the same storm."
+
+  "'You understand what this means,' he says. 'The people who come through that cabinet. They're not — they're not the kind of people you can negotiate with. They come, and they do what they came to do, and anyone who helped open the door is complicit in what walks through it.'"
+
+  "'I know.'"
+
+  "'Do you.'"
+
+  "'I know what complicity is. I'm choosing it over abandonment. That's not the same as not knowing.'"
+
+  "He nods. The nod is small and it costs him something."
+
+  rel_draco = adjRel(rel_draco, 20)
+
+  choice__
+    @target "A389-CH10-Lock-Buffer"
+    "You're in."
+  __choice
+__section
+
+
+section__
+  @title "A388-CH10-Choose-Solo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The choice is made. Neither side. Both sides. Your own side."
+
+  "You don't tell Asha. You don't find Draco. You close the journal and the cipher notebook and the map and the letters and you stack them neatly and you sit in the library at midnight and you make the decision in silence, which is appropriate because silence is what you've chosen."
+
+  "No coin. No corridor. No one to report to, which means no one to disappoint. No one to blame you for what you do with the intelligence you've spent six months building."
+
+  "The investigation is yours. It has always been yours. The Order wanted to absorb it into their operational structure. Draco wanted to leverage it for his survival. Both of them saw your work — your parent's journal, your cipher, your months of careful, patient, obsessive intelligence-gathering — as a resource to be redirected."
+
+  "You are not a resource. You are the investigator. And the investigator works alone."
+
+  "The cost is visible from here: no backup when the cabinet opens. No network when the spy surfaces. No one to call when the Mirror-key needs to move. Just you, your knowledge, your cunning, and the specific cold clarity of someone who has decided that institutional loyalty is a luxury the war doesn't afford."
+
+  "The loneliest choice. And — possibly — the most honest."
+
+  knowledge = adj(knowledge, 3)
+
+  choice__
+    @target "A389-CH10-Lock-Buffer"
+    "Alone."
+  __choice
+__section
+
+
+section__
+  @title "A389-CH10-Lock-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The choice settles. Not dramatically — no thunderclap, no Sorting Hat moment, no narrative fanfare. It settles the way important decisions actually settle: quietly, in the specific silence that follows commitment."
+
+  "You made your choice. The story's architecture has shifted around it. What comes next is different depending on which door you walked through."
+
+  "But first: the pieces that were already in motion. The spy. The investigation's open threads. The things that belong to every version of this story, regardless of allegiance."
+
+  choice__
+    @target "A390-CH10-Tracks-Diverge"
+    "What comes next."
+  __choice
+__section
+
+
+section__
+  @title "A390-CH10-Tracks-Diverge"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The next two weeks unfold differently depending on the door you chose."
+
+  if__ (allegiance_track == "order") {
+    choice__
+      @target "A391-CH10-Order-Briefing"
+      "The Order's machinery activates."
+    __choice
+  }
+
+  if__ (allegiance_track == "dark") {
+    choice__
+      @target "A399-CH10-Dark-Summons"
+      "Draco's world opens."
+    __choice
+  }
+
+  if__ (allegiance_track == "solo") {
+    choice__
+      @target "A407-CH10-Solo-Library"
+      "The investigation accelerates."
+    __choice
+  }
+__section
+
+
+/* ── 10c: ORDER TRACK (A391–A398) ── */
+
+section__
+  @title "A391-CH10-Order-Briefing"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Order youth network, properly activated, is a different thing than the check-in meetings you've attended since October."
+
+  "Asha's briefing is operational: structured, specific, disciplined. She has a whiteboard — conjured, temporary, it dissolves after every meeting — and she draws the situation on it with the precision of someone who learned this from people who do it for a living."
+
+  "'Here's what we know,' she says. 'Draco Malfoy has been repairing a Vanishing Cabinet on the seventh floor since September. The cabinet connects to its twin in Borgin and Burkes in Knockturn Alley. When it's complete — and our intelligence says it's nearly complete — it creates a passage that bypasses every ward on the castle.'"
+
+  "She looks at you. 'Ashford confirmed this. Ashford has been tracking Malfoy independently since October.'"
+
+  "The other network members look at you with the specific recalibration of people who had categorised you as 'new' and are adjusting to 'asset.'"
+
+  "'What we don't know: the timeline. When Malfoy finishes. When they come through. Who comes through. And what the target is.'"
+
+  "She taps the whiteboard."
+
+  "'But we have Ashford's journal intelligence. And that changes the picture.'"
+
+  rel_order = adjRel(rel_order, 10)
+
+  choice__
+    @target "A392-CH10-Order-Network"
+    "The network responds."
+  __choice
+__section
+
+
+section__
+  @title "A392-CH10-Order-Network"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The network's response is: organised. More organised than you expected. These are students — sixth and seventh years, mostly — but they've been trained by people who take this seriously. Asha's briefings have structure. The cells have protocols. There's even a signal system — Protean-charmed coins, based on the DA model from last year, but modified."
+
+  "Your intelligence — the journal, the cabinet, the spy trail — slots into their operational picture like a key into a lock. They had pieces. You had other pieces. Together, the picture is more complete than either alone."
+
+  "'The Mirror-key,' Asha says. 'You're sure it's in the Room of Hidden Things.'"
+
+  "'I'm sure the journal says so. I haven't confirmed it physically.'"
+
+  "'We need to. Soon. Before Malfoy's cabinet opens and the room becomes inaccessible.'"
+
+  "She assigns it to you. Your first real Order task."
+
+  choice__
+    @target "A393-CH10-Order-Assignment"
+    "The assignment."
+  __choice
+__section
+
+
+section__
+  @title "A393-CH10-Order-Assignment"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'The assignment is reconnaissance,' Asha says. 'Not retrieval. Not yet. We need to confirm the Mirror-key's location, assess the room's accessibility given Malfoy's usage pattern, and determine whether retrieval is possible without tipping Malfoy off.'"
+
+  "She pauses."
+
+  "'This means going to the seventh floor. Watching Malfoy's schedule. Finding a window when the room is accessible in its hidden-things configuration rather than Malfoy's cabinet configuration. And doing all of it without being detected — by Malfoy, by Crabbe and Goyle who stand guard, or by whatever surveillance the other side might have in place.'"
+
+  "The assignment is reasonable. It's also dangerous — the seventh floor is Draco's territory now, and being caught there by someone who is increasingly desperate and increasingly capable of unpredictable behaviour is a genuine risk."
+
+  choice__
+    @target "A394-CH10-Order-Risk"
+    @action courage = adj(courage, 5)
+    "Accept the assignment. Reconnaissance. You know the seventh floor. You know Draco's patterns."
+  __choice
+
+  choice__
+    @target "A396-CH10-Order-Doubt"
+    @action empathy = adj(empathy, 5)
+    "Accept, but raise a concern. Draco is a person, not just a target. Whatever he's building, he's building it under duress."
+  __choice
+__section
+
+
+section__
+  @title "A394-CH10-Order-Risk"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'I'll do it,' you say. The acceptance is clean — no caveats, no conditions. The seventh floor. Malfoy's schedule. The room."
+
+  "Asha nods. 'Forty-eight hours. Report back through the coin. Standard check-in protocol — if you miss a check-in, we assume compromise and activate contingency.'"
+
+  "'What's the contingency.'"
+
+  "'McGonagall. Full disclosure. If you're caught, we go institutional.'"
+
+  "The contingency is: blowing the entire youth network's cover to save one operative. The fact that you are the operative they'd burn everything to protect tells you something about how they value what you've brought to the table."
+
+  courage = adj(courage, 5)
+  morality = adj(morality, 5)
+
+  choice__
+    @target "A395-CH10-Order-Acceptance"
+    "Forty-eight hours."
+  __choice
+__section
+
+
+section__
+  @title "A395-CH10-Order-Acceptance"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The reconnaissance happens over the next two days. You watch the seventh floor from the sixth-floor stairwell, timing Draco's arrivals and departures. He comes at predictable intervals — early morning before breakfast, late afternoon after classes, and a long session after curfew that lasts until two or three in the morning."
+
+  "The pattern gives you a window: midday, when Draco is in classes and Crabbe and Goyle are eating in the Great Hall with the specific commitment to lunch that characterises their participation in school life."
+
+  "You go to the seventh floor. You walk past the blank stretch of wall three times, thinking about hidden things — not the cabinet, not Draco's workshop, but the vast repository of lost and abandoned objects that Hogwarts has accumulated over centuries."
+
+  "The door appears. Different from the door Draco uses — you can feel the difference in the room's magic, the way it configures itself for the request."
+
+  "You step inside."
+
+  "The Room of Hidden Things is: enormous. Cathedral-ceilinged. Packed with objects stacked in towering columns — furniture, books, weapons, clothing, artefacts, things that have been hidden and forgotten and hidden again. The archaeology of a thousand years of students and staff concealing things they didn't want found."
+
+  "The Mirror-key could be anywhere in here. But the journal had coordinates — not room coordinates, but descriptive references. A landmark system."
+
+  "You begin searching."
+
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A398-CH10-Order-Convergence"
+    "The search is methodical."
+  __choice
+__section
+
+
+section__
+  @title "A396-CH10-Order-Doubt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'I'll do it,' you say. 'But — Asha. Draco Malfoy is not a volunteer. He's being coerced. Whatever he's building, the person who gave him the order has his family as leverage.'"
+
+  "Asha's expression doesn't change. 'I know.'"
+
+  "'You know.'"
+
+  "'We know his mother was visited by Bellatrix Lestrange in August. We know his father is in Azkaban. We know the conditions under which the Malfoy family's continued safety depends on Draco completing this task. We know.'"
+
+  "'And the reconnaissance — is it also the beginning of a plan to help him.'"
+
+  "Asha is quiet for a long time."
+
+  "'The reconnaissance is the reconnaissance. What we do with what we learn — that depends on what we learn. I won't promise to help him. But I won't promise not to.'"
+
+  "It's the most honest answer she's given you since October."
+
+  empathy = adj(empathy, 5)
+  rel_order = adjRel(rel_order, 5)
+
+  choice__
+    @target "A395-CH10-Order-Acceptance"
+    "It's enough."
+  __choice
+__section
+
+
+section__
+  @title "A397-CH10-Order-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Order track — the first real days of proper network membership — produces a specific feeling: the relief of shared burden. You've been carrying the investigation alone for six months. Having people who know what you know, who are working toward the same objectives, who will notice if you miss a check-in — it's not the same as safety. But it's the closest thing to it."
+
+  choice__
+    @target "A398-CH10-Order-Convergence"
+    "The network holds."
+  __choice
+__section
+
+
+section__
+  @title "A398-CH10-Order-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The reconnaissance yields: confirmation. The Room of Hidden Things contains the landmark system from the journal — a broken cabinet (not Draco's — a different one, older), a tarnished tiara on a bust, a stack of crates marked with a symbol you don't recognise."
+
+  "Near the crates: a small, locked chest. The lock is magical — keyed to something you can't immediately identify. But the chest matches the journal's description. Inside, if the journal is right, is the obsidian shard that serves as the Mirror-key."
+
+  "You report to Asha. The key is there. The room is accessible. Retrieval is possible — if the timing is right."
+
+  "'Good work,' Asha says. The praise is brief and genuine."
+
+  "The Order track is active. The reconnaissance is complete. The next step — retrieval — will come in Chapter 12."
+
+  mirror_location_known = true
+  rel_order = adjRel(rel_order, 8)
+
+  choice__
+    @target "A415-CH10-Track-Convergence"
+    "Track rejoins."
+  __choice
+__section
+
+
+/* ── 10c: DARK TRACK (A399–A406) ── */
+
+section__
+  @title "A399-CH10-Dark-Summons"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Draco's world, properly opened, is smaller and colder than you expected."
+
+  "He takes you to the Room of Requirement — his version of it, the workshop version, the one that contains the Vanishing Cabinet and the evidence of nine months of obsessive, terrified labour."
+
+  "The cabinet stands in the centre of the room. Tall. Dark wood. Ornate in the way that very old magical artefacts are ornate — the decoration is functional, the carvings are part of the charm structure. It looks like a wardrobe from a very bad antique shop."
+
+  "And it works."
+
+  "Draco demonstrates. He puts a small object on the shelf inside the cabinet — a chess piece, a white knight — closes the door, waits, opens it. The chess piece is gone. He closes the door again. Opens it. The chess piece is back."
+
+  "'Borgin confirmed,' he says. 'His end received it. Sent it back. The passage is stable. Both directions.'"
+
+  "The cabinet works. The passage is open. A direct, unwardable route from Knockturn Alley to Hogwarts."
+
+  "Draco's hands are shaking."
+
+  choice__
+    @target "A400-CH10-Dark-Task"
+    "What comes through."
+  __choice
+__section
+
+
+section__
+  @title "A400-CH10-Dark-Task"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'The task,' Draco says. 'My task. The cabinet was step one. Step two is — harder.'"
+
+  "He sits on a crate. His knees are drawn up. He looks like a child sitting in a room full of dangerous things, which is accurate."
+
+  "'The people who come through the cabinet — they're coming for a reason. A specific target. Someone at Hogwarts. Someone who—'"
+
+  "He stops. Swallows."
+
+  "'Dumbledore,' he says. 'The target is Dumbledore.'"
+
+  "The word lands in the room like a stone in still water."
+
+  "'I'm supposed to make it happen. The passage opens, they come through, and I—' He stops again. The specific stop of someone who can't make the next words come out of their mouth because the next words are an admission of what they've been tasked to do."
+
+  "'You're supposed to kill him,' you say."
+
+  "He doesn't confirm it. He doesn't deny it. The silence is confirmation enough."
+
+  morality = adj(morality, -5)
+
+  choice__
+    @target "A401-CH10-Dark-Cabinet-Scope"
+    "The scope of what you've agreed to."
+  __choice
+__section
+
+
+section__
+  @title "A401-CH10-Dark-Cabinet-Scope"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The scope is: you are helping someone whose task is to enable the assassination of Albus Dumbledore."
+
+  "Not participating in the assassination itself. Not planning it. Not executing it. But enabling the logistics — the passage, the access, the infrastructure. The person who builds the road is not the person who drives the tank. But the road exists because they built it."
+
+  "Complicity. The word you used when you made the choice. You knew what it meant then. You know more precisely what it means now."
+
+  "Draco is watching you. Waiting for the reaction that will tell him whether he made a mistake trusting you."
+
+  choice__
+    @target "A402-CH10-Dark-Moral-Cost"
+    "Process."
+  __choice
+__section
+
+
+section__
+  @title "A402-CH10-Dark-Moral-Cost"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The processing takes a specific form: the cold, analytical assessment that your cunning has trained you to perform even when the emotional content is overwhelming."
+
+  "Fact: the cabinet works. That happened before your choice. Your involvement didn't enable it."
+
+  "Fact: the Death Eaters are coming through regardless. Your presence on Draco's side doesn't increase the probability of that event. It may — may — give you information about when and how."
+
+  "Fact: Draco's target is Dumbledore. Your presence doesn't make that more or less likely. But your presence means you know. And knowing means you could — theoretically, dangerously, at enormous personal risk — do something about it."
+
+  "The dark path is not a path of evil. It's a path of information. Of proximity. Of the specific, morally corrosive advantage that comes from being close to the people who are planning the worst things."
+
+  "Whether that justification holds when the moment comes — that's a question for later. For now: you're here. You know. And knowing is its own kind of weapon."
+
+  choice__
+    @target "A403-CH10-Dark-Comply"
+    @action cunning = adj(cunning, 8)
+    @action morality = adj(morality, -5)
+    "Stay close. Learn everything. The moral cost is the price of the intelligence."
+  __choice
+
+  choice__
+    @target "A404-CH10-Dark-Resist"
+    @action courage = adj(courage, 8)
+    @action morality = adj(morality, 5)
+    "Stay close, but draw a line. You help Draco. You do not help the assassination. The distinction matters, even if it's thin."
+  __choice
+__section
+
+
+section__
+  @title "A403-CH10-Dark-Comply"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You stay. You learn. The cost is noted and filed alongside the other costs — the moral compromises that accumulate like interest on a debt you're choosing to carry."
+
+  "Draco tells you more. The timeline: weeks. The personnel: senior Death Eaters, names he won't say, faces you won't see until the night itself. The method: the cabinet opens, they enter, they proceed to wherever Dumbledore is. Draco's role: facilitate entry and — if he can't finish the task himself — stand aside while someone else does."
+
+  "'I can't do it,' he says quietly. 'I've been trying to convince myself I can. I can't. I'll open the door and I'll let them in and then I'll—'"
+
+  "He doesn't finish."
+
+  "The intelligence you're gaining is significant. The moral cost of gaining it is also significant. These two facts coexist without resolution."
+
+  rel_draco = adjRel(rel_draco, 10)
+
+  choice__
+    @target "A405-CH10-Dark-Buffer"
+    "The dark track deepens."
+  __choice
+__section
+
+
+section__
+  @title "A404-CH10-Dark-Resist"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'I'm here for you,' you say. 'Not for them. I help you. I don't help the operation.'"
+
+  "Draco looks at you with the specific expression of someone who is trying to determine whether that distinction is meaningful or just comfortable."
+
+  "'The distinction may not survive contact with the actual event,' he says."
+
+  "'Then I'll find out when it happens. But right now, the line exists. You repair the cabinet because you have to. I stand near you because I choose to. What comes through the cabinet — that's not my task. My task is you.'"
+
+  "He nods. The nod is uncertain but grateful. The gratitude of someone who has been drowning and sees a hand extended — not to pull them to shore, but to drown alongside them, which is a different kind of rescue."
+
+  rel_draco = adjRel(rel_draco, 15)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A405-CH10-Dark-Buffer"
+    "The line holds. For now."
+  __choice
+__section
+
+
+section__
+  @title "A405-CH10-Dark-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The dark track — the first real days of proximity to Draco's mission — produces a specific feeling: the vertigo of complicity. You know things now that you shouldn't know. You are inside a plan that is designed to kill the most important wizard in Britain."
+
+  "The information is valuable. The position is dangerous. The moral accounting is — complicated."
+
+  "And underneath it all, a practical question: the Mirror-key. It's in the Room of Hidden Things. Draco's version of the room doesn't access the hidden things — it accesses the workshop. But you now have a reason to be on the seventh floor, which means you have a potential window for finding the key."
+
+  mirror_location_known = true
+
+  choice__
+    @target "A406-CH10-Dark-Convergence"
+    "The pieces connect."
+  __choice
+__section
+
+
+section__
+  @title "A406-CH10-Dark-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The dark track is active. You are inside Draco's operation. You know the target, the timeline, the method. You know the cabinet works. And you know that the Room of Hidden Things — accessible through a different configuration than Draco's workshop — contains the Mirror-key."
+
+  "Two objectives overlapping in the same magical room. The story's geography becoming its strategy."
+
+  choice__
+    @target "A415-CH10-Track-Convergence"
+    "Track rejoins."
+  __choice
+__section
+
+
+/* ── 10c: SOLO TRACK (A407–A414) ── */
+
+section__
+  @title "A407-CH10-Solo-Library"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo track begins in the library. Where else. The library is the geography of people who work alone — the cathedral of individual effort, the place where intelligence is gathered through reading rather than relationships."
+
+  "Your investigation has three open fronts: the Mirror-key, the spy, and the cabinet. The Order has intelligence on some of these. Draco has intelligence on others. You have — or can build — intelligence on all of them."
+
+  "The advantage of the solo path is: you owe nothing. No reports to file. No handlers to satisfy. No one whose emotional response to your discoveries creates additional variables."
+
+  "The disadvantage is: no one to watch your back. No one to verify your conclusions. No one to send help if you're caught on the seventh floor or cornered by the spy or confronted by someone who knows what you know."
+
+  "You accept both. You begin."
+
+  choice__
+    @target "A408-CH10-Solo-Fragments"
+    "The fragments."
+  __choice
+__section
+
+
+section__
+  @title "A408-CH10-Solo-Fragments"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The investigation, properly independent, moves faster than it did when you were trying to balance competing loyalties. Without the Order's operational constraints or Draco's emotional needs, you can focus on pure intelligence-gathering."
+
+  "Three threads. Three approaches."
+
+  choice__
+    @target "A409-CH10-Solo-Order-Intel"
+    @action knowledge = adj(knowledge, 5)
+    "First: what the Order knows. You can access this without being a member — the youth network isn't as secure as Asha thinks it is."
+  __choice
+
+  choice__
+    @target "A410-CH10-Solo-Dark-Intel"
+    @action cunning = adj(cunning, 5)
+    "First: what Draco's side knows. The Slytherin common room's whisper network has leaks of its own."
+  __choice
+__section
+
+
+section__
+  @title "A409-CH10-Solo-Order-Intel"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Order youth network's communications are Protean-charmed coins — a system you learned about through Neville last year, and whose limitations you've been quietly studying since."
+
+  "You don't need the coin. You need the meeting locations, which are predictable — Asha rotates between four sites on a schedule that has a pattern she thinks is random but isn't. The Astronomy Tower on Mondays. The Room of Requirement on Wednesdays (when Draco is in class). The Hog's Head on Hogsmeade weekends. The abandoned classroom on the third floor for emergencies."
+
+  "You position yourself near enough to the Wednesday meeting to overhear fragments. Not everything — Asha is competent, and the security spells are decent — but enough."
+
+  "Fragments: the Order's adult leadership is preparing for something. Dumbledore has given specific instructions to staff. The castle's wards are being modified — subtly, in ways that students wouldn't notice but that trained magical observers would. The modifications suggest preparation for an internal threat, not an external one."
+
+  "An internal threat. Someone coming from inside, not attacking from outside."
+
+  "The cabinet. Asha's people have worked that out too."
+
+  knowledge = adj(knowledge, 8)
+
+  choice__
+    @target "A411-CH10-Solo-Synthesis"
+    "Piece one."
+  __choice
+__section
+
+
+section__
+  @title "A410-CH10-Solo-Dark-Intel"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Slytherin common room's information network is not a formal structure — it's a social one. Certain students hear things from home. Letters arrive. Conversations happen in the low-voiced register of people who know their families are involved in things and are trying to determine whether involvement is pride or fear."
+
+  "You don't need to be in the common room. You need to watch the students who leave the common room with specific expressions — the ones who received letters at breakfast that made their faces change."
+
+  "You watch. You listen. You note."
+
+  "Fragments: something is being planned for Hogwarts. Not an attack — a mission. Specific. Targeted. The Death Eater families know it's coming and are either afraid or excited, depending on their position in the hierarchy. The Malfoys are afraid, which tells you about the personal stakes. The Crabbes are excited, which tells you about the power dynamics."
+
+  "The mission has a timeline. A target. And it involves the castle's interior — not its defenses."
+
+  "The same conclusion from a different angle: something is coming from inside."
+
+  cunning = adj(cunning, 8)
+
+  choice__
+    @target "A411-CH10-Solo-Synthesis"
+    "Piece two."
+  __choice
+__section
+
+
+section__
+  @title "A411-CH10-Solo-Synthesis"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The synthesis. Both sides — Order and Dark — have the same intelligence from different perspectives. An operation is being planned that involves Hogwarts' interior. The Vanishing Cabinet is the access point. The target is almost certainly Dumbledore."
+
+  "You have this intelligence without committing to either side. Without owing anything. Without being constrained by anyone's operational protocols or emotional needs."
+
+  "And you have something neither side has: the journal. The Mirror-key. The knowledge that in the same room where Draco's cabinet sits — in a different configuration — is an artefact that Voldemort has been seeking. An artefact that your parent nearly died investigating."
+
+  "The Mirror-key and the assassination plan share the same geography. The same room. The same building."
+
+  "That's not a coincidence. That's a pattern. And patterns, to someone with your knowledge and cunning, are weapons."
+
+  knowledge = adj(knowledge, 5)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A412-CH10-Solo-Advantage"
+    "The advantage crystallises."
+  __choice
+__section
+
+
+section__
+  @title "A412-CH10-Solo-Advantage"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo advantage: you see the whole picture. Order members see the Order's piece. Draco sees his piece. You see both, plus the piece that neither of them has — the Mirror-key, the journal, Avery's investigation."
+
+  "The Room of Hidden Things. The Mirror-key is there. You need to confirm it, retrieve it if possible, and determine what to do with it before the cabinet opens and the room becomes a war zone."
+
+  "You go to the seventh floor. Alone. During Draco's class period, when the corridor is empty and Crabbe and Goyle are elsewhere."
+
+  "The room opens for you. The hidden-things configuration. The vast, cathedral-ceilinged space full of centuries of concealed objects."
+
+  "You begin searching."
+
+  "The journal's landmarks are there: the broken cabinet, the tarnished tiara, the crates. Near the crates: a locked chest. The lock is magical. The chest matches the description."
+
+  "The Mirror-key — or its container — is real."
+
+  mirror_location_known = true
+
+  choice__
+    @target "A413-CH10-Solo-Buffer"
+    "Confirmed."
+  __choice
+__section
+
+
+section__
+  @title "A413-CH10-Solo-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The solo track is active. You have intelligence from both sides, independently gathered. You have confirmed the Mirror-key's location. You owe nothing to anyone."
+
+  "The cost is the absence of backup. When things escalate — and they will — you face them alone."
+
+  "But you face them knowing more than anyone else in this castle. And knowledge, properly applied, is its own form of protection."
+
+  choice__
+    @target "A414-CH10-Solo-Convergence"
+    "The solo path holds."
+  __choice
+__section
+
+
+section__
+  @title "A414-CH10-Solo-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The solo track has yielded: full intelligence picture, Mirror-key confirmed, no obligations. Maximum information, minimum support. The trade-off you chose."
+
+  choice__
+    @target "A415-CH10-Track-Convergence"
+    "Track rejoins."
+  __choice
+__section
+
+
+/* ── 10d: SPY SUBPLOT (A415–A430) ── */
+
+section__
+  @title "A415-CH10-Track-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "All three tracks converge here. The allegiance is locked. The track-specific reconnaissance is complete. The Mirror-key's location is confirmed."
+
+  "And now: the spy."
+
+  "The leak that was discovered in Chapter 8 — the information that appeared in the wrong hands, the Montenegro coordinates that only the Order should have had — has been an open question all year. You set the canary trap, or you investigated through other channels, or you've been watching and waiting."
+
+  "The spy subplot arrives at its resolution regardless of track. Because the spy is a threat to everyone — Order, Dark, Solo. A leak in the castle's intelligence ecosystem affects all paths."
+
+  choice__
+    @target "A416-CH10-Spy-Hub"
+    "The spy."
+  __choice
+__section
+
+
+section__
+  @title "A416-CH10-Spy-Hub"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (spy_trap_set == true) {
+    "The canary trap. The three different pieces of false information you planted with three different people in Chapter 8. The design was elegant: each person received a unique piece of disinformation. Whichever piece surfaces in the wrong hands identifies the leak."
+
+    "It's been weeks. And now: the canary sings."
+
+    choice__
+      @target "A418-CH10-Spy-Canary-Sings"
+      "The false information surfaced."
+    __choice
+  }
+
+  if__ (spy_trap_set == false && spy_investigation_started == true) {
+    "The investigation you started in Chapter 8 — tracking the Owlery records, watching the suspicious students, noting who had access to what information — has been running in the background. Slower than the canary trap, but methodical."
+
+    "The investigation has produced a shortlist. Three names. One of them is the spy."
+
+    choice__
+      @target "A419-CH10-Spy-Identity-Reveal"
+      "The shortlist."
+    __choice
+  }
+
+  if__ (spy_trap_set == false && spy_investigation_started == false) {
+    choice__
+      @target "A417-CH10-Spy-No-Investigation"
+      "You didn't investigate the spy. The subplot resolves differently without your input."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A417-CH10-Spy-No-Investigation"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You didn't set the trap. You didn't investigate. The spy subplot has been running in the background — a leak you noticed and chose not to pursue, because the journal and the cabinet and Avery and the allegiance choice were already consuming your operational capacity."
+
+  "The spy is still active. The leak continues. Information about the Order's movements, the castle's defences, Dumbledore's absences — all of it flowing to the other side through a channel you chose not to close."
+
+  "This is the cost of not investigating. Not a dramatic cost — a structural one. The intelligence ecosystem remains compromised. The people who are working to protect Hogwarts are doing so while someone inside is reporting their movements."
+
+  "The spy remains unknown. For now."
+
+  spy_known = false
+
+  choice__
+    @target "A430-CH10-Spy-Convergence"
+    "The subplot continues without resolution."
+  __choice
+__section
+
+
+section__
+  @title "A418-CH10-Spy-Canary-Sings"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The canary sings."
+
+  "The false information you planted — a fake set of coordinates, a fabricated timeline, an invented name — surfaces in a letter intercepted by the Order's adult members. The letter was sent from Hogwarts' Owlery to an address in London that the Order has been monitoring."
+
+  "The letter contains the unique piece of disinformation you gave to exactly one person."
+
+  "You know who the spy is."
+
+  spy_known = true
+
+  choice__
+    @target "A419-CH10-Spy-Identity-Reveal"
+    "The name."
+  __choice
+__section
+
+
+section__
+  @title "A419-CH10-Spy-Identity-Reveal"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  /* Spy identity based on house — the betrayal feels most personal
+     when it comes from an unexpected direction */
+
+  if__ (house == "gryffindor") {
+    "The spy is a fifth-year Hufflepuff named Rowan Whitfield. Quiet. Reliable. The kind of student who volunteers for library duty and always returns borrowed books on time. You've seen them in study hall. You've shared a table with them in the Great Hall. They smiled at you once in November and you smiled back."
+
+    "Rowan Whitfield has been passing intelligence to the Death Eaters since October."
+
+    spy_character = "rowan_whitfield"
+  }
+
+  if__ (house == "ravenclaw") {
+    "The spy is a sixth-year Gryffindor named Callum Reeves. Bold. Vocal. The kind of student who argues in class and volunteers for everything and has the specific confidence of someone who believes they're on the right side. You've debated with them in DADA. They congratulated you on a Potions result in December."
+
+    "Callum Reeves has been passing intelligence to the Death Eaters since October."
+
+    spy_character = "callum_reeves"
+  }
+
+  if__ (house == "hufflepuff") {
+    "The spy is a sixth-year Slytherin named Ivy Marchetti. Sharp. Watchful. The kind of student who observes everything and volunteers nothing. You've noticed them noticing things — the way they track conversations, the way they position themselves in common spaces to overhear without being included."
+
+    "Ivy Marchetti has been passing intelligence to the Death Eaters since October."
+
+    spy_character = "ivy_marchetti"
+  }
+
+  if__ (house == "slytherin") {
+    "The spy is a fifth-year Ravenclaw named Pip Ferris. Thin. Nervous. The kind of student who flinches at loud noises and walks close to walls. You remember them from the train — the threatening note was connected, you realise now. Not sent by the spy, but sent by someone who knew about the spy's activities and was trying to warn you away from the investigation."
+
+    "Pip Ferris has been passing intelligence to the Death Eaters since October."
+
+    spy_character = "pip_ferris"
+  }
+
+  "The spy is a student. A child. Someone who is doing this not because they believe in Voldemort's cause — or maybe they do, it doesn't matter yet — but because someone on the outside has leverage. A family member. A threat. A debt. The same mechanisms that make Draco do what Draco does."
+
+  "The war uses children because children are inside the castle and adults aren't."
+
+  spy_known = true
+
+  choice__
+    @target "A420-CH10-Spy-Confrontation"
+    "What to do with the name."
+  __choice
+__section
+
+
+section__
+  @title "A420-CH10-Spy-Confrontation"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The spy is identified. The name is known. The question is: what now."
+
+  "Five options. Each has a different moral weight, a different tactical outcome, and a different consequence for the person who has been spying."
+
+  choice__
+    @target "A421-CH10-Spy-Expose-Dumbledore"
+    @when dumbledore_trusted == true
+    @disabledText "You haven't established enough trust with Dumbledore to bring this directly to him."
+    @action morality = adj(morality, 15)
+    @action courage = adj(courage, 8)
+    @action rel_dumbledore = adjRel(rel_dumbledore, 15)
+    "Go to Dumbledore. The headmaster — when he's here — is the only person with the authority and the magical capability to handle this without it becoming a crisis. If he trusts you enough to listen, this is the cleanest resolution."
+  __choice
+
+  choice__
+    @target "A422-CH10-Spy-Expose-McGonagall"
+    @action morality = adj(morality, 10)
+    @action courage = adj(courage, 8)
+    @action rel_mcgonagall = adjRel(rel_mcgonagall, 15)
+    "Go to McGonagall. The Acting Head. The person who is actually running the school. Less powerful than Dumbledore, more present. She'll handle it institutionally — which means consequences for the spy, but also protection."
+  __choice
+
+  choice__
+    @target "A423-CH10-Spy-Confront-Direct"
+    @action courage = adj(courage, 12)
+    @action morality = adj(morality, 5)
+    "Confront the spy directly. Face to face. Alone. Demand to know why. The most dangerous option and the most honest — you give them the chance to explain before anyone else gets involved."
+  __choice
+
+  choice__
+    @target "A424-CH10-Spy-Leverage"
+    @when cunning >= 70
+    @disabledText "Requires Cunning >= 70 to execute the leverage play — the manipulation is delicate."
+    @action cunning = adj(cunning, 12)
+    @action morality = adj(morality, -10)
+    "Leverage them. 'You work for me now, or I tell Dumbledore.' Turn the spy into a double agent. Use the existing channel to feed disinformation to the Death Eaters. Morally corrosive. Tactically brilliant."
+  __choice
+
+  choice__
+    @target "A425-CH10-Spy-Protect"
+    @when empathy >= 70
+    @disabledText "Requires Empathy >= 70 to offer protection — the compassion must be genuine."
+    @action empathy = adj(empathy, 10)
+    @action morality = adj(morality, -10)
+    "Protect them. They're a child. Whatever they've done, they've done it under duress. Help them stop without exposing them to the consequences. Shield them. The morally expensive option that treats the spy as a person rather than a problem."
+  __choice
+__section
+
+
+section__
+  @title "A421-CH10-Spy-Expose-Dumbledore"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You go to Dumbledore."
+
+  "His office. The gargoyle accepts the password you obtained — through Asha, through Snape's bargain, through the specific channels that `dumbledore_trusted` opens. The spiral staircase delivers you to the door."
+
+  "Dumbledore is there. He looks worse than the last time you saw him — the hand, the fatigue, the specific quality of someone who is running out of something essential. But he listens."
+
+  "You tell him: the spy's name. The evidence. The canary trap. The letters."
+
+  "He nods. The nod is slow and heavy with the weight of someone who is not surprised."
+
+  "'I had suspected,' he says. 'But suspicion is not evidence. You have provided the evidence. Thank you.'"
+
+  "'What happens to them.'"
+
+  "'They will be removed from the intelligence pipeline. Quietly. Their family will be contacted through channels that are — protective rather than punitive. The child will not be harmed. The leak will be closed.'"
+
+  "He looks at you over his glasses."
+
+  "'You have done this school a service, Ashford. A difficult one. I know what it cost to investigate a fellow student.'"
+
+  spy_exposed = true
+
+  choice__
+    @target "A426-CH10-Spy-Aftermath-Expose"
+    "The leak is closed."
+  __choice
+__section
+
+
+section__
+  @title "A422-CH10-Spy-Expose-McGonagall"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "McGonagall's office. The Acting Head's desk is covered with the specific paperwork of someone who is running a school and fighting a war simultaneously — student records and ward assessments and letters from the Ministry all competing for the same surface area."
+
+  "You tell her: the name. The evidence. The mechanism."
+
+  "Her face goes through several distinct phases. Recognition — she knows the student. Anger — controlled, professional, but present. Calculation — what this means for the castle's security. And underneath all of it: grief. The specific grief of a teacher who has to accept that one of her students has been weaponised."
+
+  "'You're certain,' she says."
+
+  "'The canary trap is definitive. Or the investigation narrowed it to one name. Either way — I'm certain.'"
+
+  "'How long.'"
+
+  "'Since October, at least.'"
+
+  "She removes her glasses. Puts them on the desk. Closes her eyes for three seconds."
+
+  "'I will handle this,' she says. 'The student will be placed under observation. Their mail will be intercepted. The family will be assessed for — duress. If they are acting under threat, we will extend protection. If not—'"
+
+  "She puts her glasses back on."
+
+  "'If not, there are consequences. But the first assumption is always protection.'"
+
+  spy_exposed = true
+
+  choice__
+    @target "A426-CH10-Spy-Aftermath-Expose"
+    "The institutional machinery activates."
+  __choice
+__section
+
+
+section__
+  @title "A423-CH10-Spy-Confront-Direct"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "You find the spy. Alone. In a corridor, or a classroom, or one of the castle's many spaces that become private when the timing is right."
+
+  "You say their name."
+
+  "They turn. They see your face. They know."
+
+  "The recognition is immediate — the specific flinch of someone who has been waiting for this moment, who has known since they started that eventually someone would figure it out and come to them with the name they've been hiding behind."
+
+  "'How long have you known,' they say."
+
+  "'Long enough.'"
+
+  "'Are you going to tell someone.'"
+
+  "'That depends on what you tell me first.'"
+
+  "The confrontation is: controlled. Quiet. Two students in a corridor having a conversation that is about power and leverage and the specific vulnerability of someone whose secret has been discovered."
+
+  "They talk. The reasons are: family. Pressure. A letter from someone who made it clear that cooperation was not optional. The mechanism is: letters sent from the Owlery, routed through a drop in Hogsmeade, forwarded to London. Basic, effective, invisible."
+
+  "'I didn't want to,' they say. The words have the specific quality of truth — not the whole truth, but the structural truth, the load-bearing truth that holds up the rest."
+
+  spy_confronted = true
+
+  choice__
+    @target "A427-CH10-Spy-Aftermath-Confront"
+    "You know. They know you know."
+  __choice
+__section
+
+
+section__
+  @title "A424-CH10-Spy-Leverage"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The leverage play. The thing your cunning has been training you to do since September — the application of information as pressure, the conversion of knowledge into control."
+
+  "You find the spy. You tell them what you know. You show them the evidence — not all of it, just enough to demonstrate that the case is complete and the choice is theirs."
+
+  "'Two options,' you say. 'One: I go to McGonagall. The evidence is presented. Your family is investigated. The consequences are institutional, formal, and permanent. Your name goes in a file that the Ministry will read after the war.'"
+
+  "'Two: you work for me. You continue sending letters. But the content changes. I tell you what to write. The Death Eaters receive the information I want them to receive — which is not the truth, but a version of the truth that serves my purposes.'"
+
+  "The spy looks at you. The look has the specific quality of someone who is recognising a predator."
+
+  "'You're worse than they are,' they say."
+
+  "'No. I'm offering you a way out that doesn't destroy your family. They aren't.'"
+
+  "The distinction is: technical. But it's real."
+
+  "They agree. The agreement has the quality of surrender, not alliance. But the channel is now yours."
+
+  spy_confronted = true
+  spy_leveraged = true
+
+  choice__
+    @target "A428-CH10-Spy-Aftermath-Leverage"
+    "The channel is redirected."
+  __choice
+__section
+
+
+section__
+  @title "A425-CH10-Spy-Protect"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The protection play. The thing your empathy demands — not the cold calculation of leverage or the institutional machinery of exposure, but the specific, costly decision to treat the spy as a person in trouble rather than a problem to be solved."
+
+  "You find them. You sit beside them. You don't threaten. You don't demand. You tell them: 'I know. And I'm not going to tell anyone.'"
+
+  "The reaction is not what you expected. Not relief — not immediately. First: suspicion. Then: the specific crumbling that happens when someone who has been carrying a weight for months is told they don't have to carry it alone."
+
+  "'Why,' they say."
+
+  "'Because you're a child. Because whoever is making you do this has leverage that you can't fight alone. Because the right response to someone who is being used is not to punish them for being used — it's to remove the leverage.'"
+
+  "'You can't remove it. My family—'"
+
+  "'I can try. And in the meantime, you stop sending. The letters stop. If they pressure you, you tell them the investigation tightened and you can't risk it. I'll help you craft the excuse.'"
+
+  "The cost: the spy remains unidentified to the authorities. The leak is closed but the institutional knowledge gap remains. Asha will wonder why the intelligence dries up. The Order will suspect but not confirm."
+
+  "The benefit: a child is protected. A person is treated as a person."
+
+  spy_confronted = true
+  spy_protected = true
+
+  choice__
+    @target "A429-CH10-Spy-Aftermath-Protect"
+    "The protection holds."
+  __choice
+__section
+
+
+section__
+  @title "A426-CH10-Spy-Aftermath-Expose"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The aftermath of exposure is: institutional. Clean, in the way that institutions are clean — the mess is handled by people with authority and protocols and the specific bureaucratic infrastructure that turns a crisis into a process."
+
+  "The spy is quietly removed from the intelligence pipeline. Their mail is monitored. Their family receives a visit from people who are, ostensibly, there to help. The leak closes."
+
+  if__ (allegiance_track == "order") {
+    "Asha's reaction: relief and respect. 'You did this. The network's been looking for the leak for months. You found it in weeks.'"
+
+    rel_order = adjRel(rel_order, 15)
+  }
+
+  "The Order gains trust in you. The castle's intelligence ecosystem improves. The spy is — not punished, exactly, but managed. Contained. The word the adults use is 'safeguarded,' which means something different depending on who's saying it."
+
+  "The moral weight is: light. You exposed a leak. You protected the castle. The spy's family will be assessed for duress and, if warranted, protected."
+
+  "But the spy's face when they were confronted — or when they were quietly summoned to McGonagall's office and found the evidence waiting — stays with you. The specific expression of a child who was being used and who knows, now, that the world has decided to notice."
+
+  choice__
+    @target "A430-CH10-Spy-Convergence"
+    "The spy subplot resolves."
+  __choice
+__section
+
+
+section__
+  @title "A427-CH10-Spy-Aftermath-Confront"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The confrontation's aftermath is: uncertain. You know. They know you know. Neither of you has gone to the authorities. The intelligence pipeline is in a state of suspension — the spy hasn't sent a letter since the confrontation, which means the Death Eaters' information is drying up, which means someone on the outside will eventually notice and apply pressure."
+
+  "The clock is ticking on the confrontation's utility. Eventually, you'll have to decide: expose, leverage, or let it resolve on its own."
+
+  "For now: the spy is neutralised. Not permanently, but functionally. The leak has slowed. The information that was flowing to the other side has reduced to a trickle."
+
+  "The spy avoids you in corridors. The specific avoidance of someone who knows that you hold their future in your hands and are choosing — for the moment — not to close them."
+
+  spy_known = true
+
+  choice__
+    @target "A430-CH10-Spy-Convergence"
+    "The subplot holds."
+  __choice
+__section
+
+
+section__
+  @title "A428-CH10-Spy-Aftermath-Leverage"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The leveraged channel produces: disinformation. Carefully crafted. Designed to give the Death Eaters a picture that is plausible but inaccurate — wrong timelines, wrong patrol routes, wrong assessments of Dumbledore's presence."
+
+  "The spy sends the letters you write. Their handwriting. Your content. The channel that was flowing intelligence outward is now flowing deception outward, which is a specific kind of weapon that intelligence professionals call 'turning' and that ethicists call 'manipulation.'"
+
+  "The tactical advantage is significant. The Death Eaters are now operating on false intelligence. Their planning will reflect the inaccuracies. When they come through the cabinet — if they come — they will expect things that aren't true and be unprepared for things that are."
+
+  "The moral cost is: you are controlling another person through threat. You are using their vulnerability as a tool. You are treating a child's fear as operational leverage."
+
+  "The cost and the advantage coexist. They do not cancel each other out."
+
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A430-CH10-Spy-Convergence"
+    "The channel is yours."
+  __choice
+__section
+
+
+section__
+  @title "A429-CH10-Spy-Aftermath-Protect"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The protection produces: silence. The letters stop. The intelligence pipeline dries up. On the Death Eater end, whoever was receiving the reports will notice the silence and apply pressure — but the excuse you helped craft ('investigation tightened, can't risk exposure') is plausible enough to buy time."
+
+  "The spy is not exposed. Not leveraged. Not punished. They are — for the first time since October — free from the obligation that was consuming them."
+
+  "They find you three days later. In the library. They sit across from you and don't say anything for a long time."
+
+  "'Thank you,' they say eventually."
+
+  "'Don't thank me yet. The pressure will come back. Whoever was running you won't accept silence forever.'"
+
+  "'I know. But for now—'"
+
+  "'For now, you're not doing it. That's enough.'"
+
+  "The Asha cost: the Order notices the intelligence drying up. Asha suspects someone intervened. She doesn't know it was you. If she finds out, it will damage the trust you've built."
+
+  "The human cost: one child, temporarily protected from being used as a weapon."
+
+  "The math is: complicated."
+
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A430-CH10-Spy-Convergence"
+    "The protection holds."
+  __choice
+__section
+
+
+section__
+  @title "A430-CH10-Spy-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy subplot reaches its Chapter 10 resolution — exposed, confronted, leveraged, protected, or left uninvestigated. Each option has consequences that will surface in the remaining chapters."
+
+  "But for now: the immediate question is answered. The leak is identified, or managed, or accepted. The castle's intelligence ecosystem has changed — for better or worse, depending on your choice."
+
+  "What remains: the track-specific development. The chapter's final movement."
+
+  choice__
+    @target "A431-CH10-Track-Dev-Hub"
+    "The tracks develop."
+  __choice
+__section
+
+
+/* ── 10e: TRACK DEVELOPMENT (A431–A438) ── */
+
+section__
+  @title "A431-CH10-Track-Dev-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The allegiance, locked. The spy, resolved. The tracks diverge again — briefly — for the chapter's final development beat."
+
+  if__ (allegiance_track == "order") {
+    choice__
+      @target "A432-CH10-Order-Task"
+      "The Order's first test."
+    __choice
+  }
+
+  if__ (allegiance_track == "dark") {
+    choice__
+      @target "A434-CH10-Dark-Revelation"
+      "Draco's revelation."
+    __choice
+  }
+
+  if__ (allegiance_track == "solo") {
+    choice__
+      @target "A436-CH10-Solo-Mirror-Piece"
+      "The Mirror piece."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A432-CH10-Order-Task"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The first risky Order task: a message run."
+
+  "Asha's network needs to communicate with the adult Order members — a specific, time-sensitive piece of intelligence about the cabinet's completion status. The normal channels (owls, Protean coins) are compromised or too slow. Someone needs to carry a physical message to the Hog's Head in Hogsmeade, where Aberforth Dumbledore maintains the Order's informal relay."
+
+  "The task is simple in description and dangerous in execution. Hogsmeade trips are monitored. Students leaving the castle grounds outside scheduled trips are noticed. The route to the Hog's Head passes through open ground that can be observed from the castle."
+
+  "'I need someone who can get to Hogsmeade and back without being detected,' Asha says. 'McGonagall's new patrols have made the normal exit routes harder. But there's a passage — the one behind the one-eyed witch on the third floor — that still works.'"
+
+  "She looks at you."
+
+  "'The passage exits near Honeydukes. From there, the Hog's Head is a five-minute walk. In and out. Thirty minutes total.'"
+
+  courage = adj(courage, 5)
+
+  choice__
+    @target "A433-CH10-Order-Task-Result"
+    "Accept the run."
+  __choice
+__section
+
+
+section__
+  @title "A433-CH10-Order-Task-Result"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The run goes: smoothly. Which is its own kind of anticlimactic — you expected danger and received competence, which is what happens when operations are planned properly and executed by people who follow the plan."
+
+  "The passage behind the witch. Honeydukes' cellar — empty at this hour. The side door. The walk to the Hog's Head in the May evening light that makes Hogsmeade look like a painting of itself."
+
+  "Aberforth Dumbledore is behind the bar. He looks at you with the specific assessment of someone who has been receiving student couriers for forty years and has developed opinions about the practice."
+
+  "'From Mehta,' you say. You hand him the sealed message."
+
+  "He takes it. He doesn't open it in front of you. He puts it under the bar."
+
+  "'Tell her it's received. And tell her—' He pauses. 'Tell her the old man is aware of the timeline. He has his own plan. She should trust it.'"
+
+  "'Does he always communicate through cryptic old bartenders.'"
+
+  "'Only when the cryptic old bartender is his brother.'"
+
+  "You return. The passage. The corridor. The castle."
+
+  "Your first Order task: completed."
+
+  rel_order = adjRel(rel_order, 10)
+  courage = adj(courage, 5)
+
+  choice__
+    @target "A438-CH10-Dev-Convergence"
+    "The message is delivered."
+  __choice
+__section
+
+
+section__
+  @title "A434-CH10-Dark-Revelation"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Draco's revelation: the scope."
+
+  "In the Room of Requirement — his workshop, the cabinet standing like a dark monolith in the room's centre — he tells you the rest. The parts he held back before."
+
+  "'It's not just the cabinet,' he says. 'The cabinet is the access. But there's something else they want. Something in the castle. Something that's been here for — a long time. Hidden.'"
+
+  "He doesn't know what it is. But the instructions from his handler — Bellatrix, relayed through an intermediary, never direct — included a secondary objective: *while the primary mission proceeds, search the Room of Hidden Things for an artefact of interest.*"
+
+  "'I didn't understand the instruction,' he says. 'The Room of Hidden Things is a different room than my workshop. I can't access both. I've been so consumed with the cabinet that I haven't — I haven't even tried.'"
+
+  "He looks at you."
+
+  "'But you've been in the Room of Hidden Things. You went in during your reconnaissance. What did you see?'"
+
+  "The Mirror-key. He's asking about the Mirror-key without knowing he's asking about the Mirror-key."
+
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A435-CH10-Dark-Revelation-Weight"
+    "The pieces connect."
+  __choice
+__section
+
+
+section__
+  @title "A435-CH10-Dark-Revelation-Weight"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The connection: the Death Eaters know about the Mirror-key. Not its exact nature — not what it does, not the Resonance Mirror's full capabilities — but they know an artefact exists in the Room of Hidden Things and they want it found."
+
+  "Which means: the timeline is double-urgent. The cabinet opens, the Death Eaters come through, and while the primary mission (Dumbledore) proceeds, someone will be searching for the key."
+
+  "If you retrieve the key before the cabinet opens, you control it. If you don't, they might find it."
+
+  "The dark track has given you this intelligence. The cost of that intelligence was the complicity of standing inside Draco's operation."
+
+  "Whether the cost was worth the intelligence — that calculation is ongoing."
+
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A438-CH10-Dev-Convergence"
+    "The revelation settles."
+  __choice
+__section
+
+
+section__
+  @title "A436-CH10-Solo-Mirror-Piece"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo track's development: the fourth journal section."
+
+  "Alone in the library. Late. The cipher notebook open. The journal's fourth section has been resisting your methods for weeks — the emotional key is different again, harder, coded to something you haven't identified."
+
+  "But your skills have grown. Six months of cipher work have made you fluent in Avery's notation in a way that September-you could not have imagined. The emotional anchors that seemed impenetrable in October are — not easy, never easy — but readable. Like learning to hear the intervals in a piece of music that initially sounded like noise."
+
+  "The fourth section begins to open. Not completely — the full decode will come in Chapter 14 — but partially. Enough to read a fragment."
+
+  "The fragment: *The key responds to... Not touch. Not spell. [illegible]... must be held by someone who understands... before it will activate. Otherwise it is inert stone.*"
+
+  "The Mirror-key requires something beyond possession. Understanding, perhaps. Intent. The fragment is incomplete — the full decode of section four will take more work, more time, more of the emotional alignment that the cipher demands."
+
+  "But you have the shape of it. The direction. More than anyone else in this castle."
+
+  knowledge = adj(knowledge, 8)
+
+  choice__
+    @target "A437-CH10-Solo-Mirror-Insight"
+    "The fragment settles."
+  __choice
+__section
+
+
+section__
+  @title "A437-CH10-Solo-Mirror-Insight"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The insight: the Mirror-key is not a weapon. It's a — focus. A resonance amplifier. Its function depends on the intent of the person holding it."
+
+  "Avery's journal says: *Intent.* Not power. Not alignment. Intent."
+
+  "Which means: in the right hands, the key could be used to amplify protective magic. In the wrong hands, it amplifies destructive magic. It doesn't choose. The person choosing does."
+
+  "The solo track has given you this intelligence through pure scholarship. The advantage of working alone: no one filtered this information through their own priorities before it reached you."
+
+  "The disadvantage: no one to verify the interpretation. No one to catch mistakes. No one to say 'what if you're wrong about the intent model' and make you think again."
+
+  "You sit with the fragment and the uncertainty. The solo investigator's constant companion."
+
+  choice__
+    @target "A438-CH10-Dev-Convergence"
+    "The insight holds."
+  __choice
+__section
+
+
+section__
+  @title "A438-CH10-Dev-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The track-specific development is complete. Each path has yielded something different:"
+
+  if__ (allegiance_track == "order") {
+    "The Order: a completed mission. The message delivered. Trust earned. The network fully activated."
+  }
+
+  if__ (allegiance_track == "dark") {
+    "Draco's side: the scope revealed. The Death Eaters want the Mirror-key. The timeline is doubly urgent."
+  }
+
+  if__ (allegiance_track == "solo") {
+    "Solo: the fourth journal section partially decoded. The Mirror-key's function glimpsed. Understanding is required, not just possession."
+  }
+
+  "All tracks converge on the same fundamental truth: something is coming. The cabinet. The Death Eaters. The confrontation that has been building since September. And in the middle of it: the Mirror-key, the spy, the journal, and you."
+
+  choice__
+    @target "A439-CH10-World-Changed"
+    "The world has changed."
+  __choice
+__section
+
+
+/* ── 10f: CHAPTER CLOSE (A439–A450) ── */
+
+section__
+  @title "A439-CH10-World-Changed"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The world has changed. Not outside — the war was already there, the headlines already bad, the Dark Mark already in the sky over places it shouldn't be. The world has changed inside. Inside the castle, inside the investigation, inside you."
+
+  "You made a choice. Order, or Draco, or alone. The choice restructured your relationships, your access, your moral position. The choice is not reversible — not because you can't change your mind, but because the relationships that formed around the choice won't survive being unmade."
+
+  "The spy is resolved — or unresolved, which is its own kind of resolution. The leak is closed, leveraged, protected, or still flowing. The castle's intelligence ecosystem has shifted."
+
+  "And underneath all of it: the cabinet. Nearly complete. The passage from Knockturn Alley to the seventh floor. The weapon Draco has been building all year, under duress, with shaking hands."
+
+  choice__
+    @target "A440-CH10-Draco-Corridor"
+    "One more thing."
+  __choice
+__section
+
+
+section__
+  @title "A440-CH10-Draco-Corridor"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You see Draco in the corridor. Not a meeting — a sighting. The kind of encounter that happens in a building where two hundred people share the same hallways."
+
+  "He's walking toward the seventh floor. It's after curfew. He doesn't see you."
+
+  if__ (allegiance_track == "dark") {
+    "You know where he's going. You know what he'll do when he gets there. The knowledge is a weight you chose to carry."
+
+    "He glances over his shoulder. Sees you. The briefest nod — the acknowledgment of a co-conspirator, the specific greeting of someone who is walking toward something they're afraid of and sees someone who agreed to walk with them."
+  }
+
+  if__ (allegiance_track == "order") {
+    "You know where he's going. The Order's intelligence confirms it. He's heading to the cabinet for another session of repair work, another step toward the passage's completion."
+
+    "You watch him go. The urge to follow, to intervene, to say something — it's there. But the Order's discipline holds. Reconnaissance, not intervention. Not yet."
+  }
+
+  if__ (allegiance_track == "solo") {
+    "You know where he's going. Your independent intelligence tells you everything the Order and Draco's handlers know, and more."
+
+    "You watch him. The loneliest boy in the castle, walking toward the loneliest room. And you, the person who chose to be alone, watching someone else be alone in a different way."
+  }
+
+  "He disappears around the corner. The corridor is empty again."
+
+  choice__
+    @target "A441-CH10-Romance-Beat-Hub"
+    "The corridor clears."
+  __choice
+__section
+
+
+section__
+  @title "A441-CH10-Romance-Beat-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "One more thing. The human thing. The part of the story that isn't about intelligence or allegiances or the war — the part that's about the person you've been letting in."
+
+  if__ (romance_active == "elara") {
+    choice__
+      @target "A442-CH10-Romance-Elara"
+      "Elara."
+    __choice
+  }
+
+  if__ (romance_active == "marcus") {
+    choice__
+      @target "A443-CH10-Romance-Marcus"
+      "Marcus."
+    __choice
+  }
+
+  if__ (romance_active == "jade" || romance_active == "sebastian") {
+    choice__
+      @target "A444-CH10-Romance-Jade-Seb"
+      "Them."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    choice__
+      @target "A445-CH10-Romance-No"
+      "No one, specifically."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A442-CH10-Romance-Elara"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara finds you. Or you find her. The distinction between these two events has been blurring since February — you exist in each other's orbits now, gravitationally, and the finding happens through the specific physics of two people who are drawn to the same places."
+
+  "The library. Of course."
+
+  "'You look different,' she says. She said this during the holiday. She says it again. 'Not different-different. Settled. Like something resolved.'"
+
+  "'Something did.'"
+
+  "'The allegiance thing. The — which side.'"
+
+  "She's perceptive. She's always been perceptive. It's the quality that makes the romance feel less like attraction and more like recognition — two people who see clearly, choosing to look at each other."
+
+  "'I can't tell you which side,' you say."
+
+  "'You don't have to. The fact that there's a side to tell me about — that's the change. You were between before. You're not between anymore.'"
+
+  "She reaches across the table. Her hand on yours. Not three seconds this time. She leaves it there."
+
+  "'Whatever side you're on,' she says. 'I'm asking you to be careful.'"
+
+  rel_elara = adjRel(rel_elara, 10)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A446-CH10-Romance-Convergence"
+    "Careful."
+  __choice
+__section
+
+
+section__
+  @title "A443-CH10-Romance-Marcus"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus. The corridor. The bad torchlight. The geography that has become shorthand for the conversations that matter."
+
+  "'You chose,' he says. Not a question."
+
+  "'How do you know.'"
+
+  "'Because you walk differently. People who haven't decided walk like they're navigating. People who have decided walk like they know where they're going, even if they're going somewhere terrible.'"
+
+  "'Is that your professional assessment.'"
+
+  "'That's the assessment of someone who's been watching you navigate for six months and noticed when you stopped.'"
+
+  "He leans against the wall. The familiar posture. The lean of someone who has been resting in corridors all year because the alternative — sitting in his common room with people whose loyalties are dangerous — is worse."
+
+  "'Which side,' he says."
+
+  "'Does it matter?'"
+
+  "'It matters to me. Because my side — my family's side — is the wrong one. And I'm trying to get to a different side. And the side you chose affects whether you can help me get there.'"
+
+  "The defection. Marcus's defection. The thing that's been building underneath the romance since October."
+
+  "'I'll help you,' you say. 'Regardless of which side I chose.'"
+
+  "He nods. The nod is small and it contains the specific trust of someone who has very few people to trust."
+
+  rel_marcus = adjRel(rel_marcus, 10)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A446-CH10-Romance-Convergence"
+    "The corridor holds."
+  __choice
+__section
+
+
+section__
+  @title "A444-CH10-Romance-Jade-Seb"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "jade") {
+    "Jade finds you on the grounds. The Quidditch pitch. She's been flying — the specific, solitary flying that captains do when they need to think and the ground is too full of other people's problems."
+
+    "She lands beside you. Dismounts. Doesn't put the broom down — holds it like a staff, leaning on it."
+
+    "'My sibling's mission,' she says. 'I got another letter. They're all right. But the letter was — shorter than usual. Clipped. The way people write when they're in something and can't say what.'"
+
+    "'Are you all right?'"
+
+    "'I'm a sixth-year on a Quidditch pitch worrying about someone who is actually in the war. I'm fine. I'm also not fine. Both things are true.'"
+
+    "She looks at the sky."
+
+    "'Whatever you've chosen — whatever this allegiance thing means — I need you to know that I'm here. Not as your — whatever I am. As someone who stays. That's what I do. I stay.'"
+
+    rel_jade = adjRel(rel_jade, 10)
+    empathy = adj(empathy, 5)
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian. The Hufflepuff common room. Tea."
+
+    "He's made two cups, which means he was expecting you, which means he's been tracking your emotional state with the specific attention of someone who notices things and doesn't need to announce that they've noticed."
+
+    "'You chose,' he says. Pouring."
+
+    "'How does everyone know I chose.'"
+
+    "'Because your shoulders changed. They were up around your ears for six months and now they're — not relaxed, but different. The tension of someone who has decided is different from the tension of someone who hasn't.'"
+
+    "'You read people's shoulders.'"
+
+    "'I read yours.' He sets the cup in front of you. 'I don't need to know which side. I need to know that you're going to do the next thing carefully. Whatever the next thing is.'"
+
+    "'The next thing is drinking this tea.'"
+
+    "'Good. Do that carefully too.'"
+
+    "You drink the tea. It's good."
+
+    rel_sebastian = adjRel(rel_sebastian, 10)
+    empathy = adj(empathy, 5)
+  }
+
+  choice__
+    @target "A446-CH10-Romance-Convergence"
+    "Held."
+  __choice
+__section
+
+
+section__
+  @title "A445-CH10-Romance-No"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "No romance. The chapter's emotional beat — the human check-in that interrupts the intelligence work — takes a different form when there's no one specific waiting for you."
+
+  "You walk the castle. Late. The corridors at night have the quality of a building dreaming — the stones slightly warm, the torches burning low, the portraits sleeping in their frames with the specific stillness of images that are, in some functional sense, alive."
+
+  "The solitude is: not lonely. Or it is lonely, but it's the loneliness of choice, which is a different kind than the loneliness of circumstance. You chose the investigation over connection. You chose the journal over the person who might have shared the burden."
+
+  "The castle holds you. The castle is enough."
+
+  "Almost."
+
+  knowledge = adj(knowledge, 3)
+
+  choice__
+    @target "A446-CH10-Romance-Convergence"
+    "The night passes."
+  __choice
+__section
+
+
+section__
+  @title "A446-CH10-Romance-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The human beat resolves. Back to the architecture of the story."
+
+  choice__
+    @target "A447-CH10-End-State"
+    "State of play."
+  __choice
+__section
+
+
+section__
+  @title "A447-CH10-End-State"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "End of Chapter 10. State of play:"
+
+  if__ (allegiance_track == "order") {
+    "Allegiance: Order. The youth network is fully activated. You are an operative, not an observer. The mission to the Hog's Head is complete. The Mirror-key's location is confirmed. Trust is high."
+  }
+
+  if__ (allegiance_track == "dark") {
+    "Allegiance: Draco. You are inside the operation. You know the target (Dumbledore), the method (the cabinet), and the timeline (weeks). The Death Eaters want the Mirror-key. The moral cost is: accumulating."
+  }
+
+  if__ (allegiance_track == "solo") {
+    "Allegiance: Solo. You have intelligence from both sides, independently gathered. The fourth journal section is partially decoded. The Mirror-key's function is emerging: intent-based, not power-based. No backup. Maximum clarity."
+  }
+
+  if__ (spy_exposed == true) {
+    "The spy: exposed. The leak is closed. The authorities are handling it."
+  }
+
+  if__ (spy_leveraged == true) {
+    "The spy: leveraged. The channel is yours. The disinformation flows."
+  }
+
+  if__ (spy_protected == true) {
+    "The spy: protected. The letters stopped. One child, shielded from the mechanism that was using them."
+  }
+
+  if__ (spy_confronted == true && spy_leveraged == false && spy_protected == false && spy_exposed == false) {
+    "The spy: confronted but unresolved. They know you know. The tension holds."
+  }
+
+  if__ (spy_known == false) {
+    "The spy: unknown. The leak continues."
+  }
+
+  "The Mirror-key: location confirmed. Retrieval pending."
+
+  "The cabinet: nearly complete."
+
+  "The journal: three sections decoded. The fourth approaches."
+
+  choice__
+    @target "A448-CH10-Chapter-Close"
+    "Chapter 10 closes."
+  __choice
+__section
+
+
+section__
+  @title "A448-CH10-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Chapter 10. Allegiances. The chapter that earned its name."
+
+  "You entered it between worlds — navigating the space between the Order and Draco's mission, between institutional loyalty and personal investigation, between light and dark and the grey territory that exists when neither side has a monopoly on being right."
+
+  "You leave it committed. Not comfortable — commitment and comfort are different things, and the war has no interest in providing both. But committed. The line that has been blurring since September is drawn now. You know where you stand."
+
+  "What comes next is: harder. The secret at the heart of things. The Mirror-key. The betrayal. The tower."
+
+  "But those are chapters 11 through 16. And you'll face them from the ground you chose."
+
+  choice__
+    @target "A449-CH10-Buffer"
+    "Forward."
+  __choice
+__section
+
+
+section__
+  @title "A449-CH10-Buffer"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "May deepens. The castle's end-of-year rhythm accelerates. Examinations approach. The institutional machinery continues to function because that is what institutional machinery does — it continues to function, even when the world it functions within is falling apart."
+
+  "Beneath the examinations: the war. Beneath the war: the cabinet. Beneath the cabinet: the key."
+
+  "Beneath everything: the question of who you are, now that you've chosen."
+
+  choice__
+    @target "A450-CH10-To-Ch11"
+    "Chapter 11."
+  __choice
+__section
+
+
+section__
+  @title "A450-CH10-To-Ch11"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The castle waits. You wait with it. But the waiting is different now — it's the waiting of someone who has chosen a position and is preparing to defend it."
+
+  "Chapter 11: The Secret at the Heart of Things."
+
+  choice__
+    @target "A451-CH11-Secret-Opens"
+    "Turn the page."
+  __choice
+__section

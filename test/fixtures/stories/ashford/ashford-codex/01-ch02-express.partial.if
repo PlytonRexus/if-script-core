@@ -1,0 +1,1089 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 2
+   01-ch02-express.partial.if
+
+   Chapter 2: The Hogwarts Express
+   Compartments, old friendships, a threatening note, Draco in the corridor.
+   First romantic spark begins.
+
+   Section range: A031–A070
+   ============================================================ */
+
+scene__
+  @name "CH02: The Hogwarts Express"
+  @first "A031-CH02-Finding-Compartment"
+  @sceneTransition "dissolve"
+  @sections "A031-CH02-Finding-Compartment" "A032-CH02-Harrys-Compartment" "A033-CH02-Luna-Neville-Compartment" "A034-CH02-Empty-Compartment" "A035-CH02-Hermione-Journal" "A036-CH02-Hermione-Flag" "A037-CH02-Luna-Observation" "A038-CH02-Elara-Intro" "A039-CH02-Marcus-Intro" "A040-CH02-Jade-Intro" "A041-CH02-Sebastian-Intro" "A042-CH02-Corridor-Incident" "A043-CH02-Corridor-Draco" "A044-CH02-Journal-Warms" "A045-CH02-Stay-Put" "A046-CH02-Threatening-Note" "A047-CH02-Note-Investigate" "A048-CH02-Note-Report" "A049-CH02-Note-Burn" "A050-CH02-Note-Harry" "A051-CH02-Ginny-Scene" "A052-CH02-Neville-Scene" "A053-CH02-Luna-Extra" "A054-CH02-Ron-Scene" "A055-CH02-Compartment-Afternoon" "A056-CH02-Compartment-Quiet" "A057-CH02-Evening-Train" "A058-CH02-Sorting-Memory" "A059-CH02-Draco-Spotted" "A060-CH02-Follow-Draco-Express" "A061-CH02-Hogsmeade-Station" "A062-CH02-Carriages" "A063-CH02-Road-to-Hogwarts" "A064-CH02-Castle-First-Glimpse" "A065-CH02-Stone-Bridge" "A066-CH02-Great-Hall-Doors" "A067-CH02-Waiting-for-Feast" "A068-CH02-Ch2-Closing" "A069-CH02-Express-End-A" "A070-CH02-End-Express"
+__scene
+
+
+/* ── A031 — FINDING A COMPARTMENT ── */
+
+section__
+  @title "A031-CH02-Finding-Compartment"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The Hogwarts Express pulls away from Platform 9¾ at exactly eleven o'clock. London vanishes into English countryside — green fields, grey hedgerows, the specific rolling nothing of the Midlands at speed — and the corridor outside your compartment fills with returning students navigating trunks and caged owls with varying degrees of grace."
+
+  "Three compartments down, through frosted glass: Harry Potter, Ron Weasley, Hermione Granger. You can tell by the silhouettes and by the particular quality of noise — the kind made by people who have had a complicated summer and are very glad to see each other."
+
+  "Luna Lovegood and Neville Longbottom occupy the next compartment along. Neville looks up through the glass, catches your eye, and nods with the mild friendliness he's been developing over the last couple of years."
+
+  "At the far end of the car: an empty compartment nobody has claimed yet."
+
+  choice__
+    @target "A032-CH02-Harrys-Compartment"
+    @action rel_harry = adjRel(rel_harry, 3)
+    @action rel_hermione = adjRel(rel_hermione, 3)
+    @action rel_ron = adjRel(rel_ron, 3)
+    "Join Harry's compartment. Whatever is happening this year, it helps to know where the information flows."
+  __choice
+
+  choice__
+    @target "A033-CH02-Luna-Neville-Compartment"
+    @action rel_luna = adjRel(rel_luna, 5)
+    @action rel_neville = adjRel(rel_neville, 5)
+    "Join Luna and Neville. Quieter. Neville's nod felt genuine."
+  __choice
+
+  choice__
+    @target "A034-CH02-Empty-Compartment"
+    "Take the empty compartment at the end of the car. You need time to think."
+  __choice
+__section
+
+
+/* ── A032 — HARRY'S COMPARTMENT ── */
+
+section__
+  @title "A032-CH02-Harrys-Compartment"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Ron and Hermione shift without being asked to make room. Ron looks like someone who has not fully decided whether to be cheerful about the situation yet. Hermione is already reading — a thick tome propped on her knees with the efficiency of someone who refuses to waste train time."
+
+  "Harry has that particular quality of someone who knows something alarming and is deciding how much of it to share. He asks how your summer was with the slightly too-careful manner of someone who has been told by Hermione not to immediately start talking about Voldemort."
+
+  "You say *fine*, which is the answer you've given everyone and which has the advantage of technically being true if you define fine generously."
+
+  "Hermione looks up from her book. She looks at you. She looks at the corner of something in your bag — the deep green leather of Avery's journal, just visible above your school list. You watch her file the observation away with the efficiency of someone who will absolutely come back to it."
+
+  choice__
+    @target "A035-CH02-Hermione-Journal"
+    @action rel_hermione = adjRel(rel_hermione, 5)
+    "When she asks — and she will ask — be honest about what the journal is."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    "Tuck the journal further out of sight and redirect the conversation. It's too early for this."
+  __choice
+__section
+
+
+/* ── A033 — LUNA + NEVILLE'S COMPARTMENT ── */
+
+section__
+  @title "A033-CH02-Luna-Neville-Compartment"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Luna Lovegood is reading *The Quibbler* upside down, which she always does, and Neville has a large and slightly battered Mimbulus mimbletonia plant on his lap that takes up roughly a third of the available space."
+
+  "He moves it immediately to make room for you, apologising with the warmth of someone who is getting genuinely better at being in rooms with people."
+
+  "Luna looks up from her magazine. She has the particular quality of seeing things in their exact weight, without the social calculation most people apply before speaking. She looks at your bag — at the corner of Avery's journal — and then at your face."
+
+  "*That journal is grief-charmed,* she says, pleasantly. *You can tell by the way the ink settles. Someone wrote in it when they were very afraid, and it kept that feeling inside. Like a smell that stays in furniture.*"
+
+  "Neville looks uncertain whether to agree, but doesn't disagree."
+
+  choice__
+    @target "A037-CH02-Luna-Observation"
+    @action rel_luna = adjRel(rel_luna, 8)
+    "Ask her what she means by grief-charmed. Luna is often right about things nobody else is looking at."
+  __choice
+
+  choice__
+    @target "A037-CH02-Luna-Observation"
+    "Deflect, gently. You're not ready to talk about the journal with anyone yet."
+  __choice
+__section
+
+
+/* ── A034 — EMPTY COMPARTMENT (ROMANCE INTRO HUB) ── */
+
+section__
+  @title "A034-CH02-Empty-Compartment"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The compartment at the end of the car is empty when you slide the door open. You put your trunk up on the rack, settle into the seat by the window, and take out Avery's journal."
+
+  "Outside: London becoming distance. Inside: the particular silence of a space you've claimed for yourself, which lasts exactly as long as it takes for the train to round the first bend."
+
+  "Someone knocks."
+
+  if__ (house == "ravenclaw") {
+    choice__
+      @target "A038-CH02-Elara-Intro"
+      "Slide open the door."
+    __choice
+  }
+
+  if__ (house == "slytherin") {
+    choice__
+      @target "A039-CH02-Marcus-Intro"
+      "Slide open the door."
+    __choice
+  }
+
+  if__ (house == "gryffindor") {
+    choice__
+      @target "A040-CH02-Jade-Intro"
+      "Slide open the door."
+    __choice
+  }
+
+  if__ (house == "hufflepuff") {
+    choice__
+      @target "A041-CH02-Sebastian-Intro"
+      "Slide open the door."
+    __choice
+  }
+__section
+
+
+/* ── A035–A036 — HERMIONE JOURNAL PATH ── */
+
+section__
+  @title "A035-CH02-Hermione-Journal"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Hermione waits exactly as long as politeness requires before asking."
+
+  "She's good at waiting, in the way very organised people sometimes are — with the patience of someone who knows the information will arrive eventually because they've already identified that it must."
+
+  "*What's in the journal?* she asks. Not aggressively. Just directly. She has closed her book and is looking at you with the focused attention she usually reserves for problems she's decided to solve."
+
+  choice__
+    @target "A036-CH02-Hermione-Flag"
+    @action rel_hermione = adjRel(rel_hermione, 10)
+    "Show her. Tell her everything — Avery, the false bottom, the cipher, the two legible lines. Hermione Granger's mind, applied to a coded mystery, might see something yours hasn't."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_hermione = adjRel(rel_hermione, 5)
+    "Show her the cover, tell her it was Avery's, and say you're working on it. Enough to be honest; not enough to involve her fully yet."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_hermione = adjRel(rel_hermione, -3)
+    "Deflect. It's private. She accepts this, though not without a brief expression of the kind that means she's filed it under *revisit later.*"
+  __choice
+__section
+
+
+section__
+  @title "A036-CH02-Hermione-Flag"
+  @textPacing "cinematic"
+  @shot "close"
+
+  hermione_saw_journal = true
+
+  "Hermione reads both legible lines three times. Then she reads them again."
+
+  "*Resonance Mirror,*she says. *That's not in any standard Dark Objects index I've read, and I've read all of them. Which means it's either very old or very deliberately obscure. Montenegro — that's the wizarding community in the southeastern Balkans, there was a significant international Auror operation there in the early nineties that wasn't widely reported. And L.—*"
+
+  "She stops. *Who is L.?*"
+
+  "You tell her you don't know. She looks at the cipher pages with the expression she usually saves for particularly unfair exam questions — not defeated, but recalibrating."
+
+  "*The cipher structure,* she says slowly, *looks like it might be related to a method described in Spellman's 1964 paper on protective encryption — I came across it in the Restricted Section last year. I'd need to look at the original paper again. But the key clusters you've mapped... I think you're right about the polyalphabetic layers. Three at minimum.*"
+
+  "She hands the journal back. *Don't lose it,* she says, with the gravity of someone stating the obvious as a kindness."
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    "Thank her. Something in you unclenches slightly."
+  __choice
+__section
+
+
+/* ── A037 — LUNA'S OBSERVATION ── */
+
+section__
+  @title "A037-CH02-Luna-Observation"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Luna sets down her magazine and looks at you with the full attention she rarely gives anything except creatures she's trying to understand."
+
+  "*Grief-charmed ink is very specific,* she says. *It absorbs the emotional frequency of the writer and encodes it alongside the meaning. Most ciphers are just about information. A grief-charmed cipher is also about feeling. The person who reads it — when it opens — will feel some of what the writer felt when they wrote it. It's considered quite dangerous in some circles because it bypasses rational defences.*"
+
+  "She tilts her head. *Has anything felt more frightening since you started reading it? Not logically. Just — viscerally?*"
+
+  "You think about the nights you've woken up at two in the morning with your heart going faster than the situation warranted."
+
+  "*I thought so,* Luna says, and picks up her magazine again."
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_luna = adjRel(rel_luna, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Ask if there's a way to shield against that effect while still reading the journal."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    "Absorb that quietly. You'll think about it later."
+  __choice
+__section
+
+
+/* ── A038–A041 — ROMANCE CANDIDATE INTROS ── */
+
+section__
+  @title "A038-CH02-Elara-Intro"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The girl from Flourish and Blotts is on the other side of the door — Ravenclaw scarf, the wire-rimmed glasses, a stack of books balanced in one arm. She looks at you with the mild surprise of someone who expected a different compartment to be empty."
+
+  "*Sorry,* she says. *I can find somewhere else.*"
+
+  "She doesn't move."
+
+  "You tell her to sit down. There's enough room. She considers this for a moment with an expression you're going to come to recognise — weighing something against something else — and then sits, puts her books in precise order on the seat beside her, and takes one out to read."
+
+  "She reads for three minutes. Then, without looking up: *That journal. I noticed it in Flourish and Blotts. The binding style is an Auror field edition — Ministry-commissioned, 1989 to 1995. They're quite rare.*"
+
+  "She turns a page."
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_elara = adjRel(rel_elara, 8)
+    "Ask her how she knows that."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_elara = adjRel(rel_elara, 3)
+    "Say nothing for a while. Let her read. The silence is not uncomfortable."
+  __choice
+__section
+
+
+section__
+  @title "A039-CH02-Marcus-Intro"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus Calloway is in the corridor outside your compartment — not looking for anything in particular, or performing that very well — when you slide the door open. He looks at you. You look at him."
+
+  "Something flickers across his face. Not the hostile blankness most Slytherins deploy with non-Slytherins. Something more considered."
+
+  "*The empty compartment,* he says. Not a question."
+
+  "You step back to give him room to decide. He steps in. He doesn't explain himself, which is either arrogance or the kind of directness that has no use for explanations. He sits opposite you and looks out the window with the quality of someone conducting an internal negotiation."
+
+  "You think about the oilskin package in Borgin and Burkes. You say nothing about it."
+
+  "After a few minutes he looks at you and says: *You're not going to ask.*"
+
+  "*Not yet,* you tell him."
+
+  "Something shifts in his expression. The negotiation resolves."
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_marcus = adjRel(rel_marcus, 10)
+    "Stay in the silence. You're playing a longer game and you both know it."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_marcus = adjRel(rel_marcus, 3)
+    "Ask something neutral — about the summer, about nothing. Just to hear how he talks."
+  __choice
+__section
+
+
+section__
+  @title "A040-CH02-Jade-Intro"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Jade Okafor opens the compartment door with the easy confidence of someone who has decided the seat is open for friends and you are a friend."
+
+  "*I was looking for you,* she says, dropping into the seat opposite without ceremony. *Not in a weird way. Just — I wanted to check in.*"
+
+  "She has a bag of Bertie Bott's Every Flavour Beans that she shares immediately and without asking. This is, you've come to understand, how Jade operates: warm and straightforward and slightly relentless about it."
+
+  "She asks about the summer. Not *how was* — just: *Tell me about the summer.* There's a difference. The first is a formality; the second is an invitation."
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_jade = adjRel(rel_jade, 12)
+    "Tell her something true. Not the whole thing — but some of it. The weight of it. She can hold weight, Jade."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_jade = adjRel(rel_jade, 6)
+    "Keep it light. Tell her the parts that don't require explaining. She doesn't push, which you appreciate."
+  __choice
+__section
+
+
+section__
+  @title "A041-CH02-Sebastian-Intro"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The knock is polite. When you open the door, the boy outside has an apologetic expression and a prefect badge and a Hufflepuff scarf."
+
+  "*Sorry,* he says. *Is there room? Most compartments are packed.* He sounds genuinely sorry about the inconvenience of his own existence."
+
+  "You tell him there's plenty of room. He thanks you twice, stows his bag with particular care so as not to take too much space, and sits by the door rather than the window even though the window seat is clearly better, apparently not wanting to assume."
+
+  "You watch this with interest."
+
+  "*Sebastian Thorne,* he says, after a moment, as if he's just remembered you might want to know."
+
+  "You introduce yourself. He already knows your name — *Avery Ashford's,* he says, and then stops, and something shifts in his expression. *I heard about your parent. I'm sorry. That was — I'm sorry.*"
+
+  "He doesn't say anything else about it. He doesn't need to."
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_sebastian = adjRel(rel_sebastian, 12)
+    "Thank him. The lack of platitudes is more than you can say for most people."
+  __choice
+
+  choice__
+    @target "A042-CH02-Corridor-Incident"
+    @action rel_sebastian = adjRel(rel_sebastian, 5)
+    "Redirect. Ask about Hufflepuff Quidditch. The change of subject lands cleanly."
+  __choice
+__section
+
+
+/* ── A042 — CORRIDOR INCIDENT ── */
+
+section__
+  @title "A042-CH02-Corridor-Incident"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Somewhere past Birmingham, the train lurches."
+
+  "Not a big lurch — not the kind that throws anyone off their seat. But specific, deliberate, and at no particular bend in the track. The corridor lights flicker twice and come back wrong somehow, slightly dimmer, with a quality you can't name beyond *not the same as before.*"
+
+  "In your bag, on the floor: Avery's journal. You feel it before you see it — a low warmth through the leather, a vibration without sound, the kind of sensation that would be easy to dismiss if you hadn't spent two months with the thing."
+
+  "The corridor is full of students who noticed the lurch and went back to their conversations. Nobody else seems to have felt what you felt."
+
+  choice__
+    @target "A043-CH02-Corridor-Draco"
+    @action courage = adj(courage, 8)
+    @action cunning = adj(cunning, 5)
+    "Go into the corridor. That lurch wasn't mechanical. Something happened — and you want to know what."
+  __choice
+
+  choice__
+    @target "A044-CH02-Journal-Warms"
+    @action knowledge = adj(knowledge, 5)
+    "Take out the journal. It's warm. Something in it responded to whatever just happened."
+  __choice
+
+  choice__
+    @target "A045-CH02-Stay-Put"
+    @action empathy = adj(empathy, 3)
+    "Stay where you are. Keep the journal in the bag. Whatever it is, you are not investigating it alone in a corridor of moving train."
+  __choice
+__section
+
+
+/* ── A043–A045 — CORRIDOR INCIDENT OUTCOMES ── */
+
+section__
+  @title "A043-CH02-Corridor-Draco"
+  @textPacing "cinematic"
+  @shot "close"
+
+  draco_mirror_hint = true
+
+  "The corridor is full of noise and motion, but you move through it with the focused attention of someone looking for something specific."
+
+  "Near the luggage car: Draco Malfoy, with his back to you, speaking in a low voice to someone you can't see properly around the carriage door. His posture has the compressed quality of someone managing a very difficult conversation with a person who has power over them. Not anger. Something worse — the careful management of fear."
+
+  "He turns before you can catch the other person's face. Sees you."
+
+  "For a moment he goes very still. Then: *Keep walking.* Not hostile. Urgent."
+
+  "You do, because something in the urgency tells you that stopping would make things worse for him specifically. But you carry what you saw with you back to your compartment — the two-sided quality of it, the fear on his face and the thing beyond the door he was afraid of."
+
+  "Whatever Draco Malfoy is managing this year, it involves someone with leverage over him. And whatever was in the journal that just warmed through the leather of your bag — you think, without evidence, that the two things might not be unrelated."
+
+  choice__
+    @target "A046-CH02-Threatening-Note"
+    "Return to your compartment."
+  __choice
+__section
+
+
+section__
+  @title "A044-CH02-Journal-Warms"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You take the journal out of the bag. It is warm — not hot, just warmer than it should be on a cool September morning, the warmth of something that has recently been active."
+
+  "The cipher pages are unchanged. The two legible lines are unchanged. But where the ink in the second line was dark and fresh-looking, it's now faded slightly — as if the act of revealing it cost something."
+
+  "And there's a new mark. Not text — just a symbol in the margin of the page. Three concentric circles with a line through the centre. You've never seen it before."
+
+  "You copy it into your notebook with careful precision. You don't know what it means yet. But it's new, and the journal didn't show it to you until now, and *now* happened to coincide with a train lurch that nobody else seems to have noticed."
+
+  "The journal cools back to room temperature in your hands."
+
+  choice__
+    @target "A046-CH02-Threatening-Note"
+    @action knowledge = adj(knowledge, 5)
+    "Put it away. You have a copy of the symbol. Study it when you're somewhere stationary."
+  __choice
+__section
+
+
+section__
+  @title "A045-CH02-Stay-Put"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You sit with the warm weight of the journal in your bag and do nothing."
+
+  "This is harder than it sounds. Every instinct says investigate, understand, move. You have spent two months in motion. Staying still when something is happening takes a different kind of effort."
+
+  "But you're on a moving train with limited information and nowhere to put what you find. Whatever the journal responded to, it's responded. Whatever the lurch was, it's over. Moving into the corridor without a clear goal would be spending energy for the feeling of doing something."
+
+  "The journal cools. You wait. The train keeps moving north."
+
+  choice__
+    @target "A046-CH02-Threatening-Note"
+    "Stay put. Pick your moments."
+  __choice
+__section
+
+
+/* ── A046 — THREATENING NOTE ── */
+
+section__
+  @title "A046-CH02-Threatening-Note"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Somewhere past Sheffield, a folded slip of paper appears under your compartment door."
+
+  "You didn't hear footsteps. You didn't hear the paper slide. It's simply there, white against the compartment floor, in the specific way of things that have been placed rather than dropped."
+
+  "You unfold it."
+
+  "*Stop reading the green journal. This is your only warning. — P.F.*"
+
+  "You read it twice. Then you look at the door. Then at the note again."
+
+  "Whoever P.F. is, they knew which compartment you were in. They knew about the journal. They knew it was green. This is not a general warning. This is specific, targeted surveillance."
+
+  "Your hands are completely steady, which continues to surprise you."
+
+  choice__
+    @target "A047-CH02-Note-Investigate"
+    @action courage = adj(courage, 5)
+    @action cunning = adj(cunning, 5)
+    @action threat_noted = true
+    "Go into the corridor. Someone passed this note within the last two minutes. They haven't gone far."
+  __choice
+
+  choice__
+    @target "A048-CH02-Note-Report"
+    @action empathy = adj(empathy, 5)
+    @action courage = adj(courage, 3)
+    @action house_rep = adj(house_rep, 5)
+    @action threat_noted = true
+    "Report it to the train's Head Girl. You have a name — P.F. — and a physical note. That's evidence."
+  __choice
+
+  choice__
+    @target "A049-CH02-Note-Burn"
+    @action cunning = adj(cunning, 3)
+    "Burn it with the tip of your wand. No evidence, no trail, no indication you read it. Let whoever sent it wonder."
+  __choice
+
+  choice__
+    @target "A050-CH02-Note-Harry"
+    @when rel_harry >= 30
+    @disabledText "Requires a closer friendship with Harry."
+    @action courage = adj(courage, 5)
+    @action rel_harry = adjRel(rel_harry, 10)
+    @action threat_noted = true
+    "Bring it to Harry. Whatever is happening this year, he has more practice at this than anyone."
+  __choice
+__section
+
+
+/* ── A047–A050 — NOTE HANDLING OUTCOMES ── */
+
+section__
+  @title "A047-CH02-Note-Investigate"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The corridor is full of students. You walk it end to end, methodically."
+
+  "Three compartments down: a younger student, fourth-year maybe, looking studiously out the window. On their robes: a small badge that says *Pip Ferris, House Prefect-in-Training* in the loopy font the school uses for appointment badges."
+
+  "Pip Ferris. P.F."
+
+  "You catch their eye. They go red. You ask, very quietly, who gave them the note to pass on. They say they don't know what you're talking about. You keep looking at them until they say a prefect asked them to slide it under a compartment door. A *sixth-year prefect,* wearing Slytherin colours."
+
+  "You thank them and walk back to your compartment."
+
+  "A Slytherin sixth-year prefect. You can narrow that down. You have a thread."
+
+  choice__
+    @target "A051-CH02-Ginny-Scene"
+    "Return to your compartment and think."
+  __choice
+__section
+
+
+section__
+  @title "A048-CH02-Note-Report"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Head Girl, a seventh-year Ravenclaw with the brisk competence of someone used to managing minor crises, reads the note twice and asks a series of questions in the precise order that matters: What time did it arrive? Did you see anyone? Is the journal it references safe?"
+
+  "You answer: just now, no one, yes."
+
+  "She takes the note as evidence, tells you to inform her immediately if anything else arrives, and makes a note in a small leather book. *P.F.,* she writes. You watch her narrow that search automatically: the school's prefect list has two students with those initials."
+
+  "She doesn't share their names with you. But you notice her pause fractionally at one of them before moving on."
+
+  "You return to your compartment with the knowledge that someone is now officially aware that you've been threatened."
+
+  choice__
+    @target "A051-CH02-Ginny-Scene"
+    "Return to your compartment."
+  __choice
+__section
+
+
+section__
+  @title "A049-CH02-Note-Burn"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You touch your wand tip to the corner and the paper curls and blackens and is gone in six seconds, leaving no residue."
+
+  "Whoever sent this: they will know you received it, because they're presumably watching for some kind of reaction. They won't know you destroyed it. They won't know if it landed."
+
+  "That ambiguity is useful. If they believe the warning had an effect, they may grow careless. If they believe it didn't, they may escalate — which would give you more information about who they are and how far they're willing to go."
+
+  "Either way, you've eliminated a piece of evidence that could have cut both ways. The journal stays in your bag. You keep reading. P.F., whoever that is, gets silence."
+
+  choice__
+    @target "A051-CH02-Ginny-Scene"
+    "Return to your thoughts."
+  __choice
+__section
+
+
+section__
+  @title "A050-CH02-Note-Harry"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Harry reads the note twice. Then he reads it again with the focused attention of someone who has been on the receiving end of notes like this before."
+
+  "*P.F.,* he says. *That's not a name I recognise.* He looks up. *What's the green journal?*"
+
+  "You tell him — briefly, in outline. Avery, the investigation, the cipher. His expression doesn't change, but something shifts behind it: the specific alertness of a person for whom things are clicking into a pattern he's been assembling separately."
+
+  "He hands the note back. *Keep it,* he says. *And be careful.* He means it in a way that is clearly informed by recent experience of what *not careful* looks like, and that specificity makes it land differently than the usual advice."
+
+  "He doesn't offer to take it on as his problem. He offers solidarity. There is a difference, and you notice it."
+
+  choice__
+    @target "A051-CH02-Ginny-Scene"
+    "Return to your compartment."
+  __choice
+__section
+
+
+/* ── A051–A058 — CHARACTER INTERACTIONS + ATMOSPHERE ── */
+
+section__
+  @title "A051-CH02-Ginny-Scene"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Ginny Weasley finds you in the corridor an hour later — not looking for you specifically, she says, but you've met her enough to know she moves through spaces with intention and *not looking specifically* isn't quite accurate."
+
+  "She has the sharp directness of someone who spent a year fighting for information in an institution that wasn't honest with her, and it has made her very good at reading people who are managing things."
+
+  "*You look like someone with a problem,* she says. Not unkindly. Just accurately."
+
+  choice__
+    @target "A052-CH02-Neville-Scene"
+    @action rel_ginny = adjRel(rel_ginny, 8)
+    "Tell her there's something you're working on. Nothing that requires her involvement — but you'd appreciate her silence. She gives it without asking for terms."
+  __choice
+
+  choice__
+    @target "A052-CH02-Neville-Scene"
+    @action rel_ginny = adjRel(rel_ginny, 5)
+    "Deflect with something that has the texture of truth. She lets it go, which tells you she's chosen to let it go rather than being fooled by it."
+  __choice
+__section
+
+
+section__
+  @title "A052-CH02-Neville-Scene"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Neville is in the corridor near the bathroom with the particular expression of someone who has recently stopped expecting things to go badly and hasn't quite finished being surprised by this."
+
+  "He's carrying his Mimbulus mimbletonia more carefully than you've ever seen him handle anything, which is saying something."
+
+  "*Sixth year,* he says, by way of greeting, with a kind of cautious hopefulness. *Gran says sixth year is when things start making sense.* He doesn't sound entirely convinced, but he's trying to be."
+
+  "There is something in Neville Longbottom's persistent optimism that you find unexpectedly grounding right now."
+
+  choice__
+    @target "A053-CH02-Luna-Extra"
+    @action rel_neville = adjRel(rel_neville, 8)
+    "Agree. Tell him sixth year is when the picture gets bigger. You hope it's true for both of you."
+  __choice
+
+  choice__
+    @target "A053-CH02-Luna-Extra"
+    @action rel_neville = adjRel(rel_neville, 5)
+    "Ask about the plant. He talks about the Mimbulus mimbletonia for six solid minutes with the authority of genuine expertise. It's the most confident you've ever seen him."
+  __choice
+__section
+
+
+section__
+  @title "A053-CH02-Luna-Extra"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Luna materialises in the corridor beside you at some point during the afternoon, which is how it always feels with Luna — she arrives rather than approaches."
+
+  "She has something in her hand: a small amber bead on a cord. *For the journal,* she says, and holds it out. *It's a Tibetan equilibrium bead. It won't stop the grief-charge from reaching you, but it'll slow it down. Like a filter.*"
+
+  "You take it. You don't ask where she got it."
+
+  "She looks at you with the candid attention she gives to things she finds genuinely interesting, which includes you, apparently."
+
+  "*I think this year is going to be very important,* she says, as if announcing the weather. *For you specifically. Not in a comfortable way.*"
+
+  "She drifts back toward her compartment."
+
+  choice__
+    @target "A054-CH02-Ron-Scene"
+    @action rel_luna = adjRel(rel_luna, 8)
+    "Call after her to say thank you. She waves without turning around."
+  __choice
+__section
+
+
+section__
+  @title "A054-CH02-Ron-Scene"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Ron finds you near the food trolley at exactly the wrong moment — you are attempting to explain to the witch that you don't want a Cauldron Cake, you want specific information about what the alternative is, and Ron Weasley's easy social competence is the exact thing the situation needs."
+
+  "He buys two Pumpkin Pasties, hands you one, and declares the transaction complete."
+
+  "He asks no complicated questions. He talks about the Chudley Cannons with the passionate loyalty of someone who knows they're objectively wrong but doesn't care, and for twenty minutes you eat a Pumpkin Pasty and listen to someone be straightforwardly cheerful about something small."
+
+  "This turns out to be exactly what you needed."
+
+  choice__
+    @target "A055-CH02-Compartment-Afternoon"
+    @action rel_ron = adjRel(rel_ron, 10)
+    "Stay for another pasty. The Cannons season was apparently unprecedented in its disappointments. You find this fascinating."
+  __choice
+
+  choice__
+    @target "A055-CH02-Compartment-Afternoon"
+    @action rel_ron = adjRel(rel_ron, 5)
+    "Head back to your compartment. But the cheerfulness came with you. Some things are contagious."
+  __choice
+__section
+
+
+section__
+  @title "A055-CH02-Compartment-Afternoon"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The afternoon train carries you north through English countryside becoming Scottish countryside — the hills steeper, the light lower, the trees fewer and more determined about the whole project of being trees."
+
+  "Your compartment settles into the particular quiet of a long journey past its midpoint. The earlier energy — the reunions, the noise, the social recalibration of returning students — has burned off, and what's left is the train and the grey afternoon outside and the specific quality of being in transit: suspended between one thing and another, belonging fully to neither."
+
+  "You have: one threatening note, destroyed or reported or investigated. One warm journal that may have communicated something through its cover. One name, Voss, circled twice in Avery's margin notes. Whatever sixth year is building toward — it's building."
+
+  choice__
+    @target "A056-CH02-Compartment-Quiet"
+    "Watch the hills go by for a while."
+  __choice
+__section
+
+
+section__
+  @title "A056-CH02-Compartment-Quiet"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You open the journal to the two legible lines and read them again. You have read them approximately forty times since finding them, and they still contain nothing new. But there's a difference between reading something and sitting with it on a moving train while Scotland accumulates outside the window."
+
+  "*Trust: L. only.* Someone Avery trusted absolutely enough to name in a document that was meant never to be found. Someone whose initial appeared in the same breath as *Resonance Mirror.*"
+
+  "And then: *Find the coordinates before L. does.* The same person, now a threat to outpace."
+
+  "What happened to L. between when Avery wrote the first line and the second? What changed? Did Avery learn something that reclassified them? Were they discovered? Did they turn?"
+
+  "You close the journal and look at the hills. The questions go in the file with everything else."
+
+  choice__
+    @target "A057-CH02-Evening-Train"
+    "Let the movement of the train carry you."
+  __choice
+__section
+
+
+section__
+  @title "A057-CH02-Evening-Train"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Dusk comes to the Hogwarts Express the way it comes to Scotland generally — not gradually but all at once, the sky deciding. The compartment windows show orange hills fading to purple and then to the soft dark of a northern evening."
+
+  "Around you: lanterns glow. Students begin the business of changing into school robes, digging out jumpers, eating whatever remained of their trolley purchases. The general atmosphere of *nearly there* settles over the train like a second journey starting inside the first."
+
+  "You have been on this train eleven times — six going north, five going south. Every time, the dusk-to-dark transition does something to you that the daylight run doesn't. Something about the castle appearing out of darkness that bypasses rational assessment and goes straight to the part of you that's been Hogwarts-shaped since you were eleven."
+
+  "You change into your robes. You put the journal away carefully. You close your school bag."
+
+  choice__
+    @target "A058-CH02-Sorting-Memory"
+    "Watch the last light go."
+  __choice
+__section
+
+
+section__
+  @title "A058-CH02-Sorting-Memory"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "A memory arrives: the train your first year. The Sorting Hat on your head. The weight of it — actual physical weight, and the other kind. The whole school watching. Every face a stranger."
+
+  "What it said to you. What you heard inside that particular silence before it called your house."
+
+  "Five years later: the same train, different weight. The school full of people you know. The faces familiar. The stakes incomparably higher."
+
+  "Who you were then and who you are now — not so different, in the ways that matter. Still going toward the thing everyone else is running from. Still believing that understanding is worth the cost of pursuing it. Still, underneath everything, someone who will not leave their people."
+
+  choice__
+    @target "A059-CH02-Draco-Spotted"
+    @action house_rep = adj(house_rep, 3)
+    "Your house was right about you. That's not a small thing."
+  __choice
+
+  choice__
+    @target "A059-CH02-Draco-Spotted"
+    "Your house was right about you. You're not sure yet if that's a comfort or a warning."
+  __choice
+__section
+
+
+/* ── A059–A060 — DRACO OPTIONAL ── */
+
+section__
+  @title "A059-CH02-Draco-Spotted"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The train is approaching Hogsmeade — you can tell by the rhythm of the wheels changing as the gradient steepens."
+
+  "You're gathering your things when a figure passes the compartment window in the corridor, moving quickly with his head down. Pale, thin, carrying something close to his body."
+
+  if__ (draco_mirror_hint == true) {
+    "Malfoy. Moving with the same compressed urgency you saw him with earlier — not toward the nearest compartment, but toward the front of the train. The luggage car. Where the trunks are."
+
+    choice__
+      @target "A060-CH02-Follow-Draco-Express"
+      @when courage >= 50
+      @disabledText "Requires Courage ≥ 50."
+      @action courage = adj(courage, 5)
+      @action rel_draco = adjRel(rel_draco, 3)
+      "Follow him. Carefully. The luggage car, if that's where he's going, is accessible before the train stops."
+    __choice
+
+    choice__
+      @target "A061-CH02-Hogsmeade-Station"
+      @action cunning = adj(cunning, 3)
+      "Note his direction and stay where you are. You'll have the whole year. Pick your moment."
+    __choice
+  }
+
+  if__ (draco_mirror_hint == false) {
+    choice__
+      @target "A061-CH02-Hogsmeade-Station"
+      "Gather your things. The train is nearly in."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A060-CH02-Follow-Draco-Express"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The luggage car at the front of the train is dim and smells of sawdust and owl feathers. The trunks are stacked in their racks, labelled with student name tags in the school's neat print."
+
+  "Malfoy is at the far end, crouched beside a trunk that isn't his — the nameplate reads a surname you don't recognise — with his back to you. His wand is out. He's working some kind of concealment charm with the focused precision of someone who's done it before."
+
+  "He hears you come in. He stands and turns in one motion, wand raised."
+
+  "Then he sees it's you. The tension doesn't leave his face — it just reconfigures."
+
+  "*I told you to keep walking,* he says."
+
+  "You tell him you're just getting your trunk."
+
+  "He looks at you for a long moment. Then he puts his wand away and walks past you without another word. Whatever he was hiding — it's hidden now. You have a trunk label and a concealment charm and the knowledge that he's moving something through the school in luggage that isn't his own."
+
+  choice__
+    @target "A061-CH02-Hogsmeade-Station"
+    @action draco_mirror_hint = true
+    @action knowledge = adj(knowledge, 5)
+    "Get your own trunk. File everything."
+  __choice
+__section
+
+
+/* ── A061–A070 — ARRIVAL SEQUENCE ── */
+
+section__
+  @title "A061-CH02-Hogsmeade-Station"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Hogsmeade station at night is a specific kind of atmosphere — stone platforms, oil lanterns, the sharp cold of Scottish September coming off the hills in waves."
+
+  "You step off the train into organised chaos. Hagrid's voice carries from somewhere ahead: *Firs' years! Firs' years over here!* The same call it always is. The firs' years look exactly as small and overwhelmed as you remember feeling."
+
+  "On the hills above the village, not yet visible but felt: the castle. You've spent five years learning the specific pressure it exerts — not oppressive, exactly, but present. A gravitational pull."
+
+  "Thestrals wait in the dark beyond the lanterns, hitched to the carriages. You can see them or you can't, depending on what you've seen. Either way, they're there."
+
+  choice__
+    @target "A062-CH02-Carriages"
+    "Find a carriage."
+  __choice
+__section
+
+
+section__
+  @title "A062-CH02-Carriages"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The carriages are filling fast. You have approximately ten seconds to decide."
+
+  choice__
+    @target "A063-CH02-Road-to-Hogwarts"
+    @action rel_harry = adjRel(rel_harry, 5)
+    "Climb in with Harry, Ron, and Hermione. The carriage is full, but they move without complaint."
+  __choice
+
+  choice__
+    @target "A063-CH02-Road-to-Hogwarts"
+    "Find an emptier carriage. You want a few more minutes with your own thoughts before the castle claims them."
+  __choice
+__section
+
+
+section__
+  @title "A063-CH02-Road-to-Hogwarts"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The road from Hogsmeade to Hogwarts winds uphill through trees and open ground, and in the dark, with lanterns swaying from the carriage top, it has the quality of a passage between states — not quite Hogsmeade anymore, not quite the castle yet."
+
+  "The conversation in your carriage is the kind that happens at the end of train journeys: catching up on summer, the particular half-information of rumour and secondhand fact. The Dark Mark over Diagon Alley. Someone's father moved their family to France. Someone's older sibling left the country entirely."
+
+  "Nobody says *war* out loud. But the word is present in the gaps between every other sentence."
+
+  "You ride through it with Avery's journal in your bag and P.F.'s note somewhere in your recent memory, and the knowledge that sixth year is not going to be like any of the five years that came before it."
+
+  choice__
+    @target "A064-CH02-Castle-First-Glimpse"
+    "Watch the dark countryside pass."
+  __choice
+__section
+
+
+section__
+  @title "A064-CH02-Castle-First-Glimpse"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The trees thin. The carriage crests a rise in the road. And there it is."
+
+  "Hogwarts."
+
+  "Lit from below and within, towers against the dark sky, the Black Lake perfectly still in the valley below it. Five years of knowing this place and the sight of it still does something to the chest — that particular complicated feeling of *home* and *institution* and *this is real* all at once."
+
+  "The first years in the boats below are getting their first look right now. You remember what that was like. It is not something that entirely goes away, whatever else changes."
+
+  choice__
+    @target "A065-CH02-Stone-Bridge"
+    "Ride toward it."
+  __choice
+__section
+
+
+section__
+  @title "A065-CH02-Stone-Bridge"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The stone bridge over the valley entrance is wide enough for two carriages abreast, and the sound of wheels on it is different from the road — resonant, deliberate. Below: the lake. Above: the castle. Halfway between."
+
+  "You have been across this bridge ten times now. The sensation has never entirely normalised."
+
+  "Beyond the bridge: the main gates, already open. Torchlit. The sound of carriages on cobblestones. The specific smell of old stone and running water and something else that might be magic or might be a hundred years of accumulated memory, and you've never been able to tell the difference."
+
+  choice__
+    @target "A066-CH02-Great-Hall-Doors"
+    "Pass through the gates."
+  __choice
+__section
+
+
+section__
+  @title "A066-CH02-Great-Hall-Doors"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The entrance hall is organised chaos — students streaming in from the carriages, prefects directing, portraits commenting, the smell of the feast beginning to drift from the Great Hall before the doors are even open."
+
+  "Professor McGonagall stands at the top of the stairs with the particular expression of someone who has supervised this arrival forty-odd times and remains capable of finding it slightly chaotic."
+
+  "The Great Hall doors are closed, waiting for the first-years to arrive by boat. The Sorting hasn't happened yet. For a few more minutes, you are in the in-between — returned, but not yet re-begun."
+
+  "You find your way to the Gryffindor side, or the Ravenclaw benches, or wherever your house table is, with the ease of five years of practice. The seat that's yours without anyone having to say so."
+
+  choice__
+    @target "A067-CH02-Waiting-for-Feast"
+    "Sit down."
+  __choice
+__section
+
+
+section__
+  @title "A067-CH02-Waiting-for-Feast"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The Great Hall at the start of term is a specific miracle of normalcy."
+
+  "The enchanted ceiling shows stars — the same stars, apparently, every year, because someone decided that the first night back should look like this. Candles by the hundred, floating. The four house tables filling steadily with people who've had a summer of varying difficulty and are choosing, collectively, to be here instead."
+
+  "You are choosing, collectively, to be here instead."
+
+  "Somewhere at the front of the hall, the first-years are about to file in for Sorting. Somewhere at the head table, Dumbledore is about to say something measured and appropriate and carefully not frightening, despite the available evidence for fright."
+
+  "You look down the table at the faces of your housemates. Six years of shared space. However different each of you is from who you were at eleven, the shared space persists."
+
+  choice__
+    @target "A068-CH02-Ch2-Closing"
+    "Wait for the feast."
+  __choice
+__section
+
+
+section__
+  @title "A068-CH02-Ch2-Closing"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Before the doors open and the first-years file in, you have one moment of something like stillness."
+
+  "The Express is behind you now. The summer is behind you. Ninety-three days of not knowing where Avery is — and then ninety-four days, starting tonight. The journal is in your bag, which is in the entrance hall, which is inside a castle that is inside a war that nobody has officially named yet."
+
+  "You are back at Hogwarts. Whatever you need to do here — decode the journal, find L., find the coordinates east of Montenegro, find out who P.F. is and who gave them the order — you will have to do it here."
+
+  "The doors at the far end of the hall open."
+
+  "First-years, in a nervous line, file into the Great Hall for the first time."
+
+  "Sixth year begins in earnest."
+
+  choice__
+    @target "A069-CH02-Express-End-A"
+    "Watch them come in."
+  __choice
+__section
+
+
+section__
+  @title "A069-CH02-Express-End-A"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The Sorting Hat's song, as always, contains multitudes. This year's version lingers longer on loyalty and unity than previous years — you notice, because you have been paying attention to language all summer, what people choose to say and what they leave out."
+
+  "The first-years are sorted. Houses applaud with the varying enthusiasm of years of practice. A new first-year sits at your table with the expression of someone who has just understood that *real* means something different now."
+
+  "Dumbledore stands. His remarks are brief, warm, and carefully uninformative about the state of the war. He mentions that the doors of Hogwarts remain open to all who require shelter, which is a sentence that contains more information than it appears to."
+
+  choice__
+    @target "A070-CH02-End-Express"
+    "The feast begins."
+  __choice
+__section
+
+
+section__
+  @title "A070-CH02-End-Express"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The feast is magnificent and you barely taste it."
+
+  "You eat. You answer questions about your summer from the people beside you. You watch the head table — Snape, pale and controlled; McGonagall, precise; Dumbledore, with something in his hand that looks darker than last year, though perhaps you are projecting."
+
+  "Across the hall, at the Slytherin table: Draco Malfoy, eating nothing, very still. Like someone sitting in front of a clock they are waiting to hear strike."
+
+  "The feast concludes. The prefects stand to lead their houses. The candles dim."
+
+  choice__
+    @target "A071-CH03-Feast-End"
+    "Tomorrow."
+  __choice
+__section

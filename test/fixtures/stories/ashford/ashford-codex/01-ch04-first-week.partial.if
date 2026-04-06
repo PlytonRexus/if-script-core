@@ -1,0 +1,1380 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 4
+   01-ch04-first-week.partial.if
+
+   Chapter 4: First Week
+   DADA with Snape. The Slug Club. First romantic spark.
+   McGonagall plants a seed. The week closes.
+
+   Section range: A096–A145
+   ============================================================ */
+
+scene__
+  @name "CH04: First Week"
+  @first "A096-CH04-DADA-Classroom"
+  @sceneTransition "cut"
+  @sections "A096-CH04-DADA-Classroom" "A097-CH04-Snape-Calls-On-You" "A098-CH04-DADA-Succeed" "A099-CH04-DADA-Fail" "A100-CH04-DADA-Refuse" "A101-CH04-DADA-Clever-Trick" "A102-CH04-After-DADA" "A103-CH04-Approach-Snape" "A104-CH04-Leave-Without-Engaging" "A105-CH04-Potions-Slughorn" "A106-CH04-Study-Hall-Journal" "A107-CH04-DADA-Buffer" "A108-CH04-DADA-Convergence" "A109-CH04-Invitation-Arrives" "A110-CH04-Attend-Or-Skip" "A111-CH04-Slug-Club-Gathering" "A112-CH04-Slughorn-Play-Along" "A113-CH04-Slughorn-Honest" "A114-CH04-Slughorn-Probe" "A115-CH04-Slughorn-Exit" "A116-CH04-Slug-Club-Guests" "A117-CH04-Harry-Disguised" "A118-CH04-Post-Party" "A119-CH04-Slug-Club-Convergence" "A120-CH04-Buffer-A" "A121-CH04-Buffer-B" "A122-CH04-Romance-Hub" "A123-CH04-Elara-Library" "A124-CH04-Elara-Deflect" "A125-CH04-Elara-Spark" "A126-CH04-Marcus-Corridor" "A127-CH04-Marcus-Distance" "A128-CH04-Marcus-Engage" "A129-CH04-Jade-Quidditch" "A130-CH04-Jade-Distant" "A131-CH04-Jade-Warmth" "A132-CH04-Sebastian-Library" "A133-CH04-Sebastian-Deflect" "A134-CH04-Sebastian-Open" "A135-CH04-Romance-Convergence" "A136-CH04-Week-Introspection" "A137-CH04-Mcgonagall-Notices" "A138-CH04-Draco-Glimpse" "A139-CH04-Journal-Attempt" "A140-CH04-Journal-Attempt-Fails" "A141-CH04-Week-Convergence" "A142-CH04-Week-End-A" "A143-CH04-Week-End-B" "A144-CH04-Week-End-C" "A145-CH04-Week-End-D"
+__scene
+
+
+/* ── 4a: DADA WITH SNAPE (A096–A108) ── */
+
+section__
+  @title "A096-CH04-DADA-Classroom"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The first thirty minutes of Defence Against the Dark Arts establishes several things."
+
+  "First: Snape teaches the way he does everything — with total economy. No wasted words. No enthusiasm that wasn't calculated. He moves through the room while he lectures, which means no one can watch the board without also watching him, and no one can watch him without knowing he might be looking back."
+
+  "Second: the curriculum is genuinely advanced. Non-verbal theory, which you covered in fourth year as an elective module, is here treated as table stakes — the baseline assumption of a class that will move beyond it by November. Snape covers Occlumency theory in the first twenty minutes as background context for why non-verbal casting is defensively superior."
+
+  "Third: he is looking for something specific in this room. You've been watching him watch the students, and the quality of his attention is not uniform. Some students he glances at and passes. Others he pauses on. You have been paused on twice."
+
+  "The third time, he stops in front of your desk."
+
+  "*You.* A non-verbal Shield Charm. *Now.*"
+
+  choice__
+    @target "A097-CH04-Snape-Calls-On-You"
+    "Look up."
+  __choice
+__section
+
+
+section__
+  @title "A097-CH04-Snape-Calls-On-You"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The classroom has gone very quiet. Non-verbal casting, in front of the class, on the first day, for a student Snape has apparently decided to single out."
+
+  "Your wand is in your hand. You know the Shield Charm — you've known it since fourth year. The question is whether you can produce it without speaking, which requires pushing the thought through your wand without the verbal anchor. Most sixth-years can't. Some seventh-years can't. Snape is looking at you with the patience of someone who has decided to wait."
+
+  "What do you do?"
+
+  choice__
+    @target "A098-CH04-DADA-Succeed"
+    @when knowledge >= 45
+    @disabledText "Requires Knowledge ≥ 45 to attempt successfully."
+    @action knowledge = adj(knowledge, 8)
+    @action courage = adj(courage, 5)
+    @action rel_snape = adjRel(rel_snape, 8)
+    "Focus. Clear your mind, hold the intent, and cast. You've practised this — not successfully, but enough to know the shape of it."
+  __choice
+
+  choice__
+    @target "A099-CH04-DADA-Fail"
+    @action empathy = adj(empathy, 3)
+    @action courage = adj(courage, 5)
+    @action rel_snape = adjRel(rel_snape, 3)
+    "Try, and let it be visible when it doesn't work. No pretending. Honest failure, in front of everyone, with Snape watching."
+  __choice
+
+  choice__
+    @target "A100-CH04-DADA-Refuse"
+    @action courage = adj(courage, 8)
+    @action rel_snape = adjRel(rel_snape, -5)
+    @action morality = adj(morality, 3)
+    "Decline. Tell him you'd prefer to observe before demonstrating. In front of the class, in his classroom, on the first day."
+  __choice
+
+  choice__
+    @target "A101-CH04-DADA-Clever-Trick"
+    @when cunning >= 50
+    @disabledText "Requires Cunning ≥ 50."
+    @action cunning = adj(cunning, 8)
+    @action rel_snape = adjRel(rel_snape, 5)
+    "Produce the charm — verbally, but very quietly, well below the threshold of audibility in a classroom, while making the gesture of a non-verbal cast. The effect is identical."
+  __choice
+__section
+
+
+/* ── A098–A101 — DADA CHOICE OUTCOMES ── */
+
+section__
+  @title "A098-CH04-DADA-Succeed"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You clear your mind of everything except the shield. Not its verbal form — its *form*, the way it feels when it's working, the specific quality of a magical barrier that turns incoming force rather than absorbing it."
+
+  "Your wand moves. No words."
+
+  "The charm lights blue at the tip and expands outward in a clean disc, nearly full-sized, sustained for three seconds before it fades. Not perfect — a competent sixth-year effort, which is three grades above first-day expectations."
+
+  "Snape looks at it. Then at you. The assessment is microscopic and complete."
+
+  "*Acceptable,* he says, which from Snape, on the first day, to a non-verbal shield that held for three seconds, is something in the vicinity of extraordinary."
+
+  "He moves on. The class stays very quiet for the rest of the session."
+
+  choice__
+    @target "A102-CH04-After-DADA"
+    "Settle back into your seat. Your hands have stopped shaking."
+  __choice
+__section
+
+
+section__
+  @title "A099-CH04-DADA-Fail"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You try."
+
+  "The charm moves along your wand arm — you can feel the intent, the shape of the thing you're trying to produce — and fizzles at the tip. A small blue spark. Not a shield. The magical equivalent of a cleared throat."
+
+  "You lower your wand. You look at Snape. He looks at you."
+
+  "There is a version of failure that tries to hide itself and a version that doesn't, and you have opted deliberately for the second. Whatever Snape is assessing, honesty about competence seems like the correct currency."
+
+  "*You have felt the shape of it,* he says, after a moment. Not a question. Not praise. Just an observation, and an accurate one. *That is sufficient for a first attempt.*"
+
+  "He moves on. Something in how he said *sufficient* was neither dismissal nor encouragement, and you'll spend the walk to your next class trying to decode it."
+
+  choice__
+    @target "A102-CH04-After-DADA"
+    "Lower your wand."
+  __choice
+__section
+
+
+section__
+  @title "A100-CH04-DADA-Refuse"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You say: *I'd prefer to observe before demonstrating.* In a room of students who have all just watched Snape single you out for a practical test."
+
+  "The room is very quiet."
+
+  "Snape looks at you with the specific quality of a person who has encountered this response before and has decided views on it."
+
+  "*Would you prefer,* he says, with a courtesy so precise it removes all the warmth from the word, *to observe for the remainder of the year?*"
+
+  "The implication is clear: refuse a direct request in his classroom and you become someone who is watching rather than participating. Whether that's a threat or simply a statement of consequence depends on how you interpret Snape, and you don't have enough data yet."
+
+  "You hold his gaze. You say: *If necessary, yes.*"
+
+  "Something in his expression changes. Not anger. Something more considered. He moves on."
+
+  choice__
+    @target "A102-CH04-After-DADA"
+    "Wait."
+  __choice
+__section
+
+
+section__
+  @title "A101-CH04-DADA-Clever-Trick"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You produce the Shield Charm in the way that looks like a non-verbal cast because, technically, it is — the word exists purely in the space between your tongue and the air, a vibration with no sound. The wand movement is correct. The intent is correct. The result is correct."
+
+  "A full Shield Charm, textbook, three seconds."
+
+  "You lower your wand."
+
+  "Snape looks at the charm's fade. Then at you. The quality of his assessment shifts slightly — not in the direction you were expecting. He is not, apparently, fooled."
+
+  "*Subsonic production,* he says. It is not a question. *Acceptable as a transitional method. Less acceptable as a permanent solution, since a sufficiently skilled opponent will feel the residual intent.*"
+
+  "He pauses. *You are aware of this.*"
+
+  "It's also not a question."
+
+  "He moves on, and you are left with the distinct impression that you have demonstrated something, though not precisely what you intended."
+
+  choice__
+    @target "A102-CH04-After-DADA"
+    "Watch him move to the next student."
+  __choice
+__section
+
+
+/* ── A102–A104 — AFTER DADA ── */
+
+section__
+  @title "A102-CH04-After-DADA"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The class ends fifty-five minutes after it began, which is fifty-five minutes of Snape, which leaves the room with the particular quiet of a space where everyone has been paying close attention for a long time."
+
+  "Students file out. The corridor outside fills with the noise of released tension — comparisons, complaints, the specific decompression of a Snape lesson survived."
+
+  "At the front of the room, Snape is organising papers on the desk with the efficiency of someone who has already moved on to the next thing. He doesn't look up."
+
+  choice__
+    @target "A103-CH04-Approach-Snape"
+    @when rel_snape >= 28
+    @disabledText "Requires a higher standing with Snape."
+    "Approach him. There's a question worth asking, and the moment exists."
+  __choice
+
+  choice__
+    @target "A104-CH04-Leave-Without-Engaging"
+    @action cunning = adj(cunning, 3)
+    "Leave. You have what you came for — the first-class assessment. More information comes with time."
+  __choice
+__section
+
+
+section__
+  @title "A103-CH04-Approach-Snape"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You approach the desk. The room empties around you until it's just the two of you and the September light coming through the windows at the angle that makes the dust motes visible."
+
+  "Snape does not look up from his papers immediately. When he does, it is with the quality of someone who has noted your approach and decided to address it at the moment of their choosing."
+
+  "You ask about the Occlumency context he mentioned — not the theory, which you mostly understood, but the practical relationship between Occlumency and non-verbal casting. Whether the mental discipline required is the same kind or a different kind."
+
+  "He looks at you for a moment with the expression that might be assessment or might be something more careful than that."
+
+  "*The disciplines are related but not identical,* he says. *Occlumency protects the mind from external invasion. Non-verbal casting protects the intent from premature exposure. In both cases, the skill is the same: knowing what you mean without needing to say it.*"
+
+  "He returns to his papers. *Whether you can develop it is not a question I can answer for you.*"
+
+  choice__
+    @target "A105-CH04-Potions-Slughorn"
+    @action rel_snape = adjRel(rel_snape, 5)
+    "Thank him and leave. The answer was more than you expected."
+  __choice
+__section
+
+
+section__
+  @title "A104-CH04-Leave-Without-Engaging"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You file out with the others."
+
+  "In the corridor: Neville, looking marginally more traumatised than the average, which speaks well of his capacity for accurate self-assessment. He gives you a look that says *that was a lot* and you give one back that says *yes.*"
+
+  "The corridor descends toward Potions. You have approximately twelve minutes."
+
+  "You think about what Snape said during the lecture — the connection between Occlumency and non-verbal casting, the idea that knowing what you mean without needing to say it is a skill that applies in both directions. Outward: casting. Inward: defence."
+
+  "In both cases: the mind, unspoken, is the instrument."
+
+  "You think about Avery's cipher. Layers of encoding. The cipher key that's *divided* — part of it left *somewhere you'll find it when you're ready.*"
+
+  "Something connects. You don't know what yet. You walk faster."
+
+  choice__
+    @target "A105-CH04-Potions-Slughorn"
+    "Head to Potions."
+  __choice
+__section
+
+
+/* ── A105–A108 — POTIONS / STUDY HALL / CONVERGENCE ── */
+
+section__
+  @title "A105-CH04-Potions-Slughorn"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Potions with Horace Slughorn is everything DADA with Snape was not: expansive, sociable, running at thirty percent more volume than strictly necessary. Slughorn moves through the dungeon classroom with the rolling comfort of someone entirely in their element."
+
+  "The assignment for today: Draught of Living Death. A sixth-year potion, famously difficult. Slughorn offers a small bottle of Felix Felicis — liquid luck — to the student who produces the best results."
+
+  "Harry Potter, two benches over, is doing something you can't quite see. Following instructions that aren't in the textbook, writing in margins that you'd need to be closer to read. Every step he takes produces results that are, quietly and consistently, one grade above the rest of the class."
+
+  "You watch this from the corner of your eye while producing your own respectable but not extraordinary Draught."
+
+  choice__
+    @target "A106-CH04-Study-Hall-Journal"
+    @action knowledge = adj(knowledge, 3)
+    "Note Harry's method. Something about it is different — not just skilled, but *informed.* By a source you can't identify."
+  __choice
+
+  choice__
+    @target "A106-CH04-Study-Hall-Journal"
+    "Focus on your own cauldron. One mystery at a time."
+  __choice
+__section
+
+
+section__
+  @title "A106-CH04-Study-Hall-Journal"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The free period between Potions and Transfiguration: the library, or a window seat in a fourth-floor corridor, or an empty classroom. You find a quiet spot and take out Avery's notebook — your copy of the cipher structure, not the journal itself."
+
+  "You try to work it forward from what you know."
+
+  "The two legible lines. Twelve recurring symbol-clusters that you've identified. Three matched to polyalphabetic substitution patterns from the Spellman reference Hermione mentioned. The structural shape: three rotating key layers."
+
+  "You've been here for forty minutes when you realise you've been trying to decode the cipher with information tools. What Snape said this morning sits in your head: *knowing what you mean without needing to say it.* The cipher isn't just about information. Luna said it: grief-charmed. Avery's emotional state at the time of writing is *encoded alongside the meaning.*"
+
+  "If the cipher is grief-charmed — if it responds to emotional resonance as well as logical substitution — then trying to crack it purely analytically is missing a key."
+
+  "You close the notebook. You haven't cracked anything. But the approach has shifted."
+
+  choice__
+    @target "A107-CH04-DADA-Buffer"
+    @action knowledge = adj(knowledge, 3)
+    "Write down the new hypothesis. Keep it separate from the decoding work."
+  __choice
+__section
+
+
+section__
+  @title "A107-CH04-DADA-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Transfiguration with McGonagall is, by the end of the first day, a relief — not because it's easy, but because it's the kind of difficult that has clear rules. Professor McGonagall does not assess through surveillance. She assesses through practice, and the results are definitive."
+
+  "You can Transfigure what she asks. Not perfectly, but competently. This is the kind of day where *competently* feels like an achievement."
+
+  "She notices, as she always notices, who is trying and who is performing trying. She doesn't say anything. She gives you a mark, moves on."
+
+  "But as you're leaving, she says your name. Just once. Not *Miss Ashford* or *Mister Ashford* — your name, with the specificity of someone who has something in mind."
+
+  "*See me after your second Thursday class,* she says. *I have something I'd like to discuss.*"
+
+  "And then she turns to the next student and it's over, and you walk out of the classroom with the particular density of an appointment you don't yet understand."
+
+  choice__
+    @target "A108-CH04-DADA-Convergence"
+    "Note the appointment."
+  __choice
+__section
+
+
+section__
+  @title "A108-CH04-DADA-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The first day of sixth year concludes at dinner, which you eat with the appetite of someone who has been assessed, observed, tested, and given an unexplained appointment, all before six in the evening."
+
+  "Summary of what the first day has established:"
+
+  "Snape is conducting some kind of assessment across the DADA class. You don't know what he's looking for or why. His evaluation of you, positive or negative depending on which choice you made, will matter."
+
+  "Harry Potter has access to a source of Potions knowledge that isn't the textbook. Whether that matters to you directly: unknown."
+
+  "The cipher is grief-charmed, which means analytical methods alone won't crack it. You need to approach it differently."
+
+  "McGonagall wants to speak with you on Thursday."
+
+  "You eat your dinner and think about which of these things is most urgent and in what order."
+
+  choice__
+    @target "A109-CH04-Invitation-Arrives"
+    "Tomorrow will have its own problems."
+  __choice
+__section
+
+
+/* ── 4b: SLUG CLUB (A109–A122) ── */
+
+section__
+  @title "A109-CH04-Invitation-Arrives"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Wednesday evening. An owl arrives at your place at dinner — not a school owl, but a personal one, plump and self-important in the manner of owls belonging to people who take their correspondence seriously."
+
+  "The letter it carries is sealed with a wax H and written in handwriting so loopy and expansive it takes up twice the space ordinary writing would."
+
+  "*My dear Ashford,* it begins. *I would be delighted if you would join a small informal gathering of promising young students this Friday evening, seven o'clock, my office. Bring your wit and come hungry. Yours most cordially, Horace E. F. Slughorn.*"
+
+  "The Slug Club. You have heard of it — most people have heard of it by third year, when it becomes clear which students are receiving special attention and which aren't. It's not a secret organisation. It's networking, conducted by someone who has decided to be honest about the fact that it's networking."
+
+  "The question is whether attending is useful."
+
+  choice__
+    @target "A110-CH04-Attend-Or-Skip"
+    "Consider it."
+  __choice
+__section
+
+
+section__
+  @title "A110-CH04-Attend-Or-Skip"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The argument for attending: Slughorn is well-connected, old-school, and knows more about certain topics — pre-war wizarding politics, specific individuals, historical Dark Objects — than almost anyone else in the building. If the Resonance Mirror has a history anyone might recognise, it might be a history Slughorn has encountered."
+
+  "The argument against: the Slug Club requires a performance. You will be there because Slughorn wants something from you — your name, your parentage, your potential usefulness — and performances have costs."
+
+  choice__
+    @target "A111-CH04-Slug-Club-Gathering"
+    @action rel_slughorn = adjRel(rel_slughorn, 5)
+    "Attend. The potential information is worth the performance cost."
+  __choice
+
+  choice__
+    @target "A119-CH04-Slug-Club-Convergence"
+    @action rel_slughorn = adjRel(rel_slughorn, -5)
+    "Send regrets. You have cipher work to do and performances to give already. Slughorn can wait."
+  __choice
+__section
+
+
+section__
+  @title "A111-CH04-Slug-Club-Gathering"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Slughorn's office is stuffed with lamplight and the smell of crystallised pineapple and the particular atmosphere of a room where comfort has been deployed as a social instrument."
+
+  "You arrive at seven precisely. Six other students are already there — an eclectic collection of the talented, the well-connected, and the apparently strategic, selected according to criteria Slughorn has never formally enumerated. Harry Potter is there. Hermione Granger. Two students from Ravenclaw and Hufflepuff you don't know well."
+
+  "Slughorn himself is immense, walrus-moustached, and operating at full sociable voltage. He moves through the room like a man who has spent sixty years learning to make people feel individually seen, and who has found this extremely useful."
+
+  "He gets to you. He takes both your hands. He says your name with the emphasis of someone tasting it."
+
+  "*An Ashford,* he says. *Avery Ashford's — and now don't correct me on this, I know I'm right — Avery Ashford's offspring. I taught your parent. Quite remarkable,* he says, in the tone of someone saying *quite remarkable* about someone they're not entirely sure they should have enabled, in retrospect.*"
+
+  "He waits."
+
+  choice__
+    @target "A112-CH04-Slughorn-Play-Along"
+    @action cunning = adj(cunning, 8)
+    @action rel_slughorn = adjRel(rel_slughorn, 15)
+    @action slughorn_useful = true
+    "Play along. Give him the performance he's expecting — grateful, ambitious, aware of the value of his attention."
+  __choice
+
+  choice__
+    @target "A113-CH04-Slughorn-Honest"
+    @action empathy = adj(empathy, 5)
+    @action courage = adj(courage, 5)
+    @action rel_slughorn = adjRel(rel_slughorn, 8)
+    "Tell him the truth. You're here because you heard he knows things other people don't, and you have a specific question."
+  __choice
+
+  choice__
+    @target "A114-CH04-Slughorn-Probe"
+    @when knowledge >= 50
+    @disabledText "Requires Knowledge ≥ 50."
+    @action knowledge = adj(knowledge, 8)
+    @action cunning = adj(cunning, 5)
+    @action rel_slughorn = adjRel(rel_slughorn, 10)
+    "Probe him — carefully, in the manner of a student who is very interested in his research history. Ask about his areas of expertise. Listen for what he omits."
+  __choice
+
+  choice__
+    @target "A115-CH04-Slughorn-Exit"
+    @action courage = adj(courage, 3)
+    @action rel_slughorn = adjRel(rel_slughorn, -5)
+    "Make your excuses early. You came, you assessed, this particular transaction is not worth the entry cost."
+  __choice
+__section
+
+
+/* ── A112–A115 — SLUG CLUB CHOICES ── */
+
+section__
+  @title "A112-CH04-Slughorn-Play-Along"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You give him exactly what he wants: the appropriate pride in parentage, the appropriate eagerness to learn from him, the appropriate warmth toward someone who is clearly delighted to have you there. All of it technically true, all of it curated."
+
+  "Slughorn blooms under this like a plant under sunlight. He tells you three things about Avery Ashford that you didn't know: a duel in 1987 that apparently became briefly famous in certain Ministry circles; a piece of research on encrypted field documentation that Avery published in an Auror technical journal; and a name — *Castellan* — delivered as if it should mean something, and filed away carefully because you don't know yet whether it does."
+
+  "The last one is interesting. *Castellan* is not a common surname. It's worth finding in an index somewhere."
+
+  "You stay for the full two hours and leave with more than you came with."
+
+  choice__
+    @target "A116-CH04-Slug-Club-Guests"
+    "Join the other guests."
+  __choice
+__section
+
+
+section__
+  @title "A113-CH04-Slughorn-Honest"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You tell him."
+
+  "Not everything — not the journal, not the cipher, not what you know. But the outline: your parent disappeared, the Ministry closed the case, you're trying to understand what Avery was investigating, and you've been told Slughorn knows more about pre-war dark objects than most people."
+
+  "Slughorn goes through several expressions in five seconds. Surprise, then calculation, then something that might be genuine feeling or might be the performance of genuine feeling — with Slughorn it's genuinely hard to tell."
+
+  "*Your parent told me once,* he says, more quietly than his usual register, *that there were objects the Ministry had quietly decided not to look for. Things it was easier not to acknowledge existed.* He looks at you. *I helped compile that list, rather a long time ago. In a professional capacity.*"
+
+  "He doesn't say more. But he gives you a card with his office hours."
+
+  choice__
+    @target "A116-CH04-Slug-Club-Guests"
+    "Take the card. Thank him."
+  __choice
+__section
+
+
+section__
+  @title "A114-CH04-Slughorn-Probe"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You ask him about his research specialties. He is delighted to answer — every expert is delighted to be asked about their expertise by someone who seems genuinely interested, and your interest, while not entirely genuine, is not entirely false either."
+
+  "He mentions: memory charms and their counter-effects. Horcrux theory, though he gets to it and immediately moves past it with the quality of someone who does not want to linger. The history of Dark Objects in the Balkan wizarding communities in the mid-twentieth century — this one he returns to unprompted."
+
+  "*Remarkable period,* he says. *The Adriatic corridor, 1940s through the '70s. Objects of war that nobody properly catalogued. The International Confederation of Wizards commissioned a study in 1947 that was never published. Sensitive findings.* He shakes his head. *A study of an object called — I believe it was something to do with resonance or reflection. I can't quite recall.*"
+
+  "He recalls perfectly. You are certain he recalls perfectly. He has decided not to say more tonight."
+
+  "But: *1947 study. Adriatic corridor. Resonance.* That's more than you had an hour ago."
+
+  choice__
+    @target "A116-CH04-Slug-Club-Guests"
+    @action knowledge = adj(knowledge, 5)
+    "Join the other guests. Everything goes in the notebook."
+  __choice
+__section
+
+
+section__
+  @title "A115-CH04-Slughorn-Exit"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You stay twenty minutes. You eat two of the crystallised pineapple pieces. You give Slughorn a short, polite exchange that communicates interest without tipping into enthusiasm, and then you find a graceful exit."
+
+  "He watches you leave with the expression of someone who has not received the response he expected, which suggests the response he expected was somewhat different. He may invite you again. He may not."
+
+  "The corridor outside his office is quiet and free of crystallised pineapple. You walk back toward your common room with the distinct sensation of having maintained your autonomy at the cost of whatever Slughorn knew that you might have extracted."
+
+  "The trade may have been worth it. You'll know later."
+
+  choice__
+    @target "A119-CH04-Slug-Club-Convergence"
+    "Head back."
+  __choice
+__section
+
+
+/* ── A116–A119 — SLUG CLUB GUESTS + CONVERGENCE ── */
+
+section__
+  @title "A116-CH04-Slug-Club-Guests"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The other guests: Harry is here, slightly uncomfortable in the way of someone who suspects he's being collected rather than invited. Hermione is navigating the social geometry with visible competence. Two Ravenclaw students are discussing something Arithmancy-related in the corner with the mutual intensity of people who've found their kind."
+
+  "Slughorn circulates. He asks Harry about Quidditch and his plans after school with the specific warmth of someone who has already decided how useful Harry might be. Harry answers with the quality of a person who has learned to be more careful about what he gives."
+
+  "Hermione catches your eye across the room and makes a brief, expressive face that means: *interesting, isn't it, that we're all here.*"
+
+  choice__
+    @target "A117-CH04-Harry-Disguised"
+    @when knowledge >= 55
+    @disabledText "Requires Knowledge ≥ 55."
+    @action knowledge = adj(knowledge, 5)
+    "Watch Harry more closely. Something about the way Slughorn is talking to him doesn't add up with how Harry behaved during Potions."
+  __choice
+
+  choice__
+    @target "A118-CH04-Post-Party"
+    "Talk to Hermione. She's the most useful person in the room for what you need."
+  __choice
+__section
+
+
+section__
+  @title "A117-CH04-Harry-Disguised"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You're watching Slughorn and Harry when it clicks."
+
+  "The Potions lesson. The marginalia in a textbook that wasn't the standard edition. The results that were consistently one grade above expectation — not because Harry Potter is particularly gifted at Potions, which he demonstrably isn't, but because he was following different instructions."
+
+  "And here: the quality of Harry's discomfort with Slughorn's attention. Not the discomfort of someone who finds social performance tiring. The discomfort of someone who is performing a version of themselves that doesn't entirely match the version Slughorn has in mind."
+
+  "You don't know what this means yet. But the pattern is there: Harry has a source of knowledge he hasn't acknowledged. And Slughorn, who knows an enormous amount about a wide range of things, is treating Harry with the specific attention you'd reserve for someone you expected to need eventually."
+
+  "Two threads. Probably unconnected. Filed."
+
+  choice__
+    @target "A118-CH04-Post-Party"
+    "Find Hermione."
+  __choice
+__section
+
+
+section__
+  @title "A118-CH04-Post-Party"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Hermione has opinions about Slughorn, most of which are accurate, and she expresses them in the slightly lowered voice she uses when she's being candid rather than measured."
+
+  "*He's collecting,* she says. *He's been doing it for decades, from what I can tell — talented students he expects to be useful later. The question is whether the network he's built is actually useful to us or whether we're building it for him.*"
+
+  "She looks thoughtful. *That said — he does have remarkable access. And he clearly knows more than he's saying about certain historical events. Have you ever asked him about specific Dark Objects?*"
+
+  "You tell her: not yet. She nods. *Worth asking. Carefully.*"
+
+  "She doesn't ask what specific objects you're thinking of. But she looks at you with the expression of someone who has already made an inference."
+
+  choice__
+    @target "A119-CH04-Slug-Club-Convergence"
+    @action rel_hermione = adjRel(rel_hermione, 5)
+    "Thank her. The Hermione Granger network is genuinely undervalued."
+  __choice
+__section
+
+
+section__
+  @title "A119-CH04-Slug-Club-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The gathering ends at nine-thirty, which is Slughorn's way of ensuring you leave feeling slightly like you didn't get quite enough time — a networking technique that probably dates from the 1960s and has worked reliably since."
+
+  "Whether you attended or not, the week has given you: information from Slughorn (or the lack of it, which is also data), Hermione's network note, and a growing sense that the adults in this building are operating on information they're not sharing with students."
+
+  "This is not new. But the scale of it this year feels different. Dumbledore's hand. Snape's assessment. Slughorn's carefully not-quite-recalled study from 1947."
+
+  "Everyone in this building knows more than they're saying. The game is finding out what, and from whom, and when."
+
+  choice__
+    @target "A120-CH04-Buffer-A"
+    "Leave the party."
+  __choice
+__section
+
+
+section__
+  @title "A120-CH04-Buffer-A"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The corridor outside Slughorn's office is empty. Eleven o'clock in a school year has a specific quiet — everyone accounted for, the castle settling into its nighttime version of itself."
+
+  "You're past curfew. Not drastically, but enough that a prefect would need to decide whether to formally notice."
+
+  "You walk quickly and quietly, which is the technique that works for most things. Your footsteps on the stone. The distant sound of portraits arguing. Somewhere above you, the castle doing whatever the castle does at night — shifting, settling, performing the ancient institutional magic of a building that has housed centuries of people with problems."
+
+  "You have yours. The castle has had worse."
+
+  choice__
+    @target "A121-CH04-Buffer-B"
+    "Keep walking."
+  __choice
+__section
+
+
+section__
+  @title "A121-CH04-Buffer-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "On the fourth-floor landing, moving quickly and not in a direction that suggests they have legitimate business there at this hour: Draco Malfoy."
+
+  "He sees you at the same moment you see him."
+
+  "The specific mutual recognition of two people who are both somewhere they shouldn't be, neither of whom is in a position to report the other."
+
+  "He looks at you. You look at him. After a moment, he takes a different staircase down."
+
+  "You watch him go. He is moving with the same compressed urgency you've now seen three times — Madam Malkin's, the Express corridor, and now a fourth-floor landing at eleven o'clock. Whatever he's doing, it requires movement at hours when the school is quiet."
+
+  "You note it and walk on."
+
+  choice__
+    @target "A122-CH04-Romance-Hub"
+    "Head to your common room."
+  __choice
+__section
+
+
+/* ── 4c: ROMANCE FIRST SPARK (A122–A135) ── */
+
+section__
+  @title "A122-CH04-Romance-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Friday night. The week is over. You've survived DADA with Snape, survived Slughorn, noted three separate Draco sightings, had your notebook copied three times, and not decoded any additional cipher."
+
+  "The common room is winding down. Most people have gone to bed or are going. The fire is lower."
+
+  "You're about to head upstairs when something pulls you back — a thought half-formed, the specific restlessness of someone who needs five more minutes of a different kind of thinking before they can sleep."
+
+  if__ (house == "ravenclaw") {
+    choice__
+      @target "A123-CH04-Elara-Library"
+      "The library. You left a book there earlier. And maybe someone else is still up."
+    __choice
+  }
+
+  if__ (house == "slytherin") {
+    choice__
+      @target "A126-CH04-Marcus-Corridor"
+      "The corridor outside. You've been in rooms all week. Five minutes of actual air."
+    __choice
+  }
+
+  if__ (house == "gryffindor") {
+    choice__
+      @target "A129-CH04-Jade-Quidditch"
+      "The common room window. Someone else is still down here."
+    __choice
+  }
+
+  if__ (house == "hufflepuff") {
+    choice__
+      @target "A132-CH04-Sebastian-Library"
+      "The library. There's something you wanted to check. And the prefect who's supposed to be monitoring curfew isn't in a position to notice."
+    __choice
+  }
+__section
+
+
+/* ── A123–A125 — ELARA (RAVENCLAW) ── */
+
+section__
+  @title "A123-CH04-Elara-Library"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The library at midnight is technically off-limits but practically unmonitored, and the candles dim themselves slowly enough that they're still providing marginal light near the windows."
+
+  "Elara Voss is there. She's at the same table she was at the last three evenings you've been in the library, with the same organisation of books and notes, working with the focused intensity of someone who has decided this is her table for the year and is establishing that fact through occupation."
+
+  "She looks up when you sit down two chairs away. Looks back at her notes. Then looks up again."
+
+  "*You're not going to find the cipher key in the library,* she says. It's not quite a question."
+
+  "You ask her how she knows what you're looking for."
+
+  "She sets down her quill. *Because I know what that journal is. And I know where it came from. And I know—* She stops. Starts again. *My family has some history with the kind of objects your parent was investigating. Not direct history. Peripheral.*"
+
+  "The Voss name. Circled twice in Avery's margin notes."
+
+  choice__
+    @target "A124-CH04-Elara-Deflect"
+    @action rel_elara = adjRel(rel_elara, 5)
+    @action cunning = adj(cunning, 3)
+    "Don't reveal what you know yet. Ask her what she means by peripheral. Get more before giving anything."
+  __choice
+
+  choice__
+    @target "A125-CH04-Elara-Spark"
+    @action rel_elara = adjRel(rel_elara, 15)
+    @action empathy = adj(empathy, 8)
+    "Tell her what you know. She already knows too much for distance to be useful, and something in the way she stopped — the way she chose *peripheral* carefully — suggests she's telling the truth about the limits."
+  __choice
+__section
+
+
+section__
+  @title "A124-CH04-Elara-Deflect"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You deflect. You ask her, carefully, what she means by peripheral — what kind of family history, how old, how direct. She answers, carefully, with the same measured quality: research rather than practice, an academic connection, her grandfather, the 1940s."
+
+  "The 1947 study. Slughorn mentioned a 1947 Adriatic study."
+
+  "She looks at you with an expression that says she knows you just made a connection and that she's decided not to confirm it yet."
+
+  "You look at her with an expression that says you've noticed she's decided not to confirm it."
+
+  "Two people being careful with each other, at a library table at midnight, with a candle between them going lower."
+
+  "*We can do this slowly,* she says, *or we can do it faster. It's up to you.*"
+
+  "You tell her you'll think about it."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    "Leave the library."
+  __choice
+__section
+
+
+section__
+  @title "A125-CH04-Elara-Spark"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (rel_elara >= 35) {
+    romance_active = "elara"
+  }
+
+  "You tell her. Not everything — not the new legible line, not Avery's note in the trunk. But the structure of what you know, the journal, the two families of information that connect: Montenegro, east of it, the coordinates, L."
+
+  "She listens without interrupting. When you finish, she's quiet for a moment. Then:"
+
+  "*My grandfather did the 1947 study,* she says. *He was commissioned by the International Confederation to catalogue objects of war that hadn't been formally logged. He found something in the Adriatic corridor that he recommended be listed as a Class-A restricted object and destroyed. The recommendation was declined. The study was classified.*"
+
+  "She looks at her hands. *He talked about it until he died. He was very specific about one object in particular.*"
+
+  "She looks up. Her eyes, behind the glasses, are doing something complicated."
+
+  "*I think you already know which one,* she says."
+
+  "The candle between you goes lower. Neither of you moves to relight it."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    "Stay in the silence for a moment before either of you speaks again."
+  __choice
+__section
+
+
+/* ── A126–A128 — MARCUS (SLYTHERIN) ── */
+
+section__
+  @title "A126-CH04-Marcus-Corridor"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The corridor outside the Slytherin common room entrance runs along the lake side of the dungeons. Through the thick stone you can sometimes hear the water moving. Tonight you can't, but you can feel the cold that comes off it, and that's enough."
+
+  "Marcus Calloway is already out here. Leaning against the wall with his arms folded and an expression that occupies the exact space between *I wanted to be alone* and *I don't particularly mind that you're here.*"
+
+  "He looks at you. You look at him."
+
+  "*The Slug Club,* he says. *You went.*"
+
+  "You tell him you went."
+
+  "*And?* He doesn't elaborate. He doesn't need to."
+
+  "The question is: what did you learn, and are you going to tell him."
+
+  choice__
+    @target "A127-CH04-Marcus-Distance"
+    @action rel_marcus = adjRel(rel_marcus, 3)
+    @action cunning = adj(cunning, 3)
+    "Nothing worth mentioning. Smile slightly when you say it."
+  __choice
+
+  choice__
+    @target "A128-CH04-Marcus-Engage"
+    @action rel_marcus = adjRel(rel_marcus, 12)
+    @action cunning = adj(cunning, 5)
+    "Tell him what Slughorn mentioned about the 1947 study. Not why you're interested. Just the information. See what he does with it."
+  __choice
+__section
+
+
+section__
+  @title "A127-CH04-Marcus-Distance"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You smile slightly and say nothing worth mentioning."
+
+  "He reads this correctly — which you expected — and says nothing in return, which means neither of you has given anything, which is where you both started."
+
+  "You stand in the cold corridor with the stone wall between you and the lake and the particular quality of two people who know they're playing the same game and haven't yet agreed on the terms."
+
+  "*Next time,* he says, eventually."
+
+  "You ask if he means the Slug Club or the corridor."
+
+  "He pushes off the wall and goes back inside."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    "Give it a moment before following."
+  __choice
+__section
+
+
+section__
+  @title "A128-CH04-Marcus-Engage"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (rel_marcus >= 35) {
+    romance_active = "marcus"
+  }
+
+  "You tell him what Slughorn mentioned. The 1947 study. The Adriatic corridor. An object that was recommended for destruction and the recommendation was declined."
+
+  "Marcus goes very still."
+
+  "Not the stillness of surprise — something more controlled. The stillness of someone who has just had a piece of information they already possessed confirmed by an external source."
+
+  "*My family,* he says, after a pause, *was on the committee that declined that recommendation.*"
+
+  "He looks at you directly, for the first time in six days, with the full quality of his attention."
+
+  "*I've been trying to understand what that meant my whole life. Why they kept it. What they planned to use it for.* He stops. Starts again, more quietly. *What do you know about the object.*"
+
+  "Not a question. A negotiation opening."
+
+  "The cold of the corridor seems slightly less cold. The exchange has a shape now."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    @action knowledge = adj(knowledge, 5)
+    "Tell him what you know. Not everything. But the outline. Fair exchange."
+  __choice
+__section
+
+
+/* ── A129–A131 — JADE (GRYFFINDOR) ── */
+
+section__
+  @title "A129-CH04-Jade-Quidditch"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The common room is nearly empty. The fire is low. Jade Okafor is the other person still up, sitting in the armchair she's apparently claimed as her strategic planning headquarters — she has three parchments of notes spread across the arm, which you have come to understand represents Quidditch roster analysis."
+
+  "She looks up when you settle onto the hearthrug nearby."
+
+  "*You've been running something all week,* she says. Not an accusation. Just the observation of someone who pays attention to people. *You've had that look.*"
+
+  "You ask what look."
+
+  "She considers this. *The look of someone who is keeping more plates spinning than the number of plates you've told anyone about.* She pauses. *It's a Quidditch thing. You can see it in players who've been given a role they haven't told the team about.*"
+
+  "She offers you the mug she's holding, which contains the end of some tea, which you accept because it's cold and the fire is low and sometimes an offered cup of tea is the right thing."
+
+  choice__
+    @target "A130-CH04-Jade-Distant"
+    @action rel_jade = adjRel(rel_jade, 8)
+    "Tell her she's right, but there's nothing you can share yet. She nods and doesn't push."
+  __choice
+
+  choice__
+    @target "A131-CH04-Jade-Warmth"
+    @action rel_jade = adjRel(rel_jade, 18)
+    @action empathy = adj(empathy, 5)
+    "Tell her. Not everything — but Avery. The journal. The fact that you're trying to find coordinates and decode a cipher and you're doing it alone. She's already noticed you're spinning plates. Might as well stop hiding the plates."
+  __choice
+__section
+
+
+section__
+  @title "A130-CH04-Jade-Distant"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You tell her she's right, and that you can't say more yet."
+
+  "She accepts this with the equanimity of someone who has dealt with Harry Potter long enough to know that people sometimes have legitimate reasons for not sharing things."
+
+  "*The offer stands,* she says. *Whatever it is — if you need someone to just exist near you while you work on it, I'm good at that.*"
+
+  "It's an unexpectedly good offer. Not help, specifically. Just *presence.* The kind of thing that costs nothing and is harder to find than you'd expect."
+
+  "You sit with her in the low firelight for a while, which turns out to be exactly the right decision."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    "Head upstairs eventually."
+  __choice
+__section
+
+
+section__
+  @title "A131-CH04-Jade-Warmth"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (rel_jade >= 50) {
+    romance_active = "jade"
+  }
+
+  "You tell her."
+
+  "Not the cipher details, not the legible lines specifically. But Avery. The journal in the false-bottomed desk. The Ministry's *voluntary disappearance.* The note in your trunk. The threatening note on the train. All of it — the shape of the problem, if not the technical specifics."
+
+  "Jade listens with the complete focus she gives to a match breakdown. No interruptions. No performed sympathy. Just listening."
+
+  "When you finish, she's quiet for a moment."
+
+  "*Okay,* she says. *Here's what I can do.* She counts off on her fingers. *Quidditch training is a legitimate reason to be on the grounds at hours when other students aren't. I'm captain, which means I set the schedule. If you ever need a cover — for being somewhere, for a meeting, for moving something across the grounds — I can make that happen.*"
+
+  "She says it matter-of-factly, the way she might talk about a tactical substitution."
+
+  "You look at her."
+
+  "*What?* She shrugs. *You're clearly doing something important. The least I can do is make it easier.*"
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    "You don't have words for how that lands. You say thank you."
+  __choice
+__section
+
+
+/* ── A132–A134 — SEBASTIAN (HUFFLEPUFF) ── */
+
+section__
+  @title "A132-CH04-Sebastian-Library"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The library, technically after curfew. Sebastian is at the last table before the Restricted Section, surrounded by prefect paperwork and looking at it with the mild bewilderment of someone who accepted a responsibility in September and is now in October understanding the full scope."
+
+  "He looks up when you sit down, and his expression shifts from paperwork-anxiety to something quieter."
+
+  "*You're here late,* he says. Then: *You're always here late. I've been noticing.*"
+
+  "Not intrusive. Just — observed. Sebastian Thorne keeps track of things without being asked to."
+
+  "You have the notebook out. The cipher structure. Your hypothesis about emotional encoding alongside logical substitution. You've been working on it for twenty minutes and getting nowhere, which is the kind of nowhere that requires a second perspective to break."
+
+  "You look at him."
+
+  choice__
+    @target "A133-CH04-Sebastian-Deflect"
+    @action rel_sebastian = adjRel(rel_sebastian, 5)
+    "It's fine. Just coursework. Ask him about his prefect paperwork instead."
+  __choice
+
+  choice__
+    @target "A134-CH04-Sebastian-Open"
+    @action rel_sebastian = adjRel(rel_sebastian, 15)
+    @action empathy = adj(empathy, 8)
+    "Show him the notebook. Not the journal — just the work. The structure, the hypothesis. He doesn't need to know what it's *for* to help you think about it."
+  __choice
+__section
+
+
+section__
+  @title "A133-CH04-Sebastian-Deflect"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You deflect to his paperwork, and he explains it with the patient detail of someone who has been looking at it for so long that talking about it is easier than thinking about it."
+
+  "It's prefect-level organisational bureaucracy. He handles it with a thoroughness that you suspect is disproportionate to the requirement, because Sebastian Thorne has decided that doing things properly is the standard."
+
+  "At some point he asks again, very quietly and without pressure, whether you're all right."
+
+  "You tell him yes."
+
+  "He doesn't believe you, but he accepts it."
+
+  "*I'll be here next week too,* he says, when you're both packing up. *And the week after.*"
+
+  "It's stated as a fact rather than an offer, which makes it more effective than an offer would have been."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    "Head back to the common room."
+  __choice
+__section
+
+
+section__
+  @title "A134-CH04-Sebastian-Open"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (rel_sebastian >= 55) {
+    romance_active = "sebastian"
+  }
+
+  "You show him the notebook."
+
+  "He doesn't ask what it's for. He looks at the cipher structure, the hypothesis about emotional encoding, the parallel columns you've been trying to align. He asks three questions — all of them about the method, none of them about the purpose — and the questions are, unexpectedly, good ones."
+
+  "*If it's grief-charmed,* he says, after a while, *then you'd need to decode it with the same emotional register it was written in. Not academically. *Felt.* Like — the same kind of fear, or the same kind of love. Whatever was present when it was written.*"
+
+  "He says this with the directness of someone who hasn't yet learned to be cautious about the implications of what he's saying."
+
+  "You sit with that for a moment."
+
+  "*That's either easier or harder than linguistic decryption,* you tell him."
+
+  "*Probably both,* he agrees."
+
+  "The library is very quiet. Neither of you moves to leave."
+
+  choice__
+    @target "A135-CH04-Romance-Convergence"
+    @action knowledge = adj(knowledge, 5)
+    "Pack up eventually. The hypothesis has a new dimension."
+  __choice
+__section
+
+
+/* ── A135 — ROMANCE CONVERGENCE ── */
+
+section__
+  @title "A135-CH04-Romance-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Friday night ends. You walk back to your common room through the quiet castle, and the week closes behind you like a door."
+
+  "What you have at the end of the first week:"
+
+  "One conversation that will matter. One person who now knows more about what you're carrying than anyone else you could have chosen to trust, or one person you've kept at careful distance and who is waiting, patient, for you to decide you can."
+
+  if__ (romance_active != "") {
+    "The journal sits in your bag. The cipher waits. Somewhere east of Montenegro, coordinates you haven't yet reached. But tonight the week ended with the specific warmth of a connection beginning — tentative, not yet named, but present in the way a frequency becomes present once you know to listen for it."
+  }
+
+  "You go to bed. Sixth year's first week is over."
+
+  choice__
+    @target "A136-CH04-Week-Introspection"
+    "Morning."
+  __choice
+__section
+
+
+/* ── 4d: WEEK CLOSE (A136–A145) ── */
+
+section__
+  @title "A136-CH04-Week-Introspection"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Saturday morning. The first in six years without classes, and the castle at this hour has a different quality — students sleeping later, the corridors genuinely quiet, the lake visible from the Astronomy Tower steps in a way that it isn't when you're rushing to class."
+
+  "You sit with your notebook and your coffee and think about what the week has produced."
+
+  "What is most present for you, under everything else?"
+
+  choice__
+    @target "A137-CH04-Mcgonagall-Notices"
+    @action knowledge = adj(knowledge, 3)
+    @action empathy = adj(empathy, 3)
+    "Avery. The journal. The timeline. You have until whenever the next fragment unlocks, and you're not working fast enough."
+  __choice
+
+  choice__
+    @target "A137-CH04-Mcgonagall-Notices"
+    @action cunning = adj(cunning, 5)
+    "P.F. and the threatening note. Someone in this school is monitoring you. You need to know who before they know how much you've already found."
+  __choice
+__section
+
+
+section__
+  @title "A137-CH04-Mcgonagall-Notices"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Thursday happened while you weren't paying enough attention to it. McGonagall's appointment, which you'd noted in the back of your mind and kept moving past."
+
+  "She called you aside after Transfiguration. Second Thursday class, as she'd said. The other students filed out."
+
+  "She stood by the window with the particular quality she has when she's going to say something she's decided to say rather than something she's been asked to say."
+
+  "*I knew your parent,* she said. *Not well — Avery Ashford and I overlapped in some professional capacities, before and after the first war. Your parent was a very serious person.* A pause. *The kind of person who did not end up places accidentally.*"
+
+  "She looked at you. *If you find yourself needing the kind of assistance that doesn't appear on a timetable — academic guidance that isn't strictly academic — my door is open on Wednesday evenings.*"
+
+  "She didn't explain further. She moved to her next class. But the offer sits in you now: McGonagall, Avery's peer, offering unofficial help."
+
+  choice__
+    @target "A138-CH04-Draco-Glimpse"
+    @action rel_mcgonagall = adjRel(rel_mcgonagall, 10)
+    "File it. Wednesday evenings."
+  __choice
+__section
+
+
+section__
+  @title "A138-CH04-Draco-Glimpse"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Saturday afternoon. You're walking back from the library when you see Draco in a corridor two turnings ahead."
+
+  "He's moving fast, in the direction of the seventh floor. He doesn't see you — he's focused on something ahead of him, or something in his head, and his expression has the quality of someone doing arithmetic under pressure."
+
+  "He looks worse than he did at the start of the week. Thinner, if that's possible. The shadows under his eyes have gone from *didn't sleep well* to something harder to name — the specific exhaustion of someone who isn't sleeping because they're afraid to, rather than because they don't have time."
+
+  if__ (draco_mirror_hint == true) {
+    "You think about the luggage car. The concealment charm on the trunk that wasn't his. The oilskin package in Borgin and Burkes."
+
+    "Whatever he's moving through this school, it's moving faster than he expected."
+  }
+
+  "You don't follow. You watch him go. You note the direction."
+
+  choice__
+    @target "A139-CH04-Journal-Attempt"
+    "Head back to your room."
+  __choice
+__section
+
+
+section__
+  @title "A139-CH04-Journal-Attempt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Saturday evening. You spread the notebook on your desk, take out Avery's journal, and try again."
+
+  "The emotional encoding hypothesis — Sebastian's suggestion about needing the same register. You've been thinking about it all week. If the cipher is grief-charmed, the key might be less about logical substitution and more about arriving at the text in the same emotional state Avery used to write it."
+
+  "Which means: Avery was afraid when they wrote it. Really afraid. The kind of fear that makes you write in a personal cipher in a field journal with a dead man's trigger attached."
+
+  choice__
+    @target "A141-CH04-Week-Convergence"
+    @when knowledge >= 45
+    @disabledText "Requires Knowledge ≥ 45 to make meaningful progress."
+    @action knowledge = adj(knowledge, 5)
+    "Work with the fear. Try to decode not by substituting letters but by sitting with the emotional weight and letting that inform where the breaks in the cipher fall."
+  __choice
+
+  choice__
+    @target "A140-CH04-Journal-Attempt-Fails"
+    "Try the logical approach one more time. The emotional method sounds right but you can't access it on demand."
+  __choice
+__section
+
+
+section__
+  @title "A140-CH04-Journal-Attempt-Fails"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You spend an hour with the cipher and get nowhere new."
+
+  "Which isn't surprising — you've been getting nowhere new for two months. But there's a difference between the old kind of nowhere (hitting walls you've hit before) and the new kind of nowhere (hitting walls you haven't hit before), and tonight is the new kind."
+
+  "The emotional encoding theory is right, or feels right. But accessing it on demand, in a dormitory at Saturday evening, while not actually afraid of the specific thing Avery was afraid of when writing — that's not achievable through force of will."
+
+  "You put the journal away. You write a note to yourself: *When you are in actual danger, try again.*"
+
+  "Which is not the most comforting instruction you've given yourself."
+
+  choice__
+    @target "A141-CH04-Week-Convergence"
+    "Close the notebook."
+  __choice
+__section
+
+
+section__
+  @title "A141-CH04-Week-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of first week. What you have."
+
+  "The cipher's structure, mapped. A hypothesis about emotional encoding. Two legible lines. The name Voss, connected to a 1947 Adriatic study. The name Castellan, from Slughorn, with no context yet. McGonagall's open door on Wednesday evenings. A threatening note from P.F. One person in this school who knows more about what you're carrying than you intended."
+
+  if__ (draco_mirror_hint == true) {
+    "Draco Malfoy: moving something through the school in luggage that isn't his own, increasingly exhausted, heading to the seventh floor on Saturday afternoon."
+  }
+
+  "The week has given you threads. You don't have a picture yet."
+
+  "But threads are where pictures start."
+
+  choice__
+    @target "A142-CH04-Week-End-A"
+    "One more week in."
+  __choice
+__section
+
+
+section__
+  @title "A142-CH04-Week-End-A"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The second week of sixth year passes with the particular quality of a week that is building something you can't see the shape of yet."
+
+  "DADA with Snape: he returns to non-verbal casting. He calls on two students other than you, which might mean he's finished his assessment of you and moved on, or might mean he's watching you when he's not calling on you. Impossible to tell."
+
+  "Potions: Harry's margin-notes advantage persists. Slughorn awards him points with the specific warmth of someone who has decided to be invested in this particular student's success."
+
+  "Library: your cipher work produces one new thing — a cluster of symbols that appear before every proper noun in the text. You now have a marker for names. You have not decoded any names yet. But the marker exists."
+
+  choice__
+    @target "A143-CH04-Week-End-B"
+    "Keep working."
+  __choice
+__section
+
+
+section__
+  @title "A143-CH04-Week-End-B"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "McGonagall's Wednesday offer, tested: you go to her office on the second Wednesday."
+
+  "She is there. She gives you tea without making it a production. She asks what you know about the Auror investigation protocols for missing persons in cases where voluntary disappearance has been classified."
+
+  "You tell her: not much."
+
+  "She tells you rather more than not much, for forty minutes, in the matter-of-fact tone she uses for Transfiguration instruction. She knows the formal procedures and the informal ones. She knows the specific ways that classifications can be challenged. She knows that *Thicknesse* — the same name you heard the Ministry officials mention over tea in the Leaky Cauldron — has been involved in several unusual classification decisions in recent months."
+
+  "*Rufus Scrimgeour is not the only one making decisions at the Ministry right now,* she says. *There are others who have been quietly inserted into positions of influence. Your parent may have known about this. It may be relevant to why the case was closed.*"
+
+  choice__
+    @target "A144-CH04-Week-End-C"
+    @action rel_mcgonagall = adjRel(rel_mcgonagall, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Take everything she's given you. This is the kind of context the library doesn't have."
+  __choice
+__section
+
+
+section__
+  @title "A144-CH04-Week-End-C"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Three weeks into sixth year."
+
+  "What you know now that you didn't at the start:"
+
+  "Thicknesse is an unusual actor at the Ministry. The Resonance Mirror was catalogued in a 1947 Adriatic study that was classified rather than published. The study involved a family named Voss — who have a student at Hogwarts. The cipher is grief-charmed and may require emotional resonance to decode. Avery's journal has a dead man's trigger and is still operating."
+
+  "What you don't know: the coordinates east of Montenegro. The full contents of any section of the journal beyond the two legible lines. Who L. is, and what happened to them. Who P.F. is and who gave them the order."
+
+  "What you suspect: that several adults in this building know more than they're saying. That Draco Malfoy is doing something at the seventh floor. That whatever Avery found in 1996 connects to something that was first found in 1947."
+
+  "Progress. Slow, but present."
+
+  choice__
+    @target "A145-CH04-Week-End-D"
+    "Keep going."
+  __choice
+__section
+
+
+section__
+  @title "A145-CH04-Week-End-D"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The end of the third week. The castle has settled into the rhythm of a term in progress: the specific temporal texture of classes and meals and free periods and the corridor traffic that comes with them."
+
+  "You have adapted. You are doing sixth year — the actual classes, the actual work — with the focus of someone who understands that maintaining academic standing is itself a form of operational cover. If your grades slip, people notice. If they hold, you remain unremarkable in one dimension while being very busy in others."
+
+  "The journal sits in your bag. The notebook has seventeen pages of cipher analysis, the proper-noun marker, the emotional encoding hypothesis, and a column of names: Voss, Castellan, Thicknesse, L., and *east.*"
+
+  "The October sky outside the common room windows has gone the specific grey of Scottish autumn — the grey that means something is coming, not necessarily bad, but coming."
+
+  "You are ready. Or ready enough."
+
+  "The journal speaks next."
+
+  choice__
+    @target "A146-CH05-First-Decode-Attempt"
+    "Chapter Five."
+  __choice
+__section

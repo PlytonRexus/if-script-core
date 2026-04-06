@@ -1,0 +1,234 @@
+/* ============================================================
+   THE ASHFORD CODEX — SYSTEM UTILITIES
+   00-system.partial.if
+
+   Shared utility functions used throughout all story sections.
+   These functions are defined once here and called via @action
+   or within if__ blocks across all partial files.
+
+   Section range: (no sections — functions only)
+   ============================================================ */
+
+
+/* ── STAT CLAMPING ── */
+
+/*
+  clampStat(value, minVal, maxVal)
+  Hard-clamps a value to [minVal, maxVal].
+  Use directly when you need explicit bounds.
+  Example: clampStat(courage + 10, 0, 100)
+*/
+function__ clampStat(value, minVal, maxVal) {
+  if__ (value < minVal) {
+    return__ minVal
+  }
+  if__ (value > maxVal) {
+    return__ maxVal
+  }
+  return__ value
+}
+
+/*
+  adj(stat, delta)
+  Adjusts a stat by delta, clamped to [0, 100].
+  Primary helper for all @action stat changes.
+  Example: @action courage = adj(courage, 8)
+*/
+function__ adj(stat, delta) {
+  return__ clampStat(stat + delta, 0, 100)
+}
+
+/*
+  adjRel(rel, delta)
+  Adjusts a relationship stat by delta, clamped to [0, 100].
+  Separate for clarity — same implementation.
+  Example: @action rel_harry = adjRel(rel_harry, 15)
+*/
+function__ adjRel(rel, delta) {
+  return__ clampStat(rel + delta, 0, 100)
+}
+
+
+/* ── MORALITY HELPERS ── */
+
+/*
+  lightSide() — morality >= 60
+  Returns true when protagonist is meaningfully light-aligned.
+  Used to gate Order-aligned advanced choices.
+*/
+function__ lightSide() {
+  return__ morality >= 60
+}
+
+/*
+  darkSide() — morality <= 40
+  Returns true when protagonist is meaningfully dark-aligned.
+  Used to gate dark/Death Eater-adjacent choices.
+*/
+function__ darkSide() {
+  return__ morality <= 40
+}
+
+/*
+  neutral() — morality 41–59
+  Returns true in the grey zone.
+  Used to gate Solo track content.
+*/
+function__ neutral() {
+  return__ morality > 40 && morality < 60
+}
+
+
+/* ── ALLEGIANCE HELPERS ── */
+
+/*
+  isOrderAligned()
+  Full Order alignment: member + meaningfully light.
+*/
+function__ isOrderAligned() {
+  return__ order_member == true && morality >= 55
+}
+
+/*
+  isDarkAligned()
+  Full dark alignment: dark network access + meaningfully dark.
+*/
+function__ isDarkAligned() {
+  return__ dark_network_access == true && morality <= 45
+}
+
+/*
+  isSolo()
+  Neither Order member nor dark network — going it alone.
+*/
+function__ isSolo() {
+  return__ order_member == false && dark_network_access == false
+}
+
+
+/* ── ROMANCE HELPERS ── */
+
+/*
+  romanceWith(who)
+  Returns true if the active romance is with the specified character.
+  who: "elara" | "marcus" | "jade" | "sebastian"
+  Example: @when romanceWith("elara")
+*/
+function__ romanceWith(who) {
+  return__ romance_active == who
+}
+
+/*
+  hasRomance()
+  Returns true if any romance is active.
+*/
+function__ hasRomance() {
+  return__ romance_active != ""
+}
+
+/*
+  romanceDeepened()
+  Returns true if romance is active AND consummated (Ch.13+ peak).
+*/
+function__ romanceDeepened() {
+  return__ romance_active != "" && romance_consummated == true
+}
+
+
+/* ── JOURNAL HELPERS ── */
+
+/*
+  journalAt(n)
+  Returns true if at least n sections of the journal have been decoded.
+  Example: @when journalAt(3)
+*/
+function__ journalAt(n) {
+  return__ journal_decoded >= n
+}
+
+
+/* ── ENDING GATE FUNCTIONS ── */
+/* Called in Ch.17 to route protagonist to correct ending.
+   Each function checks the specific combination of flags
+   required for that ending to be available. */
+
+/*
+  Ending 1 — "The Bright Constant"
+  Hopeful. Order-aligned. Avery found. Mirror neutralised.
+*/
+function__ canReachEnding1() {
+  if__ (morality < 70) { return__ false }
+  if__ (order_member == false) { return__ false }
+  if__ (spy_exposed == false) { return__ false }
+  if__ (avery_alive == false) { return__ false }
+  if__ (mirror_voldemort == true) { return__ false }
+  if__ (fled_hogwarts == true) { return__ false }
+  return__ true
+}
+
+/*
+  Ending 2 — "The Redeemed Shadow"
+  Redemption arc. Started dark, chose light.
+  Requires: was dark (practiced dark arts + helped Draco),
+  but recovered morality to 50+ and didn't give Mirror to Voldemort.
+*/
+function__ canReachEnding2() {
+  if__ (dark_arts_practiced == false) { return__ false }
+  if__ (draco_helped == false) { return__ false }
+  if__ (morality < 50) { return__ false }
+  if__ (mirror_voldemort == true) { return__ false }
+  if__ (fled_hogwarts == true) { return__ false }
+  if__ (rel_draco < 50) { return__ false }
+  return__ true
+}
+
+/*
+  Ending 3 — "The Brilliant Alone"
+  Solo track. High cunning + knowledge. Mirror handled independently.
+*/
+function__ canReachEnding3() {
+  if__ (allegiance_track != "solo") { return__ false }
+  if__ (knowledge < 70) { return__ false }
+  if__ (cunning < 70) { return__ false }
+  if__ (mirror_voldemort == true) { return__ false }
+  if__ (fled_hogwarts == true) { return__ false }
+  return__ true
+}
+
+/*
+  Ending 4 — "The Long Way Back"
+  Dark but didn't cross the final lines (didn't flee, didn't give Mirror to Voldemort).
+*/
+function__ canReachEnding4() {
+  if__ (morality > 40) { return__ false }
+  if__ (dark_arts_practiced == false) { return__ false }
+  if__ (fled_hogwarts == true) { return__ false }
+  if__ (mirror_voldemort == true) { return__ false }
+  return__ true
+}
+
+/*
+  Ending 5 — "The Vanishing Point"
+  Fled OR gave Mirror to Voldemort.
+  Most available of all endings (lowest requirements, highest cost).
+*/
+function__ canReachEnding5() {
+  if__ (fled_hogwarts == true) { return__ true }
+  if__ (mirror_voldemort == true) { return__ true }
+  return__ false
+}
+
+/*
+  resolveEnding()
+  Checks all endings in priority order and returns the ending ID.
+  Called in Ch.17's routing section.
+  Priority: E1 > E2 > E3 > E4 > E5 > E3 (fallback)
+*/
+function__ resolveEnding() {
+  if__ (canReachEnding1()) { return__ 1 }
+  if__ (canReachEnding2()) { return__ 2 }
+  if__ (canReachEnding3()) { return__ 3 }
+  if__ (canReachEnding4()) { return__ 4 }
+  if__ (canReachEnding5()) { return__ 5 }
+  return__ 3   /* fallback: Brilliant Alone — most achievable */
+}

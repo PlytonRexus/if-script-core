@@ -1,0 +1,1181 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 5
+   02-ch05-journal-speaks.partial.if
+
+   Chapter 5: The Journal Speaks
+   First decode. The initial journal revelation. McGonagall's warning.
+   A threatening letter. L. identified — or not.
+
+   Section range: A146–A190
+   ============================================================ */
+
+scene__
+  @name "CH05: The Journal Speaks"
+  @first "A146-CH05-First-Decode-Attempt"
+  @sceneTransition "cut"
+  @sections "A146-CH05-First-Decode-Attempt" "A147-CH05-Decode-Hermione" "A148-CH05-Decode-Solo" "A149-CH05-Decode-Marcus" "A150-CH05-Journal-Reveals" "A151-CH05-L-Is-Luna" "A152-CH05-L-Is-Lupin" "A153-CH05-L-Is-Snape" "A154-CH05-L-Unknown" "A155-CH05-McGonagall-Warning" "A156-CH05-Show-Journal-Mcg" "A157-CH05-Ask-Avery-Mcg" "A158-CH05-Listen-Only-Mcg" "A159-CH05-McGonagall-Speaks" "A160-CH05-Wednesday-Offer" "A161-CH05-After-McGonagall" "A162-CH05-McGonagall-Convergence" "A163-CH05-Threatening-Letter" "A164-CH05-Investigate-Letter" "A165-CH05-Destroy-Letter" "A166-CH05-Keep-Letter" "A167-CH05-Letter-Convergence" "A168-CH05-Letter-Aftermath" "A169-CH05-Owlery-Check" "A170-CH05-Narrow-Suspects" "A171-CH05-Investigation-Pause" "A172-CH05-Investigation-Convergence" "A173-CH05-Second-Decode-Attempt" "A174-CH05-Decode-Struggle" "A175-CH05-Second-Decode-Stalls" "A176-CH05-What-You-Know" "A177-CH05-Journal-Section-2-Outline" "A178-CH05-Journal-Implications" "A179-CH05-Romance-Beat-Hub" "A180-CH05-Romance-Beat-Moment" "A181-CH05-Romance-Beat-Convergence" "A182-CH05-October-Wind-Down" "A183-CH05-State-Of-Play" "A184-CH05-November-Threshold" "A185-CH05-Chapter-Close" "A186-CH05-To-Ch6"
+__scene
+
+
+/* ── 5a: THE FIRST DECODE (A146–A154) ── */
+
+section__
+  @title "A146-CH05-First-Decode-Attempt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Four weeks in. You've been carrying the journal long enough that you no longer think about its weight. What you think about is the cipher — the seventeen pages of notation in your dedicated notebook, the proper-noun marker system, the emotional encoding hypothesis, the thing Sebastian said about grief and the emotional register required to access it."
+
+  "Saturday night. The common room has gone quiet in stages, students peeling off to bed in the way they do when there's no particular reason to stay. The fire is lower. You have the desk to yourself."
+
+  "You spread the journal open, notebook beside it, and try to be clinical about this. What do you have. What do you need. What is the fastest path to the next readable line."
+
+  "What you have is a hypothesis you haven't been able to test properly. What you need is either better technique or better company."
+
+  choice__
+    @target "A147-CH05-Decode-Hermione"
+    @when rel_hermione >= 45
+    @disabledText "Requires a closer friendship with Hermione — she won't engage unless she trusts you."
+    "Find Hermione. You've been circling this alone for three weeks. Her pattern-recognition is different from yours. If the cipher has a logical structure she can see what you've been missing."
+  __choice
+
+  if__ (romance_active == "marcus") {
+    choice__
+      @target "A149-CH05-Decode-Marcus"
+      "Go to Marcus. He mentioned, once and briefly, that his grandfather used a similar encoded correspondence system. He said it as though it wasn't interesting. It was."
+    __choice
+  }
+
+  choice__
+    @target "A148-CH05-Decode-Solo"
+    @when knowledge >= 60
+    @disabledText "Requires Knowledge ≥ 60 to push through alone."
+    @action knowledge = adj(knowledge, 8)
+    "Work alone. You know enough now. Three in the morning if necessary. Push through."
+  __choice
+
+  choice__
+    @target "A148-CH05-Decode-Solo"
+    "Stay with it. Whatever it takes."
+  __choice
+__section
+
+
+section__
+  @title "A147-CH05-Decode-Hermione"
+  @textPacing "cinematic"
+  @shot "close"
+
+  hermione_saw_journal = true
+
+  "Hermione is in the library, which is not a surprise. It's eleven-fifteen on a Saturday night and she has a second copy of *Spellman's Syllabary* open beside a stack of parchment she appears to be cross-referencing with a section on historical charm-encoding."
+
+  "You sit down across from her. You put the journal on the table between you."
+
+  "She looks at it for a moment. Then at you. *Avery's?*"
+
+  "You tell her yes."
+
+  "She closes the Syllabary. She looks at the journal the way she looks at problems she has decided to take seriously — with a specific narrowing of attention that means the rest of the room has just become irrelevant."
+
+  "*Walk me through what you've found so far.* She isn't asking. She's beginning a process."
+
+  "You walk her through it. The proper-noun marker. The emotional encoding hypothesis. The two legible lines. The fact that the cipher appears to use a non-standard substitution that shifts based on context in a way you haven't been able to map."
+
+  "She asks three questions — about the regularity of the shifts, about the symbol density in the legible sections versus the dense sections, about whether the paper itself shows any charmwork. She's already four steps ahead of where you started."
+
+  "*Come back Saturday,* she says eventually. *I need to check something first.*"
+
+  choice__
+    @target "A150-CH05-Journal-Reveals"
+    @action rel_hermione = adjRel(rel_hermione, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Saturday. One week later, something shifts."
+  __choice
+__section
+
+
+section__
+  @title "A148-CH05-Decode-Solo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Three in the morning. The dormitory is asleep around you and you've been at the desk for four hours, which is the kind of thing that only seems reasonable before you start and then becomes irreversible."
+
+  "The cipher notebook has a new column: symbolic clustering around what you've identified as the proper-noun marker, cross-referenced against every substitution pattern you know. You've tried Caesar shifts, Vigenère variants, Playfair-adjacent approaches. Nothing maps cleanly."
+
+  "Then — not a breakthrough. A corner of one."
+
+  "A group of eight symbols that appear in the legible sections also appear twice in the dense section, in a pattern that suggests they function as punctuation rather than letters. If you treat them that way — use them to mark phrase boundaries rather than decode them as content — the dense section develops a *rhythm* you haven't seen before. Not decodable. But rhythmic. Like something breathing."
+
+  "You sit with this for a long time. You write in the margin: *emotional encoding — the rhythm matches the pattern of someone trying to control their own heartbeat while writing.*"
+
+  "Avery was afraid. Whatever they were writing, they were afraid while they wrote it. And the cipher is built from that fear."
+
+  "You don't crack it tonight. But you see the shape of the door you're going to need to open."
+
+  choice__
+    @target "A150-CH05-Journal-Reveals"
+    "Keep going. Something shifts."
+  __choice
+__section
+
+
+section__
+  @title "A149-CH05-Decode-Marcus"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus Calloway, when you find him, is in the Slytherin sixth-year study room at eleven at night, alone, reading something that he turns face-down when you come in. The automatic gesture of a person who is used to keeping what they read private."
+
+  "You put the journal on the table. You tell him about his grandfather's cipher correspondence."
+
+  "He looks at you for a moment. *You're more observant than I gave you credit for,* he says, and it doesn't come out as a compliment or an insult. Just a recalibration."
+
+  "*My grandfather corresponded with contacts during the first war using a system he developed from grief-charm theory,* he says. *The idea was that grief-charmed ink can only be read by someone in the appropriate emotional register — not the same grief, but the same quality of attention. Present tense. Fully felt.*"
+
+  "He looks at the journal. *Whoever wrote this either knew him or independently arrived at the same idea. The symbol clustering at the margins — those aren't letters. They're emotional anchors. You don't decode them. They decode you.*"
+
+  "It's the clearest explanation of the emotional encoding theory you've yet had."
+
+  choice__
+    @target "A150-CH05-Journal-Reveals"
+    @action rel_marcus = adjRel(rel_marcus, 12)
+    @action knowledge = adj(knowledge, 5)
+    "One week of trying the new approach. Something shifts."
+  __choice
+__section
+
+
+section__
+  @title "A150-CH05-Journal-Reveals"
+  @textPacing "cinematic"
+  @shot "close"
+
+  journal_decoded = 1
+
+  "It happens not as a sudden decryption but as a slow arrival — like a room becoming visible as your eyes adjust to darkness rather than as someone turning on a light."
+
+  "You're sitting with the journal on a Wednesday evening, thinking about Avery and trying to hold that thought without making it into something abstract. Avery at work. Avery afraid. Avery writing this, pen on page, the specific weight of someone recording something they weren't sure they'd survive to explain."
+
+  "And the first line of the dense section resolves."
+
+  "Not the whole section. One line. Two sentences. Broken by the anchor symbols like breaths."
+
+  "*Object located. Montenegro.*"
+
+  "And then, separated by three anchor symbols, as if Avery needed three beats of composure to write it:"
+
+  "*Trust: L. only.*"
+
+  "You write both lines in your notebook in capitals, and then stare at them for a long time."
+
+  "Montenegro is a country. The object — the Resonance Mirror — has been located. Was located. Past tense, present crisis."
+
+  "*L.* is a person."
+
+  choice__
+    @target "A151-CH05-L-Is-Luna"
+    @when rel_luna >= 45
+    @disabledText "You'd need to know Luna better to make this connection."
+    "Luna Lovegood. She spoke about the journal on the Express — about grief-charmed ink. She knew things she shouldn't have known. She's been watching you since the first day."
+  __choice
+
+  choice__
+    @target "A152-CH05-L-Is-Lupin"
+    "Lupin. Remus Lupin — former DADA professor, now Order-adjacent. Avery would have overlapping networks with a former Auror ally. He's the right kind of person to be a single trusted contact."
+  __choice
+
+  choice__
+    @target "A153-CH05-L-Is-Snape"
+    @when rel_snape >= 30
+    @disabledText "Requires more insight into Snape's nature to consider this possibility seriously."
+    "Snape. The S doesn't fit, but L. might be a field name or a rank. Snape knows things about the Dark Arts he shouldn't know if he were purely Ministry-aligned. He's been watching you since the first DADA class."
+  __choice
+
+  choice__
+    @target "A154-CH05-L-Unknown"
+    "Don't speculate. L. is a name you don't have enough information to assign. Writing down wrong hypotheses is worse than having none."
+  __choice
+__section
+
+
+section__
+  @title "A151-CH05-L-Is-Luna"
+  @textPacing "cinematic"
+  @shot "close"
+
+  l_theory = "luna"
+
+  "Luna Lovegood. You write the name down and then consider it the way you'd consider any hypothesis: by looking for evidence that would disprove it rather than confirm it."
+
+  "The disconfirmations are few. She knew about grief-charmed ink before you mentioned it. She sits in classrooms the way someone sits who is accustomed to being underestimated — present in a different dimension than everyone else, but present. She has access to unusual knowledge through her father's magazine, which despite its reputation contains occasional fragments of genuine research buried under fabrications."
+
+  "She was on the Express. She noticed the journal. She said *grief-charmed ink* as if it were a familiar technical term rather than a guess."
+
+  "If Avery trusted *L.*, and L. is Luna, then Avery knew something about Luna Lovegood that most people don't."
+
+  "You close the notebook on that possibility and hold it carefully, like something fragile."
+
+  choice__
+    @target "A155-CH05-McGonagall-Warning"
+    @action knowledge = adj(knowledge, 5)
+    "File it. Keep moving."
+  __choice
+__section
+
+
+section__
+  @title "A152-CH05-L-Is-Lupin"
+  @textPacing "cinematic"
+  @shot "close"
+
+  l_theory = "lupin"
+
+  "Remus Lupin. You've never met him directly — he left Hogwarts before you started — but you know the shape of him from Avery's professional world. A former Auror ally. A person who lived through the first war carrying knowledge he couldn't use publicly. Someone with reasons to operate through trusted individuals rather than institutions."
+
+  "If Avery's circle included Lupin, the single-trusted-contact system makes sense. L. would be someone Avery could reach from the field through channels that didn't touch the Ministry. Someone who would know what to do with the Mirror's location."
+
+  "The problem with this theory is distance. Lupin isn't at Hogwarts. If L. is Lupin, the line of communication between Montenegro and useful action is long and probably fragile."
+
+  "But Avery survived on field judgement for twenty years. If Avery chose L., there's a reason."
+
+  choice__
+    @target "A155-CH05-McGonagall-Warning"
+    @action knowledge = adj(knowledge, 5)
+    "Write it down. Hold it loosely."
+  __choice
+__section
+
+
+section__
+  @title "A153-CH05-L-Is-Snape"
+  @textPacing "cinematic"
+  @shot "close"
+
+  l_theory = "snape"
+
+  "Snape. You write the name and then look at it for a long time."
+
+  "The logic is not straightforward. His name starts with S, not L. But field names exist — the Auror service uses them, and any serious operative in the first war would have used one. L. might be a code, not an initial."
+
+  "What makes you consider Snape is the quality of his attention in DADA. He isn't watching you the way teachers watch students who might fail. He's watching you the way someone watches a situation they already have context for — the watching of someone who is tracking a development rather than assessing a capability."
+
+  "He also knows things about the Dark Arts that don't come from academic study. His teaching has the specificity of someone who has encountered these spells in the field rather than in books. And his loyalty — you've been turning this question for weeks — is not as legible as either his reputation or his teaching style suggests it should be."
+
+  "If Avery trusted Snape, that would mean something. Something significant, that you don't yet have the context to read."
+
+  choice__
+    @target "A155-CH05-McGonagall-Warning"
+    @action cunning = adj(cunning, 8)
+    @action knowledge = adj(knowledge, 5)
+    "Write it down. Watch him more carefully."
+  __choice
+__section
+
+
+section__
+  @title "A154-CH05-L-Unknown"
+  @textPacing "cinematic"
+  @shot "close"
+
+  l_theory = ""
+
+  "You don't write down a name."
+
+  "The temptation to fill in a blank is one of the most reliable ways to build a false structure — to mistake a satisfying narrative for an accurate one. L. is a person Avery trusted enough to name as the single point of contact for a classified field investigation. That's what you know."
+
+  "What you don't know is large: whether L. is at Hogwarts, whether L. knows Avery is missing, whether L. is still alive and operational, whether L. can be contacted without revealing yourself to whoever sent the threatening note."
+
+  "Treating an unknown as unknown is slower than a hypothesis. It's also less likely to get you killed by acting on wrong information."
+
+  "You mark the line in your notebook — *Trust: L. only* — and leave the name space empty."
+
+  choice__
+    @target "A155-CH05-McGonagall-Warning"
+    @action cunning = adj(cunning, 5)
+    "Hold the question. Keep going."
+  __choice
+__section
+
+
+/* ── 5b: McGONAGALL'S WARNING (A155–A162) ── */
+
+section__
+  @title "A155-CH05-McGonagall-Warning"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Thursday. Transfiguration ends at ten past three and the other students file out in the usual exit pattern — the ones who have somewhere to be first, then the ones who are collecting their things, then the ones who were hoping to talk to someone on the way out."
+
+  "You're nearly at the door when McGonagall speaks your name."
+
+  "Not *Mr.* or *Ms.* Ashford, the formal address she uses for the whole class. Just your surname — the mode she uses when she's speaking to a specific person rather than a student."
+
+  "You stop. The room empties. She closes the door."
+
+  "She doesn't sit. She stands by the window with the particular quality she has when she's going to say something she has decided to say — not in response to you, but as a completed thought that has arrived at the moment it was going to arrive."
+
+  "*I've been watching how you carry yourself this term,* she says. *You carry it well. Better than most would.*"
+
+  "A pause that doesn't require filling."
+
+  "*Your parent is not dead,* she says. *I want you to know that I believe that.*"
+
+  "You look at her. What do you do with that?"
+
+  choice__
+    @target "A156-CH05-Show-Journal-Mcg"
+    "Show her the journal. She just told you she believes Avery is alive. If she's going to be useful she needs to know what you're working with."
+  __choice
+
+  choice__
+    @target "A157-CH05-Ask-Avery-Mcg"
+    "Ask her what she knows about Avery's investigation. She was careful to say *believe*, not *know*. There's a difference. Find out what the difference is."
+  __choice
+
+  choice__
+    @target "A158-CH05-Listen-Only-Mcg"
+    "Say thank you and nothing else. Let her say what she came to say. Information flows faster when you don't interrupt it."
+  __choice
+__section
+
+
+section__
+  @title "A156-CH05-Show-Journal-Mcg"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You take the journal from your bag and put it on the nearest desk between you."
+
+  "McGonagall looks at it. Her expression doesn't change — the professor-stillness she's had for forty years — but something in her attention sharpens in the way it does when she encounters a problem worth taking seriously."
+
+  "She doesn't touch it. *Where did you get this.*"
+
+  "You tell her it was in your trunk. That it's Avery's field journal. That it's encoded with what you believe is a grief-charm cipher."
+
+  "A long pause. She looks at you over the journal with the expression of someone doing rapid assessment — not of you, but of the implications of what she's just been shown."
+
+  "*Who else has seen this.*"
+
+  "You tell her the truth. One person from the compartment scene. No one else."
+
+  "*Keep it that way,* she says. *For now.* She looks at the journal again. *Avery used this system during the first war. I recognise the marker symbols. The fact that it's still active means the dead man's trigger hasn't fired — which means Avery is alive and the journal hasn't been abandoned.*"
+
+  "That's more than you've had confirmed from any other source."
+
+  choice__
+    @target "A159-CH05-McGonagall-Speaks"
+    @action rel_mcgonagall = adjRel(rel_mcgonagall, 20)
+    @action courage = adj(courage, 8)
+    "Ask her about the Wednesday door."
+  __choice
+__section
+
+
+section__
+  @title "A157-CH05-Ask-Avery-Mcg"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You ask what she knows about Avery's investigation — not what she believes, what she knows."
+
+  "She gives you the look she gives students who have asked a more precise version of the question she was expecting. *Reasonably well done* without the praise."
+
+  "*Very little that I can verify,* she says. *I know that Avery was investigating a classified case that the Ministry chose to close rather than continue. I know that the circumstances of the closure were unusual — the speed of it, the level at which the decision was made. I know that Avery had been in contact with at least two individuals who are no longer reachable.*"
+
+  "*And I know,* she continues, *that the last thing Avery sent — before the disappearance — was a letter to a colleague that contained one line. 'Don't let the school interfere with the child.' The colleague passed it to me.*"
+
+  "You sit with that. *Don't let the school interfere with the child.* Avery wanted you here, working, protected. Not pulled into an official investigation. Not handled."
+
+  "McGonagall is looking at you with the expression of someone who has been following instructions and is now revealing that she has been following instructions."
+
+  choice__
+    @target "A159-CH05-McGonagall-Speaks"
+    @action rel_mcgonagall = adjRel(rel_mcgonagall, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Let her continue."
+  __choice
+__section
+
+
+section__
+  @title "A158-CH05-Listen-Only-Mcg"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You say thank you and nothing else."
+
+  "She reads your silence correctly. *All right,* she says. *Then I'll say what I came to say and you can decide what to do with it.*"
+
+  "She moves to stand by the window — the particular stance that means she's done positioning and is now speaking from a place she's settled into."
+
+  "*I knew your parent professionally. Not well, but enough. Avery Ashford was the kind of Auror who didn't make mistakes in the field because they couldn't afford to — someone whose analytical habits made up for what they lacked in brute force. The investigation that led to the disappearance was not an accident. Avery knew the risk. Avery chose it.*"
+
+  "A pause that lets that land."
+
+  "*That tells you something about the stakes. It also tells you something about the information Avery must have had — that it was worth those stakes. Whatever Avery found was important enough to walk toward it even knowing the cost.*"
+
+  "She looks at you. *You're walking toward it too. I thought you should know I can see that.*"
+
+  choice__
+    @target "A159-CH05-McGonagall-Speaks"
+    @action cunning = adj(cunning, 5)
+    "Ask about the Wednesday door."
+  __choice
+__section
+
+
+section__
+  @title "A159-CH05-McGonagall-Speaks"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "McGonagall moves to her desk. She doesn't sit — she stands behind it with the authority of a person who uses furniture the way a skilled duelist uses distance, as a tool of communication rather than a barrier."
+
+  "*There are things I can tell you and things I cannot,* she says. *The line between them is not mine to move. But there are resources that exist within this school that operate outside the formal institutional structure, and if you are doing what I think you are doing, you should know they exist.*"
+
+  "*I will not tell you who else is involved in those resources. I will not confirm the names of any third parties. What I will do is make myself available — Wednesday evenings, my office, seven o'clock — to discuss, in general terms, anything you've found that you feel warrants a second opinion.*"
+
+  "She says *second opinion* the way she says everything — precisely, meaning exactly what it says and nothing more than that."
+
+  "*This is not an offer to take the problem off your hands. It is an offer of a thinking partner who has more historical context than you currently have access to. Whether you use it is your decision.*"
+
+  choice__
+    @target "A160-CH05-Wednesday-Offer"
+    "Wednesday evenings. Seven o'clock."
+  __choice
+__section
+
+
+section__
+  @title "A160-CH05-Wednesday-Offer"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You accept. Not effusively — that's not the register this requires — but clearly."
+
+  "She nods. *Good. Then I'll see you Wednesday.* She doesn't say *first Wednesday* or *this Wednesday*. The assumption is that you'll be there and so will she and the scheduling is understood."
+
+  "She opens the door. The Transfiguration corridor is empty — the kind of after-class emptiness that means the corridor was full eight minutes ago and will be full again in four."
+
+  "You walk out of the room and into the quiet."
+
+  "What you have, standing in that corridor: the confirmation that Avery is probably alive, that the journal is real and working, that McGonagall knew Avery and has been watching you since the term started, and that there is a resource available to you on Wednesday evenings that operates outside the formal Hogwarts structure."
+
+  "What you don't have: the name of anyone else involved, what specifically McGonagall knows, or what *second opinion* means in practice."
+
+  "One more thing, delivered into the absence of anything else to think about:"
+
+  "Avery said *don't let the school interfere with the child.* McGonagall interpreted that as *provide unofficial support.* That's one interpretation."
+
+  "The other interpretation is that Avery didn't trust the school at all."
+
+  choice__
+    @target "A161-CH05-After-McGonagall"
+    "Walk."
+  __choice
+__section
+
+
+section__
+  @title "A161-CH05-After-McGonagall"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The castle has the specific quality it gets on Thursday afternoons in October: the sky has gone the colour of old pewter over the grounds, the lamps in the corridors are lit earlier than they were last month, and the students moving through the halls are carrying the slightly compressed energy of a week that's nearly done and knows it."
+
+  "You walk back toward the common room. You're replaying the conversation — not the content, which you've already filed, but the texture. The specific things McGonagall chose to say and the specific things she chose not to. The offer made through a third-party reference. The care about deniability."
+
+  "Whatever she's part of, it's organised enough to have disciplines around communication."
+
+  "You think about L. You think about the Mirror."
+
+  "You think about Avery writing *don't let the school interfere* and wonder whether that instruction was about the Ministry's reach into the school or the school itself."
+
+  choice__
+    @target "A162-CH05-McGonagall-Convergence"
+    "Head back. Process it later."
+  __choice
+__section
+
+
+section__
+  @title "A162-CH05-McGonagall-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The week turns. Wednesday comes. If you go to McGonagall's office, she is there — tea, no preamble, a willingness to answer in careful incomplete sentences that are, nonetheless, more informative than most complete ones you've had. She knows things about the Ministry's classification processes that the library doesn't have. She knows the name Thicknesse and she doesn't say it with the neutrality of someone who knows him academically."
+
+  "If you don't go, the offer remains open. She doesn't follow up. That's the kind of resource it is."
+
+  "Either way: you have something you didn't have before. Context. The journal is real. Avery is probably alive. Montenegro is a location, not a metaphor. And L. — whatever L. means — is a person Avery trusted enough to name as the single anchor of the whole operation."
+
+  "Now all you need is the rest of the journal."
+
+  choice__
+    @target "A163-CH05-Threatening-Letter"
+    "The week continues."
+  __choice
+__section
+
+
+/* ── 5c: THE THREATENING LETTER (A163–A172) ── */
+
+section__
+  @title "A163-CH05-Threatening-Letter"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (threat_noted == false) {
+    threat_noted = true
+  }
+
+  "Friday morning. You're reaching into your bag for your Transfiguration notes and your hand closes on something that shouldn't be there."
+
+  "A folded piece of parchment, unmarked on the outside. No name, no seal."
+
+  "You open it. Three lines, in the careful hand of someone who has thought about how to write this:"
+
+  "*Stop reading the green journal.*"
+  "*It is not safe for you or for others.*"
+  "*This is the only warning you will receive.*"
+
+  "No signature. No P.F. monogram — that was the Express note. This is different paper, different ink, different hand. Either P.F. has changed their method or this is a second person entirely."
+
+  "The class is about to start. You fold the note and put it back in your bag and sit through the lesson doing the work while a second tier of your attention turns the note over like a stone."
+
+  "Someone in this school knows you have the journal and knows what it is."
+
+  choice__
+    @target "A164-CH05-Investigate-Letter"
+    @when cunning >= 55
+    @disabledText "Requires Cunning ≥ 55 to begin tracking the note's origin."
+    @action cunning = adj(cunning, 8)
+    "Investigate the source. Parchment type, ink, handwriting, delivery method. Someone sent this somehow. That means there's a thread."
+  __choice
+
+  choice__
+    @target "A165-CH05-Destroy-Letter"
+    @action cunning = adj(cunning, 3)
+    "Destroy it after class. You've read it. Notes get traced; no note means no evidence that you received a warning."
+  __choice
+
+  choice__
+    @target "A166-CH05-Keep-Letter"
+    @action knowledge = adj(knowledge, 3)
+    "Keep it carefully. Date it, note the conditions of finding it, compare the handwriting to anything you have. Documentation is its own kind of response."
+  __choice
+__section
+
+
+section__
+  @title "A164-CH05-Investigate-Letter"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "After class you go to the Owlery."
+
+  "Your reasoning: if the note wasn't delivered by hand — and you've been running through everyone who could have accessed your bag and when — then it came by owl. And owl post at Hogwarts routes through the Owlery. Not always directly. But letters sent internally, from student to student, often do."
+
+  "The Owlery at this hour is quiet and smells the way it always does — feathers, rodent, the specific cold of a room open to the Scottish sky. The owls watch you with the indifference of creatures who don't have opinions about people unless there is food involved."
+
+  "You talk to the Owlery keeper — an elderly fourth-year on rotation, not interested in the politics of owl post — and ask about any internal deliveries to your common room in the last forty-eight hours. She checks the log. Three internal deliveries. One from Neville Longbottom (Herbology club notice). One unsigned. One from someone you know."
+
+  "The unsigned one: delivered yesterday evening. Requested by someone who paid for the anonymous routing — a small fee, available to students who know to ask."
+
+  "Which narrows your sender to someone who: knew the system existed, had the coins, and sent the letter yesterday evening."
+
+  choice__
+    @target "A169-CH05-Owlery-Check"
+    "Follow it further."
+  __choice
+__section
+
+
+section__
+  @title "A165-CH05-Destroy-Letter"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "After class you burn it in the fireplace in an empty practice room on the third floor."
+
+  "The parchment catches fast. Ordinary parchment, no charmed resistance. The ink leaves a different residue than standard — slightly darker, slightly faster-burning. Nothing definitive, but interesting."
+
+  "You watch it go. You've already memorised the content and the handwriting, which is precise and slightly leftward-leaning — someone who holds their quill at an unusual angle, possibly left-handed writing right-handed or vice versa."
+
+  "What you've chosen to destroy: the physical evidence. What you've kept: the information that someone in this school knows about the journal and considers your reading of it dangerous enough to warn you once."
+
+  "*Once.* That's the detail that sits with you. Not a request. Not a reason. A single warning, and then the implication that whatever follows will not involve further warnings."
+
+  "Someone has already decided you're a variable to be managed."
+
+  "You need to find out who before they decide you're a variable to be eliminated."
+
+  choice__
+    @target "A167-CH05-Letter-Convergence"
+    "Head to class."
+  __choice
+__section
+
+
+section__
+  @title "A166-CH05-Keep-Letter"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You keep the note. You fold it into the back of your cipher notebook, pressed flat between two blank pages, and make a notation: *date, location found, method (direct bag access or owl), handwriting description.*"
+
+  "Leftward-leaning script, slightly compressed. Someone who writes quickly but carefully — not hurried, but efficient. The quill is fine-pointed; this isn't a standard school quill. Someone who cares about their tools."
+
+  "The parchment is slightly heavier than standard school stock. Not dramatically so, but enough that a fine-grained distinction would catch it. Someone with access to better materials — or to materials brought from outside."
+
+  "You can't identify the sender from this. But you have a profile. And if the sender writes again — or if you find other writing samples — the comparison becomes possible."
+
+  "You think about the Express note. P.F. That was different paper, different hand. Two notes, two people, or one person varying their approach. Both know about the journal. Which means knowledge of the journal is not as contained as you thought."
+
+  choice__
+    @target "A167-CH05-Letter-Convergence"
+    "File it. Keep moving."
+  __choice
+__section
+
+
+section__
+  @title "A167-CH05-Letter-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Whatever you chose with the note, the fact of it remains: someone in this school is monitoring your work closely enough to know you have the journal and to deliver a warning inside Hogwarts without being seen doing it."
+
+  "That's not an accident. That's a system."
+
+  "You think about the Express note and this note. Two in four weeks. Either the same person escalating from a distance to something closer, or two separate people watching you from different positions."
+
+  "Both scenarios are concerning in different ways."
+
+  "The first suggests someone who has been tracking you since before you arrived at Hogwarts. The second suggests a network — multiple people who know about the journal and have coordinated enough to monitor you separately."
+
+  choice__
+    @target "A168-CH05-Letter-Aftermath"
+    "Sit with it."
+  __choice
+__section
+
+
+section__
+  @title "A168-CH05-Letter-Aftermath"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The weekend passes. You add the note to your threat-tracking column — which is now three events deep, if you count the Express corridor lights and the Madam Malkin's encounter alongside the two explicit threats."
+
+  "The pattern, if there is one, suggests that whoever is watching you has access to your movements and is operating from inside the school. The Express encounter was before Hogwarts. The note arrived inside Hogwarts. The escalation is geographic — they're getting closer."
+
+  "You're not afraid of this in the way you expected to be. You're afraid of it the way Avery probably wrote the journal: practically, with the specific attention of someone who understands that the fear is data and the response to the data needs to be functional rather than emotional."
+
+  "What you can't do: tell a teacher, because that triggers the institutional machinery Avery specifically warned against. Tell Harry, because Harry's attention is already thoroughly committed to other things and adding your problem to his seems both unfair and strategically unwise."
+
+  "What you can do: watch. Learn. Try to identify the sender before the sender decides the warning hasn't worked."
+
+  choice__
+    @target "A173-CH05-Second-Decode-Attempt"
+    "Back to the journal."
+  __choice
+__section
+
+
+/* ── OWLERY INVESTIGATION (A169–A172, only from A164) ── */
+
+section__
+  @title "A169-CH05-Owlery-Check"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Anonymous owl post, you discover, is more traceable than it's supposed to be."
+
+  "The Owlery log doesn't record the sender's name for anonymous deliveries — that's the point — but it does record the timing and the fee receipt, and the fee receipt has a transaction number that the Owlery keeper wrote in the ledger out of habit that long predates any concern about privacy."
+
+  "You ask to see the ledger. She lets you look — you're a student, it's a school, the system doesn't have categories for *someone who has a reason to track owl post in detail.*"
+
+  "The transaction number: 7743-B. Paid in coins — three Sickles for the anonymous routing service. Yesterday evening, between seven and nine."
+
+  "You think about yesterday evening between seven and nine. Where you were. Who was where. The window is two hours but it's also inside the castle on a school night, which limits options — most students are in their common rooms or the library during that window."
+
+  choice__
+    @target "A170-CH05-Narrow-Suspects"
+    "Work through the list."
+  __choice
+__section
+
+
+section__
+  @title "A170-CH05-Narrow-Suspects"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You spend the next two days mapping the intersection of: who knows about the journal (short list), who had access to better-quality parchment (longer list), who was unaccounted for between seven and nine on Thursday evening (very hard to verify)."
+
+  "You narrow it to five plausible candidates. You observe each of them over the following week — not obviously, not with any surveillance they'd recognise, but with the specific quality of attention that you've been developing all term: watching people without letting them feel watched."
+
+  "Three of the five drop off the list quickly. Their behaviour doesn't show the compression of someone who sent a warning letter and is now waiting to see if it worked. One of the remaining two is almost certainly not someone who knew about the journal at all — you can't see a mechanism."
+
+  "The fifth is interesting. You can't confirm anything. But the way they look at you in certain shared spaces — not often, not long, but with the specific quality of someone measuring a variable — sits in your notes marked *possible.*"
+
+  choice__
+    @target "A171-CH05-Investigation-Pause"
+    "File it. You don't have enough to act."
+  __choice
+__section
+
+
+section__
+  @title "A171-CH05-Investigation-Pause"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You don't have a name. You have a shortlist of one, who might be innocent and is probably observant enough to notice if you start watching them too closely too quickly."
+
+  "This is where investigation hits its wall: the moment when pushing harder makes you visible to the thing you're investigating. You've been here before with the cipher — that point where forcing it closed it again."
+
+  "You step back. You let the observation become passive rather than active. You file the five candidates and the reasoning behind your current ranking and you move on to the next problem."
+
+  "The spy — if that's what this is — will surface. Either they'll make a mistake, or another piece of evidence will emerge, or the network will clarify itself from another angle."
+
+  "Or they'll make a second move. And second moves are almost always more revealing than first ones."
+
+  choice__
+    @target "A172-CH05-Investigation-Convergence"
+    "Move on."
+  __choice
+__section
+
+
+section__
+  @title "A172-CH05-Investigation-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The investigation into the letter's source arrives at a partial result: you have a shortlist, a working profile, and the knowledge that someone in the school operates with enough tradecraft to use anonymous owl post and carefully chosen parchment. That's more than you had."
+
+  "What you don't have: a confirmed identity. That comes later, or it comes from a different direction."
+
+  "For now: keep watching. Keep the notes. And get back to the cipher."
+
+  choice__
+    @target "A173-CH05-Second-Decode-Attempt"
+    "Back to the journal."
+  __choice
+__section
+
+
+/* ── 5d: SECOND DECODE ATTEMPT (A173–A178) ── */
+
+section__
+  @title "A173-CH05-Second-Decode-Attempt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "November. You've had the first journal section for two weeks. The phrase *Object located. Montenegro.* and *Trust: L. only.* have been living in your notebook in capitals while you've been trying to move to the section immediately following."
+
+  "Section two in the journal is denser than section one. The anchor symbols — the emotional markers — appear at different intervals. Section one was written in a specific state of fear, controlled. Section two feels different: the anchor spacing is longer, the symbolic clusters tighter. Something changed between the writing of section one and section two. The emotional register shifted."
+
+  "You try to map the shift. Fear → focus? Fear → grief? The cipher key — whatever personal emotional state unlocks it — might be different for each section."
+
+  "That's either a very sophisticated cipher design or an organic one that evolved as Avery's emotional state changed during the investigation."
+
+  "Either way, section one's key doesn't open section two."
+
+  choice__
+    @target "A174-CH05-Decode-Struggle"
+    "Try the register from Avery's last days before the disappearance."
+  __choice
+
+  choice__
+    @target "A174-CH05-Decode-Struggle"
+    @action knowledge = adj(knowledge, 3)
+    "Try approaching it academically first — map the anchor intervals, calculate the rhythm. Information before intuition."
+  __choice
+__section
+
+
+section__
+  @title "A174-CH05-Decode-Struggle"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You spend three evenings on section two."
+
+  "On the first evening you map the anchor intervals. On the second you attempt three different emotional registers — fear as you imagined it in section one, a flatter more analytical state, and what you think of as *operational urgency,* the feeling of someone who has very little time and very much to communicate. On the third evening you try all of them again in the opposite order."
+
+  "The section doesn't open."
+
+  "What you get instead is a feeling — not a decryption, but a sense — that section two was written later in the investigation, when Avery had moved from initial discovery to something more specific. The compression of the text is different. Section one was an overview. Section two is a detail."
+
+  "A detail you can't reach."
+
+  "You close the notebook at midnight with the specific frustration of having done everything right and still gotten nowhere. Which is its own kind of data, even if it's not satisfying."
+
+  choice__
+    @target "A175-CH05-Second-Decode-Stalls"
+    "Stop for the night."
+  __choice
+__section
+
+
+section__
+  @title "A175-CH05-Second-Decode-Stalls"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The second section stays closed."
+
+  "You adjust your understanding of how the cipher works: not one key for all sections, but a different key for each. Which means you need to decode sections in sequence — you can't skip. And it means each section requires arriving at the correct emotional register for that *specific moment* of Avery's investigation, which you won't be able to do until you have more context about what Avery was experiencing when each section was written."
+
+  "A recursive problem: you need the contents to understand the context, and you need the context to decode the contents."
+
+  "What you can do is work with what you have. Section one gives you: Object located. Montenegro. Single trusted contact: L. That's geography and human network. It's not nothing."
+
+  "What section two probably gives you — based on the compression and the urgency — is operational detail. Where in Montenegro. What the object looks like. What to do with it."
+
+  "You don't have that yet. But you know it exists."
+
+  choice__
+    @target "A176-CH05-What-You-Know"
+    "Regroup."
+  __choice
+__section
+
+
+section__
+  @title "A176-CH05-What-You-Know"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Mid-November. Five weeks into the term. Here is what you have:"
+
+  "One decoded journal section: the object has been located, it's in Montenegro, the single trusted contact is L. The dead man's trigger is still active, which means Avery is alive."
+
+  "A theory about L.: three possible candidates if you've speculated, none if you've chosen not to."
+
+  "McGonagall's unofficial resource, available Wednesday evenings. Her confirmation that Avery's journal is real and was used before."
+
+  "A threatening letter delivered inside Hogwarts. Possibly from the same person as the Express note, possibly from a second person. Either way: someone in this school knows about the journal."
+
+  "An investigation into the letter's source that has produced a shortlist but no confirmed name."
+
+  "And section two of the journal: dense, urgent, inaccessible. Requiring a different emotional key that you don't yet have the context to identify."
+
+  "Here is what you don't have: the object's specific location. Section two or any subsequent sections. L.'s identity confirmed. The name behind the threatening notes."
+
+  choice__
+    @target "A177-CH05-Journal-Section-2-Outline"
+    "Work with the outline."
+  __choice
+__section
+
+
+section__
+  @title "A177-CH05-Journal-Section-2-Outline"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You make a list of what section two is probably about, based on structure rather than content:"
+
+  "It was written after section one — probably days to weeks later, based on the different anchor-symbol distribution. The emotional register suggests urgency without immediate physical danger. Avery was working, not running."
+
+  "The symbol density is higher in section two than section one, which might mean it contains more proper nouns — more names, locations, objects. Or more abstract concepts. Or both."
+
+  "There's one cluster of symbols in section two that appears four times. Four repetitions of the same cluster in a section this size is unusual — it's almost certainly a specific key name or location. The Resonance Mirror itself, possibly. Or Montenegro, repeated. Or something you haven't encountered yet."
+
+  "You write in the margin: *Section 2 = operational specifics. Decode when you have more context about the investigation's timeline. Priority: find what changed Avery's emotional register between Section 1 and Section 2. Something happened.*"
+
+  choice__
+    @target "A178-CH05-Journal-Implications"
+    "Note it."
+  __choice
+__section
+
+
+section__
+  @title "A178-CH05-Journal-Implications"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The journal has a structure you didn't initially see: it's not a linear account. It's a record of escalating discovery, each section written from a different position in Avery's understanding of the situation."
+
+  "Section one: initial discovery. The object is real, it's in Montenegro, here is who to trust."
+  "Section two: something happened. Something changed the situation enough that Avery wrote again, in a different emotional state, with different urgency."
+
+  "The question that sits with everything else you're carrying: *what happened between sections one and two?*"
+
+  "You don't have the answer. But now you know to look for it — not in the cipher, but in the record of Avery's investigation. If that record exists anywhere."
+
+  "McGonagall might know. L. would certainly know. The Ministry case file would, if it exists and isn't locked."
+
+  "Three possible sources for a piece of information you don't yet have a direct route to."
+
+  choice__
+    @target "A179-CH05-Romance-Beat-Hub"
+    "Let it sit. There's someone you should check in with."
+  __choice
+__section
+
+
+/* ── 5e: ROMANCE BEAT (A179–A181) ── */
+
+section__
+  @title "A179-CH05-Romance-Beat-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Saturday evening. November has settled into the castle in the way it does — the cold coming in through the old stone, the fires in every common room working overtime, the students spending evenings in slightly warmer configurations than they did in October."
+
+  "You've been at the desk for most of the afternoon. Your eyes are tired in the specific way that comes from reading cipher notation for too long. You pack up the notebook."
+
+  if__ (romance_active != "") {
+    "There is someone you've been meaning to talk to — not about the journal, not about any of this. Just. Talking to."
+
+    choice__
+      @target "A180-CH05-Romance-Beat-Moment"
+      "Find them."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    "You sit for a moment in the empty common room space, and there's a specific quality to the aloneness — not loneliness exactly, but something adjacent. The weight of carrying something no one else can carry with you."
+
+    "Which is fine. You chose this. Or it chose you. Either way, it's yours."
+
+    choice__
+      @target "A181-CH05-Romance-Beat-Convergence"
+      @action cunning = adj(cunning, 3)
+      "Go to bed. Tomorrow is another week."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A180-CH05-Romance-Beat-Moment"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "elara") {
+    "Elara is in the library — she's always in the library at this hour on Saturdays, which is either coincidence or the pattern of a person who has decided they like running into you there."
+
+    "She looks up when you sit down. She doesn't ask what's wrong, which is something you've noticed about her — she reads the difference between *wants to talk about something* and *wants company* without needing it explained."
+
+    "You talk about other things. A theory she's working on about Charms-based cartography. A book she thinks you'd find irritating and therefore necessary. After a while she mentions, without making it a bigger thing than it is, that you look like someone who has been thinking in tight circles all week."
+
+    "*You do that thing,* she says, *where you hold everything very correctly. Even when nothing is correct.*"
+
+    "It's a precise and uncomfortable observation."
+
+    choice__
+      @target "A181-CH05-Romance-Beat-Convergence"
+      @action rel_elara = adjRel(rel_elara, 8)
+      @action empathy = adj(empathy, 5)
+      "Stay for another hour. It helps."
+    __choice
+  }
+
+  if__ (romance_active == "marcus") {
+    "Marcus is in the Slytherin study corridor, which is not the common room and not the library — the in-between space that certain sixth-years have claimed as the territory of people who need to think without an audience."
+
+    "He nods when you come in. He doesn't ask what you're doing there. You're both people who need space to think without an audience. The corridor is big enough."
+
+    "After a while he says, without looking up from whatever he's reading: *The cipher's still stuck.*"
+
+    "It's not a question."
+
+    "*Section two,* you tell him."
+
+    "He's quiet for a moment. Then: *My grandfather said the worst section of any grief-charmed cipher is always the second one. The first is written in the highest clarity of the original emotion. The second is written once that emotion has started to become familiar — which means the writer is no longer in the pure state, but the cipher still requires it.*"
+
+    "That's more useful than anything you've found this week."
+
+    choice__
+      @target "A181-CH05-Romance-Beat-Convergence"
+      @action rel_marcus = adjRel(rel_marcus, 8)
+      @action knowledge = adj(knowledge, 5)
+      "Thank him. File the observation."
+    __choice
+  }
+
+  if__ (romance_active == "jade") {
+    "Jade finds you, which is different from finding Jade. She appears at the common room window where you've been sitting staring at your notebook with the specific energy of someone who has decided that what you need is to stop staring at your notebook."
+
+    "*Come to the pitch,* she says. *I need to run some tactical drills and you look like someone who needs to be outside for ten minutes.*"
+
+    "The pitch in November is cold in a way that feels like a correction rather than a punishment. You stand at the edge of the stands while she runs drills below, her broom-work efficient and focused, and for the first time all week the cipher falls out of the front of your mind completely."
+
+    "When she comes back up she lands next to you and sits with her broom across her knees and doesn't say anything about the journal or the notes or any of it. Just: *Better?*"
+
+    "Yeah. Better."
+
+    choice__
+      @target "A181-CH05-Romance-Beat-Convergence"
+      @action rel_jade = adjRel(rel_jade, 8)
+      @action empathy = adj(empathy, 5)
+      "Head back together."
+    __choice
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian is in the Hufflepuff common room at the table near the far window, which you've come to understand is his table — the place he goes when he needs to think quietly, which looks from the outside like reading but is actually something slower and more internal."
+
+    "He looks up when you come over and makes room without being asked."
+
+    "You sit. You don't immediately say anything. He doesn't require you to."
+
+    "Eventually you tell him the second section of the cipher won't open. That the emotional key must be different for each section and you don't yet know what section two requires."
+
+    "He considers this. *What do you know about where Avery was, emotionally, between writing the first section and the second?*"
+
+    "*Not enough,* you tell him.*"
+
+    "*Then,* he says, *you probably need to find something that tells you. Not the cipher. Something external. A letter, a date, a record.* A pause. *Sometimes the key to a document isn't in the document.*"
+
+    "He says it the way he says most things — simply, without marking it as significant. It is significant."
+
+    choice__
+      @target "A181-CH05-Romance-Beat-Convergence"
+      @action rel_sebastian = adjRel(rel_sebastian, 8)
+      @action knowledge = adj(knowledge, 5)
+      "Thank him. It's a good point."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A181-CH05-Romance-Beat-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The evening passes. The castle settles."
+
+  "Whatever the conversation was — however long, however close, however much or little was said — you carry something from it that you didn't have before. Not information, exactly. The other kind of resource: the awareness that you are not entirely alone in this."
+
+  "Which is not nothing. In fact, in the specific context of everything you're carrying, it's quite a lot."
+
+  choice__
+    @target "A182-CH05-October-Wind-Down"
+    "Morning."
+  __choice
+__section
+
+
+/* ── 5f: END CHAPTER FIVE (A182–A186) ── */
+
+section__
+  @title "A182-CH05-October-Wind-Down"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The end of October. Then the beginning of November. The calendar of the school year does what it does — classes, meals, homework, the specific pace of an institution that has been running for centuries and knows how to carry students through time whether they're ready or not."
+
+  "The grounds have gone the colour of late autumn: the lawns brown-edged, the lake flat and grey under overcast skies, the owls visible earlier in the evening as the light drops faster. Hagrid has put flame-lamps in front of his hut. The Whomping Willow is between bouts of activity, which makes the grounds feel briefly navigable."
+
+  "You have learned to work in the small spaces between the official schedule: library after dinner, cipher notebook in DADA when Snape is lecturing with his back to the room, fifteen minutes on a Saturday morning before anyone else is up."
+
+  "The investigation exists inside the normal life of sixth year rather than instead of it. You are managing. Maybe just."
+
+  choice__
+    @target "A183-CH05-State-Of-Play"
+    "Take stock."
+  __choice
+__section
+
+
+section__
+  @title "A183-CH05-State-Of-Play"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Here is the end-of-chapter state of play, held in your head while you walk from the library to dinner on a Thursday in mid-November:"
+
+  "The journal: section one decoded, section two inaccessible, structure understood. The cipher requires a different emotional key for each section. You need more context about Avery's investigation to identify what those keys are."
+
+  "The network: McGonagall knows, officially unofficially. One person from the romance arc knows the outline, not the full picture. Hermione knows there's a cipher, if you showed her the journal. No one else."
+
+  "The threats: two notes. At least one person in the school knows about the journal. Possibly two."
+
+  "L.: a hypothesis or a blank, depending on what you chose to do with the speculation."
+
+  "Draco Malfoy: moving something through the school at unusual hours, looking increasingly unwell, connected to the seventh floor in a way you haven't been able to explain. Separately alarming."
+
+  "The war outside: present. Not central to your days, but present — in the newspaper, in the conversations of older students who have siblings in exposed positions, in Dumbledore's absences."
+
+  choice__
+    @target "A184-CH05-November-Threshold"
+    "Almost December."
+  __choice
+__section
+
+
+section__
+  @title "A184-CH05-November-Threshold"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Late November. The days have shortened to the point where you leave dinner in the dark and it feels later than it is, the body registering night as a signal it hasn't needed to override since October."
+
+  "There are two things that are about to happen — you can feel them coming the way you feel weather changes before they arrive, in the pressure of certain conversations and the behaviour of certain people."
+
+  "The first is Draco. He has been to the seventh floor twelve times in the past three weeks by your count. Whatever he's doing up there, the pace is accelerating."
+
+  "The second is the journal. You're close to section two — not in terms of decryption, but in terms of understanding what you need. Sebastian's observation about external records: *sometimes the key isn't in the document.* That's going to matter. Something is going to give you the context for section two, and it's going to come from outside the cipher itself."
+
+  "You're not sure which happens first."
+
+  "You're not sure which matters more."
+
+  choice__
+    @target "A185-CH05-Chapter-Close"
+    "One more week."
+  __choice
+__section
+
+
+section__
+  @title "A185-CH05-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of November. The first term is more than half gone."
+
+  "What this chapter of sixth year has been: a month of careful, incremental, often frustrating investigation. One decoded journal section. One threatening letter. McGonagall's unofficial resource. A threatening note investigated to a shortlist with no confirmation. L. as a theory or a blank."
+
+  "And in every corridor, in every meal, in every class: Draco Malfoy. Moving. Pale. Urgent."
+
+  "The journal has spoken once. You've heard: *Object located. Montenegro. Trust: L. only.*"
+
+  "The rest of it is still waiting."
+
+  "You will need something new to crack section two. Something real — not more academic analysis, not more pattern-mapping. Something with the weight of actual experience behind it."
+
+  "It's coming. You can feel it the way you felt the term beginning: as a pressure gathering in advance of something that is already in motion."
+
+  choice__
+    @target "A186-CH05-To-Ch6"
+    "Chapter Six."
+  __choice
+__section
+
+
+section__
+  @title "A186-CH05-To-Ch6"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "December begins."
+
+  "And Draco Malfoy goes to the seventh floor again."
+
+  choice__
+    @target "A191-CH06-Draco-Seventh-Floor"
+    "Follow this thread."
+  __choice
+__section

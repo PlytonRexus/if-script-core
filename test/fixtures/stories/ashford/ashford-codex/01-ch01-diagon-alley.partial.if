@@ -1,0 +1,795 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 1
+   01-ch01-diagon-alley.partial.if
+
+   Chapter 1: The Leaky Cauldron
+   The summer ends. The journal waits. Sixth year begins.
+
+   Section range: A001–A030
+   ============================================================ */
+
+scene__
+  @name "CH01: The Leaky Cauldron"
+  @first "A001-CH01-Opening"
+  @sceneTransition "fade"
+  @sections "A001-CH01-Opening" "A002-CH01-Gryffindor-Start" "A003-CH01-Ravenclaw-Start" "A004-CH01-Hufflepuff-Start" "A005-CH01-Slytherin-Start" "A006-CH01-Diagon-Alley" "A007-CH01-Madam-Malkins" "A008-CH01-Draco-Nod" "A009-CH01-Draco-Lookaway" "A010-CH01-Draco-Taunt" "A011-CH01-Draco-Assess" "A012-CH01-After-Malkins" "A013-CH01-Flourish-Blotts" "A014-CH01-Quidditch-Supplies" "A015-CH01-Knockturn-Glimpse" "A016-CH01-Leaky-Cauldron-Tea" "A017-CH01-Ministry-Overheard" "A018-CH01-Ministry-Pretend" "A019-CH01-Ministry-Confront" "A020-CH01-Ministry-Follow" "A021-CH01-Ministry-Leave" "A022-CH01-Journal-Found" "A023-CH01-Journal-Open" "A024-CH01-Journal-Page" "A025-CH01-Journal-Cipher" "A026-CH01-Journal-Emotion" "A027-CH01-Journal-Search" "A028-CH01-Platform-Convergence" "A029-CH01-Avery-Memory" "A030-CH01-Board-Train"
+__scene
+
+
+/* ── A001 — OPENING / HOUSE SELECTION ── */
+
+section__
+  @title "A001-CH01-Opening"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The Gringotts receipt says two hundred and seventeen Galleons. You have read it four times since leaving the bank, which is either thoroughness or avoidance, and you're not sure you care which."
+
+  "The Leaky Cauldron smells of stale butterbeer and coal smoke. August light falls through its grimy windows in long yellow bars. The tables are full of families doing last-minute school shopping, most of them moving with the particular focused energy of people who've decided not to linger in public spaces any longer than necessary. Three weeks ago, the Dark Mark appeared over Diagon Alley for the first time since 1981. Nobody is talking about it. Everyone is thinking about it."
+
+  "Avery Ashford — Auror, parent, the person who was supposed to be standing beside you today — has been missing for ninety-three days. The Ministry classified the disappearance as voluntary in June and has since declined to answer your letters. You have sent seven."
+
+  "In the false bottom of Avery's desk, tucked inside an Auror procedural manual, you found a leather field journal. Its pages are almost entirely encrypted — tight columns of letters and symbols you've spent two months failing to decode. One line, in fading green ink, survived whatever charm sealed the rest: *Resonance Mirror — Object located. Montenegro. Trust: L. only.*"
+
+  "Tomorrow is Platform 9¾. Tonight is Diagon Alley, and the question of what you are walking into this year."
+
+  "Who are you, in the place Hogwarts made you?"
+
+  choice__
+    @target "A002-CH01-Gryffindor-Start"
+    @action house = "gryffindor"
+    @action house_rep = adj(house_rep, 5)
+    @action courage = adj(courage, 5)
+    "A Gryffindor. Courage is the family trade. It's gotten Avery into trouble. Now it has to get them out."
+  __choice
+
+  choice__
+    @target "A003-CH01-Ravenclaw-Start"
+    @action house = "ravenclaw"
+    @action house_rep = adj(house_rep, 5)
+    @action knowledge = adj(knowledge, 5)
+    "A Ravenclaw. Understanding is what you have. The cipher will fall to it, eventually."
+  __choice
+
+  choice__
+    @target "A004-CH01-Hufflepuff-Start"
+    @action house = "hufflepuff"
+    @action house_rep = adj(house_rep, 5)
+    @action empathy = adj(empathy, 5)
+    "A Hufflepuff. You don't leave your people. Not even the missing ones. Especially not them."
+  __choice
+
+  choice__
+    @target "A005-CH01-Slytherin-Start"
+    @action house = "slytherin"
+    @action house_rep = adj(house_rep, 5)
+    @action cunning = adj(cunning, 5)
+    "A Slytherin. You want the truth, and you're not above getting it through unpleasant means."
+  __choice
+__section
+
+
+/* ── A002–A005 — HOUSE INTROS ── */
+
+section__
+  @title "A002-CH01-Gryffindor-Start"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Sorting Hat placed you in Gryffindor because something in your eleven-year-old chest declared itself without apology: *I will go toward the thing that frightens me.* Five years on, you understand that declaration costs more than you anticipated."
+
+  "Avery Ashford was spectacularly Gryffindor — still *is*, you correct yourself. Present tense. Avery went toward the frightening thing and the Ministry's response was to call it voluntary and file it away. So perhaps Gryffindor isn't the whole answer this year. Perhaps this year requires something colder."
+
+  "The scarlet and gold in your trunk feel like a question: *what would Avery do?* Avery would be in motion. You shoulder your bag and step into Diagon Alley."
+
+  choice__
+    @target "A006-CH01-Diagon-Alley"
+    "Step into the alley."
+  __choice
+__section
+
+
+section__
+  @title "A003-CH01-Ravenclaw-Start"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Sorting Hat lingered on you. You found out later it nearly put you in Hufflepuff — at eleven that felt like an insult; at sixteen you understand it differently. It placed you in Ravenclaw because you want to understand things. Not just know them. Understand."
+
+  "Ninety-three days of that instinct applied to Avery's disappearance: you've produced four working theories, seventeen discarded leads, and one encrypted journal you can't crack. You understand the *shape* of the problem. A mirror, a location, an initial. What you don't have is the connection — and that has been the Ravenclaw frustration of this entire summer."
+
+  "You pick up your bag. The understanding will come. It always does, eventually. This year you need it to come faster."
+
+  choice__
+    @target "A006-CH01-Diagon-Alley"
+    "Step into the alley."
+  __choice
+__section
+
+
+section__
+  @title "A004-CH01-Hufflepuff-Start"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Hufflepuff is the house people explain apologetically. *Oh, they're the loyal ones.* As if loyalty were a consolation prize for not being clever enough or brave enough for somewhere else. As if the quality of *staying* were less than the quality of charging forward."
+
+  "Avery stayed — for years, in the most dangerous profession available, and came home every time. Until they didn't. And the Ministry said *voluntary disappearance* and closed the case. The word *voluntary* has lived in you for ninety-three days like a splinter."
+
+  "Loyalty is a practice, not a feeling. You are going to find Avery. You are going to stay on that no matter what sixth year throws at you."
+
+  choice__
+    @target "A006-CH01-Diagon-Alley"
+    "Step into the alley."
+  __choice
+__section
+
+
+section__
+  @title "A005-CH01-Slytherin-Start"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Slytherin, according to the hat, because you see angles. You see who benefits and who doesn't, what's being said and what's being omitted, where the pressure points in a room are and who's applying them. At eleven this felt like cheating. At sixteen it feels like the only advantage you have."
+
+  "Avery's case has an angle. The Ministry classified it with a speed that suggests someone wanted it classified quickly. An Auror goes dark, a journal gets left behind in cipher, and the bureaucratic response is *voluntary* and *case closed*. That's not incompetence. That's management."
+
+  "The green and silver in your trunk are a reminder: you play the long game. You find the angle. You've been doing that all summer. Six more months of it, inside Hogwarts, with access to people and resources the Ministry doesn't know you have."
+
+  choice__
+    @target "A006-CH01-Diagon-Alley"
+    "Step into the alley."
+  __choice
+__section
+
+
+/* ── A006 — DIAGON ALLEY ── */
+
+section__
+  @title "A006-CH01-Diagon-Alley"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Diagon Alley is performing normality very hard today."
+
+  "The shops are open. Madam Malkin's has a sign in the window: *New sixth-year robes — fitted while you wait.* Flourish and Blotts has stacked the new Defence Against the Dark Arts texts in a pyramid near the door. Florean Fortescue's ice cream parlour is shuttered and dark, which nobody is discussing out loud. The families shopping for cauldrons and telescopes are moving a little faster than they used to."
+
+  "It is late August, 1996. Three weeks since the Dark Mark appeared over this alley for the first time since 1981. The papers ran it on the front page for two days before switching to a Ministry spokesperson who used the phrase *isolated incident* four times in six sentences."
+
+  "You orient toward Madam Malkin's. Robes first. Then books. The journal sits at the bottom of your bag, wrapped in a jumper, not making a sound."
+
+  choice__
+    @target "A007-CH01-Madam-Malkins"
+    "Head to Madam Malkin's."
+  __choice
+__section
+
+
+/* ── A007 — MADAM MALKIN'S / DRACO ── */
+
+section__
+  @title "A007-CH01-Madam-Malkins"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Draco Malfoy is already in Madam Malkin's when you arrive, standing on a fitting podium with his arms slightly out while a tape measure circles his waist."
+
+  "He looks different from last year. Thinner — not Quidditch-training thin, but the kind of thin that happens when someone has forgotten to eat because something is taking up too much of their attention. There are shadows under his eyes that his usual composure doesn't quite conceal. He holds himself carefully, like someone aware of being watched and managing, rather than dismissing, the surveillance."
+
+  "He notices you when you step onto the adjacent platform. Something passes across his expression — a ripple, quickly stilled. Not the open contempt he used to wear without effort. This reads more like the calculation of someone who has other problems and would prefer not to add you to the list."
+
+  "Madam Malkin bustles between you both. The tape measure keeps moving. What do you do?"
+
+  choice__
+    @target "A008-CH01-Draco-Nod"
+    @action rel_draco = adjRel(rel_draco, 5)
+    @action courage = adj(courage, 3)
+    "Nod. Neutral acknowledgement. Whatever this year is, you don't need to start it with hostility."
+  __choice
+
+  choice__
+    @target "A009-CH01-Draco-Lookaway"
+    @action cunning = adj(cunning, 3)
+    "Look away. He has his thoughts; you have yours. Some things are simpler when left alone."
+  __choice
+
+  if__ (house == "gryffindor") {
+    choice__
+      @target "A010-CH01-Draco-Taunt"
+      @action rel_draco = adjRel(rel_draco, -10)
+      @action courage = adj(courage, 5)
+      @action house_rep = adj(house_rep, 3)
+      "Say something pointed. The old reflex. It would feel very satisfying for about three seconds."
+    __choice
+  }
+
+  choice__
+    @target "A011-CH01-Draco-Assess"
+    @action cunning = adj(cunning, 5)
+    @action knowledge = adj(knowledge, 2)
+    "Watch him carefully. Something about him this year is different enough to be worth noting."
+  __choice
+__section
+
+
+/* ── A008–A011 — DRACO CHOICE OUTCOMES ── */
+
+section__
+  @title "A008-CH01-Draco-Nod"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You nod at him — brief, unloaded, the sort of nod two people exchange when they share a space and have agreed not to make it a problem."
+
+  "He looks at you for a moment longer than expected. Then, slowly, he nods back."
+
+  "It's not warmth. It's not any kind of declaration. But it's something slightly more than the automatic contempt that's characterised the last five years, and you're not sure what to do with that except file it somewhere and keep standing still while Madam Malkin finishes your sleeves."
+
+  "He looks away first. You pay for your robes and walk out into the noise of the alley. His posture, from behind, was like someone braced for something he hadn't told anyone about."
+
+  choice__
+    @target "A012-CH01-After-Malkins"
+    "Move on."
+  __choice
+__section
+
+
+section__
+  @title "A009-CH01-Draco-Lookaway"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You look away. He looks away. Madam Malkin's tape measure circles both of you in a steady, professional silence, and for five minutes you each pretend to be absorbed by the view of the alley through the shop window."
+
+  "It's the easiest thing you've done all summer, and you're briefly grateful for it."
+
+  "What strikes you, walking out with your new robes rolled under your arm, isn't anything Malfoy did — it's what he didn't. Last year he would have had something to say. Last year the silence would have been a performance, deliberate and pointed. This year it reads more like absence. Like something is taking up the space where the performance used to be."
+
+  "You file that observation away without knowing what to do with it and step back into the sunlit alley."
+
+  choice__
+    @target "A012-CH01-After-Malkins"
+    "Move on."
+  __choice
+__section
+
+
+section__
+  @title "A010-CH01-Draco-Taunt"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The old reflex wins. You say something — nothing particularly clever, just the slight edge of a comment about whether his robes need extra material to cover the permanent smirk."
+
+  "He looks at you. Doesn't sputter. Doesn't produce the sharp comeback. Just looks at you with an expression you can't decode — somewhere between contempt and a kind of tired distance, like a person watching someone argue about a game they've stopped playing."
+
+  "*Oh,* something in you thinks."
+
+  "He turns back to Madam Malkin without another word. You pay for your robes and leave with the particular dissatisfaction of an insult that didn't land because the target wasn't there anymore. Whatever this rivalry was, he's left it. You're not sure what that means. You're also not sure you like it."
+
+  choice__
+    @target "A012-CH01-After-Malkins"
+    "Walk out."
+  __choice
+__section
+
+
+section__
+  @title "A011-CH01-Draco-Assess"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You watch him. You have the advantage of practised observation — the kind that doesn't look like watching. While Madam Malkin fusses with your shoulder seam, you take a careful inventory: the shadows under his eyes, the controlled quality of his stillness, the way his jaw tightens once when someone passes the window."
+
+  "That last one is interesting. The person outside is a Ministry official with a clipboard — the kind of routine bureaucratic presence that usually produces nothing more than mild Malfoy disdain. The jaw-tightening suggests something closer to threat assessment. *Am I at risk here? Can they see me?*"
+
+  "You've seen that calculation before. You've run it yourself, in the weeks after Avery disappeared and every Ministry owl arrived."
+
+  "Draco Malfoy is afraid of something specific. Not you, not this shop. Something external. Something he's been managing since before summer started. You don't know what it means yet, but the observation goes in the file."
+
+  choice__
+    @target "A012-CH01-After-Malkins"
+    "Collect your robes and move on."
+  __choice
+__section
+
+
+/* ── A012 — AFTER MALKIN'S ── */
+
+section__
+  @title "A012-CH01-After-Malkins"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Outside Madam Malkin's, the alley opens up in both directions — west toward Gringotts and the entrance arch, east toward Knockturn Alley and its shadow."
+
+  "You adjust the strap of your bag. New robes under one arm. The sun is past its peak, warm on the back of your neck. The alley is full of sixth- and seventh-years doing their last-day errands, moving with the specific focused energy of people who have learned not to linger."
+
+  "Flourish and Blotts is two minutes east. Quality Quidditch Supplies is just past it. You could use a new pair of Keeper's gloves regardless of whether you make the team again this year."
+
+  "The journal makes no sound from the bottom of your bag. You didn't expect it to. But you're aware of it the way you're aware of a bruise — a presence defined by pressure rather than noise."
+
+  choice__
+    @target "A013-CH01-Flourish-Blotts"
+    "Head to Flourish and Blotts."
+  __choice
+__section
+
+
+/* ── A013 — FLOURISH & BLOTTS ── */
+
+section__
+  @title "A013-CH01-Flourish-Blotts"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Flourish and Blotts is busier than you'd like. You navigate the stacks systematically — *Advanced Potion-Making*, Snape's Defence text, the new Transfiguration volume that weighs as much as a small cauldron."
+
+  "You're reaching for the Transfiguration book when you almost collide with someone at the same shelf. A girl, Ravenclaw scarf, dark eyes behind round wire-rimmed glasses. She pulls the book first and holds it out with the automatic courtesy of someone who assumes the collision was equally her fault."
+
+  "She glances at the corner of your bag, where the edge of Avery's journal is just visible above your school list. Something in her expression sharpens before she looks carefully away."
+
+  choice__
+    @target "A014-CH01-Quidditch-Supplies"
+    @action rel_elara = adjRel(rel_elara, 5)
+    "Say something. The moment is brief and she's already turning, but the look she gave the journal — that was recognition, not curiosity."
+  __choice
+
+  choice__
+    @target "A014-CH01-Quidditch-Supplies"
+    "Let it go. You have a list to finish and she's already moved on. You note her face anyway."
+  __choice
+__section
+
+
+/* ── A014 — QUIDDITCH SUPPLIES ── */
+
+section__
+  @title "A014-CH01-Quidditch-Supplies"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Quality Quidditch Supplies is a relief after the bookshop — less crowded, better lit, smelling of leather polish and broom wax. You're examining a display of Keeper's gloves when someone drops into the space beside you with the comfortable ease of a person who assumes their presence is welcome."
+
+  "Jade Okafor. She's holding a pair of Chaser's grips and turning them over with expert attention, and then she looks at you and her face opens into a grin. She asks how your summer was with the directness of someone who actually wants to know."
+
+  choice__
+    @target "A016-CH01-Leaky-Cauldron-Tea"
+    @action rel_jade = adjRel(rel_jade, 10)
+    "Talk to her. Tell her some version of the summer — not all of it, but enough. Her attention is genuine and that's rarer than it sounds right now."
+  __choice
+
+  choice__
+    @target "A016-CH01-Leaky-Cauldron-Tea"
+    @action rel_jade = adjRel(rel_jade, 5)
+    "Keep it brief. Something fine, something light. She accepts it with the grace of someone who can tell the difference between fine and fine."
+  __choice
+
+  choice__
+    @target "A015-CH01-Knockturn-Glimpse"
+    @when cunning >= 45
+    @disabledText "Requires Cunning ≥ 45."
+    @action cunning = adj(cunning, 3)
+    "Make an excuse and slip toward Knockturn Alley. You caught something in the window of Borgin and Burkes on your way in. You want a better look."
+  __choice
+__section
+
+
+/* ── A015 — KNOCKTURN GLIMPSE ── */
+
+section__
+  @title "A015-CH01-Knockturn-Glimpse"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Knockturn Alley receives less light than the main street — not quite dark in August, but the shadows are deeper and the shop windows display objects that sit slightly wrong in peripheral vision."
+
+  "You don't go past Borgin and Burkes. You don't need to."
+
+  "What you saw from the corner: Marcus Calloway, sixth-year Slytherin, stepping out of the shop's entrance carrying something wrapped in oilskin tucked carefully under his arm. Not the absent-minded way you carry books. The deliberate way of someone who would prefer nobody see what they're holding."
+
+  "He doesn't see you."
+
+  "Marcus Calloway. Old money, old connections — the kind of connections that have become deeply unfashionable since the Dark Mark went up and people started counting who they'd seen at the same dinner tables as confirmed Death Eaters. What he's doing in Borgin and Burkes in late August, carrying something in oilskin, you can't say. But the image stays with you as you walk back to the main alley."
+
+  choice__
+    @target "A016-CH01-Leaky-Cauldron-Tea"
+    @action rel_marcus = adjRel(rel_marcus, 3)
+    "Return to the main alley. File it."
+  __choice
+__section
+
+
+/* ── A016 — LEAKY CAULDRON TEA ── */
+
+section__
+  @title "A016-CH01-Leaky-Cauldron-Tea"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Tom the barman sets a cup of tea in front of you before you've asked for it. This is one of the small reliable kindnesses of the Leaky Cauldron — the building has been serving people all summer and has learned to read tired faces."
+
+  "You wrap both hands around the cup and look at the remaining hour of August afternoon. Tomorrow morning: King's Cross. Tomorrow afternoon: the Great Hall, Dumbledore saying something measured and appropriate, the professors projecting *business as usual* over whatever is currently alarming them."
+
+  "Tonight there is just tea and the weight of your bag on the chair beside you and the choice of what to do with the next few hours."
+
+  "Around you: a pair of Ministry officials at a corner table, speaking in murmurs. A family from somewhere north, wearing outdoor robes too warm for the day. Two Beauxbatons girls conspicuously not looking at anything in particular. The general atmosphere of a place where people have gathered because gathering in a warded space feels safer than not."
+
+  "The Ministry officials' voices carry, just barely."
+
+  choice__
+    @target "A017-CH01-Ministry-Overheard"
+    "Listen."
+  __choice
+__section
+
+
+/* ── A017 — MINISTRY OVERHEARD ── */
+
+section__
+  @title "A017-CH01-Ministry-Overheard"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "They are being careful — speaking low enough that you have to go very still to catch anything. But the corner table creates a natural acoustic channel, and if you angle your chair correctly and let your eyes rest somewhere neutral..."
+
+  "*—Ashford case, yes—*"
+
+  "Your cup goes very carefully from your lips back to the saucer."
+
+  "*—Thicknesse reviewed it last week, classification stands. Voluntary disappearance, we have been over this—*"
+
+  "*—but the field journal, they never found—*"
+
+  "*—not our problem. Case closed, Merlin's sake, let it rest—*"
+
+  "The second official lowers his voice further. You catch *Montenegro* and then *object* and then something that might be a name — or might not — before the sound of chairs on flagstone tells you they are getting up to leave."
+
+  "Your tea is going cold. Your hands are completely steady, which surprises you."
+
+  choice__
+    @target "A018-CH01-Ministry-Pretend"
+    @action cunning = adj(cunning, 5)
+    "Stay very still and continue looking at your tea. Let them leave without knowing they were overheard."
+  __choice
+
+  choice__
+    @target "A019-CH01-Ministry-Confront"
+    @action courage = adj(courage, 8)
+    @action morality = adj(morality, 5)
+    "Stand up. Ask them directly what they know about Avery Ashford's field journal and why a closed case is still apparently worth discussing."
+  __choice
+
+  choice__
+    @target "A020-CH01-Ministry-Follow"
+    @action cunning = adj(cunning, 8)
+    @action knowledge = adj(knowledge, 3)
+    "Stay seated until they are through the door. Then follow — carefully, at a distance."
+  __choice
+
+  choice__
+    @target "A021-CH01-Ministry-Leave"
+    @action courage = adj(courage, -5)
+    "Get up before they do. Walk out the other way. You heard enough. You do not want to hear more right now."
+  __choice
+__section
+
+
+/* ── A018–A021 — MINISTRY CHOICE OUTCOMES ── */
+
+section__
+  @title "A018-CH01-Ministry-Pretend"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You look at your tea. You take a sip of it, which requires your hands not to shake, and your hands don't shake. You are a person sitting in a pub having tea. The two officials at the next table are having a routine conversation. This is all this is."
+
+  "They stand, gather their cloaks, drop a handful of Sickles on the table, and walk out. Neither of them looks at you."
+
+  "When the door closes, you count to ten in your head, then set down the cup very deliberately. *Case closed. Voluntary disappearance. Not our problem.* And then: *Montenegro.* Which is also in the journal, in the one line you can read."
+
+  "You don't know if they were careless or if they simply didn't expect anyone to be listening. Either way, they have no idea you were. That might matter later."
+
+  choice__
+    @target "A022-CH01-Journal-Found"
+    "Pay your tab and go upstairs."
+  __choice
+__section
+
+
+section__
+  @title "A019-CH01-Ministry-Confront"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You stand up. The sound of the chair carries. Both officials look at you."
+
+  "You ask — in a voice that stays level because you are making a deliberate effort to keep it there — what exactly they know about Avery Ashford's field journal, and why a closed case is apparently still worth discussing in August."
+
+  "The taller one goes red. The shorter one goes very still with the practised quality of someone who has training in exactly this situation. They say: *internal Ministry matter. Classification is final. If you have concerns, please submit a formal inquiry, Form Seven-Fourteen, Office of Investigations.* The shorter one's left hand moves slightly toward their wand and then stops — apparently concluding that hexing the offspring of a disappeared Auror in a public house is not a sound career move."
+
+  "You are escorted to the door by the general weight of their discomfort."
+
+  "You have told them you exist. You have told them you are paying attention. That is a blade that cuts both ways and you know it. But it was the thing you needed to do."
+
+  choice__
+    @target "A022-CH01-Journal-Found"
+    "Go upstairs."
+  __choice
+__section
+
+
+section__
+  @title "A020-CH01-Ministry-Follow"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You give them thirty seconds. Then you follow."
+
+  "Through Charing Cross Road — the Muggle side — and down two streets to where they stop outside a narrow doorway. You catch a room number on a slip of paper the taller one slides into a pocket before the shorter one turns and looks directly at you. You were, apparently, precisely as subtle as you thought you were being, which was not very."
+
+  "He doesn't pull his wand. He looks at you with the particular expression of a tired Ministry functionary who has done this before and would prefer not to do it again. *We'll be noting your name,* he says."
+
+  "You give them nothing. You turn around and walk back to the Leaky Cauldron."
+
+  "What you have: a room number. Something to investigate. Whether it ever becomes useful is a different question — but you have it, and they don't know exactly what you heard."
+
+  choice__
+    @target "A022-CH01-Journal-Found"
+    "Go upstairs."
+  __choice
+__section
+
+
+section__
+  @title "A021-CH01-Ministry-Leave"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You get up, pay at the bar, and walk out before they do."
+
+  "The alley is still warm. Still full of families with school trunks. You walk back toward the Leaky Cauldron's side entrance and the afternoon noise swallows you up. *Montenegro. Case closed. Not our problem.*"
+
+  "You stand for a moment outside and breathe. There are things you can carry and things you can't, and *case closed* spoken in that particular bureaucratic voice was, for about twenty seconds, more than you could sit next to."
+
+  "The feeling passes. It always does. You go upstairs."
+
+  choice__
+    @target "A022-CH01-Journal-Found"
+    "Go upstairs."
+  __choice
+__section
+
+
+/* ── A022 — JOURNAL FOUND ── */
+
+section__
+  @title "A022-CH01-Journal-Found"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Your room at the Leaky Cauldron is small and clean and smells of lemon polish. The trunk is open in the corner, half-packed. Your school bag sits on the floor beside it."
+
+  "You're reaching for the bag to check you haven't forgotten anything when the bag moves — a small, definitive shift, the kind of motion that comes from something inside adjusting its own position. You know what it is before you open the flap."
+
+  "The charmed leather box is open. The journal sits on top."
+
+  "It didn't do this before. This is new."
+
+  "You take it out. It is cool and lighter than it looks, the way enchanted things sometimes are, as if part of what it contains has been filed elsewhere. The cipher pages are still cipher. But the box opening on its own means something has changed — or something has been activated — or something has happened to Avery."
+
+  "What do you do with it?"
+
+  choice__
+    @target "A023-CH01-Journal-Open"
+    "Open it right now. Whatever it is showing you, you need to see it."
+  __choice
+
+  choice__
+    @target "A025-CH01-Journal-Cipher"
+    @action knowledge = adj(knowledge, 3)
+    "Don't open it yet. Study the structure of the cipher through what you can already see. In good light, tonight — maybe this is finally the moment."
+  __choice
+
+  choice__
+    @target "A027-CH01-Journal-Search"
+    @action cunning = adj(cunning, 3)
+    "Search the rest of Avery's belongings first. If the journal opened itself, something in the trunk may have triggered it."
+  __choice
+__section
+
+
+/* ── A023–A024 — JOURNAL OPEN PATH ── */
+
+section__
+  @title "A023-CH01-Journal-Open"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The journal opens under your hands to a page you haven't been able to read before."
+
+  "The cipher is there — dense columns running down three-quarters of the page — but at the bottom, in ink that is darker and fresher than the surrounding text, a second legible line has appeared. It wasn't there last time you looked."
+
+  "*Avery's handwriting. Not in cipher.*"
+
+  "You read it three times to make sure you are reading it correctly: *If this is open, I have been inactive too long. Find the coordinates before L. does. Not Montenegro — look east of it.*"
+
+  "You sit very still on the edge of the bed. *If this is open, I have been inactive too long.* Avery set a timer. A dead man's trigger — if the journal didn't receive some signal from its owner within a defined period, it unlocked the next fragment. Your parent planned for this possibility. Ninety-three days of silence and there was already a response prepared."
+
+  "The thing in your chest is not quite fear. It's close."
+
+  choice__
+    @target "A024-CH01-Journal-Page"
+    "Read the page more carefully. There must be more."
+  __choice
+__section
+
+
+section__
+  @title "A024-CH01-Journal-Page"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You go through it with the care of someone who knows they may only have one shot at this."
+
+  "The cipher pages immediately above and below the legible lines follow a structure you've been studying all summer. You've identified twelve recurring symbol-clusters. You've matched three against patterns in an old Charms text on polyalphabetic substitution. You haven't cracked it — but you understand its shape."
+
+  "What you now have: the first line (*Resonance Mirror — Object located. Montenegro. Trust: L. only.*) and the new line (*Find the coordinates before L. does. Not Montenegro — look east of it.*)."
+
+  "So not Montenegro. East of it. Somewhere in the region, but not the city named. And L. — who was previously described as the only person to trust — is now, apparently, someone to outpace. That shift alone tells you something has gone badly wrong with whatever Avery's plan was."
+
+  choice__
+    @target "A025-CH01-Journal-Cipher"
+    @action knowledge = adj(knowledge, 5)
+    "Work the cipher. Tonight, with the journal open and these two lines as comparison anchors — this is your best chance so far."
+  __choice
+
+  choice__
+    @target "A026-CH01-Journal-Emotion"
+    @action empathy = adj(empathy, 3)
+    "Stop. Sit with it for a moment. The words need to land before you can act on them."
+  __choice
+__section
+
+
+/* ── A025–A027 — JOURNAL RESPONSE PATHS ── */
+
+section__
+  @title "A025-CH01-Journal-Cipher"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You work until the Leaky Cauldron goes quiet below you and the street outside goes dark."
+
+  "You don't crack it. But you make progress that feels significant — sixteen cipher clusters mapped now, cross-referenced against both legible lines as known-value anchors. The substitution has at least three rotating key layers. You need the key to unlock the key, and you don't have it yet. But the structure is clearer than it's ever been."
+
+  "You write out what you know in a separate notebook, in the personal code you invented at twelve and Avery once called *charmingly amateur*. You have a system. You have comparison points. You have a long way to go, and for the first time in two months, the path forward has a visible shape."
+
+  "You pack the journal away carefully, put the notebook in the inside pocket of your school bag, and get ready for tomorrow."
+
+  choice__
+    @target "A028-CH01-Platform-Convergence"
+    "Try to sleep."
+  __choice
+__section
+
+
+section__
+  @title "A026-CH01-Journal-Emotion"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You put the journal face-down on the bed and press the heels of your hands against your eyes."
+
+  "*If this is open, I have been inactive too long.*"
+
+  "Avery planned for this. Which means at the time of writing that note, Avery believed something might happen — not as an abstract worst case, but as a real possibility real enough to prepare for. And Avery didn't tell you. Didn't say: *by the way, if I go dark for an extended period, there's a timer in the journal.* Just set the timer and went."
+
+  "The journal is not just an investigation document. It is a letter that activated because its author couldn't send it."
+
+  "You hold that for a while in the quiet of the room. You don't cry. You just let the thing land where it's going to land, because there are things you can think around and things you have to think through, and this is the latter."
+
+  "Then you pack it up carefully and go to bed."
+
+  choice__
+    @target "A028-CH01-Platform-Convergence"
+    "Try to sleep."
+  __choice
+__section
+
+
+section__
+  @title "A027-CH01-Journal-Search"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You go through the trunk systematically."
+
+  "Avery's journal wasn't the only thing you took from the office. There's a folded envelope with Avery's handwriting on the outside — just a name, no address — that you brought in June because you didn't know what else to do with it. You haven't looked inside it since."
+
+  "Inside: a half-written letter, mostly crossed out. But in the margin, circled twice in a different pen: *Voss. V. Voss — cross-reference Montenegro records.*"
+
+  "A name. Cross-referenced with the same location in the journal."
+
+  "You sit back. You have a name: Voss. And you have Montenegro — or rather, *east* of it. And Avery's handwriting treating Voss as someone worth a margin note."
+
+  "The Ravenclaw girl in Flourish and Blotts — her name badge. You're almost certain it said *Voss.* Students write their names on their school supplies to keep the house-elves straight. That is almost certainly a coincidence. You make a note of it anyway."
+
+  choice__
+    @target "A028-CH01-Platform-Convergence"
+    @action knowledge = adj(knowledge, 5)
+    "Pack up carefully and try to get some sleep."
+  __choice
+__section
+
+
+/* ── A028–A030 — CONVERGENCE + TRAIN ── */
+
+section__
+  @title "A028-CH01-Platform-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "You are going to Platform 9¾ in the morning."
+
+  "You have known this intellectually for weeks. It only becomes real now — sometime past midnight, your school bag by the door, Avery's journal locked at the bottom of your trunk under three sets of clothes."
+
+  "The things you are carrying into sixth year: one encrypted field journal with two legible lines. One name: Voss. One location that is east of but not Montenegro. One word — *inactive* — that tells you Avery considered this a real possibility. The Ministry's *case closed* and the quality of silence after. Draco Malfoy's too-careful posture. A Ravenclaw girl's eyes going sharp at the corner of something she had no reason to recognise."
+
+  "You've been doing this — carrying it, managing it, getting up in the morning — for ninety-three days. One more seems achievable. And then another."
+
+  choice__
+    @target "A029-CH01-Avery-Memory"
+    "Close your eyes."
+  __choice
+__section
+
+
+section__
+  @title "A029-CH01-Avery-Memory"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "A memory, arriving without permission:"
+
+  "Avery at the kitchen table, three years ago, explaining Auror work. Not the glamour version — the actual version. The paperwork. The waiting. The way most cases close slowly through persistence rather than in a blaze of heroics. You were thirteen and found this disappointing."
+
+  "*We go toward the thing everyone else runs from,* Avery said. *That's the job. Not because we're not afraid of it. Because someone has to, and we said we would.*"
+
+  "At thirteen you nodded and went back to your homework and thought about it approximately never."
+
+  "At sixteen, lying in a small clean room at the Leaky Cauldron the night before sixth year, you find that the sentence has been sitting quietly in you this whole time. Waiting."
+
+  "Someone has to. You said you would. Not out loud, not as a declaration — but in the way decisions get made before you've consciously noticed you've made them."
+
+  "The memory fades. The room is quiet."
+
+  choice__
+    @target "A030-CH01-Board-Train"
+    "Morning."
+  __choice
+__section
+
+
+section__
+  @title "A030-CH01-Board-Train"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "King's Cross is its usual controlled chaos of trolleys and pigeons and the specific bafflement of Muggle commuters who cannot understand why a disproportionate number of teenagers are wrestling their way through the crowd with barn owls."
+
+  "You've done this six times now. The barrier between platforms nine and ten is old familiarity — you stop thinking about walking through walls around second year. You lean into it, feel the brief cold pressure, and then you're through."
+
+  "The Hogwarts Express stands on Platform 9¾ in a cloud of steam and noise, and the sight of it does something to you despite everything. Despite the journal in your bag and the Ministry's *case closed* and Avery's ninety-three days of silence. Despite all of it."
+
+  "It's still the train. It still smells the same. The scarlet and gold is still the same obscene shade of red against the grey September sky."
+
+  "Sixth year."
+
+  "You find a compartment, shove your trunk onto the rack, and sit down with Avery's journal on your lap while the platform fills up around you. The train doesn't leave for twenty minutes. In twenty minutes, the game starts again."
+
+  choice__
+    @target "A031-CH02-Finding-Compartment"
+    "Wait for the train to move."
+  __choice
+__section

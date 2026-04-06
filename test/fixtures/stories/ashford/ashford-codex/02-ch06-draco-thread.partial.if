@@ -1,0 +1,1373 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 6
+   02-ch06-draco-thread.partial.if
+
+   Chapter 6: The Draco Thread
+   The seventh floor. The Room of Requirement. Draco's offer.
+   The overheard argument. Loyalties diverge.
+
+   Section range: A191–A240
+   ============================================================ */
+
+scene__
+  @name "CH06: The Draco Thread"
+  @first "A191-CH06-Draco-Seventh-Floor"
+  @sceneTransition "cut"
+  @sections "A191-CH06-Draco-Seventh-Floor" "A192-CH06-What-Do-You-Do" "A193-CH06-Follow-Draco" "A194-CH06-Tell-Harry" "A195-CH06-Note-And-Wait" "A196-CH06-Leave" "A197-CH06-Inside-Room" "A198-CH06-Hands-Up" "A199-CH06-Bluff-Cabinet" "A200-CH06-Run-Convergence" "A201-CH06-Draco-Seeks-Protagonist" "A202-CH06-Accept-Offer" "A203-CH06-Refuse-Offer" "A204-CH06-Buy-Time" "A205-CH06-Counter-Offer" "A206-CH06-Argument-Setup" "A207-CH06-Pansy-Argument" "A208-CH06-No-Choice-Heard" "A209-CH06-Argument-Reaction" "A210-CH06-What-It-Means" "A211-CH06-Watching-Harry" "A212-CH06-Argument-Convergence" "A213-CH06-Harry-And-You" "A214-CH06-After-Argument" "A215-CH06-Argument-After" "A216-CH06-Subplot-Deepens" "A217-CH06-Errand-Track" "A218-CH06-Errand-Details" "A219-CH06-Errand-Response" "A220-CH06-Errand-Convergence" "A221-CH06-Harry-Enlists" "A222-CH06-Watch-Assignment" "A223-CH06-Watching-Report" "A224-CH06-Harry-Response" "A225-CH06-Draco-Track-Convergence" "A226-CH06-Cabinet-Clue" "A227-CH06-Understanding-Dawns" "A228-CH06-A-Passage" "A229-CH06-What-Kind-Of-Passage" "A230-CH06-Clue-Without-Cunning" "A231-CH06-Partial-Suspicion" "A232-CH06-Cabinet-Convergence" "A233-CH06-December-Deepens" "A234-CH06-Ch6-Buffer" "A235-CH06-Draco-Mirror-Connect" "A236-CH06-End-Ch6-A" "A237-CH06-End-Ch6-B" "A238-CH06-December-Atmosphere" "A239-CH06-Chapter-Close" "A240-CH06-To-Ch7"
+__scene
+
+
+/* ── 6a: THE SEVENTH FLOOR (A191–A200) ── */
+
+section__
+  @title "A191-CH06-Draco-Seventh-Floor"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "December first. You're heading from the library to the common room, taking the long route because the short route is currently occupied by a Peeves situation that doesn't look like it's resolving quickly."
+
+  "The long route goes past the seventh floor corridor."
+
+  "And there is Draco Malfoy, moving with the compressed urgency you've catalogued twelve times this term — pacing, three times back and forth in front of a section of bare wall, his head down and his lips moving slightly. Not talking to himself. Counting. Or something like counting."
+
+  "You've seen this pattern before, late at night and under unusual circumstances. You haven't seen it in daylight, in a corridor you share a passing right-of-way with, with this quality of desperation in the pace."
+
+  "He hasn't seen you. He's facing the wall."
+
+  "A door appears in the stone, as if it had always been there and only needed someone to look at the right moment."
+
+  "He goes in. The door closes."
+
+  "You are standing in an empty corridor with a closed door that wasn't there thirty seconds ago and no one else in sight."
+
+  choice__
+    @target "A192-CH06-What-Do-You-Do"
+    "What do you do."
+  __choice
+__section
+
+
+section__
+  @title "A192-CH06-What-Do-You-Do"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The door is plain stone-coloured wood with an iron handle. It looks as if it belongs here. It doesn't."
+
+  "You know what this is — or you know the name for it. The Room of Requirement. Every Hogwarts student has heard of it. Most haven't found it. The people who find it are the people who need it badly enough."
+
+  "Draco Malfoy needs something badly enough."
+
+  "You have about thirty seconds before you need to make a decision and live with it."
+
+  choice__
+    @target "A193-CH06-Follow-Draco"
+    @action courage = adj(courage, 8)
+    @action cunning = adj(cunning, 5)
+    "Follow him in. Whatever he's doing, you need to know. This has been building since August and standing in the corridor outside it gets you nothing."
+  __choice
+
+  choice__
+    @target "A194-CH06-Tell-Harry"
+    @when rel_harry >= 40
+    @disabledText "You don't know Harry well enough to bring this to him — he'd want more context before trusting a new angle on Draco."
+    @action rel_draco = adjRel(rel_draco, -10)
+    @action rel_harry = adjRel(rel_harry, 15)
+    "Tell Harry. You've seen Harry watching Draco all term. He'd want to know this exists. And it's his problem in a way it isn't yours — let him take the point."
+  __choice
+
+  choice__
+    @target "A195-CH06-Note-And-Wait"
+    @action cunning = adj(cunning, 8)
+    @action knowledge = adj(knowledge, 5)
+    "Note it and wait. You know the room exists, you know Draco has access, you know the location. Acting now is premature. Information first."
+  __choice
+
+  choice__
+    @target "A196-CH06-Leave"
+    @action empathy = adj(empathy, 5)
+    "Leave. This is Draco's crisis. You've seen enough to know he's drowning in something — following him into it, uninvited, might make things worse in ways you can't predict."
+  __choice
+__section
+
+
+section__
+  @title "A193-CH06-Follow-Draco"
+  @textPacing "cinematic"
+  @shot "close"
+
+  draco_followed = true
+
+  "You open the door."
+
+  "The room on the other side is not what you expected. You expected something purpose-built, specific. What you get is a cavernous space that stretches back further than the corridor width should allow, packed with objects — furniture, boxes, trunks, statuary, towers of accumulated things that have been brought here and hidden and never retrieved."
+
+  "It's the Room of Hidden Things. Which is not the same as the Room of Requirement, except that it is, because this is what Draco Malfoy requires: somewhere to hide something."
+
+  "He's fifteen yards ahead of you, moving deeper into the room, focused. He hasn't heard you come in. The room is vast enough that the sound of the door opening didn't carry."
+
+  "You follow at distance. Past a wardrobe leaking something grey and smoky. Past a stack of broken telescopes. Past what appears to be a petrified troll."
+
+  "He stops in front of something large covered in canvas, about the size of an upright wardrobe. He pulls the canvas back."
+
+  "A cabinet. Dark wood, ornately carved, obviously old. He places both hands on the surface and murmurs something — not a spell, something more personal. A measurement. A check."
+
+  "He takes his hands away. He's breathing the way someone breathes when they've found that the news is bad but consistent — relieved only that it's the same kind of bad."
+
+  choice__
+    @target "A197-CH06-Inside-Room"
+    "He turns."
+  __choice
+__section
+
+
+section__
+  @title "A194-CH06-Tell-Harry"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You find Harry in the corridor outside Gryffindor the next evening. He's alone, which is unusual enough at this hour that you take it as the window it is."
+
+  "You tell him: seventh floor, a specific section of wall, Draco pacing in front of it three times and a door appearing in the stone. The Room of Requirement. Draco went in."
+
+  "Harry's expression does something complex. Not surprise — he's been watching Draco all term, you can see that in the way his face lands. More like confirmation of something he already suspected wearing the specific shape of *but now someone else has seen it.*"
+
+  "*I know about the room,* he says. *I've been trying to follow him, but he always goes at hours when...* He stops himself. Restructures. *Did you see what was inside.*"
+
+  "You tell him the door was closed when you arrived — you'd already rounded the corner — and you weren't going to go in alone without more information."
+
+  "He nods slowly. *I'm going to find a way to watch that corridor.* A pause. *Don't mention this to anyone else.* Not phrased as a request. Phrased as someone who has already decided this is his to pursue."
+
+  choice__
+    @target "A200-CH06-Run-Convergence"
+    "You agree. You'll keep watching."
+  __choice
+__section
+
+
+section__
+  @title "A195-CH06-Note-And-Wait"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You write it in the back of your cipher notebook — not in the cipher-adjacent section but in the observation log you've been maintaining since the Express:"
+
+  "*Dec 1. Seventh floor, east corridor, blank wall section between tapestry and suit of armour. Room of Requirement. Malfoy entered approx 16:40. Duration unknown. Pacing pattern: three passes, lips moving. Door appeared on third pass.*"
+
+  "Then you walk away."
+
+  "The intelligence-gathering instinct is correct: acting on incomplete information about something this close to Draco Malfoy's private business creates exposure that could compromise everything you're still trying to understand. You don't know what he's doing in there. You don't know if it's connected to the Mirror. You don't know if following him would be useful or catastrophic."
+
+  "What you have: the room exists, Draco knows how to access it, he's been here before."
+
+  "What you need: context. Which is going to require patience you currently have and time you're not sure you do."
+
+  "You note the direction and walk away, which is harder than it looks."
+
+  choice__
+    @target "A200-CH06-Run-Convergence"
+    "Three days pass."
+  __choice
+__section
+
+
+section__
+  @title "A196-CH06-Leave"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You walk away."
+
+  "Down the seventh floor corridor and around the corner and then down two flights of stairs with the specific pace of someone who has decided something and is carrying that decision in their body before they've fully thought it through."
+
+  "Draco Malfoy is drowning. You've known this since August — the colour of his face at Madam Malkin's, the urgency in the Express corridor, the twelve trips to the seventh floor you've counted. Whatever he's been given to do, it is eating him alive."
+
+  "Following him into his private space, uninvited, at his most exposed: it felt wrong. Not strategically wrong — there might be good intelligence in it. But the kind of wrong that doesn't respect the distinction between the thing and the purpose."
+
+  "He's not your enemy. He's not your ally. He's a seventeen-year-old in a situation he didn't choose, or chose without understanding the full weight of the choice."
+
+  "That doesn't change what he might be capable of or what his mission might do. But it changes something about how you pursue it."
+
+  choice__
+    @target "A200-CH06-Run-Convergence"
+    "Three days pass."
+  __choice
+__section
+
+
+/* ── THE ROOM (A197–A200) — only followed if draco_followed ── */
+
+section__
+  @title "A197-CH06-Inside-Room"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "He sees you."
+
+  "The moment of mutual recognition is specific: his face going through surprise, then threat-assessment, then something more complicated. He moves toward the cabinet as if he's going to put himself between it and you."
+
+  "You haven't moved. You're standing where you stopped, hands visible, and you're aware in a way that doesn't feel quite conscious that the posture matters here — that how you hold yourself in the next five seconds will determine what this encounter becomes."
+
+  "The cabinet is behind him. You don't know what it is. But the way he positioned himself in front of it tells you it's the centre of everything."
+
+  "He doesn't speak first. He's waiting to see what you do."
+
+  choice__
+    @target "A198-CH06-Hands-Up"
+    @action empathy = adj(empathy, 8)
+    @action courage = adj(courage, 5)
+    @action rel_draco = adjRel(rel_draco, 15)
+    "Slow down. Hands slightly out. 'I'm not here to report you.' The words before the calculation, because some moments require the human thing first."
+  __choice
+
+  choice__
+    @target "A199-CH06-Bluff-Cabinet"
+    @when cunning >= 60
+    @disabledText "Requires Cunning ≥ 60 to pull off the bluff convincingly."
+    @action cunning = adj(cunning, 10)
+    @action rel_draco = adjRel(rel_draco, 8)
+    "'Nice cabinet.' As if you've known what it is all along. As if this is a confirmation of something you already had, not a discovery. Give him nothing to calculate."
+  __choice
+
+  choice__
+    @target "A200-CH06-Run-Convergence"
+    @action cunning = adj(cunning, 5)
+    @action rel_draco = adjRel(rel_draco, -5)
+    "Run. You've seen enough. Getting out now with that information is better than whatever this conversation becomes."
+  __choice
+__section
+
+
+section__
+  @title "A198-CH06-Hands-Up"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The silence is long enough to be uncomfortable."
+
+  "Then Draco does something you didn't expect: he stops positioning himself in front of the cabinet. He doesn't move toward you. He just — stops. As if the energy required to hold the defensive posture ran out at the exact moment you said *I'm not here to report you.*"
+
+  "He looks at you. Really looks at you, not the strategic assessment you've gotten in corridors all term, but the kind of looking that happens when someone is deciding something important about whether to trust a person."
+
+  "*Then why are you here,* he says. His voice is flat. He's done with performance."
+
+  "You tell him the truth: you've been watching him since August because something about his behaviour has been relevant to something you're investigating, and you needed to understand what he was doing before you could understand whether it was connected."
+
+  "He's quiet for a while. *It's not connected to whatever you're looking for,* he says. *It's something else.*"
+
+  "*Then tell me what,* you say."
+
+  "A long pause."
+
+  "He doesn't tell you. Not today. But he doesn't stop you when you leave."
+
+  choice__
+    @target "A201-CH06-Draco-Seeks-Protagonist"
+    "Three days later."
+  __choice
+__section
+
+
+section__
+  @title "A199-CH06-Bluff-Cabinet"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'Nice cabinet,' you say."
+
+  "The shift in Draco's expression is small and specific: the rearrangement of someone who was prepared for one kind of conversation and is now recalibrating for another. He knows you know something. He doesn't know what you know."
+
+  "Which is the correct position. Information asymmetry, in your favour, established in two words."
+
+  "'It's old,' he says. Careful. Testing."
+
+  "'Vanishing Cabinet,' you say, giving him a little more to see what he does with it. You don't know if you're right — you've never seen one — but the size and the style and the specific way he positioned himself between you and it suggests something that disappears things. Or moves them."
+
+  "He goes very still."
+
+  "Then, with the specific economy of someone deciding to change tactics: 'What do you want.'"
+
+  "'Information,' you say. 'In exchange for not telling Harry Potter what I just saw. Which is: you, alone, doing something to a cabinet in the Room of Hidden Things at four-forty in the afternoon.'"
+
+  "He looks at you for a long time. *Three days,* he says finally. *Give me three days.*"
+
+  choice__
+    @target "A201-CH06-Draco-Seeks-Protagonist"
+    "Three days."
+  __choice
+__section
+
+
+section__
+  @title "A200-CH06-Run-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  if__ (draco_followed == true) {
+    cunning = adj(cunning, 5)
+    rel_draco = adjRel(rel_draco, -5)
+    "You get out fast. Through the door and into the corridor and away before Draco has time to register what direction you went."
+
+    "Your heart is doing something accelerated that you note with the detached awareness of someone who has read too much Auror operational procedure to be fully surprised by adrenaline. You know what the cabinet is — or you think you do. Something to do with passage. Something to do with moving objects or people through space."
+
+    "You've seen enough. You have something to work with."
+  }
+
+  if__ (draco_followed == false) {
+    "Three days pass in the normal way: classes, meals, the specific rhythm of December term beginning to settle into the lower gear that indicates the Christmas holidays are approaching."
+
+    "In those three days you see Draco in corridors four times. He looks worse each time — the hollowness under his eyes has acquired the particular quality of someone who is not sleeping by choice rather than by circumstance."
+
+    "Whatever he's doing, he's accelerating it."
+  }
+
+  choice__
+    @target "A201-CH06-Draco-Seeks-Protagonist"
+    "He finds you."
+  __choice
+__section
+
+
+/* ── DRACO'S OFFER (A201–A205) ── */
+
+section__
+  @title "A201-CH06-Draco-Seeks-Protagonist"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (draco_followed == true && rel_draco >= 25) {
+    "He finds you in the library three days after the Room of Requirement."
+
+    "Not accidental. He's clearly looked for you — he comes in, scans the room with the methodical efficiency of someone doing a location check, and then comes directly to your table and sits down."
+
+    "He puts both hands on the table. A gesture that is not aggressive — it's the gesture of someone who has decided to be visible. No concealment in the posture."
+
+    "'I need help with something,' he says. 'It's not something I'm going to explain in full. You're not going to like all of it.' A pause. 'But the part you're investigating — the journal, the object — it might intersect with what I'm doing. And I'd rather have a controlled intersection than find out later that we've been working around each other at cost.'"
+
+    "He knows about the journal. Which means someone told him — or he's more observant than you gave him credit for — or the thing he's working on has been watching you the same way you've been watching it."
+
+    "You have seconds to decide what to do with this."
+
+    choice__
+      @target "A202-CH06-Accept-Offer"
+      @action cunning = adj(cunning, 5)
+      @action rel_draco = adjRel(rel_draco, 20)
+      @action morality = adj(morality, -10)
+      "Accept — tentatively. 'What kind of help.' Give him the opening. Find out what the intersection looks like before you decide what to do with it."
+    __choice
+
+    choice__
+      @target "A203-CH06-Refuse-Offer"
+      @action courage = adj(courage, 8)
+      @action morality = adj(morality, 5)
+      @action rel_draco = adjRel(rel_draco, -10)
+      "Refuse clearly. 'I don't work with people who don't explain what I'm working toward. Whatever you're doing, it's not something I can help with blind.'"
+    __choice
+
+    choice__
+      @target "A204-CH06-Buy-Time"
+      @when cunning >= 55
+      @disabledText "Requires Cunning ≥ 55 to buy time without tipping your hand."
+      @action cunning = adj(cunning, 10)
+      @action rel_draco = adjRel(rel_draco, 5)
+      "Buy time. 'I need to think about it.' Not a refusal. Not an agreement. A request for more time to understand what you're being offered."
+    __choice
+
+    choice__
+      @target "A205-CH06-Counter-Offer"
+      @when knowledge >= 60 && cunning >= 60
+      @disabledText "Requires Knowledge ≥ 60 and Cunning ≥ 60 to negotiate terms with Draco."
+      @action cunning = adj(cunning, 12)
+      @action rel_draco = adjRel(rel_draco, 12)
+      "Counter-offer. 'Tell me what it is first. Not everything — I know you're not going to do that. But tell me what the cabinet does.'"
+    __choice
+  }
+
+  if__ (draco_followed == false || rel_draco < 25) {
+    "You catch sight of Draco in the library."
+
+    "He comes in, scans the room. His gaze passes over you — and pauses, just slightly, before moving on. Not recognition, exactly. Something more careful: the measuring of a variable."
+
+    "He sits at a table across the room and opens a book he doesn't read."
+
+    "You watch him, as you've been watching him all term. He's worse than he was in October. The hollowness around his eyes has gone past tired into something more concerning — the exhaustion of someone who is afraid consistently, not just occasionally."
+
+    "After twenty minutes he leaves without having read anything."
+
+    "He didn't approach you. But the pause — the measuring — sits with you."
+
+    choice__
+      @target "A206-CH06-Argument-Setup"
+      "File it."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A202-CH06-Accept-Offer"
+  @textPacing "cinematic"
+  @shot "close"
+
+  draco_helped = true
+
+  "He tells you: not everything, exactly as he promised. But enough."
+
+  "The cabinet in the Room of Hidden Things is a Vanishing Cabinet — one half of a matched pair. The other half is at Borgin and Burkes in Knockturn Alley. Objects — and people — placed in one cabinet emerge from the other. A passage between Hogwarts and London, concealed, unmonitored."
+
+  "He is repairing it. It's been damaged for years. The repair is slow and technically demanding."
+
+  "He does not tell you why he needs it. He does not tell you who gave him the task. He does not say what the passage is for."
+
+  "What he needs from you: a specific ingredient for the repair process that requires a Potions-level knowledge he doesn't have. Not illegal. Not directly connected to anything else. A single task."
+
+  "You agree. Tentatively. Conditionally."
+
+  "You've just become, in some minor and deniable way, complicit in whatever Draco Malfoy is building inside Hogwarts. You hold that fact with the full awareness it deserves."
+
+  choice__
+    @target "A206-CH06-Argument-Setup"
+    "One week passes."
+  __choice
+__section
+
+
+section__
+  @title "A203-CH06-Refuse-Offer"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "He doesn't argue. He doesn't escalate."
+
+  "He looks at you for a moment with the expression of someone who has already done the calculation and arrived at: *this is the outcome, and I will work with it.* Then he nods once, gathers his things, and leaves the library."
+
+  "You watch him go."
+
+  "You said no. You feel — not exactly good about it, because the calculation isn't simple. He might have been offering you something useful. The intersection he mentioned might be real. Whatever he's doing in the Room of Hidden Things, you're not going to know more of it through refusal."
+
+  "What you have: your conscience intact, your position uncompromised, and no new information about Draco's mission."
+
+  "What you don't have: an ally in the one person who might know something about the Vanishing Cabinet side of whatever is happening in this school."
+
+  "It was the right choice. You think."
+
+  choice__
+    @target "A206-CH06-Argument-Setup"
+    "One week passes."
+  __choice
+__section
+
+
+section__
+  @title "A204-CH06-Buy-Time"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "He reads your response the way he reads most things: precisely and without sentiment."
+
+  "'How long,' he says."
+
+  "'Three days,' you tell him. The same window he gave you after the Room."
+
+  "He nods. He doesn't say *don't take longer* or *I'll find someone else* — he says nothing additional, which is its own message. He's given you the window because he's already made the calculation that you're the best available option, not the only one."
+
+  "You spend those three days thinking about what you're being asked and what it costs to agree. The cabinet is connected to Borgin and Burkes. Whatever Draco is building a passage for — whoever asked him to build it — is not a small or neutral thing."
+
+  "But he said the journal's object might intersect. If that's true — if whatever Draco knows about the Vanishing Cabinet connects to the Mirror — then refusing is also a cost."
+
+  "At the end of three days you tell him: not yet. But not never."
+
+  "He accepts this with the same precise, unsentimental nod."
+
+  choice__
+    @target "A206-CH06-Argument-Setup"
+    "One week passes."
+  __choice
+__section
+
+
+section__
+  @title "A205-CH06-Counter-Offer"
+  @textPacing "cinematic"
+  @shot "close"
+
+  draco_bargain = true
+
+  "'Tell me what the cabinet does,' you say. 'Not everything. Just that.'"
+
+  "He looks at you. He's recalibrating. He expected a yes-or-no and got a negotiation, and he's deciding whether that's better or worse than what he planned for."
+
+  "'It's a passage,' he says. 'Between here and somewhere else.'"
+
+  "'Between here and where.'"
+
+  "A pause that is not quite a wall. 'Knockturn Alley.'"
+
+  "You sit with that. Knockturn Alley. An unmonitored passage from Hogwarts to Knockturn Alley, in a room that no one official knows about."
+
+  "'Is this connected to Voldemort,' you say. Not phrased as a question, exactly. More as the boundary you need to place before you decide anything."
+
+  "He's quiet for a long time. 'It's connected to people who work for him,' he says finally. 'Indirectly. I can't— I can't tell you more than that.'"
+
+  "He's telling you he's been conscripted. He doesn't say it in those words. He doesn't have to."
+
+  "You think about what you're going to do with this. 'I'll help with the ingredient,' you say. 'One task. After which you tell me: did Avery Ashford ever investigate anything connected to that cabinet.'"
+
+  "He blinks. Then: 'I'll find out.'"
+
+  choice__
+    @target "A206-CH06-Argument-Setup"
+    "One week passes."
+  __choice
+__section
+
+
+/* ── DRACO/PANSY ARGUMENT (A206–A215) ── */
+
+section__
+  @title "A206-CH06-Argument-Setup"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Mid-December. The castle has acquired the specific quality it gets in the week before Christmas holidays: the overlap of term-ending business with the beginning of departure preparations, students carrying more bags than usual through corridors, the library reaching peak density around essay deadlines."
+
+  "You've been watching Draco. Whatever is happening with the offer — accepted, refused, deferred — you haven't stopped watching him."
+
+  "The weight of what he's carrying is more visible than it was in November. He eats less. He studies less. He moves through the school with the borrowed time look of someone who is waiting for a deadline they're not going to meet."
+
+  "On Thursday evening, you're passing the trophy room on the third floor. The door is not quite latched."
+
+  "Through the gap: two voices. Draco's and Pansy Parkinson's."
+
+  choice__
+    @target "A207-CH06-Pansy-Argument"
+    "Stop. Listen."
+  __choice
+__section
+
+
+section__
+  @title "A207-CH06-Pansy-Argument"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Pansy: *You have to tell someone. This isn't— Draco, you can't do this alone.*"
+
+  "Draco, very flat: *I don't have a choice.*"
+
+  "Pansy: *You do. You always have a choice. That's what you keep not seeing.*"
+
+  "A sound of something being put down hard. Draco: *You don't understand what he'll do to my mother. To all of— you don't understand what this is, Pansy.*"
+
+  "Pansy, quieter: *Then explain it to me.*"
+
+  "Silence. Long enough to be its own answer."
+
+  "Draco: *I can't.*"
+
+  "More silence. Then Pansy's footsteps, moving toward the door — not quickly, with the deliberate measured pace of someone managing their own reaction. You step back into the corridor shadow before the door opens. She comes out, pulls it closed behind her, and walks away without looking up."
+
+  "She's been crying. You can tell without seeing her face."
+
+  "The door stays closed. Draco is still in the trophy room."
+
+  choice__
+    @target "A208-CH06-No-Choice-Heard"
+    "What you heard: *I don't have a choice.*"
+  __choice
+__section
+
+
+section__
+  @title "A208-CH06-No-Choice-Heard"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "*I don't have a choice.*"
+
+  "Three words in a context you now have more of than you did ten minutes ago."
+
+  "He was given this task. He didn't volunteer for it. Whatever is happening with the Vanishing Cabinet — the repair, the passage, the connection to Knockturn Alley — someone assigned it to him under conditions he can't extract himself from without cost to his family."
+
+  "Which means he's not a true believer. He's leverage."
+
+  "You file this alongside the counter-offer conversation, if it happened, or alongside the simple fact of his posture and his declining health if it didn't. It connects. The person who is doing this is not doing it because they want to."
+
+  "And the person who assigned it — whoever is operating through Draco's family — is doing so because they need a student inside Hogwarts to build a passage and can't do it themselves."
+
+  "Voldemort, at a distance, using a scared seventeen-year-old as the mechanism."
+
+  choice__
+    @target "A209-CH06-Argument-Reaction"
+    "Decide what to do with this."
+  __choice
+__section
+
+
+section__
+  @title "A209-CH06-Argument-Reaction"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You stand in the corridor for a moment and let the information settle."
+
+  "The structure of Draco's situation is now reasonably clear: he was given a task connected to Voldemort's network, under threat to his family, and he cannot abandon it. He's been doing it alone, without telling anyone who matters, and it's killing him slowly in the way that sustained fear without outlet kills people."
+
+  "The question is what you do with this. Three options surface:"
+
+  "Tell Harry. Who has been watching Draco all term and would use this to push for intervention — official or unofficial. Which might stop the Vanishing Cabinet, but which might also put Draco's family in danger in a more immediate way."
+
+  "Tell Dumbledore. Who knows things you don't, whose missing hand and frequent absences suggest he is dealing with multiple versions of this crisis simultaneously. And who Avery specifically said not to go to first."
+
+  "Do nothing official. Watch. Let it develop. Wait for the piece that tells you how it connects — or doesn't — to the Mirror."
+
+  choice__
+    @target "A210-CH06-What-It-Means"
+    @action knowledge = adj(knowledge, 5)
+    "Do nothing yet. What you have is not enough. What you need is the connection, not just the mechanism."
+  __choice
+
+  choice__
+    @target "A211-CH06-Watching-Harry"
+    @action empathy = adj(empathy, 8)
+    "Think about Harry. He's been alone in this too — watching Draco, suspecting, getting nowhere. You might need to converge."
+  __choice
+__section
+
+
+section__
+  @title "A210-CH06-What-It-Means"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You walk back to the common room and think."
+
+  "The Vanishing Cabinet connects Hogwarts to Knockturn Alley. The Resonance Mirror was located in Montenegro by Avery's investigation. On the surface, these are unconnected: a passage to Knockturn Alley doesn't help move an artifact from Montenegro."
+
+  "But Knockturn Alley is where things that can't be obtained through normal channels are obtained. It's where Borgin and Burkes is. It's where people who work for Voldemort transact. If someone wanted to bring an artifact from Montenegro into the country without Ministry inspection — if the Mirror is being moved — the passage would matter."
+
+  "You don't know if this is what's happening. You don't know if the timing connects. You don't know if Draco knows about the Mirror at all."
+
+  "But the convergence is possible. And if it's possible, the Vanishing Cabinet is relevant to everything you're investigating, not just to Draco's separate crisis."
+
+  choice__
+    @target "A212-CH06-Argument-Convergence"
+    "File it and keep moving."
+  __choice
+__section
+
+
+section__
+  @title "A211-CH06-Watching-Harry"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You find Harry the next morning at breakfast, alone at the end of the Gryffindor table with his porridge untouched and his eyes on the middle distance."
+
+  "You sit down. Not across from him — beside him, which is the less formal choice and feels right for this."
+
+  "'Third floor trophy room, last night,' you say. 'Draco and Pansy. He said he doesn't have a choice. She said he always does.'"
+
+  "Harry looks at you. His attention is immediate and focused in the way it only is when something important has arrived. 'Did he say what he's doing.'"
+
+  "'No. But the tone was— he's not doing it because he wants to. He's doing it because something is threatening his family.'"
+
+  "Harry is quiet for a moment. Something in his expression has shifted — not softened exactly, but changed shape. *I've been thinking that too,* he says. *He looks— he looks like someone who would stop if he could.*"
+
+  "*But he can't,* you say."
+
+  "Harry nods. 'No.'"
+
+  choice__
+    @target "A212-CH06-Argument-Convergence"
+    @action rel_harry = adjRel(rel_harry, 8)
+    "Find out what Harry knows about Draco that you don't."
+  __choice
+__section
+
+
+section__
+  @title "A212-CH06-Argument-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "December deepens. The argument in the trophy room was a week ago. Draco moves through the castle with the same urgency as before, but there's a new quality to it: not quite desperation, but the narrowing focus of someone approaching a deadline."
+
+  "You've added what you heard to your observation log. You've held it. You've thought about the passage, the Mirror, the possible connections."
+
+  "What you can say for certain: Draco Malfoy is working on a passage between Hogwarts and Knockturn Alley, under threat, against his will, and the passage is almost finished or close to it. Whether this connects to the Resonance Mirror is uncertain. Whether refusing or accepting his offer was correct is equally uncertain."
+
+  "What you can also say: he's going to fail or succeed in the next few months. The timeline is compressing. Whatever decision you're going to make about how to engage with his situation needs to happen before the thing reaches its conclusion."
+
+  choice__
+    @target "A213-CH06-Harry-And-You"
+    "Think about Harry's position."
+  __choice
+__section
+
+
+section__
+  @title "A213-CH06-Harry-And-You"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Harry has been watching Draco since the year started — longer, probably. He's been alone in his suspicions until recently, and his suspicions are correct but incomplete: he knows Draco is doing something, but he doesn't know the mechanism."
+
+  "You know the mechanism. You might know more of the context."
+
+  "The question of whether to share fully with Harry is a question about what you're doing in this situation — whether you're an investigator pursuing the Mirror via adjacent evidence, or whether you're in the same position as Harry: someone who is watching a crisis unfold and trying to prevent the worst of it."
+
+  "The answer might be both. Or neither. Or you don't know yet."
+
+  "You table the question and watch Draco across the Great Hall instead. He's not eating."
+
+  choice__
+    @target "A214-CH06-After-Argument"
+    "The holidays approach."
+  __choice
+__section
+
+
+section__
+  @title "A214-CH06-After-Argument"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The last week before Christmas. Students departing in waves — Hogsmeade trips to owl packages home, trunks appearing in corridors, the specific noise of a school thinning out."
+
+  "Draco is staying. You know this the way you've come to know most things about his movements: by observation without surveillance, the difference being that observation is passive and surveillance has intent."
+
+  "He's staying because whatever he's working on in the Room of Hidden Things doesn't respect the school calendar."
+
+  "You're staying or going, depending on your house and your family situation. Either way, the holiday is a disruption to the rhythm you've established."
+
+  "Before you go — or before you settle in for the quieter holiday castle — you have one more thing to try."
+
+  choice__
+    @target "A215-CH06-Argument-After"
+    "The Vanishing Cabinet clue."
+  __choice
+__section
+
+
+section__
+  @title "A215-CH06-Argument-After"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Something Draco said — if you spoke to him — or something the counter-offer revealed, or something the argument added to your understanding: the Vanishing Cabinet is a matched pair. One here, one at Borgin and Burkes."
+
+  "You remember August. Borgin and Burkes. The oilskin package that Draco was measuring against the display cabinet. The way he spoke to Borgin with the specific register of someone negotiating under constraint."
+
+  "He was measuring it. Checking its dimensions against the Borgin and Burkes cabinet."
+
+  "Which means he knew, in August, that the Borgin and Burkes cabinet was one half of a matched pair and he needed the other half. He came to Hogwarts specifically to find the other half — or to fix it."
+
+  "The Room of Hidden Things. Objects abandoned and never retrieved. A Vanishing Cabinet that's been there for years, broken, waiting."
+
+  "He found it. He's been repairing it. And when it's repaired, the passage between Hogwarts and Knockturn Alley is complete."
+
+  choice__
+    @target "A216-CH06-Subplot-Deepens"
+    "Understand what this means."
+  __choice
+__section
+
+
+/* ── SUBPLOT DEEPENS (A216–A225) ── */
+
+section__
+  @title "A216-CH06-Subplot-Deepens"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You have the mechanism. Now you need to decide what to do with it."
+
+  if__ (draco_helped == true) {
+    choice__
+      @target "A217-CH06-Errand-Track"
+      "The errand Draco asked for. You agreed. That has implications."
+    __choice
+  }
+
+  if__ (draco_helped == false) {
+    choice__
+      @target "A221-CH06-Harry-Enlists"
+      "Harry's position. He's been watching too. The moment where you might converge."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A217-CH06-Errand-Track"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The errand Draco described: a Potions ingredient needed for the repair process. Specifically, a binding agent that adheres to enchanted wood without disrupting the existing spellwork — available from the Hogwarts stores if you have a legitimate reason to access them, which as a sixth-year student with NEWT Potions access, you technically do."
+
+  "Dragon's blood extract, which has binding properties not widely known outside advanced Potions. Draco specified: third-grade extraction, not the commercial preparation. The difference is in the refinement."
+
+  "You could procure it. The request is not illegal. The purpose it's serving is not something you have to know or acknowledge."
+
+  "This is where the cost of agreeing to help announces itself: the first step is always small. The binding agent is nothing. The passage it's helping repair is something else entirely."
+
+  choice__
+    @target "A218-CH06-Errand-Details"
+    "Get it."
+  __choice
+
+  choice__
+    @target "A218-CH06-Errand-Details"
+    @action cunning = adj(cunning, 5)
+    "Get it, but record the transaction. Whatever you've agreed to, there's a version of this where the documentation protects you later."
+  __choice
+__section
+
+
+section__
+  @title "A218-CH06-Errand-Details"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You sign out the dragon's blood extract from the Potions stores on a Thursday afternoon under a plausible academic pretext — cross-reference research for an essay that, technically, could require it."
+
+  "The process is straightforward. The ingredient is on the standard-access list. The transaction goes into the Potions log in your name."
+
+  "You deliver it to Draco in the corridor outside the library — a brief exchange, him moving away with it in his bag as though he's picked up someone's dropped Quill."
+
+  "He doesn't thank you. But later that evening, in the library — not directly, not as a formal statement — he sits down at your table and opens a book and says without looking up: 'Avery Ashford's investigation. As far as I know, there's no connection to the cabinet. But the Mirror your parent was tracking — I've heard that name. Not the details. Just the name.'"
+
+  "He doesn't give you more than that. He gets up after ten minutes and leaves."
+
+  "But he confirmed it: the Mirror is known to people in his network. Which means it's on Voldemort's list. Which means Avery was right about the stakes."
+
+  choice__
+    @target "A219-CH06-Errand-Response"
+    @action knowledge = adj(knowledge, 8)
+    @action rel_draco = adjRel(rel_draco, 8)
+    "Process this."
+  __choice
+__section
+
+
+section__
+  @title "A219-CH06-Errand-Response"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Mirror is known to Voldemort's network."
+
+  "You write this in your notebook in the same capitals you use for confirmed facts rather than hypotheses: *MIRROR KNOWN TO DEATH EATER NETWORK.* Then you underline it twice, which is not your usual notation practice, but the scale of the confirmation warrants it."
+
+  "Avery found it. Avery tried to secure it or hide it or prevent Voldemort from accessing it. And Voldemort — or the people who work for him — know it exists and know it's in Montenegro."
+
+  "The Vanishing Cabinet, if it completes, creates a route into Hogwarts that isn't monitored. If the Mirror were moved from Montenegro to Britain, brought through Borgin and Burkes, and then— no. The passage goes the other way: Hogwarts to Knockturn Alley. It's an exit route, not an entry."
+
+  "Unless the plan isn't to bring things in. Unless the plan is to bring people out."
+
+  "You sit with this for a while. Then you close the notebook."
+
+  choice__
+    @target "A220-CH06-Errand-Convergence"
+    "Back to the main thread."
+  __choice
+__section
+
+
+section__
+  @title "A220-CH06-Errand-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You've helped with one small errand. You have one confirmed piece of new information. The transaction is done."
+
+  "What it cost: a small item logged in your name in the Potions stores. A step of cooperation with Draco's mission that you can't fully undo."
+
+  "What it gained: the Mirror is on Voldemort's list. Your investigation and Draco's task are adjacent, not identical. Whatever is coming through the Vanishing Cabinet when it's repaired is not the Mirror directly — but it might be connected to it."
+
+  "You continue watching. You continue thinking. The holidays are coming."
+
+  choice__
+    @target "A225-CH06-Draco-Track-Convergence"
+    "The thread continues."
+  __choice
+__section
+
+
+section__
+  @title "A221-CH06-Harry-Enlists"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Harry finds you three days after the trophy room conversation."
+
+  "He doesn't come at it indirectly. Harry Potter, when he's decided something, is more direct about it than anyone gives him credit for. '*I need someone to watch the seventh floor corridor who won't be noticed the way I would be,* he says. *Malfoy avoids me now. He doesn't know you're paying attention.*'"
+
+  "He's right that Draco doesn't know the full scope of your attention — or at least, he didn't know until recently. Whether that's still true depends on what you've already done."
+
+  "The ask is specific: watch the corridor on Wednesday and Friday evenings between seven and nine, when Harry's Occlumency practice makes him unavailable. Report anything you see."
+
+  "You can agree, and give Harry a functional partnership in the Draco surveillance. Or you can bring more context to the conversation — things about the cabinet, the passage, the argument — and see what Harry does with it."
+
+  choice__
+    @target "A222-CH06-Watch-Assignment"
+    @action rel_harry = adjRel(rel_harry, 10)
+    "Agree. Watch the corridor."
+  __choice
+
+  choice__
+    @target "A222-CH06-Watch-Assignment"
+    @when knowledge >= 55
+    @disabledText "Requires Knowledge ≥ 55 to synthesise what you know effectively enough to brief Harry."
+    @action rel_harry = adjRel(rel_harry, 15)
+    @action knowledge = adj(knowledge, 5)
+    "Bring the fuller picture. Tell him about the seventh floor, the Room of Hidden Things, and what you understand about the Vanishing Cabinet."
+  __choice
+__section
+
+
+section__
+  @title "A222-CH06-Watch-Assignment"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Wednesday evening. You're on the seventh floor corridor with a book and a legitimate excuse — the Transfiguration classroom is two floors down and students with legitimate business occasionally pass through."
+
+  "Nothing happens on Wednesday."
+
+  "Friday: Draco appears at seven-forty. The three-pass pacing ritual. The door appearing. He's inside for thirty-five minutes. When he comes out he looks like someone who has run two miles — not physically tired, but the specific exhaustion of sustained concentrated effort."
+
+  "He doesn't see you. Or if he does, he doesn't show it."
+
+  "You note the timing, the duration, the specific fatigue. You pass this to Harry through the method you've agreed on — a note in a location both of you know, which is elaborate enough to feel real and isn't wrong to have."
+
+  choice__
+    @target "A223-CH06-Watching-Report"
+    "Harry's response."
+  __choice
+__section
+
+
+section__
+  @title "A223-CH06-Watching-Report"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Harry's response comes the next morning via the same channel."
+
+  "*This matches what I've been seeing. He's getting faster. The duration is getting shorter — first it was over an hour, now thirty-five minutes. He's almost done with whatever he's doing in there.*"
+
+  "Almost done."
+
+  "You sit with this. If the Vanishing Cabinet is almost repaired, the passage is almost open. And if the passage is almost open, whatever it's going to be used for is going to happen soon."
+
+  "The question that follows from this: is there something to be done before it's complete? The options are not obvious. Draco can't be stopped without official intervention that puts his family in danger. The cabinet itself could be sabotaged — but the specifics of how, and whether that would actually prevent what's coming, are unclear."
+
+  "And you have your own investigation to consider. If the Mirror is on Voldemort's list, and the passage is connected even indirectly to how Voldemort accesses things he wants — then stopping the passage might also be about the Mirror. Or it might be unrelated."
+
+  choice__
+    @target "A224-CH06-Harry-Response"
+    "Talk to Harry directly."
+  __choice
+__section
+
+
+section__
+  @title "A224-CH06-Harry-Response"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You find Harry in the corridor after Charms. He's alone in the way he's often alone now — surrounded by Hogwarts but focused on something internal."
+
+  "You walk alongside him. You tell him: the passage goes from Hogwarts to Borgin and Burkes in Knockturn Alley. The cabinet in the Room of Hidden Things is the Hogwarts half. The one at Borgin and Burkes is the other. Objects — and people — placed in one emerge from the other."
+
+  "Harry stops walking. 'He's building an entry route,' he says. 'For Death Eaters.'"
+
+  "You nod. That's the most direct interpretation."
+
+  "'We have to tell Dumbledore,' he says."
+
+  "You think about Avery's note. *Don't go to Dumbledore first.* Not *don't go at all* — *first.* There's a sequence that matters here."
+
+  "'Not yet,' you say. 'Let me find out what the connection is to the thing I'm investigating first. If they're connected, Dumbledore needs the whole picture, not just the cabinet.'"
+
+  "Harry looks at you. He wants to push. He decides not to. 'How long,' he says."
+
+  "'A month,' you tell him."
+
+  choice__
+    @target "A225-CH06-Draco-Track-Convergence"
+    @action rel_harry = adjRel(rel_harry, 5)
+    "He agrees. One month."
+  __choice
+__section
+
+
+section__
+  @title "A225-CH06-Draco-Track-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Draco thread is now a thread you're holding rather than watching from the outside."
+
+  "Whether you helped with the errand or partnered with Harry, whether you've told him about the cabinet or kept it close — you're connected to the situation in a way you weren't at the start of the chapter. The information is real. The stakes have clarified."
+
+  "What you know: the Vanishing Cabinet is almost complete. Knockturn Alley. Death Eater access. Draco under duress."
+
+  "What you're still missing: whether the Mirror connects. What's supposed to come through the passage. What happens when it's done."
+
+  "The holidays are coming. The castle will be quieter. Things will develop."
+
+  choice__
+    @target "A226-CH06-Cabinet-Clue"
+    "Think about the Mirror connection."
+  __choice
+__section
+
+
+/* ── VANISHING CABINET CLUE (A226–A232) ── */
+
+section__
+  @title "A226-CH06-Cabinet-Clue"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (draco_bargain == true || cunning >= 60) {
+    choice__
+      @target "A227-CH06-Understanding-Dawns"
+      "Think through what Draco told you about the passage and what you know about the Mirror's location."
+    __choice
+  }
+
+  if__ (draco_bargain == false && cunning < 60) {
+    choice__
+      @target "A230-CH06-Clue-Without-Cunning"
+      "You have the pieces. But the connection isn't quite there yet."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A227-CH06-Understanding-Dawns"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You sit in the library on a Tuesday evening with your notebook open to the Montenegro column and what you've learned about the Vanishing Cabinet on the facing page, and you try to trace the line between them."
+
+  "The Mirror: in Montenegro, as of Avery's investigation. Voldemort wants it. The network around Voldemort — the Death Eaters — are mobile but constrained by Ministry monitoring and geographical distance."
+
+  "The cabinet: a passage that isn't monitored, that bypasses Ministry checkpoints, that connects to a shop in Knockturn Alley where items arrive from unspecified origins and are sold without record."
+
+  "If someone wanted to move the Mirror from Montenegro to Britain without triggering any detection — not through official ports, not through Ministry-monitored Floo, not through tracked Portkey networks — the route would need to be underground."
+
+  "Knockturn Alley as a staging point. The Vanishing Cabinet as the last leg."
+
+  "The Mirror could come through the passage."
+
+  choice__
+    @target "A228-CH06-A-Passage"
+    @action cunning = adj(cunning, 8)
+    @action knowledge = adj(knowledge, 5)
+    "It's a possibility. A real one."
+  __choice
+__section
+
+
+section__
+  @title "A228-CH06-A-Passage"
+  @textPacing "cinematic"
+  @shot "close"
+
+  draco_mirror_hint = true
+
+  "You write it in your notebook: *Vanishing Cabinet — possible route for Mirror into Hogwarts. Draco's task may be enabling transport of Mirror-related object. NOT CONFIRMED. Requires: Mirror currently in transit from Montenegro, timed to coincide with completion of cabinet repair.*"
+
+  "Then you write the question below it: *Why Hogwarts? Why not somewhere more accessible?*"
+
+  "And the answer arrives before you finish writing it: because the Mirror — if its function is what Avery's journal suggests — requires a specific kind of space to activate. A place with old magic, saturated in centuries of magical practice, where the amplification effects would be strongest."
+
+  "Hogwarts is the most magic-saturated location in Britain."
+
+  "If Voldemort wanted to use the Mirror — to use its killing-amplification function — he wouldn't want it in a warehouse in Knockturn Alley. He'd want it here."
+
+  "Which means the passage isn't just a transport route. It's the final leg of bringing a weapon of mass dark magic to the most powerful magical location in the country."
+
+  choice__
+    @target "A229-CH06-What-Kind-Of-Passage"
+    "Sit with that."
+  __choice
+__section
+
+
+section__
+  @title "A229-CH06-What-Kind-Of-Passage"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You sit with it for a long time."
+
+  "The theory has gaps. It requires the Mirror to be in transit — which you don't know. It requires Draco's task to include the Mirror specifically, rather than just providing access for Death Eaters. It requires Voldemort to want Hogwarts as the location, rather than somewhere else."
+
+  "All of these might be wrong."
+
+  "But even if you're wrong about the Mirror and the passage, you're not wrong about the passage itself: it's nearly complete, it bypasses every monitoring system in the school, and when it opens, something or someone is coming through."
+
+  "The Mirror is your concern. Harry's concern — and apparently Dumbledore's, if you've told him — is the passage regardless of what it's for. The two concerns may overlap. They might not."
+
+  "Either way: the month Harry gave you has to produce something. You need section two of the journal. And section two might tell you what the Mirror's movement looks like and what it requires."
+
+  choice__
+    @target "A232-CH06-Cabinet-Convergence"
+    "One problem at a time."
+  __choice
+__section
+
+
+section__
+  @title "A230-CH06-Clue-Without-Cunning"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You know about the Vanishing Cabinet — either from Draco, from observation, from Harry's investigation. You know it connects Hogwarts to Knockturn Alley. You know it's almost finished."
+
+  "The connection to the Mirror is harder. You can see the components — an unmonitored passage, a location with concentrated magical energy, the Mirror somewhere in Montenegro — but the line between them doesn't resolve cleanly. There are too many gaps."
+
+  "Maybe they're connected. Maybe they're not. You need more."
+
+  "Section two of the journal might tell you. Whatever Avery was writing about when the emotional register shifted — the detail that required more urgency than section one — it might contain the operational specifics that explain whether the Mirror was being moved and when."
+
+  "You add it to the list of things you need. Which is getting long."
+
+  choice__
+    @target "A231-CH06-Partial-Suspicion"
+    "Note it."
+  __choice
+__section
+
+
+section__
+  @title "A231-CH06-Partial-Suspicion"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Something is connected. You can feel the shape of it without being able to map it — the specific way that two lines of evidence run parallel and haven't yet intersected but are clearly going to."
+
+  "The Vanishing Cabinet and the Mirror. Draco and Avery's investigation. The threatening letters and whoever in this school is monitoring you."
+
+  "These are not unconnected things. The connection isn't visible yet."
+
+  "You note it with the only notation you have for confirmed-but-not-yet-understood: *[PENDING — possible structural connection. Requires: Section 2 decode or new external information.]*"
+
+  "And you move forward."
+
+  choice__
+    @target "A232-CH06-Cabinet-Convergence"
+    "Move forward."
+  __choice
+__section
+
+
+section__
+  @title "A232-CH06-Cabinet-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "End of Chapter 6's main investigation thread. Here is what you have:"
+
+  "Draco Malfoy is repairing a Vanishing Cabinet that creates a passage from Hogwarts to Knockturn Alley. He's doing it under duress, for people connected to Voldemort, and he can't stop. He's almost finished."
+
+  "The passage might be connected to the Mirror's movement. Or it might not be. You don't know."
+
+  "Your relationship with Draco is: complicated. Either you've helped him with a small errand and received confirmation that the Mirror is known to Voldemort's network. Or you've partnered with Harry to watch him. Or both, or neither."
+
+  "Harry is now either a partner or a parallel investigator or something between."
+
+  "The holidays are one week away."
+
+  choice__
+    @target "A233-CH06-December-Deepens"
+    "December."
+  __choice
+__section
+
+
+/* ── END CHAPTER SIX (A233–A240) ── */
+
+section__
+  @title "A233-CH06-December-Deepens"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The final week of December term. The school empties like water out of a bowl — first the students who live far away and need extra travel time, then the middle contingent, then the holdouts who are either staying for the holidays or leaving last-minute."
+
+  "The castle at half-population has a different quality. Corridors that are usually crowded become navigable. The Great Hall echoes. The specific ambient noise of a school in full operation — footsteps, voices, doors, the distant creak of moving staircases — drops to something quieter and more individual."
+
+  "Draco is staying. You know this because you've been watching him."
+
+  "He is not packing. He is not sending owls home the way students do in the last week. He is going to the seventh floor on Tuesday evening and Thursday morning and Saturday afternoon, and the durations of his visits are getting shorter."
+
+  "Almost done."
+
+  choice__
+    @target "A234-CH06-Ch6-Buffer"
+    "The holiday arrives."
+  __choice
+__section
+
+
+section__
+  @title "A234-CH06-Ch6-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Christmas at Hogwarts — whether you're one of the students who stay or whether you've gone home and come back — has a specific quality that the term doesn't."
+
+  "For those who stay: the castle reveals itself in a different register. Without the crowd, you can hear the building. The portraits talk more freely. The ghosts move through space with less traffic to avoid. The house elves, whose presence is usually inferred rather than observed, become briefly visible."
+
+  "For those who go home and return: the break is an interruption, and what interruptions do is clarify. Two weeks away from the cipher and the observation logs and the daily management of the investigation, and you come back knowing exactly which parts of it are essential and which parts you'd been accumulating because accumulation felt like progress."
+
+  "Either way: you return to the second week of January with the investigation in a different state than when you left it."
+
+  choice__
+    @target "A235-CH06-Draco-Mirror-Connect"
+    "Return."
+  __choice
+__section
+
+
+section__
+  @title "A235-CH06-Draco-Mirror-Connect"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "January. The second term begins."
+
+  "And Draco Malfoy, who spent the holiday at Hogwarts working on the Vanishing Cabinet, is back in classes with the specific quality of someone who did not rest during their break."
+
+  "He's thinner. The compression around his eyes has gone from exhaustion to something harder — the specific drawn-taut look of someone who is very close to the thing they've been working toward and hasn't decided yet whether the arrival is better or worse than the approach."
+
+  "The cabinet is repaired. Or close to it. You don't know this from observation directly — you know it from the change in his posture, which has shifted from the lean-forward urgency of someone doing a task to the specific held-stillness of someone who has done it and is waiting."
+
+  "Waiting for what comes through."
+
+  choice__
+    @target "A236-CH06-End-Ch6-A"
+    "Watch. Wait."
+  __choice
+__section
+
+
+section__
+  @title "A236-CH06-End-Ch6-A"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "What Chapter 6 has given you:"
+
+  "The Draco thread is now a thread you hold rather than observe. You know what he's building, why he can't stop, and approximately when it will be complete."
+
+  "Whether that knowledge is an asset or a liability depends on what you do with it."
+
+  "The Mirror connection is a theory — possible, supported by the convergence of evidence, but unconfirmed. Section two of the journal might confirm it or eliminate it."
+
+  "The relationship with Draco is: complex, and likely to become more so."
+
+  "The relationship with Harry is: developing, in a direction you're still navigating."
+
+  "And somewhere on the seventh floor, in a room full of abandoned things, a cabinet is waiting to be used."
+
+  choice__
+    @target "A237-CH06-End-Ch6-B"
+    "One more piece."
+  __choice
+__section
+
+
+section__
+  @title "A237-CH06-End-Ch6-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "January's first week. You go to McGonagall's Wednesday evening office — if you've been going, this is a continuation; if you haven't, this is the first time."
+
+  "You don't tell her about the cabinet. Not because she couldn't handle it — she could handle it rather precisely — but because telling her activates the institutional machinery that Avery warned against. McGonagall would feel obligated to escalate. Escalation would remove your ability to control the timeline."
+
+  "What you do tell her: you've decoded section one of the journal. You know the Mirror is in Montenegro. You know there's a trusted contact named L."
+
+  "She listens. She asks one question: 'Do you know when section two might become accessible.'"
+
+  "'Not yet,' you tell her."
+
+  "She nods. 'Then that's the priority.' A pause. 'Keep watching the seventh floor. If the thing you're concerned about there is connected to the Mirror — and I think it might be — you'll need section two before you can act on either.'"
+
+  "She knows about the cabinet. Or suspects. She doesn't say so directly. She doesn't have to."
+
+  choice__
+    @target "A238-CH06-December-Atmosphere"
+    "January deepens."
+  __choice
+__section
+
+
+section__
+  @title "A238-CH06-December-Atmosphere"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "January in Scotland is a specific kind of cold — not the dramatic cold of early winter but the grinding cold of a season that has committed to its position and has no plans to move. The grounds are grey-white under frost each morning. The lake is still. The owls fly in conditions that would ground anything with less instinct."
+
+  "The second term starts with the momentum of a school that has had two weeks to remember what it's doing here. Classes resume at full intensity. NEWTs are in May. The fact of May sits over everything like a structural element — not visible in every moment but load-bearing regardless."
+
+  "You do sixth year. You do DADA and Potions and the other subjects that require actual attention. You maintain the academic cover that keeps you unremarkable in one dimension while you work in others."
+
+  "The cipher notebook has forty-three pages of notation now. The observation log has sixty-two entries. You are running a very small, very private investigation inside a school in the middle of a war."
+
+  "It's January. You're still standing. That's something."
+
+  choice__
+    @target "A239-CH06-Chapter-Close"
+    "Press on."
+  __choice
+__section
+
+
+section__
+  @title "A239-CH06-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of the chapter that began with a door appearing in a wall on the seventh floor."
+
+  "What you carry going forward: the Draco thread, the cabinet, the passage, the Mirror's possible movement, the weight of a choice you made about whether to help or refuse or wait."
+
+  "What is still unresolved: everything important. Section two. L.'s identity confirmed. The spy in the school. What comes through the Vanishing Cabinet when it finally opens."
+
+  "The thing about investigations is that they don't arrive at conclusions in chapters. They arrive at them when the evidence forces a resolution — which is rarely timed to your preference."
+
+  "Something is going to force a resolution soon. The cabinet is almost done. The Mirror is somewhere. The threats have been sent."
+
+  "January of sixth year. The pressure building from multiple directions, each unresolved, each waiting."
+
+  choice__
+    @target "A240-CH06-To-Ch7"
+    "Chapter Seven."
+  __choice
+__section
+
+
+section__
+  @title "A240-CH06-To-Ch7"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "It's a Saturday in late January."
+
+  "And Neville Longbottom has something in his bag that isn't his."
+
+  choice__
+    @target "A241-CH07-Quidditch-Hub"
+    "Two things happen at once."
+  __choice
+__section

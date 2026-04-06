@@ -1,0 +1,186 @@
+/* ============================================================
+   THE ASHFORD CODEX
+   A Hogwarts Interactive Fiction Story
+   IF-Script v0.5.8+
+
+   Setting: Harry Potter Universe — Year Six (1996–1997)
+   Total scope: ~810 sections, ~207,000 words across all branches
+   Design document: test/fixtures/stories/ashford-codex/DESIGN.md
+   Implementation plan: ~/.claude/plans/shimmering-herding-minsky.md
+   ============================================================ */
+
+/* ── STORY SETTINGS ── */
+
+settings__
+  @storyTitle "The Ashford Codex"
+  @startAt "A001-CH01-Opening"
+  @theme "cinematic"
+  @presentationMode "cinematic"
+  @allowUndo true
+  @showTurn true
+  @animations true
+  @autoSave true
+  @maxIterations 50000
+  @maxCallDepth 2000
+
+  /* Displayed stats (true = shown in status bar) */
+  @statusBar courage true "Courage"
+  @statusBar cunning true "Cunning"
+  @statusBar empathy true "Empathy"
+  @statusBar knowledge true "Knowledge"
+  @statusBar morality true "Light/Dark"
+  @statusBar house_rep true "Rep"
+__settings
+
+
+/* ── PRIMARY STATS (0–100) ── */
+
+courage = 40
+cunning = 40
+empathy = 40
+knowledge = 40
+morality = 50        /* 0 = fully dark, 100 = fully light, starts neutral */
+house_rep = 50
+
+
+/* ── RELATIONSHIP STATS (hidden, 0–100) ── */
+
+rel_harry = 20
+rel_hermione = 35
+rel_ron = 30
+rel_draco = 15
+rel_snape = 20
+rel_mcgonagall = 40
+rel_dumbledore = 25
+rel_luna = 40
+rel_neville = 35
+rel_ginny = 30
+
+/* Romance candidates */
+rel_elara = 20       /* Ravenclaw, F — intellectual, secretive */
+rel_marcus = 20      /* Slytherin, M — trying to defect from his family */
+rel_jade = 35        /* Gryffindor, F — Quidditch captain, warm */
+rel_sebastian = 40   /* Hufflepuff, M — loyal, quietly profound */
+
+/* Faction / group */
+rel_order = 0        /* Order youth network (Asha Mehta) */
+rel_slughorn = 0     /* Horace Slughorn */
+
+
+/* ── ALLEGIANCE FLAGS ── */
+
+order_member = false
+dark_network_access = false
+dark_arts_practiced = false
+snape_bargain = false
+snape_bargain_modified = false
+dumbledore_trusted = false
+allegiance_track = ""       /* Set in Ch.10: "order" | "dark" | "solo" */
+
+
+/* ── JOURNAL / MIRROR FLAGS ── */
+
+journal_decoded = 0         /* int 0–5: number of journal sections cracked */
+mirror_location_known = false
+mirror_key_held = false
+mirror_destroyed = false
+mirror_voldemort = false
+key_given_order = false
+key_given_dumbledore = false
+key_hidden_again = false
+mirror_key_delayed = false   /* Set if Draco help delayed key retrieval */
+
+
+/* ── PARENT FLAGS ── */
+
+avery_alive = false
+avery_note_found = false     /* Found/decoded final journal coordinates */
+rescue_planned = false
+
+
+/* ── SPY SUBPLOT FLAGS ── */
+
+spy_known = false
+spy_exposed = false
+spy_confronted = false
+spy_trap_set = false         /* Planted false info to identify leak */
+spy_leveraged = false        /* Blackmailed spy into working for protagonist */
+spy_protected = false        /* Shielded spy from consequences */
+spy_investigation_started = false
+spy_character = ""           /* Who the spy turned out to be */
+
+
+/* ── DRACO THREAD FLAGS ── */
+
+draco_followed = false
+draco_helped = false
+draco_betrayed = false
+draco_stayed_with = false
+draco_bargain = false
+draco_mirror_hint = false    /* Knows Draco has Mirror-related intel */
+cabinet_sabotaged = false
+
+
+/* ── ROMANCE FLAGS ── */
+
+romance_active = ""          /* "elara" | "marcus" | "jade" | "sebastian" | "" */
+romance_consummated = false  /* Reached emotional peak/commitment */
+elara_secret_known = false   /* Knows Elara's father is a Death Eater informant */
+marcus_defection = false     /* Helped Marcus contact Order */
+
+
+/* ── PLAYER STATE FLAGS ── */
+
+house = ""                   /* "gryffindor" | "ravenclaw" | "hufflepuff" | "slytherin" */
+threat_noted = false         /* Noted threatening note on Express */
+l_theory = ""                /* Who protagonist suspects "L." is: "luna"|"lupin"|"snape"|"" */
+fled_hogwarts = false
+hermione_saw_journal = false
+snape_knows_journal = false
+luna_told_mirror_function = false
+slughorn_useful = false
+
+
+/* ── IMPORTS ── */
+/* Add imports as each phase is completed. Do not import files that don't yet exist. */
+
+import__"ashford-codex/00-system.partial.if"__import
+
+/* Phase 1 */
+import__"ashford-codex/01-ch01-diagon-alley.partial.if"__import
+import__"ashford-codex/01-ch02-express.partial.if"__import
+import__"ashford-codex/01-ch03-arrival.partial.if"__import
+import__"ashford-codex/01-ch04-first-week.partial.if"__import
+
+/* Phase 2 */
+import__"ashford-codex/02-ch05-journal-speaks.partial.if"__import
+import__"ashford-codex/02-ch06-draco-thread.partial.if"__import
+import__"ashford-codex/02-ch07-quidditch.partial.if"__import
+
+/* Phase 3 */
+import__"ashford-codex/02-ch08-slug-club.partial.if"__import
+import__"ashford-codex/02-ch09-parents-trail.partial.if"__import
+
+/* Phase 4 */
+import__"ashford-codex/03-ch10-allegiances.partial.if"__import
+
+/* Phase 5 */
+/* import__"ashford-codex/03-ch11-secret.partial.if"__import */
+/* import__"ashford-codex/03-ch12-midwinter.partial.if"__import */
+/* import__"ashford-codex/03-ch13-hearts-hexes.partial.if"__import */
+
+/* Phase 6 */
+/* import__"ashford-codex/04-ch14-weapon-revealed.partial.if"__import */
+/* import__"ashford-codex/04-ch15-betrayal.partial.if"__import */
+
+/* Phase 7 */
+/* import__"ashford-codex/04-ch16-tower-a.partial.if"__import */
+/* import__"ashford-codex/04-ch16-tower-b.partial.if"__import */
+
+/* Phase 8 */
+/* import__"ashford-codex/05-ch17-aftermath.partial.if"__import */
+/* import__"ashford-codex/05-e1-bright-constant.partial.if"__import */
+/* import__"ashford-codex/05-e2-redeemed-shadow.partial.if"__import */
+/* import__"ashford-codex/05-e3-brilliant-alone.partial.if"__import */
+/* import__"ashford-codex/05-e4-long-way-back.partial.if"__import */
+/* import__"ashford-codex/05-e5-vanishing-point.partial.if"__import */

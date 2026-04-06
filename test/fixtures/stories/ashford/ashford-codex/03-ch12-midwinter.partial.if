@@ -1,0 +1,1241 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 12
+   03-ch12-midwinter.partial.if
+
+   Chapter 12: Midwinter Revelations
+   Finding the Mirror-Key. Dumbledore scene.
+   Draco through the wall. Snape-Draco dynamic.
+   Romance deepening. Allegiance track intel.
+
+   Flags set: mirror_key_held (possibly), dumbledore_trusted (possibly)
+
+   Section range: A501–A545
+   ============================================================ */
+
+scene__
+  @name "CH12: Midwinter Revelations"
+  @first "A501-CH12-Midwinter-Opens"
+  @sceneTransition "dissolve"
+  @sections "A501-CH12-Midwinter-Opens" "A502-CH12-Key-Context" "A503-CH12-Room-Return" "A504-CH12-Key-Decision" "A505-CH12-Take-Key" "A506-CH12-Leave-Key" "A507-CH12-Try-Destroy" "A508-CH12-Tell-Dumbledore" "A509-CH12-Key-Convergence" "A510-CH12-Dumbledore-Scene" "A511-CH12-Dumbledore-Return" "A512-CH12-Draco-Wall-Hub" "A513-CH12-Draco-Context" "A514-CH12-Draco-Sounds" "A515-CH12-Draco-Intervene" "A516-CH12-Draco-Leave" "A517-CH12-Draco-Low-Words" "A518-CH12-Draco-Convergence" "A519-CH12-Snape-Hub" "A520-CH12-Snape-Draco" "A521-CH12-Snape-Bargain-Echo" "A522-CH12-Snape-No-Bargain" "A523-CH12-Snape-Convergence" "A524-CH12-Romance-Deep-Hub" "A525-CH12-Elara-Deep" "A526-CH12-Marcus-Deep" "A527-CH12-Jade-Deep" "A528-CH12-Sebastian-Deep" "A529-CH12-No-Romance-Deep" "A530-CH12-Romance-Deep-Convergence" "A531-CH12-Track-Intel-Hub" "A532-CH12-Order-Intel" "A533-CH12-Order-Intel-B" "A534-CH12-Dark-Intel" "A535-CH12-Dark-Intel-B" "A536-CH12-Solo-Intel" "A537-CH12-Solo-Intel-B" "A538-CH12-Track-Intel-Convergence" "A539-CH12-World-Shifts" "A540-CH12-End-State" "A541-CH12-Chapter-Close" "A542-CH12-Transition" "A543-CH12-Buffer" "A544-CH12-Night-Falls" "A545-CH12-To-Ch13"
+__scene
+
+
+/* ── 12a: FINDING THE MIRROR-KEY (A501–A511) ── */
+
+section__
+  @title "A501-CH12-Midwinter-Opens"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Early June. The light stays late now — nine o'clock and the grounds are still gold, the lake reflecting a sky that doesn't want to surrender to night. Exams in progress. The castle in its annual state of academic siege."
+
+  "But exams are the surface. Underneath: the key."
+
+  "The Mirror-key sits in its broken chest in the Room of Hidden Things. Containment breached. Accessible. Waiting for someone to decide what to do with it."
+
+  "The fourth journal section's revelation — intent-based, not power-based; amplifies sacrifice, not violence — has changed the calculus. The key is more complex than anyone realised. And more urgent. The cabinet is ready. The Death Eaters are coming. The room where the key sits will become a war zone."
+
+  "Retrieval cannot wait."
+
+  choice__
+    @target "A502-CH12-Key-Context"
+    "The retrieval."
+  __choice
+__section
+
+
+section__
+  @title "A502-CH12-Key-Context"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The context for the retrieval depends on your allegiance:"
+
+  if__ (allegiance_track == "order") {
+    "Asha's assignment: retrieve the key, deliver it through the Order's adult relay. The network will secure it outside Hogwarts before the cabinet opens."
+  }
+
+  if__ (allegiance_track == "dark") {
+    "Draco's request: bring him the key. The secondary objective completed, his mother's safety more assured. But giving Draco the key means the Death Eaters have it."
+  }
+
+  if__ (allegiance_track == "solo") {
+    "Your plan: retrieve the key, keep it yourself. The solo investigator controls the most valuable piece on the board."
+  }
+
+  "But the retrieval itself is the same regardless of track. The seventh floor. The Room. The chest."
+
+  choice__
+    @target "A503-CH12-Room-Return"
+    "Return to the Room."
+  __choice
+__section
+
+
+section__
+  @title "A503-CH12-Room-Return"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The seventh floor. After curfew. The corridor is empty — you've timed it using the patrol schedules you've been mapping since October."
+
+  "Three passes before the wall. Hidden things. Hidden things. Hidden things."
+
+  "The door appears. You enter."
+
+  "The Room of Hidden Things. The same cathedral space — the towers of objects, the tarnished tiara, the broken cabinet. The air smells of dust and old magic and the specific staleness of a space that has been sealed for decades."
+
+  "The chest is where you left it. The containment already broken. Inside: the obsidian shard, dark against the chest's silk lining, the gold-leaf frame fragment catching the light from your wand."
+
+  "You stand over it. The resonance hums. The key vibrating at a frequency you can feel in your sternum — not painful, not aggressive, just present. The vibration of an object that is aware of proximity in a way that inanimate objects shouldn't be."
+
+  "Four choices. What to do with the Mirror-key."
+
+  choice__
+    @target "A504-CH12-Key-Decision"
+    "Decide."
+  __choice
+__section
+
+
+section__
+  @title "A504-CH12-Key-Decision"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The key. The shard. The fragment of something that was once whole and is now the most important broken thing in Hogwarts."
+
+  choice__
+    @target "A505-CH12-Take-Key"
+    @action courage = adj(courage, 5)
+    @action mirror_key_held = true
+    "Take it. Put it in your pocket. Carry it with you. The key is yours — by investigation, by cipher, by six months of work that no one else did. Possession is: earned."
+  __choice
+
+  choice__
+    @target "A506-CH12-Leave-Key"
+    @action cunning = adj(cunning, 5)
+    @action knowledge = adj(knowledge, 5)
+    "Leave it. Mark the location more precisely. Close the chest. Walk away. The key is safer here — hidden in plain sight among a thousand other hidden things — than on your person, where it could be discovered or taken."
+  __choice
+
+  choice__
+    @target "A507-CH12-Try-Destroy"
+    @when knowledge >= 70
+    @disabledText "Requires Knowledge >= 70 — understanding the key's magical structure well enough to attempt destruction."
+    @action knowledge = adj(knowledge, 10)
+    @action courage = adj(courage, 5)
+    "Try to destroy it. The key amplifies intent. In the wrong hands, it's catastrophic. In anyone's hands, it's a risk. Perhaps the safest thing is to ensure it no longer exists."
+  __choice
+
+  choice__
+    @target "A508-CH12-Tell-Dumbledore"
+    @action courage = adj(courage, 10)
+    @action morality = adj(morality, 15)
+    @action dumbledore_trusted = true
+    "Take it to Dumbledore. Now. Tonight. The headmaster — when he's present — is the only person with the magical capability and the institutional authority to secure an artefact of this magnitude."
+  __choice
+__section
+
+
+section__
+  @title "A505-CH12-Take-Key"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "You reach into the chest. Your fingers close around the obsidian shard."
+
+  "The resonance intensifies. Not painfully — the key doesn't resist. It responds. The vibration shifts frequency, becomes warmer, more personal. The specific sensation of an object calibrating to the person holding it."
+
+  "Intent. The key is reading your intent."
+
+  "Your intent is: protect. Understand. Decide later. The three intentions layer in your grip — you want to keep this safe, you want to understand what it does, and you're not ready to commit to what happens next."
+
+  "The key seems to accept this. The resonance settles into a low, steady hum. Comfortable. Like holding something that has been waiting for a specific hand and has found one that, if not the right one, is at least an honest one."
+
+  "You put the shard in your pocket. The weight is negligible — three inches of obsidian and gold. But the symbolic weight is: considerable."
+
+  "You are now carrying the object that Voldemort has been seeking. The object that your parent nearly died investigating. The object that amplifies whatever its holder genuinely intends."
+
+  "Don't intend anything you're not prepared to amplify."
+
+  choice__
+    @target "A509-CH12-Key-Convergence"
+    "The key is yours."
+  __choice
+__section
+
+
+section__
+  @title "A506-CH12-Leave-Key"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You leave it. The key stays in the chest, in the Room of Hidden Things, surrounded by a thousand years of hidden objects. Anonymous. One more secret among thousands."
+
+  "You mark the location more precisely in your cipher notebook — relative to three landmarks, using the coordinate system Avery developed. Even if someone else enters the room, they'd need the journal's reference system to find this specific chest among the hundreds."
+
+  "The strategic logic is: sound. The key on your person is a liability. You can be searched, intercepted, ambushed. The key in the Room is protected by the Room's own magic — no one finds things in the Room of Hidden Things unless they know what they're looking for."
+
+  "The risk is: the cabinet. When it opens, Death Eaters will enter the castle through the Room of Requirement. If they use a different configuration, the key is safe. If they use the Hidden Things configuration — or if someone tells them where to look—"
+
+  "The risk is acceptable. For now."
+
+  choice__
+    @target "A509-CH12-Key-Convergence"
+    "The key waits."
+  __choice
+__section
+
+
+section__
+  @title "A507-CH12-Try-Destroy"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Destruction. The simplest solution to a dangerous artefact: ensure it no longer exists."
+
+  "You try. Three methods, applied in sequence:"
+
+  "First: a standard Reductor Curse. The spell hits the shard. The shard absorbs the impact. No damage. The obsidian surface doesn't even scratch."
+
+  "Second: a more advanced Disintegration Charm — NEWT-level, precise, designed for breaking down magical objects. The charm wraps around the shard, attempts to decompose its structure. The shard's resonance flares — a burst of heat, visible light, the specific resistance of an object that was designed to endure — and the charm dissipates. No effect."
+
+  "Third: you attempt to crack the shard physically. Stone against stone. The obsidian hits the floor. The floor cracks. The shard is undamaged."
+
+  "The Mirror-key is indestructible. At least by conventional means. Avery's journal mentioned nothing about destroying it — perhaps because Avery reached the same conclusion."
+
+  "Destruction would require something extraordinary. Fiendfyre, perhaps — the cursed fire that destroys almost anything. But Fiendfyre is Dark magic. Advanced, dangerous, nearly uncontrollable Dark magic."
+
+  "The key cannot be destroyed tonight. Not without resources and methods you don't currently have."
+
+  "It stays in the chest. The chest stays in the room."
+
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A509-CH12-Key-Convergence"
+    "Indestructible."
+  __choice
+__section
+
+
+section__
+  @title "A508-CH12-Tell-Dumbledore"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Dumbledore."
+
+  "You take the key from the chest — the resonance, the calibration, the warm hum of contact — and you go to the Headmaster's office. The gargoyle. The password. The spiral staircase."
+
+  "You climb. The office at the top is: occupied. The lights are on. Dumbledore is there — which is increasingly unusual; his absences have grown longer and more frequent, the specific pattern of a man conducting business outside the castle that he doesn't explain."
+
+  "He looks up when you enter. The half-moon spectacles. The eyes that see more than they should. The blackened hand, resting on the desk, the injury he has never explained."
+
+  "'Ashford,' he says. The name is enough. No surprise. The specific lack of surprise of someone who has been expecting this visit."
+
+  mirror_key_held = true
+
+  choice__
+    @target "A510-CH12-Dumbledore-Scene"
+    "You tell him."
+  __choice
+__section
+
+
+section__
+  @title "A509-CH12-Key-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The key decision is made. Taken, left, failed to destroy, or delivered to Dumbledore. Each choice carries its own weight forward into the chapters that follow."
+
+  if__ (mirror_key_held == true && dumbledore_trusted == false) {
+    "The key is on your person. The weight in your pocket — negligible in grams, enormous in consequence."
+  }
+
+  if__ (mirror_key_held == false && dumbledore_trusted == false) {
+    "The key remains in the Room. Hidden. For now."
+  }
+
+  if__ (dumbledore_trusted == true) {
+    "The key is known to Dumbledore. The Headmaster's involvement changes the picture."
+  }
+
+  choice__
+    @target "A512-CH12-Draco-Wall-Hub"
+    "The days continue."
+  __choice
+__section
+
+
+section__
+  @title "A510-CH12-Dumbledore-Scene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You tell him. Everything. The journal. The cipher — four sections decoded. The Mirror-key's nature: intent-based amplifier. The shard, which you place on his desk between a silver instrument and a stack of parchment."
+
+  "Dumbledore picks up the shard. Holds it. The resonance shifts — you can feel it from across the desk, a deeper vibration, the key responding to a wizard whose intent is vast and complicated and very, very old."
+
+  "'Ah,' he says. The syllable contains more than it should."
+
+  "'You knew.'"
+
+  "'I suspected. Your parent — Avery — and I had a conversation. Before they disappeared. Avery told me about the Mirror's existence and their intention to locate the key. I advised caution. Avery was not a cautious person.'"
+
+  "The information lands: Dumbledore knew. Dumbledore knew about the Mirror, about Avery's investigation, about the key. He didn't tell you. He waited for you to come to him."
+
+  "'Why didn't you tell me,' you say."
+
+  "'Because the journal's cipher was keyed to Avery's child. The emotional resonance that unlocks each section requires a specific relationship to the caster. No one else could decode it. If I had told you what I knew, I would have short-circuited the process by which you discovered what the key does — and understanding, as Avery rightly noted, requires the journey, not just the destination.'"
+
+  rel_dumbledore = adjRel(rel_dumbledore, 20)
+
+  choice__
+    @target "A511-CH12-Dumbledore-Return"
+    "He knew."
+  __choice
+__section
+
+
+section__
+  @title "A511-CH12-Dumbledore-Return"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Dumbledore places the shard back on the desk."
+
+  "'I will not take this from you,' he says. 'The key is yours — by Avery's design, by your work, by the emotional architecture of the cipher that only you could unlock. Taking it would be an act of institutional authority over personal discovery, and I have learned — slowly, at great cost — that such acts create more problems than they solve.'"
+
+  "'Then what.'"
+
+  "'Then you decide what to do with it. When the moment comes — and it will come, sooner than either of us would like — the key will need to be somewhere. In the Order's possession. Hidden. Destroyed, if you can find the means. Or—'" He pauses. "'—used. If someone with the right intent holds it at the right moment, it could protect everyone in this castle.'"
+
+  "'Or destroy them.'"
+
+  "'Yes. Intent is: risk. The key magnifies whatever is genuine. If your intent is impure — if sacrifice is mixed with self-interest, if protection is mixed with revenge — the amplification will reflect the mixture. Not cleanly.'"
+
+  "He looks at you over the spectacles."
+
+  "'Avery was right to suspect the Mirror was here. They were not the only one who knew. But you are, I think, the only one who understands what it does. Guard that understanding carefully.'"
+
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A509-CH12-Key-Convergence"
+    "The understanding is yours."
+  __choice
+__section
+
+
+/* ── 12b: DRACO THROUGH THE WALL (A512–A518) ── */
+
+section__
+  @title "A512-CH12-Draco-Wall-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Three days after the key decision."
+
+  "Late. Past curfew. You're returning from the library — or from wherever the investigation has taken you tonight — and the route passes the seventh-floor corridor."
+
+  "Sounds. Through the wall."
+
+  "The Room of Requirement. Draco's workshop configuration. Sounds that travel through stone — the castle's walls are thick but not silent; intense magic, intense emotion, both transmit."
+
+  "The sounds are: distress."
+
+  choice__
+    @target "A513-CH12-Draco-Context"
+    "Through the wall."
+  __choice
+__section
+
+
+section__
+  @title "A513-CH12-Draco-Context"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The sounds through the wall. Not the metallic work of cabinet repair — those sounds you know by now, the specific acoustics of magical engineering. These sounds are different. Breathing. Harsh, irregular breathing. And underneath the breathing: the sound of someone hitting something. Not casting a spell. Hitting. Fist against stone."
+
+  "Draco."
+
+  "The corridor is dark. You stand beside the wall — the blank stretch that conceals the Room — and you listen."
+
+  "'— can't do it can't do it can't do it —'"
+
+  "The words are: a loop. A mantra of refusal that has no audience except the room and, unknowingly, you. The hitting continues — rhythmic, painful, the sound of knuckles against stone that will bruise and possibly break."
+
+  "He's falling apart. The specific, private collapse of someone who has been holding themselves together through discipline and has reached the discipline's limit."
+
+  choice__
+    @target "A514-CH12-Draco-Sounds"
+    "The sounds continue."
+  __choice
+__section
+
+
+section__
+  @title "A514-CH12-Draco-Sounds"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Through the wall. The collapse. Three options."
+
+  choice__
+    @target "A515-CH12-Draco-Intervene"
+    @action empathy = adj(empathy, 10)
+    @action courage = adj(courage, 8)
+    @action rel_draco = adjRel(rel_draco, 20)
+    "Intervene. Walk past the wall three times, thinking about Draco's room. Enter. Be present for the breakdown. The most courageous option — not because it's physically dangerous, but because being present for someone else's collapse requires a kind of bravery that has nothing to do with wands."
+  __choice
+
+  choice__
+    @target "A516-CH12-Draco-Leave"
+    @action cunning = adj(cunning, 5)
+    "Leave. This is not your crisis. Draco's breakdown is the consequence of his choices — or the choices made for him. Your involvement doesn't change the structural reality of his position. Walk away."
+  __choice
+
+  choice__
+    @target "A517-CH12-Draco-Low-Words"
+    @action empathy = adj(empathy, 8)
+    @action courage = adj(courage, 3)
+    "Stand outside. Don't enter. But speak through the wall — low words, quiet, the kind of words that might carry through stone if the castle cooperates. Not rescue. Presence."
+  __choice
+__section
+
+
+section__
+  @title "A515-CH12-Draco-Intervene"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You walk past the wall. Three times. But you don't think about hidden things or your own purposes. You think about Draco. About the Room as it is for him — the workshop, the cabinet, the prison of his task."
+
+  "The door appears. His door. You push it open."
+
+  "Draco is on the floor. Back against the wall. Hands bleeding — the knuckles split from hitting stone, the specific self-inflicted damage of someone who has turned their distress inward because outward expression is not available to him."
+
+  "He sees you. The reaction is: complicated. Not anger. Not relief. Something between — the expression of a person who has been drowning and sees someone on the shore and doesn't know if they're here to help or to watch."
+
+  "'Go away,' he says. But he doesn't move. The instruction contradicts the body language."
+
+  "'No.'"
+
+  "You sit down. On the floor. Not beside him — across from him, back against the opposite wall. The cabinet stands between you, dark wood and old magic, the thing he built under duress."
+
+  "You don't say anything else. You sit. He bleeds. The room is silent except for his breathing."
+
+  "After a long time — ten minutes, twenty, the kind of time that loses its structure when the only thing happening is two people being present in the same space — his breathing normalises."
+
+  "'The cabinet is done,' he says. 'It's been done for a week. I keep telling them it needs more testing. But it's done. And when I stop saying it needs testing—'"
+
+  "'I know.'"
+
+  "'Everyone knows. That's the worst part. Everyone in this castle can see it happening and no one—'"
+
+  "He stops. Swallows."
+
+  "'You're here,' he says. As though noticing it for the first time. 'Why are you here.'"
+
+  "'Because someone should be.'"
+
+  "The answer is: simple. He looks at you for a long time, evaluating the simplicity, checking it for hidden agendas."
+
+  "He doesn't find any. Because there aren't any. You're here because he's on the floor."
+
+  choice__
+    @target "A518-CH12-Draco-Convergence"
+    "You stay."
+  __choice
+__section
+
+
+section__
+  @title "A516-CH12-Draco-Leave"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You leave."
+
+  "The sounds continue behind the wall as you walk away — the breathing, the hitting, the mantra of refusal. They fade as distance intervenes. By the time you reach the staircase, the seventh floor is silent."
+
+  "The decision to leave is: defensible. Strategically sound. You have your own objectives, your own timeline, your own weight to carry. Draco's breakdown is not your responsibility."
+
+  "But the sounds stay with you. The specific acoustics of someone alone in a room, hitting stone, saying *can't*. The sounds join the collection of things you carry — the key, the journal, the allegiance, and now this: the knowledge that someone was breaking apart fifteen feet away and you chose not to intervene."
+
+  "The cunning assessment: leaving was correct. The empathy assessment: different."
+
+  choice__
+    @target "A518-CH12-Draco-Convergence"
+    "You walked away."
+  __choice
+__section
+
+
+section__
+  @title "A517-CH12-Draco-Low-Words"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You don't enter. You stand in the corridor, back against the wall — the opposite side from the Room, the side where the stone is just stone and not magic — and you speak."
+
+  "Quietly. Not loudly enough to be heard through the wall by normal means. But Hogwarts is a building that cooperates with specific kinds of intention, and the intention to comfort someone in distress is one the castle has been facilitating for a thousand years."
+
+  "'Draco.'"
+
+  "The sounds on the other side pause."
+
+  "'You don't have to do this alone.'"
+
+  "Silence. Then, through the wall — not loudly, but audibly, the castle carrying the sound the way old buildings sometimes carry voices through unexpected channels:"
+
+  "'Yes I do.'"
+
+  "'No. You don't. And the fact that you think you do is part of what's breaking you. The isolation isn't strength. It's the weapon they're using against you.'"
+
+  "More silence. Longer."
+
+  "'How would you know.'"
+
+  "'Because I've been doing the same thing. And I'm starting to learn that carrying something alone when help is available isn't courage. It's pride. And pride, in this building, at this time, will kill someone.'"
+
+  "The breathing on the other side of the wall changes. Slows. Not calm — but slower. The shift from crisis to endurance."
+
+  "You don't know if the words helped. You stay for twenty minutes. Then you leave."
+
+  choice__
+    @target "A518-CH12-Draco-Convergence"
+    "The wall between you."
+  __choice
+__section
+
+
+section__
+  @title "A518-CH12-Draco-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Draco scene resolves. Intervention, departure, or words through stone. Each choice registered in the relationship and in the moral calculus of the story."
+
+  "The cabinet stands in its room. Complete. Ready. A passage from Knockturn Alley to Hogwarts, built by a sixteen-year-old under threat of his mother's death."
+
+  "What comes through it will come regardless of what you did tonight. But what you did tonight will determine where Draco stands when it happens."
+
+  choice__
+    @target "A519-CH12-Snape-Hub"
+    "Snape."
+  __choice
+__section
+
+
+/* ── 12c: SNAPE-DRACO DYNAMIC (A519–A523) ── */
+
+section__
+  @title "A519-CH12-Snape-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The next day. Potions corridor. Between classes."
+
+  "You see them: Snape and Draco. Not a public conversation — the kind of exchange that happens in the specific architectural spaces that Hogwarts provides for privacy: alcoves, dead-end corridors, the narrow passages between classrooms that are never quite empty but never quite observed."
+
+  "Snape has Draco by the arm. Not roughly — precisely. The grip of someone who is holding another person in place for the purpose of being heard, not for the purpose of control."
+
+  "Draco's face is: the aftermath of last night. Pale. Controlled again — the discipline reinstated, the breakdown sealed behind the familiar composure. But the composure is thinner now. Translucent."
+
+  "Snape is speaking. Low. The words don't carry — his voice has the specific modulation of someone who is trained in not being overheard."
+
+  "But you can see. The dynamic between them is visible even without the words."
+
+  choice__
+    @target "A520-CH12-Snape-Draco"
+    "You watch."
+  __choice
+__section
+
+
+section__
+  @title "A520-CH12-Snape-Draco"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The dynamic. Snape and Draco."
+
+  "Snape's grip on Draco's arm is not aggressive — it's: anchoring. The specific physical contact of someone who is trying to hold another person to the present moment when that person's instinct is to drift toward panic."
+
+  "Draco is shaking his head. The slow, stubborn shake of someone refusing an instruction they can hear but won't accept."
+
+  "Snape leans in. Says something. Draco flinches — not from the words but from what the words mean. The flinch of recognition."
+
+  "Then Snape does something unexpected. He releases Draco's arm. Steps back. And — for a fraction of a second, visible only if you're watching for it — his face changes. The mask of severity and contempt that Snape wears as professional equipment drops, and underneath it: concern. Real concern. The kind that costs something to show."
+
+  "The moment passes. The mask returns. Snape turns and walks away, robes sweeping the stone floor with the specific authority of someone who has just conducted a conversation he didn't want to have."
+
+  "Draco stays in the alcove. Alone again."
+
+  if__ (snape_bargain == true) {
+    choice__
+      @target "A521-CH12-Snape-Bargain-Echo"
+      "The bargain echoes."
+    __choice
+  }
+
+  if__ (snape_bargain == false) {
+    choice__
+      @target "A522-CH12-Snape-No-Bargain"
+      "Snape's role."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A521-CH12-Snape-Bargain-Echo"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The bargain. The deal you made with Snape — in September, or October, or whenever the Snape track opened. The arrangement whose terms have been running in the background of the story like a bass note under a melody."
+
+  "Seeing Snape with Draco, in this context, with this dynamic — the anchoring grip, the dropped mask, the concern — recasts the bargain. Snape's interest in your investigation was never purely strategic. It was — at least partially — motivated by the same thing that makes him grab a sixteen-year-old's arm in a corridor and hold him to the present."
+
+  "Snape is: protecting Draco. In his specific, harsh, deniable way. The bargain with you — whatever its terms — serves that protection. Your investigation, your intelligence, your knowledge of the cabinet and the key — Snape has been monitoring it because it intersects with the thing he actually cares about, which is keeping Draco Malfoy alive."
+
+  if__ (snape_bargain_modified == true) {
+    "The modified bargain — the version you negotiated rather than accepted wholesale — seems even more appropriate now. You gave Snape information. Snape used it to track Draco's trajectory. The exchange was: not fair, exactly, but functional."
+  }
+
+  "The bargain has weight. More weight than you understood when you made it."
+
+  rel_snape = adjRel(rel_snape, 10)
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A523-CH12-Snape-Convergence"
+    "The bargain resonates."
+  __choice
+__section
+
+
+section__
+  @title "A522-CH12-Snape-No-Bargain"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You watch the exchange without the context the bargain would have provided. Snape and Draco — the Head of House and the student. The dynamic reads differently without insider knowledge."
+
+  "Snape could be: disciplining him. Warning him. Threatening him. Or — the interpretation that your empathy suggests — trying to help him, in the specific, indirect, deniable way that Severus Snape helps anyone."
+
+  "Without the bargain, Snape is opaque. His motivations are encrypted behind layers of professional severity and personal history that you haven't accessed."
+
+  "But the moment where the mask dropped — the fraction-of-a-second expression of genuine concern — that was real. Whatever Snape's role in the coming events, it's more complicated than *teacher* or *former Death Eater* or *Dumbledore's man*."
+
+  "Snape is: a variable you haven't fully accounted for."
+
+  knowledge = adj(knowledge, 3)
+
+  choice__
+    @target "A523-CH12-Snape-Convergence"
+    "The variable noted."
+  __choice
+__section
+
+
+section__
+  @title "A523-CH12-Snape-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Snape-Draco dynamic. One more layer of complexity in a castle that is already operating at maximum complexity. One more relationship whose true nature will only become clear when the moment arrives."
+
+  "The story continues. The days continue. And in the continuing: the person you've been letting in."
+
+  choice__
+    @target "A524-CH12-Romance-Deep-Hub"
+    "The heart."
+  __choice
+__section
+
+
+/* ── 12d: ROMANCE DEEPENING (A524–A530) ── */
+
+section__
+  @title "A524-CH12-Romance-Deep-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Romance Phase 2, continued. The deepening. If the tension scene in Chapter 11 was the test — the moment where the lies were confronted — this is the aftermath. The settling. The place the relationship reaches when the first hard truth has been processed."
+
+  if__ (romance_active == "elara" && rel_elara >= 65) {
+    choice__
+      @target "A525-CH12-Elara-Deep"
+      "Elara. After the truth."
+    __choice
+  }
+
+  if__ (romance_active == "marcus" && rel_marcus >= 65) {
+    choice__
+      @target "A526-CH12-Marcus-Deep"
+      "Marcus. After the warning."
+    __choice
+  }
+
+  if__ (romance_active == "jade" && rel_jade >= 65) {
+    choice__
+      @target "A527-CH12-Jade-Deep"
+      "Jade. After the worry."
+    __choice
+  }
+
+  if__ (romance_active == "sebastian" && rel_sebastian >= 65) {
+    choice__
+      @target "A528-CH12-Sebastian-Deep"
+      "Sebastian. After the noticing."
+    __choice
+  }
+
+  if__ (romance_active == "" || (romance_active == "elara" && rel_elara < 65) || (romance_active == "marcus" && rel_marcus < 65) || (romance_active == "jade" && rel_jade < 65) || (romance_active == "sebastian" && rel_sebastian < 65)) {
+    choice__
+      @target "A529-CH12-No-Romance-Deep"
+      "The solitary evening."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A525-CH12-Elara-Deep"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara. The library. But not their usual corner — tonight she's taken you to the Restricted Section's reading alcove, the one with the window that looks out over the lake, the one that requires a specific kind of access that Elara has and most students don't."
+
+  "'I've been thinking,' she says, 'about the key. About intent-based magic. There's a paper — 1947, published by a family named Voss—'"
+
+  "She stops. Catches herself."
+
+  "'Your family,' you say."
+
+  "'My grandmother. She was a researcher. Before—' She stops again. The specific stop of someone approaching a truth they're not ready to share."
+
+  "'Before what?'"
+
+  "'Before the family's research was — redirected. By people who had different ideas about what intent-based magic could be used for.'"
+
+  "She doesn't say more. The secret — her secret, the one about her father, the one that will surface fully in Chapter 13 — is present in the room like a third person. You can feel it. She can feel you feeling it."
+
+  "'When you're ready,' you say."
+
+  "'I know.' She reaches across the table. Her hand on yours. Longer than three seconds. 'When I'm ready.'"
+
+  rel_elara = adjRel(rel_elara, 10)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A530-CH12-Romance-Deep-Convergence"
+    "The secret waits."
+  __choice
+__section
+
+
+section__
+  @title "A526-CH12-Marcus-Deep"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus. Not the corridor tonight — the Astronomy Tower. The one place in the castle with a view that extends beyond the grounds, beyond the mountains, toward the world where his family operates and the future he's trying to escape."
+
+  "'I sent a letter,' he says. 'Through a channel I shouldn't have used. To someone in the Order.'"
+
+  "'Marcus—'"
+
+  "'Not the youth network. An adult. Someone my older cousin mentioned — a member who handles defections. People who want to leave the Dark side. There are protocols, apparently. Safe houses. New identities.'"
+
+  "He's looking at the sky. Not at you. The specific avoidance of someone who has done something terrifying and can't look at another person while admitting it."
+
+  "'I'm doing it,' he says. 'The defection. Properly. Not the corridor conversations and the hypotheticals. I contacted someone and I told them my name and my family and what I know and what I want and now I'm—'"
+
+  "He exhales."
+
+  "'—waiting. For a response. From people who have every reason to distrust me.'"
+
+  "'You're brave.'"
+
+  "'I'm terrified. Those aren't the same thing. Except apparently they are.'"
+
+  rel_marcus = adjRel(rel_marcus, 10)
+  courage = adj(courage, 5)
+
+  choice__
+    @target "A530-CH12-Romance-Deep-Convergence"
+    "The defection begins."
+  __choice
+__section
+
+
+section__
+  @title "A527-CH12-Jade-Deep"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Jade. The Quidditch pitch. Night. The stands are empty, the pitch silver under the moon, and she's brought her broom but isn't flying."
+
+  "'Fly with me,' she says."
+
+  "You do. The school brooms are locked but Jade has methods — the specific operational confidence of a Quidditch captain who has been bending equipment rules since fourth year."
+
+  "You fly. Not competitively — slowly. Side by side. The castle below you, the lake reflecting stars, the Forbidden Forest a dark margin at the edge of the grounds."
+
+  "'My sibling's letter,' she says, at altitude. 'The short one. I got the next one. Longer. They're all right. The mission is — going. They can't say more. But they said one thing that—'"
+
+  "She banks. You follow."
+
+  "'They said to protect the people I love. Specifically. They used those words. *Protect the people you love, because the war will try to use them.* My sibling, who has never been sentimental about anything except Quidditch and shepherd's pie, telling me to protect the people I love.'"
+
+  "She looks at you. In flight. The wind in her hair and the specific directness of someone who says things plainly because the alternative is not saying them."
+
+  "'You're one of the people I love,' she says. 'You should know that.'"
+
+  rel_jade = adjRel(rel_jade, 10)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A530-CH12-Romance-Deep-Convergence"
+    "In flight."
+  __choice
+__section
+
+
+section__
+  @title "A528-CH12-Sebastian-Deep"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Sebastian. The common room. But late — later than usual. The fire is low. The room is empty except for the two of you and the portraits on the walls, who are sleeping with the specific peacefulness of images that have no real problems."
+
+  "He's made tea. He always makes tea. But tonight the ritual is different — slower, more deliberate. The specific care of someone who is using the act of preparation as a way to manage an emotion that is too large for words."
+
+  "'I decided something,' he says, pouring."
+
+  "'What did you decide.'"
+
+  "'I decided that I'm not going to ask you to stop. Whatever you're doing. The dangerous thing. The thing that makes your hands shake. I was going to ask you to stop, and then I decided not to, because asking you to stop would be asking you to be a different person, and I don't want a different person. I want this one.'"
+
+  "He puts the cup in front of you. The blue one. Chipped handle."
+
+  "'So instead of asking you to stop, I'm going to ask you to come back. Every time. Whatever you're doing, wherever you're going — come back. To this room. To this tea. To me.'"
+
+  "'Sebastian—'"
+
+  "'That's my ask. Not safety. Return.'"
+
+  rel_sebastian = adjRel(rel_sebastian, 10)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A530-CH12-Romance-Deep-Convergence"
+    "Return."
+  __choice
+__section
+
+
+section__
+  @title "A529-CH12-No-Romance-Deep"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "No romance to deepen. The evening takes the shape it takes when the emotional weight isn't shared with someone specific — it disperses. Through the castle. Through the corridors. Through the specific, ambient loneliness of a building full of people, none of whom are yours."
+
+  "You study. Because studying is what students do, even students who are carrying obsidian shards and decoded journals and allegiance secrets. The exams are real. The marks matter. The institutional framework doesn't pause for investigations."
+
+  "Neville finds you in the library. Not deliberately — he's looking for a Herbology reference and you're sitting near the Herbology section."
+
+  "'Ashford,' he says. 'You're here late.'"
+
+  "'So are you.'"
+
+  "'Professor Sprout's exam is going to be brutal. She hinted at Venomous Tentacula identification by touch. By *touch*.'"
+
+  "The conversation is: normal. The specific normality of two students complaining about exams while the world prepares to break. The normality is: precious."
+
+  "'Good luck,' he says, leaving."
+
+  "'You too, Neville.'"
+
+  rel_neville = adjRel(rel_neville, 5)
+
+  choice__
+    @target "A530-CH12-Romance-Deep-Convergence"
+    "The evening passes."
+  __choice
+__section
+
+
+section__
+  @title "A530-CH12-Romance-Deep-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The deepening resolves. The relationship — if there is one — has reached a new equilibrium. Not stable — nothing in this story is stable — but deeper. The roots are down. Whatever happens next, the roots will hold or they won't, and the holding will depend on choices not yet made."
+
+  choice__
+    @target "A531-CH12-Track-Intel-Hub"
+    "The intelligence."
+  __choice
+__section
+
+
+/* ── 12e: ALLEGIANCE TRACK INTEL (A531–A538) ── */
+
+section__
+  @title "A531-CH12-Track-Intel-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The allegiance track. Mid-story intelligence. The specific operational update that each path provides — the information that shapes what you know and what you can do as the climax approaches."
+
+  if__ (allegiance_track == "order") {
+    choice__
+      @target "A532-CH12-Order-Intel"
+      "Asha reports."
+    __choice
+  }
+
+  if__ (allegiance_track == "dark") {
+    choice__
+      @target "A534-CH12-Dark-Intel"
+      "Draco's timeline."
+    __choice
+  }
+
+  if__ (allegiance_track == "solo") {
+    choice__
+      @target "A536-CH12-Solo-Intel"
+      "The triangulation."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A532-CH12-Order-Intel"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Asha's report. The abandoned classroom. The Protean coin pulsing warm in your pocket — a Tuesday meeting, standard protocol, but the information is anything but standard."
+
+  "'Death Eater movements,' she says. 'The adult Order has confirmed increased activity around Hogwarts. Not an assault — not yet. But staging. The kind of preparation that suggests an operation is imminent.'"
+
+  "She draws on the whiteboard. Arrows. Routes. The geography of an attack that hasn't happened yet."
+
+  "'Dumbledore is leaving tomorrow night,' she says. 'We don't know where. He hasn't told McGonagall the specifics — only that he'll be absent for several hours and that she should be prepared for anything.'"
+
+  "'Anything.'"
+
+  "'His word. *Anything.* McGonagall's interpretation is that he expects the operation to coincide with his absence. The castle will be at its most vulnerable when the Headmaster is off the grounds.'"
+
+  "The intelligence is: alarming. The cabinet opens when Dumbledore is gone. The timing is too precise for coincidence."
+
+  rel_order = adjRel(rel_order, 10)
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A533-CH12-Order-Intel-B"
+    "The timing."
+  __choice
+__section
+
+
+section__
+  @title "A533-CH12-Order-Intel-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'What's the network's response,' you ask."
+
+  "'Prepare. Every member on standby. Coin check every hour starting tomorrow evening. If the Dark Mark goes up or if the cabinet opens, full mobilisation. We defend the castle.'"
+
+  "She pauses."
+
+  "'And you — the key. If you have it, it needs to be secure. Not on your person — not if there's fighting. Hidden, or with someone who can get it out of the castle.'"
+
+  "The practical reality of the Order track: your intelligence is shared. Your objectives are coordinated. Your personal safety is considered part of the operational picture."
+
+  "The constraint: you follow the network's protocols. Asha's judgement. The chain of command."
+
+  courage = adj(courage, 5)
+
+  choice__
+    @target "A538-CH12-Track-Intel-Convergence"
+    "The Order prepares."
+  __choice
+__section
+
+
+section__
+  @title "A534-CH12-Dark-Intel"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Draco. The corridor. The information delivered in the specific, clipped manner of someone who has stopped being able to contextualise what they're saying and is simply reporting facts."
+
+  "'Tomorrow night,' he says. 'Or the night after. The instruction came. The passage opens. They come through.'"
+
+  "'How many.'"
+
+  "'I don't know. Enough. The instruction said *sufficient force.* That could be four. That could be twelve.'"
+
+  "His hands are wrapped — you notice the bandages, the knuckles from the wall."
+
+  "'Dumbledore will be absent. They know his schedule somehow. The operation is designed for his absence — the primary objective can be achieved when he returns, or—'"
+
+  "He stops."
+
+  "'—or the objective shifts to making his return the triggering event.'"
+
+  "The cold logic of assassination: make the target's presence part of the trap."
+
+  rel_draco = adjRel(rel_draco, 5)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A535-CH12-Dark-Intel-B"
+    "The timeline accelerates."
+  __choice
+__section
+
+
+section__
+  @title "A535-CH12-Dark-Intel-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'And the key,' you say. 'The artefact. Your secondary objective.'"
+
+  "'Bellatrix's intermediary asked about progress. I told them — I told them I'm still searching. That the Room is large and the object is unidentified.'"
+
+  "He looks at you."
+
+  "'If you have it — if you know where it is — I need to know. Because when they come through, if the secondary objective isn't completed, that failure goes on my account alongside — alongside the other thing. And my mother—'"
+
+  "The lever. Always the lever."
+
+  "You note the request. The decision — what to tell Draco about the key — will arrive in Chapter 13. For now, the intelligence is: the operation is imminent. Tomorrow or the next day."
+
+  morality = adj(morality, -3)
+
+  choice__
+    @target "A538-CH12-Track-Intel-Convergence"
+    "The timeline crystallises."
+  __choice
+__section
+
+
+section__
+  @title "A536-CH12-Solo-Intel"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo investigator. The intelligence picture, triangulated from sources on both sides."
+
+  "From the Order side — overheard fragments, watched meetings, the Protean coin system's limitations exploited: Dumbledore is leaving. Tomorrow or the day after. The Order expects the operation to coincide with his absence."
+
+  "From the Dark side — the Slytherin whisper network, Draco's visible deterioration, the delivery schedule that confirms operational preparations: the Death Eaters are staging. The cabinet will open when Dumbledore is gone."
+
+  "From the staff — observed behaviour, the ward modifications you've been tracking since Chapter 10: McGonagall has moved into a heightened state of preparedness. Flitwick has cancelled evening office hours. Snape's movements have changed — he's present more, visible more, the specific behaviour of someone who is positioning themselves for an event."
+
+  "The solo picture: the operation is days away. Everyone who knows anything knows this. The only variable is the exact timing."
+
+  knowledge = adj(knowledge, 8)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A537-CH12-Solo-Intel-B"
+    "The picture sharpens."
+  __choice
+__section
+
+
+section__
+  @title "A537-CH12-Solo-Intel-B"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The solo advantage: you have the complete picture. Both sides. Plus your own intelligence."
+
+  "The solo disadvantage: when the moment comes, you act alone."
+
+  "The plan updates. The contingencies multiply. The specific, cold clarity of someone who sees everything and must decide — alone — what to do with the seeing."
+
+  "The key. Your plan for the key — wherever it is, in your pocket or in the Room — depends on the timing. If you can act before the cabinet opens, the key moves on your terms. If the cabinet opens first, the room becomes a war zone and the key's retrieval becomes exponentially more dangerous."
+
+  "Speed. The solo investigator's primary resource."
+
+  choice__
+    @target "A538-CH12-Track-Intel-Convergence"
+    "The plan adjusts."
+  __choice
+__section
+
+
+section__
+  @title "A538-CH12-Track-Intel-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "All three tracks arrive at the same conclusion: it's coming. The operation. The cabinet. The Death Eaters. The attack on Hogwarts — or on Dumbledore — or on whatever the true objective turns out to be."
+
+  "Days. Not weeks. Days."
+
+  "The intelligence is: convergent. Every source, every channel, every indicator pointing in the same direction. The castle is about to become a battlefield."
+
+  choice__
+    @target "A539-CH12-World-Shifts"
+    "The world shifts."
+  __choice
+__section
+
+
+/* ── 12f: CHAPTER CLOSE (A539–A545) ── */
+
+section__
+  @title "A539-CH12-World-Shifts"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The shift. Not dramatic — structural. The castle looks the same. The students revise. The portraits nap. The ghosts drift. But the architecture of the story has changed around you — the foundations tilted, the load-bearing walls under new stress."
+
+  "You know more than almost anyone in this building. You know about the cabinet, the key, the operation, the timeline. You know what the Mirror-key does and what it doesn't do. You know Draco's breaking point and Snape's hidden concern and the Order's preparation and the Death Eaters' staging."
+
+  "The weight of knowledge. The burden your parent carried. The burden that cost Avery everything."
+
+  "You carry it differently — you're sixteen, not an Auror; you're a student, not an agent; you carry it with the specific, angular determination of someone who should be studying for exams and is instead preparing for war."
+
+  "But you carry it."
+
+  choice__
+    @target "A540-CH12-End-State"
+    "State of play."
+  __choice
+__section
+
+
+section__
+  @title "A540-CH12-End-State"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "End of Chapter 12. State of play:"
+
+  if__ (mirror_key_held == true) {
+    "The Mirror-key: in your possession. The resonance humming against your ribs."
+  }
+
+  if__ (mirror_key_held == false && dumbledore_trusted == false) {
+    "The Mirror-key: still in the Room of Hidden Things. Location marked. Retrieval pending."
+  }
+
+  if__ (dumbledore_trusted == true) {
+    "Dumbledore: trusted. He knows about the key. He has declined to take it. The decision remains yours."
+  }
+
+  "Draco: breaking. The cabinet complete. The operation imminent."
+
+  "Snape: a variable. His concern for Draco visible to you. His role in the coming events: unknown."
+
+  "The timeline: days."
+
+  choice__
+    @target "A541-CH12-Chapter-Close"
+    "Chapter 12 closes."
+  __choice
+__section
+
+
+section__
+  @title "A541-CH12-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Chapter 12. Midwinter Revelations. But the title is ironic — it's June, not midwinter. The *midwinter* is metaphorical: the darkest point of the story's emotional year, the nadir before whatever dawn or deeper night follows."
+
+  "The revelations: the key's retrieval. Draco's collapse. Snape's hidden face. The romance deepened or maintained. The intelligence convergent."
+
+  "Everything is in place for what comes next. Hearts and hexes. The spy's final echo. The romance's peak. The allegiance's operational test."
+
+  "Chapter 13."
+
+  choice__
+    @target "A542-CH12-Transition"
+    "Forward."
+  __choice
+__section
+
+
+section__
+  @title "A542-CH12-Transition"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The castle at night. June darkness — not true darkness, not in Scotland; the sky stays blue-grey, the horizon luminous, the specific half-light of a latitude that doesn't fully commit to nighttime."
+
+  "Somewhere on the seventh floor, the Vanishing Cabinet stands in its room. Complete. Ready. A door that will open."
+
+  "Somewhere in the castle, Draco sleeps — or doesn't sleep. His hands bandaged. His deadline approaching."
+
+  "Somewhere in your pocket or in the Room: the obsidian shard. The Mirror-key. The object that amplifies intent."
+
+  "Your intent."
+
+  choice__
+    @target "A543-CH12-Buffer"
+    "The night deepens."
+  __choice
+__section
+
+
+section__
+  @title "A543-CH12-Buffer"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The last days of the school year. The last days of something larger. The institutional machinery churning toward completion — exams, marking, the end-of-year feast that no one knows yet will never happen the way it's supposed to."
+
+  choice__
+    @target "A544-CH12-Night-Falls"
+    "The days pass."
+  __choice
+__section
+
+
+section__
+  @title "A544-CH12-Night-Falls"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Night falls on the penultimate chapter of the third act. The castle is: waiting. You are: ready. Or not ready — readiness is a spectrum, and the spectrum ranges from prepared to terrified, and you are somewhere on it."
+
+  choice__
+    @target "A545-CH12-To-Ch13"
+    "Chapter 13."
+  __choice
+__section
+
+
+section__
+  @title "A545-CH12-To-Ch13"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The castle holds. The key waits. The hearts and the hexes of the people you've gathered around you — or pushed away from you — await their final test."
+
+  "Chapter 13: Hearts and Hexes."
+
+  choice__
+    @target "A546-CH13-Hearts-Hexes-Opens"
+    "Turn the page."
+  __choice
+__section

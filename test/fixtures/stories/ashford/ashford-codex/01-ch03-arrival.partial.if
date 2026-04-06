@@ -1,0 +1,706 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 3
+   01-ch03-arrival.partial.if
+
+   Chapter 3: Returning to the Castle
+   Snape's first look. House common rooms. Avery's hidden note.
+   The directive that shapes the year: don't go to Dumbledore first.
+
+   Section range: A071–A095
+   ============================================================ */
+
+scene__
+  @name "CH03: Returning to the Castle"
+  @first "A071-CH03-Feast-End"
+  @sceneTransition "dissolve"
+  @sections "A071-CH03-Feast-End" "A072-CH03-Dumbledore-Remarks" "A073-CH03-Snape-First-Look" "A074-CH03-Snape-Hold-Gaze" "A075-CH03-Snape-Look-Away" "A076-CH03-Snape-Note-Mentally" "A077-CH03-Common-Room-Hub" "A078-CH03-Gryffindor-Common-Room" "A079-CH03-Ravenclaw-Common-Room" "A080-CH03-Hufflepuff-Common-Room" "A081-CH03-Slytherin-Common-Room" "A082-CH03-Dormitory-Unpacking" "A083-CH03-Averys-Note" "A084-CH03-Note-Obey" "A085-CH03-Note-Plan-Dumbledore" "A086-CH03-Note-Seek-Hermione" "A087-CH03-First-Night" "A088-CH03-Avery-Dream" "A089-CH03-Morning-First-Day" "A090-CH03-Breakfast-Draco" "A091-CH03-Breakfast-Romance" "A092-CH03-Post-Breakfast" "A093-CH03-Convergence-Ch4" "A094-CH03-Buffer" "A095-CH03-End-Ch3"
+__scene
+
+
+/* ── A071 — END OF FEAST / FILING OUT ── */
+
+section__
+  @title "A071-CH03-Feast-End"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The feast concludes. Chairs scrape across the Great Hall floor in the great collective rising of four hundred students and their various levels of satiation and readiness for bed."
+
+  "The prefects are on their feet, organising their houses with varying degrees of authority. The first-years look overwhelmed. The seventh-years look like people who have decided this is the last time they will experience this particular ritual and are feeling several things about that simultaneously."
+
+  "You file toward the doors with your housemates. The Great Hall is warm and gold behind you. Ahead: the entrance hall, the staircases, the long walk to whichever tower is yours."
+
+  "At the head table, the staff are still seated — some of them talking, some gathering their things. Dumbledore has not moved. You can see him, if you look back over your shoulder, sitting very still in his high chair at the centre."
+
+  choice__
+    @target "A072-CH03-Dumbledore-Remarks"
+    "Look back at the head table as you go."
+  __choice
+
+  choice__
+    @target "A073-CH03-Snape-First-Look"
+    "Keep moving. You've seen what you needed to see. The head table can wait."
+  __choice
+__section
+
+
+/* ── A072 — DUMBLEDORE OBSERVATION ── */
+
+section__
+  @title "A072-CH03-Dumbledore-Remarks"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Dumbledore is sitting with his hands folded on the table in front of him."
+
+  "His right hand. You have not seen it clearly all evening — he kept it below the table level during the Sorting, and during his remarks he was at the podium with the light coming from the wrong angle. Now, from this distance, at this angle, with the candlelight falling correctly, you see it:"
+
+  "The hand is black. Not bruised-dark but *black*, all the way to the wrist, with the dried quality of something that has been dead for longer than a hand attached to a living person should be. He wears it with the particular calm of someone who has made peace with an irreversible thing."
+
+  "He glances up. Catches no one's gaze in particular. Looks back at his hands."
+
+  "Whatever it means — and you don't know yet what it means — it is not nothing. Dumbledore, this year, is carrying something that shows on his body."
+
+  choice__
+    @target "A073-CH03-Snape-First-Look"
+    @action knowledge = adj(knowledge, 3)
+    "File it. Whatever happened to his hand is something you didn't know before tonight."
+  __choice
+
+  choice__
+    @target "A073-CH03-Snape-First-Look"
+    "Note it without letting your expression change. If anyone sees you looking, they see a student watching the headmaster leave a feast, nothing more."
+  __choice
+__section
+
+
+/* ── A073 — SNAPE'S FIRST LOOK ── */
+
+section__
+  @title "A073-CH03-Snape-First-Look"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Snape is watching the students file out."
+
+  "This is not unusual — staff often watch, monitoring the flow of students out of the hall. But Snape's watching has always had a different quality from McGonagall's or Flitwick's. Theirs is oversight. His is assessment. The specific attention of someone who is cataloguing, not just observing."
+
+  "His gaze moves across the room and lands on you."
+
+  "It stays there for three seconds — long enough to be deliberate, short enough to be deniable. His expression reveals nothing. But his eyes, dark and level and completely still, carry the weight of someone who has already decided several things about you that he hasn't shared."
+
+  "You are, you realise, going to be in his Defence Against the Dark Arts class for the first time this year. He is no longer just the Potions professor. He is, now, a person you need to navigate."
+
+  "What do you do with those three seconds?"
+
+  choice__
+    @target "A074-CH03-Snape-Hold-Gaze"
+    @action courage = adj(courage, 5)
+    @action rel_snape = adjRel(rel_snape, 3)
+    "Hold his gaze. Don't look away first. Whatever assessment he's running, you can run one back."
+  __choice
+
+  choice__
+    @target "A075-CH03-Snape-Look-Away"
+    @action cunning = adj(cunning, 3)
+    "Look away. Deliberately, not nervously — the specific looking-away of someone who has noticed the attention and chosen not to engage. It's a message of its own."
+  __choice
+
+  choice__
+    @target "A076-CH03-Snape-Note-Mentally"
+    @action knowledge = adj(knowledge, 5)
+    @action cunning = adj(cunning, 5)
+    "Hold his gaze just long enough, then look past him — not away from him, but *past,* as if he's merely one item in a broader survey of the room. Note everything: where he's seated, which students' faces he lingered on before yours."
+  __choice
+__section
+
+
+/* ── A074–A076 — SNAPE OUTCOMES ── */
+
+section__
+  @title "A074-CH03-Snape-Hold-Gaze"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You hold his gaze."
+
+  "Three seconds. Four. You're counting, which is the only way to not think about the fact that you are holding eye contact with Severus Snape in a room full of students who are all very carefully not doing the same."
+
+  "Something shifts in his expression — infinitesimally, the kind of shift that would be invisible to anyone not specifically watching for it. It might be approval. It might be the recalibration of an assessment. It might be neither."
+
+  "He looks away first. Not with any apparent concern. Just moving on."
+
+  "You join the flow of students heading for the staircases. Your hands are not shaking, which has stopped surprising you."
+
+  choice__
+    @target "A077-CH03-Common-Room-Hub"
+    "Head to the common room."
+  __choice
+__section
+
+
+section__
+  @title "A075-CH03-Snape-Look-Away"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You look away. Not down — sideways, toward the Ravenclaw table, as if something there briefly demanded your attention."
+
+  "It's a clean message: *I noticed you looking, and I've decided this particular moment isn't worth engaging with.* Whether he reads it as self-possession or as strategic deflection probably depends on what he already thinks of you."
+
+  "When you rejoin the filing column and pass the head table at close range, you don't look back at him. You can feel, with the specific sensitivity of someone who has been watched by people in authority for most of their life, whether a gaze has tracked you. His hasn't."
+
+  "He's moved on to someone else. You file out and up."
+
+  choice__
+    @target "A077-CH03-Common-Room-Hub"
+    "Head to the common room."
+  __choice
+__section
+
+
+section__
+  @title "A076-CH03-Snape-Note-Mentally"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You run the survey:"
+
+  "His seat is third from the left at the head table — between Flitwick and McGonagall, close enough to Dumbledore to observe him, far enough that the observation is deniable. His eyes tracked: three Slytherin seventh-years whose names you'll need to identify; a Gryffindor fifth-year who looked like they wanted to disappear; you."
+
+  "A professor observing students at the start-of-year feast and cataloguing specific individuals. That's either normal vigilance or something else. In the context of a year where Snape is now teaching Defence Against the Dark Arts — a post he's wanted for years and has never been given — the promotion itself might be worth considering as data."
+
+  "Why now? What changed? Who agreed to give it to him?"
+
+  "You rejoin the column heading for the staircases with five more questions than you had at dinner."
+
+  choice__
+    @target "A077-CH03-Common-Room-Hub"
+    @action knowledge = adj(knowledge, 3)
+    "Head to the common room."
+  __choice
+__section
+
+
+/* ── A077 — COMMON ROOM HUB ── */
+
+section__
+  @title "A077-CH03-Common-Room-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The staircases of Hogwarts in the first-night flow have a specific energy — four houses diverging, the castle redistributing them to their separate territories. The noise of the Great Hall gives way to corridor echoes, the shuffling of many feet on stone, the occasional bark of a prefect directing first-years who've taken a wrong turning."
+
+  "You know this route in your bones. Six years of it."
+
+  choice__
+    @target "A078-CH03-Gryffindor-Common-Room"
+    @when house == "gryffindor"
+    "Climb to Gryffindor Tower."
+  __choice
+
+  choice__
+    @target "A079-CH03-Ravenclaw-Common-Room"
+    @when house == "ravenclaw"
+    "Ascend to Ravenclaw Tower."
+  __choice
+
+  choice__
+    @target "A080-CH03-Hufflepuff-Common-Room"
+    @when house == "hufflepuff"
+    "Find the entrance to the Hufflepuff common room."
+  __choice
+
+  choice__
+    @target "A081-CH03-Slytherin-Common-Room"
+    @when house == "slytherin"
+    "Descend to the Slytherin common room."
+  __choice
+__section
+
+
+/* ── A078–A081 — HOUSE COMMON ROOMS ── */
+
+section__
+  @title "A078-CH03-Gryffindor-Common-Room"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Fat Lady swings open for you and the Gryffindor sixth-years pile through into the familiar warmth of the common room — the fireplace already lit, the armchairs arranged in their habitual clusters, the noticeboard already accumulating the year's first notices."
+
+  "There's a specific kind of noise that Gryffindor makes on the first night back that you've come to think of as *heat* — people talking over each other, someone starting a card game before they've even sat down, Seamus Finnigan producing a Weasley firework from somewhere."
+
+  "Jade Okafor, nearby, catches your eye and makes a brief, communicative face that means: *this is much.*"
+
+  "You find a chair near the window and let the noise wash around you. Through the glass, the grounds are dark and very still, and beyond them — somewhere, somewhere east of a city you've never visited — the coordinates Avery's journal is asking you to find."
+
+  choice__
+    @target "A082-CH03-Dormitory-Unpacking"
+    @action house_rep = adj(house_rep, 3)
+    "Stay for a while, then head to the dormitory."
+  __choice
+__section
+
+
+section__
+  @title "A079-CH03-Ravenclaw-Common-Room"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Ravenclaw common room is accessed through the eagle-head knocker's riddle — the kind of thing that felt tremendously impressive at eleven and now feels like a tax on the end of a long day. Tonight's riddle: *What has roots as nobody sees, is taller than trees, up, up, up it goes, yet never grows?*"
+
+  "A mountain. You give the answer and the door opens."
+
+  "The common room is quieter than the Gryffindor version would be — or so you've always assumed from reputation. The sixth-years settle into their habitual argument about something academic. Someone has already found the year's first improper use of a Transfiguration text."
+
+  "Elara Voss, across the room, has opened a book. She notices you noticing this, which suggests she was watching you come in."
+
+  "The view from the Ravenclaw Tower windows is one of the best in the castle. You look at it and let the day decompress."
+
+  choice__
+    @target "A082-CH03-Dormitory-Unpacking"
+    @action house_rep = adj(house_rep, 3)
+    @action knowledge = adj(knowledge, 2)
+    "Turn in early. Tomorrow is going to be a lot."
+  __choice
+__section
+
+
+section__
+  @title "A080-CH03-Hufflepuff-Common-Room"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Hufflepuff common room is underground but feels nothing like underground — the walls are warm yellow and the plants that line the windowsills seem to grow slightly faster here than elsewhere in the castle, which has always struck you as the sort of thing that's either magic or the accumulated effect of six years of Hufflepuff students being genuinely glad to be somewhere."
+
+  "Sebastian Thorne is in the corner with his prefect notes, looking slightly overwhelmed but not in a way he'd admit. He gives you a nod when you come in that has the quality of genuine acknowledgement."
+
+  "The common room fills up around you — this particular warmth, this particular particular noise, the fire already going. It's a good place to have spent six years. Whatever sixth year is going to ask of you, you're glad it will be asked of you from here."
+
+  choice__
+    @target "A082-CH03-Dormitory-Unpacking"
+    @action house_rep = adj(house_rep, 3)
+    @action empathy = adj(empathy, 2)
+    "Head up to the dormitory."
+  __choice
+__section
+
+
+section__
+  @title "A081-CH03-Slytherin-Common-Room"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Slytherin common room is below the lake and the greenish tinge to the windows on clear nights — when you can see the water above rather than dark — has never entirely normalised. Tonight the lake is too dark to see, which is somehow better and also somehow worse."
+
+  "The common room has settled into the first-night reconfiguration of social hierarchies. Two seventh-year groups are engaged in the specific kind of pleasant conversation that is actually threat-assessment. Draco Malfoy comes in after you, goes directly to a chair by the fire, and sits with the posture of someone who has decided not to be here while also being very physically here."
+
+  "Marcus Calloway is in the corner, alone, watching the room with the flat assessment you now recognise from the train. His eyes find yours briefly. He looks away first."
+
+  "You find your own spot and sit with the cold green light above you, thinking."
+
+  choice__
+    @target "A082-CH03-Dormitory-Unpacking"
+    @action house_rep = adj(house_rep, 3)
+    @action cunning = adj(cunning, 2)
+    "Head to the dormitory."
+  __choice
+__section
+
+
+/* ── A082 — DORMITORY / AVERY'S NOTE ── */
+
+section__
+  @title "A082-CH03-Dormitory-Unpacking"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The dormitory is familiar and specific in the way that only spaces you've slept in for years can be — the angle of light from the window, the particular creak of the third floorboard from the door, the way the hangings on your bed have always been slightly crooked on the left."
+
+  "You open your trunk to retrieve your pyjamas. You've packed Avery's journal at the bottom under several layers of clothes, but as you move things aside, your hand catches on something you didn't put there."
+
+  "A slip of parchment, folded in quarters, tucked into the corner of the trunk lining. Avery's handwriting."
+
+  "It wasn't there in June. You've checked this trunk. You know what's in it."
+
+  "Which means someone — Avery, or someone Avery trusted with access to your belongings — placed this here at some point between June and September. Before the school year began. After you last checked."
+
+  "Planned. Anticipated. Like the journal's timer."
+
+  "You unfold it with careful hands."
+
+  choice__
+    @target "A083-CH03-Averys-Note"
+    "Read it."
+  __choice
+__section
+
+
+/* ── A083 — AVERY'S NOTE ── */
+
+section__
+  @title "A083-CH03-Averys-Note"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The note is brief. Six lines, in Avery's compact field-officer script:"
+
+  "*If you're reading this, you found the journal and you know enough to be asking questions. Good. You're ahead of where I'd hoped.*"
+
+  "*Don't go to Dumbledore first. Not yet. He has his own investigation running and his first instinct will be to protect you by keeping you at arm's length. What you need is information, and what he'll give you is care. They're not the same thing right now.*"
+
+  "*The cipher key is divided. You have part of it. I've left the rest somewhere you'll find it when you're ready.*"
+
+  "*Trust yourself. You were always better at this than you knew.*"
+
+  "*— A*"
+
+  "It's not signed with a name. Just an initial. Which either means Avery assumed you'd know, or Avery was being careful about what could be proven if this was found."
+
+  "You sit on the edge of your bed and read it again."
+
+  choice__
+    @target "A084-CH03-Note-Obey"
+    @action cunning = adj(cunning, 5)
+    "Obey it. Avery knows Dumbledore better than you do. If the assessment is that going to him first is a mistake — trust that."
+  __choice
+
+  choice__
+    @target "A085-CH03-Note-Plan-Dumbledore"
+    @action courage = adj(courage, 3)
+    @action empathy = adj(empathy, 3)
+    "Note it, but don't commit. Dumbledore is not just the headmaster — he's the most powerful person in the building, and this year power matters. Reserve the option."
+  __choice
+
+  choice__
+    @target "A086-CH03-Note-Seek-Hermione"
+    @action knowledge = adj(knowledge, 3)
+    "Hermione. Not Dumbledore — Hermione. She's already seen the journal. She's already thinking about it. And she is definitively not the same as an authority."
+  __choice
+__section
+
+
+/* ── A084–A086 — NOTE OUTCOMES ── */
+
+section__
+  @title "A084-CH03-Note-Obey"
+  @textPacing "cinematic"
+  @shot "close"
+
+  dumbledore_trusted = false
+
+  "You fold the note and put it with the journal."
+
+  "Avery wrote this before the school year. Before the timer triggered. Before whatever happened that made the journal open itself. At the time of writing, Avery was operating from a position of enough control to plan this — to anticipate this moment, to place a note in your trunk, to give you a directive."
+
+  "*Don't go to Dumbledore first.*"
+
+  "The reasoning is legible: Dumbledore's priority is protection. If you go to him, you become someone to be protected. Which is another word for someone to be managed, kept at a safe distance from information, shielded from the very things you need to understand."
+
+  "You don't want to be protected. You want to find Avery."
+
+  "You put the note in the journal's false compartment. You will work the cipher. You will find the coordinates east of Montenegro. You will do this without Dumbledore's help, for as long as that's possible."
+
+  choice__
+    @target "A087-CH03-First-Night"
+    "Lie down. Tomorrow."
+  __choice
+__section
+
+
+section__
+  @title "A085-CH03-Note-Plan-Dumbledore"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You read the note once more. Fold it. Put it with the journal."
+
+  "The instruction is clear. The reasoning is sound — Avery knows Dumbledore, and the analysis of *protection vs. information* is not wrong. If you go to Dumbledore now, he takes over. You become secondary in your own investigation."
+
+  "But: you are sixteen years old, inside a school, during a war, with a threatening note already under your door and a cipher you haven't cracked, and the most powerful wizard in Britain is teaching in this building."
+
+  "*Not first,* the note says. Not *never.*"
+
+  "You file the note. You keep Dumbledore as a possibility for later — when you have more, when going to him is a choice made from strength rather than desperation. For now: work alone. Work carefully. Reserve the option."
+
+  choice__
+    @target "A087-CH03-First-Night"
+    "Lie down. Tomorrow."
+  __choice
+__section
+
+
+section__
+  @title "A086-CH03-Note-Seek-Hermione"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Avery said not Dumbledore. Avery didn't say not Hermione Granger."
+
+  "The distinction might seem technical. It isn't. Dumbledore is an institution — going to him means engaging the full weight of that institution, with all the attendant assumptions about what a student should know and be protected from. Hermione is a person, the best researcher you've met in six years, who has already seen the journal and is already thinking about it."
+
+  "And Hermione, unlike Dumbledore, has no professional obligation to shield you from information you've already started asking for."
+
+  "You put the note with the journal. Tomorrow, you'll find a quiet moment to talk to Hermione. Not everything — not yet. But the cipher structure, what you've mapped, what the two legible lines imply. Two minds are better than one, and hers is better than most."
+
+  choice__
+    @target "A087-CH03-First-Night"
+    @action rel_hermione = adjRel(rel_hermione, 5)
+    "Lie down. Tomorrow."
+  __choice
+__section
+
+
+/* ── A087–A089 — FIRST NIGHT / MORNING ── */
+
+section__
+  @title "A087-CH03-First-Night"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The dormitory settles. Your housemates fall asleep with the efficiency of people who have had a long day. The familiar sounds of a Hogwarts dormitory night — distant sounds of the castle, the particular quality of magical silence that is not quite ordinary quiet — fill the space."
+
+  "You lie in the dark and think."
+
+  "The cipher key is divided. Avery left part of it *somewhere you'll find it when you're ready.* Which could mean anywhere in the school. Which could mean you're not ready yet. Which could mean *ready* is a function of having decoded what you've already got."
+
+  "The coordinates east of Montenegro. L., who was trusted and is now to be outpaced. The Resonance Mirror, which Avery *located* — past tense, which means it existed and has a physical address."
+
+  "The threatening note. P.F. A Slytherin sixth-year prefect."
+
+  "At some point, much later than you intend, you close your eyes."
+
+  choice__
+    @target "A088-CH03-Avery-Dream"
+    "Sleep."
+  __choice
+__section
+
+
+section__
+  @title "A088-CH03-Avery-Dream"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You dream."
+
+  "Avery is at a table, writing. The handwriting is their ordinary field-notes handwriting, but the words — if they are words — are not in any language you recognise. They shift when you try to read them. They have the quality of things that know they're being observed and adjust accordingly."
+
+  "You ask Avery what they're writing."
+
+  "Avery looks up. Their face is their ordinary face — not afraid, not injured, not reduced. Concentrated. The look they have when working on something important."
+
+  "The answer, when it comes, is in the same shifting language as the page. You don't understand any of it. But you hear, somewhere underneath it, a word in something like English: *east.*"
+
+  "Then the table. Then the writing. Then Avery. All of it gone."
+
+  "You wake up in the dormitory at 2 AM with your heart going faster than the situation warrants and the amber equilibrium bead Luna gave you warm in your closed fist, which you don't remember picking up."
+
+  choice__
+    @target "A089-CH03-Morning-First-Day"
+    "Stay still until morning."
+  __choice
+__section
+
+
+section__
+  @title "A089-CH03-Morning-First-Day"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Morning arrives in September the way it does in Scotland — grey first, then possible, then actual. The castle reassembles itself out of the dark: the window, the floorboards, the hanging crooked on the left."
+
+  "Your timetable is already on the desk. First day of sixth year: Defence Against the Dark Arts with Snape — of course, of course it is — then Potions with Slughorn, then a free period, then Transfiguration with McGonagall."
+
+  "DADA with Snape. Who watched you file out of the Great Hall last night with three seconds of deliberate eye contact and no legible expression."
+
+  "You get dressed. You put Avery's journal in the bottom of your school bag. You pick up the timetable."
+
+  "Sixth year in the morning looks like every other year's morning — the same stone, the same light, the same weight of schedule. The difference is what you're carrying underneath it."
+
+  choice__
+    @target "A090-CH03-Breakfast-Draco"
+    "Head to the Great Hall for breakfast."
+  __choice
+__section
+
+
+/* ── A090–A092 — BREAKFAST ── */
+
+section__
+  @title "A090-CH03-Breakfast-Draco"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Great Hall at breakfast is a different creature from the Great Hall at the feast — quieter, more functional, the specific efficiency of people fuelling themselves before a day."
+
+  "Across the room, at the Slytherin table: Draco Malfoy, eating nothing. He has toast in front of him and he is not eating it. He is looking at the table with an expression that might be concentration or might be the careful management of someone who didn't sleep much either."
+
+  if__ (draco_mirror_hint == true) {
+    "You think about the luggage car. The concealment charm. The trunk that wasn't his."
+
+    "He looks up. Across the room. Not at you specifically — but in your direction, and for half a second your eyes meet. He looks away first. Faster this time."
+  }
+
+  if__ (draco_mirror_hint == false) {
+    "You think about Madam Malkin's. The too-careful posture. The way his jaw tightened at the Ministry official."
+
+    "He looks up. Across the room. For a moment he is just another sixth-year eating breakfast badly. Then something closes in his face and he picks up his toast and looks away."
+  }
+
+  choice__
+    @target "A091-CH03-Breakfast-Romance"
+    "Look away. Get your own breakfast."
+  __choice
+__section
+
+
+section__
+  @title "A091-CH03-Breakfast-Romance"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You find a seat and discover that breakfast in company is easier than breakfast alone."
+
+  if__ (house == "gryffindor") {
+    "Jade sits down beside you with two plates and the expression of someone who has decided that this year begins with breakfast done properly. She doesn't ask about last night. She asks about your Quidditch ambitions, which turns out to be exactly the kind of question that requires just enough focus to eat automatically and actually eat something."
+
+    choice__
+      @target "A092-CH03-Post-Breakfast"
+      @action rel_jade = adjRel(rel_jade, 5)
+      "Tell her. Something real about what you want from this year."
+    __choice
+  }
+
+  if__ (house == "ravenclaw") {
+    "Elara sits down across from you with a single cup of tea and a book propped against the salt cellar — the same wire-rimmed glasses, the same composed manner. She doesn't look up from the book until you've been sitting there for thirty seconds, which might mean she didn't notice you arrive or might mean she noticed and chose this particular social geometry deliberately."
+
+    choice__
+      @target "A092-CH03-Post-Breakfast"
+      @action rel_elara = adjRel(rel_elara, 5)
+      "Pour your own tea. Say good morning to the top of her book. She says good morning back."
+    __choice
+  }
+
+  if__ (house == "hufflepuff") {
+    "Sebastian is already at the table, reading his prefect notes with the focused anxiety of someone who takes his responsibilities seriously enough to review them before breakfast. He looks up when you sit, and the anxiety clears."
+
+    "He asks if you slept. Not how you slept — just *if.* The distinction, small as it is, lands differently after a night of the Avery dream."
+
+    choice__
+      @target "A092-CH03-Post-Breakfast"
+      @action rel_sebastian = adjRel(rel_sebastian, 5)
+      "Tell him yes, eventually. It's technically true."
+    __choice
+  }
+
+  if__ (house == "slytherin") {
+    "Marcus is at the far end of the Slytherin table, alone, which you now understand to be a deliberate choice rather than a social failure. He has coffee rather than tea, which feels consistent with everything else you've observed about him."
+
+    "When you sit down in the available space — not beside him, but near — he doesn't move away. After a moment he pushes the bread basket half an inch closer to you without comment."
+
+    choice__
+      @target "A092-CH03-Post-Breakfast"
+      @action rel_marcus = adjRel(rel_marcus, 5)
+      "Take the bread. The small acts of practical care are sometimes the only language available."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A092-CH03-Post-Breakfast"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The hall empties as students head to their first classes. Prefects collect first-years who've lost their timetables. An argument about the classroom rotation for DADA breaks out between two Ravenclaws and is resolved efficiently."
+
+  "You check your bag one more time: journal at the bottom, notebook in the inner pocket, school equipment on top. Everything where it should be."
+
+  "Defence Against the Dark Arts with Snape. First class of the year. In approximately twenty-five minutes."
+
+  "You have spent two months failing to decode a cipher, being surveilled by someone called P.F., and dreaming about Avery speaking in a language that shifts when you try to read it. You have a name, Voss. You have a location qualifier: *east.* You have a note that says the cipher key is divided and part of it is somewhere in this school."
+
+  "You get up from the table. You go to class."
+
+  choice__
+    @target "A093-CH03-Convergence-Ch4"
+    "Head for DADA."
+  __choice
+__section
+
+
+/* ── A093–A095 — CONVERGENCE ── */
+
+section__
+  @title "A093-CH03-Convergence-Ch4"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The corridors of Hogwarts on the first morning of term have the specific quality of potential — students moving to classes they haven't started yet, carrying hopes and anxieties about subjects they haven't been tested on yet. Everything is still possible. No one has failed anything. No one has succeeded at anything either."
+
+  "You walk through it with the particular awareness of someone carrying more than their school bag."
+
+  "Somewhere in this school: part of a cipher key Avery left for you. Somewhere east of Montenegro: coordinates you haven't decoded yet. Somewhere on the Hogwarts Express, yesterday: whoever P.F. is, heading back to the same school you're walking through right now."
+
+  "And in the Defence Against the Dark Arts classroom: Severus Snape, who watched you file out of the Great Hall with three seconds of assessment and no legible follow-up."
+
+  "First week of sixth year. First day. First class."
+
+  choice__
+    @target "A094-CH03-Buffer"
+    "Walk faster."
+  __choice
+__section
+
+
+section__
+  @title "A094-CH03-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The classroom for Defence Against the Dark Arts is on the third floor — one of the rooms that has cycled through several configurations over the years depending on who's teaching it and what they prioritised."
+
+  "Under Umbridge it smelled of cats and pink. Under Lupin it smelled of whatever the boggart had most recently been. Under Moody — the real Moody, people have begun to quietly distinguish — it smelled of nothing in particular, which was somehow most alarming of all."
+
+  "Under Snape, you expect: precision. Order. The specific atmosphere of a person who has waited for something for a long time and has now arrived."
+
+  "Students are filing in from three directions. You find a seat in the second row — close enough to pay attention, far enough from the front to have some margin."
+
+  "The door at the front of the classroom opens."
+
+  choice__
+    @target "A095-CH03-End-Ch3"
+    "Look up."
+  __choice
+__section
+
+
+section__
+  @title "A095-CH03-End-Ch3"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Snape enters the classroom with the characteristic efficiency of someone who has never found it necessary to make an entrance and has therefore perfected one anyway."
+
+  "The room goes quiet in approximately four seconds, which you've heard is a record in this particular classroom."
+
+  "He looks around the room. The assessment from the feast, now in closer range and without forty tables of distance between you. His gaze moves. Settles. Moves on."
+
+  "He does not look at you any longer than he looks at anyone else. Which is exactly the kind of thing that might mean something or might mean nothing, and the inability to tell the difference is going to be a theme of this year, you suspect."
+
+  "He opens his mouth."
+
+  "*There will be no foolish wand-waving in this class,*he begins. *Those of you who confuse spectacle with competence should update your expectations now rather than later.*"
+
+  "*Non-verbal spells are the standard in this course. Your ability to produce a thought strong enough to act without speaking it aloud is the difference between a practitioner and a target.*"
+
+  "He pauses. The room is very quiet."
+
+  "*You have one class to demonstrate that sixth year is not a mistake.*"
+
+  choice__
+    @target "A096-CH04-DADA-Classroom"
+    "First class begins."
+  __choice
+__section

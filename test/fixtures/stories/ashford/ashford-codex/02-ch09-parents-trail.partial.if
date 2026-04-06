@@ -1,0 +1,1517 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 9
+   02-ch09-parents-trail.partial.if
+
+   Chapter 9: The Parent's Trail
+   Third journal decode — the birthday cipher. Avery's letter-like entry.
+   Snape's Bargain (if l_theory == "snape").
+   THE PATRONUS REVEAL: Avery is alive (if avery_note_found).
+   Christmas holiday. Romance deepening. Return to term.
+
+   journal_decoded = 3. avery_note_found (possibly). avery_alive (possibly).
+   snape_bargain / snape_bargain_modified (possibly). rescue_planned (possibly).
+
+   Section range: A326–A380
+   ============================================================ */
+
+scene__
+  @name "CH09: The Parent's Trail"
+  @first "A326-CH09-Holiday-Setup"
+  @sceneTransition "fade"
+  @sections "A326-CH09-Holiday-Setup" "A327-CH09-Stay-Decision" "A328-CH09-Stay-Hogwarts" "A329-CH09-Go-Home" "A330-CH09-Holiday-Convergence" "A331-CH09-Third-Decode" "A332-CH09-Decode-Solo" "A333-CH09-Decode-Help" "A334-CH09-Birthday-Cipher" "A335-CH09-Avery-Letter" "A336-CH09-Decode-Success" "A337-CH09-Decode-Delay" "A338-CH09-Snape-Decision" "A339-CH09-Approach-Direct" "A340-CH09-Approach-Indirect" "A341-CH09-Show-Journal" "A342-CH09-Snape-Bargain" "A343-CH09-Accept-Bargain" "A344-CH09-Refuse-Bargain" "A345-CH09-Negotiate-Bargain" "A346-CH09-Alt-Investigation" "A347-CH09-Ministry-Case" "A348-CH09-Asha-Intel" "A349-CH09-Library-Research" "A350-CH09-Partial-Info" "A351-CH09-Alt-Convergence" "A352-CH09-All-Paths-Converge" "A353-CH09-What-You-Know" "A354-CH09-Buffer-A" "A355-CH09-Patronus-Setup" "A356-CH09-Patronus-Reveal" "A357-CH09-No-Patronus" "A358-CH09-Obey-Dont-Come" "A359-CH09-Plan-Rescue" "A360-CH09-Avery-Convergence" "A361-CH09-Holiday-Quiet" "A362-CH09-Christmas-Morning" "A363-CH09-Romance-Holiday-Hub" "A364-CH09-Holiday-Elara" "A365-CH09-Holiday-Marcus" "A366-CH09-Holiday-Jade-Seb" "A367-CH09-Holiday-No-Romance" "A368-CH09-Holiday-Convergence" "A369-CH09-Harry-Trio" "A370-CH09-Return-To-Term" "A371-CH09-Castle-Changed" "A372-CH09-Draco-Erratic" "A373-CH09-January-Energy" "A374-CH09-Term-Buffer" "A375-CH09-End-Ch9-A" "A376-CH09-End-Ch9-B" "A377-CH09-State-Of-Play" "A378-CH09-March-Looms" "A379-CH09-Chapter-Close" "A380-CH09-To-Ch10"
+__scene
+
+
+/* ── 9a: CHRISTMAS HOLIDAY (A326–A330) ── */
+
+section__
+  @title "A326-CH09-Holiday-Setup"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The sign-up sheet appears on the common room noticeboard in the second week of March: *Students remaining at Hogwarts over the Easter holiday — sign below.*"
+
+  "Easter holiday. Two weeks without classes, without the institutional rhythm that has been structuring your days since September. Two weeks where the castle's population drops by half and the corridors go quiet in the way that large buildings go quiet when most of the people in them leave."
+
+  "Two weeks in which to work on the journal uninterrupted. Or two weeks at home — the house that used to have Avery in it and now doesn't."
+
+  "The choice is practical and emotional in equal measure."
+
+  choice__
+    @target "A327-CH09-Stay-Decision"
+    "Decide."
+  __choice
+__section
+
+
+section__
+  @title "A327-CH09-Stay-Decision"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The sign-up sheet. Your name, or not your name. The pen is in your hand."
+
+  choice__
+    @target "A328-CH09-Stay-Hogwarts"
+    @action knowledge = adj(knowledge, 5)
+    @action cunning = adj(cunning, 3)
+    "Stay at Hogwarts. The journal is here. The Room of Hidden Things is here. The investigation can't travel — it exists within these walls, and leaving means losing two weeks of access."
+  __choice
+
+  choice__
+    @target "A329-CH09-Go-Home"
+    @action empathy = adj(empathy, 5)
+    @action courage = adj(courage, 3)
+    "Go home. The house needs to be visited. Avery's study might contain something the journal doesn't. And the specific weight of not having been home since September — of having been carrying the disappearance without being in the place where the person was last present — is its own kind of unfinished business."
+  __choice
+__section
+
+
+section__
+  @title "A328-CH09-Stay-Hogwarts"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You sign the sheet. Your name goes under the column for students remaining."
+
+  "The castle during holiday has a specific quality you've experienced before: the enlarged silence, the way sounds carry differently when there are fewer people to absorb them, the particular freedom of moving through corridors that are usually occupied."
+
+  "Harry is staying. Ron is staying. Hermione is going home but will be back early. Draco — you check the Slytherin column on the noticeboard, which is visible if you lean at the right angle — is staying."
+
+  "Draco is staying at Hogwarts over Easter. Which means the cabinet repairs continue during the holiday. No interruption."
+
+  "The window just got narrower."
+
+  choice__
+    @target "A330-CH09-Holiday-Convergence"
+    "The holiday begins."
+  __choice
+__section
+
+
+section__
+  @title "A329-CH09-Go-Home"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You don't sign the sheet. You'll take the train with everyone else, ride home in a compartment, walk from the station to the house. Do the thing you haven't done since September."
+
+  "Home is: three bedrooms, a study that was Avery's, a kitchen that still has Avery's handwriting on the meal planner stuck to the fridge with a charm that hasn't faded. A house that has been empty since September and is being maintained by a neighbour who feeds the owl and waters the one plant that Avery insisted on keeping alive despite having no talent for domestic herbology."
+
+  "You go home. You stand in the doorway. The house smells the way empty houses smell: like dust and the ghost of the last meal cooked and the specific absence of the person who made it a home rather than a building."
+
+  "You go to Avery's study. The desk is there. The drawers have been opened and closed by the Ministry investigation and then not touched again."
+
+  "In the bottom drawer, under a false bottom you know about because you watched Avery install it when you were twelve: a bundle of correspondence. Letters. Sent and received, filed in chronological order, from the last three months of Avery's active investigation."
+
+  "You take them. You read them on the train back to Hogwarts at the end of the holiday."
+
+  avery_note_found = true
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A330-CH09-Holiday-Convergence"
+    "Back to Hogwarts."
+  __choice
+__section
+
+
+section__
+  @title "A330-CH09-Holiday-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The holiday settles around you — at Hogwarts or after the return from home. The castle's reduced population creates space: physical space in the corridors, temporal space in the schedule, mental space in the absence of the usual social obligations."
+
+  "Space in which to decode section three."
+
+  "You've been circling it for weeks. The anchor intervals are longer than in sections one and two — a different emotional register, which means a different approach to the cipher. Avery wrote section three under different conditions. More personal. More afraid."
+
+  "It's time."
+
+  choice__
+    @target "A331-CH09-Third-Decode"
+    "The third section."
+  __choice
+__section
+
+
+/* ── 9b: THIRD JOURNAL DECODE (A331–A337) ── */
+
+section__
+  @title "A331-CH09-Third-Decode"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The library. Late evening, holiday hours — no curfew enforcement, the librarian absent, the stacks lit by the residual enchantments that keep the books warm and dry regardless of occupancy."
+
+  "You spread the journal open. Section three begins on page forty-seven — you've been staring at it for weeks, watching the cipher resist your methods the way it has resisted everything since September."
+
+  "But section three is different. The anchor clusters are longer, more irregular, as if Avery was writing through something emotional rather than analytical. The cipher shifts partway through — the emotional key changes, as if the person writing it stopped being clinical and started being: a parent."
+
+  "This is the birthday cipher. The one keyed to a date only you and Avery share."
+
+  choice__
+    @target "A332-CH09-Decode-Solo"
+    @when knowledge >= 50
+    @disabledText "Requires Knowledge ≥ 50 to crack the birthday cipher alone — the emotional key requires both technique and personal resonance."
+    @action knowledge = adj(knowledge, 10)
+    "Work alone. The birthday cipher is personal. It was designed for you — keyed to a date that only the two of you would know to try. No one else can crack this one."
+  __choice
+
+  choice__
+    @target "A333-CH09-Decode-Help"
+    "Get help. Not with the birthday key — that's yours — but with the structural analysis around it. The cipher framework, the anchor intervals, the pattern recognition."
+  __choice
+__section
+
+
+section__
+  @title "A332-CH09-Decode-Solo"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Alone. Two in the morning. The library's nighttime quiet has the specific quality of a place that is used to holding knowledge and is comfortable being empty."
+
+  "You try the date. Not your birthday — Avery's. The date Avery always remembered with a particular intensity: the day you were born, which was also the day Avery's own parent died, which was a coincidence that Avery never discussed and always marked."
+
+  "Birth and death on the same day. You figured out the symmetry when you were fourteen and never brought it up because some things are understood by being not spoken about."
+
+  "You write the date into the cipher key. The numbers align. The emotional anchor resolves."
+
+  "And the page opens."
+
+  choice__
+    @target "A334-CH09-Birthday-Cipher"
+    "Read."
+  __choice
+__section
+
+
+section__
+  @title "A333-CH09-Decode-Help"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You bring the structural problem to the person best equipped to help with it."
+
+  if__ (hermione_saw_journal == true) {
+    "Hermione, who has seen the journal before and understands the cipher's architecture, helps you isolate the anchor clusters. She can't crack the birthday key — that's personal, coded to information only you have — but she can show you where the key needs to go."
+
+    "'The emotional register shifts here,' she says, pointing to a cluster on page forty-eight. 'The cipher stops being Auror notation and starts being — personal. A letter, almost. The key changes at the register shift.'"
+
+    rel_hermione = adjRel(rel_hermione, 8)
+  }
+
+  if__ (hermione_saw_journal == false && romance_active != "") {
+    "Your romance partner helps in the way they can — not with the cipher itself but with the process of sitting beside someone who is working through something emotionally heavy and providing the specific support that makes concentration possible."
+  }
+
+  if__ (hermione_saw_journal == false && romance_active == "") {
+    "You work with your cipher notebook, alone but systematic. The structural analysis takes longer without a second pair of eyes, but you have five months of cipher experience and the obsessive documentation of someone who has been building this understanding layer by layer."
+  }
+
+  "Either way: the birthday key is yours to enter. You try the date."
+
+  "The page opens."
+
+  choice__
+    @target "A334-CH09-Birthday-Cipher"
+    "Read."
+  __choice
+__section
+
+
+section__
+  @title "A334-CH09-Birthday-Cipher"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Section three decodes in stages. Not all at once — the birthday key unlocks the cipher but the content still arrives in the specific halting way of grief-charmed ink, where the words materialise as the reader's emotional state aligns with the writer's."
+
+  "The first lines are coordinates. Not the broad 'Montenegro' of section one — specific coordinates, precise to the degree and minute. A latitude and longitude that mean nothing to you on their own but that, entered into the right magical cartography reference, would resolve to a specific building in a specific town."
+
+  "Then the cipher shifts again. As Hermione said — or as you noticed yourself — it stops being Auror notation. It starts being a letter."
+
+  "Avery is writing to you."
+
+  choice__
+    @target "A335-CH09-Avery-Letter"
+    "Read."
+  __choice
+__section
+
+
+section__
+  @title "A335-CH09-Avery-Letter"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "The letter reads:"
+
+  "*If you're reading this, I did two things right: I hid the journal well enough that only you found it, and I coded it well enough that only you cracked it.*"
+
+  "*The coordinates above are the location of the safehouse I was using during the final phase of the Mirror investigation. If I'm gone — if the Ministry has ruled it a disappearance — then one of three things has happened: I've been captured, I've gone dark voluntarily, or I'm dead.*"
+
+  "*I don't know which of those is true by the time you read this. The dead man's trigger on the journal means at minimum I've been out of contact for ninety days. The grief-charm means you're reading it with the emotional weight of someone who has lost a parent, which means the Ministry has told you I'm gone, and you believed them or you didn't.*"
+
+  "*Don't go to Dumbledore first. He knows about the Mirror. He may have known about my investigation. His priorities and mine overlapped but were not identical, and his willingness to sacrifice operational assets for strategic advantage is — considerable.*"
+
+  "*Trust L. If you can find L., trust them with the coordinates. L. was my contact inside Hogwarts. I can't write the full name here even in this cipher because the exposure risk is too high, but if you've been paying attention this term, you know who L. is.*"
+
+  "*I love you. I'm sorry about the timing of everything. I thought I had more of it.*"
+
+  "*— A.*"
+
+  choice__
+    @target "A336-CH09-Decode-Success"
+    @action courage = adj(courage, 5)
+    "You have the coordinates."
+  __choice
+__section
+
+
+section__
+  @title "A336-CH09-Decode-Success"
+  @textPacing "cinematic"
+  @shot "close"
+
+  journal_decoded = 3
+  avery_note_found = true
+
+  "You close the journal. You sit for a long time."
+
+  "The coordinates are in your notebook. The letter is in your memory, which is a different place than a notebook and holds things differently — with weight, with the specific pressure of words written by someone who knew they might not be alive when the words were read."
+
+  "*I love you. I'm sorry about the timing of everything.*"
+
+  "Avery. Parent. Auror. Person who hid a journal in a trunk and coded it with a birthday cipher and trusted you to find it."
+
+  "You have the coordinates. You know the safehouse location. You know that Avery anticipated three possibilities: capture, voluntary disappearance, death."
+
+  "You know that Avery told you to trust L. and not Dumbledore."
+
+  "And you know — from the letter's tone, from the specific quality of a parent writing to a child they might not see again — that Avery expected the worst and prepared for the possibility that you might be able to change it."
+
+  choice__
+    @target "A337-CH09-Decode-Delay"
+    @action cunning = adj(cunning, 5)
+    "Don't act yet. You need backup before you do anything with coordinates."
+  __choice
+
+  choice__
+    @target "A338-CH09-Snape-Decision"
+    @when l_theory == "snape"
+    @disabledText "You haven't suspected Snape as L. — this path requires having formed that theory in Chapter 5."
+    @action courage = adj(courage, 8)
+    "Go to Snape. If L. is Snape — if your theory is correct — then Avery's letter is an instruction to trust him. And Snape has been watching you all year."
+  __choice
+
+  choice__
+    @target "A346-CH09-Alt-Investigation"
+    "Pursue the coordinates through other channels. The Order, the Ministry case number, the library. Find Avery's trail without going to Snape."
+  __choice
+__section
+
+
+section__
+  @title "A337-CH09-Decode-Delay"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You write the coordinates in your notebook in a personal cipher of your own — not Avery's, one you developed this term for exactly this kind of information. Redundant security, possibly paranoid. But someone is leaking intelligence from this school, and putting Avery's safehouse coordinates into any system that might be compromised is a risk you're not willing to take."
+
+  "The coordinates exist in your handwriting, in your cipher, in a notebook that doesn't leave your person."
+
+  "Now: what to do with them."
+
+  "You need backup. Not the kind that comes with numbers — the kind that comes with context. Someone who knows enough about the Mirror investigation, about Avery's disappearance, about the landscape of Auror operations to help you understand what the coordinates mean and what you'd find there."
+
+  "Several options. Each with its own risk profile."
+
+  choice__
+    @target "A338-CH09-Snape-Decision"
+    @when l_theory == "snape"
+    @disabledText "You haven't suspected Snape as L. — this path requires having formed that theory."
+    "Go to Snape. The letter said to trust L."
+  __choice
+
+  choice__
+    @target "A346-CH09-Alt-Investigation"
+    "Use other channels."
+  __choice
+__section
+
+
+/* ── 9c: SNAPE'S BARGAIN (A338–A345) ── */
+
+section__
+  @title "A338-CH09-Snape-Decision"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Snape."
+
+  "You've been building a theory about this since Chapter 5, when the journal's first section named 'L.' as Avery's trusted contact inside Hogwarts. The candidates were three: Luna, Lupin, Snape. You chose Snape. Based on what — the way he watches you, the knowledge he demonstrably has about Defence and about the kind of work Avery did, the fact that his position between the two sides of the war is the exact position an Auror would want a contact to be in."
+
+  "Avery said: *Trust L.* Avery said: *Don't go to Dumbledore first.*"
+
+  "Snape is not Dumbledore. Snape is not safe. But Snape might be L."
+
+  "You find him after DADA, in his office, which has the specific atmosphere of a room that its occupant uses as a fortress."
+
+  choice__
+    @target "A339-CH09-Approach-Direct"
+    @action courage = adj(courage, 10)
+    @action rel_snape = adjRel(rel_snape, 10)
+    "Direct approach. 'Professor Snape. My parent left me a journal. In it, they mention a contact inside Hogwarts identified as L. I believe that contact is you.'"
+  __choice
+
+  choice__
+    @target "A340-CH09-Approach-Indirect"
+    @when cunning >= 60
+    @disabledText "Requires Cunning ≥ 60 — approaching Snape obliquely requires a different kind of bravery."
+    @action cunning = adj(cunning, 10)
+    @action rel_snape = adjRel(rel_snape, 5)
+    "Indirect approach. Don't name L. Don't name Avery. Ask him a question about the Mirror and watch whether his answer reveals knowledge he shouldn't have."
+  __choice
+__section
+
+
+section__
+  @title "A339-CH09-Approach-Direct"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Snape's face does something you've never seen it do: nothing."
+
+  "Not the controlled nothing of someone who is hiding a reaction. The complete nothing of someone who has received information so significant that every part of their face is occupied with processing it and there is nothing left for expression."
+
+  "The silence lasts six seconds. You count."
+
+  "'Close the door,' he says."
+
+  "You close the door."
+
+  "He sits behind his desk. He doesn't invite you to sit. He looks at you with the specific intensity of someone who is re-evaluating everything they know about a variable in light of new information."
+
+  "'You decoded the journal,' he says. Not a question."
+
+  "'Three sections.'"
+
+  "'And in section three — the birthday cipher — Avery directed you to find L. and trust them with the coordinates.' He says it with the flat precision of someone who knows the content of the journal without having read it, which means he knows Avery's methods, which means he was close enough to Avery's investigation to understand its architecture."
+
+  "'Yes.'"
+
+  "Another silence. Shorter."
+
+  "'I am L.,' he says. And then: 'Sit down, Ashford. This is going to take a while.'"
+
+  choice__
+    @target "A341-CH09-Show-Journal"
+    "Sit. Listen."
+  __choice
+__section
+
+
+section__
+  @title "A340-CH09-Approach-Indirect"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You go oblique."
+
+  "'Professor Snape,' you say. 'In your professional opinion — if an Auror investigating a dark artifact had gone missing, and their field notes suggested a contact inside a secure institution was helping them, would that contact necessarily know they had been named?'"
+
+  "Snape looks at you for a long time. The look has layers — irritation at the indirectness, respect for the technique, and underneath both of those, recognition."
+
+  "'An interesting hypothetical,' he says. His voice is flat. His eyes are not."
+
+  "'Purely academic,' you say."
+
+  "'Nothing you do is purely academic, Ashford.' He pauses. 'Your parent wasn't the most subtle Auror who ever worked, but they were among the most methodical. If they named a contact in their notes, the contact would know. Because the contact would have agreed to it in advance.'"
+
+  "He's telling you: he agreed to be named. He is L."
+
+  "'Close the door,' he says."
+
+  choice__
+    @target "A341-CH09-Show-Journal"
+    "Close it."
+  __choice
+__section
+
+
+section__
+  @title "A341-CH09-Show-Journal"
+  @textPacing "cinematic"
+  @shot "close"
+
+  snape_knows_journal = true
+
+  "The journal is on the desk between you. Snape looks at it but doesn't touch it — the specific restraint of someone who knows what a grief-charmed object feels like and is not willing to activate someone else's emotional trigger."
+
+  "'Avery contacted me in April of last year,' he says. 'The investigation had been running for nine months. The Mirror's existence was confirmed. The key — the obsidian shard — had been located. Avery needed someone inside Hogwarts who understood both sides of the war well enough to manage the key when the time came.'"
+
+  "He pauses."
+
+  "'I agreed. For reasons I am not going to explain to you, because the explanation involves information that is above your clearance level and would endanger you more than it would help.' He looks at you. 'Avery knew this. Avery trusted me anyway. That is the nature of the arrangement.'"
+
+  "'The coordinates,' you say. 'Section three. Avery's safehouse.'"
+
+  "'I know the location,' he says. 'I have not been able to verify Avery's status. The safehouse was compromised three weeks after Avery disappeared. Whether Avery was captured there or moved before the compromise — I don't know.'"
+
+  "He leans back in his chair."
+
+  "'I have something to offer you,' he says. 'And something to ask in return.'"
+
+  choice__
+    @target "A342-CH09-Snape-Bargain"
+    "Listen."
+  __choice
+__section
+
+
+section__
+  @title "A342-CH09-Snape-Bargain"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "Snape's Bargain. The moment the relationship between you and this man resolves from observation into transaction."
+
+  "'I can tell you whether Avery is alive,' he says. 'I have access to channels that the Order does not and that the Ministry cannot. The information exists. I can retrieve it. It will take me two weeks.'"
+
+  "He pauses. The pause is structural — he's separating the offer from the ask."
+
+  "'In return: when the time comes to act on the Mirror-key — when you go to the Room of Hidden Things to move it or destroy it — I need to know before you do it. Not after. Before. I need to be part of the operational plan.'"
+
+  "He looks at you with the specific intensity of someone who is not making a request."
+
+  "'This is not negotiable in its broad strokes,' he says. 'The key cannot be moved without my involvement. The consequences of a mishandled key are worse than the consequences of the key remaining where it is.'"
+
+  "The ask: operational access to your Mirror-key plan, in exchange for intelligence on Avery's status."
+
+  "The implication: he knows more about the key's properties than he's sharing, and the reason he needs to be present is not about the key itself but about what happens if the key is activated incorrectly."
+
+  choice__
+    @target "A343-CH09-Accept-Bargain"
+    @action cunning = adj(cunning, 10)
+    @action morality = adj(morality, -15)
+    @action rel_snape = adjRel(rel_snape, 20)
+    "Accept. The information about Avery is worth the operational compromise. And if Snape is L. — if Avery trusted him — then including him in the plan is what the journal instructs."
+  __choice
+
+  choice__
+    @target "A344-CH09-Refuse-Bargain"
+    @action courage = adj(courage, 10)
+    @action morality = adj(morality, 10)
+    @action rel_snape = adjRel(rel_snape, 5)
+    "Refuse. The bargain asks you to give operational control to someone whose loyalties you cannot fully verify. L. or not, trusted or not — the plan is yours. Avery's instructions don't override your judgment."
+  __choice
+
+  choice__
+    @target "A345-CH09-Negotiate-Bargain"
+    @when cunning >= 70
+    @disabledText "Requires Cunning ≥ 70 — negotiating with Snape requires a specific kind of nerve."
+    @action cunning = adj(cunning, 12)
+    @action rel_snape = adjRel(rel_snape, 12)
+    "Negotiate. Not the full bargain. A modified version: you'll tell him before you act, but the operational plan remains yours. He advises. He doesn't direct. And the Avery intelligence comes first, as proof of good faith."
+  __choice
+__section
+
+
+section__
+  @title "A343-CH09-Accept-Bargain"
+  @textPacing "cinematic"
+  @shot "close"
+
+  snape_bargain = true
+
+  "'Acceptable,' you say."
+
+  "Snape nods. Not with satisfaction — with the specific economy of someone who expected this answer and has already moved on to the next phase of planning."
+
+  "'Two weeks,' he says. 'I'll have information about Avery by the end of the holiday. Come to my office on the first Monday back. Don't bring anyone.'"
+
+  "He stands. The meeting is over in the way that meetings with Snape are over: abruptly, with the clear expectation that you will leave and not discuss what happened with anyone."
+
+  "You leave with a bargain and a timeline and the specific weight of having traded operational independence for the one piece of information you've wanted since September."
+
+  "Whether Avery is alive."
+
+  "Two weeks."
+
+  choice__
+    @target "A352-CH09-All-Paths-Converge"
+    "Wait."
+  __choice
+__section
+
+
+section__
+  @title "A344-CH09-Refuse-Bargain"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'No,' you say."
+
+  "Snape's expression doesn't change. The specific non-change of someone who has prepared for both answers."
+
+  "'The operational plan is mine,' you tell him. 'Avery trusted you. I'm willing to trust you with information. But the plan — when I move, how I move, who I bring — stays under my control.'"
+
+  "He looks at you for a long time."
+
+  "'Your parent would have said the same thing,' he says. It's not a compliment. It's an observation. 'The information about Avery — I'll provide it regardless. Consider it a professional courtesy. Avery was—' He stops. Recomposes. 'Avery was a colleague. In a specific sense that you don't need me to elaborate on.'"
+
+  "He stands."
+
+  "'Come to my office first Monday back. I may have something.'"
+
+  "You leave with a refusal and a concession and the knowledge that Snape was willing to give you the Avery intelligence even without the bargain, which tells you something about the nature of his relationship with your parent that the word 'colleague' doesn't fully cover."
+
+  choice__
+    @target "A352-CH09-All-Paths-Converge"
+    "Wait."
+  __choice
+__section
+
+
+section__
+  @title "A345-CH09-Negotiate-Bargain"
+  @textPacing "cinematic"
+  @shot "close"
+
+  snape_bargain_modified = true
+
+  "'Modified terms,' you say."
+
+  "Snape raises one eyebrow. The gesture is: go on."
+
+  "'I'll notify you before I move on the key. You advise. You don't direct. The operational decisions — timing, personnel, approach — stay with me. And the Avery intelligence comes first. Before I commit to including you in anything, I need proof that your channels are producing results.'"
+
+  "The silence that follows is the silence of someone recalculating."
+
+  "'You negotiate like an Auror,' he says. 'Which is either something you learned from your parent or something you learned on your own. Either way: accepted. Modified terms. Avery intelligence first.'"
+
+  "He stands. His expression has changed slightly — not warmer, but the specific shift of someone who has revised an assessment upward."
+
+  "'First Monday back. My office.'"
+
+  "You leave with a modified bargain and the specific satisfaction of having negotiated with Severus Snape and walked out with better terms than he offered."
+
+  choice__
+    @target "A352-CH09-All-Paths-Converge"
+    "Wait."
+  __choice
+__section
+
+
+/* ── 9d: ALTERNATIVE INVESTIGATION (A346–A355) ── */
+
+section__
+  @title "A346-CH09-Alt-Investigation"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Without Snape's channels, the investigation into Avery's status and the coordinates from section three moves through other paths."
+
+  "Three options, each yielding partial information. None yields the full picture. Together, they get close."
+
+  choice__
+    @target "A347-CH09-Ministry-Case"
+    @action cunning = adj(cunning, 8)
+    @action knowledge = adj(knowledge, 5)
+    "Pursue the Ministry case number. Avery's disappearance has a case file somewhere in the DMLE. The case number — if you can find it — might tell you what the Ministry knows about the safehouse."
+  __choice
+
+  choice__
+    @target "A348-CH09-Asha-Intel"
+    @when order_member == true
+    @disabledText "Requires Order membership — Asha's network has intelligence assets the Ministry doesn't."
+    @action empathy = adj(empathy, 5)
+    @action courage = adj(courage, 5)
+    "Ask Asha. The Order's youth network has connections to the adult Order, which has its own intelligence apparatus. If anyone can verify the coordinates, it's the people already watching the war from the inside."
+  __choice
+
+  choice__
+    @target "A349-CH09-Library-Research"
+    @action knowledge = adj(knowledge, 8)
+    "Library research. The coordinates point to a location. Magical cartography references — the restricted section has atlases of known safehouses, wards, and protected locations. Cross-referencing the coordinates might tell you what's there."
+  __choice
+__section
+
+
+section__
+  @title "A347-CH09-Ministry-Case"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The Ministry case number takes three days to find. Not because it's hidden — because the system for tracking Auror disappearance cases is byzantine in the way that all large bureaucracies are byzantine: not deliberately obscure, just accumulated and never reorganised."
+
+  "You find it through a combination of the library's Ministry publications archive and a letter to a Ministry contact that Slughorn, in an unguarded moment, provided the address for."
+
+  "Case #AUR-96-4419. Ashford, A. Status: *Open — Inactive.* Classification: *Voluntary Departure (Presumed).* Last known location: *Classified.*"
+
+  "Open but inactive. They stopped looking. The classification — Voluntary Departure — means the Ministry believes Avery left on purpose, which is the conclusion you've known was wrong since you first read the journal."
+
+  "The case file tells you one useful thing: the last verified sighting of Avery before the disappearance was at a location described as '*a secure facility in southeastern Europe.*'"
+
+  "Southeastern Europe. Montenegro. The coordinates match."
+
+  choice__
+    @target "A350-CH09-Partial-Info"
+    "Partial picture. But it confirms the coordinates are real."
+  __choice
+__section
+
+
+section__
+  @title "A348-CH09-Asha-Intel"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You bring the coordinates to Asha at the next scheduled meeting. The Astronomy Tower. Late."
+
+  "Asha takes the information with the focused processing she applies to everything: silent, calculating, filing."
+
+  "'I can run these against the Order's network,' she says. 'We have assets in southeastern Europe. Not many — the war's primary theatre is domestic — but enough to verify whether the location is still a safehouse or whether it's been compromised.'"
+
+  "She pauses."
+
+  "'Ashford. You need to be prepared for the possibility that what you find at these coordinates is not what you want to find.' She says it gently, which is unusual for her. 'Safehouses that go silent have a limited number of explanations, and most of them are bad.'"
+
+  "'I know.'"
+
+  "'Good.' She puts the coordinates in her own cipher notebook. 'Give me a week. I'll have something.'"
+
+  rel_order = adj(rel_order, 10)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A350-CH09-Partial-Info"
+    "A week."
+  __choice
+__section
+
+
+section__
+  @title "A349-CH09-Library-Research"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The restricted section's cartography collection is: three atlases of known magical sites, cross-referenced by century; a register of wards and protections filed by the International Confederation of Wizards; and a single, enormous map that updates itself based on magical activity — the cartographic equivalent of the Marauder's Map, but for the entire world."
+
+  "The map is keyed to institutional access. As a student, your access level shows you major landmarks and known safe-travel routes. It does not show you safehouses."
+
+  "But the atlas — the 1987 edition of *Protected Sites of the Adriatic Rim* — contains a reference to 'Location 14,' described as: '*Auror operational safehouse, Montenegro coast, established 1979. Status as of 1987: active. Ward type: Fidelius (keyed to DMLE Director).*'"
+
+  "The coordinates match. Location 14 is the safehouse from section three."
+
+  "The atlas also notes: '*Adjacent site of historical interest: the Resonance Mirror installation, pre-1947 Adriatic expedition.*'"
+
+  "Avery wasn't just investigating the Mirror from a distance. The safehouse was *adjacent* to it. Avery was living next to the thing they were investigating."
+
+  knowledge = adj(knowledge, 8)
+
+  choice__
+    @target "A350-CH09-Partial-Info"
+    "The picture sharpens."
+  __choice
+__section
+
+
+section__
+  @title "A350-CH09-Partial-Info"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The alternative investigation yields pieces. Not the complete picture — that would require resources and access you don't have, stuck at Hogwarts with a journal and a cipher notebook and the specific limitations of being sixteen in a building that is simultaneously the safest and most dangerous place in Britain."
+
+  "But the pieces form a shape:"
+
+  "The coordinates are real. The safehouse existed. It was adjacent to the Mirror installation. Avery was there."
+
+  "What you don't know: whether Avery is still there. Whether the safehouse was compromised. Whether 'alive' or 'dead' or 'captured' is the correct status."
+
+  "The journal says: *I don't know which of those is true by the time you read this.*"
+
+  "Neither do you."
+
+  choice__
+    @target "A351-CH09-Alt-Convergence"
+    "Wait for the answer that may or may not come."
+  __choice
+__section
+
+
+section__
+  @title "A351-CH09-Alt-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The investigation pauses. Not by choice — by the specific limitation of channels that require time. Asha needs a week. The Ministry case file is static. The library has given everything it's going to give."
+
+  "You are in the gap between information and action, which is the specific kind of waiting that Aurors call *operational hold* — the disciplined inactivity of someone who has done everything they can and must now wait for the world to respond."
+
+  "Avery would recognise this feeling. The letter in section three was written by someone who understood operational holds from the inside."
+
+  choice__
+    @target "A352-CH09-All-Paths-Converge"
+    "The holiday continues."
+  __choice
+__section
+
+
+section__
+  @title "A352-CH09-All-Paths-Converge"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "All investigation paths converge here: the third section decoded, the coordinates known, the backup channels activated. Whether Snape's bargain or the alternative routes — the question is the same."
+
+  "Is Avery alive."
+
+  "Everything else — the Mirror, the key, the spy, the cabinet, the war — exists in relation to this question. It has been the question since September. Every other question orbits it."
+
+  choice__
+    @target "A353-CH09-What-You-Know"
+    "What you know."
+  __choice
+__section
+
+
+section__
+  @title "A353-CH09-What-You-Know"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "What you know, as of the third journal section decoded:"
+
+  "The Resonance Mirror is real. The key is in the Room of Hidden Things. Avery's safehouse was in Montenegro, adjacent to the Mirror installation. L. is either confirmed (if Snape) or still theoretical. The spy is leaking from inside Hogwarts. The Vanishing Cabinet is nearly complete."
+
+  "What you don't know: Avery's status. The full content of sections four and five. The spy's identity at the source level. What happens when the cabinet opens. Whether the key can be moved safely or needs to be destroyed."
+
+  "The investigation is approaching its crisis point. The known and unknown are converging like two weather systems — when they meet, the result will be either clarity or storm."
+
+  choice__
+    @target "A354-CH09-Buffer-A"
+    "Wait for the storm."
+  __choice
+__section
+
+
+section__
+  @title "A354-CH09-Buffer-A"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "A week passes. The holiday's quiet phase — the section between the active investigation and whatever comes next."
+
+  "Classes are suspended. The castle is half-empty. The corridors have the specific echo of a building that is accustomed to more occupants than it currently holds."
+
+  "You carry the journal everywhere. You don't open it."
+
+  choice__
+    @target "A355-CH09-Patronus-Setup"
+    "And then."
+  __choice
+__section
+
+
+/* ── 9e: THE PATRONUS REVEAL (A355–A360) ── */
+
+section__
+  @title "A355-CH09-Patronus-Setup"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Thursday of the second week. Late. You're in the library — or the common room, or the corridor you pace when you can't sleep — and the investigation is in the operational hold that has defined this week."
+
+  "Nothing has arrived. No owl from Asha. No message from Snape. No break in the spy subplot. The canary hasn't sung. The coordinates sit in your notebook like a question that refuses to answer itself."
+
+  "You're about to close the notebook and try to sleep when the air in front of you changes."
+
+  if__ (avery_note_found == true) {
+    choice__
+      @target "A356-CH09-Patronus-Reveal"
+      "Something appears."
+    __choice
+  }
+
+  if__ (avery_note_found == false) {
+    choice__
+      @target "A357-CH09-No-Patronus"
+      "Nothing appears. The night stays quiet."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A356-CH09-Patronus-Reveal"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "A light."
+
+  "Not a torch or a candle or one of the castle's ambient enchantments. A specific light — silver-white, with the luminous quality that only one kind of magic produces. A Patronus."
+
+  "It materialises three feet in front of you. Small. Quick. A fox — a silver fox, composed of light and intent and the specific magical signature that only one person you know can produce in exactly this shape."
+
+  "Avery's Patronus."
+
+  "You stop breathing."
+
+  "The fox looks at you with eyes that are made of light but are somehow, impossibly, specific. It has the quality of Avery's gaze — the focused, warm, slightly worried gaze that was the last thing you saw before September."
+
+  "It opens its mouth."
+
+  "And in Avery's voice — Avery's actual voice, unchanged, unmistakable, the voice that said goodnight and good morning and *I'll be back before you know it* — the fox speaks:"
+
+  "'*Alive. Don't come.*'"
+
+  "Two words and a command."
+
+  "The fox dissolves. The light fades. The corridor — or the library, or the common room — returns to its ordinary dark."
+
+  "You are standing where you were standing. Your hands are at your sides. Your face is wet."
+
+  avery_alive = true
+
+  "Alive."
+
+  "*Don't come.*"
+
+  "Avery is alive."
+
+  choice__
+    @target "A358-CH09-Obey-Dont-Come"
+    @action empathy = adj(empathy, 10)
+    @action courage = adj(courage, 5)
+    "Obey. Avery said don't come. Avery is an Auror who understands threat assessment and wouldn't say *don't come* unless coming would make things worse."
+  __choice
+
+  choice__
+    @target "A359-CH09-Plan-Rescue"
+    @action courage = adj(courage, 12)
+    @action morality = adj(morality, 5)
+    "Plan a rescue. Avery is alive, which means Avery can be found, which means this is no longer a mystery. It's a rescue operation. And *don't come* is not an instruction you're willing to follow."
+  __choice
+__section
+
+
+section__
+  @title "A357-CH09-No-Patronus"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The night stays quiet."
+
+  "No message. No signal. No silver fox in the corridor. The coordinates exist in your notebook but without the decoded content of section three — without having cracked the birthday cipher — you don't have the specifics that would allow the safehouse's communication wards to locate you."
+
+  "Avery may be alive. Avery may be dead. Avery may be captured, or running, or in a place where sending a Patronus is impossible or too dangerous."
+
+  "You don't know. And the not knowing is the specific kind of pain that doesn't get sharper or duller — it stays exactly the same, day after day, the constant low weight of an unanswered question."
+
+  "The holiday continues. The investigation continues. The not-knowing continues with them."
+
+  choice__
+    @target "A360-CH09-Avery-Convergence"
+    @action empathy = adj(empathy, 5)
+    "Continue without an answer."
+  __choice
+__section
+
+
+section__
+  @title "A358-CH09-Obey-Dont-Come"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You obey."
+
+  "Not easily. Not without the specific internal argument of someone whose parent is alive and trapped and has just told them to stay away. But you obey because the instruction came from Avery, who has spent a career understanding threat levels, and *don't come* is not the instruction of someone who is being dramatic. It's the instruction of someone who knows what happens if you do."
+
+  "Avery is alive. That changes everything and nothing. Everything, because the worst possibility has been eliminated. Nothing, because the investigation continues, the key needs to be moved, the spy needs to be found, and the cabinet is still almost complete."
+
+  "But the weight of the not-knowing — the seven-month weight of *is my parent dead* — has been lifted. Not replaced with peace. Replaced with a different kind of weight: the weight of knowing someone you love is alive and in danger and has asked you not to help."
+
+  "That's its own kind of hard."
+
+  choice__
+    @target "A360-CH09-Avery-Convergence"
+    "Carry it."
+  __choice
+__section
+
+
+section__
+  @title "A359-CH09-Plan-Rescue"
+  @textPacing "cinematic"
+  @shot "close"
+
+  rescue_planned = true
+
+  "You are not going to obey."
+
+  "Avery is alive. Avery is somewhere that is reachable — the coordinates exist, the safehouse is known, the location can be found. *Don't come* is the instruction of a parent who is protecting their child. It's not the instruction of a strategist, because a strategist would know: the person who decoded the journal, cracked the cipher, and found the coordinates is not a child anymore."
+
+  "You begin planning. Not the impulsive, immediate planning of someone who is going to do something dangerous tonight — the methodical, Auror-style planning of someone who has learned, from the journal and from the investigation, how operations are structured."
+
+  "The rescue requires: transportation to Montenegro. Knowledge of the safehouse's current status. A second person — the journal says the key requires two, and a rescue may also. And timing — this can't happen during term, which means the summer, or a window during the next holiday."
+
+  "You write the plan in the cipher notebook. Phase by phase. Resource by resource. Risk by risk."
+
+  "Avery is alive. And you are going to find them."
+
+  choice__
+    @target "A360-CH09-Avery-Convergence"
+    @action courage = adj(courage, 5)
+    "Plan."
+  __choice
+__section
+
+
+section__
+  @title "A360-CH09-Avery-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Patronus moment — or the absence of it — marks the end of the investigation's first major phase. The question *is Avery alive* has been answered, or has remained unanswered, and either way the investigation moves forward."
+
+  "The holiday continues. The quiet days that follow the revelation — or the quiet days that continue the uncertainty — have a different quality now."
+
+  "Softer. Or harder. Depending on what you learned."
+
+  choice__
+    @target "A361-CH09-Holiday-Quiet"
+    "The quiet days."
+  __choice
+__section
+
+
+/* ── 9f: HOLIDAY — QUIET DAYS (A361–A369) ── */
+
+section__
+  @title "A361-CH09-Holiday-Quiet"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The holiday's final week. The castle has the specific atmosphere of a place that is resting — the institutional equivalent of an exhale. Fewer students, fewer obligations, the particular freedom of days that don't have a schedule imposed on them."
+
+  "The Great Hall at breakfast has twelve people in it instead of two hundred. The house tables are mostly empty — the remaining students cluster together regardless of house, the specific solidarity of people who have chosen to stay."
+
+  "The weather outside is March doing its usual performance: rain, then cold, then brief unexpected sun, then rain again. The lake reflects different skies at different hours."
+
+  choice__
+    @target "A362-CH09-Christmas-Morning"
+    "One morning in particular."
+  __choice
+__section
+
+
+section__
+  @title "A362-CH09-Christmas-Morning"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "A morning during the holiday. Not a specific occasion — not Easter, which falls during term this year — just a particular morning where the light comes through the windows differently and you wake up without the investigation being the first thing in your mind."
+
+  "For perhaps the first time since September, you wake up thinking about something other than the journal."
+
+  "The something is: whether you're okay. Not whether the investigation is progressing or whether the spy has been found or whether the key can be moved. Whether *you*, the person carrying all of this, are okay."
+
+  "The answer is: not entirely. But more okay than you were in September. The weight is the same but the strength to carry it has grown. That's not the same as being okay, but it's adjacent to it."
+
+  "You get dressed. You go to breakfast. Someone has left hot chocolate at your place at the table, which is either house-elf initiative or something more personal."
+
+  choice__
+    @target "A363-CH09-Romance-Holiday-Hub"
+    "The day opens."
+  __choice
+__section
+
+
+section__
+  @title "A363-CH09-Romance-Holiday-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The holiday's quieter days create a space that the investigation's constant pressure normally fills. In that space, other things become possible."
+
+  if__ (romance_active == "elara") {
+    choice__
+      @target "A364-CH09-Holiday-Elara"
+      "Elara stayed."
+    __choice
+  }
+
+  if__ (romance_active == "marcus") {
+    choice__
+      @target "A365-CH09-Holiday-Marcus"
+      "Marcus stayed."
+    __choice
+  }
+
+  if__ (romance_active == "jade" || romance_active == "sebastian") {
+    choice__
+      @target "A366-CH09-Holiday-Jade-Seb"
+      "They stayed."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    choice__
+      @target "A367-CH09-Holiday-No-Romance"
+      "The solitude is its own kind of company."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A364-CH09-Holiday-Elara"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara stayed for the library. Or that's what she tells everyone. The real reason is more complicated: her family situation is one of the things she doesn't discuss, and the holiday at home is apparently worse than the holiday at Hogwarts, which tells you something without her having to say it."
+
+  "You find each other in the library at midday — the specific midday of a holiday library, when the light comes through the high windows at an angle that makes the dust motes visible and the whole space looks like someone's idealised memory of scholarship."
+
+  "She's working on something. You're not working on anything. You sit across from her and she looks up and for a long moment you just look at each other."
+
+  "'You look different,' she says."
+
+  "'Different how.'"
+
+  "'Like something resolved. Not the investigation. Something underneath it.' She pauses. 'Something about your parent.'"
+
+  "She always sees the thing underneath the thing."
+
+  "You spend the afternoon in the library, not working, not investigating. Just being in the same space. She reads. You watch the light change. At one point she reaches across the table and puts her hand on yours for three seconds and then takes it back."
+
+  "Three seconds."
+
+  rel_elara = adjRel(rel_elara, 15)
+  empathy = adj(empathy, 8)
+
+  choice__
+    @target "A368-CH09-Holiday-Convergence"
+    "Enough."
+  __choice
+__section
+
+
+section__
+  @title "A365-CH09-Holiday-Marcus"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus stayed because going home is a more dangerous proposition for him than for most students. The Calloway family's position in the war — affiliated, complicit, increasingly unhappy about both — makes Christmas at home an exercise in performance that costs him more than the holiday at Hogwarts."
+
+  "You find each other in the fourth-floor corridor. The one with the bad torchlight. His corridor, by this point — the place where you've had most of your conversations that matter."
+
+  "He's leaning against the wall. Not reading, not doing anything. Just existing in the dark."
+
+  "'Ashford,' he says."
+
+  "'Calloway.'"
+
+  "The surnames are a joke by now. A small one. The kind of joke that two people develop when they've been orbiting each other for six months and the orbit has become gravitational rather than incidental."
+
+  "He tells you something. Not about the investigation — about himself. About the specific weight of being from a family that is on the wrong side of the war and knowing it and not being able to leave because the people you love are still inside the structure."
+
+  "'It's not that I want to be here,' he says. Meaning Hogwarts, meaning the corridor, meaning with you. 'It's that the alternative is being there. And *there* requires me to be someone I've decided I'm not anymore.'"
+
+  "He doesn't say what he's decided to be instead. But the fact that he's telling you — that he chose you to hear it — is its own kind of declaration."
+
+  rel_marcus = adjRel(rel_marcus, 15)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A368-CH09-Holiday-Convergence"
+    "Noted."
+  __choice
+__section
+
+
+section__
+  @title "A366-CH09-Holiday-Jade-Seb"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "jade") {
+    "Jade stayed because her family is Order-adjacent and the holidays are when the adult members have the conversations they don't want the children to hear. Jade has decided she is no longer a child who can be excluded from those conversations, and the compromise is: stay at Hogwarts, receive the information by owl, form your own conclusions."
+
+    "She finds you on the grounds, walking the perimeter of the lake in the specific March weather that makes every walk an exercise in disagreement with the sky."
+
+    "'Walk with me,' she says. And then, quietly: 'I got a letter from my sibling. They're being sent on something. They wouldn't say what.'"
+
+    "You walk. The lake is grey and moving. The wind is considerable."
+
+    "'Are you scared,' you ask."
+
+    "'Not for me. For them. For—' She stops. Starts again. 'For the people who are doing the things that need to be done while the rest of us are here, being students, pretending that's sufficient.'"
+
+    "She takes your hand. Not gently — with the specific grip of someone who is holding on to something because the alternative is letting the wind take it."
+
+    rel_jade = adjRel(rel_jade, 15)
+    empathy = adj(empathy, 8)
+    courage = adj(courage, 5)
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian stayed because Sebastian always stays. His family is comfortable with the arrangement and he's comfortable with the castle and the combination of those two comforts produces a person who is at home at Hogwarts in a way that most students are at home at home."
+
+    "He finds you in the Hufflepuff common room — he's given you the password, which is a significant gesture in Hufflepuff culture and which he handled by writing it on a piece of paper and sliding it across the table without comment."
+
+    "The common room is warm. The windows show the grounds. He's making tea."
+
+    "'I've been thinking about you,' he says, pouring. 'Not — in the way that sounds. I've been thinking about whether you're the kind of person who takes care of themselves or the kind of person who takes care of everything else and assumes that covers it.'"
+
+    "'What did you conclude.'"
+
+    "'That you're the second kind. And that the second kind needs someone who occasionally asks them to sit down and drink tea before doing the next important thing.'"
+
+    "He hands you the cup."
+
+    "'Sit down. Drink tea. The next important thing can wait twenty minutes.'"
+
+    "You sit down. The tea is good."
+
+    rel_sebastian = adjRel(rel_sebastian, 15)
+    empathy = adj(empathy, 10)
+  }
+
+  choice__
+    @target "A368-CH09-Holiday-Convergence"
+    "Later."
+  __choice
+__section
+
+
+section__
+  @title "A367-CH09-Holiday-No-Romance"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The holiday without a romance is: quieter. Not lonelier, exactly — you have people around you, the remaining students, the staff who stay — but quieter in the specific way that solitude is quiet when it's chosen rather than imposed."
+
+  "You spend the days with the investigation and with the castle. The castle, during holidays, reveals parts of itself that the full-occupancy version keeps hidden: rooms that are only accessible when certain corridors are empty, passages that only open when the general foot traffic drops below a threshold."
+
+  "Hogwarts is a building that has more in it than it shows most of the time. During holidays, it shows a little more."
+
+  "You spend an afternoon in a room on the fifth floor that you're fairly certain doesn't exist during term — a small reading room with books that have no titles and a fireplace that burns without fuel. You read. The books contain things that might be fictional or might be historical and the distinction doesn't seem relevant."
+
+  "The solitude is restorative in the way that deep water is restorative: not comfortable, but cleansing."
+
+  knowledge = adj(knowledge, 5)
+  cunning = adj(cunning, 3)
+
+  choice__
+    @target "A368-CH09-Holiday-Convergence"
+    "The holiday ends."
+  __choice
+__section
+
+
+section__
+  @title "A368-CH09-Holiday-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The holiday produces what holidays produce: a brief reprieve from the institutional rhythm, a chance to process the investigation's revelations at a different pace, and the specific restoration that comes from not being in crisis mode for a few days."
+
+  "Whether Avery is alive and you know it, or Avery's status is unknown and you carry the uncertainty — the holiday gave you the space to absorb the answer, or the space to continue living with the question."
+
+  "The romance — if there is one — deepened. Not through dramatic gesture but through proximity and time and the specific intimacy that holidays create when two people are in the same building with fewer distractions."
+
+  "The investigation paused but didn't stop. The channels are still open. The canary trap is still set, if you set it. The spy is still active. The cabinet is still being repaired."
+
+  choice__
+    @target "A369-CH09-Harry-Trio"
+    "One more thing."
+  __choice
+__section
+
+
+section__
+  @title "A369-CH09-Harry-Trio"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "During the holiday: a moment with Harry, Ron, and Hermione."
+
+  "They're in the Gryffindor common room — or you find them in the Great Hall, or the library, or one of the other communal spaces that the holiday's reduced population makes available to cross-house socialisation."
+
+  "Harry is working on something he won't discuss. Ron is playing chess against himself and winning, which he says is easier than it sounds. Hermione has a stack of books that would require a structural engineer to assess for stability."
+
+  "'Ashford,' Harry says. A nod. Not unfriendly. The specific acknowledgment of someone who knows you're carrying your own investigation and respects the parallel."
+
+  if__ (rel_harry >= 40) {
+    "'Any progress on your end,' he asks. Quietly. Not in front of the others. 'With the—' He gestures vaguely in a way that means *the whole Malfoy situation.*"
+
+    "'Some,' you tell him. 'You?'"
+
+    "'Some.' He pauses. 'We should probably compare notes at some point. Before things—' Another vague gesture. Larger. Meaning: *before everything.*"
+
+    rel_harry = adjRel(rel_harry, 5)
+  }
+
+  if__ (rel_harry < 40) {
+    "He doesn't ask about your investigation. You don't ask about his. The parallel continues, parallel."
+  }
+
+  "The interaction is brief. The connections are maintained. The war continues to exist outside the castle walls and, increasingly, inside them."
+
+  choice__
+    @target "A370-CH09-Return-To-Term"
+    "Term returns."
+  __choice
+__section
+
+
+/* ── 9g: RETURN TO TERM (A370–A374) ── */
+
+section__
+  @title "A370-CH09-Return-To-Term"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The students return. The train arrives. The castle fills back up in the span of an afternoon, the specific re-inflation of an institution that has been running at half capacity."
+
+  "The corridors are loud again. The Great Hall is full again. The house tables re-establish their territories. The staff resume their visible-in-the-corridors posture."
+
+  "But something has changed. The castle that the returning students walk into is not the castle they left. The atmosphere has shifted — not dramatically, not in ways that would make the first-years cry, but in the specific, measurable way that institutional climate shifts when the adults know something the students don't."
+
+  choice__
+    @target "A371-CH09-Castle-Changed"
+    "Notice the change."
+  __choice
+__section
+
+
+section__
+  @title "A371-CH09-Castle-Changed"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The castle has changed in three ways you can identify:"
+
+  "First: the staff meetings are more frequent. McGonagall and Flitwick and Sprout are meeting in the staff room every evening, which used to be twice a week. The lights in the staff room are visible from the corridor until midnight. Whatever they're discussing, it's substantial."
+
+  "Second: Dumbledore is gone. Not the casual absence of the autumn — the sustained, unexplained absence that started during the holiday and has not ended. His chair at the head table is empty at meals. His office is dark. McGonagall is Acting Head and is wearing the role with the specific combination of competence and worry that characterises someone who is doing a job they're excellent at and didn't want."
+
+  "Third: the mail. The owls arriving at breakfast carry letters that produce more worried faces than they did before the holiday. The Prophet's headlines are not getting better. Two more attacks. One more disappearance. The casualty list that the Prophet doesn't print but that the students with Order families compile informally and share in whispers."
+
+  "The wall between the war and the school is paper-thin now."
+
+  choice__
+    @target "A372-CH09-Draco-Erratic"
+    "And Draco."
+  __choice
+__section
+
+
+section__
+  @title "A372-CH09-Draco-Erratic"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Draco Malfoy after the holiday is a different person than Draco Malfoy before it."
+
+  "Not dramatically — he's still the same compressed, thin-faced, dark-eyed student he's been all year. But the quality of his compression has changed. Before the holiday, he was carrying weight and managing it. After the holiday, he's carrying weight and failing to manage it."
+
+  "You see him in the corridors moving with the specific urgency of someone whose deadline has gotten closer. His trips to the seventh floor have increased to daily. He's not eating at meals — or he's eating fast and leaving before anyone can sit beside him."
+
+  "Pansy has stopped trying to talk to him. Crabbe and Goyle are elsewhere — standing guard outside the Room of Requirement, if your observations are correct, while Draco works inside."
+
+  "The cabinet is close. Whatever 'close' means in terms of a Vanishing Cabinet's repair timeline — weeks, maybe. Days, possibly."
+
+  "The window you've been tracking all year is no longer a window. It's a crack. And it's closing."
+
+  choice__
+    @target "A373-CH09-January-Energy"
+    "March into April."
+  __choice
+__section
+
+
+section__
+  @title "A373-CH09-January-Energy"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "April. The term resumes its rhythm — classes, meals, the institutional machinery of a school that continues to function because that's what institutions do, even when the world outside them is falling apart."
+
+  "DADA with Snape: if you made the bargain, his first Monday meeting is coming. The look he gives you in class has a new quality — not the assessment of before, but the specific, careful look of someone who has entered into a transaction and is preparing to deliver."
+
+  "If you didn't: Snape watches you the way he always has. Whatever L. means — whoever L. is — the relationship between you and this man has reached a steady state that will hold until something breaks it."
+
+  "Potions: Slughorn is quieter this term. Less performative. The war is affecting even Slughorn, whose primary talent is avoiding the effects of things."
+
+  "The castle is waiting. You are waiting with it."
+
+  choice__
+    @target "A374-CH09-Term-Buffer"
+    "The term accelerates."
+  __choice
+__section
+
+
+section__
+  @title "A374-CH09-Term-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The rhythm of post-holiday Hogwarts: faster, tighter, more compressed. The staff know something. The students feel it. The castle's magic has the specific quality of a building that is preparing — not for attack, but for the possibility of attack, which is a different kind of readiness."
+
+  "Your investigation has three active fronts: the spy, the key, and Avery. Each is in a different stage of development. Each requires the other to resolve before the full picture emerges."
+
+  "And underneath all of it: the cabinet. The passage. The thing Draco is building that will change everything when it opens."
+
+  "The term accelerates. The window closes."
+
+  choice__
+    @target "A375-CH09-End-Ch9-A"
+    "End of Chapter 9."
+  __choice
+__section
+
+
+/* ── END CHAPTER NINE (A375–A380) ── */
+
+section__
+  @title "A375-CH09-End-Ch9-A"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of Chapter 9. The chapter that asked the question and, for some readers, answered it."
+
+  "The journal: three sections decoded. The coordinates are known. L. is identified, if you pursued the Snape thread. The birthday cipher opened a letter from a parent to a child, which is the most personal thing any cipher has ever been asked to do."
+
+  "Avery: alive, if the Patronus came. Unknown, if it didn't. Either way, the investigation has moved from *find my parent* to *act on what I know*, which is a different kind of search."
+
+  if__ (snape_bargain == true) {
+    "Snape's Bargain: accepted. The operational plan includes him now. The exchange — intelligence for access — is live."
+  }
+
+  if__ (snape_bargain_modified == true) {
+    "Snape's Bargain: modified. You advise. He doesn't direct. The intelligence comes first."
+  }
+
+  if__ (snape_bargain == false && snape_bargain_modified == false && l_theory == "snape") {
+    "Snape's Bargain: refused. But the intelligence is coming anyway. Avery was a colleague. In a specific sense."
+  }
+
+  choice__
+    @target "A376-CH09-End-Ch9-B"
+    "And the rest."
+  __choice
+__section
+
+
+section__
+  @title "A376-CH09-End-Ch9-B"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy: still active. The canary trap, if set, hasn't produced results yet. The pipeline from the Slug Club discovery remains under observation. The identity of the source — the upstream leak — is narrowing but not resolved."
+
+  "The Mirror-key: still in the Room of Hidden Things. Still unmoved. The urgency to move it has increased but the opportunity to do so has not — Draco's daily visits to the room make any approach during the day impossible, and nighttime access requires planning that hasn't been done yet."
+
+  "The Vanishing Cabinet: close. Very close. Draco's behaviour is the behaviour of someone in the final phase of a task they're terrified to complete. The crack in the window is visible."
+
+  if__ (rescue_planned == true) {
+    "The rescue plan: written. Not executable — not yet, not from here — but written. Phase by phase. Risk by risk."
+  }
+
+  "The romance: deeper. The holiday made it so. Whatever 'deep' means between two people in a school during a war — it means more than it did in September."
+
+  choice__
+    @target "A377-CH09-State-Of-Play"
+    "State of play."
+  __choice
+__section
+
+
+section__
+  @title "A377-CH09-State-Of-Play"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "State of play, end of Chapter 9:"
+
+  "You have decoded three of five journal sections. You have coordinates, a letter, and a parent who is alive or unknown. You have a bargain with Snape or you don't. You have the Order at your back or you don't. You have a romance that is real or the solitude that comes from not having one."
+
+  "What comes next is Chapter 10. Allegiances. The chapter where the story's spine sets."
+
+  "You've been navigating between the Order and Draco's world, between light and dark, between the institutional machinery of Hogwarts and the private investigation of the journal. Chapter 10 is where you stop navigating and start choosing."
+
+  "The choice will define everything that follows."
+
+  choice__
+    @target "A378-CH09-March-Looms"
+    "The choice."
+  __choice
+__section
+
+
+section__
+  @title "A378-CH09-March-Looms"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "April becomes May. The term's final stretch. OWLs and NEWTs and the end-of-year examinations that the school insists on holding as though the war outside its walls is a hypothetical."
+
+  "The corridors are busier. The library is full. The specific institutional energy of a school approaching its annual crisis point — examinations — provides a cover for the other crisis that is approaching simultaneously."
+
+  "The cabinet. The key. The spy. The allegiance."
+
+  "Everything converges. Not slowly. Fast."
+
+  choice__
+    @target "A379-CH09-Chapter-Close"
+    "Chapter 10."
+  __choice
+__section
+
+
+section__
+  @title "A379-CH09-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The chapter that began with a holiday decision and a journal section and ended with the knowledge of whether Avery Ashford is alive."
+
+  "The most personal chapter. The one that stopped being about the investigation and became, for a few pages, about the person doing the investigating."
+
+  "You are not the same person you were in September. The investigation has changed you — made you sharper, more careful, more willing to carry weight that most sixth-years don't have to carry. The Patronus — or its absence — changed you in a different way. Made you clearer about what matters."
+
+  "What matters is: the people you're trying to protect. The truth you're trying to find. The choices you're about to make."
+
+  "Chapter 10 is called Allegiances."
+
+  "It earns its name."
+
+  choice__
+    @target "A380-CH09-To-Ch10"
+    "Turn the page."
+  __choice
+__section
+
+
+section__
+  @title "A380-CH09-To-Ch10"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "May. The castle prepares for what's coming without knowing what it is."
+
+  "You prepare for what's coming. You know exactly what it is."
+
+  choice__
+    @target "A381-CH10-Allegiances-Hub"
+    "Allegiances."
+  __choice
+__section

@@ -1,0 +1,1256 @@
+/* ============================================================
+   THE ASHFORD CODEX — CHAPTER 8
+   02-ch08-slug-club.partial.if
+
+   Chapter 8: Slug Club and Other Disasters
+   The Christmas Slug Club party. Draco and "Resonance."
+   The spy leak. Romance Phase 2 seeds and deepening.
+   War outside Hogwarts. draco_mirror_hint confirmed (hard).
+   spy_investigation_started and spy_trap_set (possibly).
+
+   Section range: A281–A325
+   ============================================================ */
+
+scene__
+  @name "CH08: Slug Club and Other Disasters"
+  @first "A281-CH08-Slug-Club-Setup"
+  @sceneTransition "cut"
+  @sections "A281-CH08-Slug-Club-Setup" "A282-CH08-Party-Arrival" "A283-CH08-The-Room" "A284-CH08-Slughorn-Greets" "A285-CH08-Party-Sweep" "A286-CH08-Draco-Resonance" "A287-CH08-Ask-Draco-Resonance" "A288-CH08-Pretend-Not-Hear" "A289-CH08-Leave-Draco-Window" "A290-CH08-Party-Conversations" "A291-CH08-Slughorn-Chat" "A292-CH08-Hermione-Harry" "A293-CH08-Party-Intel" "A294-CH08-Harry-At-Party" "A295-CH08-Harry-Polyjuice" "A296-CH08-Party-Convergence" "A297-CH08-Romance-Party-Hub" "A298-CH08-Romance-Elara-Party" "A299-CH08-Romance-Marcus-Party" "A300-CH08-Romance-Jade-Seb-Party" "A301-CH08-Romance-Party-Convergence" "A302-CH08-After-Party-Transition" "A303-CH08-Spy-Leak" "A304-CH08-Investigate-Leak" "A305-CH08-Tell-Asha" "A306-CH08-Plant-False-Info" "A307-CH08-Stay-Quiet" "A308-CH08-Spy-Convergence" "A309-CH08-Romance-Aftermath-Hub" "A310-CH08-Elara-Aftermath" "A311-CH08-Marcus-Aftermath" "A312-CH08-Jade-Seb-Aftermath" "A313-CH08-No-Romance-Aftermath" "A314-CH08-Aftermath-Convergence" "A315-CH08-Post-Party" "A316-CH08-Headlines" "A317-CH08-Castle-Shifts" "A318-CH08-War-Outside" "A319-CH08-End-Ch8-A" "A320-CH08-End-Ch8-B" "A321-CH08-March-Weather" "A322-CH08-State-Of-Play" "A323-CH08-Chapter-Close" "A324-CH08-Buffer" "A325-CH08-To-Ch9"
+__scene
+
+
+/* ── 8a: SLUG CLUB PARTY (A281–A285) ── */
+
+section__
+  @title "A281-CH08-Slug-Club-Setup"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "March. Slughorn's invitation arrives on a Tuesday, in handwriting that manages to be both loopy and precise — the penmanship of someone who practises warmth as a professional skill."
+
+  "*My dear Ashford — another small gathering, this Saturday. Eight o'clock. Dress code: presentable. Bring your wit and your discretion, in that order.*"
+
+  "The invitation is not a surprise. Since that first Slug Club gathering in October, these have become semi-regular events — Slughorn collecting his favourites the way a gardener tends promising seedlings, watering them with conversation and proximity to interesting people."
+
+  "What's different about this one: the timing. March is later in the year than Slughorn usually operates. The gatherings have been getting smaller, more curated, more specific in who's invited and what questions Slughorn asks when he gets them alone."
+
+  "Something is shifting in Slughorn's calculus. He's not just collecting anymore. He's assessing."
+
+  choice__
+    @target "A282-CH08-Party-Arrival"
+    "Saturday arrives."
+  __choice
+__section
+
+
+section__
+  @title "A282-CH08-Party-Arrival"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Saturday evening, eight o'clock. You've dressed in the way that 'presentable' demands at Hogwarts — school robes but better ones, the ones without the frayed cuffs or the ink stain on the left sleeve."
+
+  "The corridor to Slughorn's office has the specific quality of a space that has been lit for occasion: candles at intervals, the smell of mulled wine reaching you twenty feet before the door, the faint hum of conversation from inside that tells you you're not the first to arrive."
+
+  "The door is open. The room inside is not Slughorn's office as you know it — it's been expanded, glamoured, reorganised into something closer to a drawing room. Sofas have appeared. The lighting is lower and warmer. There are platters of food on surfaces that weren't there during your last Potions lesson."
+
+  "Slughorn has made his office into a space for a particular kind of gathering: the kind where people talk to each other while being gently monitored by someone who understands the value of proximity."
+
+  choice__
+    @target "A283-CH08-The-Room"
+    "Step inside."
+  __choice
+__section
+
+
+section__
+  @title "A283-CH08-The-Room"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The room contains: Hermione Granger, already here, talking to a seventh-year Ravenclaw with the focused energy of someone who is enjoying the conversation on its own terms. Harry Potter, somewhere near the food table, looking slightly uncomfortable in the way Harry always looks in social settings that require performance rather than response."
+
+  "Ginny Weasley, who was invited on the strength of her Bat-Bogey Hex reputation and has been attending these events with the relaxed confidence of someone who doesn't need Slughorn's approval but finds the whole exercise interesting. A Slytherin sixth-year whose father is someone at the Ministry. Two students you don't know well."
+
+  "And, standing near the bookshelves with a glass he isn't drinking from: Draco Malfoy."
+
+  "Draco's presence is unusual. He attended the first gathering in October but has been conspicuously absent from the subsequent ones — declining or not responding, the specific withdrawal of someone who doesn't have the energy for social performance on top of everything else they're carrying."
+
+  "He's here tonight. And he looks worse than the last time you saw him at close quarters — thinner, the circles under his eyes darker, the jaw set in the way that indicates sustained effort not to let something show."
+
+  choice__
+    @target "A284-CH08-Slughorn-Greets"
+    "Slughorn finds you."
+  __choice
+__section
+
+
+section__
+  @title "A284-CH08-Slughorn-Greets"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'Ashford!' Slughorn materialises at your elbow with the specific social velocity of a host who has been tracking arrivals. 'Delighted, delighted. Come in, come in. You know everyone, I think.'"
+
+  "He doesn't wait for you to confirm. He steers you toward the centre of the room with one hand on your shoulder — the touch of a host, practised and warm and slightly proprietary."
+
+  "'I wanted you here tonight specifically,' he says, lowering his voice to the register he uses when he's sharing something that feels like a confidence but is actually a test. 'There are people here tonight who are worth knowing. And people who are worth being known by. The distinction matters, Ashford. It always does.'"
+
+  "He leaves you with a plate of something and moves on to the next arrival."
+
+  "You are in a room with Draco Malfoy, the Golden Trio, and Slughorn's assessment engine. The evening has begun."
+
+  choice__
+    @target "A285-CH08-Party-Sweep"
+    "Survey the room."
+  __choice
+__section
+
+
+section__
+  @title "A285-CH08-Party-Sweep"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "You move through the room with the peripheral observation that has become habit. The party's dynamics are readable if you know how to read them: the clusters of conversation, the empty spaces between people, the direction of Slughorn's attention as he orbits."
+
+  "Hermione is comfortable. Harry is present but guarded — he's looking at Draco the way he's been looking at Draco all year, with the specific intensity of someone who is watching a variable and has been for months."
+
+  "Draco is near the bookshelves. He has positioned himself at the edge of the room in the way someone does when they came because they had to, not because they wanted to. His glass is still full."
+
+  "You have a decision about what to do first."
+
+  choice__
+    @target "A286-CH08-Draco-Resonance"
+    "Move toward Draco's end of the room. He's the reason you're watching."
+  __choice
+
+  choice__
+    @target "A290-CH08-Party-Conversations"
+    "Work the room first. Slughorn, Hermione, Harry. Build context before approaching the edges."
+  __choice
+__section
+
+
+/* ── 8b: DRACO AND "RESONANCE" (A286–A289) ── */
+
+section__
+  @title "A286-CH08-Draco-Resonance"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You move toward the bookshelves with the lateral quality of someone who is browsing rather than approaching. The party's ambient noise gives you cover — conversations, Slughorn's laugh, the clink of glasses."
+
+  "Draco is standing at the edge of a conversation he's not part of — a Slytherin seventh-year and a guest from the Ministry, discussing something about import regulations. His expression is the mask he wears when he's enduring something. He's looking at the bookshelf. Not reading. Occupying his eyes."
+
+  "Then the seventh-year says something that makes Draco's mask slip."
+
+  "The word is 'Resonance.'"
+
+  "Not capitalised in the way the seventh-year says it — they're talking about magical resonance in potion brewing, a legitimate technical term, nothing to do with anything. But the word hits Draco the way a name hits a person who has been thinking about that name and hears it said by someone who doesn't know what it means in the other context."
+
+  "His head turns. A fraction. Toward the seventh-year, then away, then toward the bookshelf again. He puts his glass down. His hand is not steady."
+
+  "You are close enough to see this. And you are close enough to hear, very quietly, the thing he says under his breath that he doesn't intend anyone to hear:"
+
+  "'*Not here.*'"
+
+  draco_mirror_hint = true
+
+  choice__
+    @target "A287-CH08-Ask-Draco-Resonance"
+    @action knowledge = adj(knowledge, 10)
+    @action rel_draco = adjRel(rel_draco, 8)
+    "Ask him. Directly. Quietly. 'What do you know about the Resonance Mirror, Draco.'"
+  __choice
+
+  choice__
+    @target "A288-CH08-Pretend-Not-Hear"
+    @action cunning = adj(cunning, 8)
+    "Pretend you didn't hear. File it. The confirmation is enough — he knows the word, he reacted to it, and he said *not here* as if there's a place where it would be appropriate."
+  __choice
+
+  choice__
+    @target "A289-CH08-Leave-Draco-Window"
+    @action empathy = adj(empathy, 3)
+    "Leave him his moment. He didn't mean to react and he's already covering it. Pressing now would be cruel rather than strategic."
+  __choice
+__section
+
+
+section__
+  @title "A287-CH08-Ask-Draco-Resonance"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "You move to the bookshelf beside him. Your shoulder is eighteen inches from his. The party continues around you — Slughorn is telling an anecdote about Gwenog Jones and nobody is looking at this corner."
+
+  "'Resonance Mirror,' you say. Quiet enough that only he can hear. Not a question. A statement. You watch his face the way you watch someone who is deciding between three things simultaneously."
+
+  "His face goes through several things very quickly: recognition, threat assessment, the specific calculation of someone who is trying to determine whether denying knowledge is more dangerous than confirming it."
+
+  "'You don't know what you're talking about,' he says. Flat. Controlled. The rehearsed quality of someone who has prepared a denial."
+
+  "'Montenegro,' you say. 'An obsidian shard. A passage.'"
+
+  "His eyes change. The denial is still on his face but it's no longer in his eyes. In his eyes there is something that looks, for a moment, like relief — the specific, terrible relief of someone who has been carrying something alone and has just discovered that another person in the room knows it exists."
+
+  "'Stop talking,' he says. His voice is very quiet. 'Not here. Not tonight.'"
+
+  "'When,' you say."
+
+  "He looks at you for a long time. The party murmurs around you both."
+
+  "'I'll find you,' he says. And walks away toward the drinks table."
+
+  choice__
+    @target "A290-CH08-Party-Conversations"
+    "Let him go. You got what you came for."
+  __choice
+__section
+
+
+section__
+  @title "A288-CH08-Pretend-Not-Hear"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You don't react. You are standing at the bookshelf looking at titles, and you continue standing at the bookshelf looking at titles. Your body language communicates: browsing, uninvolved, ambient."
+
+  "The confirmation is registered. Filed. You don't need him to know you heard it."
+
+  "Draco Malfoy knows the word 'Resonance' in the context that matters. He reacted to it with the involuntary specificity of someone for whom the word is live — not historical, not theoretical, live. He said *not here*, which means there is a *somewhere else* where it can be discussed."
+
+  "The draco_mirror_hint you've been carrying since the autumn as a soft suspicion is now hard. Confirmed. He knows about the Mirror. Not from you — from his own network, his own task, his own corner of the same architecture."
+
+  "The Vanishing Cabinet. The Resonance Mirror. The obsidian shard in the Room of Hidden Things."
+
+  "Draco Malfoy is not just building a passage. He's building a passage to a room that contains the thing Voldemort wants."
+
+  "He may or may not know the shard is there. But he knows the Mirror exists."
+
+  choice__
+    @target "A290-CH08-Party-Conversations"
+    "Rejoin the party."
+  __choice
+__section
+
+
+section__
+  @title "A289-CH08-Leave-Draco-Window"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You step back from the bookshelf. Draco's moment passes — the mask reassembles, the glass is picked up again, the posture returns to the compressed endurance that is his default setting this year."
+
+  "He doesn't know you heard. The mercy of it is: you leave him his privacy in the one area where it might still matter to him."
+
+  "But the data is recorded. He knows the word. He reacted. The mirror_hint moves from speculation to confirmed."
+
+  "You carry the knowledge back into the party's brighter centre, where Slughorn is refilling glasses and Hermione is talking about something that matters on its own terms."
+
+  choice__
+    @target "A290-CH08-Party-Conversations"
+    "The party continues."
+  __choice
+__section
+
+
+/* ── 8c: PARTY CONVERSATIONS (A290–A296) ── */
+
+section__
+  @title "A290-CH08-Party-Conversations"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The party settles into its middle phase — the point where the arrivals have been absorbed, the first round of drinks has been drunk, and the conversations have found their natural pairings."
+
+  "Slughorn orbits. He has the social radar of someone for whom networking is not a skill but a medium — the way water is a medium for fish. He knows where every conversation is and what it's producing."
+
+  "You have options."
+
+  choice__
+    @target "A291-CH08-Slughorn-Chat"
+    "Let Slughorn find you. He's been circling and he clearly has something to say."
+  __choice
+
+  choice__
+    @target "A292-CH08-Hermione-Harry"
+    "Find Hermione and Harry. The people you know well enough to have a real conversation with."
+  __choice
+
+  choice__
+    @target "A293-CH08-Party-Intel"
+    @action cunning = adj(cunning, 5)
+    "Work the edges. Listen to conversations you're not part of. The best intelligence at a party is the intelligence no one is offering."
+  __choice
+__section
+
+
+section__
+  @title "A291-CH08-Slughorn-Chat"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Slughorn appears at your elbow again — the return orbit, the follow-up after the initial welcome. This time he's carrying two glasses and the expression of someone who is about to be candid in the way that powerful people are candid: selectively."
+
+  "'Your parent,' he says, handing you a glass of elderflower wine. 'Avery Ashford. Exceptional student, your parent. Had a gift for Defence — one of the few who genuinely understood the theory as well as the application.' He pauses. 'Terrible business, the disappearance. The Ministry's handling of it was — well.'"
+
+  "He drinks. The pause is deliberate. He's watching you the way a fisherman watches a line."
+
+  "'I knew Avery in my first stint at Hogwarts,' he continues. 'Before I left. Before all the — unpleasantness. Brilliant student. Connected to the right people and, more importantly, not connected to the wrong ones.' Another pause. 'That matters, Ashford. In this climate, who you're *not* connected to matters as much as who you are.'"
+
+  "He's telling you something. It may be advice. It may be assessment. It may be both."
+
+  rel_slughorn = adj(rel_slughorn, 5)
+
+  choice__
+    @target "A294-CH08-Harry-At-Party"
+    @action knowledge = adj(knowledge, 5)
+    "Thank him. Note the subtext."
+  __choice
+__section
+
+
+section__
+  @title "A292-CH08-Hermione-Harry"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Hermione is near the fireplace, having finished her conversation with the Ravenclaw seventh-year. She looks at you as you approach with the expression of someone who has been enjoying the party intellectually but is ready for a conversation that isn't performance."
+
+  "'Slughorn is in rare form tonight,' she says. 'He's asked me three questions about my parents' dental practice. I think he's trying to work out whether Muggle dentistry constitutes a network he hasn't tapped yet.'"
+
+  "She says it with the specific warmth of someone who finds the whole Slug Club exercise absurd and valuable in equal measure."
+
+  "Harry is nearby, eating something and watching the room. He nods at you."
+
+  "'Malfoy's here,' he says. Quiet. Not to you specifically — to the observation log he's been running all year. 'He hasn't been to one of these since October. Why tonight.'"
+
+  rel_hermione = adjRel(rel_hermione, 5)
+  rel_harry = adjRel(rel_harry, 5)
+
+  choice__
+    @target "A294-CH08-Harry-At-Party"
+    "Note Harry's observation. He's tracking the same variable."
+  __choice
+__section
+
+
+section__
+  @title "A293-CH08-Party-Intel"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "You work the room's edges the way you've learned to: not inserting yourself into conversations but positioning yourself near them, the specific peripheral presence of someone who is available but not intrusive."
+
+  "Three conversations yield three pieces of information, in decreasing order of usefulness:"
+
+  "First: the Slytherin seventh-year's Ministry father has been reassigned to a department that doesn't officially exist, which the seventh-year mentions with the frustrated pride of someone whose parent has become more important and less available simultaneously."
+
+  "Second: Slughorn asks the Ravenclaw guest a question about 'procurement difficulties' with potions ingredients, and the Ravenclaw answers with a reference to supply lines being disrupted — the specific disruption of wartime, where materials that were formerly available become scarce because the routes that carry them are no longer safe."
+
+  "Third: someone mentions an attack on a village near Bristol. Not the Prophet — the real attack, the one the Prophet won't report for three more days."
+
+  "The war is closer than the headlines admit. The party is a gilded surface over darker water."
+
+  choice__
+    @target "A294-CH08-Harry-At-Party"
+    @action cunning = adj(cunning, 5)
+    @action knowledge = adj(knowledge, 3)
+    "File it all."
+  __choice
+__section
+
+
+section__
+  @title "A294-CH08-Harry-At-Party"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Harry is standing near the food table with the expression of someone who is enduring the party for a reason that isn't social. He's watching Draco with the sustained attention you've seen from him all term — careful, analytical, frustrated by the absence of proof."
+
+  "You know things about Draco that Harry doesn't. The Room of Requirement. The Vanishing Cabinet. The word 'Resonance' and the reaction it produced."
+
+  "Harry knows things about Draco that you don't. The Marauder's Map. The patterns of absence. The things he's told Dumbledore that Dumbledore has listened to and not acted on."
+
+  "You are two people watching the same person from different angles and neither of you has the full picture."
+
+  "Slughorn calls the room to attention for a toast. The party's middle phase is ending."
+
+  choice__
+    @target "A295-CH08-Harry-Polyjuice"
+    @when knowledge >= 55
+    @disabledText "Requires Knowledge ≥ 55 — you'd need a sharper eye for magical anomalies to spot it."
+    "Wait. Something about Harry is off tonight. Not his behaviour — his appearance."
+  __choice
+
+  choice__
+    @target "A296-CH08-Party-Convergence"
+    "Rejoin the main group for the toast."
+  __choice
+__section
+
+
+section__
+  @title "A295-CH08-Harry-Polyjuice"
+  @textPacing "cinematic"
+  @shot "extreme_close"
+
+  "You look at Harry more carefully. His hair sits differently — not wrong, exactly, but with the specific quality of hair that has been recently adjusted rather than naturally grown. His left hand has a small scar that you've observed before, but the scar's angle is slightly off. Not wrong. Adjusted."
+
+  "Polyjuice. Or a glamour. One of the two."
+
+  "Harry Potter is not entirely Harry Potter tonight. Or he was, and now there's a layer on top. Either he's disguised something about his appearance for the party — which doesn't match Harry's relationship to social presentation — or someone else is here wearing a version of Harry that isn't quite precise enough."
+
+  "You file it. The anomaly doesn't resolve tonight. But the observation is noted, and the next time you see Harry, you'll be watching for the seams."
+
+  knowledge = adj(knowledge, 5)
+
+  choice__
+    @target "A296-CH08-Party-Convergence"
+    "The toast is starting."
+  __choice
+__section
+
+
+section__
+  @title "A296-CH08-Party-Convergence"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "Slughorn's toast is: 'To connections. The only currency that survives every change of government.' He says it with the specific sincerity of someone who has lived through enough regime changes to know this from experience."
+
+  "Everyone drinks. The toast is accurate, which makes it uncomfortable."
+
+  "The party shifts into its later phase — the point where the social obligations have been met and people begin having the conversations they actually came for. The room's geometry changes: people move toward the people they want to talk to, not the people they should be seen with."
+
+  choice__
+    @target "A297-CH08-Romance-Party-Hub"
+    "Someone finds you."
+  __choice
+__section
+
+
+/* ── 8d: ROMANCE PHASE 2 — PARTY (A297–A302) ── */
+
+section__
+  @title "A297-CH08-Romance-Party-Hub"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The party's late phase. The room is warmer now — bodies and candles and the sustained heat of a gathering that has been running for two hours. Slughorn has retreated to a conversation with the Ministry guest. The music someone charmed into the room is playing quietly."
+
+  if__ (romance_active == "elara") {
+    choice__
+      @target "A298-CH08-Romance-Elara-Party"
+      "Elara is here."
+    __choice
+  }
+
+  if__ (romance_active == "marcus") {
+    choice__
+      @target "A299-CH08-Romance-Marcus-Party"
+      "Marcus found a way in."
+    __choice
+  }
+
+  if__ (romance_active == "jade" || romance_active == "sebastian") {
+    choice__
+      @target "A300-CH08-Romance-Jade-Seb-Party"
+      "They're waiting outside."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    choice__
+      @target "A301-CH08-Romance-Party-Convergence"
+      "The party continues. You continue with it."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A298-CH08-Romance-Elara-Party"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara was invited on her own merit — Slughorn has been collecting Ravenclaws this year with the specific interest of someone who has noticed that academic talent and wartime usefulness are converging. She's been here since before you arrived."
+
+  "She finds you near the fireplace, carrying a glass she's actually drinking. Her expression is the one she uses when she's been thinking about something and has decided to ask about it: direct, careful, the specific directness of someone who values precision in personal questions."
+
+  "'You're hiding something,' she says. 'Not the usual hiding. Something new. Tonight.' She looks at you. 'You heard something at this party that changed what you know.'"
+
+  "She is, as always, precisely correct."
+
+  "'How do you do that,' you ask her."
+
+  "'You do a thing with your left hand when you're processing new information,' she says. 'You press your thumb against your index finger. You've been doing it for the last twenty minutes.'"
+
+  "She noticed. She always notices."
+
+  rel_elara = adjRel(rel_elara, 10)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A301-CH08-Romance-Party-Convergence"
+    "Tell her what you can. Hold back what you must."
+  __choice
+__section
+
+
+section__
+  @title "A299-CH08-Romance-Marcus-Party"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus wasn't invited. He's here because Slytherin students have institutional knowledge about how to be in rooms they weren't asked to enter — the specific skill set of a house whose social architecture has always relied on access rather than invitation."
+
+  "He appears beside you at the bookshelf with the casual precision of someone who has been watching the room's sight-lines and found the one angle where Slughorn can't see him."
+
+  "'Malfoy's here,' he says. Not a greeting. An observation."
+
+  "'I know.'"
+
+  "'He's been talking to Snape in the corridor twice this week. Closed-door conversations that end when anyone gets close.' Marcus looks at you sidelong. 'Your investigation and his task are converging. You know that, right.'"
+
+  "'I know that.'"
+
+  "'Good.' He pauses. 'Because when they converge — when the room and the cabinet and whatever Draco's building all meet in the same place at the same time — you need to be ahead of it. Not beside it. Ahead.'"
+
+  "He says it with the flat urgency of someone who has seen convergences before, in his family's world, and knows what they look like when they arrive."
+
+  rel_marcus = adjRel(rel_marcus, 10)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A301-CH08-Romance-Party-Convergence"
+    "He's right. You need to move faster."
+  __choice
+__section
+
+
+section__
+  @title "A300-CH08-Romance-Jade-Seb-Party"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "jade") {
+    "Jade is waiting in the corridor outside Slughorn's office. She wasn't invited — Quidditch captains get the occasional nod from Slughorn but not a standing invitation — and she's here because she knew you'd be here."
+
+    "'How's the party,' she asks."
+
+    "'Complicated.'"
+
+    "'How are you.'"
+
+    "'Also complicated.'"
+
+    "She leans against the corridor wall. 'Come walk when you're done. I'll be in the entrance hall.' Not a demand. An availability statement. The specific Jade quality of making her presence known without making it an obligation."
+
+    rel_jade = adjRel(rel_jade, 10)
+    empathy = adj(empathy, 5)
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian is in the corridor — not waiting, exactly, but present in the way he does everything: without announcement, without expectation. He's sitting on the windowsill across from Slughorn's door, reading."
+
+    "'I'm not here for the party,' he says when you come out. 'I'm here for the window. The light in this corridor is better at night than during the day. Something about the enchantments on the glass.'"
+
+    "He says it with the specific sincerity of someone who might actually mean it and also might be constructing the excuse for your benefit and has decided the distinction doesn't matter."
+
+    "'Are you okay,' he asks, looking up from his book."
+
+    "'Working on it.'"
+
+    "'Okay.' He goes back to reading. 'I'll be here.'"
+
+    rel_sebastian = adjRel(rel_sebastian, 10)
+    empathy = adj(empathy, 5)
+  }
+
+  choice__
+    @target "A301-CH08-Romance-Party-Convergence"
+    "Back inside."
+  __choice
+__section
+
+
+section__
+  @title "A301-CH08-Romance-Party-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The party is winding down. Slughorn's energy shifts from host to curator — he's now moving through the room making mental notes about who talked to whom and what it produced, the specific end-of-evening accounting of a professional networker."
+
+  "You've gathered what you came for: the Draco confirmation, the party intelligence, the relationship moment. The evening has been productive in the way that social events are productive when you arrive with specific questions and leave with partial answers."
+
+  "The last guests are drifting toward the door. Hermione gives you a nod as she leaves. Harry watches Draco leave and then follows at a distance — the Marauder's Map presumably already in his pocket."
+
+  choice__
+    @target "A302-CH08-After-Party-Transition"
+    "The party is over. The other thing happens now."
+  __choice
+__section
+
+
+section__
+  @title "A302-CH08-After-Party-Transition"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "Walking back to the common room. The corridor is quiet in the specific way of Hogwarts after curfew — the torches lower, the portraits dozing, the castle's ambient magic settling into its nighttime register."
+
+  "You're replaying the evening's observations when something interrupts."
+
+  "A voice. Not directed at you — directed at someone else, around the corner ahead. Two students, walking fast, not expecting to be overheard."
+
+  "You stop. Flatten yourself against the wall. Listen."
+
+  choice__
+    @target "A303-CH08-Spy-Leak"
+    "Listen."
+  __choice
+__section
+
+
+/* ── 8e: SPY LEAK (A303–A308) ── */
+
+section__
+  @title "A303-CH08-Spy-Leak"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "'—Montenegro, obviously,' says the first voice. A boy. Slytherin accent — the specific drawl that gets trained into students from certain families. Fifth-year, from the pitch. '*The whole thing's in Montenegro.* The artifact, the safehouse, the Auror. It's been there since August and the Order's been watching it from the wrong angle this whole time.'"
+
+  "The second voice: lower, harder to place. '*Quiet.* Not in the corridor.'"
+
+  "'Who's going to hear? It's after curfew. Everyone's at the party or in bed.'"
+
+  "You are in the corridor. You are hearing."
+
+  "Montenegro."
+
+  "The Resonance Mirror is connected to Montenegro — that's from section one of the journal, the one you decoded in October. 'Object located. Montenegro.' But you didn't share the specific word 'Montenegro' widely. You shared it with Hermione, if she saw the journal. You shared it with the Order, if you're a member. You shared it with no one, if you kept it close."
+
+  "Someone outside your circle knows the word. Knows the location. Knows enough to talk about it in a corridor with the careless confidence of someone who has received intelligence from a reliable source."
+
+  "There is a spy."
+
+  if__ (order_member == true) {
+    "The information was shared with Asha's network. Someone in that network — or someone adjacent to it — has been passing information to the other side."
+  }
+
+  if__ (order_member == false) {
+    "The information existed in the journal. Someone with access to what you know — or access to a parallel source — is feeding it outward."
+  }
+
+  "The footsteps retreat. The corridor is empty again."
+
+  spy_investigation_started = true
+
+  choice__
+    @target "A304-CH08-Investigate-Leak"
+    @action cunning = adj(cunning, 10)
+    @action knowledge = adj(knowledge, 5)
+    "Investigate. Follow the trail while it's warm. The Slytherin fifth-year's voice is identifiable — you've heard it in the corridors, in the Great Hall, in the specific cadences of someone who doesn't guard their speech carefully enough."
+  __choice
+
+  choice__
+    @target "A305-CH08-Tell-Asha"
+    @when order_member == true
+    @disabledText "Requires Order membership — only a member would have cause to report a leak to the network."
+    @action empathy = adj(empathy, 8)
+    @action courage = adj(courage, 5)
+    "Tell Asha. Immediately. If there's a leak in the Order's network, the network needs to know before the leak can do more damage."
+  __choice
+
+  choice__
+    @target "A306-CH08-Plant-False-Info"
+    @when cunning >= 65
+    @disabledText "Requires Cunning ≥ 65 — this is a tradecraft move, and you'd need the instincts to execute it correctly."
+    @action cunning = adj(cunning, 12)
+    "Plant false information. Three different versions of a false lead, shared with three different people. When the false lead surfaces on the other side, the version that surfaces tells you which channel leaked."
+  __choice
+
+  choice__
+    @target "A307-CH08-Stay-Quiet"
+    @action cunning = adj(cunning, 5)
+    @action morality = adj(morality, -5)
+    "Stay quiet. Watch. The spy doesn't know you've heard them. That ignorance is an asset. Burning it by acting too quickly is worse than waiting."
+  __choice
+__section
+
+
+section__
+  @title "A304-CH08-Investigate-Leak"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "The next three days are methodical."
+
+  "You identify the Slytherin fifth-year: Cassius Warrington's younger sibling, a narrow-faced student who sits at the edge of the Slytherin table and talks with the compressed confidence of someone whose family connections provide a floor of social safety that most people don't have."
+
+  "You watch them. Not openly — with the sustained peripheral observation you've been practising since September. Who they talk to. Who they receive owls from. Where they go after dinner and who's waiting."
+
+  "The pattern emerges over forty-eight hours: the younger Warrington talks to three people regularly. One is a known quantity — a Slytherin from another connected family. One is a Hufflepuff who shouldn't have access to the kind of information Warrington is discussing. The third is someone you can't identify, who meets Warrington in the Owlery at irregular hours."
+
+  "The leak has a shape. It's not a single traitor — it's a conduit, a chain of handoffs. The information moves from someone who knows things to someone who passes them to someone who sends them out."
+
+  "You write it in the observation log. The spy has three links. You need to find the first one — the source."
+
+  choice__
+    @target "A308-CH08-Spy-Convergence"
+    @action cunning = adj(cunning, 5)
+    @action knowledge = adj(knowledge, 5)
+    "Continue watching."
+  __choice
+__section
+
+
+section__
+  @title "A305-CH08-Tell-Asha"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You find Asha in the Astronomy Tower — not at the scheduled meeting time but by leaving a specific mark on the seventh-floor windowsill that means *urgent, tonight, same place.*"
+
+  "She arrives at midnight with the expression of someone who was already expecting bad news and has been calibrated for it."
+
+  "'Montenegro,' you tell her. 'I heard a Slytherin fifth-year discussing it in a corridor after the Slug Club party. The word, the location, the artifact. Someone in our network — or adjacent to it — has been passing information.'"
+
+  "Asha doesn't react the way most people react to betrayal. She reacts the way an intelligence operative reacts: with the focused, cold processing of someone who is already running scenarios."
+
+  "'How many people have you told the Montenegro detail to,' she asks."
+
+  "You tell her."
+
+  "'Then the leak is in that group, or in the people *they* told.' She pauses. 'I need to verify this against my own distribution list. I'll have a shortlist by Thursday.'"
+
+  "She looks at you."
+
+  "'This is good work, Ashford. The fact that you heard it and brought it here instead of acting alone — that's the right move.' She pauses. 'I'll handle it from here. Watch the Warrington kid. Don't approach.'"
+
+  rel_order = adj(rel_order, 10)
+
+  choice__
+    @target "A308-CH08-Spy-Convergence"
+    "The network will handle it."
+  __choice
+__section
+
+
+section__
+  @title "A306-CH08-Plant-False-Info"
+  @textPacing "cinematic"
+  @shot "close"
+
+  spy_trap_set = true
+
+  "You execute the false-information plant over five days with the specific methodology of someone who has read about this technique and is implementing it for the first time."
+
+  "Three pieces of false intelligence, each plausible, each different, each shared with exactly one person:"
+
+  "To Hermione, in the context of a study session, you mention that the Mirror has been moved from Montenegro to a location in Wales. Casual. Embedded in a broader conversation. If this version surfaces, the leak is through Hermione or someone who overhears her."
+
+  "To the Order network — through Asha, if you're a member, or through a contact if you're not — you mention that the Mirror-key has already been found and is being held at the Ministry. If this version surfaces, the leak is inside the network."
+
+  "To a third source — someone peripheral, someone who knows enough to be useful but not enough to be dangerous — you mention that the Auror investigation has been officially reopened. If this version surfaces, the leak is through the broader student population."
+
+  "Three versions. Three channels. When the false information appears on the other side — in a corridor conversation, in an intercepted owl, in the specific details of what the Death Eater network believes — the version that appears tells you which channel is compromised."
+
+  "This is called a canary trap. You didn't learn it in DADA. You learned it from Avery's operational notes, in the margins of the journal you haven't fully decoded yet."
+
+  choice__
+    @target "A308-CH08-Spy-Convergence"
+    @action cunning = adj(cunning, 5)
+    "Wait for the canary to sing."
+  __choice
+__section
+
+
+section__
+  @title "A307-CH08-Stay-Quiet"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "You stay quiet."
+
+  "The spy doesn't know you're aware of them. That ignorance is the most valuable thing you have in this equation — more valuable than a name, more valuable than a confrontation. The moment you act on what you know, the spy adapts. The moment the spy adapts, the information flow changes."
+
+  "Right now, the information is flowing predictably. Montenegro is out. Other details will follow. Each detail that surfaces on the other side tells you something about the pipeline — what they know, when they learned it, and from where."
+
+  "It's morally uncomfortable. Information is leaving your network and reaching people who will use it against you. By staying quiet, you're allowing that to continue in exchange for the long-term benefit of understanding the full architecture of the leak."
+
+  "The calculation is correct. The feeling is wrong."
+
+  "You make the calculation anyway."
+
+  choice__
+    @target "A308-CH08-Spy-Convergence"
+    "Watch."
+  __choice
+__section
+
+
+section__
+  @title "A308-CH08-Spy-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The spy subplot has a shape now. Not a resolution — that's for later, when the channels have been fully mapped or the canary has sung or Asha's shortlist has been verified. But a shape."
+
+  "Someone is leaking intelligence. You know the downstream end of the chain. The upstream end — the source, the person who originally accessed the information and decided to pass it — is still unknown."
+
+  "But the shortlist is short. And getting shorter."
+
+  "The party is over. The spy has been noted. The draco_mirror_hint has been confirmed. The romance has been witnessed."
+
+  "The evening has been what evenings are when the war outside Hogwarts is advancing: a surface of social normalcy over an architecture of intelligence and threat and the slow compression of available time."
+
+  choice__
+    @target "A309-CH08-Romance-Aftermath-Hub"
+    "Later that night."
+  __choice
+__section
+
+
+/* ── 8f: ROMANCE AFTERMATH (A309–A314) ── */
+
+section__
+  @title "A309-CH08-Romance-Aftermath-Hub"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Late. After the spy corridor, after the analysis, after the notebook entries. You're back in the common room or near it, and the weight of the evening is settling into the specific fatigue of someone who has been operating at high alertness for four hours."
+
+  if__ (romance_active == "elara") {
+    choice__
+      @target "A310-CH08-Elara-Aftermath"
+      "Elara is still awake."
+    __choice
+  }
+
+  if__ (romance_active == "marcus") {
+    choice__
+      @target "A311-CH08-Marcus-Aftermath"
+      "Marcus is in the corridor."
+    __choice
+  }
+
+  if__ (romance_active == "jade" || romance_active == "sebastian") {
+    choice__
+      @target "A312-CH08-Jade-Seb-Aftermath"
+      "They're where they said they'd be."
+    __choice
+  }
+
+  if__ (romance_active == "") {
+    choice__
+      @target "A313-CH08-No-Romance-Aftermath"
+      "Alone. Which is its own kind of clarity."
+    __choice
+  }
+__section
+
+
+section__
+  @title "A310-CH08-Elara-Aftermath"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Elara is in the Ravenclaw common room's reading nook — the one that technically closes at midnight but that Ravenclaws have been ignoring that rule about since the school's founding."
+
+  "She's waiting for you. Not in the performative sense — she's actually reading, actually engaged, actually present in her own activity. But the speed at which she looks up when you arrive tells you she was also waiting."
+
+  "'The party was more than a party tonight,' she says. Not a question."
+
+  "'Yes.'"
+
+  "'You learned something. About the thing you're investigating. And about someone at the party.' She's reading you again — the left-hand thumb thing, the set of your jaw, something else she's catalogued and isn't sharing."
+
+  "'Elara.' You sit down across from her. 'You ask very pointed questions for someone who says she doesn't want to know the content.'"
+
+  "'I don't want to know the content,' she says. 'I want to know if you're safe.' A pause. 'Those are different questions. The content is your investigation. Whether you're safe is mine.'"
+
+  "She says it with the particular precision of someone who has thought about where the line is and has placed herself exactly on it."
+
+  rel_elara = adjRel(rel_elara, 15)
+  empathy = adj(empathy, 5)
+
+  choice__
+    @target "A314-CH08-Aftermath-Convergence"
+    "You're safe. For now."
+  __choice
+__section
+
+
+section__
+  @title "A311-CH08-Marcus-Aftermath"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Marcus is in the corridor where you usually find each other — the fourth-floor passage near the Arithmancy classroom that nobody uses after hours because the torches don't work properly and the cold is specific."
+
+  "He's leaning against the wall in the dark. Not hiding. Existing in the dark the way Slytherins do — occupying spaces that other people find uncomfortable because comfort isn't the criterion."
+
+  "'You heard it too,' he says. 'The Montenegro conversation.'"
+
+  "'You heard it?'"
+
+  "'I was behind you. Different corridor. Same conversation carries.' He's quiet for a moment. 'The Warrington kid is careless. The person feeding Warrington is not.'"
+
+  "'You know who's feeding information out?'"
+
+  "He looks at you for a long time. In the poor torchlight his face has the specific quality of someone who is deciding what to share and what to hold."
+
+  "'I have suspicions,' he says. 'They overlap with yours. When I'm certain, I'll tell you.' A pause. 'My family's network and the Hogwarts leak are not the same thing. But they're aware of each other. The information flows both ways — Hogwarts outward, the network inward. Two systems, not one.'"
+
+  "He's giving you architecture. Not names, not evidence. The shape of the thing."
+
+  rel_marcus = adjRel(rel_marcus, 15)
+  cunning = adj(cunning, 5)
+
+  choice__
+    @target "A314-CH08-Aftermath-Convergence"
+    "Two systems, not one. Filed."
+  __choice
+__section
+
+
+section__
+  @title "A312-CH08-Jade-Seb-Aftermath"
+  @textPacing "cinematic"
+  @shot "close"
+
+  if__ (romance_active == "jade") {
+    "Jade is in the entrance hall, as promised. She's sitting on the bottom step of the main staircase with her legs stretched out, looking at the ceiling, which at this hour shows the night sky through its enchanted surface."
+
+    "'Done?' she asks."
+
+    "'Done.'"
+
+    "'Bad evening or productive evening.'"
+
+    "'Both. In the way those things have been both all year.'"
+
+    "She nods. 'Come sit.' She makes room on the step."
+
+    "You sit. The entrance hall at midnight is vast and cold and empty in a way that makes it feel like the inside of a cathedral — not spiritual, exactly, but specifically large enough that the two of you sitting on the step are small in a way that's restful rather than diminishing."
+
+    "'You don't have to tell me anything,' she says. 'But I'm going to sit here until you're ready to go to bed, because you have the face of someone who has been alone with something heavy for too long and could use thirty minutes of not being alone with it.'"
+
+    "She says it with the specific Jade directness that never demands and always offers."
+
+    rel_jade = adjRel(rel_jade, 15)
+    empathy = adj(empathy, 8)
+  }
+
+  if__ (romance_active == "sebastian") {
+    "Sebastian is still on the windowsill. The book is closed on his lap. He's looking out the window with the quiet attention of someone who has been watching the grounds and finding peace in the observation."
+
+    "'Hi,' he says."
+
+    "'Hi.'"
+
+    "'Party's over?'"
+
+    "'Party's over.'"
+
+    "He doesn't ask how it went. He shifts over on the windowsill to make room and you sit beside him. The window glass is cold against your shoulder. The grounds outside are dark — February dark, deep and thick."
+
+    "'I brought tea,' he says. From somewhere — the bag beside him, the resourceful Hufflepuff infrastructure — he produces a thermos. 'It's still warm. Probably.'"
+
+    "It's still warm."
+
+    "You drink tea on a windowsill at midnight with someone who brought a thermos because he knew you might need one. The investigation, the spy, the Mirror, the cabinet — they exist. They'll be there tomorrow."
+
+    "'This is good,' you tell him. Meaning the tea. Meaning everything."
+
+    "'I know,' he says. Simply."
+
+    rel_sebastian = adjRel(rel_sebastian, 15)
+    empathy = adj(empathy, 8)
+  }
+
+  choice__
+    @target "A314-CH08-Aftermath-Convergence"
+    "Later."
+  __choice
+__section
+
+
+section__
+  @title "A313-CH08-No-Romance-Aftermath"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Alone in the common room at midnight. The fire is low. The weight of the evening settles into the quiet in the way that accumulated information settles: not immediately, but in layers, each layer adding to the total pressure."
+
+  "The draco_mirror_hint, confirmed. The spy leak, noted. The investigation, advancing on two fronts — the Mirror and the mole."
+
+  "You're carrying all of it yourself. Which is a strategic choice — fewer people who know things, fewer potential leak vectors — and also a weight that has a cost that you don't fully notice because you've been paying it incrementally since September."
+
+  "The fire pops. The common room clock marks midnight. You're alone with your notebook and your investigation and the specific silence of a school that is sleeping while you are not."
+
+  "It's enough. It has to be."
+
+  cunning = adj(cunning, 5)
+  knowledge = adj(knowledge, 3)
+
+  choice__
+    @target "A314-CH08-Aftermath-Convergence"
+    "To bed."
+  __choice
+__section
+
+
+section__
+  @title "A314-CH08-Aftermath-Convergence"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The evening ends. The investigation doesn't — investigations don't end at midnight, they continue in the background of sleep and surface again at breakfast — but the evening's active phase is done."
+
+  "What you have, as of tonight:"
+
+  "The Mirror is known to Draco. The word 'Resonance' produced a reaction that confirmed his awareness. The nature and extent of his knowledge remain unclear, but the connection is no longer theoretical."
+
+  "The spy pipeline exists. Montenegro has leaked. The leak has a downstream structure — the Warrington kid, the handoffs — and an upstream source that remains unknown."
+
+  "The party was Slughorn's, but the intelligence was yours."
+
+  choice__
+    @target "A315-CH08-Post-Party"
+    "The next week."
+  __choice
+__section
+
+
+/* ── 8g: POST-PARTY (A315–A318) ── */
+
+section__
+  @title "A315-CH08-Post-Party"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The week after the party moves at the specific pace of a week where things are happening outside the castle that you can't see but can feel."
+
+  "The Daily Prophet arrives each morning with headlines that are simultaneously alarming and incomplete — the journalistic equivalent of someone describing a fire by discussing the smoke without mentioning the flames."
+
+  choice__
+    @target "A316-CH08-Headlines"
+    "Read the headlines."
+  __choice
+__section
+
+
+section__
+  @title "A316-CH08-Headlines"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "Monday: *Ministry confirms 'enhanced security protocols' for Hogsmeade visits.* Translation: they're afraid."
+
+  "Tuesday: *Disappearances continue in the West Country. Auror office declines comment.* Translation: the Auror office doesn't have enough people to comment and investigate simultaneously."
+
+  "Wednesday: nothing. Which is worse. When the Prophet has nothing to say, it means the things that are happening are the things the Prophet has been told not to report."
+
+  "Thursday: *Hogwarts governors review security measures; Dumbledore 'confident in existing protections.'* Translation: the governors asked Dumbledore if he was worried and Dumbledore told them what Dumbledore tells everyone, which is exactly enough to make them stop asking without actually answering the question."
+
+  "Friday: *Two Order of the Phoenix members reportedly injured in undisclosed operation.* A small article, on page six, between the Quidditch scores and the classified ads. Two names you don't recognise. But the word 'Order' in the Prophet is new. They've been avoiding it."
+
+  "The wall between the war and the school is getting thinner."
+
+  choice__
+    @target "A317-CH08-Castle-Shifts"
+    "The castle feels it."
+  __choice
+__section
+
+
+section__
+  @title "A317-CH08-Castle-Shifts"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The castle's internal atmosphere shifts over the week in ways that are subtle if you're not paying attention and obvious if you are."
+
+  "The staff are more present in the corridors. Not patrolling — Hogwarts doesn't patrol, the castle itself handles most security through mechanisms that predate the current administration by centuries — but visible. McGonagall in the halls between classes. Flitwick, who normally retreats to his office between lessons, lingering. Snape, always in the corridors, now with a quality of attention that is less surveillance and more: readiness."
+
+  "The students are adapting the way students always adapt: by talking about it and then not talking about it. The lower years have the nervous energy of children who can feel something wrong but can't name it. The sixth and seventh years have the more specific anxiety of people who are old enough to understand what they're feeling and young enough to not yet know what to do about it."
+
+  "The castle is not unsafe. But it is no longer the specific kind of safe that Hogwarts has always been — the unconditional kind, the kind that doesn't require thinking about."
+
+  "Safety, at Hogwarts in March of 1997, is now conditional. And the conditions are shifting."
+
+  choice__
+    @target "A318-CH08-War-Outside"
+    "The war."
+  __choice
+__section
+
+
+section__
+  @title "A318-CH08-War-Outside"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The war outside Hogwarts is no longer outside Hogwarts."
+
+  "It's in the headlines. It's in the staff's increased visibility. It's in the way students from certain families receive owls and go quiet for hours afterward. It's in the way the Slytherin table has developed fault lines — students from Death Eater families sitting with a specific tension alongside students from families that are pretending neutrality is still an option."
+
+  "It's in Draco's face, which you see every day and which is getting worse."
+
+  "It's in Dumbledore's absences, which have become more frequent. He's gone for days now — not the casual overnight trips of the autumn but sustained disappearances that leave McGonagall in charge with the expression of someone who has been given authority she didn't ask for and is exercising it flawlessly."
+
+  "The investigation — your investigation, the Mirror, the key, the spy — exists inside this larger context. You are not the only person at Hogwarts carrying something they can't put down. You might be the person carrying the most, but that's a distinction of degree, not kind."
+
+  "The war is here. The question is what you do with that knowledge."
+
+  choice__
+    @target "A319-CH08-End-Ch8-A"
+    "March continues."
+  __choice
+__section
+
+
+/* ── END CHAPTER EIGHT (A319–A325) ── */
+
+section__
+  @title "A319-CH08-End-Ch8-A"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "End of Chapter 8. Here is the landscape, revised."
+
+  "The journal: two sections decoded, a third approaching. The Mirror-key's location is known — Room of Hidden Things, east wall, obsidian shard. You haven't moved it yet. The window is still open but narrowing."
+
+  "The Mirror itself: confirmed known to Draco Malfoy. The word 'Resonance' produced a reaction that was involuntary and therefore authentic. He knows more than his mission requires him to know, or his mission is larger than you estimated."
+
+  "The spy: identified at the pipeline level. A Slytherin fifth-year, a chain of handoffs, a source that remains unknown. Montenegro has leaked. The canary trap is set, if you set it. Asha knows, if you told her. The investigation is active."
+
+  choice__
+    @target "A320-CH08-End-Ch8-B"
+    "And the rest."
+  __choice
+__section
+
+
+section__
+  @title "A320-CH08-End-Ch8-B"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The Vanishing Cabinet: still being repaired. Draco's visits to the seventh floor have increased in frequency — three times this week, by your count, each visit longer than the last. Whatever he's doing, it's approaching completion."
+
+  "The Order: active, watching, aware of the leak. Asha is running her own investigation parallel to yours, if you're connected. If you're not, the spy subplot is your own to manage."
+
+  "The romance: a person who makes the weight of the investigation slightly less solitary. Not lighter. Less solitary. The distinction matters on nights when the notebook is closed and the fire is low and the thing you need most is not information but witness."
+
+  "L.: still a theory. Three candidates, no confirmation. The journal's third section may help."
+
+  "Avery: missing. The coordinates from the first section point to a location you haven't been able to investigate. The trail is going cold unless you push."
+
+  choice__
+    @target "A321-CH08-March-Weather"
+    "March."
+  __choice
+__section
+
+
+section__
+  @title "A321-CH08-March-Weather"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "March at Hogwarts is: the specific transition between winter and something that is not yet spring but is no longer willing to be winter. The grounds thaw and refreeze in cycles. The lake's ice has broken into plates that drift and collide with the slow inevitability of things that are heavier than they look."
+
+  "The days are getting longer. The light changes — the specific lengthening of afternoons that makes the library usable for study an hour later than it was in January. The castle's stone catches the light differently, less the grey of endurance and more the grey of patience."
+
+  "You've been at Hogwarts for six months. The investigation has been running for five. The journal has two decoded sections and a third waiting."
+
+  "The window is narrowing. March is the hinge."
+
+  choice__
+    @target "A322-CH08-State-Of-Play"
+    "State of play."
+  __choice
+__section
+
+
+section__
+  @title "A322-CH08-State-Of-Play"
+  @textPacing "cinematic"
+  @shot "close"
+
+  "State of play, end of Chapter 8:"
+
+  "You know more than you did. The Mirror is confirmed real, located, and desired by both sides. The key is in the room. The passage is nearly complete. The spy is leaking but identified at the distribution level."
+
+  "What you don't know is more dangerous than what you do. The upstream spy. L.'s identity. Avery's location. The full content of sections three through five. What Draco will do when the cabinet is complete."
+
+  "The priority hierarchy, revised: decode section three. Find Avery. Resolve the spy. Move the key."
+
+  "Not necessarily in that order. Possibly simultaneously. Probably not all of them before the window closes."
+
+  "You are running out of time the way everyone at Hogwarts is running out of time: without fully knowing how much was left."
+
+  choice__
+    @target "A323-CH08-Chapter-Close"
+    "One more chapter before everything changes."
+  __choice
+__section
+
+
+section__
+  @title "A323-CH08-Chapter-Close"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "The chapter that began with a party invitation and ended with a spy confirmed and a war arriving at the castle gates."
+
+  "In between: a boy who flinched at a word. A leak that shouldn't exist. A romance that continues to be the one thing in your life that isn't an investigation."
+
+  "The next chapter is the one about Avery."
+
+  choice__
+    @target "A324-CH08-Buffer"
+    "Turn the page."
+  __choice
+__section
+
+
+section__
+  @title "A324-CH08-Buffer"
+  @textPacing "cinematic"
+  @shot "medium"
+
+  "The third journal section is waiting. The anchor intervals are longer — different emotional register, different rhythm. Avery wrote this section under different conditions than the first two."
+
+  "The birthday cipher. The one you've been circling since you first noticed the dates in the margin."
+
+  "It's time."
+
+  choice__
+    @target "A325-CH08-To-Ch9"
+    "Chapter Nine."
+  __choice
+__section
+
+
+section__
+  @title "A325-CH08-To-Ch9"
+  @textPacing "cinematic"
+  @shot "wide"
+
+  "March deepens."
+
+  "The journal's third section is the one about Avery."
+
+  choice__
+    @target "A326-CH09-Holiday-Setup"
+    "The Parent's Trail."
+  __choice
+__section
